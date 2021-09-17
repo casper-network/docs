@@ -1,0 +1,11 @@
+@import "@site/src/assets/scss/variable.scss";
+
+.demoPage {
+    main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+        margin: 50px auto;
+    }
+}

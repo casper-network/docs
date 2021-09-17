@@ -1,0 +1,14 @@
+node_modules
+build
+.docusaurus
+# i18n/**/*.json
+
+package.json
+yarn.lock
+
+tsconfig.json
+.env
+.gitkeep
+.gitignore
+.prettierignore
+

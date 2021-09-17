@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "streetsidesoftware.code-spell-checker",
+        "editorconfig.editorconfig",
+        "irongeek.vscode-env",
+        "silvenon.mdx",
+        "esbenp.prettier-vscode",
+        "stylelint.vscode-stylelint",
+        "ms-vscode.vscode-typescript-tslint-plugin",
+        "taichi.vscode-textlint"
+    ]
+}
