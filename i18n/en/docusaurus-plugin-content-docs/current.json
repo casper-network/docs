@@ -1,0 +1,30 @@
+{
+    "version.label": {
+        "message": "Next",
+        "description": "The label for version current"
+    },
+    "sidebar.dapp-dev-guide.category.Writing Smart Contracts": {
+        "message": "Writing Smart Contracts",
+        "description": "The label for category Writing Smart Contracts in sidebar dapp-dev-guide"
+    },
+    "sidebar.dapp-dev-guide.category.SDK Client Libraries": {
+        "message": "SDK Client Libraries",
+        "description": "The label for category SDK Client Libraries in sidebar dapp-dev-guide"
+    },
+    "sidebar.dapp-dev-guide.category.Tutorials": {
+        "message": "Tutorials",
+        "description": "The label for category Tutorials in sidebar dapp-dev-guide"
+    },
+    "sidebar.dapp-dev-guide.category.A Counter Contract Tutorial": {
+        "message": "A Counter Contract Tutorial",
+        "description": "The label for category A Counter Contract Tutorial in sidebar dapp-dev-guide"
+    },
+    "sidebar.dapp-dev-guide.category.ERC-20 Tutorial": {
+        "message": "ERC-20 Tutorial",
+        "description": "The label for category ERC-20 Tutorial in sidebar dapp-dev-guide"
+    },
+    "sidebar.dapp-dev-guide.category.Multi-Signature Tutorial": {
+        "message": "Multi-Signature Tutorial",
+        "description": "The label for category Multi-Signature Tutorial in sidebar dapp-dev-guide"
+    }
+}
