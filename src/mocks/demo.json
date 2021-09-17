@@ -1,0 +1,18 @@
+{
+    "demo": [
+        {
+            "title": "Algolia Docsearch",
+            "info": "The best search experience for docs, integrates in minutes, for free",
+            "image": "/icon/curves.svg",
+            "source": "https://github.com/algolia/docsearch-website",
+            "url": "https://docsearch.algolia.com/"
+        },
+        {
+            "title": "Algolia Docsearch",
+            "info": "The best search experience for docs, integrates in minutes, for free",
+            "image": "/icon/curves.svg",
+            "source": "https://github.com/algolia/docsearch-website",
+            "url": "https://docsearch.algolia.com/"
+        }
+    ]
+}
