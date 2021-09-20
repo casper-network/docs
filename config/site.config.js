@@ -4,7 +4,7 @@ module.exports = {
     title: "Casper",
     tagline: "The best search experience for docs, integrated in minutes, for free",
     url: "https://operators.casper.network/",
-    baseUrl: "/docs/",
+    baseUrl: "/source/docs/",
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
     favicon: "image/favicon.ico",

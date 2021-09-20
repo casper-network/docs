@@ -40,7 +40,7 @@ module.exports = {
             "@docusaurus/preset-classic",
             {
                 docs: {
-                    path: "docs/casper",
+                    path: "source/docs/casper",
                     routeBasePath: routePrefix, // IMPORTANT: Turn on docs-only mode
                     sidebarPath: require.resolve("./config/sidebar.config.js"),
                     editUrl: "https://github.com/scalio/scalio-mcms-docusaurus/tree/master",
