@@ -213,6 +213,32 @@ Document Search Development Open `config/algolia.config.js` and replace api_key,
 
 ---
 
+## GITHUB FLOW
+
+This project is using mono project structure using github subtrees for the partial publication about documentation, i18n localization
+
+-   docs-apps: docusaurus project app codebase we can use regular github `pull`/`push` command about this source
+-   source: public source module that include documentation, blog, i18n localization modules This source will be synced with [this repo](https://github.com/casper-network/documentation) remotely
+
+Git Subtree Commands
+
+```
+git subtree pull --prefix docs https://github.com/casper-network/documentation main --squash
+```
+
+```
+git subtree push --prefix docs https://github.com/casper-network/documentation main
+```
+
+-   We are using `chore/subtree` branch as a sync branch with documentation repo.
+-   For example, we are gonna `pull` new contribution changes that has been made in `master` branch of `documentation` repo, then we can use pull command in the `chore/subtree` branch of `docs-app` repo
+-   This will make squash commit of making newly added commit of `master` branch of documentation repo into `chore/subtree` branch.
+-   We can merge these changes into `master` branch of `docs-app`.
+-   If we want to make changes into `documentation` in the `docs-app` repo directly, then you can switch into `chore/subtree` branch firstly
+-   After making changes, you can make `commit`/`push` about that, and made another push using git subtree `push` command
+-   in the Documentation repo, you can pull these changes in master branch.
+-   In this way, these 2 repos will be synced with new changes all the time
+
 ## DEBUG DOCUSAURUS SITE DATA
 
 run the project and go to `http://localhost:3000/__docusaurus/debug/routes`
