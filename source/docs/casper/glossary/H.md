@@ -6,6 +6,6 @@
 
 ---
 
-## Highway
+## Highway {#highway}
 
 A consensus protocol that allows clients to use different confidence thresholds to convince themselves that a given block is _finalized_. The full paper is found in GitHub: <https://github.com/casper-network/highway>.

@@ -6,7 +6,7 @@
 
 ---
 
-## Validator
+## Validator {#validator}
 
 Validators are responsible for maintaining platform security by building an ever-growing chain of finalized blocks, backing this chain's security with their stakes. Their importance (often referred to as "weight") both to protocol operation and security is, in fact, equal to their stake, which includes both their own and delegated tokens.
 

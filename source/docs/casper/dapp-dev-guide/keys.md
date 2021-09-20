@@ -2,9 +2,9 @@
 
 The Casper platform supports two types of signatures for creating accounts and signing transactions: `secp256k1` and `ed25519`. You can generate keys using the Casper client in both formats. It is also possible to work with existing Ethereum keys.
 
-## Key Generation
+## Key Generation {#key-generation}
 
-### Ethereum Keys
+### Ethereum Keys {#ethereum-keys}
 
 To create `secp256k1` keys, commonly known as Ethereum keys, follow these steps:
 
@@ -28,7 +28,7 @@ $ cat secp256k1-keys/public_key_hex
 020287e1a79d0d9f3196391808a8b3e5007895f43cde679e4c960e7e9b92841bb98d
 ```
 
-### EdDSA Keys
+### EdDSA Keys {#eddsa-keys}
 
 It is also possible to create `ed25519` keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA). To generate EdDSA keys, follow these steps:
 
@@ -52,7 +52,7 @@ $ cat ed25519-keys/public_key_hex
 011724c5c8e2404ca01c872e1bbd9202a0114e5d143760f685086a5cffe261dabd
 ```
 
-## Working with Existing Ethereum Keys
+## Working with Existing Ethereum Keys {#working-with-existing-ethereum-keys}
 
 It is also possible to use existing Ethereum keys in Casper. Here is an example set of Ethereum keys and their corresponding address:
 

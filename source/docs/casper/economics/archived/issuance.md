@@ -40,7 +40,7 @@ base_round_reward(i) = round_seigniorage_rate * supply(i)
 
 This value gives us the maximum amount of CSPR that the validators can receive from a proposed block.
 
-## Reward Distribution
+## Reward Distribution {#reward-distribution}
 
 Validators are rewarded for proposing and finalizing blocks, according to their performance. The concept of weight is crucial for understanding reward distribution:
 
@@ -50,7 +50,7 @@ Validators are rewarded for proposing and finalizing blocks, according to their 
 
 To determine the validators' eligibility to receive rewards from a proposed block, we look at **on-time finalization (OTF)**. Validators should finalize blocks on time, by sending required messages before their respective rounds end.
 
-### Participation Schedule
+### Participation Schedule {#participation-schedule}
 
 The schedule with which validators send messages are determined by the validators' rounds, which are in turn determined by their round exponents. A validator with the round exponent `n` has to participate in rounds that repeat every `2^n` ticks.
 
@@ -58,7 +58,7 @@ Each validator is assessed according to their own round exponent. All assigned v
 
 We dictate a minimum assigned weight for all rounds. Rounds that meet the requirement are said to be _feasible_, and the ones that do not are said to be _infeasible_. Blocks proposed in infeasible rounds do not receive any rewards.
 
-### Reward Eligibility
+### Reward Eligibility {#reward-eligibility}
 
 Once a block has been proposed and enough time has passed, the history of messages can be examined to detect whether the block was indeed finalized on time, according to the conditions given above.
 

@@ -11,7 +11,7 @@ This workflow assumes:
 5.  You have previously [deployed a smart contract](https://docs.casperlabs.io/en/latest/dapp-dev-guide/deploying-contracts.md) to a Casper Network
 6.  You have delegated tokens to a validator
 
-## Building The Undelegation WASM
+## Building The Undelegation WASM {#building-the-undelegation-wasm}
 
 Obtain the `undelegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository and building the contracts.
 
@@ -21,7 +21,7 @@ Once you build the contracts, you can use the `undelegate.wasm` to create a depl
 
     target/wasm32-unknown-unknown/release
 
-## Sending the Undelegation Deploy
+## Sending the Undelegation Deploy {#sending-the-undelegation-deploy}
 
 Send a deploy containing the `undelegate.wasm` to the network to initiate the undelegation process.
 
@@ -62,7 +62,7 @@ casper-client put-deploy \
     -   The argument `amount` is the number of tokens to be undelegated
     -   The argument `delegator` is the public key of the account undelegating tokens from a validator
 
-## Asserting the Undelegation
+## Asserting the Undelegation {#asserting-the-undelegation}
 
 You can use the Casper command-line client to generate an RPC request to query the auction state. The subsequent RPC response will confirm that the undelegation request was successfully executed.
 

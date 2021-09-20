@@ -11,7 +11,7 @@ This workflow assumes:
 5.  You have a valid `node-address`
 6.  You have previously [deployed a smart contract](https://docs.casperlabs.io/en/latest/dapp-dev-guide/deploying-contracts.md) to a Casper Network
 
-## Building The Delegation WASM
+## Building The Delegation WASM {#building-the-delegation-wasm}
 
 Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository and building the contracts.
 
@@ -21,7 +21,7 @@ Once you build the contracts, you can use the `delegate.wasm` to create a deploy
 
     target/wasm32-unknown-unknown/release
 
-## Acquiring a Validator's Public Key
+## Acquiring a Validator's Public Key {#acquiring-a-validators-public-key}
 
 The official Testnet and Mainnet provide a browser-based block explorer to look up the list of validators within their respective networks:
 
@@ -42,11 +42,11 @@ Additionally, any rewards earned are re-delegated by default to the validator fr
 
 The active validator set is constantly rotating; therefore, when delegating to a validator, remember that the validator you selected may have been rotated out of the set.
 
-## Executing the Delegation Request
+## Executing the Delegation Request {#executing-the-delegation-request}
 
 We recommend first testing the following steps on our official Testnet before performing these steps in a live environment like the Casper Mainnet.
 
-### Sending the Delegation Deploy
+### Sending the Delegation Deploy {#sending-the-delegation-deploy}
 
 Send a deploy containing the `delegate.wasm` to the network to initiate the delegation process. Here is an example deployment of the delegation request:
 
@@ -91,7 +91,7 @@ Save the returned _deploy_hash_ from the output to query information about the d
 
 Refer to the [Deploy Status](querying.md#deploy-status) section to learn how to confirm that your deploy was executed successfully.
 
-### Confirming the Delegation
+### Confirming the Delegation {#confirming-the-delegation}
 
 A Casper Network maintains an _auction_ where validators _bid_ on slots to become part of the active validator set. Delegation rewards are only earned for a validator who has won the auction and is part of the active set. Thus to ensure the delegated tokens can earn rewards, we must first check that:
 
@@ -142,7 +142,7 @@ Below is a sample output:
 
 If your public key and associated amount appear in the `bid` data structure, this means that the delegation request has been processed successfully. However, this does not mean the associated validator is part of the validator set, so you need to check the validator status.
 
-### Checking Validator Status
+### Checking Validator Status {#checking-validator-status}
 
 The auction maintains a field called `era_validators`, which contains the validator information for 4 future eras from the current era. An entry for a specific era lists the `PublicKeys` of the active validators for that era along with their stake in the network.
 

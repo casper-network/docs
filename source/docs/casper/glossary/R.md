@@ -6,18 +6,18 @@
 
 ---
 
-## Reward
+## Reward {#reward}
 
 Validators receive rewards for participating in consensus and finalizing blocks. There is no precise per-block reward. Rewards are split proportionally among stakes within an era. If a validator is offline or cannot vote on many blocks, the rewards earned are also reduced. Delegators can only receive a proportional amount of the validator's rewards minus the validator's commission (Delegation Rate). Rewards are distributed at the end of each era.
 
-## Root hash
+## Root hash {#root-hash}
 
 The root node of the hash tree (or [Merkle tree](M.md#merkle-tree)) of all the transactions in a block.
 
-## Rust
+## Rust {#rust}
 
 A programming language similar to C++, designed for performance and safety, especially safe concurrency.
 
-## Rustdocs
+## Rustdocs {#rustdocs}
 
 As part of the Rust development environment, the Rustdocs describe the the [Casper contracts library](https://docs.rs/casper-contract/), the [Casper types library](https://docs.rs/casper-types/), and the [Casper test support library](https://docs.rs/casper-engine-test-support/).
