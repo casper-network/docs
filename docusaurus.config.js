@@ -43,7 +43,7 @@ module.exports = {
                     path: "source/docs/casper",
                     routeBasePath: routePrefix, // IMPORTANT: Turn on docs-only mode
                     sidebarPath: require.resolve("./config/sidebar.config.js"),
-                    editUrl: "https://github.com/scalio/scalio-mcms-docusaurus/tree/master",
+                    editUrl: "https://github.com/casper-network/documentation/tree/master",
                     exclude: ["./contract-dsl/archived", "./economics/archived", "./theory"],
                     /* Docs config options */
                     // showLastUpdateAuthor: false,
@@ -57,7 +57,7 @@ module.exports = {
                 /* Blog config options */
                 // {
                 //     showReadingTime: true,
-                //     editUrl: "https://github.com/scalio/scalio-mcms-docusaurus/blob/master/blog",
+                //     editUrl: "https://github.com/casper-network/documentation/blob/master/blog",
                 //     path: "blog",
                 //     blogSidebarCount: "ALL",
                 //     blogSidebarTitle: "All Blog Posts",

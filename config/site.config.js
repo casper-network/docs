@@ -8,7 +8,7 @@ module.exports = {
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "warn",
     favicon: "image/favicon.ico",
-    organizationName: "scalio",
+    organizationName: "CasperNetwork",
     projectName: "Casper",
     /* Optional */
     // clientModules: customScripts,
