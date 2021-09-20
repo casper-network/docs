@@ -14,11 +14,11 @@ A block consists of the following:
 
 Each of these fields is detailed in the subsequent sections.
 
-### `block_hash`
+### `block_hash` {#block_hash}
 
 The `block_hash` is the `blake2b256` hash of the header.
 
-### Header
+### Header {#header}
 
 The block header contains the following fields:
 
@@ -37,7 +37,7 @@ The block header contains the following fields:
 -   the human-readable name corresponding to this instance of the Casper Network (`chain_id`)
 -   an indicator for whether this message is intended as a valid block or merely a _ballot_ (see consensus description in part A for more details)
 
-### Body
+### Body {#body}
 
 The block body contains an **ordered** list of `DeployHashes` which refer to deploys, and an **ordered** list of `DeployHashes` for native transfers (which are specialized deploys that only transfer token between accounts). All deploys, including a specialization such as native transfer, can be broadly categorized as some unit of work that, when executed and committed, affect change to global state `Global State<global-state-intro>`{.interpreted-text role="ref"}. It should be noted that a valid block may contain no deploys and / or native transfers.
 

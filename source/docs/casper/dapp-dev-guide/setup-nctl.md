@@ -2,19 +2,19 @@
 
 NCTL stands for network/node control. [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) is a CLI application you can use to set up and control multiple local Casper networks during development. Many developers wish to spin up relatively small test networks to localize their testing before deploying to the blockchain. Adopting a standardized approach in the community is also helpful for troubleshooting and reporting issues.
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
 1.  You have completed the [Getting Started section](getting-started.md), which shows you how to install your development environment, including tools like _CMake_ (version 3.1.4+), _Cargo_, and _Rust_.
 2.  Make sure you have [Python 3 installed](https://www.python.org/downloads/) if your operating system does not include Python.
 3.  To run NCTL, you will also need [the bash shell](https://www.gnu.org/software/bash/).
 
-## Video Tutorial
+## Video Tutorial {#video-tutorial}
 
 If you prefer a video walkthrough of this guide, you can check out this video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed?v=rE_saHopXXU&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&index=3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Installing a Virtual Environment
+## Installing a Virtual Environment {#installing-a-virtual-environment}
 
 We will show you how to run NCTL in a virtual environment. If you want to run NCTL at the system level, you can, but we recommend that you only do that if you are sure you know what you are doing.
 
@@ -123,7 +123,7 @@ Instructions for MacOS and Linux:
 (env) $ pip install toml
 ```
 
-## Setting up the Network
+## Setting up the Network {#setting-up-the-network}
 
 You are now ready to set up and run your local network of Casper nodes.
 
@@ -180,7 +180,7 @@ Here is the command line output you would expect.
 
 <img src="/image/nctl/nctl_output.png"  alt="nctl_output"/>
 
-## Stopping the Network
+## Stopping the Network {#stopping-the-network}
 
 **Step 15.** Although not necessary, you can stop and clean the NCTL setup with the following commands.
 
@@ -191,7 +191,7 @@ Instructions for MacOS and Linux:
 (env) $ nctl-clean
 ```
 
-## Next Steps
+## Next Steps {#next-steps}
 
 1.  Explore the [various NCTL commands](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/commands.md).
 2.  Explore the [NCTL usage guide](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/usage.md).

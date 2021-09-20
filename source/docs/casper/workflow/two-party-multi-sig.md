@@ -12,7 +12,7 @@ This workflow assumes:
 4.  You have a valid `node-address`
 5.  You have previously [deployed a smart contract](https://docs.casperlabs.io/en/latest/dapp-dev-guide/deploying-contracts.md) to a Casper Network
 
-## Configuring the Main Account
+## Configuring the Main Account {#configuring-the-main-account}
 
 **CAUTION**: Incorrect account configurations could render accounts defunct and unusable. It is highly recommended to first execute any changes to an account in a test environment like Testnet, before performing them in a live environment like Mainnet.
 
@@ -27,7 +27,7 @@ Each account within a Casper Network has two action thresholds that manage the p
 
 To enforce the multi-signature (multi-sig) feature for an account on a Casper Network, the _main key_ and _associated key_'s combined weight must be greater than or equal to the `deployment` threshold. This can be achieved by having each key's weight equal to half of the `deployment` threshold.
 
-## Code Description
+## Code Description {#code-description}
 
 You can run session code that will execute within the context of your main account. Below is the code that will be compiled to WASM and then sent to the network as part of a deploy.
 
@@ -67,7 +67,7 @@ The contract will execute **2 crucial steps** to enforce the multi-sig scheme fo
 
 The action thresholds for deploys cannot be greater than the action threshold for key management. By default, action thresholds are set to `1`.
 
-## Code Execution
+## Code Execution {#code-execution}
 
 The state of the account can be altered by sending a deploy which executes the WASM that will associate the **AA** account address.
 
@@ -113,7 +113,7 @@ casper-client put-deploy \
 
 **Note**: Save the returned `deploy_hash` from the output to query information about execution status.
 
-### Confirming Execution and Account Status
+### Confirming Execution and Account Status {#confirming-execution-and-account-status}
 
 Account configuration on a Casper blockchain is stored in a [Merkle Tree](https://docs.casperlabs.io/en/latest/glossary/M.md#merkle-tree) and is a snapshot of the blockchain's [Global State](https://docs.casperlabs.io/en/latest/implementation/global-state.md). The representation of global state for a given block can be computed by executing the deploys (including transfers) within the block and its ancestors. The root node of the Merkle Tree identifying a particular state is called the `state-root-hash` and is stored in every executed block.
 

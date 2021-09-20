@@ -2,7 +2,7 @@
 
 During advanced development, you may wish to optimize the output of the DSL for the blockchain once the base logic of your smart contract is in place. This requires digging into the actual code that the DSL generates, and here is where the [cargo expand](https://github.com/dtolnay/cargo-expand) command becomes a useful tool.
 
-## Expanding the Macros
+## Expanding the Macros {#expanding-the-macros}
 
 To see the code that the DSL generates, you can use the `cargo expand` command. To install it, you can simply type the following in your terminal:
 
@@ -28,7 +28,7 @@ You usually do not need to generate the expanded code. When the Rust compiler en
 
 Also, keep in mind that once you have expanded and changed the generated code, you should remove the macros from the project configuration before saving the changes and building it.
 
-## Building and Testing the Hello World Contract
+## Building and Testing the Hello World Contract {#building-and-testing-the-hello-world-contract}
 
 By building and testing the [Hello World](https://github.com/casper-ecosystem/hello-world) contract, you can see how the DSL expands the macros.
 
@@ -66,7 +66,7 @@ test tests::should_update ... ok
 test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.71s
 ```
 
-## Using the Makefile
+## Using the Makefile {#using-the-makefile}
 
 If you examine the repository contents, you'll see that there is a Makefile. This is an alternative to using a build script, as we did in the [Getting Started guide](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.html). To duplicate the steps we took above, you would simply run the following two commands in your terminal:
 

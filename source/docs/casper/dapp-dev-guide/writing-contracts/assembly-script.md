@@ -2,7 +2,7 @@
 
 CasperLabs maintains the [casper-contract](https://www.npmjs.com/package/casper-contract) to allow developers to create smart contracts using [AssemblyScript](https://www.npmjs.com/package/assemblyscript). The package source is hosted in the [main Casper Network repository](https://github.com/casper-network/casper-node/tree/master/smart_contracts/contract_as/assembly).
 
-## Installation
+## Installation {#installation}
 
 For each smart contract, it is necessary to create a project directory and initialize it.
 
@@ -21,11 +21,11 @@ npm install --save-dev assemblyscript@0.9.1
 npm install --save casper-contract
 ```
 
-## Contract API Documentation
+## Contract API Documentation {#contract-api-documentation}
 
 The Assemblyscript contract API documentation can be found at <https://www.npmjs.com/package/casper-contract>.
 
-## Usage
+## Usage {#usage}
 
 Add script entries for AssemblyScript to your project's `package.json`. Note that your contract name is used for the name of the WASM file. Replace _your-contract-name_ with the name of your contract.
 
@@ -71,7 +71,7 @@ Next, create a directory called `assembly`, and in that directory, create a file
 }
 ```
 
-## Sample smart contract
+## Sample smart contract {#sample-smart-contract}
 
 In the `assembly` directory, also create an `index.ts` file, where the code for the contract needs to go.
 
@@ -89,7 +89,7 @@ export function call(): void {
 
 If you prefer a more complicated first contract, you can look at example contracts on the [Casper Ecosystem GitHub](https://github.com/casper-ecosystem) repository for inspiration.
 
-## Compile to WASM
+## Compile to WASM {#compile-to-wasm}
 
 To compile the contract to WASM, use _npm_ to run the _asbuild_ script from the project root:
 

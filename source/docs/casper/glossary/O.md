@@ -6,7 +6,7 @@
 
 ---
 
-## Operator
+## Operator {#operator}
 
 Anyone running a node is an operator.
 
