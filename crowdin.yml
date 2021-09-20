@@ -3,7 +3,7 @@ api_token: "e41adb7be4f65c3522a83f38711534fc2c2ddac3b64f3e8708c8a53488d779450dcd
 preserve_hierarchy: true
 files:
     [
-        { source: "/i18n/en/**/*", translation: "/i18n/%two_letters_code%/**/%original_file_name%" },
-        { source: "/docs/**/*", translation: "/i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%" },
-        { source: "/blog/**/*", translation: "/i18n/%two_letters_code%/docusaurus-plugin-content-blog/**/%original_file_name%" },
+        { source: "/source/i18n/en/**/*", translation: "/source/i18n/%two_letters_code%/**/%original_file_name%" },
+        { source: "/source/docs/**/*", translation: "/source/i18n/%two_letters_code%/docusaurus-plugin-content-docs/current/**/%original_file_name%" },
+        { source: "/source/blog/**/*", translation: "/source/i18n/%two_letters_code%/docusaurus-plugin-content-blog/**/%original_file_name%" },
     ]

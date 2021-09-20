@@ -10,7 +10,7 @@ This workflow assumes:
 4.  You have a valid `node-address`
 5.  You must be able to sign a deploy for the source account
 
-## Transfer
+## Transfer {#transfer}
 
 The `transfer` command allows you to move CSPR from one account to another as denominated in [Motes](https://docs.casperlabs.io/en/latest/implementation/tokens.md?highlight=motes#divisibility-of-tokens). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
 
@@ -151,7 +151,7 @@ casper-client transfer \
 
 </details>
 
-### Deploy Status
+### Deploy Status {#deploy-status}
 
 A transfer on a Casper Network is only executed after it has been included in a finalized block.
 
@@ -379,7 +379,7 @@ Refer to the Section on [querying deploys](querying.md#deploy-status) within the
 
 </details>
 
-### State Root Hash
+### State Root Hash {#state-root-hash}
 
 State information like the balance of an account on a Casper blockchain is stored in the [Global State](https://docs.casperlabs.io/en/latest/implementation/global-state.md).
 
@@ -476,7 +476,7 @@ casper-client get-block \
 
 </details>
 
-### Query the Source Account
+### Query the Source Account {#query-the-source-account}
 
 Next, we will query for information about the _Source_ account, using the `state-root-hash` of the block containing our transfer and the public key of the _Target_ account.
 
@@ -549,7 +549,7 @@ casper-client query-state \
 
 </details>
 
-### Query the Target Account
+### Query the Target Account {#query-the-target-account}
 
 We will repeat the previous step to query information about the _Target_ account.
 
@@ -616,7 +616,7 @@ casper-client query-state \
 
 </details>
 
-### Get Source Account Balance
+### Get Source Account Balance {#get-source-account-balance}
 
 All accounts on a Casper system have a purse associated with the Casper system mint, which we call the _main purse_. The balance associated with a given purse is recorded in the global state, and the value can be queried using the `URef` associated with the purse.
 
@@ -670,7 +670,7 @@ casper-client get-balance \
 
 </details>
 
-### Get Target Account Balance
+### Get Target Account Balance {#get-target-account-balance}
 
 Similarly, now that we have the address of the target purse, we can get its balance.
 
@@ -720,7 +720,7 @@ Similarly, now that we have the address of the target purse, we can get its bala
 
 </details>
 
-### Query Transfer Details
+### Query Transfer Details {#query-transfer-details}
 
 Deploys in a Casper Network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
 

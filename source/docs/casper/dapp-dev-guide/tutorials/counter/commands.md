@@ -1,6 +1,6 @@
 # Important Commands
 
-## Faucet Account Information
+## Faucet Account Information {#faucet-account-information}
 
 ```rust
 nctl-view-faucet-account
@@ -8,7 +8,7 @@ nctl-view-faucet-account
 
 This command is part of NCTL and provides a view into the faucet account details. The faucet is the default account created on the network. Generally on the Mainnet, your own account is used to fund transactions. However, for the sake of this tutorial, we do not need accounts and will use the faucet to execute deploys. This command supplies two key pieces of information: the account's _secret key_ location and the _account hash_, which are used to sign deploys and query the network state, respectively.
 
-## State Root Hash
+## State Root Hash {#state-root-hash}
 
 ```rust
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
@@ -22,7 +22,7 @@ After any deploys to the network, you must get the new state root hash to see th
 
 :::
 
-## Querying Network State
+## Querying Network State {#querying-network-state}
 
 ```rust
 casper-client query-state \
@@ -38,9 +38,9 @@ This command allows you to query the state of a Casper network at a given moment
 -   The _key_ is the identifier for the query. It must be either the account public key, account hash, contract address hash, transfer hash, or deploy hash. We will demonstrate two of these key types in this tutorial.
 -   The optional query path argument (_q_) allows you to drill into the specifics of a query concerning the key.
 
-## Put Deploys (onto the Chain)
+## Put Deploys (onto the Chain) {#put-deploys-onto-the-chain}
 
-### Deploy via a compiled WASM binary
+### Deploy via a compiled WASM binary {#deploy-via-a-compiled-wasm-binary}
 
 ```rust
 casper-client put-deploy \
@@ -57,7 +57,7 @@ This command creates a deploy and sends it to the network for execution. In this
 -   This contract is then deployed to the network specified by _node-address_ and _chain-name_. By default, NCTL names the chain "casper-net-1" but this is configurable.
 -   The _payment-amount_ is in units of motes (1 nano-CSPR) and is required to pay the transaction fee for the deployment. If it is too small, the transaction will get denied due to insufficient funds.
 
-### Deploy via a named key already on the blockchain
+### Deploy via a named key already on the blockchain {#deploy-via-a-named-key-already-on-the-blockchain}
 
 ```rust
 casper-client put-deploy \
@@ -73,7 +73,7 @@ This second usage of _put-deploy_ does not place a new contract on the chain, bu
 
 Here we show the example using "counter" and "counter_inc" because, in the [Counter tutorial](./walkthrough.md), we have defined a smart contract by the name of "counter", and there is an entry-point named "counter_inc" defined within it. However, these will be different when you write your contracts.
 
-## Get Deploys (from the Chain)
+## Get Deploys (from the Chain) {#get-deploys-from-the-chain}
 
 ```rust
 casper-client get-deploy \

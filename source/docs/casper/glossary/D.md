@@ -6,19 +6,19 @@
 
 ---
 
-## dApp
+## dApp {#dapp}
 
 A distributed application (dApp) is a set of [smart contracts](S.md#smart-contract).
 
-## Delegation rate
+## Delegation rate {#delegation-rate}
 
 Node operators ([validators](V.md#validator)) define a commission that they take in exchange for providing staking services. This commission is represented as a percentage of the rewards that the node operator retains for their services.
 
-## Delegator
+## Delegator {#delegator}
 
 Delegators are users who participate in the platform's security by delegating their tokens to validators (which adds to their weight) and collecting a part of the rewards proportional to their delegations, net of a cut ("delegation rate") that is collected by the validator.
 
-## Deploy
+## Deploy {#deploy}
 
 All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the [global state](G.md#global-state). Deploys include specializations such as native transfers, which only transfer tokens between accounts.
 

@@ -8,7 +8,7 @@ Ultimately, smart contracts are meant to run on the blockchain. Once your smart 
 
 This section will help you get set up with each prerequisite.
 
-## The Casper Client
+## The Casper Client {#the-casper-client}
 
 You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
 
@@ -31,11 +31,11 @@ The Casper client can print out _help_ information, which provides an up-to-date
 casper-client --help
 ```
 
-### Building the Client from Source
+### Building the Client from Source {#building-the-client-from-source}
 
 [Instructions](https://github.com/casper-network/casper-node/tree/master/client)
 
-### Check the Client Version
+### Check the Client Version {#check-the-client-version}
 
 There is an official Rust client, that works with the Casper [Testnet](https://testnet.cspr.live/) and [Mainnet](https://cspr.live/).
 
@@ -47,15 +47,15 @@ $ casper-client --version
 
 If you want to send your deployments to an external network, use the latest released version of the client. If you are building the client locally, check the gitHash and ensure it matches the githash of the network.
 
-### Token to Pay for Deployments
+### Token to Pay for Deployments {#token-to-pay-for-deployments}
 
 Blockchains are supported by infrastructure providers called "Validators". To use the Validator infrastructure, it's necessary to acquire token to pay for deployments (transactions). In a testnet, this is possible by using a faucet. Alternatively, accounts can be funded in Genesis, or token can be transferred from a Genesis account to a new account. In a production system, token is typically acquired by visiting an exchange.
 
-### Target Network
+### Target Network {#target-network}
 
 When sending a deploy, the client needs to know which host will receive the deployment. The `node-address` and `chain-name` parameters provide this info.
 
-### Creating Keys
+### Creating Keys {#creating-keys}
 
 Blockchains use asymmetric key encryption to secure transactions. The secret key used to sign the deployment will be the secret key of the account that is being used to pay for the transaction. The transaction will execute in this account's context unless key delegation and the `from` parameter is being used. To create keys using the rust client, execute the following command:
 
@@ -71,15 +71,15 @@ This process will create 3 files:
 
 When passing in the public key as hex, it's recommended to `$(cat public_key_hex)` in the transaction, or extract the contents of the file. Use the secret-key.pem file to sign transaction.
 
-## Sending a Deployment to the Testnet
+## Sending a Deployment to the Testnet {#sending-a-deployment-to-the-testnet}
 
 The easiest way to deploy a contract is to use an existing public network. The Testnet is operated by external validators that can accept transactions.
 
-### Obtain Token
+### Obtain Token {#obtain-token}
 
 To send a deploy to the network, create keys and obtain token. Token can be obtained via a faucet or by a participant that has token. Connect to our [Discord](https://discordapp.com/invite/Q38s3Vh) to get token via an existing participant.
 
-### A Basic Deployment using the Command Line (Rust Client)
+### A Basic Deployment using the Command Line (Rust Client) {#a-basic-deployment-using-the-command-line-rust-client}
 
 As described above, a basic deployment must provide some essential information. Here is an example deployment using the Rust client that will work with the basic contract we created using the [Contracts SDK for Rust](writing-contracts/rust.md). The default port is 7777:
 
@@ -95,7 +95,7 @@ If your deployment command is correct, expect to see a success message that look
 
 Note: Each deploy gets a unique hash. This is part of the cryptographic security of blockchain technology. No two deploys will ever return the same hash.
 
-### Check Deploy Status
+### Check Deploy Status {#check-deploy-status}
 
 Once the network has received the deployment, it will queue up in the system before being listed in a block for execution. Sending a transaction (deployment) to the network does not mean that the transaction processed successfully. Therefore, it's important to check to see that the contract executed properly, and that the block was finalized.
 
@@ -209,7 +209,7 @@ From this data structure we can observe some properties about the deploy (some o
 
 It is also possible to check the contract's state by performing a `query-state` command using the client.
 
-### A Note about Gas Prices
+### A Note about Gas Prices {#a-note-about-gas-prices}
 
 If you notice in the put-deploy command above, we supplied a payment amount argument:
 
@@ -225,11 +225,11 @@ You can estimate the costs in this way, and then add a small buffer in case the 
 
 Refer to the [runtime economics](https://docs.casperlabs.io/en/latest/economics/runtime.html?highlight=consensus-before-execution%20model#gas-allocation) section for more details about gas usage, fees, and refunding mechanisms.
 
-### Advanced Deployments
+### Advanced Deployments {#advanced-deployments}
 
 The Casper Network supports complex deployments.
 
-#### Using Arguments with Deployments
+#### Using Arguments with Deployments {#using-arguments-with-deployments}
 
 Casper contracts support arguments for deployments, which enables powerful capabilities for smart contract development. The casper client provides some examples on how to do this:
 
@@ -237,7 +237,7 @@ Casper contracts support arguments for deployments, which enables powerful capab
 $ casper-client put-deploy --show-arg-examples
 ```
 
-#### Creating, signing, and deploying contracts with multiple signatures
+#### Creating, signing, and deploying contracts with multiple signatures {#creating-signing-and-deploying-contracts-with-multiple-signatures}
 
 The `deploy` command on its own provides multiple actions strung together optimizing for the common case, with the capability to separate concerns between your key management and deploy creation. See details about generating account key pairs in the Developer Guide.
 

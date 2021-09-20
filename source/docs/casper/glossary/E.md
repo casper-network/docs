@@ -6,20 +6,20 @@
 
 ---
 
-## Ecosystem
+## Ecosystem {#ecosystem}
 
 The ecosystem layer in Casper encompasses dApp design and operation.
 
-## Era
+## Era {#era}
 
 A period of time during which the validator set does not change.
 
 In the Casper Network, validators cannot join and leave at any point in time, but only at era boundaries. An era's validators are determined using an [auction](A.md#auction). At the beginning of the era, the validators create a new instance of the Highway protocol and run this consensus protocol until they finalize the era's last block (see [booking block](B.md#id7)).
 
-## Eviction
+## Eviction {#eviction}
 
 Validators that fail to participate in [era](E.md#era) will have their bid deactivated by the protocol, suspending their participation until they signal readiness to resume participation by invoking a method in the [auction contract](A.md#auction-contract).
 
-## External client
+## External client {#external-client}
 
 Any hardware/software connecting to a Node for the purpose of sending deploys or querying the state of the blockchain.

@@ -23,7 +23,7 @@ fn test_erc20_transfer() {
 
 The [tests crate](https://github.com/casper-ecosystem/erc20/tree/master/tests) has a `build.rs` file, which is effectively a custom build script executed every time before running the tests. The `build.rs` file compiles the [contract crate](https://github.com/casper-ecosystem/erc20/tree/master/contract) in _release_ mode and copies the `contract.wasm` file to the `tests/wasm` directory. In practice, that means you only need to run a single command during development, which is **make test**.
 
-## Configuring the Test Package
+## Configuring the Test Package {#configuring-the-test-package}
 
 First, we define a `tests` package in the `tests/Cargo.toml` file.
 
@@ -43,13 +43,13 @@ casper-engine-test-support = "1.1.1"
 default = ["casper-contract/std", "casper-types/std", "casper-contract/test-support"]
 ```
 
-## Describing the Logic for Testing
+## Describing the Logic for Testing {#describing-the-logic-for-testing}
 
 To test the smart contract, we need to specify the starting state of the blockchain, deploy the compiled contract to this starting state, and create additional deploys for each of the methods in the contract.
 
 The `tests/src/erc20.rs` file contains methods that can simulate a real-world deployment (storing the contract in the blockchain) and transactions to invoke the methods in the contract.
 
-### Setting up the testing context
+### Setting up the testing context {#setting-up-the-testing-context}
 
 Let's start by defining the required constants (i.e., method names, key names, and account addresses). The following code initializes the [global state](https://docs.casperlabs.io/en/latest/glossary/G.md#global-state) with all the data and methods that a smart contract needs to run correctly.
 
@@ -76,7 +76,7 @@ Let's start by defining the required constants (i.e., method names, key names, a
  }
 ```
 
-### Deploying the contract
+### Deploying the contract {#deploying-the-contract}
 
 The next step is to define the `ERC20Contract` struct that has its own VM instance and implements the ERC-20 methods. This struct holds a `TestContext` of its own. The _contract_hash_ and the _session_code_ won't change after the contract is deployed, so it is good to keep them handy.
 
@@ -132,7 +132,7 @@ impl Token {
     }
 ```
 
-### Querying the network
+### Querying the network {#querying-the-network}
 
 The previous step has simulated a real deploy on the network. The next code snippet describes how to query the network to find the _contract hash_.
 
@@ -181,7 +181,7 @@ pub fn decimals(&self) -> u8 {
 }
 ```
 
-### Invoking contract methods
+### Invoking contract methods {#invoking-contract-methods}
 
 The following code snippet describes a generic way to call a specific entry point in the contract.
 
@@ -253,7 +253,7 @@ pub fn transfer_from(
 }
 ```
 
-## Creating Unit Tests
+## Creating Unit Tests {#creating-unit-tests}
 
 Now that we have a testing context, we can use it to create unit tests in the file called `tests/src/tests.rs`. The unit tests verify the contract code by invoking the functions defined in `tests/src/erc20.rs`.
 
@@ -326,7 +326,7 @@ fn test_erc20_transfer_from_too_much() {
 }
 ```
 
-## Running the Tests
+## Running the Tests {#running-the-tests}
 
 Next, we configure the `lib.rs` file to run everything via the _make test_ command. Within the `tests/src/lib.rs` file, we added the following lines:
 
