@@ -5,14 +5,14 @@
 cd ../
 # Translate the docs
 mkdir -p source/i18n/en/docusaurus-plugin-content-docs/current
-cp -r source/docs/** i18n/en/docusaurus-plugin-content-docs/current
+cp -r source/docs/** source/i18n/en/docusaurus-plugin-content-docs/current
 
 # mkdir -p i18n/fr/docusaurus-plugin-content-docs/current
 # cp -r docs/** i18n/fr/docusaurus-plugin-content-docs/current
 
 # Translate the blog
 mkdir -p source/i18n/en/docusaurus-plugin-content-blog
-cp -r blog/** source/i18n/en/docusaurus-plugin-content-blog
+cp -r source/blog/** source/i18n/en/docusaurus-plugin-content-blog
 
 # mkdir -p i18n/fr/docusaurus-plugin-content-blog
 # cp -r blog/** i18n/fr/docusaurus-plugin-content-blog

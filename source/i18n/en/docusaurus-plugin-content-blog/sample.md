@@ -2,7 +2,7 @@
 slug: example
 title: Blog Example
 author: Michael
-author_title: CasperNetwork Team
+author_title: Scalio Team
 author_url: https://github.com/codegitpro
 author_image_url: /image/user.png
 tags: [codegitpro, example]
