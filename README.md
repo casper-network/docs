@@ -223,11 +223,11 @@ This project is using mono project structure using github subtrees for the parti
 Git Subtree Commands
 
 ```
-git subtree pull --prefix docs https://github.com/casper-network/documentation main --squash
+git subtree pull --prefix source https://github.com/casper-network/documentation main --squash
 ```
 
 ```
-git subtree push --prefix docs https://github.com/casper-network/documentation main
+git subtree push --prefix source https://github.com/casper-network/documentation main
 ```
 
 -   We are using `chore/subtree` branch as a sync branch with documentation repo.
