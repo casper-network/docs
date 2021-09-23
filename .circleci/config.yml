@@ -1,0 +1,156 @@
+# prettier-ignore
+---
+version: 2.1
+
+references:
+  not_master_branch: &not_master_branch
+    filters:
+      branches:
+        ignore: master
+  versions_only: &versions_only
+    filters:
+      tags:
+        only: /^v.*/
+      branches:
+        ignore: /.*/
+  npm_cache_key: &npm_cache_key
+    v1-dependency-npm-{{ checksum "yarn.lock" }}
+  npm_backup_cache_key: &npm_backup_cache_key
+    v1-dependency-npm
+
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      name: Restore node_modules from cache
+      keys:
+      - *npm_cache_key
+      - *npm_backup_cache_key
+
+  save_node_modules: &save_node_modules
+    save_cache:
+      name: Save node_modules to cache
+      key: *npm_cache_key
+      paths:
+      - node_modules
+      - apps/mcms-html-scss/node_modules
+
+executors:
+  node:
+    docker:
+    - image: node:14.15.0
+  aws:
+    docker:
+    - image: mesosphere/aws-cli
+  docker:
+    docker:
+    - image: docker:19
+
+workflows:
+  premerge_check_workflow:
+    jobs:
+    - build_tests:
+        <<: *not_master_branch
+        context: e2e-tests
+
+  build_and_deploy:
+    jobs:
+    - app_build_prod:
+        <<: *versions_only
+    - app_deploy_prod:
+        <<: *versions_only
+        context: aws-scalio-circleci
+        requires:
+        - app_build_prod
+
+jobs:
+  build_tests:
+    executor: node
+    steps:
+    - build_tests
+
+  app_build_prod:
+    executor: node
+    steps:
+    - app_build:
+        app_name: docusaurus
+        app_src: ./
+        build_folder: ./build
+
+  app_deploy_prod:
+    executor: aws
+    steps:
+    - app_deploy:
+        bucket: mcms-docusaurus.scaliolabs.com
+        distr_id: E38IZW01TEK74G
+        dist_path: dist/docusaurus
+
+commands:
+  build_tests:
+    steps:
+    - checkout
+    - *restore_node_modules
+    - run:
+        name: Install packages
+        command: |
+          NODE_OPTIONS="--max-old-space-size=4096"
+          yarn install
+    - *save_node_modules
+    - run:
+        name: Run code analysis
+        command: |
+          NODE_OPTIONS="--max-old-space-size=4096"
+          yarn format
+    - run:
+        name: Build App
+        command: |
+          NODE_OPTIONS="--max-old-space-size=4096"
+          yarn build
+
+  app_build:
+    parameters:
+      app_name:
+        type: string
+      app_src:
+        type: string
+      build_folder:
+        type: string
+    steps:
+    - checkout
+    - *restore_node_modules
+    - run:
+        name: Install packages
+        command: |
+          NODE_OPTIONS="--max-old-space-size=4096"
+          yarn --cwd << parameters.app_src >>
+    - *save_node_modules
+    - run:
+        name: Build App
+        command: |
+          NODE_OPTIONS="--max-old-space-size=4096"
+          yarn --cwd << parameters.app_src >> build --out-dir build/docs
+    - run: mkdir dist
+    - run: mv << parameters.build_folder >> dist/<< parameters.app_name >>
+    - run: cp dist/<< parameters.app_name >>/docs/index.html dist/<< parameters.app_name >>/index.html
+    - persist_to_workspace:
+        root: .
+        paths:
+        - dist/<< parameters.app_name >>
+
+  app_deploy:
+    parameters:
+      bucket:
+        type: string
+      distr_id:
+        type: string
+      dist_path:
+        type: string
+      region:
+        type: string
+        default: us-west-1
+    steps:
+    - run: apk --update add -ca-certificates
+    - attach_workspace:
+        at: .
+    - run: echo will deploy to region << parameters.region >>, s3 bucket << parameters.bucket >>, CF distribution << parameters.distr_id >>
+    - run: aws configure set region << parameters.region >>
+    - run: aws s3 sync << parameters.dist_path >> s3://<< parameters.bucket >> --delete
+    - run: aws cloudfront create-invalidation --distribution-id << parameters.distr_id >> --paths "/*"

@@ -1,0 +1,48 @@
+{
+    "settings": {
+        "react": {
+            "version": "latest"
+        }
+    },
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": ["plugin:react/recommended", "prettier"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": ["react", "@typescript-eslint", "import", "prettier"],
+    "rules": {
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": 0,
+        "react/display-name": [0],
+        "react/jsx-filename-extension": [
+            2,
+            {
+                "extensions": [".jsx", ".tsx"]
+            }
+        ],
+        "import/extensions": 0,
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
+        "import/no-default-export": 0,
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": 0,
+        "no-plusplus": 0,
+        "no-underscore-dangle": 0,
+        "object-shorthand": 0,
+        "prettier/prettier": 1
+    },
+    "ignorePatterns": ["node_modules", "public", "build", ".docusaurus"]
+}

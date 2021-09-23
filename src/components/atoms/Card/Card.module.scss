@@ -1,0 +1,68 @@
+@import "../../../assets/scss/variable.scss";
+
+html[data-theme="dark"] {
+    .card {
+        background-color: $mask-black;
+        color: $silver;
+
+        & > .cardFooter {
+            & > a {
+                background-color: $silver;
+                color: $mask-black;
+            }
+        }
+    }
+}
+
+.card {
+    width: 300px;
+    margin: 20px;
+    background-color: $silver;
+    color: $mask-black;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    overflow: hidden;
+
+    & > .cardImage {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        background-color: $silver;
+
+        & > img {
+            width: 100%;
+        }
+    }
+
+    & > .cardInfo {
+        padding: 15px;
+    }
+
+    & > .cardFooter {
+        display: flex;
+        flex-direction: row;
+        padding: 15px;
+
+        & > a {
+            display: block;
+            width: 50%;
+            background-color: $mask-black;
+            color: $white;
+            border: 1px solid $light-grey;
+            text-align: center;
+            text-decoration: none;
+
+            &:nth-child(1) {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+
+            &:nth-child(2) {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+        }
+    }
+}

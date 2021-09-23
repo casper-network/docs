@@ -1,0 +1,96 @@
+{
+    "name": "docusaurus",
+    "version": "1.0.3",
+    "private": true,
+    "scripts": {
+        "start": "docusaurus start --no-open",
+        "build": "docusaurus build",
+        "swizzle": "docusaurus swizzle",
+        "deploy": "docusaurus deploy",
+        "clear": "docusaurus clear",
+        "serve": "docusaurus serve",
+        "run:i18n": "cd scripts && sh ./setup-i18n-json.sh && sh ./setup-i18n-md.sh && yarn run:prettier",
+        "run:ids": "docusaurus write-heading-ids",
+        "run:crowdin": "docusaurus write-translations && crowdin upload && crowdin download",
+        "run:migrate": "cd scripts && sh ./rst-to-md.sh",
+        "run:prettier": "prettier . --list-different --write",
+        "run:eslint": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+        "run:textlint": "yarn run textlint source/docs",
+        "run:lint": "yarn run:eslint",
+        "run:alex": "alex source/docs",
+        "format": "yarn run:lint && yarn run:prettier",
+        "reinstall": "rm -rf ./node_modules && yarn",
+        "prepare": "husky install",
+        "commit": "lint-staged"
+    },
+    "dependencies": {
+        "@cmfcmf/docusaurus-search-local": "^0.6.6",
+        "@crowdin/cli": "3",
+        "@docusaurus/core": "^2.0.0-beta.6",
+        "@docusaurus/preset-classic": "^2.0.0-beta.6",
+        "@mdx-js/react": "^1.6.21",
+        "@svgr/webpack": "^5.5.0",
+        "algoliasearch": "^4.1.0",
+        "clsx": "^1.1.1",
+        "docusaurus-plugin-sass": "^0.2.1",
+        "docusaurus2-dotenv": "^1.4.0",
+        "file-loader": "^6.2.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "sass": "^1.37.0",
+        "url-loader": "^4.1.1"
+    },
+    "devDependencies": {
+        "@docusaurus/module-type-aliases": "^2.0.0-beta.6",
+        "@tsconfig/docusaurus": "^1.0.2",
+        "@types/react": "^17.0.15",
+        "@types/react-helmet": "^6.1.2",
+        "@types/react-router-dom": "^5.1.8",
+        "@typescript-eslint/eslint-plugin": "4.7.0",
+        "@typescript-eslint/parser": "4.7.0",
+        "alex": "^9.1.0",
+        "eslint": "7.13.0",
+        "eslint-config-prettier": "6.11.0",
+        "eslint-plugin-import": "2.22.1",
+        "eslint-plugin-jsx-a11y": "6.4.1",
+        "eslint-plugin-prettier": "3.1.3",
+        "eslint-plugin-react": "7.21.5",
+        "eslint-plugin-react-hooks": "4.2.0",
+        "husky": "^6.0.0",
+        "lint-staged": "10.5.3",
+        "prettier": "2.2.1",
+        "pretty-quick": "^3.1.1",
+        "textlint": "^11.3.1",
+        "textlint-rule-alex": "^1.3.1",
+        "textlint-rule-common-misspellings": "^1.0.1",
+        "textlint-rule-en-capitalization": "^2.0.2",
+        "textlint-rule-stop-words": "^1.0.17",
+        "textlint-rule-terminology": "^1.1.30",
+        "textlint-rule-write-good": "^1.6.2",
+        "typescript": "^4.3.5"
+    },
+    "engines": {
+        "node": ">=14"
+    },
+    "engineStrict": true,
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "lint-staged": {
+        "*.{.js,.ts,.jsx,.tsx}": [
+            "yarn run:lint"
+        ],
+        "*.*": [
+            "pretty-quick --staged"
+        ]
+    }
+}

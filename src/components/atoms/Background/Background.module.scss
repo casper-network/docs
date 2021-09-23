@@ -1,0 +1,9 @@
+@import "@site/src/assets/scss/variable.scss";
+
+.background {
+    padding: 5rem 6rem;
+    color: $white;
+    text-align: center;
+    background-color: $green;
+    background-image: linear-gradient(120deg, $blue, $green);
+}

@@ -1,0 +1,16 @@
+@import "../../../assets/scss/variable.scss";
+
+.jumbotron {
+    max-width: 900px;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+
+    & > h1 {
+        font-size: 30px;
+    }
+
+    & > .body {
+        font-size: 20px;
+    }
+}
