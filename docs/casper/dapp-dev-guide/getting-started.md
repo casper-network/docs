@@ -4,15 +4,15 @@ This guide covers the basic tools you will need to set up your first Casper smar
 
 Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. The Rust contract SDK is the easiest way to get started with smart contract development. This guide will walk you through the steps to set up your development environment and build your first contract.
 
-## Video Tutorial
+## Video Tutorial {#video-tutorial}
 
 For a video walkthrough of this guide, feel free to check out this quick-start video.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed?v=J9XD5ZurxAI&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&index=2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
-### Installing Rust
+### Installing Rust {#installing-rust}
 
 Install the [Rust programming language](https://www.rust-lang.org) if you don't already have it on your computer.
 
@@ -53,7 +53,7 @@ A crate is a compilation unit, which can be compiled into a binary or a library.
 
 Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The contract API documentation is specific for a given version. For example, you can find documentation for version **0.7.6** at <https://docs.rs/casper-contract/0.7.6>.
 
-### Installing Dependencies
+### Installing Dependencies {#installing-dependencies}
 
 **1. CMake**
 
@@ -66,9 +66,9 @@ cmake version 3.19.4
 CMake suite maintained and supported by Kitware (kitware.com/cmake).
 ```
 
-## Development Environment Setup
+## Development Environment Setup {#development-environment-setup}
 
-### Installing the Casper Crates
+### Installing the Casper Crates {#installing-the-casper-crates}
 
 The best and fastest way to set up a Casper Rust Smart Contract project is to use `cargo-casper`. When you use this, it will set the project up with a simple contract, a runtime environment and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python). It is possible to use this configuration in your CI/CD pipeline as well.
 
@@ -76,7 +76,7 @@ The best and fastest way to set up a Casper Rust Smart Contract project is to us
 cargo install cargo-casper
 ```
 
-### Creating a Project
+### Creating a Project {#creating-a-project}
 
 You can create a new sample project very easily with the Casper crate. For example, let's say that I want to create a project named **my-project** for this tutorial (you can choose a different name if you wish), then I can simply run the command:
 
@@ -86,7 +86,7 @@ cargo casper my-project
 
 If you look inside the newly-created _my-project_ folder, you will find two crates: `contract` and `tests`. This is a complete basic smart contract that saves a value, passed as an argument, on the blockchain. The `tests` crate provides a runtime environment of the Casper virtual machine, and a basic smart contract test.
 
-### Compiling to WASM
+### Compiling to WASM {#compiling-to-wasm}
 
 The Casper blockchain uses WebAssembly (WASM) in its runtime environment. Compilation targets for WASM are available for Rust, giving developers access to all the Rust ecosystem tools when developing smart contracts.
 
@@ -106,7 +106,7 @@ rustup install $(cat rust-toolchain)
 rustup target add --toolchain $(cat rust-toolchain) wasm32-unknown-unknown
 ```
 
-### Build the Contract
+### Build the Contract {#build-the-contract}
 
 The next step is to compile the smart contract into WASM. Inside the contract folder, run the following command:
 
@@ -118,7 +118,7 @@ cargo build --release
 
 Inside of the folder, you will now see a _target_ folder that will contain the compiled smart contract named _contract.wasm_ at `my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`.
 
-### Test the Contract
+### Test the Contract {#test-the-contract}
 
 In addition to creating the contract, the Casper crate also automatically created sample tests in the _my-project/tests_ folder.
 
@@ -144,7 +144,7 @@ test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 As a brief example, open up _my-project/contract/src/main.rs_ in your editor, modify the _KEY_ value in the contract, and then rerun the `cargo test` command. You should observe that the smart contract recompiles and the test fails now.
 
-## Rust Resources
+## Rust Resources {#rust-resources}
 
 These Rust resources are excellent and we highly recommend them:
 

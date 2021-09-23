@@ -1,6 +1,6 @@
 # Abstract Casper Consensus
 
-## Stating the problem
+## Stating the problem {#stating-the-problem}
 
 We are considering a collection of processes - **validators** - communicating over a message-passing network. Every validator has a **weight** \-- a non-zero integer value representing the "voting power".
 
@@ -10,7 +10,7 @@ The resulting solution of this problem is not a blockchain yet. It is however a 
 
 Caution: we use **ACC** as the shortcut for **Abstract Casper Consensus**.
 
-## Network model
+## Network model {#network-model}
 
 We assume a fully asynchronous network model with delivery guarantee and a single primitive: _broadcast(m)_. Precisely speaking:
 
@@ -19,7 +19,7 @@ We assume a fully asynchronous network model with delivery guarantee and a singl
 
 Given the assumptions above, it follows that the order of delivery generally is not going to be preserved. In other words when a validator $A$ broadcast sequence of messages $(m_1, m_2, ... m_k)$ then another validator $B$ will receive all the messages in the sequence, but with delivery chronology following arbitrary permutation $p:(1,..,k) \rightarrow (1,..,k)$, i.e. $(m_{p(1)}, m_{p(2)}, ... m_{p(k)})$.
 
-## Messages
+## Messages {#messages}
 
 All the messages broadcast by validators have the same structure. Every message $m$:
 
@@ -52,7 +52,7 @@ case class Message(
 )
 ```
 
-## J-dag
+## J-dag {#j-dag}
 
 We use the term **snapshot** for a set of messages $M$ that is closed under taking justifications, i.e. such that:
 
@@ -118,7 +118,7 @@ These concepts are illustrated below. Messages are represented with circles. Jus
 
 ![](/image/theory/acc-jpastcone.png){.align-center width="100.0%"}
 
-## Estimator
+## Estimator {#estimator}
 
 Upon creation of a new message $m$, a validator must decide which consensus value $m$ will vote for. We limit the freedom here by enforcing that the selected consensus value is constrained by the function called **estimator**:
 
@@ -142,7 +142,7 @@ Let us consider any snapshot $M$. The way $estimator(M)$ is calculated goes as f
 > 7.  From elements found in the previous step pick maximum element $cmax \in Con$. This is where we use the fact that $Con$ is finite and totally ordered.
 > 8.  The result of the estimator is $cmax$.
 
-## Validity conditions
+## Validity conditions {#validity-conditions}
 
 On reception of a message, every validator must check certain conditions. Messages not compliant with these conditions are considered invalid and hence ignored.
 
@@ -158,7 +158,7 @@ Semantic validation is:
 
 We explain the concept of "estimator" later in this chapter.
 
-## Operation of a validator
+## Operation of a validator {#operation-of-a-validator}
 
 A validator continuously runs two activities:
 
@@ -192,9 +192,9 @@ We do not determine when exactly a validator decides to create and broadcast a n
 -   justifications set to tips of all swimlanes, according to local j-dag; in case of equivocators, i.e. when the corresponding swimlane has more than one tip - validator picks just one tip (any)
 -   consensus value determined by estimator, as applied to the justifications
 
-## The concept of finality
+## The concept of finality {#the-concept-of-finality}
 
-### When the consensus is reached
+### When the consensus is reached {#when-the-consensus-is-reached}
 
 A validator $v$ constantly analyzes its local j-dag to observe a value $c \in Con$ becoming "locked" in the following sense:
 
@@ -203,7 +203,7 @@ A validator $v$ constantly analyzes its local j-dag to observe a value $c \in Co
 
 If such locking happens, we say that **consensus value c is now finalized**, i.e. the consensus was reached with value $c \in Con$ being the winner.
 
-### Malicious validators
+### Malicious validators {#malicious-validators}
 
 In general - malicious validators can stop consensus from happening. We need to adjust the concept of finalization so to account for this problem.
 
@@ -219,7 +219,7 @@ Case (3) can really be considered a sub-case of (2), and (2) can be evaded by as
 -   Problem (1) is something we are not addressing within ACC.
 -   Problem (4) is something we control explicitly in the finality calculation.
 
-### Closer look at equivocations
+### Closer look at equivocations {#closer-look-at-equivocations}
 
 Equivocations do break consensus. Intuition for this is clear - if everybody cheats by concurrently voting for different values, validators will never come up with a decision the value is finally agreed upon.
 
@@ -229,7 +229,7 @@ It may be not immediately obvious how equivocations are possible in the context 
 2.  A Validator does not have to reveal all messages actually received. "Revealing" happens at the creation of a new message - by listing justifications of this message. The protocol does not prevent a validator from hiding knowledge, i.e. listing as justifications "old" messages.
 3.  Technically, to create an equivocation is very easy - all one have to do is to create a branch own the swimlane. Such a branch is created every time when for a message $m$ its transitive justifications $jPastCone(m)$ do not include previous message by $m.creator$.
 
-### Finality criteria
+### Finality criteria {#finality-criteria}
 
 Let $\mathcal{M}$ be the set of all possible formally correct messages. Let $\textit{Snapshots}(\mathcal{M})$ be the set of all justifications-closed subsets of $\mathcal{M}$.
 
@@ -247,9 +247,9 @@ A value $c \in Con$ is finalized in a snapshot $S \in \textit{Snapshots}(\mathca
 
 Intuitively, finality is something that is easy to define mathematically but potentially hard to discover by an efficient calculation. Therefore in general we discuss various finality criteria, which are approximations of finality. Finality criteria may differ by sensitivity (= how they are not overlooking existing finality) and computational efficacy.
 
-## Calculating finality
+## Calculating finality {#calculating-finality}
 
-### Introduction
+### Introduction {#introduction}
 
 We describe here the criterion of finality codenamed "Summit theory ver 2". This criterion has two parameters:
 
@@ -260,7 +260,7 @@ The criterion is centered about the concept of "summit". Summits are subgraphs o
 
 Once a k-level summit is found, the consensus is achieved.
 
-### Visual notation
+### Visual notation {#visual-notation}
 
 To investigate the summit theory we developed a simulator and a visual notation. Pictures in this chapter are produced with this simulator.
 
@@ -282,7 +282,7 @@ The color inside of each message represents the consensus value this message is 
 
 The color outside represents the information related to summit structure (explained later in this chapter).
 
-### Step 1: Calculate quorum size
+### Step 1: Calculate quorum size {#step-1-calculate-quorum-size}
 
 Quorum size is an integer value calculated as:
 
@@ -303,13 +303,13 @@ $$\textit{quorum} = ceiling\left(\frac{w}{2}\left(\frac{rftt}{1-2^{-k}}+1\right)
 
 -   $rftt$ - relative fault tolerance threshold (fractional value between 0 and 1); represents the maximal accepted total weight of malicious validators - as fraction of $w$
 
-### Step 2: Find consensus candidate value
+### Step 2: Find consensus candidate value {#step-2-find-consensus-candidate-value}
 
 The first step in finding a summit is to apply the estimator to the whole j-dag. This way the consensus value that gets most votes (by weight) is found, where the total ordering on $Con$ is used as a tie-breaker.
 
 Say the value returned by the estimator is $c$. When the total weight of votes for $c$ is less than quorum size, we do not have a summit yet, so this terminates the summit search .
 
-### Step 3: Find 0-level messages
+### Step 3: Find 0-level messages {#step-3-find-0-level-messages}
 
 **0-level messages for an honest validator v** is a subset of $swimlane(v)$ formed by taking all messages voting for $c$ which have no later message by $v$ voting for consensus value other than $c$. Please notice that empty votes are considered a continuation of last non-empty vote.
 
@@ -331,7 +331,7 @@ In the swimlane of validator 0 no message is 0-level, because validator 0 is an 
 
 Message 18 is not included in j-past-cone of message 25. Hence - messages 18 and 25 form an equivocation.
 
-### J-dag trimmer
+### J-dag trimmer {#j-dag-trimmer}
 
 We will be working in the context of local j-dag of a fixed validator $v_0 \in V$. Let $M$ be the set of all messages in the local j-dag of $v_0$.
 
@@ -352,7 +352,7 @@ Observe that a function assigning to any honest validator its oldest 0-level mes
 
 ![](/image/theory/base-trimmer-explained.png){.align-center width="100.0%"}
 
-### Committee
+### Committee {#committee}
 
 Definition: Let $p$ be some j-dag trimmer.
 
@@ -374,7 +374,7 @@ $$\{v_1 \to m_{23}, v_2 \to m_{19}, v_3 \to m_{24}, v_4 \to m_{21} \}$$
 
 ![](/image/theory/summit-1.png){.align-center width="100.0%"}
 
-### Step 4: Find k-level summit
+### Step 4: Find k-level summit {#step-4-find-k-level-summit}
 
 Definition: **k-level summit** is a sequence $(\textit{comm}_1, \textit{comm}_2, ..., \textit{comm}_k)$ such that:
 
@@ -412,7 +412,7 @@ Leftmost red border messages form the base-trimmer.
 
 Caution: search for "leftmost messages" separately for every swimlane.
 
-## Reference implementation
+## Reference implementation {#reference-implementation}
 
 In this section we sketch a "reference" implementation of Abstract Casper Consensus. We use Scala syntax for the code, but we limit ourselves to elementary language features (so it is readable for any developer familiar with contemporary programming languages).
 
@@ -513,7 +513,7 @@ val coll: Map[Int,String] = Map(1->"this", 2->"is", 3->"example")
 val mapped: Map[Int,Int] = coll map {case (k,v) => (k*k, v.length)}
 ```
 
-### Common abstractions
+### Common abstractions {#common-abstractions}
 
 We use the following type aliases:
 
@@ -616,7 +616,7 @@ trait Hash extends Ordered[Hash] {
 }
 ```
 
-### Messages
+### Messages {#messages-1}
 
 Message structure:
 
@@ -656,7 +656,7 @@ trait MessagesSerializer {
 }
 ```
 
-### Network abstraction
+### Network abstraction {#network-abstraction}
 
 Broadcasting messages:
 
@@ -674,7 +674,7 @@ trait GossipHandler {
 }
 ```
 
-### Panoramas
+### Panoramas {#panoramas}
 
 We use panoramas to encode the "perspective on the j-dag as seen from given message".
 
@@ -700,7 +700,7 @@ object Panorama {
 }
 ```
 
-### Validator
+### Validator {#validator}
 
 The abstraction of the estimator:
 
@@ -1038,7 +1038,7 @@ def isEquivocation(higher: Message, lower: Message): Boolean = {
 }
 ```
 
-### Estimator
+### Estimator {#estimator-1}
 
 ```scala
 //Reference implementation of the estimator described in theory chapter.
@@ -1093,7 +1093,7 @@ class ReferenceEstimator(
 }
 ```
 
-### Finality detector
+### Finality detector {#finality-detector}
 
 Representation of a j-dag trimmer:
 

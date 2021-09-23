@@ -8,7 +8,7 @@ This section covers:
 2.  Setting up an account on a Casper Network
 3.  Acquiring the IP address of a peer on the official Testnet or Mainnet
 
-## The Casper command-line client
+## The Casper command-line client {#the-casper-command-line-client}
 
 You can find the client on [crates.io](https://crates.io/crates/casper-client).
 
@@ -37,7 +37,7 @@ casper-client --help
 casper-client <command> --help
 ```
 
-## Setting up an Account
+## Setting up an Account {#setting-up-an-account}
 
 The process of creating an [Account](https://docs.casperlabs.io/en/latest/implementation/accounts.html) can be divided into two steps:
 
@@ -64,7 +64,7 @@ The command-line client provides a command that will give you the account hash f
 casper-client account-address --public-key <path-to-public-key-hex>/public_key_hex
 ```
 
-### Option 1: Key generation using the Casper client
+### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
 
 This option describes how you can use the Casper command-line client to set up your accounts.
 
@@ -86,7 +86,7 @@ Once the keys for the account have been generated, the accounts can be funded to
 
 **Note**: Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. For traceability, it is important to generate the account hash and store this value locally. The account hash is a `Blake2B` hash of the public hexadecimal-encoded string.
 
-### Option 2: Key generation using a Block Explorer
+### Option 2: Key generation using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
 
 This option is also available on networks that have a block explorer.
 
@@ -100,7 +100,7 @@ You will be prompted to save the following three files for your new account. The
 2.  `public_key.pem` - PEM encoded public key
 3.  `public_key_hex` - Hexadecimal-encoded string of the public key
 
-### Fund your Account
+### Fund your Account {#fund-your-account}
 
 Once the cryptographic key-pair for the account has been generated, the account must be funded so it can be created on chain.
 
@@ -108,7 +108,7 @@ In Testnet, you can fund the account by using the _Request tokens_ button on the
 
 In Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the process of setting up an account. The _Source_ account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the _Target_ account. This transfer will automatically create the _Target_ account if it does not exist. Currently, this is the only way an account can be created on Mainnet.
 
-## Acquire Node Address from network peers
+## Acquire Node Address from network peers {#acquire-node-address-from-network-peers}
 
 Clients can interact with a node on the blockchain via requests sent to that node's JSON-RPC endpoint, `http://<node-ip-address>:7777` by default.
 

@@ -19,7 +19,7 @@ The "Theory" chapter explains how we approached steps (1) \... (4) in the abstra
 -   **Eras** - describes how we do stake management in Highway
 -   **Known limitations and features planned for ver 4.0** - sketches changes we anticipate to hit version 4.0 of this spec
 
-## Research trace
+## Research trace {#research-trace}
 
 The consensus solution used in Casper blockchain is a latest achievement of a research path that can be traced back to the 1980's. Important milestones on this path are:
 

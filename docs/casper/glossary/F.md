@@ -6,6 +6,6 @@
 
 ---
 
-## Finality
+## Finality {#finality}
 
 See [block finality](B.md#block-finality).
