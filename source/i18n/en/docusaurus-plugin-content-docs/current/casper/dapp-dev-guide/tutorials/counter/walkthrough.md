@@ -2,7 +2,7 @@
 
 Now that we are familiar with the basic commands, we can begin the tutorial to deploy a contract application and use it on the network.
 
-## Clone the Contracts
+## Clone the Contracts {#clone-the-contracts}
 
 First, we will need to clone [the counter contract repository](https://github.com/casper-ecosystem/counter) to our local machine.
 
@@ -22,7 +22,7 @@ If you explore the source code, you will see that there are two smart contracts:
 
     -   Retrieves the _counter-define_ contract, gets the current count value, increments it, and makes sure count was incremented by 1
 
-## Create a Local Network
+## Create a Local Network {#create-a-local-network}
 
 After you have gotten familiar with the counter source code, we need to create a local blockchain network to deploy the contract. If you completed the NCTL tutorial, all you need to do is allocate the network assets and then start the network.
 
@@ -38,7 +38,7 @@ If it fails for any reason, please refer the [NCTL tutorial](https://docs.casper
 
 :::
 
-## View the Network State
+## View the Network State {#view-the-network-state}
 
 With a network up and running, you can use the casper-client query-state command to check the status of the network. However, we first need an _account hash_ and the _state-root-hash_ so that we can get the current snapshot. Once we have that information, we can check how the network looks.
 
@@ -73,7 +73,7 @@ casper-client query-state \
 
 Substitute the state root hash and account hash values you just retrieved into this command and execute it. Do not be surprised if you see nothing on the network. That is because we have not deployed anything to the network yet!
 
-## Deploy the Counter
+## Deploy the Counter {#deploy-the-counter}
 
 Let us try deploying the _counter-define_ contract to the chain. First, we need to compile it.
 
@@ -105,7 +105,7 @@ casper-client get-deploy \
     --node-address http://localhost:40101 [DEPLOY_HASH]
 ```
 
-## View the Updated Network State
+## View the Updated Network State {#view-the-updated-network-state}
 
 Hopefully, the deployment was successful, but is the named key visible on the chain now? Call `casper-client query-state` to check it out.
 
@@ -159,7 +159,7 @@ casper-client query-state --node-address http://localhost:40101 \
 
 The first two commands access the counter and count named keys, respectively, using the query path argument. The third command uses the deploy hash (the return value of _put-deploy_) to query the state of that specific deploy only.
 
-## Increment the Counter
+## Increment the Counter {#increment-the-counter}
 
 We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _counter-define_ contract. You can call an entry-point in a deployed contract by using the _put-deploy_ command as illustrated here:
 
@@ -175,7 +175,7 @@ casper-client put-deploy \
 
 Notice that this command is nearly identical to the command used to deploy the contract. But, instead of _session-path_ pointing to the WASM binary, we have _session-name_ and _session-entry-point_ identifying the on-chain contract and its associated function to execute. There is no WASM file needed since the contract is already on the blockchain.
 
-## View the Updated Network State Again
+## View the Updated Network State Again {#view-the-updated-network-state-again}
 
 After calling the entry-point above, theoretically, the counter value should have been incremented by one, but how can we be sure of that? We can query the network again, but remember that we have to get a new state root hash once again. Let us check if the counter was incremented by just looking at the count with the query argument since we are not concerned with the rest of the chain right now.
 
@@ -195,7 +195,7 @@ casper-client query-state --node-address http://localhost:40101 \
 
 You should be able to see the counter variable and observe its value has increased now.
 
-## Increment the Counter Again
+## Increment the Counter Again {#increment-the-counter-again}
 
 If you recall, we had a second contract named _counter-call_ in the repository. This time around, we can see if we can increment the count using that second contract instead of the session entry-point we used above.
 
@@ -210,7 +210,7 @@ casper-client put-deploy \
     --session-path ./counter/target/wasm32-unknown-unknown/release/counter-call.wasm
 ```
 
-## View the Final Network State
+## View the Final Network State {#view-the-final-network-state}
 
 Before we wrap up this guide, let's make sure that the second contract did in fact, update the counter from the first contract! Just as before, we need a new state-root-hash, and then we can query the network as we have grown accustomed to by now.
 

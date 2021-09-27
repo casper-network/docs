@@ -6,39 +6,39 @@
 
 ---
 
-## Participate in consensus
+## Participate in consensus {#participate-in-consensus}
 
 The process of following the [consensus](C.md#consensus) algorithm. The primary participants are [validators](V.md#validator), bonded with their stake and part of the validator set for that particular era. [Delegators](D.md#delegator) participate indirectly by delegating their tokens to one or more of these validators and contributing by increasing the total stake that ensures the security of the network.
 
-## Payment code
+## Payment code {#payment-code}
 
 The _payment code_ is the [WASM](W.md#webassembly) program that pays the transaction execution fee.
 
-## Peer node
+## Peer node {#peer-node}
 
 A node on a peer-to-peer (P2P) network.
 
-## Primary token
+## Primary token {#primary-token}
 
 See [CSPR](C.md#cspr).
 
-## Private key
+## Private key {#private-key}
 
 See [secret key](S.md#secret-key).
 
-## Proof-of-Stake
+## Proof-of-Stake {#proof-of-stake}
 
 Proof-of-Stake (PoS) is a mechanism by which a cryptocurrency blockchain network achieves permissionless-ness. The voting power in consensus is proportional to the number of staked tokens (digital currency specific to this system). The validator vouches with their tokens for the correct operation of their node. A popular choice in such systems is to periodically (once per era, in our case) delegate a fixed size committee of participants, which then is responsible for running the consensus on which blocks to add to the blockchain.
 
-## Proof-of-Work
+## Proof-of-Work {#proof-of-work}
 
 A mechanism used in Bitcoin and Etherium for incentivizing participation and securing the system. In these protocols, a participant's voting power is proportional to the amount of computational power possessed.
 
-## Proof-of-Stake contract
+## Proof-of-Stake contract {#proof-of-stake-contract}
 
 The Proof-of-Stake (PoS) contract holds on to transaction fees for the time while the state transition is happening (contracts are being executed). The PoS contract remits the transaction fees to the block proposer.
 
-## Proto block
+## Proto block {#proto-block}
 
 The block proposed by the leader, which the consensus processes (in [highway](H.md#highway)). Only after consensus is complete, the proto block is executed, and the global state is updated.
 

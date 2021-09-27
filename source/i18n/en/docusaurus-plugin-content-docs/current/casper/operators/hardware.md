@@ -1,6 +1,6 @@
 # Recommended Hardware Specifications
 
-## System Requirements
+## System Requirements {#system-requirements}
 
 MainNet and TestNet
 

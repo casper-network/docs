@@ -6,10 +6,10 @@
 
 ---
 
-## Token
+## Token {#token}
 
 A type of cryptocurrency that represents an asset. See [CSPR](C.md#cspr).
 
-## Transaction
+## Transaction {#transaction}
 
 See [deploy](D.md#deploy).

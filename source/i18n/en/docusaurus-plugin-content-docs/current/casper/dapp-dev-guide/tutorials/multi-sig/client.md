@@ -4,12 +4,12 @@ This section covers an example client that invokes a smart contract for key mana
 
 You will test your client using [nctl](https://github.com/casper-network/casper-node/tree/master/utils/nctl), and you will interact with your local blockchain.
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
 -   You have compiled the [example contract](https://github.com/casper-ecosystem/keys-manager) for key management
 -   You have set up the [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) tool according to the [NCTL guide](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-nctl.html)
 
-## Setting up a local Casper Network
+## Setting up a local Casper Network {#setting-up-a-local-casper-network}
 
 Navigate to your `casper-node` folder and run the following NCTL commands.
 
@@ -24,7 +24,7 @@ The network you created with the NCTL tool has a special account called a faucet
 nctl-view-faucet-account
 ```
 
-## Setting up the Client
+## Setting up the Client {#setting-up-the-client}
 
 This client code expects a compiled WASM file in the `contract` folder and a local network called `casper-net-1`.
 
@@ -64,7 +64,7 @@ Next, close the `.env` file and install the JavaScript packages in the `keys-man
 npm install
 ```
 
-## Testing the Client
+## Testing the Client {#testing-the-client}
 
 Navigate to your `/keys-manager/client` folder and run the _keys-manager_ using _npm_. Your WASM file's path is relative to the `client` folder, so you need to run the file from here.
 
@@ -80,7 +80,7 @@ If the code works, the beginning of the output will look like this:
 
 You can match the rest of the output against the expected output described in the next section while exploring the client code.
 
-### Exploring the Client Code
+### Exploring the Client Code {#exploring-the-client-code}
 
 If you would like to explore the client output and how the client code implements key management, open the client output and the `keys-manager.js` file side by side.
 

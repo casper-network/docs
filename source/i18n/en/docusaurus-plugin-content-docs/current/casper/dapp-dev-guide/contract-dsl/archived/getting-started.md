@@ -1,4 +1,4 @@
-## Getting Started with the DSL
+## Getting Started with the DSL {#getting-started-with-the-dsl}
 
 Since the DSL uses macros, it works like templates in the smart contract, so it's necessary to tell the Rust compiler where the macros are located for each smart contract. The aim of this guide is to describe how to configure the smart contract to use the DSL.
 

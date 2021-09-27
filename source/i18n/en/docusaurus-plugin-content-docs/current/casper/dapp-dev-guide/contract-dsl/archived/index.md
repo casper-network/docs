@@ -6,4 +6,4 @@ However, if you are an experienced Rust developer, you may find that you want to
 
 The macros work with _contract headers_ released as part of version 0.20. Contracts created before release 0.20 will need to be upgraded to use macros.
 
-## Table of Contents
+## Table of Contents {#table-of-contents}

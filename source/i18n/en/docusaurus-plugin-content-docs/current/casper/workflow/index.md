@@ -5,14 +5,14 @@ slug: /workflow
 
 # How To's
 
-## User Guides
+## User Guides {#user-guides}
 
 These user guides contain step-by-step instructions for interacting with the Casper blockchain.
 
 -   [Staking guide](staking.md): a guide to staking your Casper tokens
 -   [Ledger setup](ledger-setup.md): a guide to setting up your Ledger device
 
-## Developer Guides
+## Developer Guides {#developer-guides}
 
 These developer guides highlight key features and capabilities of the Casper system.
 

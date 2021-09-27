@@ -6,7 +6,7 @@
 
 ---
 
-## Node
+## Node {#node}
 
 A Casper node is a physical or virtual device that is participating in the Casper network. They store, validate, and preserve the blockchain data.
 
@@ -15,6 +15,6 @@ You will encounter different types of nodes on the network:
 -   **Bonded node**: a node that has tokens staked as bond and is part of the validator set participating in consensus in that particular era.
 -   **Unbonded node**: a type of node on the network that receives and processes blocks but does not create blocks and is not a validator. It is otherwise a fully functioning node, following the consensus protocol to know the current status of the blockchain (and therefore also the VM state). Such nodes are useful for querying the status of the blockchain (e.g., to learn information about transaction finalization).
 
-## Node operator
+## Node operator {#node-operator}
 
 See [operator](O.md#operator).

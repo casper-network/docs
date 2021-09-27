@@ -2,7 +2,7 @@
 
 The [TypeScript/JavaScript SDK](https://casper-ecosystem.github.io/casper-js-sdk/next) allows developers to interact with the Casper Network using TypeScript or JavaScript. This page covers different examples of using the SDK.
 
-## Installation
+## Installation {#installation}
 
 To install this library using Node.js, run the following command:
 
@@ -10,7 +10,7 @@ To install this library using Node.js, run the following command:
 npm install casper-js-sdk@next --save
 ```
 
-## Tests
+## Tests {#tests}
 
 You can find basic examples for how to use this library in the `test` directory. To run the tests, use this command:
 
@@ -18,7 +18,7 @@ You can find basic examples for how to use this library in the `test` directory.
 npm run test
 ```
 
-## Usage Examples
+## Usage Examples {#usage-examples}
 
 In this section, we outline a couple of essential tasks you can accomplish with the JavaScript SDK:
 
@@ -27,7 +27,7 @@ In this section, we outline a couple of essential tasks you can accomplish with 
 
 For a complete implementation example, read the [Multi-Signature Tutorial](https://docs.casperlabs.io/en/latest/dapp-dev-guide/tutorials/multi-sig/index.html), which uses the JavaScript SDK.
 
-### Generating Account Keys
+### Generating Account Keys {#generating-account-keys}
 
 This example shows you how to use the SDK to generate account keys to sign your deploy.
 
@@ -68,7 +68,7 @@ const newAccountAddress = createAccountKeys();
 
 After generating the keys with this code, you can add them to the [CasperLabs Signer Chrome extension](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce?hl=en-US) and use them to sign your transactions.
 
-### Sending a Transfer
+### Sending a Transfer {#sending-a-transfer}
 
 This code block shows you how to define and send a transfer on the Casper Network. Replace the `account-address` in the code below with the sender's account address.
 
@@ -156,6 +156,6 @@ Then, you can reconstruct the deploy object using this function:
 const deployFromJson = DeployUtil.deployFromJson(jsonFromDeploy);
 ```
 
-## Additional Resources
+## Additional Resources {#additional-resources}
 
 If you are looking for additional examples, another great resource is the [BitGo JS implementation](https://github.com/BitGo/BitGoJS/tree/master/modules/account-lib/src/coin/cspr>).

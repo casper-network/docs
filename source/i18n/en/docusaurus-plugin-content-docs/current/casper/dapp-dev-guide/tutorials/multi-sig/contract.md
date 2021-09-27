@@ -2,7 +2,7 @@
 
 This section covers an example smart contract used for key management.
 
-## Implementing the Smart Contract
+## Implementing the Smart Contract {#implementing-the-smart-contract}
 
 First, download [the example contract and client](https://github.com/casper-ecosystem/keys-manager) for key management.
 
@@ -33,7 +33,7 @@ use api::Api;
 
 In the next section, you will build and prepare the smart contract for deployment.
 
-## Building the Smart Contract
+## Building the Smart Contract {#building-the-smart-contract}
 
 Before building the smart contract for this tutorial, you need to install the [Rust Contract SDK](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.md). Make sure you have the [development environment set up](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.md#development-environment-setup) before proceeding.
 
@@ -56,6 +56,6 @@ cargo build --release
 
 If the command were successful, you would find a `keys-manager.wasm` file in the following directory structure:
 
-<img src="/image/tutorials/multisig/keys-manager-wasm.png" alt="The contract directory structure contains a keys-manager-wasm file." width="500"/>
+<img src="/docs/image/tutorials/multisig/keys-manager-wasm.png" alt="The contract directory structure contains a keys-manager-wasm file." width="500"/>
 
 Next, we will review the sample client that invokes this contract to setup the account and perform key management.

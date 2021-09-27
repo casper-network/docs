@@ -8,7 +8,7 @@ slug: /
 
 This article provides an overview of the Casper project.
 
-## What is Casper?
+## What is Casper? {#what-is-casper}
 
 Casper is a new Turing-complete smart-contracting platform, backed by a Proof-of-Stake (PoS) consensus algorithm and WebAssembly (WASM). The network is a permissionless, decentralized, public blockchain.
 
@@ -18,15 +18,15 @@ Additionally, the Casper Network is optimized for enterprise and developer adopt
 
 Casper also solves the scalability trilemma. Notably, the network is optimized for security, decentralization, and high throughput. All this is achieved while evolving to provide leading solutions for open-source projects and enterprises.
 
-## Why choose Casper?
+## Why choose Casper? {#why-choose-casper}
 
 Casper has core features and strengths that enable developers and enterprises to reap the benefits of blockchain technology.
 
-### Upgradeable Contracts
+### Upgradeable Contracts {#upgradeable-contracts}
 
 Casper allows the direct upgrading of on-chain smart contracts, eliminating the need for complex migration processes and making it easy for developers to correct smart contract vulnerabilities.
 
-### Developer-Friendly Language
+### Developer-Friendly Language {#developer-friendly-language}
 
 Casper Network's development ecosystem is designed to support WebAssembly, rather than being written in proprietary languages like Solidity. This feature simplifies the development path for enterprises and development teams that want to build on the Casper Network.
 
@@ -36,19 +36,19 @@ Note Rust is the primary programming language for smart contracts on the Casper 
 
 :::
 
-### Account Management
+### Account Management {#account-management}
 
 Other essential features include an account permissions model that allows the recovery of lost keys and a permissions model to securely share state between accounts and contracts (without expensive cryptographic checks).
 
-### Predictable Network Fees
+### Predictable Network Fees {#predictable-network-fees}
 
 Casper seeks to eliminate volatility and improve developer and enterprise experiences by establishing transparent, consistent, and predictable gas prices. This feature seeks to promote active and diverse network behaviour.
 
-## How does Casper work?
+## How does Casper work? {#how-does-casper-work}
 
 Casper relies on a group of validators to verify transactions and uphold the network. Unlike Proof-of-Work networks, which need to centralize validators for economies of scale, Casper allows for the geographical decentralization of validators. Casper validators verify transactions based on staked tokens and receive CSPR rewards for participating in the PoS consensus mechanism. CSPR is the native token on the Casper Network.
 
-## Where can I learn more?
+## Where can I learn more? {#where-can-i-learn-more}
 
 Follow the links below to learn more about the Casper Network.
 
@@ -62,7 +62,7 @@ Follow the links below to learn more about the Casper Network.
 | [Glossary](glossary/index.md) | Explore key definitions in the context of the Casper Network |
 | [FAQ](faq/index.md) | Find answers regarding the Casper Network, CasperLabs, and the CSPR token sale Changelog Review past technical releases and changelogs for the Casper Network |
 
-#### Disclaimer
+#### Disclaimer {#disclaimer}
 
 By accepting this CasperLabs Tech Spec (this “Whitepaper”), each recipient hereof acknowledges and agrees that is not authorised to, and may not, forward or deliver this Whitepaper, electronically or otherwise, to any other person or reproduce this Whitepaper in any manner whatsoever. Any forwarding, distribution or reproduction of this Whitepaper in whole or in part is unauthorised. Failure to comply with this directive may result in a violation of applicable laws of any affected or involved jurisdiction.
 
@@ -76,17 +76,17 @@ The distribution of this Whitepaper and the purchase, holding, and/or disposal o
 
 No action has been or is intended to be taken by CasperLabs Networks AG and/or any of its affiliates in any jurisdiction that would or is intended to, permit a public sale or offering of any CSPR, or possession or distribution of this Whitepaper (in preliminary, proof or final form) or any other sale, offering or publicity material relating to the CSPR, in any country or jurisdiction where action for that purpose is required. Each recipient of this Whitepaper is reminded that it has received this Whitepaper on the basis that it is a person into whose possession this Whitepaper may be lawfully delivered in accordance with the laws of the jurisdiction in which it is located and/or bound and it may not nor is it authorised to deliver this document, electronically or otherwise, to any other person. If the recipient receives this document by e-mail, then its use of this e-mail is at its own risk and it is the recipient’s responsibility to take precautions to ensure that such e-mail is free from viruses and other items of a destructive nature.
 
-#### Preliminary Nature of this Whitepaper
+#### Preliminary Nature of this Whitepaper {#preliminary-nature-of-this-whitepaper}
 
 This Whitepaper is a draft and the information set out herein is of a preliminary nature. Consequently, neither CasperLabs Networks AG nor any of its affiliates assumes any responsibility that the information set out herein is final or correct and each of the foregoing disclaims, to the fullest extent permitted by applicable law, any and all liability whether arising in tort, contract or otherwise in respect of this Whitepaper. Neither this Whitepaper nor anything contained herein shall form the basis of or be relied on in connection with or act as an inducement to enter into any contract or commitment whatsoever. Recipients should note that the final structuring of CSPR and the Casper blockchain is subject to ongoing technical, legal, regulatory and tax considerations and each is, therefore, subject to material changes. In particular, neither the applicability nor the non-applicability of Swiss financial market regulations on the CSPR sale has not been confirmed by the Swiss Financial Market Supervisory Authority (“FINMA”). CasperLabs Networks AG and all its affiliates reserve the right to not assist in the completion of the software underlying CSPR and the CasperLabs blockchain, to not participate in the issuance or creation of CSPR or to change the structure of CSPR and/or the Casper blockchain for any reason, each at its sole discretion.
 
-#### Forward-Looking Statements
+#### Forward-Looking Statements {#forward-looking-statements}
 
 This Whitepaper includes “forward-looking statements”, which are all statements other than statements of historical facts included in this Whitepaper. Words like “believe”, “anticipate”, “expect”, “project”, “estimate”, “predict”, “intend”, “target”, “assume”, “may”, “might”, “could”, “should”, “will” and similar expressions are intended to identify such forward-looking statements. Such forward-looking statements involve known and unknown risks, uncertainties and other factors, which may cause the actual functionality, performance or features of the Casper blockchain and/or CSPR to be materially different from any future functionality, performance or features expressed or implied by such forward-looking statements. Such forward-looking statements are based on numerous assumptions regarding the CasperLabs Networks AG’s and/or any of its affiliates’ present and future expectations regarding the development of the Casper blockchain and the associated software.
 
 These forward-looking statements speak only as of the date of this Whitepaper. CasperLabs Networks AG and its affiliates expressly disclaim any obligation or undertaking to release any updates of or revisions to any forward-looking statement contained herein to reflect any change in CasperLabs Networks AG’s and/or any of its affiliates’ expectations with regard thereto or any change in events, conditions or circumstances on which any such statement is based.
 
-#### Risk Factors
+#### Risk Factors {#risk-factors}
 
 -   Furthermore, by accepting this Whitepaper, the recipient of hereof (the “Recipient”) acknowledges and agrees that it understands the inherent risks associated with blockchain and distributed ledger technology, tokens and cryptocurrencies in general and the CSPR in particular, including, but not limited to, those outlined hereinafter.
 

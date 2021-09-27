@@ -20,7 +20,7 @@ Additionally, examples of all data types and their serializations are found in t
 
 ## C - Parallel Execution {#appendix-c}
 
-### Introduction
+### Introduction {#introduction}
 
 The state of the Casper Network is represented by the `global state <global-state-head>`{.interpreted-text role="ref"}. The evolution of this state is captured by the blockchain itself, and eventually agreed upon by all nodes in the network via the consensus mechanism. In this section we are concerned with only a single step of that evolution. We think of such a step as performing some "computation" that changes the global state. A `deploy <execution-semantics-deploys>`{.interpreted-text role="ref"} is a user request for computation, and contains two atomic units of computation: the payment code and the session code (the details of which are discussed elsewhere). For the purpose of this section, we think of each of these units as a (mathematical) function which takes the current global state as input, perhaps along with some other arguments, and produces a new global state as output. However, since the overall global state is ambient from the perspective of the session/payment code itself, the global state is not an explicit parameter in any user's source code, nor is there any explicit return value.
 
@@ -32,7 +32,7 @@ As discussed in the introduction, we think of computation on the Casper platform
 
 While this simple model captures sequential execution, it does not model parallel execution. Parallel execution is important because it can enable the execution engine to run more than one deploy at the same time, possibly improving block processing times. Note: each deploy itself is still single-threaded; we will not support parallel execution within a single contract or deploy. This optimization is purely for the performance of the node implementation, not contract developers.
 
-### Computation as functions from $G$ to $End(G)$
+### Computation as functions from $G$ to $End(G)$ {#computation-as-functions-from-g-to-endg}
 
 The problem with functions on the global state itself is they mutate the state, potentially causing problems if we wanted to apply two such functions at the same time. Therefore, we will instead think of computations as outputting a description of the changes to the global state that they would make if given the chance. Or phrased another way, the execution of a deploy will return a function that could be applied to the global state to obtain the post-state we would have obtained from running the computation while mutating the global state. The reason this helps is because we can apply multiple such functions to the same global state at the same time; they are pure functions that do not modify the global state. Thus we can execute multiple deploys in parallel and later combine their outputs (more on this later).
 
@@ -51,7 +51,7 @@ write_local("n", f_n);
 
 The above function reads a local variable, performs a computation which depends on the current value of that variable, then writes an updated value. Suppose we execute this function on a global state where the value of the local key is `7`. Then the sequence of transforms on the global state would be `Read -> Write(22)` since `n` would be odd and thus `f_n` would be computed using the `else` case. From the perspective of state changes, we only need to keep the `Write(22)` transform because final state is the same as if we had also included the `Read` transform. In fact, by the same reasoning, we know that we only need to keep the last `Write`, whatever it happens to be, since it will be the final value on the key after the computation finishes. Notice that the resulting global state function does not exactly reproduce the original contract execution steps; it is a _reduced trace_ where only the final effect on the global state is recorded [^1]. In particular, this means applying the results of these executions is very fast relative to the original execution (this will be importnat for how we use these traces in the next section). Also notice that the transforms which are produced depend on the initial state. This might be obvious since we are modeling compuation as functions $f: G \rightarrow End(G)$, so this statement is simply that the function really depends on its input. However, this is again an imporant concept to keep in mind when working with this model of computation. Going back to our example, if the value of the local key was `16` then the transform produced would be `Write(8)`, entirely different from the case where the initial value was `7`.
 
-### Constructing the post-state from parallel execution
+### Constructing the post-state from parallel execution {#constructing-the-post-state-from-parallel-execution}
 
 Following from the previous section, we know that deploys execute to produce a `Map<Key, Transform>` which gives a summary (i.e. "reduced trace") of the effects the deploy would have had on each key in the global state (keys not present in the map are not effected). In the reference implementation we call this the `exec` phase. Since creating these maps does not mutate the global state, we can run as many of these as we want in parallel. However, after they have been run we need to actually produce a post-state, the new global state after applying the effects of the deploys (this will then be used as the pre-states for deploys in the following batch of executions). In the reference implementation, we call applying the collection of transforms to obtain a post-state the `commit` phase.
 
@@ -61,7 +61,7 @@ In our simple model of computation where deploys are functions on the global sta
 
 We will discuss how to compute whether two maps of transforms commute in the next section. For now, we assume that run some set of deploys $d_1, d_2, d_3, \ldots$ in parallel against a fixed pre-state $G$ to obtain a set of transform maps $T_1, T_2, T_3, \ldots$, then select only the transforms that commute $T_i, T_j, T_k, \ldots$ to apply to $G$, and thus obtain the post-state $G^\prime$. The remaining deploys we can all run in parallel against $G^\prime$, again choosing the commuting ones to commit, obtaining $G^{\prime\prime}$, and so on. This final post-state is the same as if we had run all the deploys $d_1, d_2, d_3, \ldots$ in sequence against $G$, but perhaps faster (depending on how many could commute[^2]) because we were able to run in parallel batches.
 
-### Detecting when maps of transforms commute
+### Detecting when maps of transforms commute {#detecting-when-maps-of-transforms-commute}
 
 Two transform maps `m_1: Map<Key, Transform>` and `m_2: Map<Key,Transform>` commute if for all keys `k` which are present in both maps, the transforms `t_1 = m_1[k]` and `t_2 = m_2[k]` commute. Notably, if there are no such keys then the maps trivially commute. Two transforms `t_1:Transform` and `t_2: Transform` commute if:
 
@@ -88,7 +88,7 @@ fn g() {
 
 If the pre-state $G$ has `local("x") == 7` then `f(G)` results in the transform `Write(10)`, and so does `g(G)`. However, if we compose `g(f(G))` then we obtain `Write(100)`, and if we compose `f(g(G))` then the result is `Write(0)` and hence the functions do not commute.
 
-### Handling Errors
+### Handling Errors {#handling-errors}
 
 The reason we can say "adds commute" in our rules is because mathematically addition is commutative. However, this relies on the infinite nature of the number line and real computers are finite. For example, if we considered the addition of three 8-bit numbers: 250, 3, and 5, any two of them can be added and they commute, but attempting to add all three results in an overflow error. Thus the final result depends on the order of addition:
 

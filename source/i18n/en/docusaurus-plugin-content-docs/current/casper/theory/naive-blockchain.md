@@ -1,6 +1,6 @@
 # Naive Casper Blockchain
 
-## Introduction
+## Introduction {#introduction}
 
 Blockchain is a P2P network where the collection of nodes (**validators**) concurrently update a decentralized, shared database. They do this by collectively building an ever-growing chain of **transactions**. For performance reasons transactions are bundled in **blocks**.
 
@@ -12,9 +12,9 @@ The core of blockchain mechanics is the continuous work of validators struggling
 
 Note that in this spec we use the terms **shared database** and **blockchain computer memory** interchangeably.
 
-## Computing model
+## Computing model {#computing-model}
 
-### Memory and programs
+### Memory and programs {#memory-and-programs}
 
 We need to define the "computational semantics" of a blockchain computer; what programs are and how they execute. However, because the consensus protocol we introduce is compatible with a wide range of computing models, it is convenient to approach this abstractly. Therefore, we represent the "computational semantics" of a blockchain computer as a triple $\langle GS, Zero, P\rangle$ where:
 
@@ -26,7 +26,7 @@ Given a state $gs \in GS$ and a transaction $p \in P$, we can calculate the valu
 
 When $p$ is not defined at point $gs$, we say that **execution of p on state gs failed**. This is how we represent errors in program execution.
 
-### Executing sequences of transactions
+### Executing sequences of transactions {#executing-sequences-of-transactions}
 
 We want to generalize this notion to sequences of transactions in such a way that the information on execution errors is retained.
 
@@ -66,7 +66,7 @@ $$
 
 Intuitively, **exec** takes a pair - the initial global state and a sequence of transactions to execute. The result is also a pair - the resulting global state reached by sequentially applying all transactions and a trace of this execution saying which transactions failed along the way.
 
-### Executing sequences of blocks
+### Executing sequences of blocks {#executing-sequences-of-blocks}
 
 A block contains sequences of transactions. Given some initial global state $gs \in GS$, whenever we say "execute a block" we mean executing the sequence of transactions it contains starting from $gs$. We usually call $gs$ the **pre-state** of the block, and we say **post-state** to denote the resulting global state returned by $exec(gs, sequence)$.
 
@@ -74,7 +74,7 @@ Given any sequence of blocks we may also **execute the sequence of blocks** beca
 
 Given any set of blocks $B$, we sometimes consider different linear orders of such set. Given a linear order $R$ on set $B$, we are speaking about **executing the set of blocks B along linear order R**, with the obvious semantics of taking all the blocks, arranging them in a sequence following the order $R$, and then executing the resulting sequence of transactions.
 
-## Blockchain participants
+## Blockchain participants {#blockchain-participants}
 
 We envision the infrastructure of blockchain participants as a collection of actors (processes) communicating over a network, and where each process plays one of the following roles:
 
@@ -82,13 +82,13 @@ We envision the infrastructure of blockchain participants as a collection of act
 -   **finalizers (aka "ring 1")** - they observe validators and try to deduce the subset of history that is considered as "confirmed" (the "confirmed" predicate is parameterized so to reflect the expected trust level)
 -   **clients (aka "ring 2" or "dapps")** - use the blockchain computer - they send programs to be executed and react to execution results; a client connects to a validator (one or many) to send transactions while it also connects to a finalizer (one or many) to observe execution results
 
-## Stake management
+## Stake management {#stake-management}
 
-### Introduction
+### Introduction {#introduction-1}
 
 In proof-of-stake blockchains, **stake** is a representation of the voting power a validator has. We leave the question of exact representation of stakes open. We only summarize here the minimal assumptions we need for the mechanics of the blockchain to work.
 
-### Encoding of stakes
+### Encoding of stakes {#encoding-of-stakes}
 
 The main assumption is that a global state encodes (among other things) the "weights map" - a mapping of validators to their voting power. So, mathematically we expect the existence of a function that assigns to every global state a function mapping validators to their weights:
 
@@ -101,13 +101,13 @@ $$
 
 Intuitively, the stake of a validator will be (usually) defined by the amount of internal blockchain "money" allocated to the corresponding account.
 
-### Bonding and unbonding
+### Bonding and unbonding {#bonding-and-unbonding}
 
 Blockchain users can increase/decrease the stake of a given validator. This is to happen via executing (special) transactions.
 
 Minimal stake **MIN_STAKE** is a parameter of the blockchain.
 
-### Unbonding stages
+### Unbonding stages {#unbonding-stages}
 
 Unbonding is always a total unbonding \-- a validator transitioning to stake=0. There is no partial unbonding.
 
@@ -126,13 +126,13 @@ While in UNBONDING_ESCROW and ZEROED, a validator is not supposed to produce mes
 
 The how of transitioning between states is beyond the scope of this specification (it can be based on wall clock, p-time, j-daglevel, block generation and other approaches).
 
-### Slashing
+### Slashing {#slashing}
 
 Slashing is forced unbonding where the money used for the stake is burned. The intention is to penalizing equivocators.
 
-## Blockdag
+## Blockdag {#blockdag}
 
-### Visual introduction
+### Visual introduction {#visual-introduction}
 
 The consensus protocol is based on a data structure we call a **blockdag**, represented as a graph it looks like the following:
 
@@ -166,7 +166,7 @@ Additionally, any message may point to an arbitrary number of vertices as **addi
 
 All arrows together with all vertices form a directed acyclic graph we call the **j-dag**.
 
-### DAG vs POSET language
+### DAG vs POSET language {#dag-vs-poset-language}
 
 DAG is a common abbreviation for "directed acyclic graph".
 
@@ -182,7 +182,7 @@ In practice, POSET is "like a simple DAG" where we do not distinguish between DA
 
 When talking about **j-dag** and **p-dag**, we blur the difference between DAG language and POSET language, because essentially one language is convertible to another.
 
-### Understanding the layers of the blockdag
+### Understanding the layers of the blockdag {#understanding-the-layers-of-the-blockdag}
 
 Here we explain only the intuition behind the blockdag. These ideas are formalized later in this document.
 
@@ -192,7 +192,7 @@ Here we explain only the intuition behind the blockdag. These ideas are formaliz
 
 **P-dag** and the concept of secondary parents, corresponds to "merging of histories" \-- a subtle optimization on the way we process transactions. In blockchains such as Ethereum, effectively only a single path of the main-tree ends up as "transactions that have been actually executed" while all the rest of the main-tree ends up being wasted, or - as we say - "orphaned". In fact, the amount of wasted work can be reduced by "merging". While creating a new block, a validator performs careful analysis of all branches of the main-tree and attempts to merge as many of them possible without introducing a concurrency conflict.
 
-### Core mechanics of the blockchain
+### Core mechanics of the blockchain {#core-mechanics-of-the-blockchain}
 
 The blockdag emerges as a combination of these central ideas:
 
@@ -246,7 +246,7 @@ Not all **b-games** tend to be equally important. What happens is presented with
 
 "LFB" stands for "last finalized block". For symmetry, we set **LFB0** = **Genesis**.
 
-### Why do we need ballots ?
+### Why do we need ballots ? {#why-do-we-need-ballots-}
 
 The security of proof-of-stake blockchain is based on the stake in two ways:
 
@@ -255,9 +255,9 @@ The security of proof-of-stake blockchain is based on the stake in two ways:
 
 Therefore, we would like only bonded validators to be able to participate in blockchain evolution. The problem here is that - when a validator unbonds, some of the **b-games** he was a player of might not be completed (= finalized) yet. We would like to allow the validator to still participate in these games while not allowing him to join new games. This is where ballots come into play. Ballots make it possible for a validator that is no longer bonded to continue the consensus game.
 
-## Merging of histories
+## Merging of histories {#merging-of-histories}
 
-### Topological sortings of p-past-cone
+### Topological sortings of p-past-cone {#topological-sortings-of-p-past-cone}
 
 This is a previous example of a blockdag, reduced to **p-dag** only:
 
@@ -288,7 +288,7 @@ It can be topo-sorted in many ways. One such topo-sort is shown below:
 
 ![](/image/theory/p-past-cone-for-block-9-toposort.png){.align-center width="20.0%"}
 
-### The context of merging problem
+### The context of merging problem {#the-context-of-merging-problem}
 
 Let's assume that current p-dag as seen by a validator **v** looks like this:
 
@@ -300,7 +300,7 @@ To add a new block $x$, validator $V$ needs to decide which blocks to take as pa
 
 We have blocks 8, 9 and 10 as current tips of p-dag, so they are candidates for becoming parents of the new block. But usually, we won't be able to take all such tips as parents because the versions of the transactions history they represent are in conflict.
 
-### Formal definition of merging
+### Formal definition of merging {#formal-definition-of-merging}
 
 We say that a set of blocks $B = \{b_1, b_2, ..., b_n\}$ is **mergeable** (= **not in conflict**) when the following holds:
 
@@ -310,11 +310,11 @@ We say that a set of blocks $B = \{b_1, b_2, ..., b_n\}$ is **mergeable** (= **n
     1.  the same final global state (regardless of the selection of **T)**
 4.  the same subset of transactions that failed (regardless of the selection of **T**)
 
-## Operation of a validator
+## Operation of a validator {#operation-of-a-validator}
 
 The spec is written from the perspective of a validator. We say it as **local validator** in order to reference the validator which is running the algorithm. Let **vid** be the id of the local validator.
 
-### Validators P2P protocol - messages
+### Validators P2P protocol - messages {#validators-p2p-protocol---messages}
 
 Validators exchange messages which can be of 2 types:
 
@@ -345,7 +345,7 @@ For a ballot **b** we define the collection $b.all\_justifications$ as target bl
 
 From the definitions above it follows that for every message $m$ there is a **j-dag** path from $m$ to $Genesis$.
 
-### Validators P2P protocol - behavior
+### Validators P2P protocol - behavior {#validators-p2p-protocol---behavior}
 
 We use the same assumptions on a message-passing network as were stated in the Abstract Casper Consensus model. So, validators only exchange information by broadcasting messages where the broadcasting implementation provides an exactly-once delivery guarantee, but the delays and shuffling of messages are arbitrary.
 
@@ -441,7 +441,7 @@ Case 2: new ballot
 2.  Broadcast new ballot across validators P2P network.
 3.  Note: we generally want to keep the collection $m.justifications$ as short as possible. For this, we never include there main parent, secondary parents, and target block. Also, we want the collection of justifications included in the message to be transitively reduced (= included justifications form an antichain).
 
-### Relative votes
+### Relative votes {#relative-votes}
 
 We will need the concept of "last message created by validator **v** that was a non-empty vote in **b-game**". Given any block $b$ and any validator $V$ let us take look at the swimlane of $V$. If $v$ is honest, then this swimlane is a chain. Any message $m$ counts as a non-empty vote in **b-game** only if:
 
@@ -468,7 +468,7 @@ Block b Last non-empty vote of validator 3 in b-game
 
 Genesis 14 1 9 2 14 3 9 4 (none) 5 14 6 (none)
 
-### Fork choice
+### Fork choice {#fork-choice}
 
 The goal of fork-choice is to take the decision on top of the version of the shared database history we want to build in the next step. This decision can be seen as an iterative application of the reference estimator from the "Abstract Casper Consensus". As a result we want to get a list of blocks (ordered by preference) which will serve as parent candidates for the new block.
 
@@ -503,16 +503,16 @@ The algorithm goes as follows:
 
 7.  The **Result** is the list of blocks we want. The first block on the list is the main parent candidate, remaining blocks are secondary parents candidates.
 
-## Operation of a finalizer
+## Operation of a finalizer {#operation-of-a-finalizer}
 
-### The objective
+### The objective {#the-objective}
 
 Finalizer observes the growing blockchain. The objective is to recognize the subset of transactions history that:
 
 -   is already agreed (as a result of on-going consensus)
 -   cannot be reverted (unless the equivocators collection exceeds - by total weight - predefined threshold)
 
-### Parameters
+### Parameters {#parameters}
 
 In general - different finalizers will be based on different finality criteria. For the current design we assume that the criterion described in the previous chapter is in use.
 
@@ -522,7 +522,7 @@ Hence, the finalizer is parameterized by:
 -   **K** - acknowledgement level
     -   **WP** (weight percentage) - expressed as a number between 0 and 1
 
-### State
+### State {#state}
 
 The assumption is that a finalizer can traverse the blockdag, reading contents of blocks. Also, for any block b it should be able to read post-state of b, and in particular get the weights-map from this post-state.
 
@@ -554,7 +554,7 @@ The internal state of the "reference" implementation of a finalizer would be:
 
     -   **FTT(0) = ceiling(WP \* total-weight(post-state of Genesis))**
 
-### Behaviour - the general plan
+### Behaviour - the general plan {#behaviour---the-general-plan}
 
 > The operation of a finalizer can be decomposed as the following, partially independent activities:
 >
@@ -565,7 +565,7 @@ The internal state of the "reference" implementation of a finalizer would be:
 > 5.  Reacting to equivocation catastrophe (by recalculating the **LFB** chain).
 > 6.  Publishing the stream of finalized blocks (over some streaming API) - this includes possibly also maintaining the collection of subscribers.
 
-### LFB chain
+### LFB chain {#lfb-chain}
 
 **LFB(i)** is supposed to be the "i-th last finalized block". **LFB** chain is achieved in the following way:
 
@@ -577,11 +577,11 @@ The internal state of the "reference" implementation of a finalizer would be:
 4.  Finality detector observes the LFB(m)-game, with:
     1.  game-level acknowledgement level **K** same as defined by parameters of this finalizer 2. **FTT(m) = ceiling(WP \* total-weight(post-state of m))**, where \*_ceiling(\_)_\* is integer rounding towards positive infinity. 3. Once **LFB(m)**-game reaches finality, the next element of **LFB** chain is established.
 
-### Indirect finalization
+### Indirect finalization {#indirect-finalization}
 
 > Once **LFB(m)** is established, we consider the whole **p-past-cone(LFB(m))** as finalized.
 
-### Equivocation catastrophe
+### Equivocation catastrophe {#equivocation-catastrophe}
 
 For any **LFB(m)**, the **LFB(m)-game** may "crash" by total weight of equivocators exceeding **FTT(m)**. Such situation we call **the equivocation catastrophe**.
 
@@ -601,7 +601,7 @@ Once an equivocation catastrophe is discovered, the following handling must be a
 3.  Publish a rollback event at the level of external API.
 4.  Publish re-calculated LFB stream, starting from first difference.
 
-### External API of a finalizer
+### External API of a finalizer {#external-api-of-a-finalizer}
 
 The API should be stream-based. The decision on the actual streaming technology to use is beyond the scope of this specification.
 
