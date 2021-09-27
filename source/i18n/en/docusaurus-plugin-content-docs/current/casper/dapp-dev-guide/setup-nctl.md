@@ -174,11 +174,11 @@ Several other NCTL commands are available via aliases for execution from within 
 
 You should see the new directory _utils/nctl/assets_, with the following structure.
 
-<img src="/image/nctl/assets_setup.png"  alt="assets_setup" width="200"/>
+<img src="/docs/image/nctl/assets_setup.png"  alt="assets_setup" width="200"/>
 
 Here is the command line output you would expect.
 
-<img src="/image/nctl/nctl_output.png"  alt="nctl_output"/>
+<img src="/docs/image/nctl/nctl_output.png"  alt="nctl_output"/>
 
 ## Stopping the Network
 
