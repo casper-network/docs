@@ -22,6 +22,7 @@ module.exports = {
         },
         "dapp-dev-guide/testing",
         "dapp-dev-guide/setup-nctl",
+        "dapp-dev-guide/upgrading-contracts",
         "dapp-dev-guide/deploying-contracts",
         "dapp-dev-guide/calling-contracts",
         "dapp-dev-guide/execution-error-codes",
