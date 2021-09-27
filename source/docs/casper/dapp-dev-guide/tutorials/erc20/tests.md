@@ -2,7 +2,7 @@
 
 The testing framework in this tutorial uses the [Casper engine test support](https://crates.io/crates/casper-engine-test-support) crate for testing the contract implementation against the Casper execution environment.
 
-We will review the following three `GitHub <https://github.com/casper-ecosystem/erc20>`\_ files, which create the testing framework:
+We will review the following three [GitHub](https://github.com/casper-ecosystem/erc20) files, which create the testing framework:
 
 -   `tests/src/erc20.rs` - sets up the testing context and creates helper functions used by unit tests
 -   `tests/src/tests.rs` - contains the unit tests

@@ -10,7 +10,7 @@ It is also possible to create build scripts with this environment and set up con
 
 ## The TestContext for Rust Contracts {#the-testcontext-for-rust-contracts}
 
-A [TestContext](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/struct.TestContext.md) provides a virtual machine instance. It should be a mutable object as its internal data will change with each deploy. It's also important to set an initial balance for the account to use for deploys, as the system requires a balance in order to create an account.
+A [TestContext](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/struct.TestContext.html) provides a virtual machine instance. It should be a mutable object as its internal data will change with each deploy. It's also important to set an initial balance for the account to use for deploys, as the system requires a balance in order to create an account.
 
 ```rust
 const MY_ACCOUNT: [u8; 32] = [7u8; 32];
@@ -24,7 +24,7 @@ Account is type of `[u8; 32]`. Balance is type of `U512`.
 
 ## Running the Rust Smart Contract {#running-the-rust-smart-contract}
 
-Before the contract can be deployed to the context, the request has to be prepared. A request is referred to as a [Session](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/struct.Session.md). Each session call has 4 elements:
+Before the contract can be deployed to the context, the request has to be prepared. A request is referred to as a [Session](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/struct.Session.html). Each session call has 4 elements:
 
 -   A Wasm file path.
 -   A list of arguments.
