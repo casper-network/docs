@@ -13,6 +13,7 @@ const {
     prismConfig,
     siteConfig,
 } = require("./config");
+const { getEditUrl } = require("./src/utils/docs");
 
 const docsOnlyMode = process.env.DOCS_MODE || true;
 const routePrefix = !docsOnlyMode ? "/docs" : "/";
@@ -43,7 +44,7 @@ module.exports = {
                     path: "source/docs/casper",
                     routeBasePath: routePrefix, // IMPORTANT: Turn on docs-only mode
                     sidebarPath: require.resolve("./config/sidebar.config.js"),
-                    editUrl: "https://github.com/casper-network/documentation/tree/master",
+                    editUrl: getEditUrl,
                     exclude: ["./contract-dsl/archived", "./economics/archived", "./theory"],
                     /* Docs config options */
                     // showLastUpdateAuthor: false,
