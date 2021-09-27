@@ -1,12 +1,12 @@
 # Network Communication {#communications-head}
 
-## Identity
+## Identity {#identity}
 
 Each node has an identity on the network (which is not the same as its identity in the consensus process). The network identity (ID) is based on the fingerprint of the public key of a self-signed TLS certificate. A node generates a new private key each time it starts, ensuring a unique ID.
 
 Each identity is linked with an address, which is an IP and port pair where the node is reachable. This address is also called an endpoint.
 
-## Inter-node connections
+## Inter-node connections {#inter-node-connections}
 
 Should a node want to connect to another node with a known endpoint, it opens a TLS connection to the endpoint's address. In the context of common TLS terminology, this makes the connecting node the _client_ and the remote node the _server_ for this connection.
 
@@ -18,7 +18,7 @@ Once a connection is established, the server will immediately seek to connect ba
 
 Connections are used for sending messages one-way only; only the node initiating a connection will send messages on it.
 
-## Network
+## Network {#network}
 
 As soon as a node has connected to one node in the network, it partakes in [Node Discovery](#node-discovery). In general, any node will attempt to connect to any other node on the network it finds as described above, leading to a fully connected network.
 
@@ -43,11 +43,11 @@ Given a message _M_ to gossip, the desired saturation _S_, and an infection limi
 
 Through this process, a message will spread to almost all nodes over time.
 
-## Requesting missing data
+## Requesting missing data {#requesting-missing-data}
 
 While gossiping and broadcasting are sufficient to distribute data across the network in most cases, nodes can also request missing data from peers should they require it. A common example is a missing deploy from a block.
 
-### Validation
+### Validation {#validation}
 
 Objects have a concept of dependencies. For example, a block depends on all the deploys whose hashes are listed inside it. A node considers any object valid if all of its dependencies are available on the local node.
 
@@ -55,6 +55,6 @@ Should a node receive an object from a peer that is not valid yet, it will attem
 
 Any node is responsible for only propagating valid objects. Should a node not retrieve all missing dependencies of an object from the peer that sent it, it may punish the peer for doing so.
 
-## Node Discovery
+## Node Discovery {#node-discovery}
 
 Node discovery happens by each node periodically gossiping its public address. Upon receiving an address via gossip, each node immediately tries to establish a connection to it and notes the resulting endpoint, if successful.

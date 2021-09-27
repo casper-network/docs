@@ -1,6 +1,6 @@
 # How to Stake your CSPR
 
-## 1. Introduction
+## 1. Introduction {#1-introduction}
 
 Casper and other Proof-of-Stake protocols allow token holders to earn rewards and participate in the protocol through a mechanism called **staking**. This tutorial shows you how to stake your Casper tokens with a validator on the network. This process is also called **delegation**. We will use these terms interchangeably in this guide, but we will explain the technical difference for clarity.
 
@@ -18,7 +18,7 @@ You can also participate in the protocol to earn rewards without maintaining a C
 
 This tutorial will show you how to earn rewards by delegating your Casper tokens. We will also cover the steps to undelegate your tokens at the end of the tutorial.
 
-## 1. Staking Overview
+## 1. Staking Overview {#1-staking-overview}
 
 Staking the process by which node operators participate in the blockchain network. It is important to understand the fundamentals of staking because when you delegate your tokens to a validator, they will be staking those tokens on your behalf. Here are a few common topics related to staking, but we encourage you to do your own research.
 
@@ -38,13 +38,13 @@ Validators receive rewards, proportional to their stake, for participating in th
 
 As a prospective delegator, you need to select a validating node that you can trust. Please do your due diligence before you stake your tokens with a validator.
 
-## 3. Creating your Wallet with the CasperLabs Signer
+## 3. Creating your Wallet with the CasperLabs Signer {#3-creating-your-wallet-with-the-casperlabs-signer}
 
 To stake tokens, you need access to a wallet with CSPR tokens. At the moment, you can use the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) tool. The Signer acts as your CSPR wallet, keeping your accounts secure and helping you perform actions like staking, un-staking, or sending tokens to another account. Please follow [the Signer Guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html) for additional details on how to set up this tool.
 
 You can create, store, and use one or more CSPR accounts with your Signer wallet. A password protects all accounts in what we call a **vault**.
 
-### 3.1 Signing in to the CasperLabs Signer
+### 3.1 Signing in to the CasperLabs Signer {#31-signing-in-to-the-casperlabs-signer}
 
 If you are new or have logged out of the Signer, you can log in with these steps:
 
@@ -59,7 +59,7 @@ If you are new or have logged out of the Signer, you can log in with these steps
 9.  You can also view websites and dApps to which your accounts are connected.
 10. One essential function is the ability to download your keys and store them in a secure location. If you lose access to the vault, you can create a new vault with the downloaded files. Please do this as early as possible!
 
-### 3.2 Creating a New Account
+### 3.2 Creating a New Account {#32-creating-a-new-account}
 
 If you are using the CasperLabs Signer for the first time, follow these steps to create an account and **download the account's keys**:
 
@@ -85,7 +85,7 @@ If you do not have these three files, you need to enable multiple downloads in y
 8.  If you lose the vault password you created, but still have the _secret_key.pem_ file, you can import your account into a new vault, as shown in the next section.
 9.  **IMPORTANT: If you lose the secret_key.pem file and your vault password, you will lose access to that account and to the tokens stored in the account.**
 
-### 3.3 Importing an Existing Account
+### 3.3 Importing an Existing Account {#33-importing-an-existing-account}
 
 If you already have your secret keys and would like to set up and use your wallet with your existing accounts, you can do so with the following steps. These steps also apply for users migrating from the outdated Clarity tool to [cspr.live](https://cspr.live/).
 
@@ -98,7 +98,7 @@ If you already have your secret keys and would like to set up and use your walle
 
 Now that you have your CasperLabs Signer wallet, you can continue to connect to the mainnet blockchain.
 
-## 4. Connecting to cspr.live
+## 4. Connecting to cspr.live {#4-connecting-to-csprlive}
 
 Using the active account in the Signer tool, connect to the Casper blockchain by clicking on the **DISCONNECTED** button to toggle the connection.
 
@@ -136,13 +136,13 @@ You will see details about your rewards in the _Staking Rewards_ tab, such as th
 
 It is important to know that the cost of the delegation process is approximately 3 CSPR. Ensure you have extra CSPR on your account apart from the amount you are delegating; otherwise, the transaction will fail. For example, if you want to delegate 1000 CSPR, you need to have at least 1003 CSPR in your account.
 
-## 5. Funding your Account
+## 5. Funding your Account {#5-funding-your-account}
 
 **IMPORTANT NOTE:** If you want to send your CSPR coins from an exchange to this account, you need to copy the **Public Key** value. Use the quick copy button to the right of the public key address to copy it. Then set up a withdrawal request from the exchange using the public key.
 
 The transfer from an exchange takes a few minutes. After your tokens arrive in your account, you can delegate them. This section demonstrates a withdrawal from the Coinlist exchange <http://coinlist.co/> to the [Casper Mainnet on cspr.live](https://cspr.live/).
 
-### 5.1 Transfer CSPR from an Exchange
+### 5.1 Transfer CSPR from an Exchange {#51-transfer-cspr-from-an-exchange}
 
 If you need to transfer your CSPR tokens from an exchange, you will need your **public key** from the account page. You can also find this key in the **public_key_hex** file, which you can download from the CasperLabs Signer.
 
@@ -176,7 +176,7 @@ If you already have funds in your Signer wallet, you can skip this section. If y
 
 Now you are ready to delegate your tokens.
 
-## 6. Delegating Tokens
+## 6. Delegating Tokens {#6-delegating-tokens}
 
 You can access the delegation functionality in two ways.
 
@@ -222,7 +222,7 @@ Then follow these instructions to delegate your tokens:
 
 The delegation transaction initiates as soon as the corresponding deploy is signed. You can review the details and status of the deploy by clicking **Deploy Details**. Now that you have everything set up, subsequent delegation operations will be much easier.
 
-## 7. Monitoring
+## 7. Monitoring {#7-monitoring}
 
 We recommend that you check in on how your stake is performing. The following points are important to understand and will be helpful in maximizing your rewards.
 
@@ -232,7 +232,7 @@ Validators have to win a staking auction by competing for a validator slot with 
 
 Staking rewards are delivered to your account after each era, which is currently set to 2 hours. Note that it may take up to 2 eras (4 hours) for the first reward to appear after delegation. The rewards are automatically added to your current stake on the corresponding validator. You may view them under the _Rewards_ tab on your account details page on <https://cspr.live/>.
 
-## 8. Undelegating Tokens
+## 8. Undelegating Tokens {#8-undelegating-tokens}
 
 If you want to undelegate your tokens, you can do so at any time. Note that the cost of the undelegation process is 0.5 CSPR. You can access the undelegate functionality in three ways.
 
@@ -284,7 +284,7 @@ Then follow these instructions to undelegate your tokens:
 
 The stake undelegation initiates as soon as the corresponding deploy is signed. It may take 1-2 minutes for the undelegation details to become available. Please note that your undelegated tokens will appear in your account automatically after a 7-era delay, which is approximately 14 hours.
 
-## Conclusion
+## Conclusion {#conclusion}
 
 By staking your tokens, you help secure the network and earn rewards in return. Thank you for your trust and participation!
 

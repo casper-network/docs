@@ -19,11 +19,11 @@ A block is structurally defined as follows:
 -   `header`: The header of the block that contains information about the contents of the block with additional metadata.
 -   `body`: The block's body contains the proposer of the block and hashes of deploys and transfers contained within it.
 
-### Block hash
+### Block hash {#block-hash}
 
 The block hash is a `Digest` over the contents of the block Header. The `BlockHash` serializes as the byte representation of the hash itself.
 
-### Block header
+### Block header {#block-header}
 
 The header portion of a block, structurally, is defined as follows:
 
@@ -59,7 +59,7 @@ When serializing the overarching struct of `EraEnd`, we first allocate a buffer,
 
 Note that `EraEnd` is an optional field. Thus the above scheme only applies if there is an `EraEnd`; if there is no era end, the field simply serializes to _0_.
 
-### Body
+### Body {#body}
 
 The body portion of the block is structurally defined as:
 
@@ -83,11 +83,11 @@ A deploy is a data structure containing a smart contract and the requester's sig
 -   `session`: The stored contract itself.
 -   `approvals`: A list of signatures:
 
-### Deploy-Hash
+### Deploy-Hash {#deploy-hash}
 
 The deploy hash is a digest over the contents of the deploy header. The deploy hash serializes as the byte representation of the hash itself.
 
-### Deploy-Header
+### Deploy-Header {#deploy-header}
 
 -   `account`: A supported public key variant (currently either `Ed25519` or `Secp256k1`). An `Ed25519` key is serialized as a buffer of bytes, with the leading byte being `1` for `Ed25519`, with remainder of the buffer containing the byte representation of the signature. Correspondingly, a `Secp256k1` key is serialized as a buffer of bytes, with the leading byte being `2`.
 -   `timestamp`: A timestamp is a struct that is a unary tuple containing a `u64` value. This value is a count of the milliseconds since the UNIX epoch. Thus the value `1603994401469` serializes as `0xbd3a847575010000`
@@ -97,7 +97,7 @@ The deploy hash is a digest over the contents of the deploy header. The deploy h
 -   `dependencies`: Dependencies is a vector of deploy hashes referencing deploys that must execute before the current deploy can be executed. It serializes as a buffer containing the individual serialization of each DeployHash within the Vector.
 -   `chain_name`: Chain name is a human-readable string describing the name of the chain as detailed in the chainspec. It is serialized as a String CLValue described below.
 
-### Payment & Session
+### Payment & Session {#payment--session}
 
 Payment and Session are both defined as `ExecutableDeployItems`. `ExecutableDeployItems` is an enum described as follows:
 
@@ -172,14 +172,14 @@ pub enum ExecutableDeployItem {
 
 -   Transfer serializes such that the first byte within the serialized buffer contains is 5u8, with the remaining bytes of the buffer containing the bytes contained within the args field of Transfer.
 
-### Approval
+### Approval {#approval}
 
 Approval contains two fields:
 
 -   `signer`: The public key of the approvals signer. It serializes to the byte representation of the `PublicKey`. If the `PublicKey` is an `Ed25519` key, then the first byte within the serialized buffer is 1 followed by the bytes of the key itself; else, in the case of `Secp256k1`, the first byte is 2.
 -   `signature`: The approval signature, which serializes as the byte representation of the `Signature`. The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
 
-### Deploy Serialization at High Level
+### Deploy Serialization at High Level {#deploy-serialization-at-high-level}
 
 Consider the following deploy:
 
@@ -263,7 +263,7 @@ Note: `Tuple5` is not a presently supported `CLType`. However, it is clear how t
 
 Note: links to further serialization examples and a reference implementation are found in `Appendix B <appendix-b>`{.interpreted-text role="ref"}.
 
-### `CLValue`
+### `CLValue` {#clvalue}
 
 `CLValue` is used to describe data that is used by smart contracts. This could be as a local state variable, input argument, or return value. A `CLValue` consists of two parts: a `CLType` describing the type of the value and an array of bytes representing the data in our serialization format.
 

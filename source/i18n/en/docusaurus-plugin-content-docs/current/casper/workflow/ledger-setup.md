@@ -8,16 +8,16 @@ If you need help, contact us on the following services:
 -   Discord: <https://discord.com/invite/Q38s3Vh>
 -   Telegram: <https://t.me/casperblockchain>
 
-## Requirements
+## Requirements {#requirements}
 
-### Before you begin
+### Before you begin {#before-you-begin}
 
 1.  You have initialized your Ledger Nano S/X.
 2.  You have installed the latest firmware on your Ledger Nano S/X.
 3.  Ledger Live is ready to use.
 4.  You have installed a Chromium-based browser such as Chrome or Brave.
 
-### Install the Casper app on the Ledger device
+### Install the Casper app on the Ledger device {#install-the-casper-app-on-the-ledger-device}
 
 1.  Open the Manager in Ledger Live.
 2.  Connect and unlock your Ledger device.
@@ -28,9 +28,9 @@ If you need help, contact us on the following services:
 7.  Your device will display **"Processing..."**
 8.  The app installation is confirmed.
 
-## Use Ledger device with your Web wallet
+## Use Ledger device with your Web wallet {#use-ledger-device-with-your-web-wallet}
 
-### Sign in
+### Sign in {#sign-in}
 
 You can now use the Ledger device with Web wallet. Follow these steps:
 
@@ -42,7 +42,7 @@ You can now use the Ledger device with Web wallet. Follow these steps:
 6.  Select an account you want to use.
 7.  Now, your Ledger device is connected to the Web wallet.
 
-### View account details
+### View account details {#view-account-details}
 
 1.  Go to [cspr.live](https://cspr.live).
 2.  Click on the account address in the upper-right corner of the page.
@@ -57,14 +57,14 @@ You can now use the Ledger device with Web wallet. Follow these steps:
 
   <img src="/docs/image/tutorials/ledger/flow/4-account-details.png" alt="4-account-details" width="750" />
 
-### View account balance
+### View account balance {#view-account-balance}
 
 You can check your account balance from the Web wallet:
 
 1.  Follow the steps described in the "View account details" section above.
 2.  On the **Liquid Account Balance** row, you will see your latest known account balance.
 
-### Receive tokens
+### Receive tokens {#receive-tokens}
 
 To receive tokens, you need to provide the sender with the public key of your account. To find it:
 
@@ -77,7 +77,7 @@ To receive tokens, you need to provide the sender with the public key of your ac
 1.  Click on the **Copy public key** button.
 2.  Share the public key with the sender.
 
-### Send tokens
+### Send tokens {#send-tokens}
 
 1.  Go to [cspr.live](https://cspr.live).
 2.  Sign in with your Ledger device.

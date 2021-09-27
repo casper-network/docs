@@ -6,7 +6,7 @@
 
 ---
 
-## Liveness
+## Liveness {#liveness}
 
 A necessary property of a consensus protocol: that agreement is always eventually achieved (under certain assumptions).
 

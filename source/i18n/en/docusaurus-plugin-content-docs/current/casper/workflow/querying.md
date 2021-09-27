@@ -13,7 +13,7 @@ When sending a query, it is important to note that the request will be routed to
 -   Block information
 -   Deploy information
 
-## Obtaining the Global State Root Hash
+## Obtaining the Global State Root Hash {#obtaining-the-global-state-root-hash}
 
 Since the system state changes with each block created, obtaining the latest global state hash is essential before querying information from a node.
 
@@ -59,7 +59,7 @@ casper-client get-state-root-hash \
 
 </details>
 
-## Querying an Account
+## Querying an Account {#querying-an-account}
 
 [Accounts](https://docs.casperlabs.io/en/latest/implementation/accounts.md) are stored in the global state and can be queried using the `query-state` command:
 
@@ -182,7 +182,7 @@ casper-client get-balance \
 
 </details>
 
-## Querying Blocks
+## Querying Blocks {#querying-blocks}
 
 It is possible to obtain detailed block information from the system. To do this, obtain the hash of the block of interest and send this query to a node in the network. Here is an example:
 
@@ -277,7 +277,7 @@ casper-client get-block \
 
 </details>
 
-## Querying Deploys
+## Querying Deploys {#querying-deploys}
 
 Once you submit a deploy to the network, you can check its execution status using `get-deploy`. If the `execution_results` in the output are null, the transaction has not run yet. Note that transactions are finalized upon execution.
 
