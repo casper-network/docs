@@ -55,7 +55,7 @@ Note: that other contracts called from the session code by `call_contract` are e
 
 ## Functions for interacting with an account {#accounts-api-functions}
 
-The [Casper Rust library](https://docs.rs/casper-contract/1.0.1/casper_contract/ext_ffi/index.md) contains several functions for working with the various account features:
+The [Casper Rust library](https://docs.rs/casper-contract/1.0.1/casper_contract/ext_ffi/index.html) contains several functions for working with the various account features:
 
 -   `casper_add_associated_key`
 -   `casper_remove_associated_key`
