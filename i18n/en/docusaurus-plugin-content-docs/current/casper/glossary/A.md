@@ -6,18 +6,18 @@
 
 ---
 
-## AssemblyScript
+## AssemblyScript {#assemblyscript}
 
 AssemblyScript is a TypeScript-based programming language (JavaScript with static types) that is optimized for WebAssembly and compiled to WebAssembly using _asc_, the reference AssemblyScript compiler. It is developed by the AssemblyScript Project and the AssemblyScript community.
 
-## Auction
+## Auction {#auction}
 
 The auction determines the composition of the validator set for each era of the protocol. It is a "first-price" auction (where winning bids become stakes) with a fixed number of spots chosen to balance security with performance. Because rewards are proportional to the stake, it is expected that this competitive mechanism will provide a powerful impetus for staking as many tokens as possible.
 
-## Auction contract
+## Auction contract {#auction-contract}
 
 The auction contract acts as a front-end user interface to the auction by directly accepting bids from validators and delegators. It also contains the logic necessary for carrying out the auction.
 
-## Auction delay
+## Auction delay {#auction-delay}
 
 The number of full eras that pass between the [booking block](B.md#id7) and the era whose validator set it defines. The auction delay is configurable and can be several eras long.

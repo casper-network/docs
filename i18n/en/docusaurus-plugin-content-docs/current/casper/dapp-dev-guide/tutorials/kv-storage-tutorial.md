@@ -4,7 +4,7 @@ This tutorial covers a simple contract, which creates a key that stores a `CLTyp
 
 The code is available in the [Casper Ecosystem GitHub](https://github.com/casper-ecosystem/kv-storage-contract). Or, you can get started in [GitPod](https://gitpod.io/#https://github.com/casper-ecosystem/kv-storage-contract).
 
-## The Contract
+## The Contract {#the-contract}
 
 Let's start by understanding the structure of the contract itself. Here we create a contract and name it `kvstorage_contract`. The contract package will be stored under this name on the blockchain. Since the key-value contract is slightly stateless, initialization is not required.
 
@@ -125,7 +125,7 @@ Let's start by understanding the structure of the contract itself. Here we creat
  }
 ```
 
-## Testing the Contract
+## Testing the Contract {#testing-the-contract}
 
 The Casper Contracts SDK supports local testing of smart contracts. This tutorial will cover how to test the U64 key-value function, which you can adapt for other types.
 
@@ -182,7 +182,7 @@ impl KVstorageContract{
 }
 ```
 
-### Write Unit Tests
+### Write Unit Tests {#write-unit-tests}
 
 With these functions in place, it's possible to start writing tests for the contract.
 
@@ -214,7 +214,7 @@ mod tests {
 }
 ```
 
-### Running Locally
+### Running Locally {#running-locally}
 
 You can run unit tests locally if you have set up the contract using _cargo-casper_ as shown in the [Getting started](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.html) guide.
 
@@ -222,11 +222,11 @@ You can run unit tests locally if you have set up the contract using _cargo-casp
 cargo test -p tests
 ```
 
-## Deploying to the Testnet and Interacting with the Contract
+## Deploying to the Testnet and Interacting with the Contract {#deploying-to-the-testnet-and-interacting-with-the-contract}
 
 When working with the testnet, create an account on [Testnet CSPR Live](https://testnet.cspr.live) and fund it using the faucet. Download the private key and use the key to sign the deployment. It's possible to create keys using the rust client as well.
 
-### Deploy the Contract
+### Deploy the Contract {#deploy-the-contract}
 
 After compiling the contract, you need to deploy the compiled WASM to the network. This action installs the contract in the blockchain.
 
@@ -268,7 +268,7 @@ If the deploy works, a you will see a similar response:
 {"api_version":"1.0.0","deploy_hash":"8c3068850354c2788c1664ac6a275ee575c8823676b4308851b7b3e1fe4e3dcc"}
 ```
 
-### Query the Contract On Chain
+### Query the Contract On Chain {#query-the-contract-on-chain}
 
 Contracts can be executed under different contexts. In this example, when the contract is deployed, it runs in the context of a `Contract` and not a `Session`. This means that all stored keys are not stored under the account hash, but within the context of the contract. Therefore, when we query to retrieve the value under a key, we are querying `AccountHash/kvstorage_contract/<key-name>` and not just `AccountHash/<key-name>`.
 
