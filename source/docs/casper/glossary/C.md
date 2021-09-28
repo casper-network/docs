@@ -16,7 +16,7 @@ The Casper network is a Proof-of-Stake blockchain that allows validators to stak
 
 ## CBC {#cbc}
 
-Correct by construction. CBC Casper is a family of consensus algorithms developed by Vlad Zamfir.
+Correct by construction. CBC Casper is a family of consensus algorithms.
 
 ## Chainspec {#chainspec}
 
