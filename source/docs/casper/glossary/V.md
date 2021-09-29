@@ -12,7 +12,7 @@ Validators are responsible for maintaining platform security by building an ever
 
 The responsibilities of a validator include:
 
--   [block creation](B.md#block-creation) and [block proposal](B.md#id6)
+-   [block creation](B.md#block-creation) and [block proposal](B.md#block-proposal)
 -   [block validation](B.md#block-validation)
 -   [block gossiping](B.md#block-gossiping)
 

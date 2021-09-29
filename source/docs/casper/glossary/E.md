@@ -14,7 +14,7 @@ The ecosystem layer in Casper encompasses dApp design and operation.
 
 A period of time during which the validator set does not change.
 
-In the Casper Network, validators cannot join and leave at any point in time, but only at era boundaries. An era's validators are determined using an [auction](A.md#auction). At the beginning of the era, the validators create a new instance of the Highway protocol and run this consensus protocol until they finalize the era's last block (see [booking block](B.md#id7)).
+In the Casper Network, validators cannot join and leave at any point in time, but only at era boundaries. An era's validators are determined using an [auction](A.md#auction). At the beginning of the era, the validators create a new instance of the Highway protocol and run this consensus protocol until they finalize the era's last block (see [booking block](B.md#booking-block)).
 
 ## Eviction {#eviction}
 

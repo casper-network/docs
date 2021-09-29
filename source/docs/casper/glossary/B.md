@@ -21,7 +21,7 @@ Each block points to its parent. An exception is the first block, which has no p
 
 Block creation means computing the deployment results and collecting the results that belong together into a block. We follow a process called _execution after consensus_.
 
-The [block proposal](#id6) happens first, and the proposed [proto block](P.md#proto-block) contains a set of deploys that have not been executed yet.
+The [block proposal](B.md#block-proposal) happens first, and the proposed [proto block](P.md#proto-block) contains a set of deploys that have not been executed yet.
 
 Only after consensus on a _proto block_ has been reached, the deploys are executed. The resulting new global state [root hash](R.md#root-hash) is put into an actual block, together with the executed deploys.
 
@@ -35,7 +35,7 @@ There are different levels of _finality_ in the [Highway](H.md#highway) protocol
 
 ## Block gossiping {#block-gossiping}
 
-Block gossiping occurs when a message containing a block is sent to one or more nodes on the network. In other words, block gossiping is sending a block validated by the current node but created by another node. The terms _block gossiping_ and \*[block-passing](#block-passing). are interchangeable.
+Block gossiping occurs when a message containing a block is sent to one or more nodes on the network. In other words, block gossiping is sending a block validated by the current node but created by another node. The terms _block gossiping_ and [block passing](#block-passing) are interchangeable.
 
 ## Block passing {#block-passing}
 
@@ -67,7 +67,7 @@ The amount of money (in crypto-currency) that is allocated by a node in order to
 
 ## Bonding {#bonding}
 
-Depositing money in the [auction contract](A.md#auction-contract) and try to become a [staker](S.md#staker). The bonding request is a transaction that transfers tokens to the auction contract. In the next [booking block](#id7), a new set of validators is determined, with weights according to their deposits. This new set becomes active in the era(s) using that booking block.
+Depositing money in the [auction contract](A.md#auction-contract) and try to become a [staker](S.md#staker). The bonding request is a transaction that transfers tokens to the auction contract. In the next [booking block](#booking-block), a new set of validators is determined, with weights according to their deposits. This new set becomes active in the era(s) using that booking block.
 
 ## Booking block {#booking-block}
 
