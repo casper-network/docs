@@ -2,13 +2,13 @@
 
 The testing framework in this tutorial uses the [Casper engine test support](https://crates.io/crates/casper-engine-test-support) crate for testing the contract implementation against the Casper execution environment.
 
-We will review the following three [GitHub](https://github.com/casper-ecosystem/erc20/tree/master/tests/src) files, which create the testing framework:
+We will review the following three [GitHub](https://github.com/casper-ecosystem/erc20) files, which create the testing framework:
 
 -   `tests/src/erc20.rs` - sets up the testing context and creates helper functions used by unit tests
 -   `tests/src/tests.rs` - contains the unit tests
 -   `tests/src/lib.rs` - links the above files together and is required by the Rust toolchain
 
-The following is an example of a complete test:.:
+The following is an example of a complete test:
 
 ```rust
 #[test]
@@ -21,7 +21,9 @@ fn test_erc20_transfer() {
 }
 ```
 
-The [tests crate](https://github.com/casper-ecosystem/erc20/tree/master/tests) has a `build.rs` file, which is effectively a custom build script executed every time before running the tests. The `build.rs` file compiles the [contract crate](https://github.com/casper-ecosystem/erc20/tree/master/contract) in _release_ mode and copies the `contract.wasm` file to the `tests/wasm` directory. In practice, that means you only need to run a single command during development, which is **make test**.
+[//]: # "Removed links for `tests crate <https://github.com/casper-ecosystem/erc20/tree/master/tests>` and `contract crate <https://github.com/casper-ecosystem/erc20/tree/master/contract>` as the links are broken"
+
+The tests crate has a `build.rs` file, which is effectively a custom build script executed every time before running the tests. The `build.rs` file compiles the contract crate in _release_ mode and copies the `contract.wasm` file to the `tests/wasm` directory. In practice, that means you only need to run a single command during development, which is **make test**.
 
 ## Configuring the Test Package {#configuring-the-test-package}
 

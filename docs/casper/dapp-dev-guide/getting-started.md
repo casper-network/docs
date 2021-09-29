@@ -16,6 +16,8 @@ For a video walkthrough of this guide, feel free to check out this quick-start v
 
 Install the [Rust programming language](https://www.rust-lang.org) if you don't already have it on your computer.
 
+**Note**: You must customize the build to install the **nightly build** as your default toolchain.
+
 The [official Rust guide](https://www.rust-lang.org/tools/install) recommends installing Rust by using `curl`:
 
 ```
@@ -24,7 +26,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 You can also use `brew` on MacOS or `apt` on Linux to install Rust.
 
-You will need to customize the build so that you are installing the nightly build as your default toolchain. Once you finish installing Rust, check your version:
+Once you finish installing Rust, check your version:
 
 ```
 rustup --version
@@ -57,7 +59,7 @@ Each of the Casper crates comes with API documentation and examples for each fun
 
 **1. CMake**
 
-CMake is a popular build tool that we will utilize, and you may very well have it already installed. If you do, make sure that you have the latest version (currently 3.19.4). If you need to install or upgrade it, follow the steps located here: <https://cmake.org/install/>. Once installed, check your version as shown below. It should resemble this output:
+CMake is a popular build tool that we will utilize, and you may very well have it already installed. If you do, make sure that you have the latest version (currently 3.19.4). If you need to install or upgrade it, follow the steps located here: https://cmake.org/install/. Once installed, check your version as shown below.
 
 ```
 $ cmake --version
@@ -74,6 +76,12 @@ The best and fastest way to set up a Casper Rust Smart Contract project is to us
 
 ```
 cargo install cargo-casper
+```
+
+If you run into any issues with this command and you have not recently installed Rust from scratch, please make sure to update your Rust version with this command:
+
+```
+rustup update
 ```
 
 ### Creating a Project {#creating-a-project}
@@ -98,10 +106,11 @@ The project requires a specific nightly version of Rust and requires a WASM targ
 cargo casper --help
 ```
 
-To build the project, go into the `contract` folder, install the Rust toolchain and specify the target build as WebAssembly (wasm32):
+To build the project, go into the `my-project` folder, install the Rust toolchain and specify the target build as WebAssembly (wasm32):
 
 ```
 cd contract
+cd my-project
 rustup install $(cat rust-toolchain)
 rustup target add --toolchain $(cat rust-toolchain) wasm32-unknown-unknown
 ```
@@ -111,6 +120,7 @@ rustup target add --toolchain $(cat rust-toolchain) wasm32-unknown-unknown
 The next step is to compile the smart contract into WASM. Inside the contract folder, run the following command:
 
 ```
+cd contract
 cargo build --release
 ```
 
@@ -124,13 +134,14 @@ In addition to creating the contract, the Casper crate also automatically create
 
 The Casper local environment provides an in-memory virtual machine against which you can run your contract for testing. When you run the test crate, it will automatically build the smart contract in release mode and then run a series of tests against it in the Casper runtime environment. The custom build script is named `build.rs` if you are interested in looking more into it.
 
-**Note**: Since the test script automatically builds the contract, during development you only need to run the command `cargo test` without the need for `cargo build`.
+**Note**: Since the test script automatically builds the contract, during development you only need to run the command `make test` without the need for `cargo build`.
 
 A successful test run indicates that your smart contract environment is set up correctly.
 
 ```
 cd ../tests
 cargo test
+make test
 ```
 
 After the compilation finishes, the test should run and you should see output similar to this message in your terminal:
@@ -142,7 +153,7 @@ test tests::should_store_hello_world ... ok
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.30s
 ```
 
-As a brief example, open up _my-project/contract/src/main.rs_ in your editor, modify the _KEY_ value in the contract, and then rerun the `cargo test` command. You should observe that the smart contract recompiles and the test fails now.
+As a brief example, open up _my-project/contract/src/main.rs_ in your editor, modify the _KEY_NAME_ value in the contract, and then rerun the `make test` command. You should observe that the smart contract recompiles and the test fails now.
 
 ## Rust Resources {#rust-resources}
 
