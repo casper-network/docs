@@ -1,6 +1,6 @@
 # TypeScript/JavaScript SDK
 
-The [TypeScript/JavaScript SDK](https://casper-ecosystem.github.io/casper-js-sdk/next) allows developers to interact with the Casper Network using TypeScript or JavaScript. This page covers different examples of using the SDK.
+The [TypeScript/JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) allows developers to interact with the Casper Network using TypeScript or JavaScript. This page covers different examples of using the SDK. You can also explore various open [projects](https://github.com/casper-network/casper-java-sdk/projects/1) or [issues](https://github.com/casper-network/casper-java-sdk/issues) in GitHub.
 
 ## Installation {#installation}
 
