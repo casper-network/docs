@@ -8,7 +8,7 @@ Casper's blockchain is built upon the Rust programming language and compiles dow
 
 For a video walkthrough of this guide, feel free to check out this quick-start video.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed?v=J9XD5ZurxAI&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&index=2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed?v=XvV02iBoctc&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&index=2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Prerequisites {#prerequisites}
 
