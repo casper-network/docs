@@ -6,6 +6,10 @@
 
 ---
 
+## Partial synchrony {#partial-synchrony}
+
+Partial synchrony is used to define the fault tolerance of a consensus protocol, which is a time-bound mechanism to note suspicions or problems (failure, crashes, etc.). When a protocol is provably live under partial synchrony, it means that the nodes will make a decision within a fixed time period. Once the decision is made and a block is committed, it cannot be reverted. Also see [Correct-by-construction](C.md#correct-by-construction).
+
 ## Participate in consensus {#participate-in-consensus}
 
 The process of following the [consensus](C.md#consensus) algorithm. The primary participants are [validators](V.md#validator), bonded with their stake and part of the validator set for that particular era. [Delegators](D.md#delegator) participate indirectly by delegating their tokens to one or more of these validators and contributing by increasing the total stake that ensures the security of the network.
@@ -17,6 +21,10 @@ The _payment code_ is the [WASM](W.md#webassembly) program that pays the transac
 ## Peer node {#peer-node}
 
 A node on a peer-to-peer (P2P) network.
+
+## Permissionless
+
+A permissionless blockchain network has its consensus and transaction validation process open and available for anyone to participate. Being permissionless is an essential characteristic of most public blockchains, enabling decentralization, transparency, and value exchange between participants.
 
 ## Primary token {#primary-token}
 
