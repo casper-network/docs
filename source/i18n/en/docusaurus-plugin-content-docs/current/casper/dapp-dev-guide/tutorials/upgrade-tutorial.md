@@ -12,7 +12,7 @@ These are the essential steps you need to follow:
 
 Here are specific examples of how to implement the upgrade functionality.
 
-## Step 1. Deploy the contract with an 'upgrade' function
+## Step 1. Deploy the contract with an 'upgrade' function {#step-1-deploy-the-contract-with-an-upgrade-function}
 
 When you first deploy the contract, you must include an _upgrade_ function. Since the contract is immutable, you cannot add the _upgrade_ function after deployment. Without the this function, you cannot upgrade the contract. In other words, you must include the _upgrade_ function when you first deploy the contract.
 
@@ -30,7 +30,7 @@ pub extern "C" fn upgrade_me() {
 }
 ```
 
-## Step 2. Add an entry point in the 'call' function
+## Step 2. Add an entry point in the 'call' function {#step-2-add-an-entry-point-in-the-call-function}
 
 Next, you need to add an entry point to the _upgrade_ function in the _call_ function. This enables the contract execution to invoke the _upgrade_ function in the future.
 
@@ -61,7 +61,7 @@ pub extern "C" fn call() {
 }
 ```
 
-## Step 3. Add new features
+## Step 3. Add new features {#step-3-add-new-features}
 
 Now you are ready to upgrade your contract and add the new features and functions you desire.
 
@@ -92,7 +92,7 @@ The [add_contract_version](https://docs.rs/casper-contract/latest/casper_contrac
 
 Remember, it is essential to include the _upgrade_ function and safeguard the access token when you first deploy the contract. You will need the access token for future upgrades.
 
-## External links
+## External links {#external-links}
 
 -   For more sample code, check out this [contract upgrade example](https://github.com/casper-ecosystem/contract-upgrade-example)
 -   The API details for adding a version are in [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html)

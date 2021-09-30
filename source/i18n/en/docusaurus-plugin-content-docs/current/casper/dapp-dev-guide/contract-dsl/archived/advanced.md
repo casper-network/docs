@@ -2,11 +2,11 @@
 
 Once the base logic of the smart contract is in place, it's desirable to optimize the contract for the blockchain. This will require digging into the actual code that the DSL generates. This section will describe the steps to do this. Once the code has been expanded and then changed, make sure to remove the macros from the project configuration before saving the changes.
 
-## Debugging Contracts
+## Debugging Contracts {#debugging-contracts}
 
 It is possible to debug Rust contracts inside any IDE that supports breakpoints and watches. Make sure that the IDE supports Rust development and tools.
 
-### Expanding the Code
+### Expanding the Code {#expanding-the-code}
 
 When the rust compiler encounters each of the macros, it 'expands' the code and adds additional lines of code for each of the macros. The resultant expanded code is then compiled to the wasm which can then be deployed to the blockchain.
 
@@ -24,7 +24,7 @@ Run this command in the folder containing the smart contract code:
 cargo expand
 ```
 
-### Example Simple Counter Contract
+### Example Simple Counter Contract {#example-simple-counter-contract}
 
 Running `cargo-expand` on the simple counter contract yeilds this output:
 

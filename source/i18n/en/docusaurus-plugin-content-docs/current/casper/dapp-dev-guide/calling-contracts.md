@@ -2,7 +2,7 @@
 
 The most efficient way to use blockchain is to store (install) your contract on the system and then call it. This section outlines the steps to do this.
 
-## Installing a Smart Contract
+## Installing a Smart Contract {#installing-a-smart-contract}
 
 First, set up the contract name so you can call it using the name in subsequent deploys. The following code sample uses `sample_contract` as the contract name.
 
@@ -22,13 +22,13 @@ runtime::call_contract::<()>(contract_hash, "store_hello_world", {
 
 Next, deploy the smart contract using the `put-deploy` command and send in the compiled wasm as `--session code`.
 
-## Querying Global State for the Address of a Contract
+## Querying Global State for the Address of a Contract {#querying-global-state-for-the-address-of-a-contract}
 
 The `query-state` command is a generic query against [global state](https://docs.casperlabs.io/en/latest/glossary/G.html#global-state). Earlier, we queried global state for the account's main purse. Here, we query the state of a contract. We can do so by including the contract address rather than the account public key in the `query-state` command.
 
 Here we query to get the address of an ERC20 contract from Global State.
 
-### Step 1: Get the Latest Global State Hash
+### Step 1: Get the Latest Global State Hash {#step-1-get-the-latest-global-state-hash}
 
 We need to obtain the global state hash after our contract has been deployed to the network.
 
@@ -36,7 +36,7 @@ We need to obtain the global state hash after our contract has been deployed to 
 casper-client get-state-root-hash --node-address http://NODE:PORT | jq -r
 ```
 
-### Step 2: Query State
+### Step 2: Query State {#step-2-query-state}
 
 Take the global state hash from Step 1 and include it here, along with the account public key that created the contract.
 
@@ -44,7 +44,7 @@ Take the global state hash from Step 1 and include it here, along with the accou
 casper-client query-state --node-address http://NODE:PORT -k <PUBLIC KEY IN  HEX> -s <STATE_ROOT_HASH>
 ```
 
-### Example Result
+### Example Result {#example-result}
 
 If there is a contract stored in an account, it will appear under `named-keys`.
 
@@ -76,7 +76,7 @@ casper-client query-state --node-address http://localhost:7777 -k 016af0262f67aa
 }
 ```
 
-#### Step 3: Query the contract State
+#### Step 3: Query the contract State {#step-3-query-the-contract-state}
 
 Now that we have the hash of the contract, we can query the contract's internal state. To do this, we pass in the contract's hash and the global state hash. If we look at the ERC20 contract, we see a token name specified as `_name`. We can query for the value stored here.
 
@@ -100,7 +100,7 @@ And we should see something like this:
 
 **Note**: This result is returned as bytes. These bytes need to be deserialized into the correct CLType in a smart contract or a dApp. Refer to [casper-types](https://docs.rs/casper-types/latest/casper_types/bytesrepr/index.html) to find the latest APIs for deserialization.
 
-## Calling a Contract by Name & Entry Point
+## Calling a Contract by Name & Entry Point {#calling-a-contract-by-name--entry-point}
 
 To call a contract by its name, run the `put-deploy` command using the `session-name` option:
 
@@ -123,7 +123,7 @@ fn read_and_store<T: CLTyped + FromBytes + ToBytes>() {
 }
 ```
 
-## Calling a Contract by Hash and Entry Point
+## Calling a Contract by Hash and Entry Point {#calling-a-contract-by-hash-and-entry-point}
 
 After deploying a contract and querying the global state, you can use a contract's hash to call it in a new deploy. An entry point is required when calling a contract by its hash.
 

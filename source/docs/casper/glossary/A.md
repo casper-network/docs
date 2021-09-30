@@ -20,4 +20,4 @@ The auction contract acts as a front-end user interface to the auction by direct
 
 ## Auction delay {#auction-delay}
 
-The number of full eras that pass between the [booking block](B.md#id7) and the era whose validator set it defines. The auction delay is configurable and can be several eras long.
+The number of full eras that pass between the [booking block](B.md#booking-block) and the era whose validator set it defines. The auction delay is configurable and can be several eras long.

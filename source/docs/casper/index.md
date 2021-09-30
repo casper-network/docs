@@ -12,7 +12,7 @@ This article provides an overview of the Casper project.
 
 Casper is a new Turing-complete smart-contracting platform, backed by a Proof-of-Stake (PoS) consensus algorithm and WebAssembly (WASM). The network is a permissionless, decentralized, public blockchain.
 
-The network's consensus protocol is called [Highway](https://arxiv.org/pdf/2101.02159.pdf), and it has several benefits over classic Byzantine Fault Tolerant (BFT) consensus protocols. First, Highway allows networks to reach higher thresholds of _finality_, meaning that more blocks are finalized, and validators agree to add them to the blockchain. Second, the protocol achieves flexibility by expressing block finality in ways not possible in BFT models. This protocol is built on Vlad Zamfir's [correct-by-construction (CBC) Casper](https://github.com/cbc-casper/cbc-casper-paper) research.
+The network's consensus protocol is called [Highway](https://arxiv.org/pdf/2101.02159.pdf), and it has several benefits over classic Byzantine Fault Tolerant (BFT) consensus protocols. First, Highway allows networks to reach higher thresholds of _finality_, meaning that more blocks are finalized, and validators agree to add them to the blockchain. Second, the protocol achieves flexibility by expressing block finality in ways not possible in BFT models. This protocol is built on the [correct-by-construction (CBC) Casper](https://github.com/cbc-casper/cbc-casper-paper) research.
 
 Additionally, the Casper Network is optimized for enterprise and developer adoption. While leveraging blockchain technology, the network seeks to accelerate business operations via unique features like predictable network fees, upgradeable contracts, on-chain governance, privacy flexibility, and developer-friendly languages.
 

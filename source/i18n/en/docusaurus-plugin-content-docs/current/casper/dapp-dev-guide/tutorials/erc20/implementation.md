@@ -12,11 +12,11 @@ The ERC-20 standard is defined in [an Ethereum Improvement Proposal (EIP)](https
 -   [transfer](#the-transfer-function)
 -   [transfer_from](#the-approve-and-transfer-from-functions)
 
-## Cloning the Example Contract
+## Cloning the Example Contract {#cloning-the-example-contract}
 
 An example ERC-20 for Casper is located in [GitHub](https://github.com/casper-ecosystem/erc20).
 
-## Installing the Required Crates
+## Installing the Required Crates {#installing-the-required-crates}
 
 This is a Rust contract. In Rust, the keyword `use` is like an `include` statement in C/C++. Casper contracts require a few crates to be included. They are:
 
@@ -42,7 +42,7 @@ use types::{
 };
 ```
 
-## Initializing the Contract
+## Initializing the Contract {#initializing-the-contract}
 
 When the contract is deployed, it must be initialized with some values; this is done with the help of the `call()` function. The contract is initialized with a name, symbol, decimals, starting balances, and the starting token supply.
 
@@ -75,7 +75,7 @@ pub extern "C" fn call() {
 }
 ```
 
-## The `name`, `symbol`, and `decimals` functions
+## The `name`, `symbol`, and `decimals` functions {#the-name-symbol-and-decimals-functions}
 
 We then also add a few helper functions to set and retrieve values from the contract. Notice that these helper functions reference each of the `set_key` definitions when the contract is deployed; a generic `get_key` function to retrieve values is also used.
 
@@ -99,7 +99,7 @@ pub extern "C" fn decimals() {
 }
 ```
 
-## The `total_supply`, `balance_of`, and `allowance` functions
+## The `total_supply`, `balance_of`, and `allowance` functions {#the-total_supply-balance_of-and-allowance-functions}
 
 Let's explore the implementation of some key ERC-20 methods: `balance_of`, `total_supply`, and `allowance`.
 
@@ -128,7 +128,7 @@ pub extern "C" fn allowance() {
 }
 ```
 
-## The `transfer` function
+## The `transfer` function {#the-transfer-function}
 
 Here is the `transfer` method, which makes it possible to transfer tokens from the `sender` address to the `recipient` address. If the `sender` address has enough balance, then tokens should be transferred to the `recipient` address.
 
@@ -150,7 +150,7 @@ fn _transfer(sender: AccountHash, recipient: AccountHash, amount: U256) {
  }
 ```
 
-## The `approve` and `transfer_from` functions
+## The `approve` and `transfer_from` functions {#the-approve-and-transfer_from-functions}
 
 Here are the functions `approve` and `transfer_from`. `approve` is used to allow another address to spend tokens on one's behalf. This is used when multiple keys are authorized to perform deployments from an account.
 
@@ -189,7 +189,7 @@ fn _approve(owner: AccountHash, spender: AccountHash, amount: U256) {
  }
 ```
 
-## The `get_key` and `set_key` functions
+## The `get_key` and `set_key` functions {#the-get_key-and-set_key-functions}
 
 The `get_key` and `set_key` functions are generic Casper storage write and read methods. Implement these one time for the contract and then call them as needed.
 
@@ -218,7 +218,7 @@ fn set_key<T: ToBytes + CLTyped>(name: &str, value: T) {
 }
 ```
 
-## Other Helper Functions
+## Other Helper Functions {#other-helper-functions}
 
 The `balance_key` and `allowance_key` functions format the balances and account information from their internal representation into strings.
 

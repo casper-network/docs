@@ -8,13 +8,15 @@ Casper's blockchain is built upon the Rust programming language and compiles dow
 
 For a video walkthrough of this guide, feel free to check out this quick-start video.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed?v=J9XD5ZurxAI&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&index=2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed?v=XvV02iBoctc&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&index=2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Prerequisites {#prerequisites}
 
 ### Installing Rust {#installing-rust}
 
 Install the [Rust programming language](https://www.rust-lang.org) if you don't already have it on your computer.
+
+**Note**: You must customize the build to install the **nightly build** as your default toolchain.
 
 The [official Rust guide](https://www.rust-lang.org/tools/install) recommends installing Rust by using `curl`:
 
@@ -24,7 +26,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 You can also use `brew` on MacOS or `apt` on Linux to install Rust.
 
-You will need to customize the build so that you are installing the nightly build as your default toolchain. Once you finish installing Rust, check your version:
+Once you finish installing Rust, check your version:
 
 ```
 rustup --version
