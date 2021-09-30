@@ -1,6 +1,6 @@
 # ERC-20 Implementation
 
-The ERC-20 standard is defined in [an Ethereum Improvement Proposal (EIP)](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#). Read it carefully, as it defines the methods we have implemented:
+The ERC-20 standard is defined in [an Ethereum Improvement Proposal (EIP)](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md). Read it carefully, as it defines the methods we have implemented:
 
 -   [allowance](#the_total_supply_balance_of_and_allowance_functions)
 -   [approve](#the-approve-and-transfer-from-functions)
