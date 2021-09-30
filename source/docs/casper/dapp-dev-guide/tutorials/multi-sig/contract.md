@@ -35,7 +35,7 @@ In the next section, you will build and prepare the smart contract for deploymen
 
 ## Building the Smart Contract {#building-the-smart-contract}
 
-Before building the smart contract for this tutorial, you need to install the [Rust Contract SDK](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.md). Make sure you have the [development environment set up](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.md#development-environment-setup) before proceeding.
+Before building the smart contract for this tutorial, you need to install the [Rust Contract SDK](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.html). Make sure you have the [development environment set up](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.html#development-environment-setup) before proceeding.
 
 Navigate to the `keys-manager` folder and set up the WASM compilation Rust toolchain, which will give you access to all the tools needed for developing smart contracts.
 
@@ -56,6 +56,6 @@ cargo build --release
 
 If the command were successful, you would find a `keys-manager.wasm` file in the following directory structure:
 
-<img src="/image/tutorials/multisig/keys-manager-wasm.png" alt="The contract directory structure contains a keys-manager-wasm file." width="500"/>
+<img src="/static/image/tutorials/multisig/keys-manager-wasm.png" alt="The contract directory structure contains a keys-manager-wasm file." width="500"/>
 
 Next, we will review the sample client that invokes this contract to setup the account and perform key management.

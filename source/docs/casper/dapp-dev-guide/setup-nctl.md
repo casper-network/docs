@@ -4,7 +4,7 @@ NCTL stands for network/node control. [NCTL](https://github.com/casper-network/c
 
 ## Prerequisites {#prerequisites}
 
-1.  You have completed the [Getting Started section](getting-started.md), which shows you how to install your development environment, including tools like _CMake_ (version 3.1.4+), _Cargo_, and _Rust_.
+1.  You have completed the [Getting Started section](/dapp-dev-guide/getting-started), which shows you how to install your development environment, including tools like _CMake_ (version 3.1.4+), _Cargo_, and _Rust_.
 2.  Make sure you have [Python 3 installed](https://www.python.org/downloads/) if your operating system does not include Python.
 3.  To run NCTL, you will also need [the bash shell](https://www.gnu.org/software/bash/).
 
@@ -174,11 +174,11 @@ Several other NCTL commands are available via aliases for execution from within 
 
 You should see the new directory _utils/nctl/assets_, with the following structure.
 
-<img src="/image/nctl/assets_setup.png"  alt="assets_setup" width="200"/>
+<img src="../image/nctl/assets_setup.png"  alt="assets_setup" width="200"/>
 
 Here is the command line output you would expect.
 
-<img src="/image/nctl/nctl_output.png"  alt="nctl_output"/>
+<img src="../image/nctl/nctl_output.png"  alt="nctl_output"/>
 
 ## Stopping the Network {#stopping-the-network}
 

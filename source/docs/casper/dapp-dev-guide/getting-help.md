@@ -8,7 +8,7 @@ This section covers frequently asked questions and our recommendations.
 
 **Question**: How do I know that a deploy was finalized?
 
-**Answer**: If a deploy was executed, then it has been finalized. If the deploy status comes back as null, that means the deploy has not been executed yet. Once the deploy executes, it is finalized, and no other confirmation is needed. Exchanges that are not running a read-only node must also keep track of [finality signatures](#finality-signatures) to prevent any attacks from high-risk nodes.
+**Answer**: If a deploy was executed, then it has been finalized. If the deploy status comes back as null, that means the deploy has not been executed yet. Once the deploy executes, it is finalized, and no other confirmation is needed. Exchanges that are not running a read-only node must also keep track of [finality signatures](#finality_signatures) to prevent any attacks from high-risk nodes.
 
 ### Finality Signatures {#finality-signatures}
 

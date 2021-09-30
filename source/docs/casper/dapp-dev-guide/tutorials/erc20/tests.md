@@ -53,7 +53,7 @@ The `tests/src/erc20.rs` file contains methods that can simulate a real-world de
 
 ### Setting up the testing context {#setting-up-the-testing-context}
 
-Let's start by defining the required constants (i.e., method names, key names, and account addresses). The following code initializes the [global state](https://docs.casperlabs.io/en/latest/glossary/G.md#global-state) with all the data and methods that a smart contract needs to run correctly.
+Let's start by defining the required constants (i.e., method names, key names, and account addresses). The following code initializes the [global state](https://docs.casperlabs.io/en/latest/glossary/G.html#global-state) with all the data and methods that a smart contract needs to run correctly.
 
 ```rust
 // File tests/src/erc20.rs
