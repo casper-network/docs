@@ -16,7 +16,10 @@ The Casper network is a Proof-of-Stake blockchain that allows validators to stak
 
 ## CBC {#cbc}
 
-Correct by construction. CBC Casper is a family of consensus algorithms.
+Correct-by-construction (CBC) protocols are consensus protocols meeting the following properties:
+
+-   All the nodes share the same proof of asynchronous liveness, which means that the protocol will continue to produce blocks at some interval.
+-   The consensus has mathematically provable safety, which means that once a block is committed, it cannot be reverted.
 
 ## Chainspec {#chainspec}
 
@@ -34,10 +37,7 @@ Enables developers to use a seamless workflow for authoring and testing their [s
 
 ## Correct by construction {#correct-by-construction}
 
-Correct-by-construction (CBC) protocols are consensus protocols meeting the following properties:
-
--   All the nodes share the same proof of asynchronous liveness, which means that the protocol will continue to produce blocks at some interval.
--   The consensus has mathematically provable safety, which means that once a block is committed, it cannot be reverted.
+See [CBC](C.md#cbc).
 
 ## Crate {#crate}
 

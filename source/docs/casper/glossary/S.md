@@ -8,7 +8,7 @@
 
 ## Safe {#safe}
 
-When a protocol is provably safe, it means that all the participating nodes will make the same decision and continue to produce blocks at some interval. Also, see [Correct-by-construction](C.md#correct-by-construction).
+When a protocol is provably safe, it means that all the participating nodes will make the same decision and continue to produce blocks at some interval. Also, see [CBC](C.md#cbc).
 
 ## Secret key {#secret-key}
 
