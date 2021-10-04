@@ -224,7 +224,7 @@ A common question that frequently arises is: "How do I know what the payment amo
 
 You can estimate the costs in this way, and then add a small buffer in case the network state has changed. So in this example above, you might have chosen to set the payment to 175000 or 200000, rather than the 10000000 that was used.
 
-Refer to the [runtime economics](../economics/runtime.html?highlight=consensus-before-execution%20model#gas-allocation) section for more details about gas usage, fees, and refunding mechanisms.
+Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage, fees, and refunding mechanisms.
 
 ### Advanced Deployments {#advanced-deployments}
 
@@ -242,7 +242,7 @@ $ casper-client put-deploy --show-arg-examples
 
 The `deploy` command on its own provides multiple actions strung together optimizing for the common case, with the capability to separate concerns between your key management and deploy creation. See details about generating account key pairs in the Developer Guide.
 
-Every account can associate multiple keys with it and give each a weight. Collective weight of signing keys decides whether an action of certain type can be made. To learn more about how weights and threshholds work, please review the [Blockchain Design](../design/accounts.html). In order to collect weight of different associated keys, a deploy has to be signed by corresponding private keys. The `put-deploy` command creates a deploy, signs it and deploys to the node but doesn't allow for signing with multiple keys. Therefore, we split `deploy` into separate commands:
+Every account can associate multiple keys with it and give each a weight. Collective weight of signing keys decides whether an action of certain type can be made. To learn more about how weights and threshholds work, please review the [Blockchain Design](../design/accounts.md). In order to collect weight of different associated keys, a deploy has to be signed by corresponding private keys. The `put-deploy` command creates a deploy, signs it and deploys to the node but doesn't allow for signing with multiple keys. Therefore, we split `deploy` into separate commands:
 
 -   `make-deploy` - creates a deploy from input parameters
 -   `sign-deploy` - signs a deploy with given private key

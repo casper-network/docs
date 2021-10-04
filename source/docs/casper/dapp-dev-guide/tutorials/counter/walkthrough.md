@@ -34,7 +34,7 @@ nctl-assets-setup && nctl-start
 
 :::note Note
 
-If it fails for any reason, please refer the [NCTL tutorial](../dapp-dev-guide/setup-nctl.html) and make sure that all your packages are up to date).
+If it fails for any reason, please refer the [NCTL tutorial](../../setup-nctl.md) and make sure that all your packages are up to date).
 
 :::
 

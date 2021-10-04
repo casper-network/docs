@@ -32,7 +32,7 @@ Also, keep in mind that once you have expanded and changed the generated code, y
 
 By building and testing the [Hello World](https://github.com/casper-ecosystem/hello-world) contract, you can see how the DSL expands the macros.
 
-The build process is identical to the one used in the [Getting Started](../dapp-dev-guide/setup-of-rust-contract-sdk.html) section, but here we do not have the _build.rs_ script that was used before. The following steps will help you manually build the contract.
+The build process is identical to the one used in the [Getting Started](../getting-started.md) section, but here we do not have the _build.rs_ script that was used before. The following steps will help you manually build the contract.
 
 First, we need to add the WASM target:
 
@@ -68,7 +68,7 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 ## Using the Makefile {#using-the-makefile}
 
-If you examine the repository contents, you'll see that there is a Makefile. This is an alternative to using a build script, as we did in the [Getting Started guide](../dapp-dev-guide/setup-of-rust-contract-sdk.html). To duplicate the steps we took above, you would simply run the following two commands in your terminal:
+If you examine the repository contents, you'll see that there is a Makefile. This is an alternative to using a build script, as we did in the [Getting Started guide](../getting-started.md). To duplicate the steps we took above, you would simply run the following two commands in your terminal:
 
 ```bash
 make prepare

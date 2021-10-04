@@ -12,7 +12,7 @@ This workflow assumes:
 
 ## Transfer {#transfer}
 
-The `transfer` command allows you to move CSPR from one account to another as denominated in [Motes](../design/tokens.md?highlight=motes#divisibility-of-tokens). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
+The `transfer` command allows you to move CSPR from one account to another as denominated in [Motes](../design/tokens.md#divisibility-of-tokens). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
 
 For transfers of at least 2.5 CSPR (2,500,000,000 Motes) from a single sender to a single recipient on a Casper network, the most efficient option is to use the direct transfer capability.
 
