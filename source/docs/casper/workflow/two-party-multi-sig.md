@@ -1,6 +1,6 @@
 # Two-Party Multi-Signature Deploys
 
-[Accounts](https://docs.casperlabs.io/en/latest/implementation/accounts.md) on a Casper Network can associate other accounts to allow or require a multiple signature scheme for deploys.
+[Accounts](../design/accounts.md) on a Casper Network can associate other accounts to allow or require a multiple signature scheme for deploys.
 
 This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper Network.
 
@@ -10,7 +10,7 @@ This workflow assumes:
 2.  You are using the Casper command-line client
 3.  You have a main `PublicKey` hex (**MA**) and a `PublicKey` hex to associate (**AA**)
 4.  You have a valid `node-address`
-5.  You have previously [deployed a smart contract](https://docs.casperlabs.io/en/latest/dapp-dev-guide/deploying-contracts.md) to a Casper Network
+5.  You have previously [deployed a smart contract](../dapp-dev-guide/deploying-contracts.md) to a Casper Network
 
 ## Configuring the Main Account {#configuring-the-main-account}
 
@@ -115,7 +115,7 @@ casper-client put-deploy \
 
 ### Confirming Execution and Account Status {#confirming-execution-and-account-status}
 
-Account configuration on a Casper blockchain is stored in a [Merkle Tree](https://docs.casperlabs.io/en/latest/glossary/M.md#merkle-tree) and is a snapshot of the blockchain's [Global State](https://docs.casperlabs.io/en/latest/implementation/global-state.md). The representation of global state for a given block can be computed by executing the deploys (including transfers) within the block and its ancestors. The root node of the Merkle Tree identifying a particular state is called the `state-root-hash` and is stored in every executed block.
+Account configuration on a Casper blockchain is stored in a [Merkle Tree](../glossary/M.md#merkle-tree) and is a snapshot of the blockchain's [Global State](../design/global-state.md). The representation of global state for a given block can be computed by executing the deploys (including transfers) within the block and its ancestors. The root node of the Merkle Tree identifying a particular state is called the `state-root-hash` and is stored in every executed block.
 
 To check that your account was configured correctly, you need the `state-root-hash` corresponding to the block that contains your deploy. To obtain the `state-root-hash`, you need to:
 
@@ -167,4 +167,4 @@ casper-client query-state \
 
 In the above example, you can see the account addresses listed within the `associated_keys` section. Each key has a weight of `1`, since the action threshold for `deployment` is set to `2`, neither account is able to sign and send a deploy individually. Thus to send the deploy from the Main account, the deploy needs to be signed by the secret keys of each account to reach the required threshold.
 
-Details about various scenarios in which multiple associated keys can be setup is discussed in [the examples section of the Multi-Signature Tutorial](https://docs.casperlabs.io/en/latest/dapp-dev-guide/tutorials/multi-sig/examples.md).
+Details about various scenarios in which multiple associated keys can be setup is discussed in [the examples section of the Multi-Signature Tutorial](../dapp-dev-guide/tutorials/multi-sig/additional.md).

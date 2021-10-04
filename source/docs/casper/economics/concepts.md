@@ -20,4 +20,4 @@ The Casper network is a Proof-of-Stake blockchain that allows validators to stak
 
 **Annual reward percentage:** Validators on the Casper network earn between 10% and 20% of their staked CSPR in the first year of the Mainnet operation, with regular participation under expected network conditions. The growth of individual stakes is dependent on total active stake, as only a fixed number of tokens is created per era.
 
-Please visit the [Staking Guide](https://docs.casperlabs.io/en/latest/staking/index.html) for further details on the staking mechanism.
+Please visit the [Staking Guide](../staking/index.html) for further details on the staking mechanism.

@@ -35,7 +35,7 @@ In the next section, you will build and prepare the smart contract for deploymen
 
 ## Building the Smart Contract {#building-the-smart-contract}
 
-Before building the smart contract for this tutorial, you need to install the [Rust Contract SDK](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.md). Make sure you have the [development environment set up](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.md#development-environment-setup) before proceeding.
+Before building the smart contract for this tutorial, you need to install the [Rust Contract SDK](../../getting-started.md). Make sure you have the [development environment set up](../../getting-started.md#development-environment-setup) before proceeding.
 
 Navigate to the `keys-manager` folder and set up the WASM compilation Rust toolchain, which will give you access to all the tools needed for developing smart contracts.
 

@@ -24,7 +24,7 @@ Next, deploy the smart contract using the `put-deploy` command and send in the c
 
 ## Querying Global State for the Address of a Contract {#querying-global-state-for-the-address-of-a-contract}
 
-The `query-state` command is a generic query against [global state](https://docs.casperlabs.io/en/latest/glossary/G.html#global-state). Earlier, we queried global state for the account's main purse. Here, we query the state of a contract. We can do so by including the contract address rather than the account public key in the `query-state` command.
+The `query-state` command is a generic query against [global state](../glossary/G.html#global-state). Earlier, we queried global state for the account's main purse. Here, we query the state of a contract. We can do so by including the contract address rather than the account public key in the `query-state` command.
 
 Here we query to get the address of an ERC20 contract from Global State.
 

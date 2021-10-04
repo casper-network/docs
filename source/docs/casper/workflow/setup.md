@@ -39,7 +39,7 @@ casper-client <command> --help
 
 ## Setting up an Account {#setting-up-an-account}
 
-The process of creating an [Account](https://docs.casperlabs.io/en/latest/implementation/accounts.html) can be divided into two steps:
+The process of creating an [Account](../design/accounts.md) can be divided into two steps:
 
 1.  Cryptographic key generation for the account
 2.  Funding the account

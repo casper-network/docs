@@ -12,7 +12,7 @@ The DSL is designed specifically for Rust Smart Contrats.
 
 Pre-Requisites - Set up the Rust SDK
 
-Please use the Rust SDK to [create your smart contract project](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.html) before setting up the DSL.
+Please use the Rust SDK to [create your smart contract project](../dapp-dev-guide/setup-of-rust-contract-sdk.html) before setting up the DSL.
 
 Getting the Macros
 

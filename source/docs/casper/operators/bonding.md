@@ -237,4 +237,4 @@ If your bid doesn't win a slot in the auction, it is because your bid is too low
 
 ## Withdrawing a Bid {#withdrawing-a-bid}
 
-Follow the steps in [Unbonding](https://docs.casperlabs.io/en/latest/node-operator/unbonding.html) to withdraw a bid.
+Follow the steps in [Unbonding](../node-operator/unbonding.html) to withdraw a bid.
