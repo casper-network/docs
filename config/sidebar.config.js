@@ -137,5 +137,5 @@ module.exports = {
         "glossary/Y",
         "glossary/Z",
     ],
-    staking: ["staking/index"],
+    staking: ["staking/index", "workflow/staking", "workflow/delegate"],
 };
