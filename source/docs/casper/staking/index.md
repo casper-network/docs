@@ -44,3 +44,20 @@ Validators have to win a staking auction by competing with prospective and curre
 ## Unbonding Period {#unbonding-period}
 
 For security purposes, whenever a token is un-staked or un-delegated, the protocol will continue to keep the token locked for 14 hours.
+
+# Next Steps
+
+-   [How to Stake your CSPR](../workflow/staking.md)
+    -   [1. Introduction](../workflow/staking.md#1-introduction)
+    -   [2. Staking Overview](../workflow/staking.md#1-staking-overview)
+    -   [3. Creating your Wallet with the CasperLabs Signer](../workflow/staking.md#3-creating-your-wallet-with-the-casperlabs-signer)
+    -   [4. Connecting to cspr.live](../workflow/staking.md#4-connecting-to-csprlive)
+    -   [5. Funding your Account](../workflow/staking.md#5-funding-your-account)
+    -   [6. Delegating Tokens](../workflow/staking.md#6-delegating-tokens)
+    -   [7. Monitoring](../workflow/staking.md#7-monitoring)
+    -   [8. Undelegating Tokens](../workflow/staking.md#8-undelegating-tokens)
+    -   [ Conclusion](../workflow/staking.md#conclusion)
+-   [Delegating with the Command-line](../workflow/delegate.md)
+    -   [Building The Delegation WASM](../workflow/delegate.md#building-the-delegation-wasm)
+    -   [Acquiring a Validator’s Public Key](../workflow/delegate.md#acquiring-a-validators-public-key)
+    -   [Executing the Delegation Request](../workflow/delegate.md#executing-the-delegation-request)
