@@ -44,4 +44,4 @@ A person that deposits tokens in the [proof-of-stake](P.md#proof-of-stake) contr
 
 ## Staking {#staking}
 
-A feature of Proof-of-Stake protocols that allows token holders to actively participate in the protocol, thus securing the network. The [Staking Guide](https://docs.casperlabs.io/en/latest/staking/index.md) highlights the steps required to stake the CSPR token on the Casper network.
+A feature of Proof-of-Stake protocols that allows token holders to actively participate in the protocol, thus securing the network. The [Staking Guide](../staking/index.md) highlights the steps required to stake the CSPR token on the Casper network.
