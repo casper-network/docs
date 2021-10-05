@@ -106,7 +106,7 @@ module.exports = {
         "design/tokens",
         "design/appendix",
     ],
-    economics: ["economics/index", "economics/consensus", "economics/runtime", "economics/concepts"],
+    economics: ["economics/index", "economics/consensus", "economics/runtime", "economics/delegation", "economics/concepts"],
     faq: ["faq/index"],
     glossary: [
         "glossary/index",
