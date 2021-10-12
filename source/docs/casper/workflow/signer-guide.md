@@ -19,7 +19,7 @@ To install the CaperLabs Signer extension, follow these steps:
 
 To log in to the Casper Signer, you must create a vault and import or create accounts. To create a vault, follow these steps: 
 
-1. Next to the address bar of your browser, you will find the extensions icon. Click the extensions icon <img src="/static/image/tutorials/signer/ext-icon.png" alt="Extensions icon" class="inline-img" width="25"/> and select CasperLabs Signer from the list. 
+1. Next to the address bar of your browser, you will find the extensions icon. Click the extensions icon <img src="/static/image/tutorials/signer/ext-icon.png" class="inline-img" width="25"/> and select CasperLabs Signer from the list. 
 
   a. If you are logging in for the first time, a pop-up window to create a new vault will appear.
 
@@ -50,7 +50,7 @@ To create an account, do the following:
 2.	Enter a name for the account and select the algorithm to generate the keys. The Public Key field is auto-populated.
 3.  Click **CREATE** to create your account. 
 
-  a.	To return to the Casper Signer home, click the home icon on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
+  a.	To return to the Casper Signer home, click the home icon <img src="/static/image/tutorials/signer/home-icon.png" width="25" class="inline-img" /> on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
 
 **Note**: It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. For more information on how to download your cryptographic keys, see [Download Active Keys](signer-guide#44-download-active-keys).
 
@@ -63,11 +63,11 @@ To import an account, do the following:
 2.  Click **UPLOAD**, browse and select the secret key you wish to add to your wallet.
 3.	Enter a name for the imported account and click **IMPORT**. Your secret key is now imported into the Casper Signer.
   
-  a.	To return to the Casper Signer home, click the home icon on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
+  a.	To return to the Casper Signer home, click the home icon <img src="/static/image/tutorials/signer/home-icon.png" width="25" class="inline-img" /> on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
 
 ## 4.	Managing an Account
 
-The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active keys, setting the timeout for your Signer session, and locking your vault. The main menu icon is located at the top-right corner of the Casper Signer window. 
+The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active keys, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src="/static/image/tutorials/signer/main-icon.png" width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window. 
 
 **Figure 2**: Casper Signer Main Menu
 <img src="/static/image/tutorials/signer/main-menu.png" width="200"/>
@@ -88,7 +88,7 @@ To view the various functions available, on the main menu, select **Key Manageme
 *   To rename an account, click the edit icon next to the account name, enter the new name and click **UPDATE**.
 *   To delete an account, click the delete icon next to the account name. A Remove Account notification pops-up. To approve the deletion, enter the password to your vault and click **REMOVE**.
 *   To view the account information, such as the public key and the account hash, click the key-shaped icon. 
-*   To download a copy of the account keys, click the down arrow icon. A set of three keys, the public key, public key hex, and the secret key are downloaded to your computer.
+*   To download a copy of the account keys, click the down-arrow icon. A set of three keys, the public key, public key hex, and the secret key are downloaded to your computer.
 
 ### 4.3 Connected Sites
 
@@ -102,7 +102,7 @@ To connect to a website or dApp, do the following:
 
 1.  Navigate to the website or dApp that is integrated with the Signer. 
 2.  Log in to your Signer, for more details see [Logging in to the Casper Signer](signer-guide#12-logging-in-to-the-casper-signer). 
-3.  Click the main menu icon to open the main menu and select **Connected Sites**. The current website is displayed in the list of connected sites. 
+3.  Click the main menu icon <img src="/static/image/tutorials/signer/main-icon.png" width="25" class="inline-img" /> to open the main menu and select **Connected Sites**. The current website is displayed in the list of connected sites. 
 4.  To connect to a site, click the connect icon next to the name of the website.
 
 **Figure 4**: Connected Sites
@@ -113,7 +113,7 @@ To connect to a website or dApp, do the following:
 ### 4.4 Download Active Keys
 
 This feature allows you to download the set of cryptographic keys from your active account. 
-To download the set of keys for the selected active account, click the main menu icon and select **Download Active Keys**.
+To download the set of keys for the selected active account, click the main menu icon <img src="/static/image/tutorials/signer/main-icon.png" width="25" class="inline-img" /> and select **Download Active Keys**.
 
 ### 4.5	Timeout
 
