@@ -19,18 +19,18 @@ To install the CaperLabs Signer extension, follow these steps:
 
 To log in to the Casper Signer, you must create a vault and import or create accounts. To create a vault, follow these steps: 
 
-1. Next to the address bar of your browser, you will find the extensions icon. Click the extensions icon and select CasperLabs Signer from the list. 
+1. Next to the address bar of your browser, you will find the extensions icon. Click the extensions icon <img src="/static/image/tutorials/signer/ext-icon.png" alt="Extensions icon" class="inline-img" width="25"/> and select CasperLabs Signer from the list. 
 
-    a. If you are logging in for the first time, a pop-up window to create a new vault will appear.
+  a. If you are logging in for the first time, a pop-up window to create a new vault will appear.
 
-    b. On the New Vault pop-up window, enter a password for your vault, confirm the password, and click **CREATE VAULT**. This vault safeguards your Casper accounts, so make sure you use a strong password and keep the password safe.
+  b. On the New Vault pop-up window, enter a password for your vault, confirm the password, and click **CREATE VAULT**. This vault safeguards your Casper accounts, so make sure you use a strong password and keep the password safe.
 
 2. If you have already created a password for your vault, the Unlock Vault pop-up window is displayed. Enter your password and click **UNLOCK**. 
 3. You can now import an account or create a new one.
 
-    a. If you don’t have any existing cryptographic keys, you must create a new account. For more information on creating a new account, see [Creating an Account](signer-guide#2---creating-an-account).   
+  a. If you don’t have any existing cryptographic keys, you must create a new account. For more information on creating a new account, see [Creating an Account](signer-guide#2---creating-an-account).   
 
-    b. If you have a set of keys for your account, you can just import the secret key in the Casper Signer. For more information on importing an existing account, see [Importing an Account](signer-guide#3-importing-an-account).
+  b. If you have a set of keys for your account, you can just import the secret key in the Casper Signer. For more information on importing an existing account, see [Importing an Account](signer-guide#3-importing-an-account).
 
 **Figure 1**: Casper Signer Home (when you have no existing accounts)
 <img src="/static/image/tutorials/signer/first-home.png" alt="Casper Signer Home" width="200" />
