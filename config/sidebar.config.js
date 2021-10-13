@@ -2,9 +2,10 @@ module.exports = {
     workflow: [
         "workflow/index",
         "workflow/staking",
+		"workflow/signer-guide",
         "workflow/ledger-setup",
         "workflow/setup",
-        "workflow/querying",
+		"workflow/querying",
         "workflow/transfer-workflow",
         "workflow/two-party-multi-sig",
         "workflow/delegate",
