@@ -99,7 +99,7 @@ pub extern "C" fn decimals() {
 }
 ```
 
-## The `total_supply`, `balance_of`, and `allowance` functions {#the-total_supply-balance_of-and-allowance-functions}
+## The `total_supply`, `balance_of`, and `allowance` functions {#the-total_supply-balance-of-and-allowance-functions}
 
 Let's explore the implementation of some key ERC-20 methods: `balance_of`, `total_supply`, and `allowance`.
 
@@ -150,7 +150,7 @@ fn _transfer(sender: AccountHash, recipient: AccountHash, amount: U256) {
  }
 ```
 
-## The `approve` and `transfer_from` functions {#the-approve-and-transfer_from-functions}
+## The `approve` and `transfer_from` functions {#the-approve-and-transfer-from-functions}
 
 Here are the functions `approve` and `transfer_from`. `approve` is used to allow another address to spend tokens on one's behalf. This is used when multiple keys are authorized to perform deployments from an account.
 
@@ -189,7 +189,7 @@ fn _approve(owner: AccountHash, spender: AccountHash, amount: U256) {
  }
 ```
 
-## The `get_key` and `set_key` functions {#the-get_key-and-set_key-functions}
+## The `get_key` and `set_key` functions {#the-get_key-and-set-key-functions}
 
 The `get_key` and `set_key` functions are generic Casper storage write and read methods. Implement these one time for the contract and then call them as needed.
 

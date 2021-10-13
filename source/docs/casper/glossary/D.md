@@ -20,6 +20,8 @@ Delegators are users who participate in the platform's security by delegating th
 
 ## Deploy {#deploy}
 
-All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the [global state](G.md#global-state). Deploys include specializations such as native transfers, which only transfer tokens between accounts.
+Deploys are state-changing instructions issued by a smart contract. The instructions are encrypted and include transferring tokens from one wallet to another, rewarding node validation, or adding smart contracts on the blockchain.
 
-Review the [deploy data structure](https://docs.casperlabs.io/en/latest/implementation/serialization-standard.html?highlight=deploy#deploy) and the [deploy implementation](https://github.com/casper-network/casper-node/blob/master/node/src/types/deploy.rs#L475) for more details.
+All deploys on the Casper Network can be broadly categorized as some unit of work that, when executed and committed, affects change to the [global state](G.md#global-state).
+
+Review the [deploy data structure](../design/serialization-standard.md#deploy) and the [deploy implementation](https://github.com/casper-network/casper-node/blob/master/node/src/types/deploy.rs#L475) for more details.

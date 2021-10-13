@@ -19,7 +19,7 @@ rustup target add wasm32-unknown-unknown
 info: component 'rust-std' for target 'wasm32-unknown-unknown' is up to date
 ```
 
-If you do not see this message, check [the Getting Started guide](https://docs.casperlabs.io/en/latest/dapp-dev-guide/setup-of-rust-contract-sdk.html).
+If you do not see this message, check [the Getting Started guide](../../getting-started.md).
 
 Next, compile your contract and run the contract unit tests.
 

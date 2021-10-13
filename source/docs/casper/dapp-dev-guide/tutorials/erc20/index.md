@@ -11,6 +11,6 @@ The Ethereum Request for Comment (ERC-20) standard is an integral part of the Et
 
 The ERC-20 standard defines a set of rules that dictate the total supply of tokens, how the tokens are transferred, how transactions are approved, and how token data is accessed. These rules are implemented using the following functions defined by ERC-20, `totalSupply`, `transfer`, `transferFrom`, `approve`, `balanceOf`, and `allowance`, which are described in detail within this tutorial.
 
-The code for this tutorial is available in [GitHub](https://github.com/casper-ecosystem/erc20). If you haven't read [Writing Rust Contracts on Casper](https://docs.casperlabs.io/en/latest/dapp-dev-guide/writing-contracts/writing-rust-contracts.html), we recommend you start there.
+The code for this tutorial is available in [GitHub](https://github.com/casper-ecosystem/erc20). If you haven't read [Writing Rust Contracts on Casper](../../writing-contracts/rust.md), we recommend you start there.
 
 You can read more about the original specification in [Ethereum (ERC-20)](https://eips.ethereum.org/EIPS/eip-20#specification).

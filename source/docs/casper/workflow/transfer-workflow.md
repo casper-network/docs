@@ -12,7 +12,7 @@ This workflow assumes:
 
 ## Transfer {#transfer}
 
-The `transfer` command allows you to move CSPR from one account to another as denominated in [Motes](https://docs.casperlabs.io/en/latest/implementation/tokens.md?highlight=motes#divisibility-of-tokens). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
+The `transfer` command allows you to move CSPR from one account to another as denominated in [Motes](../design/tokens.md#divisibility-of-tokens). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
 
 For transfers of at least 2.5 CSPR (2,500,000,000 Motes) from a single sender to a single recipient on a Casper network, the most efficient option is to use the direct transfer capability.
 
@@ -381,7 +381,7 @@ Refer to the Section on [querying deploys](querying.md#deploy-status) within the
 
 ### State Root Hash {#state-root-hash}
 
-State information like the balance of an account on a Casper blockchain is stored in the [Global State](https://docs.casperlabs.io/en/latest/implementation/global-state.md).
+State information like the balance of an account on a Casper blockchain is stored in the [Global State](../design/global-state.md).
 
 We will use the `get-block` command and the `block_hash` to query and retrieve the block that contains our deploy. We will use the `state_root_hash` from the response to look up various values, like the source and destination account and their balances.
 

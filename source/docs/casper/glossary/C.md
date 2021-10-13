@@ -16,7 +16,10 @@ The Casper network is a Proof-of-Stake blockchain that allows validators to stak
 
 ## CBC {#cbc}
 
-Correct by construction. CBC Casper is a family of consensus algorithms.
+Correct-by-construction (CBC) protocols are consensus protocols meeting the following properties:
+
+-   All the nodes share the same proof of asynchronous liveness, which means that the protocol will continue to produce blocks at some interval.
+-   The consensus has mathematically provable safety, which means that once a block is committed, it cannot be reverted.
 
 ## Chainspec {#chainspec}
 
@@ -26,11 +29,15 @@ A collection of configuration settings describing the state of the system at gen
 
 An algorithm used to mandate agreement on the [blockchain](B.md#blockchain) between all nodes. The blockchain, although being built in a decentralized way, eventually converges so that all nodes eventually agree on whether a given block is part of the chain or not.
 
-Casper uses the [Highway](https://docs.casperlabs.io/en/latest/theory/highway.md) algorithm in the _CBC Casper_ family of consensus algorithms. The algorithm for securing an agreement is what is known as _consensus_. The consensus layer contains the algorithm, but the algorithm should not be confused with the consensus layer.
+Casper uses the Highway algorithm in the _CBC Casper_ family of consensus algorithms. The algorithm for securing an agreement is what is known as _consensus_. The consensus layer contains the algorithm, but the algorithm should not be confused with the consensus layer.
 
 ## Contract runtime {#contract-runtime}
 
 Enables developers to use a seamless workflow for authoring and testing their [smart contracts](S.md#smart-contract). This environment can also be used for continuous integration, enabling Rust smart contracts to be managed using development best practices.
+
+## Correct by construction {#correct-by-construction}
+
+See [CBC](C.md#cbc).
 
 ## Crate {#crate}
 

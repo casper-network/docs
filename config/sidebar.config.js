@@ -2,9 +2,10 @@ module.exports = {
     workflow: [
         "workflow/index",
         "workflow/staking",
+		"workflow/signer-guide",
         "workflow/ledger-setup",
         "workflow/setup",
-        "workflow/querying",
+		"workflow/querying",
         "workflow/transfer-workflow",
         "workflow/two-party-multi-sig",
         "workflow/delegate",
@@ -106,7 +107,7 @@ module.exports = {
         "design/tokens",
         "design/appendix",
     ],
-    economics: ["economics/index", "economics/consensus", "economics/runtime", "economics/concepts"],
+    economics: ["economics/index", "economics/consensus", "economics/runtime", "economics/delegation", "economics/concepts"],
     faq: ["faq/index"],
     glossary: [
         "glossary/index",
@@ -137,5 +138,5 @@ module.exports = {
         "glossary/Y",
         "glossary/Z",
     ],
-    staking: ["staking/index"],
+    staking: ["staking/index", "workflow/staking", "workflow/delegate"],
 };
