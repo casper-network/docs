@@ -56,6 +56,6 @@ cargo build --release
 
 If the command were successful, you would find a `keys-manager.wasm` file in the following directory structure:
 
-<img src="/docs/image/tutorials/multisig/keys-manager-wasm.png" alt="The contract directory structure contains a keys-manager-wasm file." width="500"/>
+<img src="/static/image/tutorials/multisig/keys-manager-wasm.png" alt="The contract directory structure contains a keys-manager-wasm file." width="500"/>
 
 Next, we will review the sample client that invokes this contract to setup the account and perform key management.
