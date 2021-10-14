@@ -106,7 +106,19 @@ module.exports = {
         "design/tokens",
         "design/appendix",
     ],
-    economics: ["economics/index", "economics/consensus", "economics/runtime", "economics/delegation", "economics/concepts"],
+    economics: [
+	"economics/index", 
+	"economics/consensus", 	
+	{
+                    type: "category",
+                    label: "Runtime Economics",
+                    collapsible: true,
+                    collapsed: true,
+                    items: ["economics/runtime", "economics/gas-concepts"],
+    },
+	"economics/delegation", 
+	"economics/concepts"
+	],
     faq: ["faq/index"],
     glossary: [
         "glossary/index",
