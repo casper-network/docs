@@ -44,8 +44,8 @@ info: The currently active `rustc` version is `rustc 1.52.0-nightly (0fc6756b4 2
 After installing Rust, you need to install and set the Rust nightly toolchain as the default with these commands:
 
 ```
-   rustup install nightly
-   rustup default nightly
+rustup install nightly
+rustup default nightly
 ```
 
 **Casper Rust Packages**
