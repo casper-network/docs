@@ -16,8 +16,6 @@ For a video walkthrough of this guide, feel free to check out this quick-start v
 
 Install the [Rust programming language](https://www.rust-lang.org) if you don't already have it on your computer.
 
-**Note**: You must customize the build to install the **nightly build** as your default toolchain.
-
 The [official Rust guide](https://www.rust-lang.org/tools/install) recommends installing Rust by using `curl`:
 
 ```
@@ -39,6 +37,15 @@ $ rustup --version
 rustup 1.23.1 (3df2264a9 2020-11-30)
 info: This is the version for the rustup toolchain manager, not the rustc compiler.
 info: The currently active `rustc` version is `rustc 1.52.0-nightly (0fc6756b4 2021-02-08)`
+```
+
+**Configure Nightly Rust**
+
+After installing Rust, you need to install and set the Rust nightly toolchain as the default with these commands:
+
+```
+   rustup install nightly
+   rustup default nightly
 ```
 
 **Casper Rust Packages**
