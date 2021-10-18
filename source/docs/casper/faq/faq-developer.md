@@ -1,6 +1,4 @@
-# Getting Help
-
-## Frequently Asked Questions {#frequently-asked-questions}
+# FAQ - Developers
 
 This section covers frequently asked questions and our recommendations.
 
@@ -40,7 +38,7 @@ Suppose an exchange connects to someone else's node RPC to send transactions to 
 
 **Question**: How should we work with the PEM keys?
 
-**Answer**: The [Keys API](https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html) provides methods for _Ed25519_ and _Secp256K1_ keys. Also, review the tests in [GitHub](https://github.com/casper-ecosystem/casper-js-sdk/blob/next/test/lib/Keys.test.ts#L39) and the [Working with Keys](keys.md) documentation.
+**Answer**: The [Keys API](https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html) provides methods for _Ed25519_ and _Secp256K1_ keys. Also, review the tests in [GitHub](https://github.com/casper-ecosystem/casper-js-sdk/blob/next/test/lib/Keys.test.ts#L39) and the [Working with Keys](../docs/dapp-dev-guide/keys) documentation.
 
 ## Useful Resources {#useful-resources}
 

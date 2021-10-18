@@ -2,10 +2,10 @@ module.exports = {
     workflow: [
         "workflow/index",
         "workflow/staking",
-		"workflow/signer-guide",
+        "workflow/signer-guide",
         "workflow/ledger-setup",
         "workflow/setup",
-		"workflow/querying",
+        "workflow/querying",
         "workflow/transfer-workflow",
         "workflow/two-party-multi-sig",
         "workflow/delegate",
@@ -84,7 +84,6 @@ module.exports = {
                 "dapp-dev-guide/tutorials/upgrade-tutorial",
             ],
         },
-        "dapp-dev-guide/getting-help",
     ],
     operators: [
         "operators/index",
@@ -108,19 +107,19 @@ module.exports = {
         "design/appendix",
     ],
     economics: [
-	"economics/index", 
-	"economics/consensus", 	
-	{
-                    type: "category",
-                    label: "Runtime Economics",
-                    collapsible: true,
-                    collapsed: true,
-                    items: ["economics/runtime", "economics/gas-concepts"],
-    },
-	"economics/delegation", 
-	"economics/concepts"
-	],
-    faq: ["faq/index"],
+        "economics/index",
+        "economics/consensus",
+        {
+            type: "category",
+            label: "Runtime Economics",
+            collapsible: true,
+            collapsed: true,
+            items: ["economics/runtime", "economics/gas-concepts"],
+        },
+        "economics/delegation",
+        "economics/concepts",
+    ],
+    faq: ["faq/index", "faq/faq-general", "faq/faq-enterpise", "faq/faq-developer", "faq/faq-validator"],
     glossary: [
         "glossary/index",
         "glossary/A",
