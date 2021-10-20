@@ -36,7 +36,7 @@ It is essential to have enough funds in your account when you set up a delegatio
 
 **Transaction Fee**
 
-As a result, whenWhen performing a [delegation using the command line](https://docs.casperlabs.io/en/latest/workflow/delegate.html) , we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
+As a result, whenWhen performing a [delegation using the command line](../workflow/delegate.md) , we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
 
 <p align="center"><img src="../image/economic-delegationDetails.png"  alt="details" width="400" /> </p>
 
