@@ -8,7 +8,7 @@ The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. T
 
 To install the CaperLabs Signer extension, follow these steps:
 
-**Note**: Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to *Step 4*.  
+> **Note**: Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to *Step 4*.  
 
 1. Navigate to the CSPR mainnet https://cspr.live/, using Chrome or a Chromium-based browser like Brave.
 2. Click the **Sign in** option on the top-right corner of the screen. The Casper Signer is displayed.
@@ -20,17 +20,21 @@ To install the CaperLabs Signer extension, follow these steps:
 To log in to the Casper Signer, you must create a vault and import or create accounts. To create a vault, follow these steps: 
 
 1. Next to the address bar of your browser, you will find the extensions icon. Click the extensions icon <img src="/static/image/tutorials/signer/ext-icon.png" class="inline-img" width="25"/> and select CasperLabs Signer from the list. 
-
-  a. If you are logging in for the first time, a pop-up window to create a new vault will appear.
-
-  b. On the New Vault pop-up window, enter a password for your vault, confirm the password, and click **CREATE VAULT**. This vault safeguards your Casper accounts, so make sure you use a strong password and keep the password safe.
+    1. If you are logging in for the first time, a pop-up window to create a new vault will appear.
+    2. On the New Vault pop-up window, enter a password for your vault, confirm the password, and click **CREATE VAULT**. This vault safeguards your Casper accounts, so make sure you use a strong password and keep the password safe.
+    Password requirements:
+        - It must be at least 10 characters long.
+        - It must contain the following:
+          - at least one uppercase letter
+          - at least one lowercase letter
+          - at least one number
+          - at least one special character
+        - The password may not contain sequences of three or more repeated characters.
 
 2. If you have already created a password for your vault, the Unlock Vault pop-up window is displayed. Enter your password and click **UNLOCK**. 
 3. You can now import an account or create a new one.
-
-  a. If you don’t have any existing cryptographic keys, you must create a new account. For more information on creating a new account, see [Creating an Account](signer-guide#2---creating-an-account).   
-
-  b. If you have a set of keys for your account, you can just import the secret key in the Casper Signer. For more information on importing an existing account, see [Importing an Account](signer-guide#3-importing-an-account).
+    1. If you don’t have any existing cryptographic keys, you must create a new account. For more information on creating a new account, see [Creating an Account](signer-guide#2---creating-an-account).   
+    2. If you have a set of keys for your account, you can just import the secret key in the Casper Signer. For more information on importing an existing account, see [Importing an Account](signer-guide#3-importing-an-account).
 
 **Figure 1**: Casper Signer Home (when you have no existing accounts)
 <img src="/static/image/tutorials/signer/first-home.png" alt="Casper Signer Home" width="200" />
@@ -38,9 +42,8 @@ To log in to the Casper Signer, you must create a vault and import or create acc
 ## 2.   Creating an Account
 
 The Casper Signer allows you to create an account and generates a set of keys based on your chosen encryption algorithm. The Casper Network supports these two algorithms:
-
-*   Ed25519 is fast and provides a high level of security with foolproof session keys, among other features. It is the default algorithm used while creating new accounts.
-*   Secp256k1 is an efficient encryption algorithm, also used by Bitcoin and Ethereum. If you would like to derive Ethereum or Bitcoin keys in the future using your private key, or you are planning to use your account with Ledger, then choose the Secp256k1 algorithm.
+  *   Ed25519 is fast and provides a high level of security with foolproof session keys, among other features. It is the default algorithm used while creating new accounts.
+  *   Secp256k1 is an efficient encryption algorithm, also used by Bitcoin and Ethereum. If you would like to derive Ethereum or Bitcoin keys in the future using your private key, or you are planning to use your account with Ledger, then choose the Secp256k1 algorithm.
 
 To learn more about cryptographic keys, see [Working with Cryptographic Keys](https://docs.casperlabs.io/en/latest/dapp-dev-guide/keys.html).
 
@@ -49,10 +52,9 @@ To create an account, do the following:
 1.	On the Casper Signer home (as shown in *Figure 1*), click **CREATE ACCOUNT**. The Create Account fields are displayed.
 2.	Enter a name for the account and select the algorithm to generate the keys. The Public Key field is auto-populated.
 3.  Click **CREATE** to create your account. 
+    1.	To return to the Casper Signer home, click the home icon <img src="/static/image/tutorials/signer/home-icon.png" width="25" class="inline-img" /> on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
 
-  a.	To return to the Casper Signer home, click the home icon <img src="/static/image/tutorials/signer/home-icon.png" width="25" class="inline-img" /> on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
-
-**Note**: It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. For more information on how to download your cryptographic keys, see [Download Active Keys](signer-guide#44-download-active-keys).
+> **Note**: It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. See [Download Active Keys](signer-guide#44-download-active-keys) for more information.
 
 ## 3.	Importing an Account
 
@@ -62,8 +64,7 @@ To import an account, do the following:
 1.	On the Casper Signer home (as shown in *Figure 1*), click **IMPORT ACCOUNT**. The Import from Secret Key File option is displayed.
 2.  Click **UPLOAD**, browse and select the secret key you wish to add to your wallet.
 3.	Enter a name for the imported account and click **IMPORT**. Your secret key is now imported into the Casper Signer.
-  
-  a.	To return to the Casper Signer home, click the home icon <img src="/static/image/tutorials/signer/home-icon.png" width="25" class="inline-img" /> on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
+    1.	To return to the Casper Signer home, click the home icon <img src="/static/image/tutorials/signer/home-icon.png" width="25" class="inline-img" /> on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
 
 ## 4.	Managing an Account
 
@@ -97,18 +98,35 @@ This feature allows you to view all the websites and decentralized applications 
 #### 4.3.1	Connecting to websites and dApps
 
 You can use the Casper Signer to connect to various websites and dApps. 
-
 To connect to a website or dApp, do the following:
 
 1.  Navigate to the website or dApp that is integrated with the Signer. 
 2.  Log in to your Signer, for more details see [Logging in to the Casper Signer](signer-guide#12-logging-in-to-the-casper-signer). 
+3.  On the Signer home, the top bar displays DISCONNECTED. Click this bar to connect to the website. When the website is connected to the Casper Signer, the top bar displays CONNECTED.
+> **Note**: If the website is not integrated with Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
 3.  Click the main menu icon <img src="/static/image/tutorials/signer/main-icon.png" width="25" class="inline-img" /> to open the main menu and select **Connected Sites**. The current website is displayed in the list of connected sites. 
 4.  To connect to a site, click the connect icon next to the name of the website.
 
 **Figure 4**: Connected Sites
 <img src="/static/image/tutorials/signer/connect-site.png" width="200" />
 
-**Note**: If the website is not integrated with the Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
+> **Note**: If the website is not integrated with the Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
+
+#### 4.3.2	List of websites than can connect to the Casper Signer
+
+The Casper Signer can read information from the following sites:
+* All cspr.live sites
+  * Mainnet - https://cspr.live/
+  * Testnet - https://testnet.cspr.live/
+* All casperholders.com sites
+* All casperholders.io
+* All casperlabs.io sites
+* All casperstats.io sites
+* All make.services sites
+* casper-qr.vercel.app
+* casperdash.io 
+* picaswap.io/wcspr
+* localhost
 
 ### 4.4 Download Active Keys
 
