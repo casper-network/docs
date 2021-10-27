@@ -1,6 +1,11 @@
 # Setup
 
-Clone the ERC20 contract repository and run the <font color='red'>make build-contract</font> command. This will create the <font color='red'>erc20_token.wasm</font> and the <font color='red'>erc20_test_call.wasm</font>. The token WASM is the main contract. We will use the <font color='red'>test_call</font> contract wasm to query the balances and allowances of the ERC20 token balances throughout this workflow.
+To initiate the set up:
+
+1. Clone the ERC20 contract repository
+2. run the `make build-contract` command.
+
+This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC20 token balances throughout this workflow.
 
 ## Install the main ERC20 contract
 
@@ -59,12 +64,7 @@ At this point, the account that installed both the main contract and the helper 
     }
 ```
 
----
+**_Note:_**
 
-**Note:**
-
-1. `erc20_token_contract` is the main contract, and is a stored contract, record its hash
-
-2. `erc20_test_call` is a Contract package which contains the utility contract required to read the balances and allowances of users within the ERC-20 state.
-
----
+> 1. `erc20_token_contract` is the main contract, and is a stored contract, record its hash
+> 2. `erc20_test_call` is a Contract package which contains the utility contract required to read the balances and allowances of users within the ERC-20 state.
