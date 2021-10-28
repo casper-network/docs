@@ -116,9 +116,6 @@ To connect to a website or dApp, do the following:
 **Figure 4**: Connected Sites
 <img src="/static/image/tutorials/signer/connect-site.png" width="200" />
 
-:::note
- If the website is not integrated with the Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
-:::
 
 #### 4.3.2	List of websites than can connect to the Casper Signer
 
