@@ -8,7 +8,9 @@ The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. T
 
 To install the CaperLabs Signer extension, follow these steps:
 
-> **Note**: Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to *Step 4*.  
+:::note
+ Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to *Step 4*.  
+:::
 
 1. Navigate to the CSPR mainnet https://cspr.live/, using Chrome or a Chromium-based browser like Brave.
 2. Click the **Sign in** option on the top-right corner of the screen. The Casper Signer is displayed.
@@ -23,13 +25,13 @@ To log in to the Casper Signer, you must create a vault and import or create acc
     1. If you are logging in for the first time, a pop-up window to create a new vault will appear.
     2. On the New Vault pop-up window, enter a password for your vault, confirm the password, and click **CREATE VAULT**. This vault safeguards your Casper accounts, so make sure you use a strong password and keep the password safe.
     Password requirements:
-        - It must be at least 10 characters long.
+        - It must be at least 10 characters long
         - It must contain the following:
           - at least one uppercase letter
           - at least one lowercase letter
           - at least one number
           - at least one special character
-        - The password may not contain sequences of three or more repeated characters.
+        - It may not contain sequences of three or more repeated characters
 
 2. If you have already created a password for your vault, the Unlock Vault pop-up window is displayed. Enter your password and click **UNLOCK**. 
 3. You can now import an account or create a new one.
@@ -54,7 +56,9 @@ To create an account, do the following:
 3.  Click **CREATE** to create your account. 
     1.	To return to the Casper Signer home, click the home icon <img src="/static/image/tutorials/signer/home-icon.png" width="25" class="inline-img" /> on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
 
-> **Note**: It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. See [Download Active Keys](signer-guide#44-download-active-keys) for more information.
+:::note
+ It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. See [Download Active Keys](signer-guide#44-download-active-keys) for more information.
+:::
 
 ## 3.	Importing an Account
 
@@ -103,14 +107,18 @@ To connect to a website or dApp, do the following:
 1.  Navigate to the website or dApp that is integrated with the Signer. 
 2.  Log in to your Signer, for more details see [Logging in to the Casper Signer](signer-guide#12-logging-in-to-the-casper-signer). 
 3.  On the Signer home, the top bar displays DISCONNECTED. Click this bar to connect to the website. When the website is connected to the Casper Signer, the top bar displays CONNECTED.
-> **Note**: If the website is not integrated with Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
+:::note
+ If the website is not integrated with Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
+:::
 3.  Click the main menu icon <img src="/static/image/tutorials/signer/main-icon.png" width="25" class="inline-img" /> to open the main menu and select **Connected Sites**. The current website is displayed in the list of connected sites. 
 4.  To connect to a site, click the connect icon next to the name of the website.
 
 **Figure 4**: Connected Sites
 <img src="/static/image/tutorials/signer/connect-site.png" width="200" />
 
-> **Note**: If the website is not integrated with the Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
+:::note
+ If the website is not integrated with the Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
+:::
 
 #### 4.3.2	List of websites than can connect to the Casper Signer
 
