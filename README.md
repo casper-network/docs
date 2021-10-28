@@ -59,6 +59,22 @@
 
 ---
 
+## Run Docusaurus in Localhost
+
+### Pre-requisites
+
+-   Install node js - [node js download page](https://nodejs.org/en/download/)
+-   Install yarn via npm --> -`npm install --global yarn`
+
+### Steps to Start
+
+1. Clone the `docs-app` repository https://github.com/casper-network/casper-node/docs-app to your local machine
+2. Go to the cloned `docs-app` directory
+3. Run the following commands:
+    - `yarn install` - This is required only once for a folder
+    - `yarn run start` - This will start the localhost server
+4. Access http://localhost:3000/ in your browser
+
 ## Project Architecture
 
 Project Architecture Setup main structure of Docusaurus framework and extended some parts
