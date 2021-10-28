@@ -1,6 +1,6 @@
 # Delegation Details
 
-This section provides a detailed explanation of the delegation cost mechanism, how the gas cost relates with delegations, where to find the details etc... Please note that the cost amounts are likely to change with time and you may have to check the latest release details to get the most up-to-date and accurate details.
+This section provides a detailed explanation of the delegation cost mechanism, how the gas cost relates with delegations, where to find the details etc. Please note that the cost amounts are likely to change with time and you may have to check the latest release details to get the most up-to-date and accurate details.
 
 ## Delegation Cost
 
@@ -16,7 +16,7 @@ For example, the chainspec file in release 1.3.2 will contain the following info
 
 <p align="center">
 
-**Figure 1** : Delegation cost is defined in the chainspec.toml file of a Casper network
+**Figure 1**: Delegation cost is defined in the chainspec.toml file of a Casper network
 
 </p>
 
@@ -36,7 +36,7 @@ It is essential to have enough funds in your account when you set up a delegatio
 
 **Transaction Fee**
 
-As a result, whenWhen performing a [delegation using the command line](../workflow/delegate.md) , we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
+As a result, when performing a [delegation using the command line](../workflow/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
 
 <p align="center"><img src="../image/economic-delegationDetails.png"  alt="details" width="400" /> </p>
 
@@ -48,7 +48,7 @@ As a result, whenWhen performing a [delegation using the command line](../workfl
 
 **_NOTE:_**
 
-Transaction costs depend on each Casper network and the cost tables defined in the chainspec. The examples you will find in the documentation are general
+Transaction costs depend on each Casper network and the cost tables defined in the chainspec. The examples you will find in the documentation are general.
 
 ---
 
