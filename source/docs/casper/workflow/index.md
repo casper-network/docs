@@ -20,6 +20,7 @@ These developer guides highlight key features and capabilities of the Casper sys
 -   [Prerequisites](setup.md): setup needed for various workflows
 -   [Querying the Casper Network](querying.md): querying information on a Casper blockchain
 -   [Direct Native Token Transfer](transfer-workflow.md): performing a direct transfer of CSPR tokens from one account to another
+-   [Transferring Tokens using a Deploy file](deploy-transfer.md): transferring CSPR tokens from one account to another using a deploy file 
 -   [Two-Party Multi-Signatures for Deployment](two-party-multi-sig.md): setting up an account for two-party signature deploys
 -   [Delegating Tokens](delegate.md): delegating tokens to a Validator on a Casper Network
 -   [Un-delegating Tokens](undelegate.md): undelegating tokens from a validator on a Casper Network
