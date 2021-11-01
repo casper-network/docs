@@ -8,9 +8,9 @@ This page consolidates several FAQ sections within the whole portal to one locat
 
 ### FAQ Categories
 
-| Category                                | Description                                                                                 |
-| --------------------------------------- | ------------------------------------------------------------------------------------------- |
-| [General](../docs/faq/faq-general)      | Contains details for all types of users covering general functionalities and domain details |
-| [Enterprise](../docs/faq/faq-enterpise) | Specially for the business related details                                                  |
-| [Developers](../docs/faq/faq-developer) | Details related to development environment and other settings                               |
-| [Validators](../docs/faq/faq-validator) | Details related to validator functionalities                                                |
+| Category                         | Description                                                                                 |
+| -------------------------------- | ------------------------------------------------------------------------------------------- |
+| [General](/faq/faq-general)      | Contains details for all types of users covering general functionalities and domain details |
+| [Enterprise](/faq/faq-enterpise) | Specially for the business related details                                                  |
+| [Developers](/faq/faq-developer) | Details related to development environment and other settings                               |
+| [Validators](/faq/faq-validator) | Details related to validator functionalities                                                |
