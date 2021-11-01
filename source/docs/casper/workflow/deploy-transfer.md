@@ -54,7 +54,7 @@ To use this example on the Mainnet, replace *chain-name* as casper instead of ca
 <details>
 <summary>Sample output of the make-transfer command</summary>
 
-```bash
+```json
 {
   "hash": "34c4adbaa5493d9485637396a1a500657765ca35845bf15527be3149e5beb008",
   "header": {
@@ -140,7 +140,7 @@ casper-client make-transfer --amount 2500000000 \
 
 ### Sending the Deploy
 
-The next step is to send the deploy for execution on the network. As described in the [Prerequisites](deploy-transfer#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node http://80.92.204.108 from the Testnet, replace this with an active node before using the command. Port `7777` is the RPC
+The next step is to send the deploy for execution on the network. As described in the [Prerequisites](deploy-transfer#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node http://80.92.204.108 from the Testnet, replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
 
 ```bash
 casper-client send-deploy --input transfer.deploy --node-address http://80.92.204.108:7777
@@ -154,7 +154,7 @@ casper-client send-deploy --input transfer.deploy --node-address http://80.92.20
 <details>
 <summary>Sample output of the send-deploy command</summary>
 
-```bash
+```json
 {
   "id": 261147078494867680,
   "jsonrpc": "2.0",
