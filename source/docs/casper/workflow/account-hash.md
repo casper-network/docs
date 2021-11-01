@@ -7,9 +7,8 @@ The account-hash is a 32-byte hash of the public key and it represents the addre
 You must ensure the following prerequisites are met, before you can generate an account hash:
 
 1.  Set up your machine as per the [prerequisites](setup.md)
-2.  Set up accounts on the [Testnet](https://testnet.cspr.live/) or [Mainnet](https://cspr.live/)
-3.  Get a *public key* hex
-4.  Use the Casper command-line client
+2.  Get a *public key* hex
+3.  Use the Casper command-line client
 
 ## Generating Account Hash
 
