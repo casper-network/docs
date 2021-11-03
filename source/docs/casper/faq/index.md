@@ -1,5 +1,5 @@
 ---
-title: Frequently Asked Questions (FAQ)
+title: FAQ Categories
 
 slug: /faq
 ---
@@ -8,9 +8,9 @@ This page consolidates several FAQ sections within the whole portal to one locat
 
 ### FAQ Categories
 
-| Category                         | Description                                                                                 |
-| -------------------------------- | ------------------------------------------------------------------------------------------- |
-| [General](/faq/faq-general)      | Contains details for all types of users covering general functionalities and domain details |
-| [Enterprise](/faq/faq-enterpise) | Specially for the business related details                                                  |
-| [Developers](/faq/faq-developer) | Details related to development environment and other settings                               |
-| [Validators](/faq/faq-validator) | Details related to validator functionalities                                                |
+| Category                         | Description                                                                                                           |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [General](/faq/faq-general)      | Contains details for all types of users covering general functionalities and domain details                           |
+| [Enterprise](/faq/faq-enterpise) | Specially for the business related details related to the Casper network, CasperLabs, and the CSPR token sale.        |
+| [Developers](/faq/faq-developer) | Details related to the software development environment, related tools, setup issues, smart contracts problems etc... |
+| [Validators](/faq/faq-validator) | Details related to the validator functionalities                                                                      |
