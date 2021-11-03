@@ -7,7 +7,7 @@ To initiate the set up:
 
 This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC20 token balances throughout this workflow.
 
-## Install the main ERC20 contract
+## Install the Main ERC20 Contract
 
 ```
     casper-client put-deploy -n http://3.143.158.19:7777
@@ -21,7 +21,7 @@ This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The toke
     --payment-amount 90000000000
 ```
 
-## Install the ERC20_test_call Contract Package
+## Install the erc20_test_call Contract Package
 
 ```
     casper-client put-deploy -n http://3.143.158.19:7777
@@ -67,4 +67,4 @@ At this point, the account that installed both the main contract and the helper 
 **_Note:_**
 
 > 1. `erc20_token_contract` is the main contract, and is a stored contract, record its hash
-> 2. `erc20_test_call` is a Contract package which contains the utility contract required to read the balances and allowances of users within the ERC-20 state.
+> 2. `erc20_test_call` is a Contract package which contains the utility contract required to read the balances and allowances of users within the ERC20 state.

@@ -1,14 +1,14 @@
 # Introduction
 
-This guide introduces you to using an ERC-20 contract on the [Casper Network](https://cspr.live/).
+This guide introduces you to using an ERC20 contract on the [Casper Network](https://cspr.live/).
 
-The [Ethereum Request for Comment (ERC-20)](https://eips.ethereum.org/EIPS/eip-20#specification) standard defines a set of rules that dictate the total supply of tokens, how the tokens are transferred, how transactions are approved, and how token data is accessed. These ERC-20 tokens are blockchain-based assets that have value and can be transferred or recorded.
+The [Ethereum Request for Comment (ERC20)](https://eips.ethereum.org/EIPS/eip-20#specification) standard defines a set of rules that dictate the total supply of tokens, how the tokens are transferred, how transactions are approved, and how token data is accessed. These ERC20 tokens are blockchain-based assets that have value and can be transferred or recorded.
 
-We will employ the following test accounts to demonstrate the use of an ERC-20 contract and transfer tokens between user accounts:
+We will employ the following test accounts to demonstrate the use of an ERC20 contract and transfer tokens between user accounts:
 
-## Using the ERC-20 Contract
+## Using the ERC20 Contract
 
-The four users are created in [Casper Integration](https://integration.cspr.live/) live site and following are the accounts created to demonstrate the use of ERC-20 contract:
+The four users are created in [Casper Integration](https://integration.cspr.live/) live site and following are the accounts created to demonstrate the use of ERC20 contract:
 
 -   [User A](https://integration.cspr.live/account/01f2dfc09a94ef7bce440f93a1bb6f17fdac0c913549927d452e7e91a376e9d20d)
 
@@ -18,16 +18,16 @@ The four users are created in [Casper Integration](https://integration.cspr.live
 
 -   [User D](https://integration.cspr.live/account/0171bd7bac58780ce950007de575a472bcb30457e7b68427a6ed466568d71db1d6)
 
-To execute transactions on the Casper Network (involving ERC-20 tokens), you will need some CSPR tokens to pay for the transactions.
+To execute transactions on the Casper Network (involving ERC20 tokens), you will need some CSPR tokens to pay for the transactions.
 
-To understand the implementation of a Casper ERC-20 contract, see the [ERC-20 Tutorial](https://docs.casperlabs.io/en/latest/dapp-dev-guide/tutorials/erc20/index.html)
+To understand the implementation of a Casper ERC20 contract, see the [ERC20 Tutorial](/docs/erc20).
 
 ## Prerequisites
 
 Before you dive into the details of this guide, ensure you meet these requirements:
 
--   Set up your machine as per the [prerequisites](https://casper.network/docs/workflow/setup)
+-   Set up your machine as per the [prerequisites](/docs/workflow/setup)
 -   Use the Casper command-line client
 -   Get a valid `node-address`
--   Know how to deploy a [smart contract](https://casper.network/docs/dapp-dev-guide/deploying-contracts) to a Casper network
+-   Know how to deploy a [smart contract](/docs/dapp-dev-guide/deploying-contracts) to a Casper network
 -   Get some CSPR tokens to pay for transactions

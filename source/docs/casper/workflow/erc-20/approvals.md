@@ -1,6 +1,6 @@
 # Approvals
 
-### Transfer 10 tokens from an allowance of only 5
+### Transfer 10 Tokens from an Allowance of only 5
 
 ```
     casper-client put-deploy -n http://3.143.158.19:7777 \
@@ -20,7 +20,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 > Here is an example of a [deploy failure due to overspending an allowance](https://integration.cspr.live/deploy/7a692917b91e1485f500966f3884bb0917006725505fec1ce3aed2a13ec692df)
 
-### Additional ransfer_from of remainder 5 tokens
+### Additional transfer_from of Remainder 5 tokens
 
 ```
     casper-client put-deploy -n http://3.143.158.19:7777 \
@@ -111,7 +111,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 <img src="/static/image/tutorials/erc-20/invokingToCheckCsAllowance.png" width="800"/>
 
-## Transfer_from C’s allowance to D
+## Transfer_from C’s Allowance to D
 
 ```
     casper-client put-deploy -n http://3.143.158.19:7777 \
@@ -231,7 +231,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 <img src="/static/image/tutorials/erc-20/invokingAlToCheckCsAllowance.png" width="800"/>
 
-### Failure to overspend C's allowance\*\*
+### Failure to Overspend C's Allowance\*\*
 
 ```
     casper-client put-deploy -n http://3.143.158.19:7777 \
