@@ -2,7 +2,7 @@
 
 ### Transfer 10 Tokens from an Allowance of only 5
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --chain-name integration-test \
     --secret-key ~/casper/ibm_demo/user_b/secret_key.pem \
@@ -22,7 +22,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 ### Additional transfer_from of Remainder 5 tokens
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --chain-name integration-test \
     --secret-key ~/casper/ibm_demo/user_b/secret_key.pem \
@@ -36,7 +36,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `balance_of` for user D**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -47,7 +47,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --payment-amount 1000000000
 ```
 
-```
+```bash
 
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
@@ -58,7 +58,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `allowance` for B’s tokens of A**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -68,7 +68,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --session-arg "spender:key='account-hash-9f81014b9c7406c531ebf0477132283f4eb59143d7903a2fae54358b26cea44b'"
 ```
 
-```
+```bash
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
     --state-root-hash e863633b47b0689033744855739009b45a8654dadd4ed723f527fd38157a1d92
@@ -78,7 +78,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 ### Approving C to spend 10 of B’s ERC-20 tokens
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --chain-name integration-test \
     --secret-key ~/casper/ibm_demo/user_b/secret_key.pem \
@@ -91,7 +91,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `allowance` to check C’s allowance**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -103,7 +103,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --payment-amount 10000000000
 ```
 
-```
+```bash
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
     --state-root-hash e9f069c2c03b18f86c15fec54286ac66ece368ac36d9d28024d0cd6cfc93fcf5
@@ -113,7 +113,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 ## Transfer_from C’s Allowance to D
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --chain-name integration-test \
     --secret-key ~/casper/ibm_demo/user_c/secret_key.pem \
@@ -127,7 +127,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `balance_of` for user A**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -138,7 +138,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --payment-amount 1000000000
 ```
 
-```
+```bash
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
     --state-root-hash eb506808fe0749364163fea646c3f4ef35bb55363ea849da219badcd6ba3ee80
@@ -148,7 +148,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `balance_of` for user B**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -159,7 +159,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --payment-amount 1000000000
 ```
 
-```
+```bash
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
     --state-root-hash 0ce2c4991543758337a38d1d8f7fe56a42616b95ec93b17aec35a6f03b5e389c
@@ -169,7 +169,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `balance_of` for user C**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -180,7 +180,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --payment-amount 1000000000
 ```
 
-```
+```bash
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
     --state-root-hash 215c50c0e86950cb91bd8e1045315c1129bbaa02d4e49e00bed60130c4dfa69c
@@ -190,7 +190,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `balance_of` for user D**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -201,7 +201,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --payment-amount 1000000000
 ```
 
-```
+```bash
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
     --state-root-hash 4e8b0de303f834cb7c61bef148046e3de4446903bd15a395c9c37a6d96efe8c6
@@ -211,7 +211,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `allowance` to check C’s allowance**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -223,7 +223,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --payment-amount 10000000000
 ```
 
-```
+```bash
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
     --state-root-hash d6d4d3e59017dfc21e2c9a8e235e2a2b3a446284a066a1f1f6704559fbb35a66
@@ -233,9 +233,10 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 ### Failure to Overspend C's Allowance\*\*
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
-    --chain-name integration-test --secret-key ~/casper/ibm_demo/user_c/secret_key.pem \
+    --chain-name integration-test
+    --secret-key ~/casper/ibm_demo/user_c/secret_key.pem \
     --session-hash hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180 \
     --session-entry-point "transfer_from" \
     --session-arg "owner:key='account-hash-9f81014b9c7406c531ebf0477132283f4eb59143d7903a2fae54358b26cea44b'" \
@@ -250,7 +251,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
 
 **Invoking `allowance` to check C’s allowance**
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777 \
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
     --session-package-name "erc20_test_call" \
@@ -262,7 +263,7 @@ Since we know that the allowance value is less than 10, we expect the deploy to 
     --payment-amount 10000000000
 ```
 
-```
+```bash
     casper-client query-state -n http://3.143.158.19:7777 \
     --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
     --state-root-hash be29754920f158f093c1daac780fba37bed06c751f256a43fcdc7b5b2775e487

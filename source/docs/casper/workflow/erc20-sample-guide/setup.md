@@ -1,15 +1,10 @@
 # Setup
 
-To initiate the set up:
-
-1. Clone the ERC20 contract repository
-2. run the `make build-contract` command.
-
-This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC20 token balances throughout this workflow.
+Clone the ERC-20 contract repository and run the `make build-contract` command. This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC20 token balances throughout this workflow.
 
 ## Install the Main ERC20 Contract
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777
     --chain-name integration-test
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem
@@ -23,7 +18,7 @@ This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The toke
 
 ## Install the erc20_test_call Contract Package
 
-```
+```bash
     casper-client put-deploy -n http://3.143.158.19:7777
     --chain-name integration-test
     --secret-key ~/casper/ibm_demo/user_a/secret_key.pem
@@ -33,7 +28,7 @@ This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The toke
 
 At this point, the account that installed both the main contract and the helper contract will look like this.
 
-```
+```bash
     {
       "src": {
     	"Account": {
