@@ -1,168 +1,154 @@
-# MCMS-DOCUSAURUS
+# Casper Network Documentation
 
-## OVERVIEW
+## Overview
 
-**mcms-docusaurus** is the documentation website for casper network
+Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://casper.network/docs.
 
----
+## Setup
 
-## TECH STACK
-
--   Docusaurus (2.0.0-beta.4)
--   React (17.0.1)
--   Node (>12)
-
----
-
-## COMMANDS
-
-**start** - run the project in dev mode
-
-**build** - build the project pages
-
-**swizzle** - eject docusaurus core source components to customize it. (Do not eject all component, you are supposed to eject some specific component only to add params at the end of command)
-
-**deploy** - deploy docusaurus project using github hosting
-
-**clear** - remove all built source of docusaurus
-
-**serve** - host project based on built source
-
-**write-translations** - generate translation modules automatically from pages
-
-**write-heading-ids** - generate translation modules automatically from pages
-
-**crowdin:sync** - build/upload/download translation modules thru crowdin cloud side
-
-**run:prettier** - format codebase based on prettier
-
-**run:eslint** - check code style based on eslint
-
-**format** - run `prettier`, `lint` checking in sequence
-
-**reinstall** - reinstall all npm packages
-
-**prepare** - internal command for husky install (Don't need to run this command manually, usually, it will be run automatically when running `yarn install`)
-
-**commit** - lint-stage internal command (Don't need to run this command manually, usually, it will be run automatically by pre-commit hooks)
-
----
-
-## SETUP ENVIRONMENT
-
--   Install following global libraries: `npm`
--   Install following editor, applications: `vscode`
--   Install following `vs-code` extensions: `prettier`, `eslint`, and those one that listed in `.vscode/extensions.json`
--   Install npm packages using `yarn` command in the root level of project (`mcms-docusaurus`)
--   Run the project using `yarn start` command in the root level of project (`mcms-docusaurus`)
--   Start the build process
-
----
-
-## Run Docusaurus in Localhost
+Follow these steps to run the documentation website locally, displayed in your localhost at http://localhost:3000/.
 
 ### Pre-requisites
 
--   Install node js - [node js download page](https://nodejs.org/en/download/)
--   Install yarn via npm --> -`npm install --global yarn`
+-   Install `npm`.
+-   Install a code editor, such as Visual Studio Code (`vscode`). You may also want to install editing extensions such as `prettier`, `eslint`, and others listed in the `.vscode/extensions.json` file.
+-   Install Node.js from the [Node.js download page](https://nodejs.org/en/download/).
+-   Install `yarn` via `npm` using this command:
 
-### Steps to Start
+    ```
+        npm install --global yarn
+    ```
 
-1. Clone the `docs-app` repository https://github.com/casper-network/casper-node/docs-app to your local machine
-2. Go to the cloned `docs-app` directory
+### Running the website locally
+
+1. Clone this repository on your machine: [docs-app](https://github.com/casper-network/casper-node/docs-app).
+2. Open the `docs-app` directory.
 3. Run the following commands:
     - `yarn install` - This is required only once for a folder
     - `yarn run start` - This will start the localhost server
-4. Access http://localhost:3000/ in your browser
+4. Access http://localhost:3000/ in your browser.
 
-## Project Architecture
+**Note**: The website refreshes as you make changes to the markdown files. However, if you change the structure or configuration of the website, you need to rerun steps 3 and 4.
 
-Project Architecture Setup main structure of Docusaurus framework and extended some parts
+### Updating existing content
 
-| folder/file          | description                              |
-| -------------------- | ---------------------------------------- |
-| .circlec             | CI/CD pipeline module                    |
-| .docusaurus          | Docusaurus default configuration module  |
-| .github              | Github module                            |
-| .husky               | Husky script module                      |
-| .vscode              | vscode editor configuration              |
-| blog                 | Blog page module                         |
-| build                | Docusaurus build packages                |
-| config               | Docusaurus detaied configuration modules |
-| docs                 | Docs page module                         |
-| i18n                 | Localization packages                    |
-| scripts              | Bash script module                       |
-| src / assets         | Asset modules (style / image / icons)    |
-| src / components     | Component module                         |
-| src / html           | HTML codebase                            |
-| src / mocks          | Mocks data module                        |
-| src / pages          | React page module                        |
-| src / utils          | Utility module                           |
-| static               | Static modules (image / icons)           |
-| types                | Type interface definition part           |
-| .env                 | Environment variables                    |
-| .eslintrc            | Eslint configuration                     |
-| .prettierrc          | Prettier configuration                   |
-| .textlintrc          | Text lint configuration                  |
-| Babel.config.js      | Babel configuration                      |
-| Crowdin.yml          | Crowdin configuration                    |
-| Docusaurus.config.js | Docusaurus configuration                 |
-| package.json         | NPM package list                         |
-| Tsconfig.js          | Typescript configuration                 |
-| yarn.lcok            | Package dependency graph                 |
+1. Navigate to the `source/docs/casper` folder.
+2. Find the content you want to update and modify the markdown file(s). If you want to add new content, read the [Developer Guide](#developer-guide).
+3. Test your changes locally.
+4. Submit your changes using a pull request.
+
+### Adding new content
+
+Adding new content requires structural changes, so read the [Developer Guide](#developer-guide) below.
 
 ---
 
 ## Developer Guide
 
-### Project Setup
+If you want to add new content or make structural updates to the documentation, follow this guide.
 
--   Setup node environment (more than 14.0)
--   Install node packages and setup i18n module and start in development following commands
+### Technology Stack
 
-    ```bash
-    yarn install yarn run:i18n yarn start
-    ```
+This documentation website uses the following infrastructure:
+
+-   Docusaurus (2.0.0-beta.4)
+-   React (17.0.1)
+-   Node (>12)
+
+### Project Architecture
+
+The table below shows you the main structure of the documentation framework.
+
+| Folder/File          | Description                               |
+| -------------------- | ----------------------------------------- |
+| .circleci            | CI/CD pipeline module                     |
+| .docusaurus          | Docusaurus default configuration module   |
+| .github              | GitHub module                             |
+| .husky               | Husky script module                       |
+| .vscode              | Visual Studio Code editor configuration   |
+| build                | Docusaurus build packages                 |
+| config               | Docusaurus detailed configuration modules |
+| source/blog          | Blog page module                          |
+| source/docs          | Main documentation .md files              |
+| source/i18n          | Localization packages                     |
+| scripts              | Bash script module                        |
+| src/assets           | Asset modules (style/image/icons)         |
+| src/components       | Component module                          |
+| src/html             | HTML codebase                             |
+| src/mocks            | Mocks data module                         |
+| src/pages            | React page module                         |
+| src/utils            | Utility module                            |
+| static               | Static modules (image/icons)              |
+| types                | Type interface definition part            |
+| .env                 | Environment variables                     |
+| .eslintrc            | Eslint configuration                      |
+| .prettierrc          | Prettier configuration                    |
+| .textlintrc          | Text lint configuration                   |
+| Babel.config.js      | Babel configuration                       |
+| Crowdin.yml          | Crowdin configuration                     |
+| Docusaurus.config.js | Docusaurus configuration                  |
+| package.json         | NPM package list                          |
+| Tsconfig.js          | Typescript configuration                  |
+| yarn.lock            | Package dependency graph                  |
 
 ### Project Deployment
 
--   Build project by using `yarn build` command and serve it locally using `yarn serve`
+-   Build the project with `yarn build`.
+-   Host the project locally using `yarn serve`.
 
-### Development Guide
+### Additional `yarn` Commands
 
-#### Page Development
+You might find these commands useful:
 
--   Create React page
-    -   Create target_page_name directory `target_page_name.jsx` and `target_page_name.scss`
-    -   Follow the codebase pattern from `Demo`, `Home` page codebase
--   Create blog page
-    -   Create `target_page_name.md` or `mdx` file in `blog` directory
--   Create docs page
-    -   Create `target_page_name.md` or `mdx` file in `docs` directory
-    -   Page routing will depend on page hierarchy if no any specific routing configuration
+-   `yarn start` - Run the project in dev mode
+-   `yarn build` - Build the project pages
+-   `yarn swizzle` - Eject a Docusaurus core source component to customize it. Do not eject all components; eject a specific component by adding parameters to this command
+-   `yarn deploy` - Deploy your Docusaurus project using GitHub hosting
+-   `yarn clear` - Remove previous builds
+-   `yarn serve` - Host the project
+-   `yarn write-translations` - Generate translation modules automatically from pages
+-   `yarn write-heading-ids` -Generate translation modules automatically from pages
+-   `yarn crowdin:sync` - Build, upload, and download translation modules
+-   `yarn run:prettier` - Format the code base
+-   `yarn run:eslint` - Check the code style based on eslint
+-   `yarn format` - Run `prettier` and `lint` in sequence
+-   `yarn reinstall` - Reinstall all `npm` packages
+-   `yarn prepare` - This is an internal command for `husky` install; you do not need to run this command because it is included in `yarn install`
+-   `yarn commit` - Internal command for `lint-stage`. This command is included in pre-commit hooks, so you do not need to run this command but we include this here for visibility
 
-#### Component Development
+### Page Development
 
--   Create reusable components in `src/components` directory based on their purpose
--   Define or declare needed type in the component file-level or src/types directory
--   Follow the codebase pattern from `Background`, `Hero` components codebase
+-   To create a new document, add an `md` or `mdx` file in the [docs/casper](https://github.com/casper-network/docs-app/tree/main/source/docs/casper) directory. Page routing will depend on page hierarchy unless you specify the routing configuration in the `config` folder.
+-   To create a blog page, add an `md` or `mdx` file in the [blog](https://github.com/casper-network/docs-app/tree/main/source/blog) directory.
+-   To create React pages, follow the pattern in the [src/page](https://github.com/casper-network/docs-app/tree/main/src/pages) directory.
 
-#### Sidebar / Footer / Navbar Development
+### Component Development
 
--   Create / update Sidebar
+-   Create reusable components in the `src/components` directory based on their purpose.
+-   Define or declare the necessary types in the component or in the `src/types` directory.
+-   Follow the pattern from the [Background](https://github.com/casper-network/docs-app/tree/main/src/components/atoms/Background) or [Hero](https://github.com/casper-network/docs-app/tree/main/src/components/containers/Hero) components.
 
-    -   Browser `config/sidebar.config.js`
-    -   For example, assume the directory name is `workflow`, then add the following code as a property
+### Sidebar, Footer, and Navbar Development
 
-    ```javascript
-        workflow: [ "workflow/index", "workflow/staking", ],
-    ```
+To add or update a sidebar:
 
-    -   Sidebar item hierarchy will depend on their list order
+-   Open the `config/sidebar.config.js` file.
+-   To add a new directory or file in the sidebar, update the `module.exports` structure.
+-   Note that item hierarchy depends on the order in which you list the items in this file.
 
--   Create / update Navbar Browser `config/sidebar.config.js`
+For example, if you want to add a new directory called `workflow`, then add the following code as a property in `module.exports`:
 
-    -   For example, assume the item name is `Staking`, then add the following code as a property
+```javascript
+module.exports = {
+    workflow: [
+        "workflow/index",
+        "workflow/staking",
+		...
+    ],
+    ...
+```
+
+To create or update a navbar, open and update the `config/navbar.config.js` file. Note that item hierarchy depends on the item order in this file. For example, if you want to create a navbar called `Staking`, add the following property in the `module.exports` structure:
 
     ```javascript
         {
@@ -173,11 +159,7 @@ Project Architecture Setup main structure of Docusaurus framework and extended s
         },
     ```
 
-    -   Navbar item hierarchy will depend on their list order
-
--   Create / update Footer Browser `config/footer.config.js`
-
-    -   For example, assume the item name is `Style Guide`, then add the following code as a property
+To create or update a footer, open the `config/footer.config.js` file. Note that item hierarchy depends on the item order in this file. For example, assuming you want to add an item called `Style Guide`, add the following property:
 
     ```javascript
         title: 'Docs',
@@ -188,92 +170,64 @@ Project Architecture Setup main structure of Docusaurus framework and extended s
         },
     ```
 
-    -   Navbar item hierarchy will depend on their list order
+### Theme Development
 
-#### Theme Development
+To create new theme, add a variable in this file: `src/assets/theme/variable.scss` and a theme class in this file: `src/assets/theme/theme.scss`.
 
--   Create new Theme variable
-    -   open `src/assets/theme/variable.scss`
--   Create new Theme class
-    -   open `src/assets/theme/theme.scss`
--   Change Theme switch icon / default theme - open `config/color.config.js`
+To change an existing theme, modify the `config/color.config.js` file.
 
-#### Localization Development
+### Localization Development
 
--   Remove files that contain changed keys if you have made changes in navbar/footer/sidebar, otherwise, you can skip this step
--   Run yarn run:i18n script if you have made new changes in docs or page
--   Open `config/i18n.config.js` to change default language or add more language Customize `scripts/setup-i18n-json.sh, setup-i18n-md.sh` module to update i18n scripts
--   Run `yarn run:crowdin` to sync translation working with Crowdin side after ensuring replacement of `crowdin.yml` file or insertion of Crowdin API key (CROWDIN_PERSONAL_ACCESS_TOKEN) into `.env` file
+-   If you have made changes in the navbar, footer, or sidebar, remove the files that contain changed keys. Otherwise, you can skip this step.
+-   Run the `yarn run:i18n` script to tag content updates that need localization.
+-   Open the `config/i18n.config.js` file to change the default language or add more languages. You can customize the `scripts/setup-i18n-json.sh` and `setup-i18n-md.sh` modules to add more localization scripts.
+-   Next, replace the `crowdin.yml` file, or insert the Crowdin API key (CROWDIN_PERSONAL_ACCESS_TOKEN) into the `.env` file. Then run `yarn run:crowdin` to update the translated files using Crowdin.
 
-#### RST - MD Conversion
+### reStructuredText to Markdown Conversion
 
--   Add new RST documents into `docs` directory
--   Run `yarn run:migrate`
--   All RST module has been converted into `md` file and removed original files
+To migrate reStructuredText (.rst) files to markdown (.md) files, follow these steps:
 
-For more information, reference `scripts/rst-to-md.sh`
+-   Add new .rst documents into the `docs` directory.
+-   Run `yarn run:migrate`.
+-   Check that the .rst documents were converted to .md files.
+-   Remove the original .rst files.
 
-#### HTML code injection
+For more information, reference the `scripts/rst-to-md.sh` script.
 
--   Open `src/html` directory and see footer.html
--   Depends on needs, you can follow the footer module code pattern `config/footer.config.js`
+### HTML Code Injection
 
-#### Asset Management
+For embedding HTML, follow the example in the `src/html/footer.html` and `config/footer.config.js` files.
 
--   Add new icons
-    -   add them `static/icons` and they wil be served `site_url/icons/icon_name.svg`
--   Add new icons
-    -   add them `static/images` and they will be served `site_url/images/image_name.png`
+### Asset Management
 
-Document Search Development Open `config/algolia.config.js` and replace api_key, index_name with yours Customize search box or form style using `src/assets/scss/theme.scss`
+You can add icons and images in the [static](https://github.com/casper-network/docs-app/tree/main/static) folder:
 
----
+-   Add icons in the `icon` sub-folder, using this pattern: `icon_name.svg`.
+-   Add images in the `image` sub-folder, using this pattern: `image_name.png`.
 
-## GITHUB FLOW
+### Search
 
-This project is using mono project structure using github subtrees for the partial publication about documentation, i18n localization
-
--   docs-apps: docusaurus project app codebase we can use regular github `pull`/`push` command about this source
--   source: public source module that include documentation, blog, i18n localization modules This source will be synced with [this repo](https://github.com/casper-network/documentation) remotely
-
-Git Subtree Commands
-
-```
-git subtree pull --prefix source https://github.com/casper-network/documentation main --squash
-```
-
-```
-git subtree push --prefix source https://github.com/casper-network/documentation main
-```
-
--   We are using `chore/subtree` branch as a sync branch with documentation repo.
--   For example, we are gonna `pull` new contribution changes that has been made in `master` branch of `documentation` repo, then we can use pull command in the `chore/subtree` branch of `docs-app` repo
--   This will make squash commit of making newly added commit of `master` branch of documentation repo into `chore/subtree` branch.
--   We can merge these changes into `master` branch of `docs-app`.
--   If we want to make changes into `documentation` in the `docs-app` repo directly, then you can switch into `chore/subtree` branch firstly
--   After making changes, you can make `commit`/`push` about that, and made another push using git subtree `push` command
--   in the Documentation repo, you can pull these changes in master branch.
--   In this way, these 2 repos will be synced with new changes all the time
-
-## DEBUG DOCUSAURUS SITE DATA
-
-run the project and go to `http://localhost:3000/__docusaurus/debug/routes`
+Open the `config/algolia.config.js` file and replace the `api_key`, `index_name`. Customize the search box or create a new style using the `src/assets/scss/theme.scss` file.
 
 ---
 
-## TROUBLESHOOTING
+## Troubleshooting
 
-### Git husky is not working
+### Debugging Site Data
 
--   Install husky locally in the root level of project using this command `yarn add -D husky`
--   Create new git hooks using this command `npx husky add .husky/pre-commit "npm run commit"`
--   Update `pre-commit` module like the following:
+Run the project locally and go to `http://localhost:3000/__docusaurus/debug/routes`.
 
-```sh
-  #!/bin/sh
-  .  "$(dirname "$0")/_/husky.sh"
-  npm run commit
-```
+### Git hooks are not working
 
--   Create new .js file and make a test commit, you should be able to see git hooks working status
--   Undo test commit `git reset --hard HEAD`
+-   Install husky locally in the root level of the project using this command: `yarn add -D husky`.
+-   Create new git hooks using this command: `npx husky add .husky/pre-commit "npm run commit"`.
+-   Update the `pre-commit` module with this script:
+
+    ```sh
+    #!/bin/sh
+    .  "$(dirname "$0")/_/husky.sh"
+    npm run commit
+    ```
+
+-   Create a new .js file to test the commit flow. You should be able to see the Git hooks triggering.
+-   Undo the test commit by using `git reset --hard HEAD`.
