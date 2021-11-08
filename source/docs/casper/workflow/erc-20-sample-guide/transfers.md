@@ -1,6 +1,6 @@
 # Transfers
 
-## Transfer 50 ERC20 Tokens from A to B
+## Transfer 50 ERC-20 Tokens from A to B
 
 ```bash
     casper-client put-deploy -n http://3.143.158.19:7777
@@ -38,7 +38,7 @@ The follow up read of the corresponding URef:
 
 <img src="/static/image/tutorials/erc-20/transferUref.png" width="800"/>
 
-### Transfer of 20 ERC20 Tokens from B to C
+### Transfer of 20 ERC-20 Tokens from B to C
 
 ```bash
     casper-client put-deploy -n http://3.143.158.19:7777
@@ -130,7 +130,7 @@ We must then call the utility contract once for every balance we wish to check.
 
 **Invoking `allowance` entry point to check for the allowance**
 
-As we did for `balance_of` to read out the balance values, we must perform a similar invoking of the `allowance` entry point of the main ERC20 contract.
+As we did for `balance_of` to read out the balance values, we must perform a similar invoking of the `allowance` entry point of the main ERC-20 contract.
 
 ```bash
     casper-client put-deploy -n http://3.143.158.19:7777
@@ -152,7 +152,7 @@ As we did for `balance_of` to read out the balance values, we must perform a sim
 
 <img src="/static/image/tutorials/erc-20/approve-b.png" width="800"/>
 
-### Transfer 10 ERC20 Tokens from B’s Allowance to D
+### Transfer 10 ERC-20 Tokens from B’s Allowance to D
 
 ```bash
     casper-client put-deploy -n http://3.143.158.19:7777

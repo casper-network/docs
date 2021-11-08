@@ -1,8 +1,8 @@
 # Setup
 
-Clone the ERC-20 contract repository and run the `make build-contract` command. This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC20 token balances throughout this workflow.
+Clone the ERC-20 contract repository and run the `make build-contract` command. This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC-20 token balances throughout this workflow.
 
-## Install the Main ERC20 Contract
+## Install the Main ERC-20 Contract
 
 ```bash
     casper-client put-deploy -n http://3.143.158.19:7777
@@ -62,4 +62,4 @@ At this point, the account that installed both the main contract and the helper 
 **_Note:_**
 
 > 1. `erc20_token_contract` is the main contract, and is a stored contract, record its hash
-> 2. `erc20_test_call` is a Contract package which contains the utility contract required to read the balances and allowances of users within the ERC20 state.
+> 2. `erc20_test_call` is a Contract package which contains the utility contract required to read the balances and allowances of users within the ERC-20 state.
