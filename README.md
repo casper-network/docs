@@ -10,7 +10,7 @@ Follow these steps to run the documentation website locally, displayed in your l
 
 ### Pre-requisites
 
--   Install `npm`.
+-   Install `npm` (version 14.0+).
 -   Install a code editor, such as Visual Studio Code (`vscode`). You may also want to install editing extensions such as `prettier`, `eslint`, and others listed in the `.vscode/extensions.json` file.
 -   Install Node.js from the [Node.js download page](https://nodejs.org/en/download/).
 -   Install `yarn` via `npm` using this command:
