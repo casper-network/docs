@@ -5,7 +5,7 @@ This section covers frequently asked questions and our recommendations from the 
 ### Getting Started {#getting-started}
 
 <details>
- <summary><b>Linking error with 'cargo build' on Windows</b></summary>
+ <summary><b>How do I fix a linking error with 'cargo build' on Windows?</b></summary>
 
 **Question** : How can I fix this linking error while running `cargo build` on Windows?
 
@@ -23,7 +23,7 @@ This section covers frequently asked questions and our recommendations from the 
 </details>
 
 <details>
- <summary><b>Invalid toolchain name</b></summary>
+ <summary><b>Why do I get an invalid toolchain name?</b></summary>
 
 **Question** : How can I fix an error caused by an invalid toolchain name, such as: `error: caused by: invalid toolchain name:...`?
 
@@ -70,7 +70,7 @@ Refer to the [Rust toolchain installer](https://reposhub.com/rust/development-to
 </details>
 
 <details>
- <summary><b>Missing generic arguments in 'cargo build'</b></summary>
+ <summary><b>What are missing generic arguments in 'cargo build'?</b></summary>
 
 **Question** : The `cargo build --release` command fails due to missing generic arguments. How can I fix this?
 
@@ -85,7 +85,7 @@ sudo snap install cmake
 </details>
 
 <details>
- <summary><b>Makefile error</b></summary>
+ <summary><b>How do I fix setup errors?</b></summary>
 
 **Question** : How can I fix this error while installing CMake: `No rule to make target 'setup-rs'`?
 
