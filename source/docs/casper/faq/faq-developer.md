@@ -160,28 +160,15 @@ Suppose an exchange connects to someone else's node RPC to send transactions to 
 ### Other
 
 <details>
- <summary><b>Does the node API have a 'getTransactions' function ?</b></summary>
+ <summary><b>Does the node API have a 'getTransactions' function?</b></summary>
 
-The node API JSON-RPC endpoints are as follows:
-
--   "account_put_deploy"
--   "info_get_deploy" "info_get_peers"
--   "info_get_status"
--   "chain_get_block"
--   "chain_get_block_transfers"
--   "chain_get_state_root_hash"
--   "state_get_item"
--   "state_get_balance"
--   "chain_get_era_info_by_switch_block"
--   "state_get_auction_info"
-
-The node API SSE events are as follows:
+The node API JSON-RPC is found <a href="http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/ ">here</a>. Also, the node emits the following events:
 
 -   BlockAdded
 -   DeployProcessed
 -   ConsensusFinalitySignature
 
-Via. a combination of the above you can pull information from the chain such as transaction sets.
+With these APIs, you can pull information from the node, such as transaction sets.
 
 </details>
 
