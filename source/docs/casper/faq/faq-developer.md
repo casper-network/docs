@@ -187,24 +187,3 @@ On-chain accounts are associated with an account address. Transaction data inclu
 **Answer**: The <a href="https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce">CasperLabs Signer</a> is a wallet-like application. But, it is simplistic and has not been security reviewed. The Casper Network supports ed25519 as well as secp256k1 keys; therefore, extending a current wallet implementation would not be difficult.
 
 </details>
-
-## Useful Resources {#useful-resources}
-
-<details>
-  <summary><b>The Casper Association makes available the following resources for you to connect and get support:</b></summary>
-
--   On our <a href="https://discordapp.com/invite/mpZ9AYD">Discord Channel</a>, connect live with members of our Engineering Team available to support you with the progress of your projects
--   Join the <a href="https://forums.casperlabs.io/">Community Forum</a> that includes technical discussions on using Casper features, obtain support, and pose questions
--   Subscribe to the <a href="https://t.me/casperblockchain">Casper Network Official Telegram Channel</a> for general information and updates about the platform
-
-If you find issues, search the main <a href="https://github.com/casper-network">Casper Network repository</a> and file the issue in the related project.
-
-Otherwise, use our <a href="https://casperlabs.atlassian.net/servicedesk">Jira Service Desk</a> for situations such as:
-
--   questions that are not issues
--   needing technical support
--   wanting to give feedback
--   suggesting improvements
--   participating in a bounty
-
-</details>
