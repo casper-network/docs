@@ -5,21 +5,20 @@ This section covers frequently asked questions and our recommendations from the 
 ### Getting Started {#getting-started}
 
 <details>
- <summary><b>Problem in building the contract using cargo build?</b></summary>
+ <summary><b>Linking error with `cargo build` on Windows?</b></summary>
 
-**Question** : This occurred in Windows machine with AWS image. The command performed is 'cargo build' ,
+**Question** : How can I fix this linking error while running `cargo build` on Windows?
 
 <img src="../image/faq/q-cargo-build.png"  alt="cargo-build" width="800"/>
 
-**Answer** : you have to install VC+ build tools so that rustc should be able to auto-detect the helper files. Or you can go with the VS 2013 or 2015(for auto-detection). There are two existing Rust toolchain families provided for Windows: msvc and gnu
+**Answer** : You have to install the VC+ build tools so that `rustc` can auto-detect the helper files that are part of the building process. Or you can build using Visual Studio 2013 or 2015. There are two existing Rust toolchain families provided for Windows: `msvc` and `gnu`:
 
-**_msvc_** is the default, and as you realized, depends on a recent Visual C++ installation.
+-   **_msvc_** is the default, and as you realized, it depends on a recent Visual C++ installation.
+-   **_gnu_**, on the other hand, depends on GNU/MinGW-w64. It can be installed and made the default toolchain using this command:
 
-**_gnu_** on the other hand depends on GNU/MinGW-w64. It can be installed and made the default toolchain using:
-
-```
-$ rustup default stable-x86_64-pc-windows-gnu
-```
+    ```bash
+    $ rustup default stable-x86_64-pc-windows-gnu
+    ```
 
 </details>
 
