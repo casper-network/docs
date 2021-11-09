@@ -173,20 +173,9 @@ With these APIs, you can pull information from the node, such as transaction set
 </details>
 
 <details>
- <summary><b>How would be query transaction for an account?</b></summary>
+ <summary><b>How can I query a transaction for an account?</b></summary>
 
-On chain accounts are associated with an account address. Transaction data includes account address as a sub-field.
-
-</details>
-
-<details>
- <summary><b>Is there a service like infura.io that we can use now or in the future?</b></summary>
-
-Not atm but [make services](https://make.services) are actively building out such a service. Contact Michael Steur for further information.
-
-`To scale queries for thousands of clients, we would need to run multiple nodes or index the blockchain ourselves.`
-
-Perhaps collaborating with make.services might fulfill your requirements and contribute to the wider eco-system at the same time.
+On-chain accounts are associated with an account address. Transaction data includes account address as a sub-field.
 
 </details>
 
