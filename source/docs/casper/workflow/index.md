@@ -23,4 +23,3 @@ These developer guides highlight key features and capabilities of the Casper sys
 -   [Two-Party Multi-Signatures for Deployment](two-party-multi-sig.md): setting up an account for two-party signature deploys
 -   [Delegating Tokens](delegate.md): delegating tokens to a Validator on a Casper Network
 -   [Un-delegating Tokens](undelegate.md): undelegating tokens from a validator on a Casper Network
--   [Using the ERC-20 Contract](erc-20-sample-guide/index.md): using the ERC20 contract to understand the ERC20 token transfer workflow
