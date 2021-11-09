@@ -180,9 +180,11 @@ On-chain accounts are associated with an account address. Transaction data inclu
 </details>
 
 <details>
- <summary><b>For wallet generation, can you point me to an open-source implementation or library? I see CasperLabs uses the ed25519 curve. Can you give me more specifics for seed generation?</b></summary>
+ <summary><b>Do you have an example wallet or library?</b></summary>
 
-The only wallet like application atm is the Casper Signer - a google chrome extension. But it is simplistic & has not been security reviewed. The CSPR chain supports ed25519 as well as secp256k1, therefore extending a current wallet implementation would not be difficult. CSPR will be registered on slip-0044 and the recommended seed derivation path documented.
+**Question**: For wallet generation, can you point me to an open-source implementation or library? I see that Casper uses the ed25519 curve cryptography. Can you give me more details for seed generation?
+
+**Answer**: The <a href="https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce">CasperLabs Signer</a> is a wallet-like application. But, it is simplistic and has not been security reviewed. The Casper Network supports ed25519 as well as secp256k1 keys; therefore, extending a current wallet implementation would not be difficult.
 
 </details>
 
