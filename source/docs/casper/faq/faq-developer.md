@@ -5,7 +5,7 @@ This section covers frequently asked questions and our recommendations from the 
 ### Getting Started {#getting-started}
 
 <details>
- <summary><b>Linking error with `cargo build` on Windows?</b></summary>
+ <summary><b>Linking error with 'cargo build' on Windows</b></summary>
 
 **Question** : How can I fix this linking error while running `cargo build` on Windows?
 
@@ -23,45 +23,49 @@ This section covers frequently asked questions and our recommendations from the 
 </details>
 
 <details>
- <summary><b> Rustup toolchain - invalid toolchain name problem  </b></summary>
+ <summary><b>Invalid toolchain name</b></summary>
 
-**Question** : Having a message like 'error: caused by: invalid toolchain name:...'
+**Question** : How can I fix an error caused by an invalid toolchain name, such as: `error: caused by: invalid toolchain name:...`?
 
-**Answer** : First, check your rustup version details using the following commands,
+**Answer** : First, check your `rustup` version using the following commands:
 
-```
+```bash
 rustup --version
 ```
 
-```
+```bash
 rustup show
 ```
 
-Then, perform the following set of commands to find the appropriate remedy,
+Then, find the appropriate remedy:
 
--   Set minimal rustup profile
+-   Set the minimal rustup profile:
 
-```
+```bash
 rustup set profile minimal
 ```
 
--   Install nightly separately
+-   Install the nightly Rust toolchain separately with these two commands:
 
-```
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
 ```
 
-```
+```bash
 rustup toolchain install nightly --allow-downgrade --profile minimal --component clippy
 ```
 
--   Update rustup
+-   Update rustup with one of these commands:
 
-```
-rustup update / rustup self update
+```bash
+rustup update
 ```
 
-Refer [rust toolchain installer](https://reposhub.com/rust/development-tools/rust-lang-rustup.html) for more explained details.
+```bash
+rustup self update
+```
+
+Refer to the [Rust toolchain installer](https://reposhub.com/rust/development-tools/rust-lang-rustup.html) for more details.
 
 </details>
 
