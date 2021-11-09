@@ -144,7 +144,7 @@ Suppose an exchange connects to someone else's node RPC to send transactions to 
 <details>
   <summary><b>Can you provide an example of a deploy?</b></summary>
   
-  You can find a _testDeploy_ reference in <a href="https://github.com/casper-ecosystem/casper-js-sdk/blob/next/test/lib/DeployUtil.test.ts#L5">GitHub</a>
+  You can find a deploy reference in <a href="https://github.com/casper-ecosystem/casper-js-sdk/blob/next/test/lib/DeployUtil.test.ts#L5">GitHub</a>.
 </details>
 
 ### Operating with Keys {#operating-with-keys}
