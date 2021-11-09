@@ -5,13 +5,6 @@ This section covers frequently asked questions and our recommendations from the 
 ### Getting Started {#getting-started}
 
 <details>
-  <summary><b>How to start if you are a Windows desktop user? </b></summary>
-
-Refer [VPN - Guide](https://casperlabs.atlassian.net/wiki/spaces/OPS/pages/156991492/VPN+-+User+Guide) link to follow the steps and contact the responsible person to get the mentioned key/code details.
-
-</details>
-
-<details>
  <summary><b>Problem in building the contract using cargo build?</b></summary>
 
 **Question** : This occurred in Windows machine with AWS image. The command performed is 'cargo build' ,
