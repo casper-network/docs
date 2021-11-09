@@ -70,23 +70,28 @@ Refer to the [Rust toolchain installer](https://reposhub.com/rust/development-to
 </details>
 
 <details>
- <summary><b> cmake installation issues </b></summary>
+ <summary><b>Missing generic arguments in 'cargo build'</b></summary>
 
-**Question** : This is specifically found when running an AWS image on the Windows machine. The command performed is 'cargo build --release',
+**Question** : The `cargo build --release` command fails due to missing generic arguments. How can I fix this?
 
 <img src="../image/faq/q-cmake-version.png"  alt="cmake-version" width="800"/>
 
-**Answer** : Use `cmake --verison` to check version. This is a library compatibility issue that occurs with cmake 18.04 version. Perform below to upgrade,
+**Answer** : This is a library compatibility issue that occurs with CMake version 18.04. Use `cmake --version` to check your current version of CMake. If you are on this version, perform an upgrade:
 
 ```
 sudo snap install cmake
 ```
 
-**Question** : Problem when the directory structure is not properly set up,
+</details>
+
+<details>
+ <summary><b>Makefile error</b></summary>
+
+**Question** : How can I fix this error while installing CMake: `No rule to make target 'setup-rs'`?
 
 <img src="../image/faq/q-makefile.png"  alt="makeFile" width="800"/>
 
-**Answer** : Folder (`casper-node` in this context) should have the 'Makefile'. Perform following commands to recover,
+**Answer** : The folder where you are running the command (`casper-node` in this context) should have a `Makefile`. Perform following commands to recover:
 
 ```
 make setup-rs
