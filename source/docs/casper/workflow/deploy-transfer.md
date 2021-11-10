@@ -1,6 +1,6 @@
 # Transferring Tokens using a Deploy File
 
-This topic explores the use of a deploy file to transfer Casper tokens (CSPR) between accounts on the Casper network. This method of transferring tokens is useful when you want to implement multi-signature deploys. To understand more about multi-signature deploys, see [Two-Party Multi-Signature Deploys](two-party-multi-sig.md). The `make-transfer` command allows you to create a transfer deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
+This topic explores the use of a deploy file to transfer Casper tokens (CSPR) between accounts on the Casper Network. This method of transferring tokens is useful when you want to implement multi-signature deploys. To understand more about multi-signature deploys, see [Two-Party Multi-Signature Deploys](two-party-multi-sig.md). The `make-transfer` command allows you to create a transfer deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@ You must ensure the following prerequisites are met, before you start using the 
 1.  Fund the source account
 2.  Get the source *secret key* file path and the target *public key* hex
 3.  Get a valid *node address* from the [Testnet peers](https://testnet.cspr.live/tools/peers) or [Mainnet peers](https://cspr.live/tools/peers) 
-4.  Use the Casper command-line client
+4.  Use the Casper [command-line client](/workflow/setup#the-casper-command-line-client)
 
 ## Token Transfer Workflow
 
@@ -177,5 +177,5 @@ The following steps can help you verify if the transfer was successful using the
 5. [Get the target account balance](transfer-workflow#get-target-account-balance) to confirm that the amount was credited
 
 :::tip
-You can also verify if the transfer was successful by logging on to the https://cspr.live/ website.
+You can also verify if the transfer was successful by logging on to the https://cspr.live/ website and checking your account balance.
 :::
