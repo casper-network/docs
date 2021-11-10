@@ -2,11 +2,11 @@
 
 This page contains details related to a few JavaScript (JS) clients and the Casper JS SDK.
 
-## Usage of JavaScript Clients
+## Usage of JavaScript Clients {#usage-of-javascript-clients}
 
 The Casper team has implemented specific JS clients to support interaction with the Casper contracts.
 
-### Repository & Client Packages
+### Repository & Client Packages {#repository-7-client-packages}
 
 We provide you with a repository that will help you create clients for Casper contracts. The [casper-contracts-js-clients](https://github.com/casper-network/casper-contracts-js-clients/) repository contains details to create clients for Casper contracts and usage examples of such clients dedicated to interacting with smart contracts on Casper.
 
@@ -22,7 +22,7 @@ These packages give you an easy way to install and interact with the correspondi
 | **_casper-erc20-js-client_** | Supports installation of the Casper ERC-20 contract and includes usage examples for creating client instances, installing contracts, and handling transfers, balances, allowances, and more through code examples |
 | **_casper-cep47-js-client_** | Supports installation of the Casper CEP-47 (NFT) smart contract along with installation, usage, and method details; it also includes steps to track events via the event stream |
 
-## Casper SDK for JavaScript
+## Casper SDK for JavaScript {#casper-sdk-for-javascript}
 
 The [TypeScript/JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) allows developers to interact with the Casper Network using TypeScript or JavaScript. This section covers different examples of using the Casper JS SDK.
 
