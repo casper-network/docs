@@ -117,22 +117,6 @@ To connect to a website or dApp, do the following:
 <img src="/static/image/tutorials/signer/connect-site.png" width="200" />
 
 
-#### 4.3.2	List of websites than can connect to the Casper Signer
-
-The Casper Signer can read information from the following sites:
-* All cspr.live sites
-  * Mainnet - https://cspr.live/
-  * Testnet - https://testnet.cspr.live/
-* All casperholders.com sites
-* All casperholders.io
-* All casperlabs.io sites
-* All casperstats.io sites
-* All make.services sites
-* casper-qr.vercel.app
-* casperdash.io 
-* picaswap.io/wcspr
-* localhost
-
 ### 4.4 Download Active Keys
 
 This feature allows you to download the set of cryptographic keys from your active account. 
