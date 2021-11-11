@@ -11,6 +11,20 @@ module.exports = {
         "workflow/two-party-multi-sig",
         "workflow/delegate",
         "workflow/undelegate",
+        {
+            type: "category",
+            label: "ERC-20 Sample Guide",
+            collapsible: true,
+            collapsed: true,
+            items: [
+                "workflow/erc-20-sample-guide/index",
+                "workflow/erc-20-sample-guide/setup",
+                "workflow/erc-20-sample-guide/query",
+                "workflow/erc-20-sample-guide/transfers",
+                "workflow/erc-20-sample-guide/approvals",
+                "workflow/erc-20-sample-guide/final-balance",
+            ],
+        },
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
