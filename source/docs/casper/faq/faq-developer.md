@@ -84,40 +84,13 @@ sudo snap install cmake
 
 </details>
 
-<details>
- <summary><b>How do I fix setup errors?</b></summary>
-
-**Question** : How can I fix this error while installing CMake: `No rule to make target 'setup-rs'`?
-
-<img src="../image/faq/q-makefile.png"  alt="makeFile" width="800"/>
-
-**Answer** : The folder where you are running the command (`casper-node` in this context) should have a `Makefile`. Perform following commands to recover:
-
-```
-make setup-rs
-```
-
-```
-cargo clean
-```
-
-</details>
-
-### Deploy Processing {#deploy-processing}
-
-<details>
-  <summary><b>How do I know that a deploy was finalized?</b></summary>
-  
-  If a deploy was executed, then it has been finalized. If the deploy status comes back as null, that means the deploy has not been executed yet. Once the deploy executes, it is finalized, and no other confirmation is needed. Exchanges that are not running a read-only node must also keep track of [finality signatures](#finality_signatures) to prevent any attacks from high-risk nodes.
-</details>
-
 ### Finality Signatures {#finality-signatures}
 
 <details>
   <summary><b>When are finality signatures needed?</b></summary>
   
   Finality signatures are confirmations from validators that they have executed the transaction. Exchanges should be asserting finality by collecting the weight of two-thirds of transaction signatures. If an exchange runs a read-only node, it can collect these finality signatures from its node. Otherwise, the exchange must assert finality by collecting finality signatures and have proper monitoring infrastructure to prevent a Byzantine attack.
-
+<br/><br/>
 Suppose an exchange connects to someone else's node RPC to send transactions to the network. In this case, the node is considered high risk, and the exchange must assert finality by checking to see how many validators have run the transactions in the network.
 
 </details>
@@ -127,16 +100,8 @@ Suppose an exchange connects to someone else's node RPC to send transactions to 
 <details>
   <summary><b>How is a deploy_hash different than a transfer_hash?</b></summary>
   
-  Essentially, there is no difference between a _deploy_hash_ and a _transfer_hash_ since they are both deploy transactions. However, the platform is labeling the subset of deploys which are transfers, to filter transfers from other types of deploys. In other words, a _transfer_hash_ is a native transfer, while a _deploy_hash_ is another kind of deploy.
+  Essentially, there is no difference between a  <i>deploy_hash</i> and a <i>transfer_hash</i> since they are both deploy transactions. However, the platform is labeling the subset of deploys which are transfers, to filter transfers from other types of deploys. In other words, a <i>transfer_hash</i> is a native transfer, while a <i>deploy_hash</i> is another kind of deploy.
 
-</details>
-
-### Account-hex vs. Account-hash {#account-hex-vs-account-hash}
-
-<details>
-  <summary><b>Should a customer see the account-hex or the account-hash?</b></summary>
-  
-  Exchange customers or end-users only need to see the _account-hex_. They do not need to know the _account_hash_. The _account_hash_ is needed in the backend to verify transactions. Store the _account-hash_ to query and monitor the account. Customers do not need to know this value, so to simplify their experience, we recommend storing both values and displaying only the _account-hex_.
 </details>
 
 ### Example Deploy {#example-deploy}
@@ -153,7 +118,7 @@ Suppose an exchange connects to someone else's node RPC to send transactions to 
   <summary><b>How should we work with the PEM keys?</b></summary>
   
   The <a href="https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html">Keys API</a>
-   provides methods for _Ed25519_ and _Secp256K1_ keys. Also, review the tests in <a href="../docs/dapp-dev-guide/keys">GitHub</a> and the documentation.
+   provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="../docs/dapp-dev-guide/keys">GitHub</a> and the documentation.
 
 </details>
 
