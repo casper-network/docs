@@ -3,8 +3,8 @@
 Query the contract package hash which returns the package:
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777
---key hash-f9ae16d2a374e985c425c94c716c539070dc7d7907f119ba32d9684f4412a4ee
+casper-client query-state -n http://3.143.158.19:7777 \
+--key hash-f9ae16d2a374e985c425c94c716c539070dc7d7907f119ba32d9684f4412a4ee \
 --state-root-hash 4e8b0de303f834cb7c61bef148046e3de4446903bd15a395c9c37a6d96efe8c6
 ```
 
@@ -19,8 +19,8 @@ This will return the `Contract Package` object:
 The utility contract invokes the `balance_of` and `allowance` entry point of the main ERC-20 contract. Once the value is returned, the utility contract will write either a balance or an allowance value to a URef within its named keys, called `result`. We will query the utility contract object to read the URef.
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777
---key hash-f9ae16d2a374e985c425c94c716c539070dc7d7907f119ba32d9684f4412a4ee
+casper-client query-state -n http://3.143.158.19:7777 \
+--key hash-f9ae16d2a374e985c425c94c716c539070dc7d7907f119ba32d9684f4412a4ee \
 --state-root-hash 4e8b0de303f834cb7c61bef148046e3de4446903bd15a395c9c37a6d96efe8c6
 ```
 

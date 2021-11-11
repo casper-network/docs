@@ -4,7 +4,7 @@ In this section, we check the final balance for all users.
 
 **Final check for user A's balance**
 
-```
+```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
@@ -15,7 +15,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 --payment-amount 1000000000
 ```
 
-```
+```bash
 casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash c1fb674c4b912a4562b146c8993576c773204dd5b1c731faf62b26386e34a373
@@ -25,7 +25,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 
 **Final check for user B's balance**
 
-```
+```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
@@ -36,7 +36,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 --payment-amount 1000000000
 ```
 
-```
+```bash
 casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash 14f20fb57b7a600aed100a51a34deb6bfca3df1a03b31986a55d9f704ec48701
@@ -46,7 +46,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 
 **Final check for user C's balance**
 
-```
+```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
@@ -57,7 +57,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 --payment-amount 1000000000
 ```
 
-```
+```bash
 casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash 72e523529f31ff13ea3a9463821b6981cbaf27c11d4a0f70e9b81127bb12e0c7
@@ -67,7 +67,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 
 **Final check of user D's balance**
 
-```
+```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
@@ -78,7 +78,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 --payment-amount 1000000000
 ```
 
-```
+```bash
 casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash 40c87ca9a4a78a37503ec87b5bfd9946267960135b1df0bb114403c18da4057d
