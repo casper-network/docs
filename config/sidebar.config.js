@@ -7,6 +7,7 @@ module.exports = {
         "workflow/setup",
         "workflow/querying",
         "workflow/transfer-workflow",
+		"workflow/deploy-transfer",
         "workflow/two-party-multi-sig",
         "workflow/delegate",
         "workflow/undelegate",

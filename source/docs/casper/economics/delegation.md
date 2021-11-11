@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Delegation Details
 
 This section provides a detailed explanation of the delegation cost mechanism, how the gas cost relates with delegations, where to find the details etc. Please note that the cost amounts are likely to change with time and you may have to check the latest release details to get the most up-to-date and accurate details.
@@ -12,7 +14,7 @@ When you delegate, the system automatically charges some gas to set up related d
 
 For example, the chainspec file in release 1.3.2 will contain the following information. This is how the delegation cost is defined in the chainspec.toml file of a Casper network.
 
-<p align="center"><img src="../image/economic-delegationCost.png"  alt="cost" width="400" class="center"/></p>
+<p align="center"><img src={useBaseUrl("/image/economic-delegationCost.png")}  alt="cost" width="400" class="center"/></p>
 
 <p align="center">
 
@@ -38,7 +40,7 @@ It is essential to have enough funds in your account when you set up a delegatio
 
 As a result, when performing a [delegation using the command line](../workflow/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
 
-<p align="center"><img src="../image/economic-delegationDetails.png"  alt="details" width="400" /> </p>
+<p align="center"><img src={useBaseUrl("/image/economic-delegationDetails.png")}  alt="details" width="400" /> </p>
 
 <p align="center">
 
