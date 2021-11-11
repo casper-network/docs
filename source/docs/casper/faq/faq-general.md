@@ -1,7 +1,5 @@
 # FAQ - General
 
-In Progress ...
-
 ### Deploy Processing {#deploy-processing}
 
 <details>
