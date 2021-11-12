@@ -1,3 +1,3 @@
 # FAQ - Validators
 
-Coming soon...
+Coming soon
