@@ -99,7 +99,6 @@ module.exports = {
                 "dapp-dev-guide/tutorials/upgrade-tutorial",
             ],
         },
-        "dapp-dev-guide/getting-help",
     ],
     operators: [
         "operators/index",
@@ -135,7 +134,7 @@ module.exports = {
         "economics/delegation",
         "economics/concepts",
     ],
-    faq: ["faq/index"],
+    faq: ["faq/index", "faq/faq-general", "faq/faq-enterpise", "faq/faq-developer", "faq/faq-validator"],
     glossary: [
         "glossary/index",
         "glossary/A",
