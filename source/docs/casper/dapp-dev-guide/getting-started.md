@@ -4,7 +4,7 @@ This guide covers the basic tools you will need to set up your first Casper smar
 
 Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. The Rust contract SDK is the easiest way to get started with smart contract development. This guide will walk you through the steps to set up your development environment and build your first contract.
 
-Refer to our [FAQ guide](/docs/faq/faq-developer) if you have questions or need help.
+Refer to our [FAQ guide](../faq/faq-developer.md) if you have questions or need help.
 
 ## Video Tutorial {#video-tutorial}
 
