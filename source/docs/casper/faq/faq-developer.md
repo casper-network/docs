@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # FAQ - Developers
 
 This section covers frequently asked questions and our recommendations from the developer's perspective.
@@ -9,7 +11,7 @@ This section covers frequently asked questions and our recommendations from the 
 
 **Question** : How can I fix this linking error while running `cargo build` on Windows?
 
-<img src="../image/faq/q-cargo-build.png"  alt="cargo-build" width="800"/>
+<img src={useBaseUrl("/image/faq/q-cargo-build.png")} alt="cargo-build" width="800"/>
 
 **Answer** : You have to install the VC+ build tools so that `rustc` can auto-detect the helper files that are part of the building process. Or you can build using Visual Studio 2013 or 2015. There are two existing Rust toolchain families provided for Windows: `msvc` and `gnu`:
 
@@ -74,7 +76,7 @@ Refer to the [Rust toolchain installer](https://reposhub.com/rust/development-to
 
 **Question** : The `cargo build --release` command fails due to missing generic arguments. How can I fix this?
 
-<img src="../image/faq/q-cmake-version.png"  alt="cmake-version" width="800"/>
+<img src={useBaseUrl("/image/faq/q-cmake-version.png")} alt="cmake-version" width="800"/>
 
 **Answer** : This is a library compatibility issue that occurs with CMake version 18.04. Use `cmake --version` to check your current version of CMake. If you are on this version, perform an upgrade:
 
@@ -118,7 +120,7 @@ Suppose an exchange connects to someone else's node RPC to send transactions to 
   <summary><b>How should we work with the PEM keys?</b></summary>
   
   The <a href="https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html">Keys API</a>
-   provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="../docs/dapp-dev-guide/keys">GitHub</a> and the documentation.
+   provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="../dapp-dev-guide/keys">GitHub</a> and the documentation.
 
 </details>
 

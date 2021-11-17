@@ -63,7 +63,7 @@ The Casper Signer allows you to add your existing keys to the Signer wallet. You
 
 ## 4. Managing an Account
 
-The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active keys, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src="/image/tutorials/signer/main-icon.png" width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window.
+The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active keys, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window.
 
 **Figure 2**: Casper Signer Main Menu <img src={useBaseUrl("/image/tutorials/signer/main-menu.png")} width="200"/>
 
