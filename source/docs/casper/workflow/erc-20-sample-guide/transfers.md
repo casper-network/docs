@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Transfers
 
 ## Transfer 50 ERC-20 Tokens from A to B
@@ -36,7 +38,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash eec441ad782dcaab1b83708a9456250f97e6725528f9579ca4871a3b9429033f
 ```
 
-<img src="/static/image/tutorials/erc-20/transferUref.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/transferUref.png")} width="800"/>
 
 ### Transfer of 20 ERC-20 Tokens from B to C
 
@@ -72,7 +74,7 @@ casper-client query-state -n http://3.143.158.19:7777
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 ```
 
-<img src="/static/image/tutorials/erc-20/invoke-bal-a.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invoke-bal-a.png")} width="800"/>
 
 **Invoking `balance_of` for user B**
 
@@ -93,7 +95,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007
 ```
 
-<img src="/static/image/tutorials/erc-20/invoke-bal-a.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invoke-bal-a.png")} width="800"/>
 
 **Invoking `balance_of` for user C**
 
@@ -114,7 +116,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007
 ```
 
-<img src="/static/image/tutorials/erc-20/invoke-bal-c.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invoke-bal-c.png")} width="800"/>
 
 ### Approve B to Spend 15 Tokens of A
 
@@ -151,7 +153,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007
 ```
 
-<img src="/static/image/tutorials/erc-20/approve-b.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/approve-b.png")} width="800"/>
 
 ### Transfer 10 ERC-20 Tokens from B’s Allowance to D
 
@@ -186,7 +188,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007
 ```
 
-<img src="/static/image/tutorials/erc-20/transfer-b2d.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/transfer-b2d.png")} width="800"/>
 
 **Invoking `balance_of` for user B**
 
@@ -207,7 +209,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007
 ```
 
-<img src="/static/image/tutorials/erc-20/invoke-bal-b2.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invoke-bal-b2.png")} width="800"/>
 
 **Invoking `balance_of` for user C**
 
@@ -228,7 +230,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007
 ```
 
-<img src="/static/image/tutorials/erc-20/invoke-bal-c2.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invoke-bal-c2.png")} width="800"/>
 
 **Invoking `balance_of` for user D**
 
@@ -243,7 +245,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 --payment-amount 1000000000
 ```
 
-<img src="/static/image/tutorials/erc-20/invoke-bal-d.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invoke-bal-d.png")} width="800"/>
 
 **Invoking `allowance` to check that it is 5**
 
@@ -265,4 +267,4 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007
 ```
 
-<img src="/static/image/tutorials/erc-20/invoke-allowance.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invoke-allowance.png")} width="800"/>
