@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Checking Final Balances
 
 In this section, we check the final balance for all users.
@@ -21,7 +23,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash c1fb674c4b912a4562b146c8993576c773204dd5b1c731faf62b26386e34a373
 ```
 
-<img src="/static/image/tutorials/erc-20/finalBalanceCheckAllUsers.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/finalBalanceCheckAllUsers.png")} width="800"/>
 
 **Final check for user B's balance**
 
@@ -42,7 +44,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash 14f20fb57b7a600aed100a51a34deb6bfca3df1a03b31986a55d9f704ec48701
 ```
 
-<img src="/static/image/tutorials/erc-20/finalBalanceCheckuserB.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/finalBalanceCheckuserB.png")} width="800"/>
 
 **Final check for user C's balance**
 
@@ -63,7 +65,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash 72e523529f31ff13ea3a9463821b6981cbaf27c11d4a0f70e9b81127bb12e0c7
 ```
 
-<img src="/static/image/tutorials/erc-20/finalBalanceCheckuserC.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/finalBalanceCheckuserC.png")} width="800"/>
 
 **Final check of user D's balance**
 
@@ -84,4 +86,4 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash 40c87ca9a4a78a37503ec87b5bfd9946267960135b1df0bb114403c18da4057d
 ```
 
-<img src="/static/image/tutorials/erc-20/finalBalanceCheckuserD.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/finalBalanceCheckuserD.png")} width="800"/>

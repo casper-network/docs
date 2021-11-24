@@ -39,7 +39,7 @@ To log in to the Casper Signer, you must create a vault and import or create acc
 The Casper Signer allows you to create an account and generates a set of keys based on your chosen encryption algorithm. The Casper Network supports these two algorithms:
 
 -   Ed25519 is fast and provides a high level of security with foolproof session keys, among other features. It is the default algorithm used while creating new accounts.
--   Secp256k1 is an efficient encryption algorithm, also used by Bitcoin and Ethereum. If you would like to derive Ethereum or Bitcoin keys in the future using your private key, or you are planning to use your account with Ledger, then choose the Secp256k1 algorithm.
+-   Secp256k1 is an efficient encryption algorithm, also used by Bitcoin and Ethereum. If you would like to derive Ethereum or Bitcoin keys in the future using your private key, then choose the Secp256k1 algorithm.
 
 To learn more about cryptographic keys, see [Working with Cryptographic Keys](https://docs.casperlabs.io/en/latest/dapp-dev-guide/keys.html).
 
@@ -63,7 +63,7 @@ The Casper Signer allows you to add your existing keys to the Signer wallet. You
 
 ## 4. Managing an Account
 
-The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active keys, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src="/image/tutorials/signer/main-icon.png" width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window.
+The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active keys, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window.
 
 **Figure 2**: Casper Signer Main Menu <img src={useBaseUrl("/image/tutorials/signer/main-menu.png")} width="200"/>
 

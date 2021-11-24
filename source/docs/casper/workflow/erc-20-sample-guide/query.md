@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Query the Contract Package
 
 Query the contract package hash which returns the package:
@@ -10,7 +12,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 
 This will return the `Contract Package` object:
 
-<img src="/static/image/tutorials/erc-20/contract-pkg.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/contract-pkg.png")} width="800"/>
 
 **_Note:_**
 
@@ -26,6 +28,6 @@ casper-client query-state -n http://3.143.158.19:7777 \
 
 The named keys field, which will contain an entry called `result` with some URef associated with it.
 
-<img src="/static/image/tutorials/erc-20/uref.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/uref.png")} width="800"/>
 
 We will use this URef value to check the balances and allowances of users within the ERC-20 contract.

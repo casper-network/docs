@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Approvals
 
 ### Transfer 10 Tokens from an Allowance of only 5
@@ -54,7 +56,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash d068439dc1f62e330a15e008e5e926e777fd3599baed4ece508d482c50bd263b
 ```
 
-<img src="/static/image/tutorials/erc-20/invokeBalanceOfuserD.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokeBalanceOfuserD.png")} width="800"/>
 
 **Invoking `allowance` for B’s tokens of A**
 
@@ -74,7 +76,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash e863633b47b0689033744855739009b45a8654dadd4ed723f527fd38157a1d92
 ```
 
-<img src="/static/image/tutorials/erc-20/invokeAllowanceBsTokenforA.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokeAllowanceBsTokenforA.png")} width="800"/>
 
 ### Approving C to spend 10 of B’s ERC-20 tokens
 
@@ -109,7 +111,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash e9f069c2c03b18f86c15fec54286ac66ece368ac36d9d28024d0cd6cfc93fcf5
 ```
 
-<img src="/static/image/tutorials/erc-20/invokingToCheckCsAllowance.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokingToCheckCsAllowance.png")} width="800"/>
 
 ## Transfer_from C’s Allowance to D
 
@@ -144,7 +146,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash eb506808fe0749364163fea646c3f4ef35bb55363ea849da219badcd6ba3ee80
 ```
 
-<img src="/static/image/tutorials/erc-20/invokingBalanceOfuserA.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokingBalanceOfuserA.png")} width="800"/>
 
 **Invoking `balance_of` for user B**
 
@@ -165,7 +167,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash 0ce2c4991543758337a38d1d8f7fe56a42616b95ec93b17aec35a6f03b5e389c
 ```
 
-<img src="/static/image/tutorials/erc-20/invokingBalanceOfuserB.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokingBalanceOfuserB.png")} width="800"/>
 
 **Invoking `balance_of` for user C**
 
@@ -186,7 +188,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash 215c50c0e86950cb91bd8e1045315c1129bbaa02d4e49e00bed60130c4dfa69c
 ```
 
-<img src="/static/image/tutorials/erc-20/invokingBalanceOfuserC1.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokingBalanceOfuserC1.png")} width="800"/>
 
 **Invoking `balance_of` for user D**
 
@@ -207,7 +209,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash 4e8b0de303f834cb7c61bef148046e3de4446903bd15a395c9c37a6d96efe8c6
 ```
 
-<img src="/static/image/tutorials/erc-20/invokingBalanceOfuserD.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokingBalanceOfuserD.png")} width="800"/>
 
 **Invoking `allowance` to check C’s allowance**
 
@@ -229,7 +231,7 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash d6d4d3e59017dfc21e2c9a8e235e2a2b3a446284a066a1f1f6704559fbb35a66
 ```
 
-<img src="/static/image/tutorials/erc-20/invokingAlToCheckCsAllowance.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokingAlToCheckCsAllowance.png")} width="800"/>
 
 ### Failure to Overspend C's Allowance\*\*
 
@@ -269,4 +271,4 @@ casper-client query-state -n http://3.143.158.19:7777 \
 --state-root-hash be29754920f158f093c1daac780fba37bed06c751f256a43fcdc7b5b2775e487
 ```
 
-<img src="/static/image/tutorials/erc-20/invokingToCheckCsAllowance3.png" width="800"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/invokingToCheckCsAllowance3.png")} width="800"/>
