@@ -6,7 +6,7 @@ Casper provides low-level bindings for host-side ("external") functions for deve
 
 ## B - Serialization Format {#appendix-b}
 
-The Casper serialization format is used to transfer data between wasm and the Casper host runtime. It is also used to persist global-state data in the Merkle trie. The definition of this format is described in the `global state <global-state-head>`{.interpreted-text role="ref"} section.
+The Casper serialization format is used to transfer data between wasm and the Casper host runtime. It is also used to persist global-state data in the Merkle trie. The definition of this format is described in the [global state](./global-state.md#global-state-head) section.
 
 A Rust reference implementation for those implementing this specification in another programming language can be found here:
 
@@ -22,7 +22,7 @@ Additionally, examples of all data types and their serializations are found in t
 
 ### Introduction {#introduction}
 
-The state of the Casper Network is represented by the `global state <global-state-head>`{.interpreted-text role="ref"}. The evolution of this state is captured by the blockchain itself, and eventually agreed upon by all nodes in the network via the consensus mechanism. In this section we are concerned with only a single step of that evolution. We think of such a step as performing some "computation" that changes the global state. A `deploy <execution-semantics-deploys>`{.interpreted-text role="ref"} is a user request for computation, and contains two atomic units of computation: the payment code and the session code (the details of which are discussed elsewhere). For the purpose of this section, we think of each of these units as a (mathematical) function which takes the current global state as input, perhaps along with some other arguments, and produces a new global state as output. However, since the overall global state is ambient from the perspective of the session/payment code itself, the global state is not an explicit parameter in any user's source code, nor is there any explicit return value.
+The state of the Casper Network is represented by the [global state](./global-state.md#global-state-head). The evolution of this state is captured by the blockchain itself, and eventually agreed upon by all nodes in the network via the consensus mechanism. In this section we are concerned with only a single step of that evolution. We think of such a step as performing some "computation" that changes the global state. A [deploy](./execution-semantics.md#execution-semantics-deploys) is a user request for computation, and contains two atomic units of computation: the payment code and the session code (the details of which are discussed elsewhere). For the purpose of this section, we think of each of these units as a (mathematical) function which takes the current global state as input, perhaps along with some other arguments, and produces a new global state as output. However, since the overall global state is ambient from the perspective of the session/payment code itself, the global state is not an explicit parameter in any user's source code, nor is there any explicit return value.
 
 In this section we refine this idea of computation modeled as functions, and describe how it is used to enable parallel execution.
 
