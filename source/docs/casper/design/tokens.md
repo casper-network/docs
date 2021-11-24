@@ -14,7 +14,7 @@ The number of tokens used as a basis for calculating seigniorage is 10 billion.
 
 ## Divisibility of Tokens {#tokens-divisibility}
 
-Typically, a _token_ is divisible into some number of parts. We call the indivisible units which make up the CSPR token _motes_. Each CSPR is divisible into $10^{9}$ motes. To avoid rounding errors, it is essential to always represent token balances in motes. In comparison, Ether is divisible into $10^{18}$ parts called Wei.
+Typically, a _token_ is divisible into some number of parts. We call the indivisible units which make up the CSPR token _motes_. Each CSPR is divisible into 10<sup>9</sup> motes. To avoid rounding errors, it is essential to always represent token balances in motes. In comparison, Ether is divisible into 10<sup>18</sup> parts called Wei.
 
 ## Mints and Purses {#tokens-mints-and-purses}
 
