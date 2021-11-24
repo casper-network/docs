@@ -75,7 +75,7 @@ casper-client get-auction-info \
 
 **Request fields**:
 
--   `node-address` -<HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
 
 If the public key and the amount are absent from the `bids` structure, we can safely assert that we have indeed undelegated from the validator.
 
