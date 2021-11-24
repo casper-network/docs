@@ -10,7 +10,7 @@ Computation is all done in a [WebAssembly (wasm)](https://webassembly.org/) inte
 
 Although computation is measured in `Gas`, we still take payment for computation in `motes <tokens-divisibility>`{.interpreted-text role="ref"}. Therefore, there is a conversion rate between `Gas` and motes. How this conversion rate is determined is discussed elsewhere.
 
-:::note Note
+:::note
 
 Please note that Casper will not refund any amount of unused gas.
 
