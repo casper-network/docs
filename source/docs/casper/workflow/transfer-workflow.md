@@ -1,13 +1,13 @@
 # Direct Token Transfer
 
-This workflow describes how to use the Casper command-line client to transfer tokens between accounts on a Casper Network.
+This workflow describes how to use the Casper command-line client to transfer tokens between accounts on the Casper Network.
 
 This workflow assumes:
 
 1.  You meet the [prerequisites](setup.md)
 2.  You are using the Casper command-line client
-3.  You have a target `PublicKey` hex the path to the source `SecretKey`
-4.  You have a valid `node-address`
+3.  You have a target *public key* hex the path to the source *secret key*
+4.  You have a valid *node-address*
 5.  You must be able to sign a deploy for the source account
 
 ## Transfer {#transfer}
@@ -26,7 +26,8 @@ casper-client transfer \
 --amount <amount-to-transfer> \
 --secret-key <source-account-secret-key>.pem \
 --chain-name casper \
---target-account <hex-encoded-target-account-public-key>
+--target-account <hex-encoded-target-account-public-key> \
+--payment-amount 10000
 ```
 
 **Request fields:**
