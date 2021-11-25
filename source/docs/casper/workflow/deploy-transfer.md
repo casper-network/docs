@@ -157,10 +157,10 @@ casper-client sign-deploy --input transfer.deploy --secret-key keys2/secret_key.
 | secret-key   | The path of the secret key file used to sign the deploy              |
 | output       | The path of the output file used to the save the deploy with multiple signatures |
 
-In the following output of the sign-deploy command, you can observe towards the end there is a section **approvals**, which has two signatures, one from the account initiating the transfer and second from the account used to sign the deploy.
+You can observe towards the end of the following output there is an **approvals** section, which has two signatures, one from the account initiating the transfer and second from the account used to sign the deploy.
 
 <details>
-<summary>Sample output of the sign-deploy command saved in the transfer2.deploy file</summary>
+<summary>Sample output saved in the transfer2.deploy file</summary>
 
 ```json
 {
