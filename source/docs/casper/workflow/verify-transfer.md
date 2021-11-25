@@ -2,109 +2,24 @@
 
 ## Prerequisite
 
-You need to endure the following prerequisites are met, before verifying a transfer:
+You need to ensure the following prerequisites are met, before verifying a transfer:
 
 1.  Set up your machine as per the [prerequisites](setup.md)
 2.  Use the Casper [command-line client](/workflow/setup#the-casper-command-line-client)
 3.  Initiate a transfer using [Direct Transfer](transfer-workflow.md) or [Multi-sig Deploy Transfer](deploy-transfer.md)
-4.  Get the `PublicKey` hex for the source and target accounts
+4.  Get the *public key* hex for the source and target accounts
+5.  Get the *deploy_hash* of the transfer you want to verify
 
-### State Root Hash {#state-root-hash}
+## State State Root Hash
 
-State information like the balance of an account on a Casper blockchain is stored in the [Global State](../design/global-state.md).
+The state root hash is an identifier of the current network state. It gives a snapshot of the blockchain state at a moment in time. You can use the state-root-hash to query the network state after deployments. 
 
-We will use the `get-block` command and the `block_hash` to query and retrieve the block that contains our deploy. We will use the `state_root_hash` from the response to look up various values, like the source and destination account and their balances.
-
-```bash
-casper-client get-block \
-      --id 3 \
-      --node-address http://<node-ip-address>:7777 \
-      --block-identifier <block-hash> \
 ```
-
-**Request fields:**
-
--   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
--   `block-identifier` - Hex-encoded block hash or height of the block. If not given, the last block added to the chain as known at the given node will be used
-
-**Important response fields:**
-
--   `"result"."block"."header"."state_root_hash"` - contains the `state-root-hash` for this block
-
-<details>
-<summary>Explore the JSON-RPC request and response generated.</summary>
-
-**JSON-RPC Request**:
-
-```json
-{
-    "id": 3,
-    "jsonrpc": "2.0",
-    "method": "chain_get_block",
-    "params": {
-        "block_identifier": {
-            "Hash": "7c7e9b0f087bba5ce6fc4bd067b57f69ea3c8109157a3ad7f6d98b8da77d97f9"
-        }
-    }
-}
+casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
+**Note**
 
-**JSON-RPC Response**:
-
-```json
-{
-    "id": 3,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "block": {
-            "body": {
-                "deploy_hashes": [],
-                "proposer": "012c6775c0e9e09f93b9450f1c5348c5f6b97895b0f52bb438f781f96ba2675a94",
-                "transfer_hashes": ["ec2d477a532e00b08cfa9447b7841a645a27d34ee12ec55318263617e5740713"]
-            },
-            "hash": "7c7e9b0f087bba5ce6fc4bd067b57f69ea3c8109157a3ad7f6d98b8da77d97f9",
-            "header": {
-                "accumulated_seed": "50b8ac019b7300cd1fdeec050310e61b900e9238aa879929745900a91bd0fc4f",
-                "body_hash": "224076b19c04279ae9b97f620801d5ff40ba64f431fe0d5089ef7cb84fdff45a",
-                "era_end": null,
-                "era_id": 0,
-                "height": 8,
-                "parent_hash": "416f339c4c2ff299c64a4b3271c5ef2ac2297bb40a477ceacce1483451a4db16",
-                "protocol_version": "1.0.0",
-                "random_bit": true,
-                "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3",
-                "timestamp": "2021-04-20T18:04:42.368Z"
-            },
-            "proofs": [
-                {
-                    "public_key": "010f50b0116f213ef65b99d1bd54483f92bf6131de2f8aceb7e3f825a838292150",
-                    "signature": "130 chars"
-                },
-                {
-                    "public_key": "012c6775c0e9e09f93b9450f1c5348c5f6b97895b0f52bb438f781f96ba2675a94",
-                    "signature": "130 chars"
-                },
-                {
-                    "public_key": "018d5da83f22c9b65cdfdf9f9fdf9f7c98aa2b8c7bcf14bf855177bbb9c1ac7f0a",
-                    "signature": "130 chars"
-                },
-                {
-                    "public_key": "01b9088b92c8a8d592f6ec8c3e8153d7c55fc0c38b5999a214e37e73a2edd6fe0f",
-                    "signature": "130 chars"
-                },
-                {
-                    "public_key": "01b9e3484d96d5693e6c5fe789e7b28972aa392b054a76d175f079692967f604de",
-                    "signature": "130 chars"
-                }
-            ]
-        }
-    }
-}
-```
-
-</details>
+>   After any deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you will be looking at events in the past.
 
 ## Query the Source Account {#query-the-source-account}
 
@@ -112,10 +27,10 @@ Next, we will query for information about the _Source_ account, using the `state
 
 ```bash
 casper-client query-state \
-  --id 4 \
-  --node-address http://<node-ip-address>:7777 \
-  --state-root-hash <state-root-hash> \
-  --key <hex-encoded-source-account-public-key>
+--id 4 \
+--node-address http://<node-ip-address>:7777 \
+--state-root-hash <state-root-hash> \
+--key <hex-encoded-source-account-public-key>
 ```
 
 **Request fields:**
@@ -185,9 +100,9 @@ We will repeat the previous step to query information about the _Target_ account
 
 ```bash
 casper-client query-state \
-      --id 5 \
-      --state-root-hash <state-root-hash> \
-      --key <hex-encoded-target-account-public-key>
+--id 5 \
+--state-root-hash <state-root-hash> \
+--key <hex-encoded-target-account-public-key>
 ```
 
 **Request fields:**
@@ -304,11 +219,13 @@ casper-client get-balance \
 
 Similarly, now that we have the address of the target purse, we can get its balance.
 
-    casper-client get-balance \
-          --id 7 \
-          --node-address http://<node-ip-address>:7777 \
-          --state-root-hash <state-root-hash> \
-          --purse-uref <target-account-purse-uref>
+```bash    
+casper-client get-balance \
+--id 7 \
+--node-address http://<node-ip-address>:7777 \
+--state-root-hash <state-root-hash> \
+--purse-uref <target-account-purse-uref>
+```
 
 **Request fields:**
 
@@ -358,10 +275,10 @@ We will use the `transfer-` to query more details about the transfer.
 
 ```bash
 casper-client query-state \
-      --id 8 \
-      --node-address http://<node-ip-address>:7777 \
-      --state-root-hash <state-root-hash> \
-      --key transfer-
+--id 8 \
+--node-address http://<node-ip-address>:7777 \
+--state-root-hash <state-root-hash> \
+--key transfer-
 ```
 
 **Request fields:**
