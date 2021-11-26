@@ -2,7 +2,7 @@
 
 ## Introduction {#accounts-intro}
 
-An _account_ is a cryptographically secured gateway into the Casper system used by entities outside the blockchain (e.g., off-chain components of blockchain-based applications, individual users). All user activity on the Casper blockchain (i.e., "deploys") must originate from an account. Each account has its own context where it can locally store information (e.g., references to useful contracts, metrics, aggregated data from other parts of the blockchain). Each account also has a "main purse" where it can hold Casper tokens (see `Tokens <tokens-purses-and-accounts>`{.interpreted-text role="ref"} for more information).
+An _account_ is a cryptographically secured gateway into the Casper system used by entities outside the blockchain (e.g., off-chain components of blockchain-based applications, individual users). All user activity on the Casper blockchain (i.e., "deploys") must originate from an account. Each account has its own context where it can locally store information (e.g., references to useful contracts, metrics, aggregated data from other parts of the blockchain). Each account also has a "main purse" where it can hold Casper tokens (see [Tokens](./tokens.md#tokens-purses-and-accounts) for more information).
 
 In this chapter we describe the permission model for accounts, their local storage capabilities, and briefly mention some runtime functions for interacting with accounts.
 
@@ -10,7 +10,7 @@ In this chapter we describe the permission model for accounts, their local stora
 
 An `Account` contains the following data:
 
--   A collection of named keys (this plays the same role as the named keys in a `stored contract <global-state-contracts>`{.interpreted-text role="ref"})
+-   A collection of named keys (this plays the same role as the named keys in a [stored contract](./global-state.md#global-state-intro))
 -   A `URef` representing the account's "main purse"
 -   A collections of "associated keys" (see below for more information)
 -   "Action thresholds" (see below for more information)
@@ -45,11 +45,11 @@ Note: that it is extremely important to ensure there will always be access to a 
 
 ## Creating an account {#accounts-creating}
 
-Account creation happens automatically when there is a `token transfer <tokens-purses-and-accounts>`{.interpreted-text role="ref"} to a yet unused `identity key <global-state-account-key>`{.interpreted-text role="ref"}. When an account is first created, the balance of its main purse is equal to the number of tokens transferred, its action thresholds are equal to 1, and there is one associated key (equal to the public key used to derive the identity key) with weight 1.
+Account creation happens automatically when there is a [token transfer](./tokens.md#tokens-purses-and-accounts) to a yet unused [identity key](./global-state.md#global-state-intro). When an account is first created, the balance of its main purse is equal to the number of tokens transferred, its action thresholds are equal to 1, and there is one associated key (equal to the public key used to derive the identity key) with weight 1.
 
 ## The account context {#accounts-context}
 
-A deploy is a user request to perform some execution on the blockchain (see `Execution Semantics <execution-semantics-deploys>`{.interpreted-text role="ref"} for more information). It contains "payment code" and "session code" which are contracts that contain the logic to be executed. These contracts are executed in the context of the account of the deploy. This means these contracts use the named keys of the account and use the account's local storage (i.e., the "root" for the `local keys <global-state-local-key>`{.interpreted-text role="ref"} come from the account identity key).
+A deploy is a user request to perform some execution on the blockchain (see [Execution Semantics](./execution-semantics.md#execution-semantics-deploys-as-functions) for more information). It contains "payment code" and "session code" which are contracts that contain the logic to be executed. These contracts are executed in the context of the account of the deploy. This means these contracts use the named keys of the account and use the account's local storage (i.e., the "root" for the [local keys](./global-state.md#global-state-intro) come from the account identity key).
 
 Note: that other contracts called from the session code by `call_contract` are executed in their own context, not the account context. This means, an account (with logic contained in session code) can be used to locally store information relevant to the user owning the account.
 

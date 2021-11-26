@@ -10,7 +10,10 @@ The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. T
 
 To install the CaperLabs Signer extension, follow these steps:
 
-:::note Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to _Step 4_.  
+:::note
+
+Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to _Step 4_.
+
 :::
 
 1. Navigate to the CSPR mainnet https://cspr.live/, using Chrome or a Chromium-based browser like Brave.
@@ -50,7 +53,11 @@ To create an account, do the following:
 3. Click **CREATE** to create your account.
     1. To return to the Casper Signer home, click the home icon <img src={useBaseUrl("/image/tutorials/signer/home-icon.png")} width="25" class="inline-img" /> on the top-left corner of the pop-up window. Here, you can see the number of accounts in your wallet and the name of the account that is currently active.
 
-:::note It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. See [Download Active Keys](signer-guide#44-download-active-keys) for more information. :::
+:::note
+
+It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. See [Download Active Keys](signer-guide#44-download-active-keys) for more information.
+
+:::
 
 ## 3. Importing an Account
 
@@ -94,11 +101,17 @@ You can use the Casper Signer to connect to various websites and dApps. To conne
 
 1.  Navigate to the website or dApp that is integrated with the Signer.
 2.  Log in to your Signer, for more details see [Logging in to the Casper Signer](signer-guide#12-logging-in-to-the-casper-signer).
-3.  On the Signer home, the top bar displays DISCONNECTED. Click this bar to connect to the website. When the website is connected to the Casper Signer, the top bar displays CONNECTED. :::note If the website is not integrated with Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’. :::
+3.  On the Signer home, the top bar displays DISCONNECTED. Click this bar to connect to the website. When the website is connected to the Casper Signer, the top bar displays CONNECTED.
 4.  Click the main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> to open the main menu and select **Connected Sites**. The current website is displayed in the list of connected sites.
 5.  To connect to a site, click the connect icon next to the name of the website.
 
 **Figure 4**: Connected Sites <img src={useBaseUrl("/image/tutorials/signer/connect-site.png")} width="200" />
+
+:::note
+
+If the website is not integrated with Casper Signer, the roll-over text displays the message ‘This site is not integrated with the Signer’.
+
+:::
 
 ### 4.4 Download Active Keys
 
