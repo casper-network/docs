@@ -6,6 +6,7 @@ module.exports = {
         "workflow/ledger-setup",
         "workflow/setup",
         "workflow/querying",
+	"workflow/account-hash",
         "workflow/two-party-multi-sig",
 	{
 	    type: "category",
