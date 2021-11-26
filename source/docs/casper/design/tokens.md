@@ -14,15 +14,15 @@ The number of tokens used as a basis for calculating seigniorage is 10 billion.
 
 ## Divisibility of Tokens {#tokens-divisibility}
 
-Typically, a _token_ is divisible into some number of parts. We call the indivisible units which make up the CSPR token _motes_. Each CSPR is divisible into $10^{9}$ motes. To avoid rounding errors, it is essential to always represent token balances in motes. In comparison, Ether is divisible into $10^{18}$ parts called Wei.
+Typically, a _token_ is divisible into some number of parts. We call the indivisible units which make up the CSPR token _motes_. Each CSPR is divisible into 10<sup>9</sup> motes. To avoid rounding errors, it is essential to always represent token balances in motes. In comparison, Ether is divisible into 10<sup>18</sup> parts called Wei.
 
 ## Mints and Purses {#tokens-mints-and-purses}
 
 A _mint_ is a contract that can produce new motes of a particular type. We allow for multiple mote types (each of which would have its mint contract) because we anticipate the existence of a large ecosystem of different tokens, similar to the way Etherum works with ERC20 tokens. Casper will deploy a specific mint contract, and it will manage the CSPR utility token (used for paying for computation and bonding onto the network). The mint also maintains all the balances for its type of mote. Each balance is associated with a `URef`, which acts as a key to instruct the mint to perform actions on that balance (e.g., transfer motes). Informally, we will refer to these balances as _purses_ and conceptually represent a container for motes. The `URef` is how a purse is referenced externally, outside the mint.
 
-The `AccessRights` of the `URefs <global-state-urefs-permissions>`{.interpreted-text role="ref"} permissions model determine what actions are allowed to be performed when using a `URef` associated with a purse.
+The `AccessRights` of the [URefs](./uref.md#global-state-urefs-permissions) permissions model determine what actions are allowed to be performed when using a `URef` associated with a purse.
 
-As all `URef`s are unforgeable, so the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be given to the current context in a valid way (see `URefs <global-state-urefs-permissions>`{.interpreted-text role="ref"} permissions for details).
+As all `URef`s are unforgeable, so the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be given to the current context in a valid way (see [URefs](./uref.md#global-state-urefs-permissions) permissions for details).
 
 The basic global state options map onto more standard monetary operations according to the table below:
 
@@ -67,4 +67,4 @@ To avoid this inconvenience, it is a better practice for application developers 
 
 ## Purses and Accounts {#tokens-purses-and-accounts}
 
-All `accounts-head`{.interpreted-text role="ref"} on the Casper system have a purse associated with the Casper system mint, which we call the _main purse_. However, for security reasons, the `URef` of the main purse is only available to code running in the context of that account (i.e. only in payment or session code). Therefore, the mint's `transfer` method which accepts `URef`s is not the most convenient to use when transferring between account main purses. For this reason, Casper supplies a [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html) function which takes the public key used to derive the identity key of the account. This function uses the mint transfer function with the current account's main purse as the `source` and the main purse of the account at the provided key as the `target`.
+All [accounts-head](./accounts.md#accounts-head) on the Casper system have a purse associated with the Casper system mint, which we call the _main purse_. However, for security reasons, the `URef` of the main purse is only available to code running in the context of that account (i.e. only in payment or session code). Therefore, the mint's `transfer` method which accepts `URef`s is not the most convenient to use when transferring between account main purses. For this reason, Casper supplies a [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html) function which takes the public key used to derive the identity key of the account. This function uses the mint transfer function with the current account's main purse as the `source` and the main purse of the account at the provided key as the `target`.

@@ -27,7 +27,7 @@ Since this is a Rust implementation of the ERC-20 token for Casper, we will go o
 
 :::note
 
-    In Rust, the keyword use is like an include statement in C/C++.
+In Rust, the keyword use is like an include statement in C/C++.
 
 :::
 

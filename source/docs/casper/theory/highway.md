@@ -93,12 +93,12 @@ Given a round exponent $n$, the length of a round that a validator uses
 
 So, effectively, rounds live in sort of parallel worlds ("lanes of the highway"), where all validators with same round exponent $n$ have the same schedule of rounds. On the other hand, if we compare two validators, **Alice** and **Bob**, **Alice** using round exponent $n$, **Bob** using round exponent $m$, and assuming $n < m$, then:
 
--   **Alice** is $2^{m-n}$ faster than **Bob**
+-   **Alice** is 2<sup>m-n</sup> faster than **Bob**
 -   **Alice** participates in all rounds that **Bob** knows about
 
 \- **Bob** participates only in some rounds that **Alice** knows about - once
 
-: every $2^{m-n}$ **Alice**'s rounds
+: every 2<sup>m-n</sup> **Alice**'s rounds
 
 A round is identified by the tick at which it starts. Of course validators with different round exponents will differ in perspective on the length of this round.
 
@@ -150,7 +150,7 @@ $omega\_delay \in(0,1)$ is a blockchain parameter - to be picked by simulation a
 We need to make it clear what the semantics is of adjusting the round exponent. First, we want to say that the mechanics of messages creation requires that a validator knows what exponent he was using at any tick. This can be formalized by saying that for any validator $v$ there is a function $n_v: Int \to Int$, assigning an exponent to be used by $v$ in any given tick.
 
 When a validator wants to adjust its round exponent, this must be done at a tick that happens to be the boundary of both the old-length round and the new-length round. Mathematically this transforms into saying that $n_v
-(i) = n_v(i-1)$ unless $i$ is a multiple of both $2^{n_v(i)}$ and $2^{n_v(i-1)}$.
+(i) = n_v(i-1)$ unless $i$ is a multiple of both 2<sup>n_v(i)</sup> and 2<sup>n_v(i-1)</sup>.
 
 Auto-adjusting of round lengths is based on an internal finalizer which every
 
