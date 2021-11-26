@@ -66,7 +66,7 @@ casper-client put-deploy \
 
 **Request fields:**
 
--   `node-address` - \<HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
 
 -   `secret-key` - Path to secret key file
 
@@ -107,7 +107,7 @@ casper-client get-auction-info \
 
 **Request fields**:
 
--   `node-address` - \<HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
 
 The `get-auction-info` call will return all the bids currently in the auction contract and the list of active validators for `4` future eras from the present era.
 
@@ -155,7 +155,7 @@ casper-client get-auction-info \
 
 **Request fields**:
 
--   `node-address` - \<HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
 
 **Important Response fields**:
 

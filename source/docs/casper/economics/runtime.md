@@ -5,7 +5,7 @@ slug: /runtime
 
 # Runtime Economics
 
-The economics of the runtime layer should incentivize efficient allocation of computational resources, primarily CPU time, to users. Pending state pruning implementation, disk space use is treated as CPU time usage and charged, irreversibly, per byte written. Currently, gas is allocated according to a first-in, first-out model for deploys, with a fixed price of 1 mote (1/10\^9 part of a CSPR token) per 1 unit of gas.
+The economics of the runtime layer should incentivize efficient allocation of computational resources, primarily CPU time, to users. Pending state pruning implementation, disk space use is treated as CPU time usage and charged, irreversibly, per byte written. Currently, gas is allocated according to a first-in, first-out model for deploys, with a fixed price of 1 mote (1/10<sup>9</sup> part of a CSPR token) per 1 unit of gas.
 
 ## Gas allocation {#gas-allocation}
 

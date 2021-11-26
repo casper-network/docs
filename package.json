@@ -88,9 +88,6 @@
     "lint-staged": {
         "*.{js,ts,jsx,tsx}": [
             "yarn run:lint"
-        ],
-        "*.*": [
-            "pretty-quick --staged"
         ]
     }
 }

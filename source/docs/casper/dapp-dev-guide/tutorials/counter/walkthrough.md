@@ -32,7 +32,7 @@ If you run the following line in your terminal, you should be able to spin up a 
 nctl-assets-setup && nctl-start
 ```
 
-:::note Note
+:::note
 
 If it fails for any reason, please refer the [NCTL tutorial](../../setup-nctl.md) and make sure that all your packages are up to date).
 
@@ -110,7 +110,7 @@ casper-client get-deploy \
 
 Hopefully, the deployment was successful. Let us call the `casper-client query-state` command to check if the named key is visible on the chain now.
 
-:::note Note
+:::note
 
 We must get the new state root hash since we just wrote a deploy to the chain.
 

@@ -38,10 +38,11 @@ casper-client make-transfer --amount 2500000000 \
 --payment-amount 10000
 ```
 
-**Note:** 
+:::note
 
-> To use this example on the Mainnet, replace _chain-name_ as casper instead of casper-test.
+To use this example on the Mainnet, replace _chain-name_ as casper instead of casper-test.
 
+:::
 
 | Parameter | Description |
 | --- | --- |
@@ -183,5 +184,7 @@ The following steps can help you verify if the transfer was successful using the
 6. [Get the target account balance](transfer-workflow#get-target-account-balance) to confirm that the amount was credited
 
 :::tip 
+
 You can also verify if the transfer was successful by logging on to the https://cspr.live/ website and checking your account balance. 
+
 :::
