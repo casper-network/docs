@@ -118,7 +118,6 @@ cargo casper --help
 To build the project, go into the `my-project` folder, install the Rust toolchain and specify the target build as WebAssembly (wasm32):
 
 ```
-cd contract
 cd my-project
 rustup install $(cat rust-toolchain)
 rustup target add --toolchain $(cat rust-toolchain) wasm32-unknown-unknown
