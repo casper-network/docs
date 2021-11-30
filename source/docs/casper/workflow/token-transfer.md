@@ -14,7 +14,7 @@ The [Casper Testnet](https://testnet.cspr.live/) is an alternate Casper blockcha
 
 To login to the testnet, follow these steps:
 1. Navigate to the CSPR testnet https://testnet.cspr.live/, using Chrome or a Chromium-based browser like Brave. 
-2. Sign in with your account password. See the [Signer Guide](https://docs.casperlabs.io/en/latest/workflow/signer-guide.html) for help with logging in.
+2. Sign in with your account password. See the [Signer Guide](signer-guide.md) for help with logging in.
 
 ### 1.2 Viewing Account Information
 
