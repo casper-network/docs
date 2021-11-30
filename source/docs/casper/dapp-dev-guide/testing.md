@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Testing Contracts
 
 As part of the Casper local Rust contract development environment, we provide an in-memory virtual machine against which you can run your contract. You do not need to set up a full node for testing. We provide a testing framework that simulates deploy execution, enables monitoring global state changes using assertions, and confirms a successful deploy of the smart contract.
@@ -98,7 +100,7 @@ Deploy item contain the following elements:
 
     ***empty_payment_bytes*** implies the module bytes inside the deploy item's payment part are empty. It directs the framework to use the standard payment contract that is the original amount (DEFAULT_PAYMENT).
 
-<p align="center"><img src="/static/image/EmptyModuleBytes.png" width="500"/></p>
+<p align="center"><img src={useBaseUrl("/image/EmptyModuleBytes.png")} width="300"/></p>
 
 -   *`session_code`* : Sets the session code for the deploy using session_code and session_args
 
@@ -283,4 +285,4 @@ fn main() {
 
 You can see the result of the above test in this screen capture:
 
-<p align="center"><img src="/static/image/test-compile-result.png" width="700"/></p>
+<p align="center"><img src={useBaseUrl("/image/test-compile-result.png")} width="700"/></p>

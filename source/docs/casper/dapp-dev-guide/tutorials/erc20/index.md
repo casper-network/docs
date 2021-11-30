@@ -13,4 +13,4 @@ The ERC-20 standard defines a set of rules that dictate the total supply of toke
 
 The following functions implement the rules defined by ERC-20: `totalSupply`, `transfer`, `transferFrom`, `approve`, `balanceOf`, and `allowance`. As part of this tutorial, we will review the [contract](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-token/src/main.rs) and the [casper_erc20](https://docs.rs/casper-erc20/latest/casper_erc20/) library.
 
-If you haven't read [Writing Rust Contracts on Casper](https://docs.casperlabs.io/en/latest/dapp-dev-guide/writing-contracts/writing-rust-contracts.html), we recommend you start there.
+If you haven't read [Writing Rust Contracts on Casper](../../writing-contracts/rust.md), we recommend you start there.
