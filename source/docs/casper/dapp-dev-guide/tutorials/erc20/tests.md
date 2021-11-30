@@ -72,7 +72,7 @@ The [TestFixture](https://github.com/casper-ecosystem/erc20/blob/master/example/
 
 ### Setting up the testing context {#setting-up-the-testing-context}
 
-The code in the [TestFixture](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-tests/src/test_fixture.rs) initializes the blockchain's [global state](https://docs.casperlabs.io/en/latest/glossary/G.html#global-state) with all the data and methods a smart contract needs.
+The code in the [TestFixture](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-tests/src/test_fixture.rs) initializes the blockchain's [global state](../../../glossary/G.md#global-state) with all the data and methods a smart contract needs.
 
 Below is a subset of the required constants for this project. For the most up-to-date version of the code, visit [GitHub](https://github.com/casper-ecosystem/erc20).
 
