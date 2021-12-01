@@ -26,7 +26,7 @@ You can use global variables and constants in later steps to derive values and c
 
 **Global Variables and Constants**
 
-Framework use these variables to find the compiled WASM file and to create the deploy.
+The framework uses global variables and constants to find the compiled WASM file and to create the deploy.
 
 ```rust
 use std::path::PathBuf;
@@ -39,7 +39,7 @@ const CONTRACT_WASM: &str = "contract.wasm";
 
 - *`KEY`* and *`VALUE`* : These constants are the global states we are using to test whether the deploy has been executed correctly. KEY acts as the input to the assertion and VALUE acts as the output from the assertion
 - *`PathBuff`* : The contract uses this variable to find the compiled WASM file 
-- *`RUNTIME_ARG_NAME and`* and *`CONTRACT_WASM`* : These are used to build deploy.
+- *`RUNTIME_ARG_NAME`* and *`CONTRACT_WASM`* : Variables used to build the deploy
 
 #### Imports
 
@@ -58,7 +58,7 @@ use casper_types::{
 
 ### Create a Deploy Item
 
-Framework uses the `DeployItem` to derive the `ExecuteRequest` to send to the test contract.
+The testing framework uses the `DeployItem` to derive the `ExecuteRequest` to send to the test contract.
 
 **Declaring Local Variables**
 
@@ -77,8 +77,8 @@ let session_args = runtime_args! {
 
 -   *`secret_key`* and *`public_key`* : Used to derive the account address
 -   *`account address`* : Used to get the authorization key and location
--   *`session_code`* : Gets the path to your actual contract wasm file on your system
--   *`session_args`* Get the runtime argument value
+-   *`session_code`* : Gets the path to your actual contract WASM file on your system
+-   *`session_args`* Get the values of runtime arguments
 
 **Create Deploy Item**
 
@@ -94,17 +94,17 @@ let deploy_item = DeployItemBuilder::new()
 ```
 ***Constructor methods***
 
-Deploy item contain the following elements:
+The deploy item contain the following elements:
 
--   _`payment details`_ : This can be standard payments or custom payments. Standard payment is the bare payment amount a user wishes to pay for the deploy. Custom payment comes with payment codes or functions that indicate payments by module bytes. 
+-   _`payment details`_ : This can be standard payments or custom payments. Standard payment is the bare payment amount a user wishes to pay for the deploy. Custom payment comes with payment codes or functions that indicate payments by module bytes 
 
-    ***empty_payment_bytes*** implies the module bytes inside the deploy item's payment part are empty. It directs the framework to use the standard payment contract that is the original amount (DEFAULT_PAYMENT).
+    ***empty_payment_bytes*** implies the module bytes inside the deploy item's payment part are empty. It directs the framework to use the standard payment contract that is the original amount (DEFAULT_PAYMENT)
 
 <p align="center"><img src={useBaseUrl("/image/EmptyModuleBytes.png")} width="300"/></p>
 
 -   *`session_code`* : Sets the session code for the deploy using session_code and session_args
 
-    -   *PathBuff* : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities.
+    -   *PathBuff* : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities
 -   *`authorization_keys`* : Sets authorization keys to authorize the deploy
 -   *`address`* : Sets the address of the deploy
 
@@ -145,9 +145,8 @@ builder.exec(execute_request).commit().expect_success();
 
 ***Builder methods***
 
--   *`Commit()`* - This will process the execution result of the previous *execute_request* on the latest post-state hash, which is the hash function's output.
-
--   *`expect_success()`* - This will assert  the deploy as a successful execution. If it is not successful, it will crash the test.
+-   *`Commit()`* - This will process the execution result of the previous *execute_request* on the latest post-state hash, which is the hash function's output
+-   *`expect_success()`* - This will assert  the deploy as a successful execution. If it is not successful, it will crash the test
 
 ## Query and Assert
 
@@ -159,7 +158,7 @@ Query and assertion steps are as below:
 2. Deploy the contract
 3. Post-assertion
 
-The smart contract creates a new value _hello world_ under the KEY, _my-key-name_. It's possible to extract this value from the global state of the blockchain using the `query_result`.
+The smart contract creates a new value _hello world_ under the KEY, _my-key-name_. You can extract this value from the global state of the blockchain using the `query_result`.
 
 ### Pre-Assertion
 
@@ -202,12 +201,12 @@ This will query the post-deploy value and assert for its change.
 
 ***Builder methods***
 
--   *`query()`* : Queries the state for a given value.
--   *`expect()`* : The validation for the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash.
--   *`as_cl_value()`* : Returns a wrapped [CLValue](/docs/design/serialization-standard#serialization-standard-values) if this is a CLValue variant.
+-   *`query()`* : Queries the state for a given value
+-   *`expect()`* : The validation for the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash
+-   *`as_cl_value()`* : Returns a wrapped [CLValue](/docs/design/serialization-standard#serialization-standard-values) if this is a CLValue variant
 
 -   *`clone()`* : To break the reference to the CLValue so that it will provide brand new CLValue
--   *`Into_t()`* : Cast the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type.
+-   *`Into_t()`* : Cast the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type
 
 **Assertion**
 
