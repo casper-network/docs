@@ -217,7 +217,7 @@ Open the `config/algolia.config.js` file and replace the `api_key`, `index_name`
 
 If you get the following error, when starting the instance using Node v17:
 
-```
+```bash
 Error: error:0308010C:digital envelope routines::unsupported
     at new Hash (node:internal/crypto/hash:67:19)
     at Object.createHash (node:crypto:130:10)
@@ -244,9 +244,11 @@ Node.js v17.1.0
 error Command failed with exit code 1.
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 ```
+
 This is a [known issue on Docusaurus side](https://github.com/facebook/docusaurus/issues/5778) which has been closed.
 
 There is a workaround which consists on setting an environment variable before running the command or in your shell/system environment:
+
 ```bash
 export NODE_OPTIONS=--openssl-legacy-provider
 ```
