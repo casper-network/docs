@@ -7,9 +7,15 @@ module.exports = {
 		"workflow/token-transfer",
         "workflow/setup",
         "workflow/querying",
-        "workflow/transfer-workflow",
-		"workflow/deploy-transfer",
+	"workflow/account-hash",
         "workflow/two-party-multi-sig",
+	{
+	    type: "category",
+            label: "Transferring Tokens",
+            collapsible: true,
+            collapsed: true,
+            items: ["workflow/transfers", "workflow/transfer-workflow", "workflow/deploy-transfer", "workflow/verify-transfer"],
+	},
         "workflow/delegate",
         "workflow/undelegate",
         {
