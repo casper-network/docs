@@ -138,7 +138,7 @@ Save this output in a _transfer.deploy_ file as shown in the following command.
 casper-client make-transfer --amount 2500000000 \
 --secret-key keys1/secret_key.pem \
 --chain-name casper-test \
---target-account 019a33f123ae936ccd29d8fa5438f03a86b6e34fe4346219e571d5ac42cbff5be6 \
+--target-account [PRIMARY KEY HEX] \
 --transfer-id 3 \
 --payment-amount 10000 > transfer.deploy
 ```
@@ -148,7 +148,10 @@ casper-client make-transfer --amount 2500000000 \
 Once the deploy file is created, you can sign the deploy using the other designated accounts. For this example, we are signing the deploy with the secret_key.pem stored in keys2 folder and saving the output in a transfer2.deploy file.
 
 ```bash
-casper-client sign-deploy --input transfer.deploy --secret-key keys2/secret_key.pem --output transfer2.deploy
+casper-client sign-deploy \
+--input transfer.deploy \
+--secret-key keys2/secret_key.pem \
+--output transfer2.deploy
 ```
 
 | Parameter    | Description                                                          |
@@ -166,7 +169,7 @@ You can observe towards the end of the following output there is an **approvals*
 {
   "hash": "6c584812f844e56b6a133e205a03e1eef039e78f93b9dca1f429301f3e17806b",
   "header": {
-    "account": "013ad94f8932e3d14a715225a4088971c9d551a3d1281cdd5f726063762d932b0e",
+    "account": "013ad94f8732e3d14a715225a4088971c9d551a3d1281cdd5f726063762d932b0e",
     "timestamp": "2021-11-25T14:30:26.592Z",
     "ttl": "30m",
     "gas_price": 1,
@@ -225,7 +228,7 @@ You can observe towards the end of the following output there is an **approvals*
   },
   "approvals": [
     {
-      "signer": "013ad94f8932e3d14a715225a4088971c9d551a3d1281cdd5f726063762d932b0e",
+      "signer": "013ad94f8732e3d14a715225a4088971c9d551a3d1281cdd5f726063762d932b0e",
       "signature": "0102680af44588d79d30c3403edd22a715fd988fea00fd1bafbb1e67cc48c07752645861df440d74f7a6a19949019b63f776d7d00b2867db3f1b4a6ffb5551870d"
     },
     {
@@ -271,7 +274,7 @@ Make a note of the *deploy_hash* from the send-deploy command output. This will 
 
 ## Verifying the Transfer
 
-To verify the status of your transfer, see [Verifying a Transfer](verify-transfer.md)
+To verify the status of your transfer, see [Verifying a Transfer](verify-transfer.md).
 
 :::tip 
 
