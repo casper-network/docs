@@ -213,6 +213,48 @@ Open the `config/algolia.config.js` file and replace the `api_key`, `index_name`
 
 ## Troubleshooting
 
+### Error: ERR_OSSL_EVP_UNSUPPORTED on yarn run start:
+
+If you get the following error, when starting the instance using Node v17:
+
+```bash
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:67:19)
+    at Object.createHash (node:crypto:130:10)
+    at BulkUpdateDecorator.hashFactory (/home/vagrant/docs-app/node_modules/webpack/lib/util/createHash.js:145:18)
+    at BulkUpdateDecorator.update (/home/vagrant/docs-app/node_modules/webpack/lib/util/createHash.js:46:50)
+    at OriginalSource.updateHash (/home/vagrant/docs-app/node_modules/webpack/node_modules/webpack-sources/lib/OriginalSource.js:138:8)
+    at NormalModule._initBuildHash (/home/vagrant/docs-app/node_modules/webpack/lib/NormalModule.js:870:17)
+    at handleParseResult (/home/vagrant/docs-app/node_modules/webpack/lib/NormalModule.js:936:10)
+    at /home/vagrant/docs-app/node_modules/webpack/lib/NormalModule.js:1028:4
+    at processResult (/home/vagrant/docs-app/node_modules/webpack/lib/NormalModule.js:745:11)
+    at /home/vagrant/docs-app/node_modules/webpack/lib/NormalModule.js:809:5
+    at /home/vagrant/docs-app/node_modules/loader-runner/lib/LoaderRunner.js:406:3
+    at iterateNormalLoaders (/home/vagrant/docs-app/node_modules/loader-runner/lib/LoaderRunner.js:232:10)
+    at Array.<anonymous> (/home/vagrant/docs-app/node_modules/loader-runner/lib/LoaderRunner.js:223:4)
+    at runCallbacks (/home/vagrant/docs-app/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:27:15)
+    at /home/vagrant/docs-app/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:200:4
+    at /home/vagrant/docs-app/node_modules/graceful-fs/graceful-fs.js:123:16 {
+  opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+Node.js v17.1.0
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+```
+
+This is a [known issue on Docusaurus side](https://github.com/facebook/docusaurus/issues/5778) which has been closed.
+
+There is a workaround which consists on setting an environment variable before running the command or in your shell/system environment:
+
+```bash
+export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+This issue will be fixed when the version of Docusaurus used in this repo gets updated at least to the version [v2.0.0-beta.9](https://github.com/facebook/docusaurus/releases/tag/v2.0.0-beta.9 ) where the [feature which fixes this bug](https://github.com/facebook/docusaurus/pull/5814) is released.
+
 ### Debugging Site Data
 
 Run the project locally and go to `http://localhost:3000/__docusaurus/debug/routes`.

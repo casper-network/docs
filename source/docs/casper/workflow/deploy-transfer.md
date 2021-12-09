@@ -1,6 +1,6 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Transferring Tokens using a Deploy File
+# Transferring Tokens using a Multi-sig Deploy
 
 This topic explores the use of a deploy file to transfer Casper tokens (CSPR) between accounts on the Casper Network. This method of transferring tokens is useful when you want to implement multi-signature deploys. To understand more about multi-signature deploys, see [Two-Party Multi-Signature Deploys](two-party-multi-sig.md). The `make-transfer` command allows you to create a transfer deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
 
@@ -23,7 +23,7 @@ The high-level flow to transfer tokens using a deploy file is described in the f
 2. Save the output of the `make-deploy` command in a deploy file
 3. Use the `send-deploy` command to send the deploy to the network through a valid node
 
-<img src={useBaseUrl("/image/workflow/deploy-flow.png")} width="500" />
+<img src={useBaseUrl("/image/workflow/deploy-flow.png")} width="600" />
 
 ### Preparing the Transfer
 
@@ -33,12 +33,12 @@ This section explains the `make-transfer` command using an example you can try o
 casper-client make-transfer --amount 2500000000 \
 --secret-key keys1/secret_key.pem \
 --chain-name casper-test \
---target-account 019a33f123ae936ccd29d8fa5438f03a86b6e34fe4346219e571d5ac42cbff5be6 \
+--target-account [PRIMARY KEY HEX] \
 --transfer-id 3 \
 --payment-amount 10000
 ```
 
-:::note
+:::note 
 
 To use this example on the Mainnet, replace _chain-name_ as casper instead of casper-test.
 
@@ -60,71 +60,71 @@ To use this example on the Mainnet, replace _chain-name_ as casper instead of ca
 
 ```json
 {
-    "hash": "34c4adbaa5493d9485637396a1a500657765ca35845bf15527be3149e5beb008",
-    "header": {
-        "account": "01e07110e92f554014ffdecc2582c999fcac7a9fbfad3ed7d8ae1cb14681f18a7b",
-        "timestamp": "2021-10-27T11:16:59.592Z",
-        "ttl": "30m",
-        "gas_price": 1,
-        "body_hash": "5f3f6f7ba595b95084173dc4f1052198ed9993847337c9d8a091226798d2f42a",
-        "dependencies": [],
-        "chain_name": "casper-test"
-    },
-    "payment": {
-        "ModuleBytes": {
-            "module_bytes": "",
-            "args": [
-                [
-                    "amount",
-                    {
-                        "cl_type": "U512",
-                        "bytes": "021027",
-                        "parsed": "10000"
-                    }
-                ]
-            ]
-        }
-    },
-    "session": {
-        "Transfer": {
-            "args": [
-                [
-                    "amount",
-                    {
-                        "cl_type": "U512",
-                        "bytes": "0400f90295",
-                        "parsed": "2500000000"
-                    }
-                ],
-                [
-                    "target",
-                    {
-                        "cl_type": {
-                            "ByteArray": 32
-                        },
-                        "bytes": "9c4dca7bcd384a081b7d014a6593bb27007a38d922d2693fa7999abd736d09b8",
-                        "parsed": "9c4dca7bcd384a081b7d014a6999bb27007a38d922d2693fa7800abd736d09b8"
-                    }
-                ],
-                [
-                    "id",
-                    {
-                        "cl_type": {
-                            "Option": "U64"
-                        },
-                        "bytes": "010300000000000000",
-                        "parsed": 3
-                    }
-                ]
-            ]
-        }
-    },
-    "approvals": [
-        {
-            "signer": "01e07110e92f554014ffdecc2582c999fcac7a9fbfad3ed7d8ae1cb14681f18a7b",
-            "signature": "01a2f5ce9f83898145e9db7c48d2da7b3af67e26759aeaab98f4ee244546ba132931e22aca83366a7aebf9b8e3fd5b8a8f4d73af21824d0b4906"
-        }
-    ]
+  "hash": "2bf18a14c652b2c12668df3c58d4cbb54930b372f25119f620694fa319b7db3e",
+  "header": {
+    "account": "013ad94f8932e3d14a715225a4088971c9d551a3d1281cdd5f726063762d932b0e",
+    "timestamp": "2021-11-25T14:30:00.210Z",
+    "ttl": "30m",
+    "gas_price": 1,
+    "body_hash": "77a86730a7defd16d30361ef67204dbb302dfd905a98fc094425ac97645978fd",
+    "dependencies": [],
+    "chain_name": "casper-test"
+  },
+  "payment": {
+    "ModuleBytes": {
+      "module_bytes": "",
+      "args": [
+        [
+          "amount",
+          {
+            "cl_type": "U512",
+            "bytes": "021027",
+            "parsed": "10000"
+          }
+        ]
+      ]
+    }
+  },
+  "session": {
+    "Transfer": {
+      "args": [
+        [
+          "amount",
+          {
+            "cl_type": "U512",
+            "bytes": "0400f90295",
+            "parsed": "2500000000"
+          }
+        ],
+        [
+          "target",
+          {
+            "cl_type": {
+              "ByteArray": 32
+            },
+            "bytes": "3039c4b9b7379cedbd666f3a6e08012da0608707cc33c380119485c22e8280f1",
+            "parsed": "3039c4b9b7379cedbd666f3a6e08012da0608707cc33c380119485c22e8280f1"
+          }
+        ],
+        [
+          "id",
+          {
+            "cl_type": {
+              "Option": "U64"
+            },
+            "bytes": "010100000000000000",
+            "parsed": 1
+          }
+        ]
+      ]
+    }
+  },
+  "approvals": [
+    {
+      "signer": "013ad94f8932e3d14a715225a4088971c9d551a3d1281cdd5f726063762d932b0e",
+      "signature": "016b185d5b424f36c0a0d995067a25fb50a7efef73a23ba070c55a66911ddc9b1e1b2c8964b5253368ca4992b8d856c84844036bc74de344ba23834043714a110a"
+    }
+  ]
 }
 ```
 
@@ -138,23 +138,123 @@ Save this output in a _transfer.deploy_ file as shown in the following command.
 casper-client make-transfer --amount 2500000000 \
 --secret-key keys1/secret_key.pem \
 --chain-name casper-test \
---target-account 019a33f123ae936ccd29d8fa5438f03a86b6e34fe4346219e571d5ac42cbff5be6 \
+--target-account [PRIMARY KEY HEX] \
 --transfer-id 3 \
 --payment-amount 10000 > transfer.deploy
 ```
+
+### Signing the Deploy
+
+Once the deploy file is created, you can sign the deploy using the other designated accounts. For this example, we are signing the deploy with the secret_key.pem stored in keys2 folder and saving the output in a transfer2.deploy file.
+
+```bash
+casper-client sign-deploy \
+--input transfer.deploy \
+--secret-key keys2/secret_key.pem \
+--output transfer2.deploy
+```
+
+| Parameter    | Description                                                          |
+| ------------ | -------------------------------------------------------------------- |
+| input        | The path of the deploy file, which needs to be signed                |
+| secret-key   | The path of the secret key file used to sign the deploy              |
+| output       | The path of the output file used to the save the deploy with multiple signatures |
+
+You can observe towards the end of the following output there is an **approvals** section, which has two signatures, one from the account initiating the transfer and second from the account used to sign the deploy.
+
+<details>
+<summary>Sample output saved in the transfer2.deploy file</summary>
+
+```json
+{
+  "hash": "6c584812f844e56b6a133e205a03e1eef039e78f93b9dca1f429301f3e17806b",
+  "header": {
+    "account": "013ad94f8732e3d14a715225a4088971c9d551a3d1281cdd5f726063762d932b0e",
+    "timestamp": "2021-11-25T14:30:26.592Z",
+    "ttl": "30m",
+    "gas_price": 1,
+    "body_hash": "77a86730a7defd16d30361ef67204dbb302dfd905a98fc094425ac97645978fd",
+    "dependencies": [],
+    "chain_name": "casper-test"
+  },
+  "payment": {
+    "ModuleBytes": {
+      "module_bytes": "",
+      "args": [
+        [
+          "amount",
+          {
+            "cl_type": "U512",
+            "bytes": "021027",
+            "parsed": "10000"
+          }
+        ]
+      ]
+    }
+  },
+  "session": {
+    "Transfer": {
+      "args": [
+        [
+          "amount",
+          {
+            "cl_type": "U512",
+            "bytes": "0400f90295",
+            "parsed": "2500000000"
+          }
+        ],
+        [
+          "target",
+          {
+            "cl_type": {
+              "ByteArray": 32
+            },
+            "bytes": "3039c4b9b7379cedbd666f3a6e08012da0608707cc33c380119485c22e8280f1",
+            "parsed": "3039c4b9b7379cedbd666f3a6e08012da0608707cc33c380119485c22e8280f1"
+          }
+        ],
+        [
+          "id",
+          {
+            "cl_type": {
+              "Option": "U64"
+            },
+            "bytes": "010100000000000000",
+            "parsed": 1
+          }
+        ]
+      ]
+    }
+  },
+  "approvals": [
+    {
+      "signer": "013ad94f8732e3d14a715225a4088971c9d551a3d1281cdd5f726063762d932b0e",
+      "signature": "0102680af44588d79d30c3403edd22a715fd988fea00fd1bafbb1e67cc48c07752645861df440d74f7a6a19949019b63f776d7d00b2867db3f1b4a6ffb5551870d"
+    },
+    {
+      "signer": "019a33f123ae936ccd29d8fa5438f03a86b6e34fe4346219e571d5ac42cbff5be6",
+      "signature": "01553d9c8ffb1b499b6ca7c79a9c1a0f8044030aadec4228c4f18a971c57632e001b3c94051af9667c99bc369f71afde4042ff5857cb965048c40230d53571ad0a"
+    }
+  ]
+}
+```
+
+</details>
 
 ### Sending the Deploy
 
 The next step is to send the deploy for execution on the network. As described in the [Prerequisites](deploy-transfer#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node http://80.92.204.108 from the Testnet, replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
 
 ```bash
-casper-client send-deploy --input transfer.deploy --node-address http://80.92.204.108:7777
+casper-client send-deploy --input transfer2.deploy --node-address http://80.92.204.108:7777
 ```
 
 | Parameter    | Description                                                          |
 | ------------ | -------------------------------------------------------------------- |
 | input        | The path of the deploy file, which is used as the input              |
 | node-address | The Hostname or IP and port of node on which HTTP service is running |
+
+Make a note of the *deploy_hash* from the send-deploy command output. This will be required to verify the status of the deploy.
 
 <details>
 <summary>Sample output of the send-deploy command</summary>
@@ -174,14 +274,7 @@ casper-client send-deploy --input transfer.deploy --node-address http://80.92.20
 
 ## Verifying the Transfer
 
-The following steps can help you verify if the transfer was successful using the command-line:
-
-1. [Query the deploy](querying#querying-deploys) to find out the status of execution
-2. [Get the state root hash of the deploy](transfer-workflow#state-root-hash)
-3. [Query the source account](transfer-workflow#query-the-source-account) to find the main purse `Uref` address of the source account
-4. [Query the target account](transfer-workflow#query-the-target-account) to find the main purse `Uref` address of the target account
-5. [Get the source account balance](transfer-workflow#get-source-account-balance) to check if the amount was deducted from the CSPR balance
-6. [Get the target account balance](transfer-workflow#get-target-account-balance) to confirm that the amount was credited
+To verify the status of your transfer, see [Verifying a Transfer](verify-transfer.md).
 
 :::tip 
 
