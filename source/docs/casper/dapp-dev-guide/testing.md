@@ -1,6 +1,7 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Testing Contracts
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 As part of the Casper local Rust contract development environment, we provide an in-memory virtual machine against which you can run your contract. You do not need to set up a full node for testing. We provide a testing framework that simulates deploy execution, enables monitoring global state changes using assertions, and confirms a successful deploy of the smart contract.
 
@@ -16,11 +17,11 @@ It is also possible to build scripts with this environment and set up continuous
 
 The following steps guide you through the initialization of the system and deploy creation.
 
-1. Define global variables and constants
-2. Import builders and constants
-3. Create a deploy item
+1. [Define global variables and constants](../dapp-dev-guide/testing#define-global-variables-and-constants)
+2. [Import builders and constants](../dapp-dev-guide/testing#import-builders-and-constants)
+3. [Create a deploy item](../dapp-dev-guide/testing#create-a-deploy-item)
 
-### Declarations and Imports
+### Define Global Variables and Constants
 
 You can use global variables and constants in later steps to derive values and create components.
 
@@ -41,7 +42,7 @@ const CONTRACT_WASM: &str = "contract.wasm";
 - *`PathBuff`* : The contract uses this variable to find the compiled WASM file 
 - *`RUNTIME_ARG_NAME`* and *`CONTRACT_WASM`* : Variables used to build the deploy
 
-#### Imports
+### Import Builders and Constants
 
 We derive imports from the dependencies in the Cargo.toml file. If you see problems while importing, fix the dependency settings in the Cargo.toml file.
 
@@ -75,10 +76,10 @@ let session_args = runtime_args! {
 ```
 ***Variable details***
 
--   *`secret_key`* and *`public_key`* : Used to derive the account address
--   *`account address`* : Used to get the authorization key and location
+-   *`secret_key`* and *`public_key`* : Derives the account address
+-   *`account address`* : Gets authorization key and location
 -   *`session_code`* : Gets the path to your actual contract WASM file on your system
--   *`session_args`* Get the values of runtime arguments
+-   *`session_args`* : Gets the values of runtime arguments
 
 **Create Deploy Item**
 
@@ -94,7 +95,7 @@ let deploy_item = DeployItemBuilder::new()
 ```
 ***Constructor methods***
 
-The deploy item contain the following elements:
+The deploy item contains the following elements:
 
 -   _`payment details`_ : This can be standard payments or custom payments. Standard payment is the bare payment amount a user wishes to pay for the deploy. Custom payment comes with payment codes or functions that indicate payments by module bytes 
 
@@ -112,9 +113,9 @@ The deploy item contain the following elements:
 
 Follow these steps to deploy the smart contract:
 
-1. Create the builder
-2. Create an execute request
-3. Deploy the contract
+1. [Create the builder](../dapp-dev-guide/testing#create-the-builder)
+2. [Create the execute request](../dapp-dev-guide/testing#create-an-execute-request)
+3. [Deploy the contract](../dapp-dev-guide/testing#deploy-the-contract)
 
 ### Create the Builder
 
@@ -154,13 +155,13 @@ This is the final step of the test contract execution. In this step, you will cr
 
 Query and assertion steps are as below:
 
-1. Pre-assert the state
-2. Deploy the contract
-3. Post-assertion
+1. [Pre-assert the state](../dapp-dev-guide/testing#pre-assert-the-status)
+2. [Deploy the contract](../dapp-dev-guide/testing#deploy-the-contract-1)
+3. [Post-assertion to confirm deploy](../dapp-dev-guide/testing#post-assertion-to-confirm-deploy)
 
 The smart contract creates a new value _hello world_ under the KEY, _my-key-name_. You can extract this value from the global state of the blockchain using the `query_result`.
 
-### Pre-Assertion
+### Pre-Assert the Status
 
 Pre-assertions are helpful to confirm the existing state has not changed before the test execution. To accomplish this, create a query result using the builder and assert that the result of the query should not be equal to the value of KEY.
 
@@ -202,11 +203,11 @@ This will query the post-deploy value and assert for its change.
 ***Builder methods***
 
 -   *`query()`* : Queries the state for a given value
--   *`expect()`* : The validation for the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash
+-   *`expect()`* : Validates the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash
 -   *`as_cl_value()`* : Returns a wrapped [CLValue](/docs/design/serialization-standard#serialization-standard-values) if this is a CLValue variant
 
--   *`clone()`* : To break the reference to the CLValue so that it will provide brand new CLValue
--   *`Into_t()`* : Cast the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type
+-   *`clone()`* : Breaks the reference to the CLValue so that it will provide brand new CLValue
+-   *`Into_t()`* : Converts the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type
 
 **Assertion**
 
