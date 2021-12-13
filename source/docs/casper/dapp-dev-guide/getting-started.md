@@ -38,7 +38,7 @@ Your terminal output should resemble something like the following (note: at the 
 $ rustup --version
 rustup 1.24.3 (ce5817a94 2021-05-31)
 info: This is the version for the rustup toolchain manager, not the rustc compiler.
-info: The currently active `rustc` version is `rustc 1.57.0 (f1edd0429 2021-11-29)`
+info: The currently active `rustc` version is `rustc 1.57.0 (f1edd0429 2021-11-29)`.
 ```
 
 **Casper Rust Packages**
@@ -97,8 +97,6 @@ If you look inside the newly-created _my-project_ folder, you will find two crat
 ### Compiling to WASM {#compiling-to-wasm}
 
 The Casper blockchain uses WebAssembly (WASM) in its runtime environment. Compilation targets for WASM are available for Rust, giving developers access to all the Rust ecosystem tools when developing smart contracts.
-
-The project requires a specific nightly version of Rust and requires a WASM target to be added to that Rust version. 
 
 To compile the smart contract into WASM, go into the _my-project_ folder, and run the following commands:
 
