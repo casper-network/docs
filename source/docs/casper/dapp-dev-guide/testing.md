@@ -1,4 +1,3 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Testing Contracts
 
@@ -6,9 +5,9 @@ As part of the Casper local Rust contract development environment, we provide an
 
 Here is the main testing flow:
 
-1.  Initialize the system and create a deploy.
-2.  Execute the deploy, which will call the smart contract.
-3.  Query the context for changes and verify that the result matches the expected values.
+1.  Initialize the system and create a deploy
+2.  Execute the deploy, which will call the smart contract
+3.  Query the context for changes and verify that the result matches the expected values
 
 It is also possible to build scripts with this environment and set up continuous integration for contract code. This environment enables the testing of blockchain-enabled systems from end to end.
 
@@ -16,15 +15,17 @@ It is also possible to build scripts with this environment and set up continuous
 
 The following steps guide you through the initialization of the system and deploy creation.
 
-1. Define global variables and constants.
-2. Import builders and constants.
-3. Create a deploy item.
+1. [Define global variables and constants](../dapp-dev-guide/testing#define-global-variables-and-constants)
+2. [Import builders and constants](../dapp-dev-guide/testing#import-builders-and-constants)
+3. [Create a deploy item](../dapp-dev-guide/testing#create-a-deploy-item)
 
-### Declarations and Imports
+### Define Global Variables and Constants
 
 You can use global variables and constants in later steps to derive values and create components.
 
 **Global Variables and Constants**
+
+The framework uses global variables and constants to find the compiled WASM file and to create the deploy.
 
 ```rust
 use std::path::PathBuf;
@@ -35,7 +36,11 @@ const RUNTIME_ARG_NAME: &str = "message";
 const CONTRACT_WASM: &str = "contract.wasm";
 ```
 
-#### Imports
+- *`KEY`* and *`VALUE`* : These constants are the global states we are using to test whether the deploy has been executed correctly. KEY acts as the input to the assertion and VALUE acts as the output from the assertion
+- *`PathBuff`* : The contract uses this variable to find the compiled WASM file 
+- *`RUNTIME_ARG_NAME`* and *`CONTRACT_WASM`* : Variables used to build the deploy
+
+### Import Builders and Constants
 
 We derive imports from the dependencies in the Cargo.toml file. If you see problems while importing, fix the dependency settings in the Cargo.toml file.
 
@@ -52,7 +57,11 @@ use casper_types::{
 
 ### Create a Deploy Item
 
+The testing framework uses the `DeployItem` to derive the `ExecuteRequest` to send to the test contract.
+
 **Declaring Local Variables**
+
+These are the variables used to construct the *deploy_item*.
 
 ```rust
 let secret_key = SecretKey::ed25519_from_bytes(MY_ACCOUNT).unwrap();
@@ -63,14 +72,12 @@ let session_args = runtime_args! {
             RUNTIME_ARG_NAME => VALUE,
 };
 ```
+***Variable details***
 
--   _secret_key and public_key_ : Used to derive account address
-
--   _account address_ : Used to get the authorization key and location
-
--   _session_code_ : Gets the path to your actual contract wasm file on your system
-
--   _session_args_ Get the runtime arg value
+-   *`secret_key`* and *`public_key`* : Derives the account address
+-   *`account address`* : Gets authorization key and location
+-   *`session_code`* : Gets the path to your actual contract WASM file on your system
+-   *`session_args`* : Gets the values of runtime arguments
 
 **Create Deploy Item**
 
@@ -84,43 +91,44 @@ let deploy_item = DeployItemBuilder::new()
     .with_address(account_addr)
     .build();
 ```
+***Constructor methods***
 
-Deploy items contain the following elements:
+The deploy item contains the following elements:
 
--   _`payment details`_ : This can be standard payments or custom payments. Standard payment is the bare payment amount a user wishes to pay for the deploy. Custom payment comes with payment codes or functions that indicate payments by module bytes. `empty_payment_bytes` implies the module bytes inside the deploy item's payment part are empty. It directs the framework to use the standard payment contract that is the original amount (DEFAULT_PAYMENT).
+-   _`payment details`_ : This can be standard payments or custom payments. Standard payment is the bare payment amount a user wishes to pay for the deploy. Custom payment comes with payment codes or functions that indicate payments by module bytes 
+
+    ***empty_payment_bytes*** implies the module bytes inside the deploy item's payment part are empty. It directs the framework to use the standard payment contract that is the original amount (DEFAULT_PAYMENT)
 
 <p align="center"><img src={useBaseUrl("/image/EmptyModuleBytes.png")} width="300"/></p>
 
--   _session_code_ : Sets the session code for the deploy using session_code and session_args
+-   *`session_code`* : Sets the session code for the deploy using session_code and session_args
 
-    -   PathBuff : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities.
-
--   _authorization_keys_ : Sets authorization keys to authorize the deploy
-
--   _address_ : Sets the address of the deploy
+    -   *PathBuff* : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities
+-   *`authorization_keys`* : Sets authorization keys to authorize the deploy
+-   *`address`* : Sets the address of the deploy
 
 ## Deploy the Smart Contract
 
 Follow these steps to deploy the smart contract:
 
-1. Create the builder.
-2. Create an execute request.
-3. Deploy the contract.
+1. [Create the builder](../dapp-dev-guide/testing#create-the-builder)
+2. [Create the execute request](../dapp-dev-guide/testing#create-an-execute-request)
+3. [Deploy the contract](../dapp-dev-guide/testing#deploy-the-contract)
 
 ### Create the Builder
 
-`InMemoryWasmTestBuilder` functions as the builder inside this framework, and it is the builder for a simple WASM test that uses the state held entirely in memory. InMemoryWasmTestBuilder provides methods to simulate deploys to the blockchain array and make queries to whatever state you find in the global state.
+`InMemoryWasmTestBuilder` is the builder for a simple WASM test that uses the state held entirely in memory. It provides methods to simulate deploys to the blockchain array and make queries to whatever state you find in the global state.
 
 ```rust
 let mut builder = InMemoryWasmTestBuilder::default();
         builder.run_genesis(&DEFAULT_RUN_GENESIS_REQUEST).commit();
 ```
 
-`Genesis` : Run genesis call will initialize the blockchain network to get your first block. When you initialize a blockchain network, there needs to be a genesis block as a starting point to the incoming blocks. The subsequent set of deploys will execute after the execution of the genesis block.
+`Genesis` : *run_genesis* call will initialize the blockchain network to get your first block. When you initialize a blockchain network, there needs to be a genesis block as a starting point to the incoming blocks. The subsequent set of deploys will execute after the execution of the genesis block.
 
 ### Create an Execute Request
 
-After creating the `deploy_item`, wrap it in an `ExecuteRequest` created by the `ExecuteRequestBuilder`; then, the builder instance will build the deploy item and return the execute_request.
+After creating the `deploy_item`, wrap it in an `ExecuteRequest` created by the `ExecuteRequestBuilder`; then, the builder instance will construct the deploy item and return the execute_request.
 
 ```rust
 let execute_request = ExecuteRequestBuilder::from_deploy_item(deploy_item).build();
@@ -134,44 +142,48 @@ InMemoryWasmTestBuilder instance will execute the _execute_request_, which carri
 builder.exec(execute_request).commit().expect_success();
 ```
 
--   _Commit()_ - This will process the execution result of the previous execute_request on the latest post-state hash, which is the hash function's output.
+***Builder methods***
 
--   _expect_success()_ - Assert this is a successful execution of a deploy. If it is not successful, it will crash the test.
+-   *`Commit()`* - This will process the execution result of the previous *execute_request* on the latest post-state hash, which is the hash function's output
+-   *`expect_success()`* - This will assert  the deploy as a successful execution. If it is not successful, it will crash the test
 
 ## Query and Assert
 
+This is the final step of the test contract execution. In this step, you will create a query result to send to post-assertion, and execute the deploy using the previously created components and finally perform the post-assertion to confirm the expected change on the test contract. 
+
 Query and assertion steps are as below:
 
-1. Pre-assert the state
-2. Deploy the contract
-3. Post-assertion
+1. [Pre-assert the state](../dapp-dev-guide/testing#pre-assert-the-status)
+2. [Deploy the contract](../dapp-dev-guide/testing#deploy-the-contract-1)
+3. [Post-assertion to confirm deploy](../dapp-dev-guide/testing#post-assertion-to-confirm-deploy)
 
-The smart contract creates a new value _hello world_ under the key _my-key-name_. It is possible to extract this value from the global state of the blockchain using the `query_result`.
+The smart contract creates a new value _hello world_ under the KEY, _my-key-name_. You can extract this value from the global state of the blockchain using the `query_result`.
 
-### Pre-Assertion
+### Pre-Assert the Status
 
-Pre-assertions are helpful to confirm the existing state that you expect to change has not changed before the test execution. To accomplish this, create a query result using the builder and assert that the query's result should not be equal to the value of KEY.
+Pre-assertions are helpful to confirm the existing state has not changed before the test execution. To accomplish this, create a query result using the builder and assert that the result of the query should not be equal to the value of KEY.
 
 ```rust
   let result_of_query = builder.query(None, Key::Account(account_addr), &[KEY.to_string()]);
   assert!(result_of_query.is_err());
 ```
 
-The parameters are: post-state, not defined in this case base_key, which is the actual namespace of the value the global KEY constant
+Method `query()` is to query the state for a stored value, KEY in this sample.
+
+**Parameters**
+
+- *`maybe_post_state`* : Not defined in this case
+- *`base_key`* : Contact where you find the named-key - here default address
+- *`path`* : Global KEY constant
 
 ### Deploy the Contract
 
-Deploy is done by executing the previously created execute the request.
+Deploy is done by executing the previously created `execute_request` instance.
 
 ```rust
 builder.exec(execute_request).commit().expect_success();
 ```
-
--   _Commit()_ - Commit effects of previous execution call on the latest post-state hash.
-
--   _expect_success()_ - Assert this was a successful execution of a deploy. If it's not successful, it will crash your test.
-
-### Post-Assertion to confirm Deploy
+### Post-Assertion to Confirm Deploy
 
 This will query the post-deploy value and assert for its change.
 
@@ -186,15 +198,14 @@ This will query the post-deploy value and assert for its change.
             .expect("should be string.");
 ```
 
--   _query()_ - Queries state for a given value.
+***Builder methods***
 
--   _expect()_ - The validation for the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash.
+-   *`query()`* : Queries the state for a given value
+-   *`expect()`* : Validates the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash
+-   *`as_cl_value()`* : Returns a wrapped [CLValue](/docs/design/serialization-standard#serialization-standard-values) if this is a CLValue variant
 
--   _as_cl_value()_ : Returns a wrapped [CLValue](/docs/design/serialization-standard#serialization-standard-values) if this is a CLValue variant.
-
--   _clone()_ - To break the reference to the CLValue so that it will provide brand new CLValue
-
--   Into_t() - Cast the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type.
+-   *`clone()`* : Breaks the reference to the CLValue so that it will provide brand new CLValue
+-   *`Into_t()`* : Converts the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type
 
 **Assertion**
 
