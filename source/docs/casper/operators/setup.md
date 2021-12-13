@@ -122,27 +122,20 @@ This is invoked with the release version in underscore format such as:
 sudo -u casper /etc/casper/pull_casper_node_version.sh 1_0_2
 ```
 
-This will create `/var/lib/casper/bin/1_0_2/` and expand the `bin.tar.gz` containing at a minimun `casper-node`.
+This will create `/var/lib/casper/bin/1_0_2/` and expand the `bin.tar.gz` containing at a minimum `casper-node`.
 
 This will create `/etc/casper/1_0_2/` and expand the `config.tar.gz` containing `chainspec.toml`, `config-example.toml`, and possibly `accounts.csv` and other files.
 
-This will remove the arcive files and run `/etc/casper/config_from_example.sh 1_0_2` to create a `config.toml` from the `config-example.toml`.
+This will remove the archive files and run `/etc/casper/config_from_example.sh 1_0_2` to create a `config.toml` from the `config-example.toml`.
 
 ### Client Installation {#client-installation}
 
 The `casper-client` can be installed from <https://crates.io/crates/casper-client>.
 
-Run the commands below to install the Casper client on most flavors of Linux and macOS. You will need the nightly version of the compiler.
+Run the commands below to install the Casper client on most flavors of Linux and macOS. 
 
 ```bash
-rustup toolchain install nightly
-cargo +nightly-2021-06-17 install casper-client --locked
-```
-
-Doing this, you'll see a warning, which you can ignore for now.
-
-```bash
-warning: package `aes-soft v0.5.0` in Cargo.lock is yanked in registry `crates.io`, consider running without --locked
+cargo install casper-client
 ```
 
 The Casper client can print out _help_ information, which provides an up-to-date list of supported commands.
@@ -165,7 +158,7 @@ The Rust client generates keys via the `keygen` command. The process generates 2
 sudo casper-client keygen /etc/casper/validator_keys
 ```
 
-More about keys and key generation can be found in `/etc/casper/validator_keys/README.md` if `casper-node-lancher` was installed from the Debian package.
+More about keys and key generation can be found in `/etc/casper/validator_keys/README.md` if `casper-node-launcher` was installed from the Debian package.
 
 ## Config File {#config-file}
 
