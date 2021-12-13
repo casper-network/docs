@@ -55,7 +55,7 @@ casper-client put-deploy \
 --node-address http://<peer-ip-address>:7777/rpc \
 --chain-name casper \
 --session-path <path-to-wasm>/delegate.wasm \
---payment-amount 3000000000 \
+--payment-amount 5000000000 \
 --session-arg "validator:public_key='<hex-encoded-validator-public-key>'" \
 --session-arg "amount:u512='<amount-to-delegate>'" \
 --session-arg "delegator:public_key='<hex-encoded-public-key>'" \
