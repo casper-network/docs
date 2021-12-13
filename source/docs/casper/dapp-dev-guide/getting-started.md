@@ -32,22 +32,13 @@ Once you finish installing Rust, check your version:
 rustup --version
 ```
 
-Your terminal output should resemble something like the following (note: at the time of the writing of this tutorial, the latest version of Rust was 1.24.3 and may differ for you):
+Your terminal output should resemble something like the following (note: at the time of the writing of this tutorial, the latest version of Rust was 1.57.0 and may differ for you):
 
 ```bash
 $ rustup --version
 rustup 1.24.3 (ce5817a94 2021-05-31)
 info: This is the version for the rustup toolchain manager, not the rustc compiler.
-info: The currently active `rustc` version is `rustc 1.59.0-nightly (0fb1c371d 2021-12-06)`
-```
-
-**Configure Nightly Rust**
-
-After installing Rust, you need to install and set the Rust nightly toolchain as the default with these commands:
-
-```bash
-rustup install nightly
-rustup default nightly
+info: The currently active `rustc` version is `rustc 1.57.0 (f1edd0429 2021-11-29)`
 ```
 
 **Casper Rust Packages**
@@ -107,19 +98,17 @@ If you look inside the newly-created _my-project_ folder, you will find two crat
 
 The Casper blockchain uses WebAssembly (WASM) in its runtime environment. Compilation targets for WASM are available for Rust, giving developers access to all the Rust ecosystem tools when developing smart contracts.
 
-The project requires a specific nightly version of Rust and requires a WASM target to be added to that Rust version. You can see more information by running:
+The project requires a specific nightly version of Rust and requires a WASM target to be added to that Rust version. 
 
-```bash
-cargo casper --help
-```
-
-To build the project, go into the _my-project_ folder, install the Rust toolchain and specify the target build as WebAssembly (wasm32):
+To compile the smart contract into WASM, go into the _my-project_ folder, and run the following commands:
 
 ```bash
 cd my-project
-rustup install $(cat rust-toolchain)
-rustup target add --toolchain $(cat rust-toolchain) wasm32-unknown-unknown
+make prepare
+make build-contract
 ```
+
+Inside the _contract_ folder, you will now see a _target_ folder that contains the compiled smart contract named _contract.wasm_ at `my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`.
 
 **Linting**
 
@@ -128,17 +117,6 @@ Casper contracts support Rust tooling such as `clippy` for linting contracts. Fe
 ```bash
 make check-lint
 ```
-
-### Build the Contract {#build-the-contract}
-
-The next step is to compile the smart contract into WASM. Inside the _my-project_ folder, run the following commands:
-
-```bash
-make prepare
-make build-contract
-```
-
-Inside the _contract_ folder, you will now see a _target_ folder that contains the compiled smart contract named _contract.wasm_ at `my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`.
 
 ### Test the Contract {#test-the-contract}
 
