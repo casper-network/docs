@@ -104,6 +104,7 @@ module.exports = {
                     ],
                 },
                 "dapp-dev-guide/tutorials/upgrade-tutorial",
+                "dapp-dev-guide/tutorials/casper-signer",
             ],
         },
     ],
