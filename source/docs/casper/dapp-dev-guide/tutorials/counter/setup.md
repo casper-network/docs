@@ -11,9 +11,8 @@ Once you have a working Rust development environment and NCTL installed, you wil
 
 **Installation instructions**
 
-```sh
-rustup toolchain install nightly
-cargo +nightly-2021-06-17 install casper-client
+```bash
+cargo install casper-client
 ```
 
 Once you have the _casper-client_ installed, we can proceed to walk through setting up NCTL, cloning the contract, and deploying it to the chain.

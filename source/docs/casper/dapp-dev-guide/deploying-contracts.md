@@ -13,17 +13,10 @@ This section will help you get set up with each prerequisite.
 
 You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
 
-Run the commands below to install the client on most flavors of Linux and macOS. You will need the nightly version of the compiler.
+Run the commands below to install the client on most flavors of Linux and macOS. 
 
 ```bash
-rustup toolchain install nightly
-cargo +nightly-2021-06-17 install casper-client --locked
-```
-
-Doing this, you'll see a warning, which you can ignore for now.
-
-```bash
-warning: package `aes-soft v0.5.0` in Cargo.lock is yanked in registry `crates.io`, consider running without --locked
+cargo install casper-client
 ```
 
 The Casper client can print out _help_ information, which provides an up-to-date list of supported commands.
