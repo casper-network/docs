@@ -2,7 +2,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Testing Contracts
 
-As part of the Casper local Rust contract development environment, we provide an in-memory virtual machine against which you can run your contract. You do not need to set up a full node for testing. We provide a testing framework that simulates deploy execution, enables monitoring global state changes using assertions, and confirms a successful deploy of the smart contract.
+As part of the Casper local Rust contract development environment, we provide an in-memory virtual machine and a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support) against which you can run your contract. You do not need to set up a full node for testing. We provide a testing framework that simulates deploy execution, enables monitoring global state changes using assertions, and confirms a successful deploy of the smart contract.
 
 Here is the main testing flow:
 
