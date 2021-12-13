@@ -55,7 +55,7 @@ module.exports = {
             label: "SDK Client Libraries",
             collapsible: true,
             collapsed: true,
-            items: ["dapp-dev-guide/sdk/index", "dapp-dev-guide/sdk/script-sdk", "dapp-dev-guide/sdk/csharp-sdk"],
+            items: ["dapp-dev-guide/sdk/index", "dapp-dev-guide/sdk/script-sdk", "dapp-dev-guide/sdk/csharp-sdk", "dapp-dev-guide/sdk/go-sdk"],
         },
         {
             type: "category",
