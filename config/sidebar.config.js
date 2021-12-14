@@ -127,6 +127,7 @@ module.exports = {
         "design/uref",
         "design/serialization-standard",
         "design/tokens",
+        "design/checksummed-hex",
         "design/appendix",
     ],
     economics: [
