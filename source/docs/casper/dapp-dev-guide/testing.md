@@ -104,7 +104,7 @@ The deploy item contains the following elements:
 -   *`session_code`* : Sets the session code for the deploy using session_code and session_args
 
     -   *PathBuff* : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities
--   *`authorization_keys`* : Sets authorization keys to authorize the deploy
+-   *`authorization_keys`* : Sets authorization keys to authorize the deploy. To check the list of keys that authorize the call. See: [Permissions model](../design/accounts#accounts-permissions).
 -   *`address`* : Sets the address of the deploy
 
 ## Deploy the Smart Contract
