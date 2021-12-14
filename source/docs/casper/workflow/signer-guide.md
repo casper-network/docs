@@ -28,7 +28,21 @@ To log in to the Casper Signer, you must create a vault and import or create acc
 1. Next to the address bar of your browser, you will find the extensions icon. Click the extensions icon <img src={useBaseUrl("/image/tutorials/signer/ext-icon.png")} class="inline-img" width="25"/> and select CasperLabs Signer from the list.
 
     1. If you are logging in for the first time, a pop-up window to create a new vault will appear.
-    2. On the New Vault pop-up window, enter a password for your vault, confirm the password, and click **CREATE VAULT**. This vault safeguards your Casper accounts, so make sure you use a strong password and keep the password safe. Password requirements: - It must be at least 10 characters long - It must contain the following: - at least one uppercase letter - at least one lowercase letter - at least one number - at least one special character - It may not contain sequences of three or more repeated characters
+    2. On the New Vault pop-up window, enter a password for your vault, confirm the password, and click **CREATE VAULT**. This vault safeguards your Casper accounts, so make sure you use a strong password and keep the password safe.
+    
+    :::note
+
+    Password requirements: 
+    
+    - It must be at least 10 characters long 
+    - It must contain the following: 
+       - at least one uppercase letter 
+       - at least one lowercase letter 
+       - at least one number 
+       - at least one special character 
+    - It may not contain sequences of three or more repeated characters
+
+    :::
 
 2. If you have already created a password for your vault, the Unlock Vault pop-up window is displayed. Enter your password and click **UNLOCK**.
 3. You can now import an account or create a new one.
