@@ -55,7 +55,7 @@ module.exports = {
             label: "SDK Client Libraries",
             collapsible: true,
             collapsed: true,
-            items: ["dapp-dev-guide/sdk/index", "dapp-dev-guide/sdk/script-sdk"],
+            items: ["dapp-dev-guide/sdk/index", "dapp-dev-guide/sdk/script-sdk", "dapp-dev-guide/sdk/csharp-sdk", "dapp-dev-guide/sdk/go-sdk", "dapp-dev-guide/sdk/python-sdk"],
         },
         {
             type: "category",
@@ -104,6 +104,7 @@ module.exports = {
                     ],
                 },
                 "dapp-dev-guide/tutorials/upgrade-tutorial",
+                "dapp-dev-guide/tutorials/casper-signer",
             ],
         },
     ],
@@ -126,6 +127,7 @@ module.exports = {
         "design/uref",
         "design/serialization-standard",
         "design/tokens",
+        "design/checksummed-hex",
         "design/appendix",
     ],
     economics: [

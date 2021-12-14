@@ -1,9 +1,7 @@
-
 # Testing Contracts
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-As part of the Casper local Rust contract development environment, we provide an in-memory virtual machine against which you can run your contract. You do not need to set up a full node for testing. We provide a testing framework that simulates deploy execution, enables monitoring global state changes using assertions, and confirms a successful deploy of the smart contract.
+As part of the Casper local Rust contract development environment, we provide an in-memory virtual machine and a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support) against which you can run your contract. You do not need to set up a full node for testing. We provide a testing framework that simulates deploy execution, enables monitoring global state changes using assertions, and confirms a successful deploy of the smart contract.
 
 Here is the main testing flow:
 
@@ -106,7 +104,7 @@ The deploy item contains the following elements:
 -   *`session_code`* : Sets the session code for the deploy using session_code and session_args
 
     -   *PathBuff* : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities
--   *`authorization_keys`* : Sets authorization keys to authorize the deploy
+-   *`authorization_keys`* : Sets authorization keys to authorize the deploy. To check the list of keys that authorize the call. See: [Permissions model](../design/accounts#accounts-permissions).
 -   *`address`* : Sets the address of the deploy
 
 ## Deploy the Smart Contract
