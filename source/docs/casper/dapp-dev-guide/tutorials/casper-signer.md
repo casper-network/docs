@@ -138,8 +138,6 @@ Let's write the function to get basic account information, like the account's pu
 
 Add the `AccountInformation` function inside the `btnConnect` to display the information when connecting into an account:
 
-### javascript
-
 ```javascript
 	const btnConnect = document.getElementById("btnConnect");
 	btnConnect.addEventListener("click", async () => {
