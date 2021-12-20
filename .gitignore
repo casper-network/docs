@@ -16,10 +16,3 @@ dist
 
 # IDE
 .idea
-
-#act github action testing
-.secrets
-.act/
-
-#vim
-*.swp
