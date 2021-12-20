@@ -6,7 +6,7 @@
 
 -   4 Cores
 -   32 GB Ram
--   1 TB SSD or network SSD backed disk
+-   2 TB SSD or network SSD backed disk
 -   Linux machine running Ubuntu 18.04 or 20.04 (preferred) with a Rust build environment.
 
 **Notes**:
