@@ -1,0 +1,40 @@
+name: Docusaurus CICD
+
+on:
+  push:
+    branches: "*"
+
+jobs:
+  cicd:
+    runs-on: ubuntu-latest
+
+    env:
+      selected_node_version: 14
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ env.selected_node_version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.selected_node_version }}
+          cache: yarn
+          
+      - name: Yarn install
+        run: |
+          yarn install
+
+      - name: Run code analysis
+        run: |
+          yarn format
+
+      - name: Build app
+        run: |
+          yarn build --out-dir ./docs
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
