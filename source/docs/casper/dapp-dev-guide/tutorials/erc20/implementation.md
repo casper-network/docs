@@ -35,9 +35,9 @@ In Rust, the keyword `use` is like an include statement in C/C++.
 :::
 
 ## Initializing the Contract
-Initializing the contract happens through the `call()` function inside the [contract file](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-token/src/main.rs). When you deploy the contract, you need to initialize it with a call() function and define `name`, `symbol`, `decimals`, and `total_supply`, which are the starting token supply.
+Initializing the contract happens through the `call()` function inside the [contract file](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-token/src/main.rs). When you deploy the contract, you need to initialize it with a `call()` function and define `name`, `symbol`, `decimals`, and `total_supply`, which require to start the token supply.
 
-The code snippet is something like below for initializing the contract,
+The code snippet for initializing the contract should look like this:
 
 <img src={useBaseUrl("/image/tutorials/erc-20/erc20-call.png")} alt="call-function" width="800"/> 
 
@@ -46,7 +46,7 @@ The code snippet is something like below for initializing the contract,
 
 This section briefly explains the contract methods used in our ERC20 contract.
 
-To see the full implementation of below contract methods, refer the [contract file](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-token/src/main.rs) in Github. If you have any questions, review the [casper_erc20](https://docs.rs/casper-erc20/latest/casper_erc20/) library and the [EIP-20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#) standard.
+To see the full implementation of the below contract methods, refer to the [contract file](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-token/src/main.rs) in Github. If you have any questions, review the [casper_erc20](https://docs.rs/casper-erc20/latest/casper_erc20/) library and the [EIP-20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#) standard.
 
 Contract methods are:
 
