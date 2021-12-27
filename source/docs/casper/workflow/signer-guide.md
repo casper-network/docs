@@ -1,6 +1,6 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 # Casper Signer User Guide
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## 1. Introduction
 
@@ -84,7 +84,7 @@ The Casper Signer allows you to add your existing keys to the Signer wallet. You
 
 ## 4. Managing an Account
 
-The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active keys, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window.
+The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active key, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window.
 
 **Figure 2**: Casper Signer Main Menu <img src={useBaseUrl("/image/tutorials/signer/main-menu.png")} width="200"/>
 
@@ -94,7 +94,7 @@ The main menu displays the names of all the accounts registered with the Casper 
 
 ### 4.2 Key Management
 
-Key management allows you to manage the keys added to your Signer wallet. You can rename the keys, delete a key, view the account information (public key hex and the account hash) and download the keys (public key, public key hex, and the secret key) for each account.
+Key management allows you to manage the keys added to your Signer wallet. You can rename the account, delete a key, view the account information (public key hex and the account hash) and download the secret key for each account.
 
 To view the various functions available, on the main menu, select **Key Management**. The list of keys available are displayed along with the icons to manage keys.
 
@@ -103,7 +103,7 @@ To view the various functions available, on the main menu, select **Key Manageme
 -   To rename an account, click the edit icon next to the account name, enter the new name and click **UPDATE**.
 -   To delete an account, click the delete icon next to the account name. A Remove Account notification pops-up. To approve the deletion, enter the password to your vault and click **REMOVE**.
 -   To view the account information, such as the public key and the account hash, click the key-shaped icon.
--   To download a copy of the account keys, click the down-arrow icon. A set of three keys, the public key, public key hex, and the secret key are downloaded to your computer.
+-   To download a copy of the secret key, click the down-arrow icon. The secret key is downloaded to your computer.
 
 ### 4.3 Connected Sites
 
@@ -127,9 +127,9 @@ If the website is not integrated with Casper Signer, the roll-over text displays
 
 :::
 
-### 4.4 Download Active Keys
+### 4.4 Download Active Key
 
-This feature allows you to download the set of cryptographic keys from your active account. To download the set of keys for the selected active account, click the main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> and select **Download Active Keys**.
+This feature allows you to download the secret key from your active account. To download the secret key for the selected active account, click the main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> and select **Download Active Key**.
 
 ### 4.5 Timeout
 
@@ -141,7 +141,7 @@ This feature allows you to lock your vault. You must enter your vault password a
 
 ## 5. Resetting the Vault
 
-Once you have created a password for the vault, every time you access it, you will see a **Reset Vault?** link below the UNLOCK button. You can click this link to delete all your CSPR accounts from the vault. If you have downloaded your account keys, you can create a new vault password and import the keys to your account to recover all the transactions.
+Once you have created a password for the vault, every time you access it, you will see a **Reset Vault?** link below the UNLOCK button. You can click this link to delete all your CSPR accounts from the vault. If you have downloaded your account keys, you can create a new vault password and import the keys to your account and recover all the transactions.
 
 ## 6. Viewing Account Details
 
