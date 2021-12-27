@@ -1,6 +1,6 @@
-# Casper Signer User Guide
-
 import useBaseUrl from '@docusaurus/useBaseUrl';
+
+# Casper Signer User Guide
 
 ## 1. Introduction
 
