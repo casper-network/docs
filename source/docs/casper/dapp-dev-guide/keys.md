@@ -83,7 +83,7 @@ casper-client transfer \
 --chain-name casper \
 --target-account 020470fecd1f7ae5c1cd53a52c4ca88cd5b76c2926d7e1d831addaa2a64bea9cc3ede6a8e9981c609ee7ab7e3fa37ba914f2fc52f6eea9b746b6fe663afa96750d66 \
 --amount 10000000000 \
---secret-key /home/mykeys/secret_key.pem \
+--secret-key <path-to-secret_key.pem> \
 --payment-amount 10000
 ```
 
