@@ -19,6 +19,19 @@ jobs:
         with:
           node-version: ${{ env.selected_node_version }}
           cache: yarn
+      
+      - name: Template credentials
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: .github/templates/.env.production.j2
+          output_file: .env.production
+        env:
+          ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          CROWDIN_PERSONAL_ACCESS_TOKEN: ${{ secrets.CROWDIN_PERSONAL_ACCESS_TOKEN }}
+          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
+          GOOGLE_ANALYTICS_ANONYMIZE_IP: ${{ secrets.GOOGLE_ANALYTICS_ANONYMIZE_IP }}
+          GOOGLE_TAG_TRACKING_ID: ${{ secrets.GOOGLE_TAG_TRACKING_ID }}
           
       - name: Yarn install
         run: |
