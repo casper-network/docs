@@ -3,6 +3,9 @@ name: Docusaurus CICD
 on:
   push:
     branches: "*"
+  pull_request:
+    branches:
+    - main
 
 jobs:
   cicd:
