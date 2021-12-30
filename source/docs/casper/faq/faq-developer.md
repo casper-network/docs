@@ -119,8 +119,7 @@ Suppose an exchange connects to someone else's node RPC to send transactions to 
 <details>
   <summary><b>How should we work with the PEM keys?</b></summary>
   
-  The <a href="https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html">Keys API</a>
-   provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="../dapp-dev-guide/keys">GitHub</a> and the documentation.
+  The <a href="https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html">Keys API</a> provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="../dapp-dev-guide/keys">GitHub</a> and the documentation. For more information on creating and working with keys, see <a href="../dapp-dev-guide/keys">Working with Cryptographic Keys</a>.
 
 </details>
 
