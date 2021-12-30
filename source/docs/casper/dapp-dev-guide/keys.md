@@ -68,9 +68,9 @@ Public key:0470fecd1f7ae5c1cd53a52c4ca88cd5b76c2926d7e1d831addaa2a64bea9cc3ede6a
 Private key:29773906aef3ee1f5868371fd7c50f9092205df26f60e660cafacbf2b95fe086
 ```
 
-To use existing Ethereum keys, the Casper virtual machine (VM) needs to know that the key is a `secp256k1` type.
+To use existing Ethereum keys, the Casper virtual machine (VM) needs to know that the key is a `secp256k1` type. To achieve this, we will prefix the public key hex with 02 as shown in the example below.
 
-The Rust _casper-client_ provides an example of how this works. Prepending the public key hex with 02, indicates the key is a `secp256k1` key.
+The Rust _casper-client_ provides an example of how this works. 
 
 **Example**:
 
