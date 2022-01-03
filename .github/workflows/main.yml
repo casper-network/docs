@@ -7,7 +7,22 @@ on:
     types: [ opened, reopened, synchronize ]
 
 jobs:
-  cicd:
+  backup:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: gh-pages-backup
+          path: .
+        
+
+  build:
     runs-on: ubuntu-latest
 
     env:
@@ -48,9 +63,64 @@ jobs:
         run: |
           yarn build --out-dir ./docs
 
-      - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          name: gh-pages-depl-payload
+          path: ./docs
+
+  deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    needs: [build, backup]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-depl-payload
+        path: ./docs
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+
+  test-prod:
+    needs: deploy-prod
+    runs-on: ubuntu-latest
+
+    env:
+      prod_pages_url: ${{ secrets.PROD_PAGES_URL }}
+
+    steps:
+      - name: Test home page
+        run: |
+          echo "Testing if homepage responds correctly"
+          curl --fail $prod_pages_url
+      - name: Test a random page
+        run: |
+          echo "Testing if a page responds correctly"
+          curl --fail $prod_pages_url/operators/create
+      - name: Test another random page
+        run: |
+          echo "Testing if a page responds correctly"
+          curl --fail $prod_pages_url/design/serialization-standard
+
+  rollback-if-tests-fail:
+    if: ${{ always() && (needs.test-prod.result=='failure') }}
+    needs: test-prod
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-backup
+        path: ./docs
+
+    - name: Deploy the previous version to Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+
+      
