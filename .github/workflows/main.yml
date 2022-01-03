@@ -3,6 +3,8 @@ name: Docusaurus CICD
 on:
   push:
     branches: "*"
+  pull_request:
+    types: [ opened, reopened, synchronize ]
 
 jobs:
   cicd:
@@ -21,6 +23,7 @@ jobs:
           cache: yarn
       
       - name: Template credentials
+        if: github.ref == 'refs/heads/main'
         uses: cuchi/jinja2-action@v1.2.0
         with:
           template: .github/templates/.env.production.j2
