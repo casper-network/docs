@@ -64,6 +64,7 @@ jobs:
           yarn build --out-dir ./docs
 
       - uses: actions/upload-artifact@v2
+        if: github.ref == 'refs/heads/main'
         with:
           name: gh-pages-depl-payload
           path: ./docs
