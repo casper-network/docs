@@ -1,6 +1,6 @@
 # Bonding
 
-It is recommended that a bonding request be sent once the node has completed the synchronization process. Bonding in Casper takes place through the auction contract via the `add_bid.wasm` contract. The auction runs for a future era, every era. The `chainspec.toml` specifies the number of slots available, and the auction will take the top N slots and create the validator set for the future era. In the testnet, era durations are approximately 30 minutes. The entire process takes approximately 3 eras. Therefore, the time for bid submission to inclusion in the validator set is a minimum of 90 minutes. Bonding requests (bids) are transactions like any other. Because they are generic transactions, they are more resistant to censorship.
+It is recommended that a bonding request be sent once the node has completed the synchronization process. Bonding in Casper takes place through the auction contract via the `add_bid.wasm` contract. The auction runs for a future era, every era. The `chainspec.toml` specifies the number of slots available, and the auction will take the top N slots and create the validator set for the future era. In the testnet, era durations are 2 hours. The entire process takes approximately 3 eras. Therefore, the time for bid submission to inclusion in the validator set is a minimum of 90 minutes. Bonding requests (bids) are transactions like any other. Because they are generic transactions, they are more resistant to censorship.
 
 ## Security and Bonding {#security-and-bonding}
 
