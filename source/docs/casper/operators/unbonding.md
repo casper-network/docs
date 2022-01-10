@@ -4,24 +4,42 @@ Once a bid is placed, it will remain in the state of the auction contract. Even 
 
 ## Withdrawal Request {#withdrawal-request}
 
-Note the path to files and keys. Note: the session arguments need to be encased in double quotes, with the parameter values in single quotes. Note the required payment amount. It must contain at least 12 zeros. Payment amount is specified in motes.
-
-To withdraw a bid, compile the contract & submit a deploy:
+To withdraw a bid, compile the contract and submit a deploy:
 
 ```bash
-
-casper-client put-deploy --chain-name <CHAIN_NAME> --node-address http://<HOST>:<PORT> --secret-key <VALIDATOR_SECRET_KEY>.pem --session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm --payment-amount 1000000000 --session-arg="public_key:public_key='<VALIDATOR_PUBLIC_KEY_HEX>'" --session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" --session-arg="unbond_purse:opt_uref=null"
+sudo casper-client put-deploy \
+--chain-name <CHAIN_NAME> \
+--node-address http://<HOST>:<PORT> \
+--secret-key /etc/casper/validator_keys/secret_key.pem \
+--session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
+--payment-amount 1000000000 \
+--session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
+--session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" \
+--session-arg="unbond_purse:opt_uref=null"
 ```
+
+Note the following in the above command: 
+- The chain name for Mainnet is `casper` and for Testnet is `casper-test`
+- The default port for node address is 7777
+- The path to the contract and keys
+- The session arguments need to be encased in double-quotes, with the parameter values in single quotes
+- The payment amount is specified in motes
 
 ## Contract Arguments {#contract-arguments}
 
 The withdraw_bid contract accepts 3 arguments:
 
--   public key: The public key in hex of the account to withhdraw. Note: This has to be the matching key to the validator secret key that signs the deploy, and has to match the public key of a bid in the auction contract.
--   amount: This is the amount that is being withdrawn.
--   unbond_purse (optional): The purse to which the withdrawal will be remitted. Defaults to the main purse for the account if not provided.
+-   `public key`: The hexadecimal public key of the account to withhdraw. This key must match the secret key that signs the deployment and has to match the public key of a bid in the auction contract.
+-   `amount`: This is the amount that is being withdrawn.
+-   `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided.
 
-Similar to bonding (bidding) - check the auction contract for updates to the bid amounts.
+## Check the Auction Contract {#check-the-auction-contract}
+
+Check the auction contract for updates to the bid amounts.
+
+```bash
+casper-client get-auction-info --node-address http://<HOST:PORT>
+```
 
 ## Unbonding Wait Period {#unbonding-wait-period}
 

@@ -111,9 +111,10 @@ module.exports = {
     operators: [
         "operators/index",
         "operators/hardware",
+		"operators/setup",
         "operators/create",
         "operators/joining",
-        "operators/setup",
+		"operators/upgrade",
         "operators/bonding",
         "operators/unbonding",
     ],
