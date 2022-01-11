@@ -1,6 +1,6 @@
 # Joining a Running Network
 
-The Casper network is permissionless, enabling new validators to join the network and provide additional security to the system. This page outlines the sequence of recommended steps to spin up a validating node and successfully join an existing network.
+The Casper network is permissionless, enabling new validators to join the network and provide additional security to the system. This page outlines the sequence of recommended steps to spin up a validating node and join an existing network.
 
 ## Step 1: Provision Hardware {#step-1-provision-hardware}
 
@@ -63,7 +63,7 @@ A good IP to use above are those listed in your `config.toml` as `known_addresse
 
 ### Updating `config.toml` file {#updating-config-file}
 
-At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'`. For more information and the path to the `config.toml` file, see [Config File](setup#config-file).
+At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. For more information and the path to the `config.toml` file, see [Config File](setup#config-file).
 
 ```
 # ================================
@@ -95,13 +95,10 @@ Towards the end of the following output, notice the `era_id` and `height` that y
 <summary>Sample output of the <code>/status</code> endpoint</summary>
 
 ```json
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 26619  100 26619    0     0  74772      0 --:--:-- --:--:-- --:--:-- 74772
 {
   "api_version": "1.4.3",
   "chainspec_name": "casper-test",
-  "starting_state_root_hash": "E2218B6BdB8137A178f242E9DE24ef5Db06af7925E8E4C65Fa82D41Df38F4576",
+  "starting_state_root_hash": "e2218b6bdb8137a178f242e9de24ef5db06af7925e8e4c65fa82d41df38f4576",
   "peers": [
     {
       "node_id": "tls:0097..b253",
@@ -116,14 +113,14 @@ Towards the end of the following output, notice the `era_id` and `height` that y
     }
   ],
   "last_added_block_info": {
-    "hash": "8280dE05cB34071f276fBE7c69a07Cb325ddd373f685877911238b614BdCC5b1",
+    "hash": "8280de05cb34071f276fbe7c69a07cb325ddd373f685877911238b614bdcc5b1",
     "timestamp": "2022-01-04T15:33:08.224Z",
     "era_id": 3240,
     "height": 430162,
-    "state_root_hash": "EC4ff5c4D0a9021984b56e2b6DE4A57188101C24E09b765c3FEe740353690076",
-    "creator": "01ACe6578907Bfe6EbA3a618e863bBE7274284C88e405E2857BE80DD094726a223"
+    "state_root_hash": "ec4ff5c4d0a9021984b56e2b6de4a57188101c24e09b765c3fee740353690076",
+    "creator": "01ace6578907bfe6eba3a618e863bbe7274284c88e405e2857be80dd094726a223"
   },
-  "our_public_signing_key": "01Cb41eE07d1827e243588711D45040Fe46402Bf3901fb550AbfD08D1341700270",
+  "our_public_signing_key": "01cb41ee07d1827e243588711d45040fe46402bf3901fb550abfd08d1341700270",
   "round_length": null,
   "next_upgrade": null,
   "build_version": "1.4.3-a44bed1fd-casper-mainnet",

@@ -1,22 +1,23 @@
 # Bonding
 
-It is recommended that a bonding request be sent once the node has completed the synchronization process. Bonding in Casper takes place through the auction contract via the `add_bid.wasm` contract. The auction runs for a future era, every era. The `chainspec.toml` specifies the number of slots available, and the auction will take the top N slots and create the validator set for the future era. In the testnet, era durations are 2 hours. The entire process takes approximately 3 eras. Therefore, the time for bid submission to inclusion in the validator set is a minimum of 90 minutes. Bonding requests (bids) are transactions like any other. Because they are generic transactions, they are more resistant to censorship.
+It is recommended that a bonding request be sent once the node has completed the synchronization process. Bonding in Casper takes place through the auction contract via the `add_bid.wasm` contract. The auction runs for a future era, every era. The `chainspec.toml` specifies the number of slots available, and the auction will take the top N slots and create the validator set for the future era. In the testnet, era durations are approximately two hours. The entire process takes approximately 3 eras. Therefore, the time for bid submission to inclusion in the validator set is a minimum of six hours. Bonding requests (bids) are transactions like any other. Because they are generic transactions, they are more resistant to censorship.
 
 ## Security and Bonding {#security-and-bonding}
 
-The most secure way to send a bonding transaction is to compile the contract and send the request to the network. Because the transaction authorizes the token to be locked into the auction contract, it's really important to compile the contract yourself. Here are the steps to do this:
+The most secure way to send a bonding transaction is to compile the contract and send the request to the network. Because the transaction authorizes the token to be locked into the auction contract, it's really important to compile the contract yourself. Here are the steps to take:
 
-1.   Visit [Github](https://github.com/casper-network/casper-node) and fork and clone the `casper-node` repository
-2.   Make sure that all dependencies are installed (documented on GitHub)
-3.   Build the contracts, see [Build the Contracts](#build-contracts)
-4.   Ensure that the keys you will use for bonding are available and have been funded, for more information, see [Create and Fund Keys](setup#create-fund-keys) 
-5.   Create the bonding transaction and deploy it, see [Example Bonding Transaction](#example-bonding-transaction)
-6.   Query the system to verify that your bid was accepted, see [Check the Status of the Transaction](#check-the-status-of-the-transaction)
-7.   Check the status of the auction to see if you have won a slot, see [Check the Status of the bid in the Auction](#check-the-status-of-the-bid-in-the-auction)
+1. Fork and clone the [`casper-node` repository](https://github.com/casper-network/casper-node)
+2. Make sure that [all prerequisites](https://github.com/casper-network/casper-node#pre-requisites-for-building) are installed
+3. [Build the contracts](#build-contracts)
+4. Ensure that the keys you will use for bonding [are available and have been funded](setup#create-fund-keys)
+4. Ensure that the keys you will use for bonding [are available and have been funded](setup#create-fund-keys)
+5. Create the bonding transaction and deploy it, see [Example Bonding Transaction](#example-bonding-transaction)
+6. Query the system to verify that your bid was accepted, see [Check the Status of the Transaction](#check-the-status-of-the-transaction)
+7. Check the status of the auction to see if you have won a slot, see [Check the Status of the bid in the Auction](#check-the-status-of-the-bid-in-the-auction)
 
 ## Build the Contracts {#build-contracts}
 
-Because bonding transactions are generic transactions, it's necessary to build the contract that submits a bid. Clone the casper-node repository and build the contracts. To build contracts, set up Rust and install all dependencies. For detailed instructions, see [Installing Rust](../dapp-dev-guide/getting-started#installing-rust).
+Because bonding transactions are generic transactions, it is necessary to build the contract that submits a bid. Clone the casper-node repository and build the contracts. To build contracts, set up Rust and install all dependencies. For detailed instructions, see [Installing Rust](../dapp-dev-guide/getting-started#installing-rust).
 
 Build the contracts in release mode.
 
@@ -31,12 +32,12 @@ These commands build all the necessary contracts, of which `add-bid.wasm` is the
 The following example deploys a bonding request on the network:
 
 ```bash
-sudo casper-client put-deploy \
+casper-client put-deploy \
 --chain-name <CHAIN_NAME> \
 --node-address http://<HOST:PORT> \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
---session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/add_bid.wasm  \
---payment-amount 3000000000  \
+--session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/add_bid.wasm \
+--payment-amount 3000000000 \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<BID-AMOUNT>'" \
 --session-arg="delegation_rate:u8='<PERCENT_TO_KEEP_FROM_DELEGATORS>'"
@@ -46,15 +47,15 @@ Note the following in the above command:
 - The chain name for Mainnet is `casper` and for Testnet is `casper-test`
 - The default port for node address is 7777
 - The session arguments need to be encased in double-quotes, with the parameter values in single quotes
-- The payment amount is specified in motes, it must contain at least 10 zeros
+- The payment amount is specified in motes, where 1 cspr is 1,000,000,000 motes
 
 ### Contract Arguments {#contract-arguments}
 
 The add_bid contract accepts 3 arguments:
 
--   `public_key`: The hexadecimal public key of the account to bond. This must match the secret key that signs the deployment.
--   `amount`: This is the amount being bid. If the bid wins, this will be the validator's initial bond amount.
--   `delegation_rate`: The percentage of rewards that the validator retains from delegators that delegate their tokens to the node.
+- `public_key`: The hexadecimal public key of the account to bond. This must be the one paired with the secret key used in the `--secret-key` argument
+- `amount`: This is the amount being bid. If the bid wins, this will be the validator's initial bonded amount
+- `delegation_rate`: The percentage of rewards that the validator retains from delegators that delegate their tokens to the node
 
 ## Check the Status of the Transaction {#check-the-status-of-the-transaction}
 
@@ -66,7 +67,7 @@ casper-client get-deploy --node-address http://<HOST:PORT> <DEPLOY_HASH>
 
 ## Check the Status of the bid in the Auction {#check-the-status-of-the-bid-in-the-auction}
 
-If the bid wins the auction, the public key and associated bond amount (formerly bid amount) will appear in the auction contract as part of the validator set for a future era. To determine if the bid was accepted, query the auction contract via the rust `casper-client`.
+If the bid wins the auction, the public key and associated bonded amount will appear in the auction contract as part of the validator set for a future era. To determine if the bid was accepted, query the auction contract:
 
 ```bash
 casper-client get-auction-info --node-address http://<HOST:PORT>
@@ -244,7 +245,7 @@ The request returns a response that looks like this:
 }
 ```
 
-Note the `era_id` and the `validator_weights` sections of the response. For a given `era_id`, a set of validators is defined. To determine the current era, ping the `/status` endpoint of a validating node in the network. This will return the current `era_id`. The current `era_id` will be listed in the auction response. If the public key associated with a bid appears in the `validator_weights` structure for an era, then the account is bonded in that era.
+Note the `era_id` and the `validator_weights` sections of the response. The current era is the one with the lowest ID in the `era_validators` array. For a given `era_id`, a set of validators is defined. If the public key associated with a bid appears in the `validator_weights` structure for an era, then the account is bonded in that era.
 
 ## If the Bid doesn't win {#if-the-bid-doesnt-win}
 
