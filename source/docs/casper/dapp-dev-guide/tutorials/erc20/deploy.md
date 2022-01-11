@@ -2,26 +2,27 @@
 # Deploy the Contract
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Now that you have implemented the smart contract for ERC20 and it's time to deploy. Deploying the ERC20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer [Deploying Contracts](/docs/dapp-dev-guide/deploying-contracts#advanced-deployments) section to learn more about overall contract deployment.
+Now that you have implemented the smart contract for ERC-20, it's time to deploy it to the blockchain. Deploying the ERC-20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer [Deploying Contracts](/docs/dapp-dev-guide/deploying-contracts#advanced-deployments) section to learn more about overall contract deployment.
 
 Let's dive into the deployment process.
 
 ### Pre-requisites
 
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
-- You need to have a pre-created `Casper Signer Account` with the required amount of tokens to perform the deploy
-- Account should contain enough `CASPR tokens` to proceed with the deploy. These will use to pay for the transactions on the Casper Network (involving ERC-20 tokens).
-- Generated `Public Key` and `Private Key` to perform the deploy and related actions
-- Installed [casper client](/dapp-dev-guide/tutorials/counter/setup) to interact with the network
+- You need to have a pre-created [Casper signer account](https://casper.network/docs/workflow/signer-guide) with the required amount of tokens to perform the deploy
+  - You will receive the `Public Key` and `Private Key` along with the Casper signer account which are mandatory items for the future deploys
+- Your [faucet account](https://testnet.cspr.live/tools/faucet) should contain enough tokens to perform the execution. Follow [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on Casper Testnet
+- Account should contain enough `CSPR tokens` to proceed with the deploy. These will use to pay for the transactions on the Casper Network (involving ERC-20 tokens).
+- Installed [Casper client](/dapp-dev-guide/tutorials/counter/setup) to interact with the network
 
 ## Basic Flow
-You will go through the following basic steps to execute the ERC20 contract deployment on the Casper network.
+Here are the basic steps to deploy the ERC-20 contract on the Casper Network.
 
-<img src={useBaseUrl("/image/tutorials/erc-20/erc20-deply-flow.png")} alt="erc20-deploy-flow" width="500"/>
+<img src={useBaseUrl("/image/tutorials/erc-20/erc20-deploy-flow.png")} alt="erc20-deploy-flow" width="600"/>
 
-## Clone the ERC20 Contract
-This step includes cloning and preparing the ERC20 contract for the deployment.
-1. Clone the contract from the repo
+## Clone the ERC-20 Contract
+This step includes cloning and preparing the ERC-20 contract for the deployment.
+1. Clone the ERC-20 contract from the repository
 ```bash
 git clone https://github.com/casper-ecosystem/erc20.git
 ```
@@ -31,7 +32,7 @@ cd erc20
 make prepare
 ```
 
-3. Builds and verifies the compiled contract
+3. Build and verify the compiled contract
 ```bash
 make test
 ```
@@ -39,7 +40,7 @@ make test
 ## Get an IP Address from a Testnet Peer 
 Use the [acquire node address](/docs/workflow/setup#acquire-node-address-from-network-peers) section to get a node-ip-address. We use [peers](https://testnet.cspr.live/tools/peers) on testnet since we are deploying to the testnet. Select a peer address from the list and do the address format as below,
 :::note
-Substitute '7777' in place of '35000' to get the correct command for the deploy. If the selected peer is unresponsive, pick a different peer and try again
+Acquire a node address from the Testnet and use port '7777' instead of '35000' to send your deploy. If the selected peer is unresponsive, pick a different peer and try again
 :::
 
 Testnet peers page sample:
@@ -48,31 +49,31 @@ Testnet peers page sample:
 
 
 ## View the Network Status
-This query capture any information related to the state of the blockchain at the specific time denoted by state root hash. To view this, you need to have the state root hash and the account hash. Use the below commands to obtain those:
+This query capture any information related to the state of the blockchain at the specific time denoted by state root hash.  You need to have the state root hash and the account hash to run the query.
 
-**Get State Root Hash**
+**Getting State Root Hash**
 
-This marks a snapshot of the network state at a moment of time.
+This marks a snapshot of the network state at a moment in time.
 ```bash
 casper-client get-state-root-hash --node-address http://<HOST:PORT>
 ```
+- `<HOST:PORT>`: Use the [Node IP address](../erc20/deploy#get-an-ip-address-from-a-testnet-peer) taken from a Testnet peer.
 
-**Get Account Hash**
+**Getting Account Hash**
 
-This is the identification of your account.
+To get the account hash, run the following command and supply the path to your Public Key in Hex format.
 ```bash
-casper-client account-address --public-key "/home/ubuntu/public_key_hex"
+casper-client account-address --public-key "[PATH_TO_YOUR_KEY]/public_key_hex"
 ```
-**Query the Network State**
+**Querying the Network State**
 
-Use the below command template to query the network status with regards to your account.
+Use the command template below to query the network status with regards to your account.
 ```bash
 casper-client query-state \
 --node-address http://<HOST:PORT> \
 --state-root-hash [STATE_ROOT_HASH] \
 --key [ACCOUNT_HASH]
 ```
-- `<HOST:PORT>`: Use the [node-ip-address](../erc20/deploy#get-an-ip-address-from-a-testnet-peer) taken from a testnet peer.
 
 ## Deploy the Contract
 Now you can deploy the contract on the network and check how it behaves. Use the following command template to deploy the contract:
@@ -86,11 +87,11 @@ casper-client put-deploy \
 ```
 - `NETWORK_NAME`: Use the relevant network name. Here we use 'testnet'
 - `PATH_TO_YOUR_KEY`: Replace this with the actual path of your secret key 
-- `PAYMENT_AMOUNT`: Gas amount in tokens send for the execution. If there are no adequate tokens, deploy will not execute and will return an error
-- `WASM FILE PATH`: The session-path argument should point to wherever you compiled erc20 WASM file on your machine 
+- `PAYMENT_AMOUNT`: Gas amount in tokens needed for contract execution. If there are no adequate tokens, the deploy will not execute and return an error
+- `WASM FILE PATH`: The session-path argument should point to the location of your compiled ERC-20 WASM file
 
 :::note
-If you are performing the deploy in the mainnet, it's recommended to try several put deploys on the testnet or local machine to figure out the exact amount required for that deploy. Refer [note about gas price](/docs/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) section to understand more about payment amounts and gas price adjustments
+If you are performing the deploy in the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/docs/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
 :::
 
 Find the sample command below:
@@ -104,22 +105,22 @@ casper-client put-deploy \
 --session-path "/home/ubuntu/erc20/target/wasm32-unknown-unknown/release/erc20_test.wasm"
 ```
 
-## Query the Network Status
-Now you have deployed the contract to the network and the status of the network has changed. To view the network status you need to get the newest state root hash because it has changed with the deploy. Account hash remains the same since you are using the same account. Follow [View network state](../erc20/deploy#view-the-network-status) section to execute this step with the new state root hash.
+## Querying the Network Status
+You need to get the newest state root hash to view the network status because it has changed with the deploy. The account hash remains the same since you are using the same account. Follow [View network state](../erc20/deploy#view-the-network-status) to execute this step with the new state root hash.
 
 
-## Verify the Deploy
-Now we can verify the applied deploy using the `get deploy` command. This will output the details of the applied deploy.
+## Verifying the Deploy
+Now you can verify the applied deploy using the `get deploy` command. This will output the details of the applied deploy.
 ```bash
 casper-client get-deploy \
 --node-address http://<HOST:PORT> [DEPLOY_HASH]
 ```
 
 ## Querying with Arguments
-We checked the query state at a global level in [previous query the network](../erc20/deploy#view-the-network-status) step. In this step, we will narrow down the context and check the status specifically for a certain area. You will use the details inside [erc20 contract](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-token/src/main.rs) section to derive arguments.
+This step will narrow down the context and check the status of a specific entry point. You will use the details inside [erc20 contract](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-token/src/main.rs) to derive arguments.
 :::
 
-Use below command template to query with arguments:
+Use the command template below to query the network state with arguments:
 
 ```bash
 casper-client query-state \
@@ -131,31 +132,35 @@ casper-client query-state \
 
 
 ## Sample Deploy on Testnet
-The following steps will guide you through the series of above-described steps with actual values and results.
+The following steps will guide you through the process with actual values and results.
 
-**Clone the ERC20 contract**
+**Cloning the ERC-20 contract**
 
 ```bash
 git clone https://github.com/casper-ecosystem/erc20.git
 ```
-**Get an IP Address from a Testnet Peer** 
+**Getting an IP Address from a Testnet Peer** 
 
 Use [peers](https://testnet.cspr.live/tools/peers) site to get the node ip address.
 Eg:  http://95.216.24.237:7777
 
-**View the network status**
+**Viewing the network status**
 
 Here is the command:
 ```bash
 casper-client query-state \
---key account-hash-7f4bf39A311a7538d8C91BB86C71DF774023e16bc4a70ab7e4e8AE77DbF2Ef53 \
---node-address http://95.216.24.237:7777 \
+--key account-hash-<account-address> \
+--node-address http://<HOST:PORT> \
 --state-root-hash E5B679BD1562fE6257257F5f969A79482E8DCEBBD501501BfA6d5844b61cBE3f
 ```
 
-Query Result:
+Result:
 
-This contains the network state before the deploy. You can see the `named-key` field is empty since we haven't done any deploy on the network yet.
+This result contains the network state before the deploy. You can see the `named-key` field is empty since we haven't done any deploy on the network yet.
+
+<details>
+<summary>The result from the querying network status</summary>
+
 ```bash
 {
   "id": 401803927542812599,
@@ -165,14 +170,14 @@ This contains the network state before the deploy. You can see the `named-key` f
     "merkle_proof": "[25564 hex chars]",
     "stored_value": {
       "Account": {
-        "account_hash": "account-hash-7f4bf39A311a7538d8C91BB86C71DF774023e16bc4a70ab7e4e8AE77DbF2Ef53",
+        "account_hash": "account-hash-<account-address> ",
         "action_thresholds": {
           "deployment": 1,
           "key_management": 1
         },
         "associated_keys": [
           {
-            "account_hash": "account-hash-7f4bf39A311a7538d8C91BB86C71DF774023e16bc4a70ab7e4e8AE77DbF2Ef53",
+            "account_hash": "account-hash-<account-address> ",
             "weight": 1
           }
         ],
@@ -184,12 +189,16 @@ This contains the network state before the deploy. You can see the `named-key` f
 }
 ```
 
-**Deploy the contract**
+</details>
 
-The deploy command:
+
+
+**Deploying the contract**
+
+Deploy the contract with this command:
 ```bash
 casper-client put-deploy \
---node-address http://95.216.24.237:7777 \
+--node-address http://<HOST:PORT>  \
 --chain-name casper-test \
 --secret-key "/home/ubuntu/secret_key.pem" \
 --payment-amount 1000000 \
@@ -210,18 +219,22 @@ This command execution will output the `deploy_hash` of the applied deploy. We c
 }
 ```
 
-**View the deploy details**
+**Viewing the deploy details**
 
-You can view the details of the applied deploy using below command:
+You can view the details of the applied deploy using the command below:
 ```bash
 casper-client get-deploy \
---node-address http://95.216.24.237:7777 \
+--node-address http://<HOST:PORT> \
 b00E59f8aBA5c7aB9bfA496ae4Aec7Ec8A9F0227179F5F09AcA594335F62dc1f
 ```
 
 Result:
 
-This contains the header, payment and session details along with the 
+This contains the header, payment and session details along with the execution results.
+
+<details>
+<summary>Result from querying get deploy</summary>
+
 ```bash
 {
   "id": 8893083480582974265,
@@ -366,8 +379,10 @@ This contains the header, payment and session details along with the
     ]
   }
 }
-
 ```
+
+</details>
+
 
 **Query with Arguments**
 
