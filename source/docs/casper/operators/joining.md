@@ -55,7 +55,7 @@ Visit a `/status` endpoint of a validating node to obtain a fresh trusted block 
 # This will return JSON and we want result.block.hash
 casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20
 
-# if jq is installed we can pull it from the JSON return directly with
+# If jq is installed we can pull it from the JSON return directly with
 casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20 | jq -r .result.block.hash
 ```
 

@@ -74,9 +74,9 @@ This is the default location for configuration files. It can be overwritten with
     -   **config-example.toml** - Example for creating a _config.toml_ file
     -   **config.toml** - Created by a node operator manually or by running _config_from_example.sh \<protocol_version>_
 
-### `/var/lib/casper` {#varlibcasper}
+### `/var/lib/casper/casper-node` {#varlibcasper}
 
-This is the location for larger and variable data for the `casper-node`, organized in the following directories and files:
+This is the location for larger and variable data for the `casper-node`. The files are organized inside this directory based on the network name. For example, `/var/lib/casper/casper-node/casper` for Mainnet and `/var/lib/casper/casper-node/casper-test` for Testnet. The files within these directories are organized as follows: 
 
 -   `bin` - The location for storing the versions of `casper-node` executables. This location can be overwritten with the `CASPER_BIN_DIR` environment variable. The paths in this document assume the default of `/var/lib/casper/bin`.
 
@@ -103,7 +103,9 @@ This is the location for larger and variable data for the `casper-node`, organiz
 Included with `casper-node-launcher` is `node_util.py` to installing `casper-node` versions.
 To stage all current `casper-node` versions we would run:
 
-`sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>`
+```bash
+sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>
+```
 
 We use `casper.conf` for MainNet and `casper-test.conf` for TestNet.  This will install all currently released protocols in one step.
 
@@ -149,10 +151,10 @@ Provide the path to the secret keys for the node. This is set to `etc/casper/val
 
 ### Networking and Gossiping {#networking--gossiping}
 
-The node requires a publicly accessible IP address. We do not recommend NAT at this time. Specify the public IP address of the node. If you use the `config_from_example.sh` external services are called to find your IP and this is inserted into the created `config.toml`.
+The node requires a publicly accessible IP address. The config_from_example.sh and node_util.py both allow IP for network address translation (NAT) setup. Specify the public IP address of the node. If you use the `config_from_example.sh` external services are called to find your IP and this is inserted into the created `config.toml`.
 
 Default values are specified in the file if you want to change them:
 
--   Specify the port that will be used for status & deploys
+-   Specify the port that will be used for status and deploys
 -   Specify the port used for networking
--   Known_addresses - these are the bootstrap nodes. No need to change these.
+-   Known_addresses - these are the bootstrap nodes (No need to change these)
