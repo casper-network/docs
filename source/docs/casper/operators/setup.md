@@ -4,7 +4,7 @@ A node is setup using the `casper-node-launcher` package, which sets up the dire
 
 ## Casper Node Launcher {#casper-node-launcher}
 
-The node software is run from the `casper-node-launcher` package. This can be installed with a Debian package, which also creates the Casper user, creates directory structures and sets up a _systemd_ unit and _logrotate_.
+The node software is run from the `casper-node-launcher` package. This can be installed with a Debian package, which also creates the `casper` user, creates directory structures, and sets up a _systemd_ unit and _logging_.
 
 The casper-node-launcher Debian package can be obtained from <https://repo.casperlabs.io/>. You only need to run these steps once.
 
@@ -49,6 +49,8 @@ This is the default location for configuration files. It can be overwritten with
 -   **pull_casper_node_version.sh** \<protocol*version> \<network_name> - Pulls `bin.tar.gz` and `config.tar.gz` from [genesis.casperlabs.io](http://genesis.casperlabs.io/) for a protocol package; decompresses them into `/var/lib/bin/<protocol_version>` and `/etc/casper/<protocol_version>`, and removes the *\*.tar.gz\_ files
 
 -   **config_from_example.sh** \<protocol*version> - Gets external IP to replace and create the \_config.toml* from _config-example.toml_ 
+
+-   **node_util.py** - A script that will be replacing other scripts and is the preferred method of performing the actions of `pull_casper_node_version.sh`, `config_from_example.sh`, and `delete_local_db.sh`.  Other scripts will be deprecated in future releases of `casper-node-launcher`.
 
 -   **casper-node-launcher-state.toml** - This is the local state for the `casper-node-launcher` and it is created during the first run
 
@@ -98,8 +100,12 @@ This is the location for larger and variable data for the `casper-node`, organiz
 
 ## Node Version Installation {#node-version-installation}
 
-Included with `casper-node-launcher` Debian package are two scripts to help with installing `casper-node` versions.
+Included with `casper-node-launcher` is `node_util.py` to installing `casper-node` versions.
+To stage all current `casper-node` versions we would run:
 
+`sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>`
+
+We use `casper.conf` for MainNet and `casper-test.conf` for TestNet.  This will install all currently released protocols in one step.
 `/etc/casper/pull_casper_node_version.sh` will pull `bin.tar.gz` and `config.tar.gz` from genesis.casperlabs.io.
 
 This is invoked with the release version in underscore format such as:

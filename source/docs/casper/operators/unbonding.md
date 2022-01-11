@@ -12,7 +12,7 @@ sudo casper-client put-deploy \
 --node-address http://<HOST>:<PORT> \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
 --session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
---payment-amount 1000000000 \
+--payment-amount 300000000 \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" \
 --session-arg="unbond_purse:opt_uref=null"

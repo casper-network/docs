@@ -52,7 +52,11 @@ The node's `config.toml` needs to be updated with a recent trusted hash.
 Visit a `/status` endpoint of a validating node to obtain a fresh trusted block hash. The default port is usually `8888`. Retrieve the `last_added_block_info:` hash. 
 
 ```bash
-curl http://<VALIDATOR_IP_ADDRESS>:<PORT>/status
+# This will return JSON and we want result.block.hash
+casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20
+
+# if jq is installed we can pull it from the JSON return directly with
+casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20 | jq -r .result.block.hash
 ```
 
 A good IP to use above are those listed in your `config.toml` as `known_addresses`. For more information on trusted hash, see [Trusted Hash for Synchronizing](setup#trusted-hash-for-synchronizing).
