@@ -106,7 +106,6 @@ To stage all current `casper-node` versions we would run:
 `sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>`
 
 We use `casper.conf` for MainNet and `casper-test.conf` for TestNet.  This will install all currently released protocols in one step.
-`/etc/casper/pull_casper_node_version.sh` will pull `bin.tar.gz` and `config.tar.gz` from genesis.casperlabs.io.
 
 This is invoked with the release version in underscore format such as:
 
