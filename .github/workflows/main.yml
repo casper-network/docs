@@ -68,9 +68,64 @@ jobs:
           name: gh-pages-depl-payload
           path: ./docs
 
+  system-tests-predeployment:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+        bundler-cache: true
+        
+    - name: Install Jekyll
+      run: |
+        sudo gem install jekyll
+
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-depl-payload
+        path: ./docs
+
+    - name: Create Jekyll site
+      run: |
+        jekyll new --skip-bundle --force .
+      working-directory: ./docs
+
+    - name: Edit GemFile
+      run: |
+        sed -i 's/^gem "jekyll", .*$/gem "github-pages", "~> 219", group: :jekyll_plugins/' Gemfile
+      working-directory: ./docs
+
+    - name: Run bundle install
+      run: |
+        bundle install
+      working-directory: ./docs
+
+    - name: Edit baseurl in _config.yml
+      run: |
+        sed -i 's/^baseurl.*$/baseurl: "\/docs"/' _config.yml
+      working-directory: ./docs
+
+    - name: Run Jekyll site locally and test
+      run: |
+        echo "Serve Jekyll site"
+        bundle exec jekyll serve &
+        while ! nc -z 127.0.0.1 4000; do   
+          sleep 0.1
+        done
+        echo "Jekyll site is up..."
+        echo "Testing if homepage responds correctly"
+        curl --fail http://127.0.0.1:4000/docs/
+        echo "Testing if a page responds correctly"
+        curl --fail http://127.0.0.1:4000/docs/operators/create/
+        echo "Testing if a page responds correctly"
+        curl --fail http://127.0.0.1:4000/docs/design/serialization-standard/
+      working-directory: ./docs
+
   deploy-prod:
     if: github.ref == 'refs/heads/main'
-    needs: [build, backup]
+    needs: [backup, system-tests-predeployment]
     runs-on: ubuntu-latest
 
     steps:
@@ -85,7 +140,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
 
-  test-prod:
+  system-tests-postdeployment:
     needs: deploy-prod
     runs-on: ubuntu-latest
 
@@ -107,8 +162,8 @@ jobs:
           curl --fail $prod_pages_url/design/serialization-standard
 
   rollback-if-tests-fail:
-    if: ${{ always() && (needs.test-prod.result=='failure') }}
-    needs: test-prod
+    if: ${{ always() && (needs.system-tests-postdeployment.result=='failure') }}
+    needs: system-tests-postdeployment
     runs-on: ubuntu-latest
 
     steps:
