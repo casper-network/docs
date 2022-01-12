@@ -10,7 +10,7 @@ Let's dive into the deployment process.
 
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
 - You need to have a pre-created [Account](https://casper.network/docs/workflow/setup#setting-up-an-account) with the required amount of tokens to perform the deploy
-  - You will receive the `Public Key` and `Private Key` corresponding to the `Account` which are mandatory items for the future deploys
+  - You will receive the `Public Key` and `Private Key` along with the Casper signer account which are mandatory items for the future deploys
 - Your [faucet account](https://testnet.cspr.live/tools/faucet) should contain enough tokens to perform the execution. Follow [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on Casper Testnet
 - Account should contain enough `CSPR tokens` to proceed with the deploy. These will use to pay for the transactions on the Casper Network (involving ERC-20 tokens).
 - Installed [Casper client](/dapp-dev-guide/tutorials/counter/setup) to interact with the network
@@ -91,7 +91,11 @@ casper-client put-deploy \
 - `WASM FILE PATH`: The session-path argument should point to the location of your compiled ERC-20 WASM file
 
 :::note
-If you are performing the deploy in the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/docs/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
+- If you are performing the deploy in the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/docs/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments. 
+
+- Also, we currently do not refund any tokens as part of a deploy. 
+
+  Eg:- If you spend 10 CSPR for the deployment and it only cost 1 CSPR, you will not receive the extra 9 CSPR. Refer [computational cost and gas amounts](https://casper.network/docs/design/execution-semantics#execution-semantics-gas) for further details.
 :::
 
 Find the sample command below:
@@ -110,7 +114,7 @@ You need to get the newest state root hash to view the network status because it
 
 
 ## Verifying the Deploy
-Now you can verify the applied deploy using the `get-deploy` command. This will output the details of the applied deploy.
+Now you can verify the applied deploy using the `get deploy` command. This will output the details of the applied deploy.
 ```bash
 casper-client get-deploy \
 --node-address http://<HOST:PORT> [DEPLOY_HASH]
@@ -134,17 +138,17 @@ casper-client query-state \
 ## Sample Deploy on Testnet
 The following steps will guide you through the process with actual values and results.
 
-**Cloning the ERC-20 contract**
+### Cloning the ERC-20 Contract
 
 ```bash
 git clone https://github.com/casper-ecosystem/erc20.git
 ```
-**Getting an IP Address from a Testnet Peer** 
+### Getting an IP Address from a Testnet Peer
 
 Use [peers](https://testnet.cspr.live/tools/peers) site to get the node ip address.
 Eg:  http://95.216.24.237:7777
 
-**Viewing the network status**
+### Viewing the Network Status
 
 Here is the command:
 ```bash
@@ -193,7 +197,7 @@ This result contains the network state before the deploy. You can see the `named
 
 
 
-**Deploying the contract**
+### Deploying the Contract
 
 Deploy the contract with this command:
 ```bash
@@ -219,7 +223,7 @@ This command execution will output the `deploy_hash` of the applied deploy. We c
 }
 ```
 
-**Viewing the deploy details**
+### Viewing the Deploy Details
 
 You can view the details of the applied deploy using the command below:
 ```bash
@@ -231,6 +235,8 @@ b00E59f8aBA5c7aB9bfA496ae4Aec7Ec8A9F0227179F5F09AcA594335F62dc1f
 Result:
 
 This contains the header, payment and session details along with the execution results.
+
+- If the execution result field appears as `"execution_results":[]`, it means that the deploy hasn't executed yet. The time to load the execution result may vary depending on the network.
 
 <details>
 <summary>Result from querying get deploy</summary>
@@ -383,8 +389,7 @@ This contains the header, payment and session details along with the execution r
 
 </details>
 
-
-**Query with Arguments**
+### Querying with Arguments
 
 We will query the argument 'name' in this example.
 
