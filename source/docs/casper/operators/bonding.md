@@ -10,7 +10,6 @@ The most secure way to send a bonding transaction is to compile the contract and
 2. Make sure that [all prerequisites](https://github.com/casper-network/casper-node#pre-requisites-for-building) are installed
 3. [Build the contracts](#build-contracts)
 4. Ensure that the keys you will use for bonding [are available and have been funded](setup#create-fund-keys)
-4. Ensure that the keys you will use for bonding [are available and have been funded](setup#create-fund-keys)
 5. Create the bonding transaction and deploy it, see [Example Bonding Transaction](#example-bonding-transaction)
 6. Query the system to verify that your bid was accepted, see [Check the Status of the Transaction](#check-the-status-of-the-transaction)
 7. Check the status of the auction to see if you have won a slot, see [Check the Status of the bid in the Auction](#check-the-status-of-the-bid-in-the-auction)
@@ -32,7 +31,7 @@ These commands build all the necessary contracts, of which `add-bid.wasm` is the
 The following example deploys a bonding request on the network:
 
 ```bash
-casper-client put-deploy \
+sudo -u casper casper-client put-deploy \
 --chain-name <CHAIN_NAME> \
 --node-address http://<HOST:PORT> \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
