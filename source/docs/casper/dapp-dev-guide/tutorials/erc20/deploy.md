@@ -110,7 +110,7 @@ You need to get the newest state root hash to view the network status because it
 
 
 ## Verifying the Deploy
-Now you can verify the applied deploy using the `get deploy` command. This will output the details of the applied deploy.
+Now you can verify the applied deploy using the `get-deploy` command. This will output the details of the applied deploy.
 ```bash
 casper-client get-deploy \
 --node-address http://<HOST:PORT> [DEPLOY_HASH]
