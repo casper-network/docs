@@ -85,7 +85,7 @@ casper-client put-deploy \
     --payment-amount [AMOUNT] \
     --session-path [WASM_FILE_PATH]/[File_Name].wasm
 ```
-- `NETWORK_NAME`: Use the relevant network name. Here we use 'testnet'
+- `NETWORK_NAME`: Use the relevant network name. Here we use 'casper-test'
 - `PATH_TO_YOUR_KEY`: Replace this with the actual path of your secret key 
 - `PAYMENT_AMOUNT`: Gas amount in tokens needed for contract execution. If there are no adequate tokens, the deploy will not execute and return an error
 - `WASM FILE PATH`: The session-path argument should point to the location of your compiled ERC-20 WASM file
