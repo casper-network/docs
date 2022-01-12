@@ -46,7 +46,7 @@ Note the following in the above command:
 - The chain name for Mainnet is `casper` and for Testnet is `casper-test`
 - The default port for node address is 7777
 - The session arguments need to be encased in double-quotes, with the parameter values in single quotes
-- The payment amount is specified in motes, where 1 cspr is 1,000,000,000 motes
+- The payment amount is specified in motes, where 1 CSPR is 1,000,000,000 motes
 
 ### Contract Arguments {#contract-arguments}
 
