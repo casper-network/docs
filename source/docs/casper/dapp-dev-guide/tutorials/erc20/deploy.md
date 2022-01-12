@@ -1,5 +1,5 @@
 
-# Deploy the Contract
+# Contract Deployment
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Now that you have implemented the smart contract for ERC-20, it's time to deploy it to the blockchain. Deploying the ERC-20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer [Deploying Contracts](/docs/dapp-dev-guide/deploying-contracts#advanced-deployments) section to learn more about overall contract deployment.
@@ -106,7 +106,7 @@ casper-client put-deploy \
 --chain-name casper-test \
 --secret-key "/home/ubuntu/secret_key.pem" \
 --payment-amount 1000000 \
---session-path "/home/ubuntu/erc20/target/wasm32-unknown-unknown/release/erc20_test.wasm"
+--session-path "<machine-path>/erc20/target/wasm32-unknown-unknown/release/erc20_test.wasm"
 ```
 
 ## Querying the Network Status
@@ -185,7 +185,7 @@ This result contains the network state before the deploy. You can see the `named
             "weight": 1
           }
         ],
-        "main_purse": "uref-C051e7EC16e08Def8b556F9CD0E18FE701C89dC0cED3DAd7b65107285da198DD-007",
+        "main_purse": "uref-<hash>",
         "named_keys": []
       }
     }
@@ -206,7 +206,7 @@ casper-client put-deploy \
 --chain-name casper-test \
 --secret-key "/home/ubuntu/secret_key.pem" \
 --payment-amount 1000000 \
---session-path "/home/ubuntu/erc20/target/wasm32-unknown-unknown/release/erc20_test.wasm"
+--session-path "<machine-path>/erc20/target/wasm32-unknown-unknown/release/erc20_test.wasm"
 ```
 
 Result:
@@ -218,7 +218,7 @@ This command execution will output the `deploy_hash` of the applied deploy. We c
   "jsonrpc": "2.0",
   "result": {
     "api_version": "1.4.3",
-    "deploy_hash": "b00E59f8aBA5c7aB9bfA496ae4Aec7Ec8A9F0227179F5F09AcA594335F62dc1f"
+    "deploy_hash": "b00E59f8aBA5c7aB9...."
   }
 }
 ```
@@ -229,7 +229,7 @@ You can view the details of the applied deploy using the command below:
 ```bash
 casper-client get-deploy \
 --node-address http://<HOST:PORT> \
-b00E59f8aBA5c7aB9bfA496ae4Aec7Ec8A9F0227179F5F09AcA594335F62dc1f
+b00E59f8aBA5c7aB9.....
 ```
 
 Result:
@@ -243,7 +243,8 @@ This contains the header, payment and session details along with the execution r
 
 ```bash
 {
-  "id": 8893083480582974265,
+  {
+  "id": -870982079597140956,
   "jsonrpc": "2.0",
   "result": {
     "api_version": "1.4.3",
@@ -251,17 +252,17 @@ This contains the header, payment and session details along with the execution r
       "approvals": [
         {
           "signature": "[130 hex chars]",
-          "signer": "017B8CE645c7285689F79281C5AB60348d14D3a9d1A419f3441A993402dd81dbE2"
+          "signer": "017B8CE645c728......................."
         }
       ],
-      "hash": "b00E59f8aBA5c7aB9bfA496ae4Aec7Ec8A9F0227179F5F09AcA594335F62dc1f",
+      "hash": "F9D4C649Fa78Da07E.......................",
       "header": {
-        "account": "017B8CE645c7285689F79281C5AB60348d14D3a9d1A419f3441A993402dd81dbE2",
-        "body_hash": "7B5c246dbC76D5F9D8Af4CB49F1c69AFa6bE9dAB2f8d624153c2e682dB469DbD",
+        "account": "017B8CE645c7285.......................",
+        "body_hash": "8eAEd6B7bCBB493d75d.......................",
         "chain_name": "casper-test",
         "dependencies": [],
         "gas_price": 1,
-        "timestamp": "2022-01-04T10:47:55.437Z",
+        "timestamp": "2022-01-04T15:14:29.203Z",
         "ttl": "30m"
       },
       "payment": {
@@ -270,9 +271,9 @@ This contains the header, payment and session details along with the execution r
             [
               "amount",
               {
-                "bytes": "03a08601",
+                "bytes": "0500e8764817",
                 "cl_type": "U512",
-                "parsed": "100000"
+                "parsed": "100000000000"
               }
             ]
           ],
@@ -288,51 +289,264 @@ This contains the header, payment and session details along with the execution r
     },
     "execution_results": [
       {
-        "block_hash": "8634d9d1BD69Fc5D108aA365fAFdceeFD89a7Defeb4e7E47F170E76FC0a2069F",
+        "block_hash": "d3644f0306F20fa6.......................",
         "result": {
-          "Failure": {
-            "cost": "100000",
+          "Success": {
+            "cost": "45040980830",
             "effect": {
               "operations": [],
               "transforms": [
                 {
-                  "key": "hash-8cf5E4aCF51f54Eb59291599187838Dc3BC234089c46fc6cA8AD17e762aE4401",
+                  "key": "hash-8cf5E4aCF51f54Eb5.......................",
                   "transform": "Identity"
                 },
                 {
-                  "key": "hash-624dBE2395b9D9503FBEE82162F1714eBFF6b639f96d2084d26D944C354eC4c5",
+                  "key": "hash-624dBE2395b9D9503FB.......................",
                   "transform": "Identity"
                 },
                 {
-                  "key": "hash-010c3Fe81B7b862E50C77EF9A958a05BfA98444F26f96f23d37A13c96244cFB7",
+                  "key": "hash-010c3Fe81B7b862E50C77.......................",
                   "transform": "Identity"
                 },
                 {
-                  "key": "hash-9824d60dC3A5c44A20b9FD260a412437933835B52Fc683d8AE36e4ec2114843e",
+                  "key": "hash-9824d60dC3A5c44A20b.......................",
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-C051e7EC16e08Def8b556F9CD0E18FE701C89dC0cED3DAd7b65107285da198DD",
+                  "key": "balance-C051e7EC16e08De.......................",
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-98d945f5324F865243B7c02C0417AB6eaC361c5c56602FD42ced834a1Ba201B6",
+                  "key": "balance-98d945f5324F865243.......................",
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-C051e7EC16e08Def8b556F9CD0E18FE701C89dC0cED3DAd7b65107285da198DD",
+                  "key": "balance-C051e7EC16e08Def8b556",
                   "transform": {
                     "WriteCLValue": {
-                      "bytes": "056089a3d4e8",
+                      "bytes": "06E07f3abEa001",
                       "cl_type": "U512",
-                      "parsed": "999999900000"
+                      "parsed": "1789897900000"
                     }
                   }
                 },
                 {
                   "key": "balance-98d945f5324F865243B7c02C0417AB6eaC361c5c56602FD42ced834a1Ba201B6",
                   "transform": {
-                    "AddUInt512": "100000"
+                    "AddUInt512": "100000000000"
+                  }
+                },
+                {
+                  "key": "uref-d29a34C29769D4BaC250CF9efD3c6372d8e6a89B62fAD122b3BF009990Ae61CD-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "",
+                      "cl_type": "Unit",
+                      "parsed": null
+                    }
+                  }
+                },
+                {
+                  "key": "account-hash-7f4bf39A3...................................................",
+                  "transform": {
+                    "AddKeys": [
+                      {
+                        "key": "uref-d29a34C29769D4BaC250CF9efD3c6372d8e6a89B62fAD122b3BF009990Ae61CD-007",
+                        "name": "balances"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": "uref-075874B98e3CF57Ea6326746336A0Aa908e770D3ADe0cf953f7E146f8B64F837-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "",
+                      "cl_type": "Unit",
+                      "parsed": null
+                    }
+                  }
+                },
+                {
+                  "key": "account-hash-7f4bf39A311...................................................",
+                  "transform": {
+                    "AddKeys": [
+                      {
+                        "key": "uref-075874B98e3CF57Ea6326746336A0Aa908e770D3ADe0cf953f7E146f8B64F837-007",
+                        "name": "allowances"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": "uref-66Bf928E1F6A28b174A48Fca4c002Bc8b77Dd851d7EFFb9Dc1A450cB211E484a-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "0400ca9A3B",
+                      "cl_type": "U256",
+                      "parsed": "1000000000"
+                    }
+                  }
+                },
+                {
+                  "key": "uref-4EB0a2A42afBb1d3D5ae9BD4781dc96E528C7AD3f0eEC240Cf1DbDaDF4f3D486-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "0A00000043617370657254657374",
+                      "cl_type": "String",
+                      "parsed": "CasperTest"
+                    }
+                  }
+                },
+                {
+                  "key": "uref-6e87fd661D5a65aF95f02baDfEb64f8E0F44C006661d4903A68E9dF8dEAa413d-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "050000004353505254",
+                      "cl_type": "String",
+                      "parsed": "CSPRT"
+                    }
+                  }
+                },
+                {
+                  "key": "uref-aCA2425C80584391fB883603460578B1472d13a429Ebbd1a18a55cE19cE8F3C6-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "08",
+                      "cl_type": "U8",
+                      "parsed": 8
+                    }
+                  }
+                },
+                {
+                  "key": "dictionary-baA61231F04B1c2Ee97025f425eaD2F70CAd9c1E8c24355246d159038AdCb2e9",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "[188 hex chars]",
+                      "cl_type": "Any",
+                      "parsed": null
+                    }
+                  }
+                },
+                {
+                  "key": "account-hash-7f4bf39A311a7538d8C...................................................",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "account-hash-7f4bf39A311a75...................................................",
+                  "transform": {
+                    "WriteAccount": "account-hash-7f4bf39A311a7538d8C91BB86C71DF774023e16bc4a70ab7e4e8AE77DbF2Ef53"
+                  }
+                },
+                {
+                  "key": "account-hash-7f4bf39A311a7538...................................................",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "account-hash-7f4bf39A311a7538d8C...................................................",
+                  "transform": {
+                    "WriteAccount": "account-hash-7f4bf39A311a75..................................................."
+                  }
+                },
+                {
+                  "key": "uref-868c0e0BEB2EB3C10e893be96E6D6bE7FC6375f3f038e46c3262509245c117a0-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "",
+                      "cl_type": "Unit",
+                      "parsed": null
+                    }
+                  }
+                },
+                {
+                  "key": "hash-28f982A396052b5068383E725ab48965AB941167f53DB36a0911ba0C98bc39F0",
+                  "transform": "WriteContractPackage"
+                },
+                {
+                  "key": "hash-28f982A396052b5068383E725ab48965AB941167f53DB36a0911ba0C98bc39F0",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-AdF81845d77907054ACb250c196392c7DAEE5481d4EabEB76c318A307c11E5cB",
+                  "transform": "WriteContractWasm"
+                },
+                {
+                  "key": "hash-Faa81ED758ecE1B99E2Ce48073D13D7f6185d9dc5233E39DE5c192Bebb9483D6",
+                  "transform": "WriteContract"
+                },
+                {
+                  "key": "hash-28f982A396052b5068383E725ab48965AB941167f53DB36a0911ba0C98bc39F0",
+                  "transform": "WriteContractPackage"
+                },
+                {
+                  "key": "account-hash-7f4bf39A311a7538d8...................................................",
+                  "transform": {
+                    "AddKeys": [
+                      {
+                        "key": "hash-Faa81ED758ecE1B99E2Ce48073D13D7f6185d9dc5233E39DE5c192Bebb9483D6",
+                        "name": "test_contract"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": "uref-66Bf928E1F6A28b174A48Fca4c002Bc8b77Dd851d7EFFb9Dc1A450cB211E484a-000",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "dictionary-04932d42aff9367579770E219ce1C4Da83D1Fd42Fa0FaA4Ae98AE07914c4c1E4",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "[186 hex chars]",
+                      "cl_type": "Any",
+                      "parsed": null
+                    }
+                  }
+                },
+                {
+                  "key": "uref-66Bf928E1F6A28b174A48Fca4c002Bc8b77Dd851d7EFFb9Dc1A450cB211E484a-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "04400cAa3b",
+                      "cl_type": "U256",
+                      "parsed": "1001000000"
+                    }
+                  }
+                },
+                {
+                  "key": "uref-66Bf928E1F6A28b174A48Fca4c002Bc8b77Dd851d7EFFb9Dc1A450cB211E484a-000",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "dictionary-Ec3f20485A29255dd2c2D7b8c008207A0d139dFDCE89224DA8b63F21c157A97F",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "[186 hex chars]",
+                      "cl_type": "Any",
+                      "parsed": null
+                    }
+                  }
+                },
+                {
+                  "key": "uref-66Bf928E1F6A28b174A48Fca4c002Bc8b77Dd851d7EFFb9Dc1A450cB211E484a-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "04C090c83b",
+                      "cl_type": "U256",
+                      "parsed": "1003000000"
+                    }
+                  }
+                },
+                {
+                  "key": "deploy-F9D4C649Fa78Da...................................................",
+                  "transform": {
+                    "WriteDeployInfo": {
+                      "deploy_hash": "F9D4C649Fa78Da07Ec6EFcFC615ff1Bd3B68347750FA0C81B6a74C3f9582d7E4",
+                      "from": "account-hash-7f4bf39A311a...................................................",
+                      "gas": "45040980830",
+                      "source": "uref-C051e7EC16e08Def8b556F9...................................................",
+                      "transfers": []
+                    }
                   }
                 },
                 {
@@ -356,7 +570,7 @@ This contains the header, payment and session details along with the execution r
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-62f7Fe1ceCB1a4C600fFA791479ce52Fb8cBDA408815F4Dd1B1E0D82e704579a",
+                  "key": "balance-c69d353A5a3b6433368A8FC2F6b308ce4Ec10291782f61BA15C96F260f91FFC0",
                   "transform": "Identity"
                 },
                 {
@@ -370,14 +584,13 @@ This contains the header, payment and session details along with the execution r
                   }
                 },
                 {
-                  "key": "balance-62f7Fe1ceCB1a4C600fFA791479ce52Fb8cBDA408815F4Dd1B1E0D82e704579a",
+                  "key": "balance-c69d353A5a3b6433368A8FC2F6b308ce4Ec10291782f61BA15C96F260f91FFC0",
                   "transform": {
-                    "AddUInt512": "100000"
+                    "AddUInt512": "100000000000"
                   }
                 }
               ]
             },
-            "error_message": "Out of gas error",
             "transfers": []
           }
         }
