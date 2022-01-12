@@ -10,7 +10,7 @@ Let's dive into the deployment process.
 
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
 - You need to have a pre-created [Account](https://casper.network/docs/workflow/setup#setting-up-an-account) with the required amount of tokens to perform the deploy
-  - You will receive the `Public Key` and `Private Key` along with the Casper signer account which are mandatory items for the future deploys
+  - You will receive the `Public Key` and `Private Key` corresponding to the `Account` which are mandatory items for the future deploys
 - Your [faucet account](https://testnet.cspr.live/tools/faucet) should contain enough tokens to perform the execution. Follow [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on Casper Testnet
 - Account should contain enough `CSPR tokens` to proceed with the deploy. These will use to pay for the transactions on the Casper Network (involving ERC-20 tokens).
 - Installed [Casper client](/dapp-dev-guide/tutorials/counter/setup) to interact with the network
