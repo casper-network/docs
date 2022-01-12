@@ -103,9 +103,31 @@ This command will do the following:
 - Create `/etc/casper/1_0_2/` and expand the `config.tar.gz` containing `chainspec.toml`, `config-example.toml`, and possibly `accounts.csv` and other files
 - Remove the archive files and run `/etc/casper/config_from_example.sh 1_0_2` to create a `config.toml` from the `config-example.toml`
 
+## Client Installation {#client-installation}
+
+The `casper-client` can be installed from https://crates.io/crates/casper-client.
+
+Run the commands below to install the `casper-client` on most flavors of Linux and macOS.
+
+```bash
+cargo install casper-client
+```
+
+The `casper-client` can print out help information, which provides an up-to-date list of supported commands.
+
+```bash
+casper-client --help
+```
+
+For each command, you can use help to get the up-to-date arguments and descriptions:
+
+```bash
+casper-client <command> --help
+```
+
 ## Create and Fund Keys {#create-fund-keys}
 
-To create keys, you must setup the casper command line client. For instructions on setting up the command line client, creating keys and funding your accounts, see [Prerequisites](../workflow/setup.md). The Rust client generates keys via the `keygen` command. The process generates 2 _pem_ files and 1 _text_ file. To learn about options for generating keys, include `--help` when running the `keygen` command. The following command will create the keys in the `/etc/casper/validator_keys` folder. 
+The Rust client generates keys via the `keygen` command. The process generates 2 _pem_ files and 1 _text_ file. To learn about options for generating keys, include `--help` when running the `keygen` command. The following command will create the keys in the `/etc/casper/validator_keys` folder. For details on funding your accounts, see [Prerequisites](../workflow/setup#fund-your-account).
 
 ```bash
 sudo casper-client keygen /etc/casper/validator_keys
