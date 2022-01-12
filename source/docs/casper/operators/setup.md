@@ -130,8 +130,14 @@ casper-client <command> --help
 The Rust client generates keys via the `keygen` command. The process generates 2 _pem_ files and 1 _text_ file. To learn about options for generating keys, include `--help` when running the `keygen` command. The following command will create the keys in the `/etc/casper/validator_keys` folder. For details on funding your accounts, see [Prerequisites](../workflow/setup#fund-your-account).
 
 ```bash
-sudo casper-client keygen /etc/casper/validator_keys
+sudo -u casper casper-client keygen /etc/casper/validator_keys
 ```
+
+:::note
+
+It is recommended to save your keys in a secure location, preferably offline.
+
+:::
 
 More about keys and key generation can be found in `/etc/casper/validator_keys/README.md` if `casper-node-launcher` was installed from the Debian package. You can also find for more information on keys, in the [Working with Cryptographic Keys](../dapp-dev-guide/keys.md) section.
 
