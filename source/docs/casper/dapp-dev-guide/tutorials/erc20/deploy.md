@@ -49,19 +49,19 @@ A list of peers from Testnet :
 
 
 ## Viewing the Network Status
-This query capture any information related to the state of the blockchain at the specific time denoted by state root hash.  You need to have the state root hash and the account hash to run the query.
+This query captures any information related to the state of the blockchain at the specific time denoted by the network's state root hash.  You need to have the state root hash and the account hash to run the query.
 
-**Getting state root hash**
+**Getting the state root hash**
 
 This marks a snapshot of the network state at a moment in time.
 ```bash
 casper-client get-state-root-hash --node-address http://<HOST:PORT>
 ```
-- `<HOST:PORT>`: Use the [Node IP address](../erc20/deploy#get-an-ip-address-from-a-testnet-peer) taken from a Testnet peer
+- `<HOST:PORT>`: Use the [Node IP address](../erc20/deploy#getting-an-ip-address-from-a-testnet-peer) taken from a Testnet peer
 
-**Getting account hash**
+**Getting the account hash**
 
-To get the account hash, run the following command and supply the path to your *public key* in Hex format.
+Run the following command and supply the path to your *public key* in hexadecimal format to get the account hash.
 ```bash
 casper-client account-address --public-key "[PATH_TO_YOUR_KEY]/public_key_hex"
 ```
@@ -93,12 +93,12 @@ casper-client put-deploy \
 :::note
 - If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/docs/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
 
-- Also, we currently do not refund any tokens as part of a deploy
+- **We currently do not refund any tokens as part of a deploy.**
 
   Eg:- If you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the extra 9 CSPR. Refer to the [computational cost and gas amounts](https://casper.network/docs/design/execution-semantics#execution-semantics-gas) for further details
 :::
 
-Find the sample command below:
+Find the sample *put-deploy* command below:
 
 ```bash
 casper-client put-deploy \
@@ -110,7 +110,7 @@ casper-client put-deploy \
 ```
 
 ## Querying the Network Status
-You need to get the newest state root hash to view the network status because it has changed with the deploy. The account hash remains the same since you are using the same account. Follow the [View network state](../erc20/deploy#view-the-network-status) to execute this step with the new state root hash.
+You need to get the newest state root hash to view the network status because it has changed with the deploy. The account hash remains the same since you are using the same account. Follow the [View the network state](../erc20/deploy#viewing-the-network-status) to execute this step with the new state root hash.
 
 
 ## Verifying the Deploy
@@ -150,7 +150,7 @@ Eg:  http://95.216.24.237:7777
 
 ### Viewing the Network Status
 
-Here is the command:
+Here is the command to query the state of the network:
 ```bash
 casper-client query-state \
 --key account-hash-<account-address> \
@@ -158,12 +158,12 @@ casper-client query-state \
 --state-root-hash E5B679BD1562fE6257257F5f969A79482E8DCEBBD501501BfA6d5844b61cBE3f
 ```
 
-Result:
+**Result**:
 
-This result contains the network state before the deploy. You can see the `named-key` field is empty since we haven't done any deploy on the network yet.
+This result contains the network state before the deploy. You can see the `named-key` field is empty since we haven't sent the deploy to the network yet.
 
 <details>
-<summary>The result from the querying network status</summary>
+<summary>Result from querying the network status</summary>
 
 ```bash
 {
@@ -208,7 +208,7 @@ casper-client put-deploy \
 --session-path "<machine-path>/erc20/target/wasm32-unknown-unknown/release/erc20_test.wasm"
 ```
 
-Result:
+**Result**:
 
 This command execution will output the `deploy_hash` of the applied deploy. We can use the deploy_hash to get the details of the deploy.
 ```bash
@@ -231,14 +231,14 @@ casper-client get-deploy \
 b00E59f8aBA5c7aB9.....
 ```
 
-Result:
+**Result**:
 
 This contains the header, payment, and session details along with the execution results.
 
 - If the execution result field appears as `"execution_results":[]`, it means that the deploy hasn't been executed yet. The time to load the execution result may vary depending on the network.
 
 <details>
-<summary>Result from querying get deploy</summary>
+<summary>Result from querying the deploy</summary>
 
 ```bash
 {
@@ -601,7 +601,7 @@ This contains the header, payment, and session details along with the execution 
 
 </details>
 
-### Querying with Arguments
+### Querying Contract Entry Points
 
 We will query the argument 'name' in this example.
 
@@ -614,7 +614,7 @@ casper-client query-state --node-address http://95.216.24.237:7777 \
 
 Result:
 
-You can see the symbol value as `CasperTest` in this sample.
+You can see that the name is `CasperTest` in this example.
 ```bash
 {
  "id": -3650676146668320186,
