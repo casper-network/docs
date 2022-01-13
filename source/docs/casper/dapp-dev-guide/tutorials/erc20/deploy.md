@@ -10,9 +10,8 @@ Let's dive into the deployment process.
 
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
 - Ensure you have an [Account](https://casper.network/docs/workflow/setup#setting-up-an-account), the associated key pair,  and the required amount of tokens to perform the deploy
-  - You will receive the *Public Key* and *Private Key* along with the Casper signer account. Those will use to query the network
 - Ensure your [account](https://testnet.cspr.live/tools/faucet) contains enough `CSPR Tokens` to perform the execution. 
-  -Tokens will use to pay for the transactions on the Casper Network (involving ERC-20 tokens). Follow the [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
+  -CSPR Tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
 - Install [Casper client](/dapp-dev-guide/tutorials/counter/setup) to interact with the network
 
 ## Basic Flow
@@ -26,10 +25,11 @@ This step includes cloning and preparing the ERC-20 contract for the deployment.
 ```bash
 git clone https://github.com/casper-ecosystem/erc20.git
 ```
-2. Move to the newly created folder and compile the contract to create the target WASM file 
+2. Move to the newly created folder and compile the contract to create the target WASM file and build the WASM 
 ```bash
 cd erc20
 make prepare
+make build-contracts
 ```
 
 3. Build and verify the compiled contract
