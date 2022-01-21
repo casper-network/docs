@@ -12,9 +12,7 @@ When you create an account on the Casper blockchain, a cryptographic key-pair wi
 
 ### Option 1: Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
 
-This option describes how you can use the Casper command-line client to set up your accounts. 
-
-Execute the following command to generate your keys:
+This option describes how you can use the Casper command-line client to set up your accounts. Execute the following command to generate your keys:
 
 ```bash
 casper-client keygen .
