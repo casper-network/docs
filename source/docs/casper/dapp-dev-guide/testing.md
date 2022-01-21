@@ -139,12 +139,12 @@ let execute_request = ExecuteRequestBuilder::from_deploy_item(deploy_item).build
 InMemoryWasmTestBuilder instance will execute the _execute_request_, which carries the deploy details.
 
 ```rust
-builder.exec(execute_request).commit().expect_success();
+builder.exec(execute_request).expect_success().commit();
 ```
 
 ***Builder methods***
 
--   *`Commit()`* - This will process the execution result of the previous *execute_request* on the latest post-state hash, which is the hash function's output
+-   *`commit()`* - This will process the execution result of the previous *execute_request* on the latest post-state hash, which is the hash function's output
 -   *`expect_success()`* - This will assert  the deploy as a successful execution. If it is not successful, it will crash the test
 
 ## Query and Assert
@@ -181,7 +181,7 @@ Method `query()` is to query the state for a stored value, KEY in this sample.
 Deploy is done by executing the previously created `execute_request` instance.
 
 ```rust
-builder.exec(execute_request).commit().expect_success();
+builder.exec(execute_request).expect_success().commit();
 ```
 ### Post-Assertion to Confirm Deploy
 
@@ -262,7 +262,7 @@ let mut builder = InMemoryWasmTestBuilder::default();
         let result_of_query = builder.query(None, Key::Account(account_addr), &[KEY.to_string()]);
         assert!(result_of_query.is_err());
 // deploy the contract.
-        builder.exec(execute_request).commit().expect_success();
+        builder.exec(execute_request).expect_success().commit();
 // make assertions
         let result_of_query = builder
             .query(None, Key::Account(account_addr), &[KEY.to_string()])
