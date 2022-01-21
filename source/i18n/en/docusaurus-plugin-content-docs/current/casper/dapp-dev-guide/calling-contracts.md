@@ -41,7 +41,7 @@ casper-client get-state-root-hash --node-address http://NODE:PORT | jq -r
 Take the global state hash from Step 1 and include it here, along with the account public key that created the contract.
 
 ```bash
-casper-client query-state --node-address http://NODE:PORT -k <PUBLIC KEY IN  HEX> -s <STATE_ROOT_HASH>
+casper-client query-global-state --node-address http://NODE:PORT -k <PUBLIC KEY IN  HEX> -s <STATE_ROOT_HASH>
 ```
 
 ### Example Result {#example-result}
@@ -49,7 +49,7 @@ casper-client query-state --node-address http://NODE:PORT -k <PUBLIC KEY IN  HEX
 If there is a contract stored in an account, it will appear under `named-keys`.
 
 ```bash
-casper-client query-state --node-address http://localhost:7777 -k 016af0262f67aa93a225d9d57451023416e62aaa8391be8e1c09b8adbdef9ac19d -s 0c3aaf547a55dd500c6c9bbd42bae45e97218f70a45fee6bf8ab04a89ccb9adb |jq -r
+casper-client query-global-state --node-address http://localhost:7777 -k 016af0262f67aa93a225d9d57451023416e62aaa8391be8e1c09b8adbdef9ac19d -s 0c3aaf547a55dd500c6c9bbd42bae45e97218f70a45fee6bf8ab04a89ccb9adb |jq -r
 {
   "api_version": "1.0.0",
   "stored_value": {
@@ -81,7 +81,7 @@ casper-client query-state --node-address http://localhost:7777 -k 016af0262f67aa
 Now that we have the hash of the contract, we can query the contract's internal state. To do this, we pass in the contract's hash and the global state hash. If we look at the ERC20 contract, we see a token name specified as `_name`. We can query for the value stored here.
 
 ```bash
-casper-client query-state --node-address http://localhost:7777 -k hash-d527103687bfe3188caf02f1e487bfb8f60bfc01068921f7db24db72a313cedb -s 0c3aaf547a55dd500c6c9bbd42bae45e97218f70a45fee6bf8ab04a89ccb9adb -q _name | jq -r
+casper-client query-global-state --node-address http://localhost:7777 -k hash-d527103687bfe3188caf02f1e487bfb8f60bfc01068921f7db24db72a313cedb -s 0c3aaf547a55dd500c6c9bbd42bae45e97218f70a45fee6bf8ab04a89ccb9adb -q _name | jq -r
 ```
 
 And we should see something like this:

@@ -40,13 +40,13 @@ If it fails for any reason, please refer the [NCTL tutorial](https://docs.casper
 
 ## View the Network State {#view-the-network-state}
 
-With a network up and running, you can use the casper-client query-state command to check the status of the network. However, we first need an _account hash_ and the _state-root-hash_ so that we can get the current snapshot. Once we have that information, we can check how the network looks.
+With a network up and running, you can use the casper-client query-global-state command to check the status of the network. However, we first need an _account hash_ and the _state-root-hash_ so that we can get the current snapshot. Once we have that information, we can check how the network looks.
 
 As a summary, we need to use the following three commands:
 
 1.  `nctl-view-faucet-account`: get the account hash
 2.  `casper-client get-state-root-hash`: get the state root hash
-3.  `casper-client query-state`: get the network state
+3.  `casper-client query-global-state`: get the network state
 
 Let's execute the commands in order. First, we need the faucet information:
 
@@ -65,7 +65,7 @@ casper-client get-state-root-hash --node-address http://localhost:40101
 We are using localhost as the node server since the network is running on our local machine. Make a note of the _state-root-hash_ that is returned, but keep in mind that this hash value will need to be updated every time we modify the network state. Finally, query the actual state:
 
 ```bash
-casper-client query-state \
+casper-client query-global-state \
     --node-address http://localhost:40101 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH]
@@ -107,7 +107,7 @@ casper-client get-deploy \
 
 ## View the Updated Network State {#view-the-updated-network-state}
 
-Hopefully, the deployment was successful, but is the named key visible on the chain now? Call `casper-client query-state` to check it out.
+Hopefully, the deployment was successful, but is the named key visible on the chain now? Call `casper-client query-global-state` to check it out.
 
 :::note Note
 
@@ -126,7 +126,7 @@ casper-client get-state-root-hash --node-address http://localhost:40101
 Get the network state:
 
 ```bash
-casper-client query-state \
+casper-client query-global-state \
     --node-address http://localhost:40101 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH]
@@ -137,7 +137,7 @@ We can actually dive further into the data stored on the chain using the query p
 Retrieve the specific counter contract details:
 
 ```bash
-casper-client query-state --node-address http://localhost:40101 \
+casper-client query-global-state --node-address http://localhost:40101 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter"
 ```
@@ -145,7 +145,7 @@ casper-client query-state --node-address http://localhost:40101 \
 Retrieve the specific counter variable details:
 
 ```bash
-casper-client query-state --node-address http://localhost:40101 \
+casper-client query-global-state --node-address http://localhost:40101 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
@@ -153,7 +153,7 @@ casper-client query-state --node-address http://localhost:40101 \
 Retrieve the specific deploy details:
 
 ```bash
-casper-client query-state --node-address http://localhost:40101 \
+casper-client query-global-state --node-address http://localhost:40101 \
     --state-root-hash [STATE_ROOT_HASH] --key deploy-[DEPLOY_HASH]
 ```
 
@@ -188,7 +188,7 @@ casper-client get-state-root-hash --node-address http://localhost:40101
 Get the network state, specifically for the count variable this time:
 
 ```bash
-casper-client query-state --node-address http://localhost:40101 \
+casper-client query-global-state --node-address http://localhost:40101 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
@@ -223,7 +223,7 @@ casper-client get-state-root-hash --node-address http://localhost:40101
 Get the network state, specifically for the count variable this time:
 
 ```bash
-casper-client query-state --node-address http://localhost:40101 \
+casper-client query-global-state --node-address http://localhost:40101 \
     --state-root-hash [STATE_ROOT_HASH]
     --key [ACCOUNT_HASH] -q "counter/count"
 ```

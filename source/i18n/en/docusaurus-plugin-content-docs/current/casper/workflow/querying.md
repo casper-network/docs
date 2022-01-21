@@ -64,7 +64,7 @@ casper-client get-state-root-hash \
 [Accounts](https://docs.casperlabs.io/en/latest/implementation/accounts.md) are stored in the global state and can be queried using the `query-state` command:
 
 ```bash
-casper-client query-state \
+casper-client query-global-state \
   --id 4 \
   --node-address http://<node-ip-address>:7777 \
   --state-root-hash <state-root-hash> \

@@ -279,7 +279,7 @@ Reading a value is simple; we obtain the block hash under which the value is sto
 An example global state query looks like this:
 
 ```bash
-casper-client query-state --node-address http://<HOST>:<PORT> -k <PUBLIC_KEY_AS_HEX> -g GLOBAL_STATE_HASH | jq -r
+casper-client query-global-state --node-address http://<HOST>:<PORT> -k <PUBLIC_KEY_AS_HEX> -g GLOBAL_STATE_HASH | jq -r
 ```
 
 Please reference the [Querying Section](../getting-started.md#querying-global-state-for-the-address-of-a-contract) for more details.
