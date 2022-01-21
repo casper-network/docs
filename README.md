@@ -10,9 +10,8 @@ Follow these steps to run the documentation website locally, displayed in your l
 
 ### Pre-requisites
 
--   Install `npm` (version 14.0+).
 -   Install a code editor, such as Visual Studio Code (`vscode`). You may also want to install editing extensions such as `prettier`, `eslint`, and others listed in the `.vscode/extensions.json` file.
--   Install Node.js from the [Node.js download page](https://nodejs.org/en/download/).
+-   Install [Node.js](https://nodejs.org/en/download/) (version 14+).
 -   Install `yarn` via `npm` using this command:
 
     ```
@@ -21,21 +20,21 @@ Follow these steps to run the documentation website locally, displayed in your l
 
 ### Running the website locally
 
-1. Clone this repository on your machine: [docs-app](https://github.com/casper-network/casper-node/docs-app).
-2. Open the `docs-app` directory.
-3. Run the following commands:
+1. Clone this repository on your machine: https://github.com/casper-network/docs/.
+2. In the root folder, run the following commands:
     - `yarn install` - This is required only once for a folder
     - `yarn run start` - This will start the localhost server
-4. Access http://localhost:3000/ in your browser.
-
-**Note**: The website refreshes as you make changes to the markdown files. However, if you change the structure or configuration of the website, you need to rerun steps 3 and 4.
+3. Access http://localhost:3000/ in your browser.
+4. See the next section for details on how to [update the content](#updating-existing-content).
 
 ### Updating existing content
 
 1. Navigate to the `source/docs/casper` folder.
 2. Find the content you want to update and modify the markdown file(s). If you want to add new content, read the [Developer Guide](#developer-guide).
-3. Test your changes locally.
+3. [Run the website locally](#running-the-website-locally) to test your changes.
 4. Submit your changes using a pull request.
+
+**Note**: The website refreshes as you make changes to the markdown files. However, if you change the structure or configuration of the website, you need to re-start yarn using `yarn stop` and `yarn run start`.
 
 ### Adding new content
 
