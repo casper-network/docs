@@ -20,7 +20,8 @@ Follow these steps to run the documentation website locally, displayed in your l
 
 ### Running the website locally
 
-1. Clone this repository on your machine: https://github.com/casper-network/docs/.
+1. Create a fork of the documentation repository: https://github.com/casper-network/docs/.
+2. Clone the fork on your machine.
 2. In the root folder, run the following commands:
     - `yarn install` - This is required only once for a folder
     - `yarn run start` - This will start the localhost server
@@ -32,7 +33,7 @@ Follow these steps to run the documentation website locally, displayed in your l
 1. Navigate to the `source/docs/casper` folder.
 2. Find the content you want to update and modify the markdown file(s). If you want to add new content, read the [Developer Guide](#developer-guide).
 3. [Run the website locally](#running-the-website-locally) to test your changes.
-4. Submit your changes using a pull request.
+4. Submit changes to the [documentation](https://github.com/casper-network/docs) using a pull request from your forked repository.
 
 **Note**: The website refreshes as you make changes to the markdown files. However, if you change the structure or configuration of the website, you need to re-start the application.
 
