@@ -34,7 +34,7 @@ Follow these steps to run the documentation website locally, displayed in your l
 3. [Run the website locally](#running-the-website-locally) to test your changes.
 4. Submit your changes using a pull request.
 
-**Note**: The website refreshes as you make changes to the markdown files. However, if you change the structure or configuration of the website, you need to re-start yarn using `yarn stop` and `yarn run start`.
+**Note**: The website refreshes as you make changes to the markdown files. However, if you change the structure or configuration of the website, you need to re-start the application.
 
 ### Adding new content
 
