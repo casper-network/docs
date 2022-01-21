@@ -51,7 +51,7 @@ When sending a deploy, the client needs to know which host will receive the depl
 
 ### Creating Keys {#creating-keys}
 
-Blockchains use asymmetric key encryption to secure transactions. For more information, see [Working with Cryptographic Keys](keys.md). The secret key used to sign the deployment will be the secret key of the account that is used to pay for the transaction. The transaction will execute in this account's context unless key delegation and the `from` parameter is being used. To create keys using the rust client, execute the following command:
+Blockchains use asymmetric key encryption to secure transactions. For more information, see [Accounts and Cryptographic Keys](keys.md). The secret key used to sign the deployment will be the secret key of the account that is used to pay for the transaction. The transaction will execute in this account's context unless key delegation and the `from` parameter is being used. To create keys using the rust client, execute the following command:
 
 ```bash
 casper-client keygen <TARGET DIRECTORY>
