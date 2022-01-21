@@ -1,12 +1,52 @@
-# Working with Cryptographic Keys
+# Accounts and Cryptographic Keys
 
-The Casper platform supports two types of signatures for creating accounts and signing transactions: `ed25519` and `secp256k1`. You can generate keys using the Casper client in both formats. It is also possible to work with existing Ethereum keys.
+The Casper blockchain uses an on-chain [account-based model](../design.md), uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
 
-## Generating Keys {#generating-keys}
+By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
-### EdDSA Keys {#eddsa-keys}
+The Casper platform supports two types of signatures for creating accounts and signing transactions: [ed25519](#eddsa-keys) and [secp256k1](#ethereum-keys). You can generate keys using both formats, and it is also possible to [work with existing Ethereum keys](#working-with-existing-ethereum-keys).
 
-To create `ed25519` keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA), follow these steps:
+## Creating Accounts and Keys {#creating-accounts-and-keys}
+
+When you create an account on the Casper blockchain, a cryptographic key-pair will be created when using either the [Casper command-line client](#option-1-key-generation-using-the-casper-client) or a [block explorer](#option-2-key-generation-using-a-block-explorer).
+
+### Option 1: Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
+
+This option describes how you can use the Casper command-line client to set up your accounts. 
+
+Execute the following command to generate your keys:
+
+```bash
+casper-client keygen .
+```
+
+The above command will create three files in the current working directory:
+
+1.  `secret_key.pem` - PEM encoded secret key
+2.  `public_key.pem` - PEM encoded public key
+3.  `public_key_hex` - Hexadecimal-encoded string of the public key
+
+:::note
+
+SAVE your keys to a safe place, preferably offline.
+
+:::
+
+Once the keys for the account are generated, the accounts can be [funded](../workflow/setup.md#funding-an-account) to finish the process of creating an account.
+
+:::note 
+
+Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the account-address option of the client:
+
+```bash
+casper-client account-address --public-key <path-to-public_key.pem/public-key-hex>
+```
+
+:::
+
+#### EdDSA Keys {#eddsa-keys}
+
+To create `ed25519` keys with the Casper command-line client, which use the Edwards-curve Digital Signature Algorithm (EdDSA), follow these steps:
 
 ```bash
 mkdir ed25519-keys
@@ -31,9 +71,9 @@ cat ed25519-keys/public_key_hex
 011724c5c8e2404ca01c872e1bbd9202a0114e5d143760f685086a5cffe261dabd
 ```
 
-### Ethereum Keys {#ethereum-keys}
+#### Ethereum Keys {#ethereum-keys}
 
-To create `secp256k1` keys, commonly known as Ethereum keys, follow these steps:
+To create `secp256k1` keys with the Casper command-line client, commonly known as Ethereum keys, follow these steps:
 
 ```bash
 mkdir secp256k1-keys
@@ -57,6 +97,15 @@ The public-key-hex for `secp256k1` keys starts with 02:
 cat secp256k1-keys/public_key_hex
 020287e1a79d0d9f3196391808a8b3e5007895f43cde679e4c960e7e9b92841bb98d
 ```
+
+### Option 2: Generating Keys using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
+
+This option is available on networks that have a block explorer.
+
+For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
+
+Start by creating an account using the [Casper Signer](../workflow/signer-guide.md) and download the secret key when prompted. Note that the account is not stored on chain. 
+
 
 ## Working with Existing Ethereum Keys {#working-with-existing-ethereum-keys}
 
