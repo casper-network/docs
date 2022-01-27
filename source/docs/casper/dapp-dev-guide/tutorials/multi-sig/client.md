@@ -84,12 +84,12 @@ You can match the output against the expected output described in the next secti
 
 We will explore the client example with the help of its output. The client example executes the following steps:
 
-1. Set the mainAccount's weight to 3
+1. Set the main account's weight to 3
 2. Set the key management threshold to 3
 3. Set the deploy threshold to 2
 4. Add first account new key with weight 1
 5. Add second account new key with weight 1 
-6. Transfer tokens from the mainAccount using the associated accounts accounts
+6. Transfer tokens from the main account using the associated accounts
 7. Remove the first account
 8. Remove the second account
 
