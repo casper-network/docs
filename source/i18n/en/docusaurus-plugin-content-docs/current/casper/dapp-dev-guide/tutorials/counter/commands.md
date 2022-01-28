@@ -25,7 +25,7 @@ After any deploys to the network, you must get the new state root hash to see th
 ## Querying Network State {#querying-network-state}
 
 ```rust
-casper-client query-state \
+casper-client query-global-state \
     --node-address [NODE_SERVER_ADDRESS] \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] \
