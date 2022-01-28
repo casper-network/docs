@@ -1,29 +1,9 @@
 # FAQ - General
 
-### Choosing a Validator {#choosing-a-validator}
-<details>
-
-<summary><b>What are the important aspects to consider when delegating tokens to a validator?</b></summary>
-
-Users should consider consistent uptime, prompt upgrades and commission rates when choosing a validator. Offline and out-of-date validators do not generate rewards.
-
-Active engagement in the community is another important aspect.
-
-</details>
-
-### Deploy Processing {#deploy-processing}
+### Accounts
 
 <details>
- <summary><b>How do I know that a deploy was finalized?</b></summary>
-  
-If a deploy was executed, then it has been finalized. If the deploy status comes back as null, that means the deploy has not been executed yet. Once the deploy executes, it is finalized, and no other confirmation is needed. Exchanges that are not running a read-only node must also keep track of <a href="./faq-developer#finality-signatures">finality signatures</a> to prevent any attacks from high-risk nodes.
-
-</details>
-
-### Account-hex vs. Account-hash {#account-hex-vs-account-hash}
-
-<details>
- <summary><b>Should a customer see the account-hex or the account-hash?</b></summary>
+ <summary><b>Should a customer see use the account-hex or the account-hash?</b></summary>
   
 Exchange customers or end-users only need to see the <em>account-hex</em>. They do not need to know the <em>account_hash</em>. The <em>account_hash</em> is needed in the backend to verify transactions. 
 Store the <em>account-hash</em> to query and monitor the account. Customers do not need to know this value, so to simplify their experience, we recommend storing both values and displaying only the <em>account-hex</em> value.
@@ -40,34 +20,26 @@ You must deposit tokens to activate it. You can request tokens from [CSPR Live](
 ### Staking {#staking}
 
 <details>
-<summary><b>How do I stake tokens via the command line?</b></summary>
 
-The following command is an example of how to stake your tokens via the command line:
+<summary><b>What are the important aspects to consider when delegating tokens to a validator?</b></summary>
 
-```bash
+Users should consider consistent uptime, prompt upgrades and commission rates when choosing a validator. Offline and out-of-date validators do not generate rewards.
 
-VALIDATOR_PUBLIC_KEY=the public key hex of your desired validator, from cspr.live, or testnet.cspr.live
-VALIDATOR_PUBLIC_KEY=$(cat /etc/casper/validator_keys/public_key_hex)
-NETWORK_NAME="casper-test"
-
-sudo -u casper casper-client put-deploy \
-    --chain-name casper-test \
-    --node-address http://localhost:7777 \
-    --secret-key /path/to/secret_key.pem \
-    --session-path "$HOME/casper-node/target/wasm32-unknown-unknown/release/delegate.wasm" \
-    --payment-amount 3000000000 \
-    --session-arg "validator:public_key='$VALIDATOR_PUBLIC_KEY'" \
-    --session-arg="amount:u512='555000000000'" \
-    --session-arg "delegator:public_key='$PUBLIC_KEY_HEX'"
-
-```
+Active engagement in the community is another important aspect.
 
 </details>
 
 <details>
-<summary><b>How do I stake tokens in a GUI?</b></summary>
+<summary><b>How do I stake tokens via the command line?</b></summary>
 
-[How to Stake your CSPR](https://casper.network/docs/workflow/staking)
+Follow [the delegation workflow](https://casper.network/docs/workflow/delegate) to learn how to stake your tokens via the command line.
+
+</details>
+
+<details>
+<summary><b>How do I stake tokens using cspr.live?</b></summary>
+
+See the article on [How to Stake your CSPR](https://casper.network/docs/workflow/staking).
 
 </details>
 
