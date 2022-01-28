@@ -4,15 +4,15 @@ The Casper blockchain uses an on-chain [account-based model](../design/accounts.
 
 By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
-The Casper platform supports two types of signatures for creating accounts and signing transactions: 
+The Casper platform supports two types of keys for creating accounts and signing transactions: 
 - [ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA)
-- [secp256k1](##ethereum-keys) keys, commonly known as Ethereum keys
+- [secp256k1](#ethereum-keys) keys, commonly known as Ethereum keys
 
 You can generate keys using both formats, and it is also possible to [work with existing Ethereum keys](#working-with-existing-ethereum-keys).
 
 ## Creating Accounts and Keys {#creating-accounts-and-keys}
 
-When you create an account on the Casper blockchain, a cryptographic key-pair will be created when using either the [Casper command-line client](#option-1-key-generation-using-the-casper-client) or a [block explorer](#option-2-key-generation-using-a-block-explorer). These tools allow you to create both *ed25519* and *secp256k1* key types.
+When you create an account on the Casper blockchain, a cryptographic key-pair will be created when using either the [Casper command-line client](#option-1-key-generation-using-the-casper-client) or a [block explorer](#option-2-key-generation-using-a-block-explorer).
 
 :::note
 
@@ -85,7 +85,7 @@ cat secp256k1-keys/public_key_hex
 
 #### Account Hash
 
-Responses from the node contain *AccountHashes* instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the *account-address* option of the client. The argument for the *public-key* must be a properly formatted public key. The public key may also be read from a file, which should be one of the two files generated via the *keygen* command: *public_key_hex* or *public_key.pem*.
+Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the *account-address* option of the client. The argument for the *public-key* must be a properly formatted public key. The public key may also be read from a file, which should be one of the two files generated via the *keygen* command: *public_key_hex* or *public_key.pem*.
 
 ```bash
 casper-client account-address --public-key <FORMATTED STRING or PATH>
@@ -99,13 +99,13 @@ For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live
 
 Start by creating an account using the [Casper Signer](../workflow/signer-guide.md) and download the secret key when prompted. You can choose the key type when creating your account.
 
-### Funding your Account
+## Funding your Account
 
-Once you generate the keys for the account, you can [fund it](../workflow/setup.md#funding-an-account) to finish the process of setting it up. 
+Once you create your account, you can [fund the account](../workflow/setup.md#funding-an-account) to finish the process of setting it up. 
 
 :::note
 
-It is important to note that your account is not stored on the blockchain.
+Your account is not stored on the blockchain.
 
 :::
 
