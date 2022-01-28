@@ -61,7 +61,7 @@ casper-client get-state-root-hash \
 
 ## Querying an Account {#querying-an-account}
 
-[Accounts](https://docs.casperlabs.io/en/latest/implementation/accounts.md) are stored in the global state and can be queried using the `query-state` command:
+[Accounts](https://docs.casperlabs.io/en/latest/implementation/accounts.md) are stored in the global state and can be queried using the `query-global-state` command:
 
 ```bash
 casper-client query-global-state \

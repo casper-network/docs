@@ -274,7 +274,7 @@ Contracts can be executed under different contexts. In this example, when the co
 
 It would be best if you first found the block hash for the block that contains your deploy. Once you have the requisite block hash, you can use the Casper client to retrieve the session hash.
 
-Reading a value is simple; we obtain the block hash under which the value is stored, and then using that block hash, we use the `query-state` command to retrieve the value stored under a named key.
+Reading a value is simple; we obtain the block hash under which the value is stored, and then using that block hash, we use the `query-global-state` command to retrieve the value stored under a named key.
 
 An example global state query looks like this:
 
