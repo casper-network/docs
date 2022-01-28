@@ -69,7 +69,7 @@ casper-client account-address --public-key "[PATH_TO_YOUR_KEY]/public_key_hex"
 
 Use the command template below to query the network status with regard to your account.
 ```bash
-casper-client query-state \
+casper-client query-global-state \
 --node-address http://<HOST:PORT> \
 --state-root-hash [STATE_ROOT_HASH] \
 --key [ACCOUNT_HASH]
@@ -127,7 +127,7 @@ This step will narrow down the context and check the status of a specific entry 
 Use the command template below to query the network state with arguments:
 
 ```bash
-casper-client query-state \
+casper-client query-global-state \
 --node-address http://<HOST:PORT> \
 --state-root-hash [STATE_ROOT_HASH] \
 --key [ACCOUNT_HASH] \
@@ -152,7 +152,7 @@ Eg:  http://95.216.24.237:7777
 
 Here is the command to query the state of the network:
 ```bash
-casper-client query-state \
+casper-client query-global-state \
 --key account-hash-<account-address> \
 --node-address http://<HOST:PORT> \
 --state-root-hash E5B679BD1562fE6257257F5f969A79482E8DCEBBD501501BfA6d5844b61cBE3f
@@ -606,7 +606,7 @@ This contains the header, payment, and session details along with the execution 
 We will query the argument 'name' in this example.
 
 ```bash
-casper-client query-state --node-address http://95.216.24.237:7777 \
+casper-client query-global-state --node-address http://95.216.24.237:7777 \
 --state-root-hash D00dF8c35B0E9995c2911803F37A212d82c960D9bC5bA3C4F99a661e18D09411 \
 --key account-hash-7f4bf39A311a7538d8C91BB86C71DF774023e16bc4a70ab7e4e8AE77DbF2Ef53 \
 -q "test_contract/name"
