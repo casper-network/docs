@@ -65,7 +65,7 @@ If you are new or have logged out of the Signer, you can log in with these steps
 
 If you are using the CasperLabs Signer for the first time, follow these steps to create an account and **download the account's secret key**:
 
-1.  Click **Create Account** in the Signer.
+1.  Click **CREATE ACCOUNT** in the Signer.
 2.  Give your account a name. In this tutorial, we will use the name _My-CSPR_.
 3.  Select an Algorithm using the dropdown menu. If you need help, review the article on [Working with Cryptographic Keys](https://casper.network/docs/dapp-dev-guide/keys).
 4.  Click **Create** to save your account.
