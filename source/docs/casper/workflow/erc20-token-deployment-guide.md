@@ -99,7 +99,7 @@ Let's take a look at what these constants refer to.
 * `NODE_ADDRESS`: The address of the validator node to submit the deployment to. The address listed directs to a valid, online node, but this may change in the future. If this node does not respond, you can select another online peer from the list [here](https://testnet.cspr.live/tools/peers). Note that you'll need to replace the port with `7777` for most nodes, as well as will need to add `/rpc` to the end of the address.
 * `NETWORK_NAME`: The name of the network we'll be deploying to. By default we have the casper testnet chosen with `"casper-test"`. To deploy on the mainnet, we would change this to `"casper"`.
 
-As long as you generated the keys with the aforementioned command within your project's root folder, the paths to your keys should be the same as already written in the code. Otherwise you'll need to put in the alternate path to your keys here, on line `14`.
+As long as you generated the keys with the aforementioned command within your project's root folder, the paths to your keys should be the same as already written in the code. Otherwise you'll need to put in the alternate path to your keys here, on line `X`.
 
 ```javascript
 const KEYS = Keys.Ed25519.parseKeyFiles(
@@ -112,5 +112,20 @@ Save this code and head back to your terminal.
 
 To install the contract, execute the following command:
 
-`node index.js`
+`node erc20iface deploy`
 
+*For help, run `node erc20 help`*
+
+If deployment succeeds, your last log line will tell you the name of the installed token.
+
+`... Contract name: Test Token`
+
+Your ERC20 token contract is now successfully installed. Next we'll go about transferring tokens.
+
+## Transfer Tokens
+
+Casper's ERC20 tokens can be sent back and forth as per the specification. We'll be using the same  `erc20iface` script to execute the transfer deployments.
+
+You will need an amount and a destination to execute a transferral. The amount corresponds to the number of tokens you want transferred, and the destination is the hexadecimal public key of the receiving account. Your command should look like this
+
+`node erc20iface transfer 200 0166795bb8895dcec5631690fa3d5dd3daacde7efeefb1e79176e9d879fd669b47`
