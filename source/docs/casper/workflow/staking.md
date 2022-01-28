@@ -142,7 +142,7 @@ The transfer from an exchange takes a few minutes. After your tokens arrive in y
 
 ### 5.1 Transfer CSPR from an Exchange {#51-transfer-cspr-from-an-exchange}
 
-If you need to transfer your CSPR tokens from an exchange, you will need your **public key** from the account page. You can also find this key in the **public_key_hex** file, which you can download from the CasperLabs Signer.
+If you need to transfer your CSPR tokens from an exchange, you will need your **public key** from the account page.
 
 If you already have funds in your Signer wallet, you can skip this section. If you are working with a different exchange, you need to contact that exchange directly.
 
