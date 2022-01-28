@@ -12,9 +12,9 @@ Casper is an open-source Proof-of-Stake blockchain network built off the CBC ([C
 </details>
 
 <details>
- <summary><b>When is Casper's mainnet launch?</b></summary>
+ <summary><b>When was Casper's mainnet launch?</b></summary>
 
-Casper's mainnet launch will occur in Q1 2021.
+Casper's mainnet launched on [March 30th, 2021](https://casper.network/network/blog/casper-mainnet-is-live).
 
 </details>
 
@@ -62,7 +62,7 @@ Visit the [CasperLabs website](https://casperlabs.io/), [read the blog](https://
 <details>
   <summary><b>What's the difference between CasperLabs and Casper?</b></summary>
 
-CasperLabs is the development team that is currently building the Casper Network. CasperLabs has been developing Casper during its testnet phase and is currently planning for mainnet launch in Q1 2021. As a public, open-source network, Casper can be developed on and by anyone in addition to the CasperLabs team.
+CasperLabs is the development team that is currently building the Casper Network. CasperLabs has been developing Casper throughout both the testnet and mainnet periods. As a public, open-source network, Casper can be developed on and by anyone in addition to the CasperLabs team.
 
 </details>
 

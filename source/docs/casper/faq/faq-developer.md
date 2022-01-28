@@ -1,6 +1,6 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 # FAQ - Developers
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This section covers frequently asked questions and our recommendations from the developer's perspective.
 
@@ -92,21 +92,95 @@ sudo snap install cmake
 No, smart contracts cannot interact with the world outside of the blockchain on which they live. For example, a smart contract cannot act as a REST endpoint or data source. Smart contracts can interact with other contracts in the same environment, or with compatible external libraries. When creating an external library to interact with a Casper smart contract, consider the following:
 
 * WASM is expressed as `little-endian` by default. Check for endianness compatibility.
-
 * As `wasm32-unknown-unknown` is a 32-bit platform, it cannot support 64-bit external code. Your library needs to be compatible with 32-bit code.
-
 * Consider a library that supports `no_std`.
-
 * Try to avoid native operating system calls. If the library uses the filesystem, sockets, or other native OS functionality, then it may not work with a Casper smart contract.
 
 </details>
 
 <details>
-<summary><b>Where can I begin learning about deploying NFTs on the Casper Network?</b></summary>
+<summary><b>Is CSPR an ERC-20 token?</b></summary>
 
-The following link contains the current standard and an example implementation:
+No, CSPR is a native token that resides on a layer 1 protocol. It does not rely on another token.
 
-[Enhancing the Casper NFT Standard](https://gitcoin.co/issue/casper-network/gitcoin-hackathon/8/100026584)
+</details>
+
+<details>
+<summary><b>What determines the cost of a deploy?</b></summary>
+
+Native system transfers have a fixed gas cost. Calling system contracts by their hashes also has a fixed cost.
+
+If two calls with different arguments but for the same hash show different gas costs, it is a result of executed WASM code. Different arguments may lead to different code paths and executed opcodes. You cannot predict the number of executed opcodes or host functions.
+
+If the calls use the same arguments, yet the cost is increasing, you might consider reviewing your global state usage. There is a chance that you are reading a collection from the global state, updating it and writing back with a larger size.
+
+</details>
+
+<details>
+<summary><b>Why do I receive a 'casper-client: command not found' error?</b></summary>
+
+Refer to the [Casper Command-line Client](https://casper.network/docs/workflow/setup#the-casper-command-line-client) document for instructions on interacting with the Casper Network.
+
+</details>
+
+### CSPR Transactions {#cspr-transactions}
+
+<details>
+<summary><b>What should I do if I am encountering errors installing cargo-casper?</b></summary>
+
+Ensure that you have installed both Rust and CMake before attempting to install cargo-casper.
+
+</details>
+
+<details>
+<summary><b>Why does my deploy get an 'Out of Gas' error?</b></summary>
+
+If you receive this error, try specifying a higher amount of CSPR for the deployment.
+
+</details>
+
+<details>
+<summary><b>Is there an API available to query CSPR transactions?</b></summary>
+
+The client API of Casper Node is available at [Casper RPC API](http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/). You can find specific node-addresses at cspr.live for the [testnet](https://testnet.cspr.live/tools/peers) or [mainnet](https://cspr.live/tools/peers).
+
+</details>
+
+<details>
+ <summary><b>How can I query a transaction for an account?</b></summary>
+
+On-chain accounts are associated with an account address. Transaction data includes account address as a sub-field.
+
+</details>
+
+### Information on nctl
+
+
+<details>
+<summary><b>Some nctl commands are working correctly, while others are causing errors.</b></summary>
+
+This issue may be caused by an incomplete or unsuccessful install of nctl. Once it is installed, use the command `nctl-status` to see if it is running normally. It should show five running noes and five stopped.
+
+If it does not, the nctl install did not install correctly. Usually, the failure reasons are OS and hardware specifications. If you are running Linus on Windows, we suggest switching to VirtualBox.
+
+</details>
+
+<details>
+
+<summary><b>When I attempted to run 'nctl-compile' on MacOS, I received the following error: 'error: failed to run custom build command for 'openssl-sys v0.9.67'</b></summary>
+
+If you issue the command `brew info openssl` it will return info that appears similar to the following:
+
+```
+...
+For pkg-config to find openssl@3 you may need to set:
+    export PKG_CONFIG_PATH="usr/local/opt/openssl@3/lib/pkgconfig"
+...
+```
+
+The next step is to issue the above command. In this example, you would use `PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"`.
+
+After this, `nctl-compile` should work correctly.
 
 </details>
 
@@ -147,38 +221,7 @@ Suppose an exchange connects to someone else's node RPC to send transactions to 
 
 </details>
 
-### Other
-
-<details>
- <summary><b>Does the node API have a 'getTransactions' function?</b></summary>
-
-The node API JSON-RPC is found <a href="http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/ ">here</a>. Also, the node emits the following events:
-
--   BlockAdded
--   DeployProcessed
--   ConsensusFinalitySignature
-
-With these APIs, you can pull information from the node, such as transaction sets.
-
-</details>
-
-<details>
- <summary><b>How can I query a transaction for an account?</b></summary>
-
-On-chain accounts are associated with an account address. Transaction data includes account address as a sub-field.
-
-</details>
-
-<details>
- <summary><b>Do you have an example wallet or library?</b></summary>
-
-**Question**: For wallet generation, can you point me to an open-source implementation or library? I see that Casper uses the ed25519 curve cryptography. Can you give me more details for seed generation?
-
-**Answer**: The <a href="https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce">CasperLabs Signer</a> is a wallet-like application. But, it is simplistic and has not been security reviewed. The Casper Network supports ed25519 as well as secp256k1 keys; therefore, extending a current wallet implementation would not be difficult.
-
-</details>
-
-### Hackathon Questions
+### Floating Point Opcodes {#floating-point-opcodes}
 
 <details>
 <summary><b>Why do I get an 'Encountered operation forbidden by gas rules' error?</b></summary>
@@ -187,79 +230,7 @@ Casper node does not natively allow floating point opcodes.
 
 </details>
 
-<details>
-<summary><b>How do I update my status in the Hackathon list?</b></summary>
-
-To update your status on the [Hackathon list](https://github.com/casper-network/gitcoin-hackathon/issues/29), you must update or submit your work on the [Gitcoin UI](https://gitcoin.co/issue/casper-network/gitcoin-hackathon/29).
-
-</details>
-
-<details>
-<summary><b>Do I need to use the `stop work` button after a project submission on Gitcoin?</b></summary>
-
-Yes, you will need to `stop work` to flag the submission as ready for review.
-
-</details>
-
-[//]: # "Is this still relevant?"
-
-<details>
-<summary><b>When installing casper-node, I receive a compilation error due to failing to select a version for snow.</b></summary>
-
-Use the following command:
-
-```
-cargo +nightly-2021-06-17 install casper-client --locked
-
-```
-
-</details>
-
-<details>
-<summary><b>When using the command ntcl-assets-setup && nctl-start, I receive a 'path too long' error.</b></summary>
-
-Choose a short path for your working directory. Otherwise, the NCTL tool will report that the path is too long.
-
-</details>
-
-<details>
-<summary><b>Why do I receive a 'casper-client: command not found' error when I run 'casper-client get-state-root-hash --node-address http://localhost:11101/`?</b></summary>
-
-1. Open this link: [https://repo.casperlabs.io/](https://repo.casperlabs.io/)
-2. Use the instructions to add our repo to your apt dependencies (Assuming you use Ubuntu).
-3. Use the command `sudo apt install casper-client`
-
-</details>
-
-<details>
-<summary><b>How do I resolve a `Failed to get RPC response: error sending request for url (http://127.0.0.1:22102/rpc): connection error: Connection reset by peer (os error 54)` error?</b></summary>
-
-You should specify RPC ports as follows:
-
-```
-
-[rpc_server]
-address = "0.0.0.0:11102"
-
-```
-
-You can find more command info [here](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/commands-view-node.md#nctl-viewing-node-information)
-
-</details>
-
-<details>
-<summary><b>What is the '--chain-name' for NCTL?</b></summary>
-
-The chain name is Casper-net-1.
-
-</details>
-
-<details>
-<summary><b>Is there a way to query all the '(key, value)' pairs in a 'casper dictionary'?</b></summary>
-
-No, you need to know the keys before hand. If you want to iterate over the dictionary list, you can list keys numerically and keep the length in another value.
-
-</details>
+### ZK Proofs {#zk-proofs}
 
 <details>
 <summary><b>How do I add ZK proofs within Casper?</b></summary>
@@ -276,98 +247,59 @@ Verifications would then need to use the associated library.
 
 </details>
 
-<details>
-<summary><b>How do I rectify an 'Invalid context' error caused by the 'mint_one' function from a CEP47 contract?</b></summary>
+### Other
 
-Deploying a CEP47 contract sets the deploying account as admin by default. Only this account can execute burn and mint functions.
+<details>
+ <summary><b>Does the node API have a 'getTransactions' function?</b></summary>
+
+The node API JSON-RPC is found <a href="http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/ ">here</a>. Also, the node emits the following events:
+
+-   BlockAdded
+-   DeployProcessed
+-   ConsensusFinalitySignature
+
+With these APIs, you can pull information from the node, such as transaction sets.
 
 </details>
 
 <details>
-<summary><b>Some NCTL commands are working correctly, while others are causing errors.</b></summary>
+<summary><b>How do I resolve a `Failed to get RPC response: error sending request for url (http://127.0.0.1:22102/rpc): connection error: Connection reset by peer (os error 54)` error?</b></summary>
 
-This issue may be caused by an incomplete or unsuccessful install of NCTL. Once it is installed, use the command `nctl-status` to see if it is running normally. It should show five running noes and five stopped.
+You should specify RPC ports as follows:
 
-If it does not, the NCTL install did not install correctly. Usually, the failure reasons are OS and hardware specifications. If you are running Linus on Windows, we suggest switching to VirtualBox.
+```
+
+[rpc_server]
+address = "0.0.0.0:11102"
+
+```
+
+You can find more command info [here](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/commands-view-node.md#nctl-viewing-node-information).
 
 </details>
 
 <details>
-<summary><b>When running 'nctl-assets-setup && nctl-start' I receive a 'Command 'supervisord' not found' error.</b></summary>
+<summary><b>Is there a way to query all the '(key, value)' pairs in a 'casper dictionary'?</b></summary>
 
-You need to install supervisor in your Python virtual environment using `pip install supervisor`
-
-</details>
-
-<details>
-<summary><b>Can you explain 'get-account-key', 'get-key-pair', 'get-key-pair-from-*', 'get-signature' and 'get-hash'?</b></summary>
-
-These are cryptography related functions. Casper Node supports two ECC curves, secp256k1 and ed25519. Additionally, it supports blake2b as a hashing algorithm by default. The Python implementations are as follows:
-
-[casper-python-sdk/pycspr/crypto at main - casper-network/casper-python-sdk](https://github.com/casper-network/casper-python-sdk/tree/main/pycspr/crypto)
-
-[casper-python-sdk/ecc.py at main - casper-network/casper-python-sdk](https://github.com/casper-network/casper-python-sdk/blob/main/pycspr/crypto/ecc.py)
-
-[casper-python-sdk-hashifier.py at main - casper-network/casper-python-sdk](https://github.com/casper-network/casper-python-sdk/blob/main/pycspr/crypto/hashifier.py)
-
-[casper-python-sdk/hashifier_blake2b.py at main - casper-network/casper-python-sdk](https://github.com/casper-network/casper-python-sdk/blob/main/pycspr/crypto/hashifier_blake2b.py)
-
-The following are Java implementations:
-
-[https://github.com/casper-network/casper-java-sdk/blob/main/src/main/java/com/casper/sdk/CasperSdk.java](https://github.com/casper-network/casper-java-sdk/blob/main/src/main/java/com/casper/sdk/CasperSdk.java)
-
-[https://github.com/casper-network/casper-java-sdk/blob/main/src/main/java/com/casper/sdk/service/SigningService.java](https://github.com/casper-network/casper-java-sdk/blob/main/src/main/java/com/casper/sdk/service/SigningService.java)
-
-[https://github.com/casper-network/casper-java-sdk/blob/main/src/main/java/com/casper/sdk/service/HashService.java](https://github.com/casper-network/casper-java-sdk/blob/main/src/main/java/com/casper/sdk/service/HashService.java)
-
-Both `get-account-key` and `get-account-hash` are higher level CL specific cryptographic functions. `get-account-key` returns the underlying key pair's public key, prefixed with a single byte indicating the ECC curve type. `get-account-hash` returns the on-chain address of hte account associated with an account key. Here are the Python implementations:
-
-[casper-python-sdk/cl_operations.py at main - casper-network/casper-python-sdk](https://github.com/casper-network/casper-python-sdk/blob/main/pycspr/crypto/cl_operations.py)
-
-Here are the Java implementations:
-
-[https://github.com/casper-network/casper-java-sdk/blob/main/src/main/java/com/casper/sdk/service/HashService.java](https://github.com/casper-network/casper-java-sdk/blob/main/src/main/java/com/casper/sdk/service/HashService.java)
-
-The `get-account-hash` function is specific and needs to be implemented correctly. Otherwise, the derived on-chain account addresses will be incorrect and funds may be lost.
+No, you need to know the keys beforehand. If you want to iterate over the dictionary list, you can list keys numerically and keep the length in another value.
 
 </details>
 
 <details>
 <summary><b>'Keys-manager.js' does not appear in client code. How is it used?</b></summary>
 
-`scenario-*.js` accesses functions from `key-manager.js` through `const keyManager = require('./key-manager');`
-
-</details>
-
-<details>
-<summary><b>Libs.rs and api.rs are not present in contract/src within keys-manager as per the video tutorial. I only see main.rs and errors.rs.</b></summary>
-
-This is a correctly compiled and deployed. All important functions fall under main.rs after a recent update.
+`scenario-*.js` accesses functions from `key-manager.js` through `const keyManager = require('./key-manager');`.
 
 </details>
 
 <details>
 <summary><b>What is the difference between key management and deployment?</b></summary>
 
-There are two types of action that an account can perform: deployment and key management. Deployment is simply executing some code on the blockchain, while key management involves changing the associated keys. Key management cannot be performed independently, but must come via a deploy. Therefore, a key management action implies that a deployment action also occurs.
+There are two types of action that an account can perform: deployment and key management. Deployment is simply executing some code on the blockchain, while key management involves changing the associated keys. Key management cannot occur independently, but must come via a deploy. Therefore, a key management action implies that a deployment action also occurs.
 
-</details>
+You may also reference the following two documents for additional information:
 
-<details>
-
-<summary><b>When I attempted to run 'nctl-compile' on MacOS, I received the following error: 'error: failed to run custom build command for 'openssl-sys v0.9.67'</b></summary>
-
-If you issue the command `brew info openssl` it will return info that appears similar to the following:
-
-```
-...
-For pkg-config to find openssl@3 you may need to set:
-    export PKG_CONFIG_PATH="usr/local/opt/openssl@3/lib/pkgconfig"
-...
-```
-
-The next step is to issue the above command. In this example, you would use `PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"`
-
-After this, `nctl-compile` should work correctly.
+[Accounts](https://casper.network/docs/design/accounts)
+[Multi-Signature Tutorial](https://casper.network/docs/multi-sig)
 
 </details>
