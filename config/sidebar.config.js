@@ -86,6 +86,7 @@ module.exports = {
                         "dapp-dev-guide/tutorials/erc20/index",
                         "dapp-dev-guide/tutorials/erc20/prepare",
                         "dapp-dev-guide/tutorials/erc20/implementation",
+                        "dapp-dev-guide/tutorials/erc20/deploy",
                         "dapp-dev-guide/tutorials/erc20/tests",
                     ],
                 },
