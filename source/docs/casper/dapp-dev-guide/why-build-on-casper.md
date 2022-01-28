@@ -7,7 +7,7 @@ This guide intends to briefly show you the current features and advantages of bu
 - [Contract Upgrades](#contract-upgrades)
 - [Development Tools](#development-tools)
    - [IDE Integration](#ide-integration)
-   - [CI/CD](ci/cd)
+   - [CI/CD](#ci-cd)
    - [Local Network Testing](#local-network-testing)
    - [AWS](#aws)
 - [SDK Client Libraries](#sdk-client-libraries)
