@@ -22,7 +22,7 @@ Follow these steps to run the documentation website locally, displayed in your l
 
 1. Create a fork of the documentation repository: https://github.com/casper-network/docs/.
 2. Clone the fork on your machine.
-2. In the root folder, run the following commands:
+2. In the forked folder, run the following commands:
     - `yarn install` - This is required only once for a folder
     - `yarn run start` - This will start the localhost server
 3. Access http://localhost:3000/ in your browser.
