@@ -6,6 +6,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. The CSPR wallet can be used to transfer CSPR tokens to another user, delegate stake, or ungelegate stake. The Casper Signer can be used for more than one CSPR account and all the accounts are securely stored in a vault, which is a mechanism to protect online information with a password. You set a password for the vault while creating a Casper Signer account. To login using Casper Signer, you must download and install the CasperLabs Signer extension for your browser. The following sections take you through the process of downloading and signing in to the Casper Signer.
 
+> **Note**: These steps use the [cspr.live](https://cspr.live/) as an example, you can install and setup your Signer account on any Casper Network block explorer such as [cspr.live](https://cspr.live/) or [casperstats.io](https://casperstats.io/). 
+
 ### 1.1 Installing the CasperLabs Signer Extension
 
 To install the CaperLabs Signer extension, follow these steps:
@@ -16,7 +18,7 @@ Alternatively, you can use this link to download the [CasperLabs Signer](https:/
 
 :::
 
-1. Navigate to the CSPR mainnet https://cspr.live/, using Chrome or a Chromium-based browser like Brave.
+1. Navigate to [cspr.live](https://cspr.live/), using Chrome or a Chromium-based browser like Brave.
 2. Click the **Sign in** option on the top-right corner of the screen. The Casper Signer is displayed.
 3. In the Casper Signer, click the **Download Signer** button. A new window with the Chrome extension is displayed.
 4. On the CasperLabs Signer extension page, click the **Add to Chrome** button. A pop-up will let you know the permissions required. To approve the extension access, click **Add extension**. The CasperLabs Signer extension is now added to your browser.
@@ -152,18 +154,18 @@ To view your account information, do the following:
 1. On the CSPR home page, click the option in the top-right corner of the screen that displays a few digits of your public key. A menu with your public key is displayed.
 2. To view your account details for the displayed public key, click **View Account**.
 
-## 7. Accessing the CSPR Wallet from cspr.live
+## 7. Accessing the CSPR Wallet from a Block Explorer
 
 Once you are logged in to the Casper Signer, you can access the wallet for each account registered in the Signer. For more information on how to log in to the Signer, see [Logging in to the Casper Signer](signer-guide#12-logging-in-to-the-casper-signer).
 
 Alternatively, you can follow these steps to log in to your Signer/CSPR wallet:
 
-1. Navigate to the CSPR Mainnet https://cspr.live/.
+1. Navigate to the [cspr.live](https://cspr.live/).
 2. Click the **Sign in** option on the top-right corner of the screen. The Casper Signer is displayed.
 3. In the Casper Signer, click the **Sign In** button. The Unlock Vault pop-up is displayed.
 4. Enter your password and click **UNLOCK**. The Connection Request message is displayed.
 5. To continue with the connection, click **CONNECT**. The Approve Connection message appears.
-6. To approve the connection, click **CONNECT**. You are now connected to the CSPR wallet.
+6. To approve the connection, click **CONNECT**. You are now connected to your CSPR wallet.
 
 ## 8. Logging out of the Casper Signer
 
