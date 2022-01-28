@@ -99,6 +99,13 @@ CSPR is the native token to the Casper Network. As a Proof-of-Stake blockchain, 
 </details>
 
 <details>
+<summary><b>Is CSPR an ERC-20 token?</b></summary>
+
+No, CSPR is a native token that resides on Casper Network's layer 1 protocol. It does not rely on another token.
+
+</details>
+
+<details>
   <summary><b>Where can I find information about CSPR, the supply, the allocation, and the sale? </b></summary>
 
 The Casper Association has launched its CSPR token sale. Head to [casper.network](https://casper.network/) to learn more.

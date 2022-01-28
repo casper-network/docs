@@ -1,6 +1,6 @@
 # FAQ - Validators
 
-### Node Status {#node-status}
+### Node Operations {#node-operations}
 
 <details>
 <summary><b>How do I check my node status?</b></summary>
