@@ -69,7 +69,7 @@ If you are using the CasperLabs Signer for the first time, follow these steps to
 2.  Give your account a name. In this tutorial, we will use the name _My-CSPR_.
 3.  Select an Algorithm using the dropdown menu. If you need help, review the article on [Working with Cryptographic Keys](https://casper.network/docs/dapp-dev-guide/keys).
 4.  Click **Create** to save your account.
-5.  Click **Download** and save the secret key for this account. 
+5.  Click **DOWNLOAD** and save the secret key for this account. 
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/3.2.5.1.png")} alt="3.2.5.1" width="200" />
 
