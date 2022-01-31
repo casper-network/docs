@@ -163,6 +163,12 @@ Instructions for MacOS and Linux:
 (env) $ nctl-compile
 ```
 
+:::note
+
+The compilation takes some time, so it might be a perfect moment to get some coffee.
+
+:::
+
 **Step 14.** Set up all the assets required to run a local network, including binaries, chainspec, config, faucet, and keys. Also, spin up the network right after. The default network will have 10 nodes, with 5 active nodes and 5 inactive nodes.
 
 Instructions for MacOS and Linux:
