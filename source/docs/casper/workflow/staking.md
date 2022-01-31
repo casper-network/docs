@@ -59,40 +59,36 @@ If you are new or have logged out of the Signer, you can log in with these steps
 7.  Click on the hamburger menu icon to select from a range of options. Notice that the checkmark indicates the active account.
 8.  From this menu, you can perform essential management functions, such as editing accounts, deleting accounts, or viewing and downloading your keys.
 9.  You can also view websites and dApps to which your accounts are connected.
-10. One essential function is the ability to download your keys and store them in a secure location. If you lose access to the vault, you can create a new vault with the downloaded files. Please do this as early as possible!
+10. One essential function is the ability to download your keys and store them in a secure location. If you lose access to the vault, you can create a new vault with the downloaded files. 
 
 ### 3.2 Creating a New Account {#32-creating-a-new-account}
 
-If you are using the CasperLabs Signer for the first time, follow these steps to create an account and **download the account's keys**:
+If you are using the CasperLabs Signer for the first time, follow these steps to create an account and **download the account's secret key**:
 
-1.  Click **Create Account** in the Signer.
+1.  Click **CREATE ACCOUNT** in the Signer.
 2.  Give your account a name. In this tutorial, we will use the name _My-CSPR_.
-3.  Select an Algorithm using the dropdown menu. Select _SECP256K1_ unless you have a good reason not to do so.
-4.  Click **Create** to save your account.
-5.  **IMPORTANT: Download the key files for this account!** Click the hamburger icon and select the **Download Active Key** option.
+3.  Select an Algorithm using the dropdown menu. If you need help, review the article on [Working with Cryptographic Keys](https://casper.network/docs/dapp-dev-guide/keys).
+4.  Click **CREATE** to save your account.
+5.  Click **DOWNLOAD** and save the secret key for this account. 
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/3.2.5.1.png")} alt="3.2.5.1" width="200" />
 
-6.  Check that your browser downloaded the following three files:
+:::note
 
--   Your secret key: **\...\_secret_key.pem**
--   Your public key: **\...\_public_key.pem**
--   A text file: **\...\_public_key_hex.txt**
+**If you lose the secret key file and your vault password, you will lose access to the account and the tokens stored in the account.**
 
-If you do not have these three files, you need to enable multiple downloads in your browser. It is crucial to proceed to the next step only if you have all of these files. This screenshot shows the files downloaded for an account called _My-CSPR_:
+If you lose the vault password you created but still have the secret key file, you can import your account into a new vault, as shown in the next section.
 
-<img class="align-center" src={useBaseUrl("/image/tutorials/staking/3.2.6.1.png")} alt="3.2.6.1" width="300" />
+We recommend moving your secret key to an offline location without Wi-Fi. Also, consider backing up your secret key in multiple locations if one location becomes compromised.
 
-7.  **IMPORTANT: Move these files to a secure OFFLINE location!** Do not store them on any device with a wifi connection. We recommend an offline USB or hard drive. Consider backing up these files in multiple locations in case one location becomes compromised.
-8.  If you lose the vault password you created, but still have the _secret_key.pem_ file, you can import your account into a new vault, as shown in the next section.
-9.  **IMPORTANT: If you lose the secret_key.pem file and your vault password, you will lose access to that account and to the tokens stored in the account.**
+:::
 
 ### 3.3 Importing an Existing Account {#33-importing-an-existing-account}
 
-If you already have your secret keys and would like to set up and use your wallet with your existing accounts, you can do so with the following steps. These steps also apply for users migrating from the outdated Clarity tool to [cspr.live](https://cspr.live/).
+If you already have your secret key and would like to set up and use your wallet with an existing account, you can do so with the following steps.
 
 1.  Import your existing account by clicking the **IMPORT ACCOUNT** button.
-2.  Then, click on the **UPLOAD** button and select your secret key file (the file with the secret_key.pem extension).
+2.  Then, click on the **UPLOAD** button and select your secret key file (the file with the secret_key.cer or secret_key.pem extension).
 3.  Give your account a name and click on the **IMPORT** button to complete the import operation.
 4.  Repeat these steps for all the accounts you would like to import into your wallet.
 
@@ -146,7 +142,7 @@ The transfer from an exchange takes a few minutes. After your tokens arrive in y
 
 ### 5.1 Transfer CSPR from an Exchange {#51-transfer-cspr-from-an-exchange}
 
-If you need to transfer your CSPR tokens from an exchange, you will need your **public key** from the account page. You can also find this key in the **public_key_hex** file, which you can download from the CasperLabs Signer.
+If you need to transfer your CSPR tokens from an exchange, you will need your **public key** from the account page.
 
 If you already have funds in your Signer wallet, you can skip this section. If you are working with a different exchange, you need to contact that exchange directly.
 

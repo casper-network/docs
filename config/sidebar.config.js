@@ -9,13 +9,13 @@ module.exports = {
         "workflow/querying",
         "workflow/account-hash",
         "workflow/two-party-multi-sig",
-    {
-        type: "category",
+        {
+            type: "category",
             label: "Transferring Tokens",
             collapsible: true,
             collapsed: true,
             items: ["workflow/transfers", "workflow/transfer-workflow", "workflow/deploy-transfer", "workflow/verify-transfer"],
-    },
+        },
         "workflow/delegate",
         "workflow/undelegate",
         {
@@ -35,6 +35,7 @@ module.exports = {
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
+        "dapp-dev-guide/why-build-on-casper",
         "dapp-dev-guide/getting-started",
         {
             type: "category",
@@ -55,7 +56,13 @@ module.exports = {
             label: "SDK Client Libraries",
             collapsible: true,
             collapsed: true,
-            items: ["dapp-dev-guide/sdk/index", "dapp-dev-guide/sdk/script-sdk", "dapp-dev-guide/sdk/csharp-sdk", "dapp-dev-guide/sdk/go-sdk", "dapp-dev-guide/sdk/python-sdk"],
+            items: [
+                "dapp-dev-guide/sdk/index",
+                "dapp-dev-guide/sdk/script-sdk",
+                "dapp-dev-guide/sdk/csharp-sdk",
+                "dapp-dev-guide/sdk/go-sdk",
+                "dapp-dev-guide/sdk/python-sdk",
+            ],
         },
         {
             type: "category",
@@ -86,6 +93,7 @@ module.exports = {
                         "dapp-dev-guide/tutorials/erc20/index",
                         "dapp-dev-guide/tutorials/erc20/prepare",
                         "dapp-dev-guide/tutorials/erc20/implementation",
+                        "dapp-dev-guide/tutorials/erc20/deploy",
                         "dapp-dev-guide/tutorials/erc20/tests",
                     ],
                 },

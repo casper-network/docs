@@ -124,7 +124,7 @@ The Casper local environment provides an in-memory virtual machine against which
 
 :::note
 
-Since the test script automatically builds the contract, during development you only need to run the command `make test` without the need for `cargo build`.
+Since the test script automatically builds the contract, during development you only need to run the command `make test` without the need for `make build-contract`.
 
 :::
 
