@@ -53,13 +53,14 @@ A list of peers from Testnet :
 This query captures any information related to the state of the blockchain at the specific time denoted by the network's state root hash.  You need to have the state root hash and the account hash to run the query.
 
 **Getting the state root hash**
+
 This marks a snapshot of the network state at a moment in time.
 
 ```bash
 casper-client get-state-root-hash --node-address http://<HOST:PORT>
 ```
 
-- `<HOST:PORT>`: Use the [Node IP address](../erc721/deploy#getting-an-ip-address-from-a-testnet-peer) taken from a Testnet peer
+- `<HOST:PORT>`: Use the [Node IP address](./deploy#getting-an-ip-address-from-a-testnet-peer) taken from a Testnet peer
 
 **Getting the account hash**
 
