@@ -18,14 +18,14 @@ The reference contract implementation of CEP-47 is on the example [CEP-47 contra
 CEP-47 contract requires to install following crates to function pro
 - [casper_contract](https://docs.rs/casper-contract/1.3.3/casper_contract/) - A Rust library for writing smart contracts on the Casper Network
 -   [casper_types](https://docs.rs/casper-types/latest/casper_types/) - Types used to allow the creation of Wasm contracts and tests for use on the Casper Network
--   [cep47](todo) - A library for developing CEP-47 tokens for the Casper Network
+-   cep47- A library for developing CEP-47 tokens for the Casper Network
 
 <img src={useBaseUrl("/image/tutorials/cep-47/crate_imports.png")} alt="import-crates" width="800"/>
 
 ## Constructing the Contract    
 CEP-47 constructor uses three arguments to initialize the contract. Those are name, symbol, and meta.
 - *name* - Name of the NFT contract
-- *symbol* - Symbol of the NFT contract
+- *symbol* - Symbol of the NFT Contract
 - *meta* - Metadata about the NFT
 
 <img src={useBaseUrl("/image/tutorials/cep-47/cep47_constructor.png")} alt="cep47-constructor" width="600"/>
