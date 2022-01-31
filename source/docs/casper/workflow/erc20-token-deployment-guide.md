@@ -1,4 +1,4 @@
-# Deploy an ERC20 Compliant Token to the Casper Mainnet with Node.js
+# Deploy an ERC20 Compliant Token to the Casper Blockchain with Node.js
 
 On Casper, it is possible to create smart contracts that emulate ERC20 tokens on Ethereum. These tokens have all of the capabilities of traditional ERC20 tokens, allowing one to approve, transfer, inquire the balance of, etc. By following this guide, you'll be able to create your own ERC20 token and deploy it to the Casper blockchain.
 
@@ -86,6 +86,7 @@ const TOTAL_SUPPLY = 1_000_000_000;
 const GAS_LIMIT = 60_000_000_000; //motes
 const WASM_PATH = "./erc20_token.wasm";
 const NODE_ADDRESS = "http://162.55.132.188:7777/rpc";
+const NETWORK_NAME = "casper-test";
 ```
 
 Let's take a look at what these constants refer to.
@@ -112,9 +113,9 @@ Save this code and head back to your terminal.
 
 To install the contract, execute the following command:
 
-`node erc20iface deploy`
+`npm run erc20iface deploy`
 
-*For help, run `node erc20 help`*
+*For help, run `npm run erc20iface help`*
 
 If deployment succeeds, your last log line will tell you the name of the installed token.
 
@@ -128,4 +129,7 @@ Casper's ERC20 tokens can be sent back and forth as per the specification. We'll
 
 You will need an amount and a destination to execute a transferral. The amount corresponds to the number of tokens you want transferred, and the destination is the hexadecimal public key of the receiving account. Your command should look like this
 
-`node erc20iface transfer 200 0166795bb8895dcec5631690fa3d5dd3daacde7efeefb1e79176e9d879fd669b47`
+`npm run erc20iface transfer 200 0166795bb8895dcec5631690fa3d5dd3daacde7efeefb1e79176e9d879fd669b47`
+
+To send tokens from the address you just sent to, just change the `KEYS` constant to use the path of that accounts public and secret keys (in our case account `0166795bb8895dcec5631690fa3d5dd3daacde7efeefb1e79176e9d879fd669b47`).
+
