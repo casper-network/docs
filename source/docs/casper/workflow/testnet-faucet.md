@@ -8,11 +8,11 @@ The Casper Testnet is an alternate Casper blockchain aimed at testing applicatio
 
 <img src={useBaseUrl("/image/workflow/testnet-home.png")} width="500" alt="Casper Testnet Home" />
 
-## 2. The Faucet
+## The Faucet
 
 The faucet functionality on Testnet allows you to request test tokens, which are required to complete transactions on the network, including transferring, delegating, and undelegating tokens. In this section, we will discuss how to request test tokens.
 
-### 2.1 Requesting Testnet Tokens 
+### Requesting Testnet Tokens 
 
 To request test tokens, follow these steps:
 1. Sign-in into the Casper Testnet with the Signer. For detailed instructions, see the [Signer Guide](signer-guide.md). 
