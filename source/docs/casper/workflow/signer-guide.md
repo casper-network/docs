@@ -160,7 +160,7 @@ Once you are logged in to the Casper Signer, you can access the wallet for each 
 
 Alternatively, you can follow these steps to log in to your Signer/CSPR wallet:
 
-1. Navigate to the [cspr.live](https://cspr.live/).
+1. Navigate to [cspr.live](https://cspr.live/), using Chrome or a Chromium-based browser like Brave.
 2. Click the **Sign in** option on the top-right corner of the screen. The Casper Signer is displayed.
 3. In the Casper Signer, click the **Sign In** button. The Unlock Vault pop-up is displayed.
 4. Enter your password and click **UNLOCK**. The Connection Request message is displayed.
