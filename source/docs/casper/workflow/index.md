@@ -12,7 +12,8 @@ These user guides contain step-by-step instructions for interacting with the Cas
 -   [Staking guide](staking.md): a guide to staking your Casper tokens
 -   [Ledger setup](ledger-setup.md): a guide to setting up your Ledger device
 -   [Signer guide](signer-guide.md): a guide to help you navigate the Signer app
--   [Token Transfer guide](token-transfer.md): a guide to help you transfer CSPR tokens on [Casper Testnet](https://testnet.cspr.live/)
+-   [Token Transfer guide](token-transfer.md): a guide to transferring your CSPR tokens 
+-   [Funding Testnet Accounts](testnet-faucet.md): a guide to funding your Testnet account
 
 ## Developer Guides {#developer-guides}
 

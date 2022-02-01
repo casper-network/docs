@@ -5,6 +5,7 @@ module.exports = {
         "workflow/ledger-setup",
         "workflow/signer-guide",
         "workflow/token-transfer",
+		"workflow/testnet-faucet",
         "workflow/setup",
         "workflow/querying",
         "workflow/account-hash",
