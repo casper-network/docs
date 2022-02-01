@@ -89,7 +89,7 @@ If you do not have these three files, you need to enable multiple downloads in y
 
 ### 3.3 Importing an Existing Account {#33-importing-an-existing-account}
 
-If you already have your secret keys and would like to set up and use your wallet with your existing accounts, you can do so with the following steps:
+If you already have your secret key and would like to set up and use your wallet with an existing account, you can do so with the following steps:
 
 1.  Import your existing account by clicking the **IMPORT ACCOUNT** button.
 2.  Then, click on the **UPLOAD** button and select your secret key file (the file with the secret_key.pem extension).
