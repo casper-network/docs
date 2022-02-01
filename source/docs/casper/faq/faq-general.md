@@ -17,15 +17,6 @@ You must deposit tokens to activate it. You can request tokens from [CSPR Live](
 
 </details>
 
-### Minimum CSPR Balance {#minimum-cspr-balance}
-
-<details>
-<summary><b>What is the minimum CSPR balance required to transfer?</b></summary>
-
-An account cannot transfer less than 2.5 CSPR.
-
-</details>
-
 ### Staking {#staking}
 
 <details>
