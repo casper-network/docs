@@ -198,31 +198,9 @@ With these APIs, you can pull information from the node, such as transaction set
 </details>
 
 <details>
- <summary><b>How do I ensure sufficient balance during multiple transfers?</b></summary>
+ <summary><b>How do I handle a transaction composed of multiple transfers?</b></summary>
 
- Applying a unique ID to each transfer can mitigate issues with multiple transfers. Once deployed to a block, the transaction effectively finalizes.
-
-</details>
-
-### Invalid Purse Errors {#invalid-purse-errors}
-
-<details>
- <summary><b>What factors cause the 'APIError::InvalidPurse' error?</b></summary>
-
- The three main factors that cause an InvalidPurse error are:
-
- 1. The purse in question does not exist.
- 2. The purse does not of the U512 type.
- 3. The sending and receiving purses are identical.
-
-</details>
-
-### Missing Argument Errors {#missing-argument-errors}
-
-<details>
- <summary><b>What causes an 'ApiError::MissingArgument [2]' error?</b></summary>
-
- This error occurs when there is an incorrect session argument. The session argument must be U512.
+ Applying a unique ID to each transfer can mitigate issues with multiple transfers. Once deployed to a block, the network finalizes the transaction composed of multiple transfers.
 
 </details>
 
@@ -309,6 +287,26 @@ address = "0.0.0.0:11102"
 ```
 
 You can find more command info [here](https://github.com/casper-network/casper-node/blob/master/utils/nctl/docs/commands-view-node.md#nctl-viewing-node-information).
+
+</details>
+
+### Errors {#errors}
+
+<details>
+ <summary><b>What factors cause the 'APIError::InvalidPurse' error?</b></summary>
+
+ The three main factors that cause an InvalidPurse error are:
+
+ 1. The purse in question does not exist.
+ 2. The purse is not of type U512.
+ 3. The sending and receiving purses are identical.
+
+</details>
+
+<details>
+ <summary><b>What causes an 'ApiError::MissingArgument [2]' error?</b></summary>
+
+ This error occurs when there is an incorrect session argument. The session argument must be U512.
 
 </details>
 
