@@ -50,7 +50,7 @@ You can create, store, and use one or more CSPR accounts with your Signer wallet
 
 If you are new or have logged out of the Signer, you can log in with these steps:
 
-1.  Using Chrome or a Chromium-based browser like Brave, navigate to a block explorer on the Mainnet, for this example we are using (<https://cspr.live/>), and click on the **Sign-in** menu.
+1.  Using Chrome or a Chromium-based browser like Brave, navigate to a block explorer on the Mainnet, (for this example we are using [cspr.live](https://cspr.live/)), and click on the **Sign-in** menu.
 2.  Download the [CasperLabs Signer extension](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce).
 3.  You will need to create a vault that will safeguard your accounts with a password. In this step, we assume that you have not used the Signer before, so click **Reset Vault**.
 4.  Create a password for your new vault. Confirm the password, and then click **Create Vault**.
