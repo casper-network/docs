@@ -278,6 +278,6 @@ To verify the status of your transfer, see [Verifying a Transfer](verify-transfe
 
 :::tip 
 
-You can also verify if the transfer was successful by logging on to the https://cspr.live/ website and checking your account balance. 
+You can also verify if the transfer was successful by checking your account balance on a block explorer such as [cspr.live](https://cspr.live/) or [casperstats.io](https://casperstats.io/). 
 
 :::
