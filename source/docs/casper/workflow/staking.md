@@ -6,9 +6,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Casper and other Proof-of-Stake protocols allow token holders to earn rewards and participate in the protocol through a mechanism called **staking**. This tutorial shows you how to stake your Casper tokens with a validator on the network. This process is also called **delegation**. We will use these terms interchangeably in this guide, but we will explain the technical difference for clarity.
 
+<!-- Removing the video until we have time to refresh it.
 This video guide covers the process at a high level, but we recommend following the written tutorial to go through the process step by step.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/4C7L5lS284c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ -->
 
 **Staking**
 
