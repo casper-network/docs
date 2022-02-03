@@ -60,7 +60,7 @@ We recommend saving these files securely.
 
 ### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
 
-This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](../dapp-dev-guide/keys.md)
+This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](../dapp-dev-guide/keys.md).
 
 Execute the following command to generate your keys:
 
