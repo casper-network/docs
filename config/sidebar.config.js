@@ -1,6 +1,7 @@
 module.exports = {
     workflow: [
         "workflow/index",
+	"workflow/block-explorer",
         "workflow/staking",
         "workflow/ledger-setup",
         "workflow/signer-guide",
