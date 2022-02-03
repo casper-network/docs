@@ -7,13 +7,7 @@
 
 ## Installing the Casper Client {#installing-the-casper-client}
 
-Once you have a working Rust development environment and NCTL installed, you will need to install the [casper-client crate](https://crates.io/crates/casper-client). This crate is a collection of CLI commands that simplify issuing instructions to the blockchain and query state information.
-
-**Installation instructions**
-
-```bash
-cargo install casper-client
-```
+The [Prerequisites](https://casper.network/docs/workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 Once you have the _casper-client_ installed, we can proceed to walk through setting up NCTL, cloning the contract, and deploying it to the chain.
 

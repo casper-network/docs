@@ -105,25 +105,7 @@ This command will do the following:
 
 ## Client Installation {#client-installation}
 
-The `casper-client` can be installed from https://crates.io/crates/casper-client.
-
-Run the commands below to install the `casper-client` on most flavors of Linux and macOS.
-
-```bash
-cargo install casper-client
-```
-
-The `casper-client` can print out help information, which provides an up-to-date list of supported commands.
-
-```bash
-casper-client --help
-```
-
-For each command, you can use help to get the up-to-date arguments and descriptions:
-
-```bash
-casper-client <command> --help
-```
+The [Prerequisites](https://casper.network/docs/workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ## Create and Fund Keys {#create-fund-keys}
 
