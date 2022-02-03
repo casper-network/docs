@@ -34,72 +34,22 @@ casper-client <command> --help
 
 The process of creating an [Account](../design/accounts.md) can be divided into two steps:
 
-1.  Cryptographic key generation for the account
+1.  Creating the account
 2.  Funding the account
 
-The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
+### Creating an Account {#creating-an-account}
 
-By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
+The [Accounts and Cryptographic Keys](../dapp-dev-guide/keys.md) guide will walk you through account creation.
 
-Accounts can be created using the Casper command-line client. Alternatively, some Casper networks such as the official Testnet and Mainnet provide a browser-based block explorer that allows account creation.
+### Funding an Account {#funding-an-account}
 
-A cryptographic key-pair will be created when using either the Casper command-line client or a block explorer to create an account on the blockchain. This process generates three files for each account:
-
-1.  A PEM encoded secret key
-2.  A PEM encoded public key
-3.  A hexadecimal-encoded string representation of the public key
-
-We recommend saving these files securely.
-
-### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
-
-This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](../dapp-dev-guide/keys.md)
-
-Execute the following command to generate your keys:
-
-```bash
-casper-client keygen .
-```
-
-The above command will create three files in the current working directory:
-
-1.  `secret_key.pem` - PEM encoded secret key
-2.  `public_key.pem` - PEM encoded public key
-3.  `public_key_hex` - Hexadecimal-encoded string of the public key
-
-**Note**: SAVE your keys to a safe place, preferably offline.
-
-Once the keys for the account are generated, the accounts can be funded to finish the process of creating an account.
-
-**Note**: Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the account-address option of the client:
-
-```bash
-casper-client account-address --public-key <path-to-public_key.pem/public-key-hex>
-```
-
-### Option 2: Key generation using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
-
-This option is available on networks that have a block explorer.
-
-For instance, on the official Testnet network the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
-
-Start by creating an account using the [Casper Signer](../workflow/signer-guide.md). You will need to download the keys of your new account by clicking on the `Download Active Key` option in the Casper Signer menu. Note that the account is not stored on chain.
-
-You will be prompted to save the following three files for your new account. These are your keys, so we recommend securely storing them:
-
-1.  `secret_key.pem` - PEM encoded secret key
-2.  `public_key.pem` - PEM encoded public key
-3.  `public_key_hex` - Hexadecimal-encoded string of the public key
-
-### Fund your Account {#fund-your-account}
-
-Once the cryptographic key-pair for the account has been generated, the account must be funded so it can be created on chain.
+After account creation, you need to fund the account so that you can perform deploys.
 
 In Testnet, you can fund the account by using the **Request tokens** button on the [Faucet Page](https://testnet.cspr.live/tools/faucet) to receive tokens.
 
 In Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the process of setting up an account. The _Source_ account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the _Target_ account. This transfer will automatically create the _Target_ account if it does not exist. Currently, this is the only way an account can be created on Mainnet.
 
-## Acquire Node Address from network peers {#acquire-node-address-from-network-peers}
+## Acquiring a Node Address from the Network {#acquire-node-address-from-network-peers}
 
 Clients can interact with a node on the blockchain via requests sent to that node's JSON-RPC endpoint, `http://<node-ip-address>:7777` by default.
 
