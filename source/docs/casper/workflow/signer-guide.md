@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. The CSPR wallet can be used to transfer CSPR tokens to another user, delegate stake, or ungelegate stake. The Casper Signer can be used for more than one CSPR account and all the accounts are securely stored in a vault, which is a mechanism to protect online information with a password. You set a password for the vault while creating a Casper Signer account. To login using Casper Signer, you must download and install the CasperLabs Signer extension for your browser. The following sections take you through the process of downloading and signing in to the Casper Signer.
 
-> **Note**: These steps use the [cspr.live](https://cspr.live/) as an example, you can install and setup your Signer account on any Casper Network block explorer such as [cspr.live](https://cspr.live/) or [casperstats.io](https://casperstats.io/). 
+> **Note**: These steps use the [cspr.live](https://cspr.live/) as an example, you can install and setup your Signer account on any Casper Network [block explorer](block-explorer). 
 
 ### 1.1 Installing the CasperLabs Signer Extension
 
