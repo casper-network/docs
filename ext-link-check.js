@@ -5,6 +5,7 @@ const chalk = require("chalk");
 const puppeteer = require("puppeteer");
 const glob = require("glob");
 const fs = require("fs");
+const readline = require("readline");
 
 //----------------------------------
 // Constants
@@ -133,7 +134,7 @@ class MarkdownExternalUrlChecker {
     }
 
     static logProgress(msg) {
-        process.stdout.cursorTo(0);
+        readline.cursorTo(process.stdout, 0, null);
         process.stdout.write(msg);
     }
 
