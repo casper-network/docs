@@ -51,7 +51,7 @@ module.exports = {
         "dapp-dev-guide/calling-contracts",
         "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
-        "understanding-hash-types",
+        "dapp-dev-guide/understanding-hash-types",
         {
             type: "category",
             label: "SDK Client Libraries",
