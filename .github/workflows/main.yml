@@ -20,7 +20,7 @@ jobs:
         with:
           name: gh-pages-backup
           path: .
-        
+
 
   build:
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: ${{ env.selected_node_version }}
           cache: yarn
-      
+
       - name: Template credentials
         if: github.ref == 'refs/heads/main'
         uses: cuchi/jinja2-action@v1.2.0
@@ -50,7 +50,7 @@ jobs:
           GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
           GOOGLE_ANALYTICS_ANONYMIZE_IP: ${{ secrets.GOOGLE_ANALYTICS_ANONYMIZE_IP }}
           GOOGLE_TAG_TRACKING_ID: ${{ secrets.GOOGLE_TAG_TRACKING_ID }}
-          
+
       - name: Yarn install
         run: |
           yarn install
@@ -58,6 +58,10 @@ jobs:
       - name: Run code analysis
         run: |
           yarn format
+
+      - name: Validate external links
+        run: |
+          yarn extlinkcheck
 
       - name: Build app
         run: |
@@ -77,7 +81,7 @@ jobs:
       with:
         ruby-version: 2.7
         bundler-cache: true
-        
+
     - name: Install Jekyll
       run: |
         sudo gem install jekyll
@@ -178,4 +182,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
 
-      
+
