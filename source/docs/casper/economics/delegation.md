@@ -1,6 +1,6 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 # Delegation Details
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This section provides a detailed explanation of the delegation cost mechanism, how the gas cost relates with delegations, where to find the details etc. Please note that the cost amounts are likely to change with time and you may have to check the latest release details to get the most up-to-date and accurate details.
 
@@ -26,7 +26,7 @@ For example, the chainspec file in release 1.3.2 will contain the following info
 
 Delegation fees may change over time, so, it is essential to stay up to date. To do so, select the latest release in [Github](https://github.com/casper-network/casper-node), and navigate to the chainspec.toml file.
 
-If you are unsure about anything, please join the [Discord channel](https://discord.gg/PjAQVXRx4Y) to ask us questions.
+If you are unsure about anything, please join the [Discord channel](https://discord.com/invite/PjAQVXRx4Y) to ask us questions.
 
 ### First-time Delegation
 

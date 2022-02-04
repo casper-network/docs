@@ -64,7 +64,7 @@ If you are running a node, you can use `localhost:7777` for RPC requests like de
 <details>
 <summary><b>Does Casper run on ARM?</b></summary>
 
-Casper-node does not work with ARM type servers. You can see our hardware specifications [here](https://docs.casperlabs.io/en/latest/node-operator/hardware.html).
+Casper-node does not work with ARM type servers. You can see our hardware specifications [here](../operators/hardware).
 
 </details>
 
