@@ -38,7 +38,7 @@ class MarkdownExternalUrlChecker {
         if (hasInvalidUrls) {
             core.setFailed("Found invalid URLs. Please check the log output for more details.");
         }
-        process.exit(hasInvalidUrls ? 1 : 0);
+        process.exit(0);
     }
 
     //----------------------------------
@@ -194,7 +194,8 @@ class MarkdownExternalUrlChecker {
 
             if (messages.length > 0) {
                 const hasError = messages.find((msg) => msg.type === "error");
-                console.log("\n");
+                const hasWarning = messages.find((msg) => msg.type === "warn");
+                const hasInfo = messages.find((msg) => msg.type === "info");
                 if (hasError) {
                     core.startGroup(
                         style.bgRed.open +
@@ -206,6 +207,32 @@ class MarkdownExternalUrlChecker {
                             style.red.open +
                             " ━ FAILED" +
                             style.red.close +
+                            style.bold.close,
+                    );
+                } else if (hasWarning) {
+                    core.startGroup(
+                        style.bgYellow.open +
+                            style.black.open +
+                            file.path +
+                            style.black.close +
+                            style.bgYellow.close +
+                            style.bold.open +
+                            style.yellow.open +
+                            " ━ WARNING" +
+                            style.yellow.close +
+                            style.bold.close,
+                    );
+                } else if (hasInfo) {
+                    core.startGroup(
+                        style.bgCyan.open +
+                            style.black.open +
+                            file.path +
+                            style.black.close +
+                            style.bgCyan.close +
+                            style.bold.open +
+                            style.cyan.open +
+                            " ━ INFO" +
+                            style.cyan.close +
                             style.bold.close,
                     );
                 } else {
