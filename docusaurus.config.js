@@ -25,7 +25,7 @@ module.exports = {
     // customFields: dataConfig,
     themeConfig: {
         // algolia: algoliaConfig,
-        announcementBar: announcementConfig,
+        // announcementBar: announcementConfig,
         colorMode: colorConfig,
         footer: footerConfig,
         hideableSidebar: true,
@@ -41,6 +41,7 @@ module.exports = {
             "@docusaurus/preset-classic",
             {
                 docs: {
+                    // remarkPlugins: [],
                     path: "source/docs/casper",
                     routeBasePath: routePrefix, // IMPORTANT: Turn on docs-only mode
                     sidebarPath: require.resolve("./config/sidebar.config.js"),
