@@ -35,21 +35,52 @@ Each deploy is an atomic piece of computation in the sense that, whatever effect
 
 ### Phases of deploy execution {#execution-semantics-phases}
 
-A deploy is executed in distinct _phases_ in order to accommodate paying for computation in a flexible way. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, then the sessions code is executed during the session phase. And, finally (independent of whether session code was executed), the finalization phase is executed, which does some bookkeeping around payment.
+A deploy goes through the following phases on the platform:
+    - * 'Node receives deploy'*
+    - * 'Validators gossip deploy'*
+    - * 'Validator leader proposes a new block'*
+    - * 'Network gossips the block to all other validators'*
+    - * 'Validators reach consensus'*
+    - * 'Deploy execution'*
 
-According to new amendments, the finalization phase does not refund the user any unspent `Gas` originally purchased (after converting back to motes). Please refer to the [gas refunding](./execution-semantics.md#gas-refunding) section for more details. The finalization phase does not include any user-defined logic, it is merely upkeep for the system.
+<p align="center"><img src={useBaseUrl("/image/Execution_Semantics.jpg")} width="300"/></p>
 
-### Payment code {#execution-semantics-payment}
+### Deploy Received
+
+The node receiving the deploy will send it to one or more nodes through JSON RPC servers. The deploy acceptor, which is the component responsible for receiving the deploy from the JSON-RPC or from another node, will run validity checks on the deploy and will either allow the lifecycle to continue or send the appropriate error. Once accepted, the deploy hash is created. 
+
+### Deploy Gossiped
+Once the network receives the deploy, nodes validate deploy. If valid, the deploy will be gossiped to all other nodes. This way, the data propagates through the system, node by node, like a virus. Eventually, the data propagates to every node in the system.
+
+***Deploy to Block Proposer Buffer***
+
+A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new block for the chain.
+
+###	Block Proposed
+Validator leader for this round will propose a block which includes as many deploys from the block proposer buffer as can fit in a block.
+
+###	Proposed Block Gossiped
+The proposed block is propagated to all other nodes.
+
+###	Consensus
+Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed and it becomes the final block, added to the chain.
+
+### Execution
+
+A deploy is executed in distinct phases in order to accommodate paying for computation in a flexible way. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, then the session code is executed during the session phase. And, independently of whether the session code was executed, the finalization phase is executed, which does some bookkeeping around payment.
+
+
+##### Payment code {#execution-semantics-payment}
 
 _Payment code_ provides the logic used to pay for the computation the deploy will do. Payment code is allowed to include arbitrary logic, providing maximal flexibility in how a deploy can be paid for (e.g., the simplest payment code could use the account's [main purse](./tokens.md#tokens-purses-and-accounts), while an enterprise application may require deploys to pay via a multi-sig application accessing a corporate purse). We restrict the gas limit of the payment code execution, based on the current conversion rate between gas and motes, such that no more than `MAX_PAYMENT_COST` motes (a constant of the system) are spent. To ensure payment code will pay for its own computation, we only allow accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST`, to execute deploys.
 
 Payment code ultimately provides its payment by performing a [token transfer](./tokens.md#tokens-mint-interface) into the [Handle Payment contract's payment purse](https://github.com/casper-network/casper-node/blob/cb1d20ad1ea6e245cd8237f9406885a1e785c669/types/src/system/handle_payment/mod.rs#L65). If payment is not given or not enough is transferred, then payment execution is not considered successful. In this case the effects of the payment code on the global state are reverted and the cost of the computation is covered by motes taken from the offending account's main purse.
 
-### Session code {#execution-semantics-session}
+#### Session code {#execution-semantics-session}
 
 _Session code_ provides the main logic for the deploy. It is only executed if the payment code is successful. The gas limit for this computation is determined based on the amount of payment given (after subtracting the cost of the payment code itself).
 
-### Specifying payment code and session code {#execution-semantics-specifying-code}
+#### Specifying payment code and session code {#execution-semantics-specifying-code}
 
 The user-defined logic of a deploy can be specified in a number of ways:
 
@@ -63,7 +94,7 @@ Each of payment and session code are independently specified, so different metho
 
 To enable concurrent modification of [global state](./global-state.md#global-state-head) (either by parallel deploys in the same block or parallel blocks on different forks of the chain), we view each deploy as a function taking our global state as input and producing a new global state as output. It is safe to execute two such functions concurrently if they do not interfere with each other, which formally can be defined to mean the functions _commute_ (i.e., if they were executed sequentially, it does not matter in what order they are executed, the final result is the same for a given input). Whether two deploys commute is determined based on the effects they have on the global state, i.e. which operation (read, write, add) it does on each key in the key-value store. How this is done is described in [Appendix C](./appendix.md#appendix-c).
 
-## The Casper Network runtime {#execution-semantics-runtime}
+## TShe Casper Network runtime {#execution-semantics-runtime}
 
 A wasm module is not natively able to create any effects outside of reading / writing from its own linear memory. To enable other effects (e.g. reading / writing to the Casper global state), wasm modules must import functions from the host environment they are running in. In the case of contracts on the Casper blockchain, this host is the Casper runtime.
 
