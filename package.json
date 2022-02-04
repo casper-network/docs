@@ -9,7 +9,7 @@
         "deploy": "docusaurus deploy",
         "clear": "docusaurus clear",
         "serve": "docusaurus serve",
-        "extlinkcheck": "node ext-link-check.js",
+        "check:externals": "node check-external-urls.js",
         "run:i18n": "cd scripts && sh ./setup-i18n-json.sh && sh ./setup-i18n-md.sh && yarn run:prettier",
         "run:ids": "docusaurus write-heading-ids",
         "run:crowdin": "docusaurus write-translations && crowdin upload && crowdin download",

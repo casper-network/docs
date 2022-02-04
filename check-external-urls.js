@@ -10,7 +10,8 @@ const fs = require("fs");
 //----------------------------------
 // Constants
 //----------------------------------
-const SLEEP_MS = 250;
+const SITE_REQUEST_INTERVAL = 750; // in milliseconds
+const excludedFolders = ["./source/blog/**/*", "./source/i18n/**/*"];
 //----------------------------------
 //  Private Vars
 //----------------------------------
@@ -22,7 +23,9 @@ let browser;
  */
 class MarkdownExternalUrlChecker {
     static async execute() {
-        const files = await this.retrieveFiles("./source/**/@(*.md|*.mdx)");
+        const files = glob.sync("./source/**/@(*.md|*.mdx)", {
+            ignore: excludedFolders,
+        });
         console.log(`Found ${files.length} markdown files. Collecting all external urls...`);
 
         const filesWithUrls = [];
@@ -62,7 +65,7 @@ class MarkdownExternalUrlChecker {
                 const url = urls[u];
                 if (!responseCache[url]) {
                     responseCache[url] = await this.evaluateUrl(url);
-                    await this.sleep(SLEEP_MS);
+                    await this.sleep(SITE_REQUEST_INTERVAL);
                 }
                 files[f].urls[u] = { url, response: responseCache[url] };
                 urlInc += 1;
@@ -102,17 +105,6 @@ class MarkdownExternalUrlChecker {
             }
             await page.close();
             resolve({ error: "Unknown exception occured" });
-        });
-    }
-
-    static async retrieveFiles(pattern) {
-        return new Promise((resolve, reject) => {
-            glob(pattern, (err, files) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve(files);
-            });
         });
     }
 

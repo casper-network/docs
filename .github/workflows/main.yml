@@ -61,7 +61,7 @@ jobs:
 
       - name: Validate external links
         run: |
-          yarn extlinkcheck
+          yarn check:externals
 
       - name: Build app
         run: |
