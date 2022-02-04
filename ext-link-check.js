@@ -1,16 +1,16 @@
 //----------------------------------
 //  Imports
 //----------------------------------
-const chalk = require("chalk");
 const puppeteer = require("puppeteer");
+const core = require("@actions/core");
+const style = require("ansi-styles");
 const glob = require("glob");
 const fs = require("fs");
-const readline = require("readline");
 
 //----------------------------------
 // Constants
 //----------------------------------
-const SLEEP_MS = 1500;
+const SLEEP_MS = 250;
 //----------------------------------
 //  Private Vars
 //----------------------------------
@@ -35,6 +35,9 @@ class MarkdownExternalUrlChecker {
 
         const results = await this.testUrls(filesWithUrls);
         const hasInvalidUrls = this.logResults(results);
+        if (hasInvalidUrls) {
+            core.setFailed("Found invalid URLs. Please check the log output for more details.");
+        }
         process.exit(hasInvalidUrls ? 1 : 0);
     }
 
@@ -49,7 +52,7 @@ class MarkdownExternalUrlChecker {
 
         let urlInc = 0;
         const numUrls = files.map((obj) => obj.urls.length).reduce((partial, sum) => partial + sum, 0);
-        console.log(`Found ${numUrls} urls within ${files.length} files. Starting validation...`);
+        core.startGroup(`Found ${numUrls} urls within ${files.length} files. Validating URLs...`);
 
         const responseCache = {};
         for (let f = 0, flen = files.length; f < flen; f++) {
@@ -64,10 +67,11 @@ class MarkdownExternalUrlChecker {
                 files[f].urls[u] = { url, response: responseCache[url] };
                 urlInc += 1;
                 const percentage = Math.round((urlInc / numUrls) * 100);
-                this.logProgress(`Validation Progress: ${percentage}% (${urlInc}/${numUrls})`);
+                console.log(`Progress: ${percentage}% (${urlInc}/${numUrls})`);
             }
         }
         await browser.close();
+        core.endGroup();
         browser = null;
         return files;
     }
@@ -133,14 +137,8 @@ class MarkdownExternalUrlChecker {
         });
     }
 
-    static logProgress(msg) {
-        readline.cursorTo(process.stdout, 0, null);
-        process.stdout.write(msg);
-    }
-
     static logResults(results) {
         let hasInvalidUrls = false;
-        console.log("\n--------------------------------");
         results.forEach((file) => {
             const messages = [];
             file.urls.forEach((obj) => {
@@ -150,20 +148,39 @@ class MarkdownExternalUrlChecker {
                 switch (response.status) {
                     case 502: {
                         hasInvalidUrls = true;
-                        message = { type: "error", msg: `${chalk.red.bold("Bad Gateway (502)")} ${url}` };
+                        message = {
+                            type: "error",
+                            msg: `${style.red.open}${style.bold.open}Bad Gateway (502):${style.bold.close}${style.red.close} ${url}`,
+                        };
                         break;
                     }
                     case 404: {
                         hasInvalidUrls = true;
-                        message = { type: "error", msg: `${chalk.red.bold("Not Found (404):")} ${url}` };
+                        message = {
+                            type: "error",
+                            msg: `${style.red.open}${style.bold.open}Not Found (404):${style.bold.close}${style.red.close} ${url}`,
+                        };
                         break;
                     }
                     case 301: {
-                        message = { type: "warn", msg: `${url} ${chalk.yellow.bold("moved permanently (301) to:")} ${response.redirection}` };
+                        message = {
+                            type: "warn",
+                            msg: `${url} ${style.yellow.open}${style.bold.open}moved permanently (301) to:${style.bold.close}${style.yellow.close} ${response.redirection}`,
+                        };
                         break;
                     }
                     case 307: {
-                        message = { type: "info", msg: `${url} ${chalk.cyan.bold("moved temporarily (307) to:")} ${response.redirection}` };
+                        message = {
+                            type: "info",
+                            msg: `${url} ${style.cyan.open}${style.bold.open}moved temporarily (307) to:${style.bold.close}${style.cyan.close} ${response.redirection}`,
+                        };
+                        break;
+                    }
+                    case 429: {
+                        message = {
+                            type: "info",
+                            msg: `${style.cyan.open}${style.bold.open}Too Many Requests (429):${style.bold.close}${style.cyan.close} ${url}`,
+                        };
                         break;
                     }
                     default: {
@@ -177,23 +194,48 @@ class MarkdownExternalUrlChecker {
 
             if (messages.length > 0) {
                 const hasError = messages.find((msg) => msg.type === "error");
-                const bgColor = hasError ? "bgRed" : "bgWhite";
-                const fgColor = hasError ? "red" : "white";
-                const status = hasError ? "FAILED" : "PASSED";
-                console.log("\n" + chalk[bgColor].black(` ${file.path} `) + chalk[fgColor].bold(` :: ${status} \n┃`));
-                for (let i = 0, n = messages.length; i < n; i++) {
-                    const message = messages[i];
-                    const char = i < n - 1 ? "┣━ " : "┗━ ";
-                    if (message.type === "error") {
-                        console.log(chalk.red.bold(char), message.msg);
-                    } else if (message.type === "warn") {
-                        console.log(chalk.yellow.bold(char), message.msg);
-                    } else if (message.type === "info") {
-                        console.log(chalk.cyan.bold(char), message.msg);
-                    } else {
-                        console.log(char, message.msg);
-                    }
+                console.log("\n");
+                if (hasError) {
+                    core.startGroup(
+                        style.bgRed.open +
+                            style.black.open +
+                            file.path +
+                            style.black.close +
+                            style.bgRed.close +
+                            style.bold.open +
+                            style.red.open +
+                            " ━ FAILED" +
+                            style.red.close +
+                            style.bold.close,
+                    );
+                } else {
+                    core.startGroup(
+                        style.bgWhite.open +
+                            style.black.open +
+                            file.path +
+                            style.black.close +
+                            style.bgWhite.close +
+                            style.bold.open +
+                            style.white.open +
+                            " ━ PASSED" +
+                            style.white.close +
+                            style.bold.close,
+                    );
                 }
+
+                messages.forEach((message) => {
+                    if (message.type === "error") {
+                        console.log(`${style.red.open}${style.bold.open} ━ ${style.bold.close}${style.red.close}${message.msg}`);
+                    } else if (message.type === "warn") {
+                        console.log(`${style.yellow.open}${style.bold.open} ━ ${style.bold.close}${style.yellow.close}${message.msg}`);
+                    } else if (message.type === "info") {
+                        console.log(`${style.cyan.open}${style.bold.open} ━ ${style.bold.close}${style.cyan.close}${message.msg}`);
+                    } else {
+                        console.log(` ━ ${message.msg}`);
+                    }
+                });
+
+                core.endGroup();
             }
         });
         return hasInvalidUrls;
