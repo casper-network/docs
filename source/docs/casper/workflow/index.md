@@ -9,10 +9,12 @@ slug: /workflow
 
 These user guides contain step-by-step instructions for interacting with the Casper blockchain.
 
+-   [Block Explorers on Casper Network](block-explorer.md): a guide to understanding block explorers
 -   [Staking guide](staking.md): a guide to staking your Casper tokens
 -   [Ledger setup](ledger-setup.md): a guide to setting up your Ledger device
 -   [Signer guide](signer-guide.md): a guide to help you navigate the Signer app
--   [Token Transfer guide](token-transfer.md): a guide to help you transfer CSPR tokens on [Casper Testnet](https://testnet.cspr.live/)
+-   [Transferring Tokens using a Block Explorer](token-transfer.md): a guide to transferring your CSPR tokens 
+-   [Funding Testnet Accounts](testnet-faucet.md): a guide to funding your Testnet account
 
 ## Developer Guides {#developer-guides}
 
