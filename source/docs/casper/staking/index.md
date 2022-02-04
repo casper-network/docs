@@ -7,13 +7,13 @@ slug: /staking
 
 A feature of Proof-of-Stake protocols is that token holders can actively participate in the protocol through a mechanism known as **staking**.
 
-Persons that hold their private keys can choose to stake their tokens with any validator in the Casper network. Alternatively, it is possible to stake tokens via an exchange or custody provider as well.
+Persons that hold their private keys can choose to stake their tokens with any validator in the Casper Network. Alternatively, it is possible to stake tokens via an exchange or custody provider as well.
 
-This guide will outline the steps required to stake the CSPR token on the Casper network.
+This guide will outline the steps required to stake the CSPR token on the Casper Network.
 
 ## What you need to know before staking {#what-you-need-to-know-before-staking}
 
-Please read the following sections carefully before staking tokens on the Casper network.
+Please read the following sections carefully before staking tokens on the Casper Network.
 
 ## Slashing {#slashing}
 
@@ -51,7 +51,7 @@ For security purposes, whenever a token is un-staked or un-delegated, the protoc
     -   [1. Introduction](../workflow/staking.md#1-introduction)
     -   [2. Staking Overview](../workflow/staking.md#1-staking-overview)
     -   [3. Creating your Wallet with the CasperLabs Signer](../workflow/staking.md#3-creating-your-wallet-with-the-casperlabs-signer)
-    -   [4. Connecting to cspr.live](../workflow/staking.md#4-connecting-to-csprlive)
+    -   [4. Connecting to a Block Explorer](../workflow/staking.md#4-connecting-to-blockexplorer)
     -   [5. Funding your Account](../workflow/staking.md#5-funding-your-account)
     -   [6. Delegating Tokens](../workflow/staking.md#6-delegating-tokens)
     -   [7. Monitoring](../workflow/staking.md#7-monitoring)
