@@ -38,7 +38,7 @@ class MarkdownExternalUrlChecker {
         if (hasInvalidUrls) {
             core.setFailed("Found invalid URLs. Please check the log output for more details.");
         }
-        process.exit(0);
+        process.exit(hasInvalidUrls ? 1 : 0);
     }
 
     //----------------------------------
@@ -198,55 +198,55 @@ class MarkdownExternalUrlChecker {
                 const hasInfo = messages.find((msg) => msg.type === "info");
                 if (hasError) {
                     core.startGroup(
-                        style.bgRed.open +
+                        style.bold.open +
+                            style.red.open +
+                            "━ FAIL ━ " +
+                            style.red.close +
+                            style.bold.close +
+                            style.bgRed.open +
                             style.black.open +
                             file.path +
                             style.black.close +
-                            style.bgRed.close +
-                            style.bold.open +
-                            style.red.open +
-                            " ━ FAILED" +
-                            style.red.close +
-                            style.bold.close,
+                            style.bgRed.close,
                     );
                 } else if (hasWarning) {
                     core.startGroup(
-                        style.bgYellow.open +
+                        style.bold.open +
+                            style.yellow.open +
+                            "━ WARN ━ " +
+                            style.yellow.close +
+                            style.bold.close +
+                            style.bgYellow.open +
                             style.black.open +
                             file.path +
                             style.black.close +
-                            style.bgYellow.close +
-                            style.bold.open +
-                            style.yellow.open +
-                            " ━ WARNING" +
-                            style.yellow.close +
-                            style.bold.close,
+                            style.bgYellow.close,
                     );
                 } else if (hasInfo) {
                     core.startGroup(
-                        style.bgCyan.open +
+                        style.bold.open +
+                            style.cyan.open +
+                            "━ INFO ━ " +
+                            style.cyan.close +
+                            style.bold.close +
+                            style.bgCyan.open +
                             style.black.open +
                             file.path +
                             style.black.close +
-                            style.bgCyan.close +
-                            style.bold.open +
-                            style.cyan.open +
-                            " ━ INFO" +
-                            style.cyan.close +
-                            style.bold.close,
+                            style.bgCyan.close,
                     );
                 } else {
                     core.startGroup(
-                        style.bgWhite.open +
+                        style.bold.open +
+                            style.white.open +
+                            "━ PASS ━ " +
+                            style.white.close +
+                            style.bold.close +
+                            style.bgWhite.open +
                             style.black.open +
                             file.path +
                             style.black.close +
-                            style.bgWhite.close +
-                            style.bold.open +
-                            style.white.open +
-                            " ━ PASSED" +
-                            style.white.close +
-                            style.bold.close,
+                            style.bgWhite.close,
                     );
                 }
 
