@@ -25,7 +25,7 @@ const fileMapping = {};
 class UnusedMarkdownChecker {
     static async execute() {
         console.log("Attempting to determine unused markdown files...");
-        console.log(`\n${style.cyanBright.open}Files are assumed unused based on the following critera:`);
+        console.log(`\n${style.cyanBright.open}Files are assumed unused based on the following criteria:`);
         console.log("  - No other markdown file points to it");
         console.log(`  - The file is not present in the sidebar${style.cyanBright.close}`);
 
