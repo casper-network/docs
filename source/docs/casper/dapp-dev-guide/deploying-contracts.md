@@ -11,7 +11,7 @@ This section will help you get set up with each prerequisite.
 
 ## The Casper Client {#the-casper-client}
 
-The [Prerequisites](https://casper.network/docs/workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
+The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ### Check the Client Version {#check-the-client-version}
 

@@ -105,7 +105,7 @@ This command will do the following:
 
 ## Client Installation {#client-installation}
 
-The [Prerequisites](https://casper.network/docs/workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
+The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ## Create and Fund Keys {#create-fund-keys}
 
