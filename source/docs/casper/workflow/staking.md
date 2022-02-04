@@ -52,7 +52,7 @@ You can create, store, and use one or more CSPR accounts with your Signer wallet
 
 If you are new or have logged out of the Signer, you can log in with these steps:
 
-1.  Using Chrome or a Chromium-based browser like Brave, navigate to the block explorer on the mainnet (<https://cspr.live/>), and click on the **Sign-in** menu.
+1.  Using Chrome or a Chromium-based browser like Brave, navigate to a block explorer on the Mainnet, (for this example we are using [cspr.live](https://cspr.live/)), and click on the **Sign-in** menu.
 2.  Download the [CasperLabs Signer extension](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce).
 3.  You will need to create a vault that will safeguard your accounts with a password. In this step, we assume that you have not used the Signer before, so click **Reset Vault**.
 4.  Create a password for your new vault. Confirm the password, and then click **Create Vault**.
@@ -96,11 +96,11 @@ If you already have your secret key and would like to set up and use your wallet
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/3.3.4.1.png" )}alt="3.3.4.1" width="200" />
 
-Now that you have your CasperLabs Signer wallet, you can continue to connect to the mainnet blockchain.
+Now that you have your CasperLabs Signer wallet, you can continue to connect to the Mainnet blockchain.
 
-## 4. Connecting to cspr.live {#4-connecting-to-csprlive}
+## 4. Connecting to a Block Explorer {#4-connecting-to-blockexplorer}
 
-Using the active account in the Signer tool, connect to the Casper blockchain by clicking on the **DISCONNECTED** button to toggle the connection.
+Using the active account in the Signer tool, connect to the Casper blockchain by clicking on the **DISCONNECTED** button to toggle the connection. For this example, we are using the [cspr.live](https://cspr.live/) block explorer.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/4.1.png")} alt="4.1" width="200" />
 
