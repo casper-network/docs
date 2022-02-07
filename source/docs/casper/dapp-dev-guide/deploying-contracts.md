@@ -210,6 +210,40 @@ From this data structure we can observe some properties about the deploy (some o
 
 It is also possible to check the contract's state by performing a `query-global-state` command using the client.
 
+### Deploy Payments {#deploy-payments}
+
+Dependent upon the complexity and needs of the deployment in question, several functions exist to allow for processing gas fees alongside a smart contract.
+
+Native transfers serve only to transfer funds from one purse to another without additional arguments. If you call this function within a smart contract, it will return an error.
+
+The simplest deploys use `ModuleBytes` to execute contracts and associated payment. The majority of activity on the Casper blockchain will go through a `ModuleBytes` contract.
+
+`StoredContractByHash` and `StoredContractByName` allow you to create more complex smart contracts and specify a greater depth of arguments. Further information pertaining to the amount of payment within a deploy can be found by referencing `quantity.parsed` inside the argument in question.
+
+```bash
+
+{
+  "StoredContractByName": {
+    "args": [
+      [
+        "quantity",
+        {
+          "bytes": "e8030000",
+          "cl_type": "I32",
+          "parsed": 1000
+        }
+      ]
+    ],
+    "entry_point": "example-entry-point",
+    "name": "casper-example"
+  }
+}
+
+```
+
+The Casper ecosystem also allows custom payment contracts for developers requiring more specific use cases.
+
+
 ### A Note about Gas Prices {#a-note-about-gas-prices}
 
 If you notice in the put-deploy command above, we supplied a payment amount argument:
