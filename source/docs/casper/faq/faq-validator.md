@@ -57,6 +57,14 @@ If you are running a node, you can use `localhost:7777` for RPC requests like de
 3. Swap the associated keys.
 4. Restart the new node.
 
+**Note:** Use the following command to copy your node's data:
+
+```
+
+rsync -av --inplace --sparse  /var/lib/casper/ /new_mount
+
+```
+
 </details>
 
 ### Casper Compatibility {#casper-compatibility}
