@@ -196,36 +196,19 @@ It is also possible to check the contract's state by performing a `query-global-
 
 ### Deploy Payments {#deploy-payments}
 
-Dependent upon the complexity and needs of the deployment in question, several functions exist to allow for processing gas fees alongside a smart contract.
+Dependent upon the complexity and needs of the deployment in question, several options exist to allow for processing gas fees alongside a smart contract.
 
-Native transfers serve only to transfer funds from one purse to another without additional arguments. If you call this function within a smart contract, it will return an error.
+The simplest way to pay for a deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional WASM ran within will come at an additional cost on top of the payment.
 
-The simplest deploys use `ModuleBytes` to execute contracts and associated payment. The majority of activity on the Casper blockchain will go through a `ModuleBytes` contract.
+More complex smart contracts may call for further custom payment code. To facilitate these operations, Casper provides the following options:
 
-`StoredContractByHash` and `StoredContractByName` allow you to create more complex smart contracts and specify a greater depth of arguments. Further information pertaining to the amount of payment within a deploy can be found by referencing `quantity.parsed` inside the argument in question.
+•	`StoredContractByHash`
 
-```bash
+•	`StoredContractByName`
 
-{
-  "StoredContractByName": {
-    "args": [
-      [
-        "quantity",
-        {
-          "bytes": "e8030000",
-          "cl_type": "I32",
-          "parsed": 1000
-        }
-      ]
-    ],
-    "entry_point": "example-entry-point",
-    "name": "casper-example"
-  }
-}
+•	`StoredVersionContractByHash`
 
-```
-
-The Casper ecosystem also allows custom payment contracts for developers requiring more specific use cases.
+•	`StoredVersionContractByName`
 
 
 ### A Note about Gas Prices {#a-note-about-gas-prices}
