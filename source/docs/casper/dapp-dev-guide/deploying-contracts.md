@@ -11,23 +11,7 @@ This section will help you get set up with each prerequisite.
 
 ## The Casper Client {#the-casper-client}
 
-You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
-
-Run the commands below to install the client on most flavors of Linux and macOS. 
-
-```bash
-cargo install casper-client
-```
-
-The Casper client can print out _help_ information, which provides an up-to-date list of supported commands.
-
-```bash
-casper-client --help
-```
-
-### Building the Client from Source {#building-the-client-from-source}
-
-[Instructions](https://github.com/casper-network/casper-node/tree/master/client)
+The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ### Check the Client Version {#check-the-client-version}
 
