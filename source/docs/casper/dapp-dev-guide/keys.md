@@ -140,7 +140,7 @@ casper-client transfer \
 
 The Casper command-line client requires the secret key in *PEM* format to send a transaction from this account. If you want to use existing Ethereum keys with the command-line client, a conversion to *PEM* format is needed.
 
-The following example is a JS script that generates a *PEM* file, using a [key encoder](https://github.com/blockstack/key-encoder-js) and Node.js. To install these components, do the following:
+The following example is a JS script that generates a *PEM* file, using a [key encoder](https://github.com/stacks-network/key-encoder-js) and Node.js. To install these components, do the following:
 
 ```bash
 sudo apt install nodejs

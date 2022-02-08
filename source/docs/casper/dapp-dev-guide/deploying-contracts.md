@@ -55,7 +55,7 @@ The easiest way to deploy a contract is to use an existing public network. The T
 
 ### Obtain Token {#obtain-token}
 
-To send a deploy to the network, create keys and obtain token. Token can be obtained via a faucet or by a participant that has token. Connect to our [Discord](https://discordapp.com/invite/Q38s3Vh) to get token via an existing participant.
+To send a deploy to the network, create keys and obtain token. Token can be obtained via a faucet or by a participant that has token. Connect to our [Discord](https://discord.com/invite/Q38s3Vh) to get token via an existing participant.
 
 ### A Basic Deployment using the Command Line (Rust Client) {#a-basic-deployment-using-the-command-line-rust-client}
 
