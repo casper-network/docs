@@ -98,6 +98,8 @@ If you look inside the newly-created _my-project_ folder, you will find two crat
 
 The Casper blockchain uses WebAssembly (WASM) in its runtime environment. Compilation targets for WASM are available for Rust, giving developers access to all the Rust ecosystem tools when developing smart contracts.
 
+* Note: WASM allows for the use of other languages, including but not limited to: C/C++, C#, Go, Julia, Lobster and ZIG.
+
 To compile the smart contract into WASM, go into the _my-project_ folder, and run the following commands:
 
 ```bash

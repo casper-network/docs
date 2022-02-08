@@ -67,7 +67,7 @@ rustup update
 rustup self update
 ```
 
-Refer to the [Rust toolchain installer](https://reposhub.com/rust/development-tools/rust-lang-rustup.html) for more details.
+Refer to the [Rust toolchain installer](https://openprojectrepo.com/project/rust-lang-rustup-rust-development-tools) for more details.
 
 </details>
 
