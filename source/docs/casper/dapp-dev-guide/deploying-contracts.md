@@ -196,11 +196,11 @@ It is also possible to check the contract's state by performing a `query-global-
 
 ### Deploy Payments {#deploy-payments}
 
-Dependent upon the complexity and needs of the deployment in question, several options exist to allow for processing gas fees alongside a smart contract.
+Dependent upon the complexity and needs of the deployment in question, several options exist to allow users to pay for smart contract execution.
 
 The simplest way to pay for a deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional WASM ran within will come at an additional cost on top of the payment.
 
-More complex smart contracts may call for further custom payment code. To facilitate these operations, Casper provides the following options:
+You may find the host side functionality of standard payment insufficient for your purposes. In this event, Casper provides the following options for custom payment code:
 
 •	`StoredContractByHash`
 
