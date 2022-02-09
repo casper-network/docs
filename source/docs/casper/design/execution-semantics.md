@@ -33,7 +33,7 @@ A _deploy_ represents a request from a user to perform computation on our platfo
 
 Each deploy is an atomic piece of computation in the sense that, whatever effects a deploy would have on the global state must be entirely included in a block or the entire deploy must not be included in a block.
 
-### Phases of deploy execution {#execution-semantics-phases}
+### Deloy Lifecycle {#execution-semantics-phases}
 
 A deploy goes through the following phases on the platform:
     - * 'Node receives deploy'*
