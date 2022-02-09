@@ -47,7 +47,7 @@ A deploy goes through the following phases on the platform:
 
 ### Deploy Received
 
-The node receiving the deploy will send it to one or more nodes through JSON RPC servers. The deploy acceptor, which is the component responsible for receiving the deploy from the JSON-RPC or from another node, will run validity checks on the deploy and will either allow the lifecycle to continue or send the appropriate error. Once accepted, the deploy hash is created. 
+The client sending the deploy will send it to one or more nodes via their JSON RPC servers. The deploy acceptor, which is the component responsible for receiving the deploy from the JSON-RPC or from another node, will run validity checks on the deploy and will either allow the lifecycle to continue or return an appropriate error. Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. 
 
 ### Deploy Gossiped
 Once the network receives the deploy, nodes validate deploy. If valid, the deploy will be gossiped to all other nodes. This way, the data propagates through the system, node by node, like a virus. Eventually, the data propagates to every node in the system.
