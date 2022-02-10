@@ -10,7 +10,7 @@ This section covers:
 
 ## Casper Command-line Client {#the-casper-command-line-client}
 
-You can find the client on [crates.io](https://crates.io/crates/casper-client).
+You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
 
 Run the commands below to install the Casper client on most flavors of Linux and macOS.
 
@@ -18,36 +18,93 @@ Run the commands below to install the Casper client on most flavors of Linux and
 cargo install casper-client
 ```
 
-The Casper client can print out _help_ information, which provides an up-to-date list of supported commands.
+The Casper client can print out _help_ information, which provides an up-to-date list of supported commands. To do so, use the following command:
 
 ```bash
 casper-client --help
 ```
 
-**Important**: For each command, you can use _help_ to get the up-to-date arguments and descriptions:
+**Important**: For each command, you can use _help_ to get the most up-to-date arguments and descriptions.
 
 ```bash
 casper-client <command> --help
 ```
 
+## Building the Client from Source {#building-the-client-from-source}
+
+[Instructions]( https://github.com/casper-network/casper-node/tree/master/client)
+
 ## Setting up an Account {#setting-up-an-account}
 
-The process of creating an [Account](../design/accounts.md) can be divided into two steps:
+The [Account](../design/accounts.md) creation process consists of two steps:
 
 1.  Creating the account
 2.  Funding the account
 
-### Creating an Account {#creating-an-account}
+## Creating an Account {#creating-an-account}
 
-The [Accounts and Cryptographic Keys](../dapp-dev-guide/keys.md) guide will walk you through account creation.
+The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
 
-### Funding an Account {#funding-an-account}
+By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
-After account creation, you need to fund the account so that you can perform deploys.
+Users can create an account through the Casper command-line client. Alternatively, some Casper networks such as the official Testnet and Mainnet provide a browser-based block explorer that allows account creation.
+
+Using the Casper command-line client or a block explorer to create an account on the blockchain will also create a cryptographic key-pair. This process generates three files for each account:
+
+* A PEM encoded secret key
+* A PEM encoded public key
+* A hexadecimal-encoded string representation of the public key
+
+We recommend saving these files securely.
+
+
+### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
+
+This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](../dapp-dev-guide/keys.md).
+
+Execute the following command to generate your keys:
+
+```bash
+casper-client keygen .
+```
+
+The above command will create three files in the current working directory:
+
+1.  `secret_key.pem` - PEM encoded secret key
+2.  `public_key.pem` - PEM encoded public key
+3.  `public_key_hex` - Hexadecimal-encoded string of the public key
+
+**Note**: Save your keys to a safe place, preferably offline.
+
+After generating keys for the account, you may add funds to finish the account creation process.
+
+**Note**: Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the account-address option of the client:
+
+```bash
+casper-client account-address --public-key <path-to-public_key.pem/public-key-hex>
+```
+
+### Option 2: Key generation using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
+
+This option is available on networks that have a block explorer.
+
+For instance, on the official Testnet network the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
+
+Start by creating an account using the [Casper Signer](../workflow/signer-guide.md). You will need to download the keys of your new account by clicking on the `Download Active Key` option in the Casper Signer menu. Note that the account is not stored on chain.
+
+The system will prompt you to save the following three files for your new account. These are your keys, so we recommend securely storing them:
+
+1.  `secret_key.pem` - PEM encoded secret key
+2.  `public_key.pem` - PEM encoded public key
+3.  `public_key_hex` - Hexadecimal-encoded string of the public key
+
+## Fund your Account {#fund-your-account}
+
+After generating the cryptographic key-pair for the account, you must then fund the account to create it on chain.
 
 In Testnet, you can fund the account by using the **Request tokens** button on the [Faucet Page](https://testnet.cspr.live/tools/faucet) to receive tokens.
 
-In Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the process of setting up an account. The _Source_ account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the _Target_ account. This transfer will automatically create the _Target_ account if it does not exist. Currently, this is the only way an account can be created on Mainnet.
+In Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the process of setting up an account. The _Source_ account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the _Target_ account. This transfer will automatically create the _Target_ account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 
 ## Acquiring a Node Address from the Network {#acquire-node-address-from-network-peers}
 
@@ -55,7 +112,7 @@ Clients can interact with a node on the blockchain via requests sent to that nod
 
 The node address is the IP of a peer node.
 
-Both the official testnet and Mainnet provide block explorers that provide a list of IP addresses of nodes on their respective networks.
+Both the official Testnet and Mainnet provide block explorers that list the IP addresses of nodes on their respective networks.
 
 You can get the `node-ip-address` of a node on the network by visiting the following block explorers:
 

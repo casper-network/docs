@@ -10,6 +10,7 @@
         "clear": "docusaurus clear",
         "serve": "docusaurus serve",
         "check:externals": "node check-external-urls.js",
+        "check:unused": "node check-md-unused.js",
         "run:i18n": "cd scripts && sh ./setup-i18n-json.sh && sh ./setup-i18n-md.sh && yarn run:prettier",
         "run:ids": "docusaurus write-heading-ids",
         "run:crowdin": "docusaurus write-translations && crowdin upload && crowdin download",

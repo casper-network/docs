@@ -1,7 +1,7 @@
 # C Sharp SDK (NetCasperSDK)
 
 
-The [C# SDK](https://github.com/davidatwhiletrue/netcaspersdk) allows developers to interact with the Casper Network using C#. This page covers different examples of using the SDK.
+The [C# SDK](https://github.com/make-software/casper-net-sdk) allows developers to interact with the Casper Network using C#. This page covers different examples of using the SDK.
 
 ## Build
 
@@ -38,4 +38,4 @@ There are also available C# versions of the following tutorials:
 * Counter Tutorial [CasperLabs docs](/counter/index.html): C# version [here](https://hackmd.io/@K48d9TN9T2q7ERX4H27ysw/SJBnPCdVt).
 * Key-value storage Tutorial [CasperLabs docs](/dapp-dev-guide/tutorials/kv-storage-tutorial): C# version [here](https://hackmd.io/@K48d9TN9T2q7ERX4H27ysw/HyX8i0WBt) .
 
-NOTE: Examples can be added to this site after the hackaton.
+NOTE: Examples can be added to this site after the hackathon.
