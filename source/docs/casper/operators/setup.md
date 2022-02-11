@@ -105,25 +105,7 @@ This command will do the following:
 
 ## Client Installation {#client-installation}
 
-The `casper-client` can be installed from https://crates.io/crates/casper-client.
-
-Run the commands below to install the `casper-client` on most flavors of Linux and macOS.
-
-```bash
-cargo install casper-client
-```
-
-The `casper-client` can print out help information, which provides an up-to-date list of supported commands.
-
-```bash
-casper-client --help
-```
-
-For each command, you can use help to get the up-to-date arguments and descriptions:
-
-```bash
-casper-client <command> --help
-```
+The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ## Create and Fund Keys {#create-fund-keys}
 
@@ -139,7 +121,7 @@ It is recommended to save your keys in a secure location, preferably offline.
 
 :::
 
-More about keys and key generation can be found in `/etc/casper/validator_keys/README.md` if `casper-node-launcher` was installed from the Debian package. You can also find for more information on keys, in the [Working with Cryptographic Keys](../dapp-dev-guide/keys.md) section.
+More about keys and key generation can be found in `/etc/casper/validator_keys/README.md` if `casper-node-launcher` was installed from the Debian package. You can also find for more information on keys, in the [Accounts and Cryptographic Keys](../dapp-dev-guide/keys.md) section.
 
 ## Config File {#config-file}
 

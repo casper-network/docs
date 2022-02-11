@@ -11,9 +11,27 @@ Store the <em>account-hash</em> to query and monitor the account. Customers do n
 </details>
 
 <details>
+<summary><b>Is it possible to convert an account-hash back to an account-hex?</b></summary>
+
+An <em>account-hash</em> is a one-way hashed value of the <em>account-hex</em>. We refer to the <em>account-hex</em> as `public_key` and the <em>account-hash</em> as the `account_address`.
+
+The <em>account-hex</em> originates with JS-SDK naming conventions. We store it and convert it to an <em>account-hash</em>. Using `account-address` within the Rust client generates an account hash from a given public key.
+
+</details>
+
+<details>
 <summary><b>Why is my account invalid when I can see it on the testnet?</b></summary>
 
 You must deposit tokens to activate it. You can request tokens from [CSPR Live](https://testnet.cspr.live/tools/faucet).
+
+</details>
+
+### Minimum CSPR Balance {#minimum-cspr-balance}
+
+<details>
+<summary><b>What is the minimum CSPR balance required to transfer?</b></summary>
+
+An account cannot transfer less than 2.5 CSPR.
 
 </details>
 

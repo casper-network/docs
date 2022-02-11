@@ -11,23 +11,7 @@ This section will help you get set up with each prerequisite.
 
 ## The Casper Client {#the-casper-client}
 
-You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
-
-Run the commands below to install the client on most flavors of Linux and macOS. 
-
-```bash
-cargo install casper-client
-```
-
-The Casper client can print out _help_ information, which provides an up-to-date list of supported commands.
-
-```bash
-casper-client --help
-```
-
-### Building the Client from Source {#building-the-client-from-source}
-
-[Instructions](https://github.com/casper-network/casper-node/tree/master/client)
+The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ### Check the Client Version {#check-the-client-version}
 
@@ -51,7 +35,7 @@ When sending a deploy, the client needs to know which host will receive the depl
 
 ### Creating Keys {#creating-keys}
 
-Blockchains use asymmetric key encryption to secure transactions. For more information, see [Working with Cryptographic Keys](keys.md). The secret key used to sign the deployment will be the secret key of the account that is used to pay for the transaction. The transaction will execute in this account's context unless key delegation and the `from` parameter is being used. To create keys using the rust client, execute the following command:
+Blockchains use asymmetric key encryption to secure transactions. For more information, see [Accounts and Cryptographic Keys](keys.md). The secret key used to sign the deployment will be the secret key of the account that is used to pay for the transaction. The transaction will execute in this account's context unless key delegation and the `from` parameter is being used. To create keys using the rust client, execute the following command:
 
 ```bash
 casper-client keygen <TARGET DIRECTORY>
@@ -71,7 +55,7 @@ The easiest way to deploy a contract is to use an existing public network. The T
 
 ### Obtain Token {#obtain-token}
 
-To send a deploy to the network, create keys and obtain token. Token can be obtained via a faucet or by a participant that has token. Connect to our [Discord](https://discordapp.com/invite/Q38s3Vh) to get token via an existing participant.
+To send a deploy to the network, create keys and obtain token. Token can be obtained via a faucet or by a participant that has token. Connect to our [Discord](https://discord.com/invite/Q38s3Vh) to get token via an existing participant.
 
 ### A Basic Deployment using the Command Line (Rust Client) {#a-basic-deployment-using-the-command-line-rust-client}
 

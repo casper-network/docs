@@ -399,7 +399,7 @@ A complete `CLValue`, including both the data and the type, can also be serializ
 
 Contracts are a special value type because they contain the on-chain logic of the applications running on the Casper network. A _contract_ contains the following data:
 
--   a [wasm module](https://webassembly.org/docs/modules/)
+-   a [wasm module](https://webassembly.github.io/spec/core/syntax/modules.html)
 -   a collection of named keys
 -   a protocol version
 

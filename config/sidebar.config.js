@@ -1,10 +1,12 @@
 module.exports = {
     workflow: [
         "workflow/index",
+	"workflow/block-explorer",
         "workflow/staking",
         "workflow/ledger-setup",
         "workflow/signer-guide",
         "workflow/token-transfer",
+	"workflow/testnet-faucet",
         "workflow/setup",
         "workflow/querying",
         "workflow/account-hash",
@@ -51,6 +53,7 @@ module.exports = {
         "dapp-dev-guide/calling-contracts",
         "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
+        "dapp-dev-guide/understanding-hash-types",
         {
             type: "category",
             label: "SDK Client Libraries",
