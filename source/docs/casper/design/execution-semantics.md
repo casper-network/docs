@@ -1,5 +1,7 @@
 # Execution Semantics {#execution-semantics-head}
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## Introduction {#execution-semantics-intro}
 
 The Casper Network is a decentralized computation platform. In this chapter we describe aspects of the computational model we use.
@@ -35,15 +37,9 @@ Each deploy is an atomic piece of computation in the sense that, whatever effect
 
 ### Deloy Lifecycle {#execution-semantics-phases}
 
-A deploy goes through the following phases on the platform:
-    - * 'Node receives deploy'*
-    - * 'Validators gossip deploy'*
-    - * 'Validator leader proposes a new block'*
-    - * 'Network gossips the block to all other validators'*
-    - * 'Validators reach consensus'*
-    - * 'Deploy execution'*
+A deploy goes through the following phases on Casper:
 
-<p align="center"><img src={useBaseUrl("/image/Execution_Semantics.jpg")} width="300"/></p>
+<p align="center"><img src={useBaseUrl("/image/Execution_Lifecycle-5.jpg")} width="600"/></p>
 
 ### Deploy Received
 
@@ -59,13 +55,13 @@ A validator node will put the deploy into the block proposer buffer. The validat
 ###	Block Proposed
 Validator leader for this round will propose a block which includes as many deploys from the block proposer buffer as can fit in a block.
 
-###	Proposed Block Gossiped
+###	Block Gossiped
 The proposed block is propagated to all other nodes.
 
-###	Consensus
+###	Consensus Reached
 Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed and it becomes the final block, added to the chain.
 
-### Execution
+### Deploy Executed 
 
 A deploy is executed in distinct phases in order to accommodate paying for computation in a flexible way. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, then the session code is executed during the session phase. And, independently of whether the session code was executed, the finalization phase is executed, which does some bookkeeping around payment.
 
@@ -94,7 +90,7 @@ Each of payment and session code are independently specified, so different metho
 
 To enable concurrent modification of [global state](./global-state.md#global-state-head) (either by parallel deploys in the same block or parallel blocks on different forks of the chain), we view each deploy as a function taking our global state as input and producing a new global state as output. It is safe to execute two such functions concurrently if they do not interfere with each other, which formally can be defined to mean the functions _commute_ (i.e., if they were executed sequentially, it does not matter in what order they are executed, the final result is the same for a given input). Whether two deploys commute is determined based on the effects they have on the global state, i.e. which operation (read, write, add) it does on each key in the key-value store. How this is done is described in [Appendix C](./appendix.md#appendix-c).
 
-## TShe Casper Network runtime {#execution-semantics-runtime}
+## The Casper Network runtime {#execution-semantics-runtime}
 
 A wasm module is not natively able to create any effects outside of reading / writing from its own linear memory. To enable other effects (e.g. reading / writing to the Casper global state), wasm modules must import functions from the host environment they are running in. In the case of contracts on the Casper blockchain, this host is the Casper runtime.
 
