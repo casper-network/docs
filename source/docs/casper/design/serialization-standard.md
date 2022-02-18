@@ -425,6 +425,7 @@ A _key_ in the [Global State](./global-state.md#global-state-intro) is one of th
 -   32-byte purse balance identifier
 -   32-byte Auction bid identifier
 -   32-byte Auction withdrawal identifier
+-   32-byte Dictionary item identifier
 
 The one exception to note here is the identifier for `EraInfo`, which actually serializes as a `u64` value with an additional byte for the tag.
 
@@ -452,25 +453,39 @@ This key type is used specifically for storing information related to deploys in
 
 This key type is used specifically for storing information related to the `Auction` metadata for a particular era. The underlying data type stored under this is a vector of the allocation of seigniorage for that given era. The identifier for this key is a new type that wraps around the primitive `u64` data type and co-relates to the era number when the auction information was stored.
 
+### Balance Key {#serialization-standard-balance-key}
+
+This key type is used to store information related to the balance of a given purse. All purse balances are stored using this key.
+The 32-byte identifier which represents this key is derived from the Address of the URef, which relates to the purse.
+
+### Bid Key {#serialization-standard-bid-key}
+
 This key type is used specifically for storing information related to auction bids in the global state. Information for the bids is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./accounts.md#accounts-associated-keys-weights) for more information).
 
+### Wwithdraw Key {#serialization-standard-withdraw-key}
+
 This key type is used specifically for storing information related to auction withdraws in the global state. Information for the withdrawals is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./accounts.md#accounts-associated-keys-weights) for more information).
+
+### Dictionary Key {#serialization-standard-dictionary-key}
+
+This key type is used for storing dictionary items.
 
 ### Serialization for `Key` {#serialization-standard-serialization-key}
 
 Given the different variants for the over-arching `Key` data-type, each of the different variants is serialized differently. This section of this chapter details how the individual variants are serialized. The leading byte of the serialized buffer acts as a tag indicating the serialized variant.
 
-| `Key`        | Serialization Tag |
-| ------------ | ----------------- |
-| `Account`    | > 0               |
-| `Hash`       | > 1               |
-| `URef`       | > 2               |
-| `Transfer`   | > 3               |
-| `DeployInfo` | > 4               |
-| `EraInfo`    | > 5               |
-| `Balance`    | > 6               |
-| `Bid`        | > 7               |
-| `Withdraw`   | > 8               |
+| `Key`          | Serialization Tag |
+| -------------- | ----------------- |
+| `Account`      | > 0               |
+| `Hash`         | > 1               |
+| `URef`         | > 2               |
+| `Transfer`     | > 3               |
+| `DeployInfo`   | > 4               |
+| `EraInfo`      | > 5               |
+| `Balance`      | > 6               |
+| `Bid`          | > 7               |
+| `Withdraw`     | > 8               |
+| `Dictionary`   | > 9               |
 
 -   `Account` serializes as a 32 byte long buffer containing the byte representation of the underlying `AccountHash`
 -   `Hash` serializes as a 32 byte long buffer containing the byte representation of the underlying `Hash` itself.
@@ -480,22 +495,24 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 -   `EraInfo` serializes a `u64` primitive type containing the little-endian byte representation of `u64`.
 -   `Balance` serializes as 32 byte long buffer containing the byte representation of the URef address.
 -   `Bid` and `Withdraw` both contain the `AccountHash` as their identifier; therefore, they serialize in the same manner as the `Account` variant.
+-   `Dictionary` serializes as 32 byte long buffer containing the byte representation of the `Dictionary` item address.
 
 ## Permissions {#serialization-standard-permissions}
 
 There are three types of actions that can be done on a value: read, write, add. The reason for _add_ to be called out separately from _write_ is to allow for commutativity checking. The available actions depend on the key type and the context. Some key types only allow controlled access by smart contracts via the contract API, and other key types refer to values produced and used by the system itself and are not accessible to smart contracts at all but can be read via off-chain queries. This is summarized in the table below:
 
-| Key      | Type Available Actions  |
-| -------- | ----------------------- |
-| Account  | Read + Add (via API)    |
-| Hash     | Read                    |
-| URef     | Read + Write and/or Add |
-| Transfer | System                  |
-| Deploy   | System                  |
-| EraInfo  | System                  |
-| Balance  | Read (via API)          |
-| Bid      | System                  |
-| Withdraw | System                  |
+| Key        | Type Available Actions  |
+| ---------- | ----------------------- |
+| Account    | Read + Add (via API)    |
+| Hash       | Read                    |
+| URef       | Read + Write and/or Add |
+| Transfer   | System                  |
+| Deploy     | System                  |
+| EraInfo    | System                  |
+| Balance    | Read (via API)          |
+| Bid        | System                  |
+| Withdraw   | System                  |
+| Dictionary | ???                     |
 
 ---
 
