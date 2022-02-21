@@ -5,7 +5,7 @@ The [C# .NET SDK](https://github.com/make-software/casper-net-sdk) allows develo
 
 ## Documentation
 
-Visit [https://make-software.github.io/casper-net-sdk/](https://make-software.github.io/casper-net-sdk/) to find the SDK documentation, examples and tutorials.
+Visit [https://make-software.github.io/casper-net-sdk/](https://make-software.github.io/casper-net-sdk/) to find the SDK documentation, examples, and tutorials.
 
 ## Get started
 
@@ -13,22 +13,24 @@ This example shows how to retrieve an account balance from a testnet node. Make 
 
 Open a terminal window and create a new console app:
 
-```
+```bash
 dotnet new console -o GetAccountBalance
 cd GetAccountBalance
 ```
 
-The Casper.Network.SDK for .NET is published as a nuget package in [nuget.org](https://www.nuget.org/packages/Casper.Network.SDK).
+The Casper.Network.SDK for .NET is published on [nuget.org](https://www.nuget.org/packages/Casper.Network.SDK) as a NuGet package.
 
-To add a reference to the SDK in your project, use the Package Manager in Visual Studio or the `dotnet` cli tool.
+To add a reference to the SDK in your project, use the Package Manager in Visual Studio or the `dotnet` CLI tool.
 
 **Package Manager (Windows)**
-```
+
+```bash
 Install-Package Casper.Network.SDK
 ``` 
 
-**dotnet cli tool (Windows/Mac/Linux)**
-```
+**dotnet CLI Tool (Windows, Mac, and Linux)**
+
+```bash
 dotnet add package Casper.Network.SDK
 ````
 
@@ -76,10 +78,10 @@ namespace Casper.NET.SDK.Examples
 
 Finally, run the example with:
 
-```
+```bash
 dotnet run
 ```
 
 The program will print the account balance retrieved from the testnet.
 
-Visit [https://make-software.github.io/casper-net-sdk/](https://make-software.github.io/casper-net-sdk/) to find other examples, tutorials and a complete documentation for this SDK.
+Visit [https://make-software.github.io/casper-net-sdk/](https://make-software.github.io/casper-net-sdk/) to find other examples, tutorials, and complete documentation for this SDK.
