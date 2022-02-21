@@ -1,41 +1,85 @@
-# C Sharp SDK (NetCasperSDK)
+# .NET SDK
 
 
-The [C# SDK](https://github.com/make-software/casper-net-sdk) allows developers to interact with the Casper Network using C#. This page covers different examples of using the SDK.
+The [C# .NET SDK](https://github.com/make-software/casper-net-sdk) allows developers to interact with the Casper Network using C#.
 
-## Build
+## Documentation
 
-To build this library install .NET 5.0 or higher and run.
+Visit [https://make-software.github.io/casper-net-sdk/](https://make-software.github.io/casper-net-sdk/) to find the SDK documentation, examples and tutorials.
 
-```bash
+## Get started
 
-    dotnet build --configuration Release
+This example shows how to retrieve an account balance from a testnet node. Make sure you have .NET 5 or higher before continuing.
+
+Open a terminal window and create a new console app:
+
+```
+dotnet new console -o GetAccountBalance
+cd GetAccountBalance
 ```
 
-## Tests
+The Casper.Network.SDK for .NET is published as a nuget package in [nuget.org](https://www.nuget.org/packages/Casper.Network.SDK).
 
-To run the tests, use this command:
+To add a reference to the SDK in your project, use the Package Manager in Visual Studio or the `dotnet` cli tool.
 
-```bash
+**Package Manager (Windows)**
+```
+Install-Package Casper.Network.SDK
+``` 
 
-    dotnet test --settings NetCasperTest/test.runsettings
+**dotnet cli tool (Windows/Mac/Linux)**
+```
+dotnet add package Casper.Network.SDK
+````
+
+Now, replace the default code in `Program.cs` with this main program:
+
+```
+using System;
+using System.Threading.Tasks;
+using Casper.Network.SDK;
+using Casper.Network.SDK.JsonRpc;
+using Casper.Network.SDK.Types;
+
+namespace Casper.NET.SDK.Examples
+{
+    public class GetAccountBalance
+    {
+        public static async Task Main(string[] args)
+        {
+            string nodeAddress = "http://testnet-node.make.services:7777/rpc";
+
+            var hex = "0203914289b334f57366541099a52156b149436fdb0422b3c48fe4115d0578abf690";
+            var publicKey = PublicKey.FromHexString(hex);
+
+            try
+            {
+                var casperSdk = new NetCasperClient(nodeAddress);
+
+                // Get the balance using the account public key
+                //
+                var rpcResponse = await casperSdk.GetAccountBalance(publicKey);
+                Console.WriteLine("Public Key Balance: " + rpcResponse.Parse().BalanceValue);
+            }
+            catch (RpcClientException e)
+            {
+                Console.WriteLine("ERROR:\n" + e.RpcError.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+    }
+}
 ```
 
-It's usually a good way to understand how a library works by looking at its test. Thus, I encourage you to take a look to the `NetCasperTest` directory. 
+Finally, run the example with:
 
-## Usage Examples
+```
+dotnet run
+```
 
-Look into the [casper-integrations GitHub repository](https://github.com/davidatwhiletrue/casper-integrations/tree/hackaton-netcaspersdk)  to find a list of examples of usage of NetCasperSDK like:
+The program will print the account balance retrieved from the testnet.
 
-* Retrieve account info and balance
-* Get deploys, blocks, block transfers, state root hash, era info
-* Get node status, node peers, node metrics, auction info, 
-* Send a transfer
-* Listen to SSE events
-
-There are also available C# versions of the following tutorials:
-
-* Counter Tutorial [CasperLabs docs](/counter/index.html): C# version [here](https://hackmd.io/@K48d9TN9T2q7ERX4H27ysw/SJBnPCdVt).
-* Key-value storage Tutorial [CasperLabs docs](/dapp-dev-guide/tutorials/kv-storage-tutorial): C# version [here](https://hackmd.io/@K48d9TN9T2q7ERX4H27ysw/HyX8i0WBt) .
-
-NOTE: Examples can be added to this site after the hackathon.
+Visit [https://make-software.github.io/casper-net-sdk/](https://make-software.github.io/casper-net-sdk/) to find other examples, tutorials and a complete documentation for this SDK.
