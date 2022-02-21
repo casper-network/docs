@@ -12,6 +12,8 @@ If you need help, contact us on the following services:
 
 ## Requirements {#requirements}
 
+You can also find these instructions at the official Ledger support site [here](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true).
+
 ### Before you begin {#before-you-begin}
 
 1.  You have initialized your Ledger Nano S/X.
