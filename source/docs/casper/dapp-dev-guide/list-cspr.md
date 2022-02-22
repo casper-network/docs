@@ -2,7 +2,7 @@
 
 The Casper Network [whitepaper](../../../docs/casper/index.md) describes the capabilities of the network in detail. This document is tailored specifically for exchanges that wish to list the Casper token (CSPR) on their exchange. 
 
-CSPR is listed on over 25 exchanges worldwide. As a token, CSPR is very straightforward to integrate. The integration and testing can be completed by a developer in a few days. 
+CSPR is listed on over 25 exchanges worldwide. As a token, CSPR is very straightforward to integrate. Developers can complete integration and testing in a matter of days.
 
 There are several well-maintained Software Development Kits (SDKs) available to use on the Casper Network, see [SDK Libraries](../dapp-dev-guide/sdk/index.md).
 
