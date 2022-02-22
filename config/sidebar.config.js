@@ -38,6 +38,7 @@ module.exports = {
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
         "dapp-dev-guide/why-build-on-casper",
+		"dapp-dev-guide/list-cspr",
         "dapp-dev-guide/getting-started",
         {
             type: "category",
