@@ -35,6 +35,16 @@ An account cannot transfer less than 2.5 CSPR.
 
 </details>
 
+### Ledger Support {#ledger-support}
+
+<details>
+
+<summary><b>Does Casper offer Ledger support?</b></summary>
+
+Yes. Follow [this guide](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true) to install the Casper app on your Ledger device to manage CSPR.
+
+</details>
+
 ### Staking {#staking}
 
 <details>

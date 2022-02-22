@@ -84,13 +84,6 @@ Casper is currently tested and packaged for Ubuntu 18.04 or 20.04.
 </details>
 
 <details>
-<summary><b>Do you have Ledger support?</b></summary>
-
-Casper is working with Ledger to integrate wallet solutions. You can monitor the progress [here](https://github.com/Zondax/ledger-casper).
-
-</details>
-
-<details>
 <summary><b>Do I have to run a node 24/7?</b></summary>
 
 Validators must be online 24/7. Otherwise, they face ejection and loss of rewards as a result of liveness failure. Failure to participate in consensus for one era results in ejection.
