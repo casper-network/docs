@@ -125,7 +125,7 @@ module.exports = {
         "operators/setup",
         "operators/create",
         "operators/joining",
-		"operators/fast-sync",
+        "operators/fast-sync",
         "operators/upgrade",
         "operators/bonding",
         "operators/unbonding"
