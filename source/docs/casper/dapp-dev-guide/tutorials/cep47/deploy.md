@@ -116,7 +116,48 @@ Run the below command to install your smart contract. This will use the selected
 npm run e2e:cep47:install
 ```
 If the execution proceeds without error, you should see a similar console output as below,
-<img src={useBaseUrl("/image/tutorials/cep-47/installDeployResult.png")} alt="cep-47-deploy-result" width="600"/>
+
+<details>
+<summary>Console output for contract installation </summary>
+
+```bash
+... Contract installation deployHash: 0dcef7e7bddbc5a666aff1afbc03cf4797e3736c71fe05aee9944a26c4eeefab
+... Contract installed successfully.
+... Account Info:
+{
+  "_accountHash": "account-hash-179cd876d5c74317cce9c48d718a040e6e909063d7d786de0c5c6421a09fa803",
+  "namedKeys": [
+    {
+      "name": "bdk_nft_contract_contract_hash",
+      "key": "hash-a47d35d835a5fa8a1bcd55a4426dc14e21da9b876c1617742f18813737a4ece0"
+    },
+    {
+      "name": "bdk_nft_contract_contract_hash_wrapped",
+      "key": "uref-ff9b562d357d9a258acb2b3798f82c6ec5db49a8852e2e96b0ed4b1faf873206-007"
+    },
+    {
+      "name": "contract_package_hash",
+      "key": "hash-2468facdc9a6f324f8442584fd46d911e3ac9b434dfa79435567bf71f9b8bd23"
+    }
+  ],
+  "mainPurse": "uref-a33e25cb1e6baa38e8306dba0492183c65cb41db3dbe8f69546868a4c0cfd0d9-007",
+  "associatedKeys": [
+    {
+      "accountHash": "account-hash-179cd876d5c74317cce9c48d718a040e6e909063d7d786de0c5c6421a09fa803",
+      "weight": 1
+    }
+  ],
+  "actionThresholds": {
+    "deployment": 1,
+    "keyManagement": 1
+  }
+}
+... Contract Hash: hash-a47d35d835a5fa8a1bcd55a4426dc14e21da9b876c1617742f18813737a4ece0
+
+```
+
+</details>
+
 
 ### Contract Installation Details
 This section clarifies how the contract deployment happens through the installation.js file.
