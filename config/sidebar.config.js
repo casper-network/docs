@@ -85,7 +85,7 @@ module.exports = {
         "dapp-dev-guide/calling-contracts",
         "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
-		"dapp-dev-guide/load-auth-keys",
+        "dapp-dev-guide/load-auth-keys",
         "dapp-dev-guide/understanding-hash-types",
         {
             type: "category",
