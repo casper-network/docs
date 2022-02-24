@@ -46,11 +46,7 @@ A deploy goes through the following phases on Casper:
 The client sending the deploy will send it to one or more nodes via their JSON RPC servers. The deploy acceptor, which is the component responsible for receiving the deploy from the JSON-RPC or from another node, will run validity checks on the deploy and will either allow the lifecycle to continue or return an appropriate error. Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. 
 
 ### Deploy Gossiped
-After a node accepts a new deploy, it will be gossiped to all other nodes. This is an efficient mechanism for ensuring all nodes in the network eventually hold the given deploy.
-
-***Deploy to Block Proposer Buffer***
-
-A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new block for the chain.
+After a node accepts a new deploy, it will be gossiped to all other nodes. This is an efficient mechanism for ensuring all nodes in the network eventually hold the given deploy. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new block for the chain.
 
 ###	Block Proposed
 Validator leader for this round will propose a block which includes as many deploys from the block proposer buffer as can fit in a block.
