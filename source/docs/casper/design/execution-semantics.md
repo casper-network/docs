@@ -35,7 +35,7 @@ A _deploy_ represents a request from a user to perform computation on our platfo
 
 Each deploy is an atomic piece of computation in the sense that, whatever effects a deploy would have on the global state must be entirely included in a block or the entire deploy must not be included in a block.
 
-### Deloy Lifecycle {#execution-semantics-phases}
+### Deploy Lifecycle {#execution-semantics-phases}
 
 A deploy goes through the following phases on Casper:
 
@@ -48,13 +48,13 @@ The client sending the deploy will send it to one or more nodes via their JSON R
 ### Deploy Gossiped
 After a node accepts a new deploy, it will be gossiped to all other nodes. This is an efficient mechanism for ensuring all nodes in the network eventually hold the given deploy. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new block for the chain.
 
-###	Block Proposed
+### Block Proposed
 Validator leader for this round will propose a block which includes as many deploys from the block proposer buffer as can fit in a block.
 
-###	Block Gossiped
+### Block Gossiped
 The proposed block is propagated to all other nodes.
 
-###	Consensus Reached
+### Consensus Reached
 Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed and it becomes the final block, added to the chain.
 
 ### Deploy Executed 
