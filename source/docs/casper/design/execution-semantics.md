@@ -66,7 +66,7 @@ Once the other validators reach consensus that the proposed block is valid, all 
 A deploy is executed in distinct phases in order to accommodate paying for computation in a flexible way. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, then the session code is executed during the session phase. And, independently of whether the session code was executed, the finalization phase is executed, which does some bookkeeping around payment.
 
 
-##### Payment code {#execution-semantics-payment}
+#### Payment code {#execution-semantics-payment}
 
 _Payment code_ provides the logic used to pay for the computation the deploy will do. Payment code is allowed to include arbitrary logic, providing maximal flexibility in how a deploy can be paid for (e.g., the simplest payment code could use the account's [main purse](./tokens.md#tokens-purses-and-accounts), while an enterprise application may require deploys to pay via a multi-sig application accessing a corporate purse). We restrict the gas limit of the payment code execution, based on the current conversion rate between gas and motes, such that no more than `MAX_PAYMENT_COST` motes (a constant of the system) are spent. To ensure payment code will pay for its own computation, we only allow accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST`, to execute deploys.
 
