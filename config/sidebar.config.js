@@ -1,4 +1,4 @@
-module.exports = {
+ module.exports = {
     workflow: [
         "workflow/index",
         "workflow/block-explorer",
@@ -34,6 +34,7 @@ module.exports = {
                 "workflow/erc-20-sample-guide/final-balance",
             ],
         },
+        "workflow/contribute",
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
