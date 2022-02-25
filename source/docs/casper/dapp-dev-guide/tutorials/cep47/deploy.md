@@ -8,8 +8,9 @@ Let's dive into CEP-47 contract deployment process.
 
 ### Pre-requisites
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
-- Ensure you have an [Account](/docs/workflow/setup#setting-up-an-account), the associated key pair, and the required amount of tokens to perform the deploy
-- Ensure your [account](https://testnet.cspr.live/tools/faucet) contains enough `CSPR Tokens` to perform the execution. 
+- Ensure you have [set up an account](/docs/workflow/setup#setting-up-an-account) with public and private key pair to initiate the deploy
+- Since we are deploying to the Casper testnet, ensure your [testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the execution. 
+- Follow [fund your account](/docs/workflow/setup#fund-your-account) guide to add CSPR tokens to your account
 - CSPR Tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
 
 ## Basic Flows of the Deployment
