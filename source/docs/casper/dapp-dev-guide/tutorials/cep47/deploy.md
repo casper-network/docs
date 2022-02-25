@@ -20,7 +20,7 @@ Here are the basic steps to deploy the CEP-47 contract on the Casper Network.
 ### Casper Repositories in Use
 
 You will be using two Casper repositories for this deployment process.
--  [CEP-47 Contract Implementation](https://github.com/casper-ecosystem/casper-nft-cep47): This repository contains the implementation of the NFT aka CEP-47 smart contract according to Casper context, required utility Classes, and corresponding test suit to work with the CEP-47 token.
+-  [CEP-47 Contract Implementation](https://github.com/casper-ecosystem/casper-nft-cep47): This repository contains the implementation of the NFT aka CEP-47 smart contract, required utility classes, and corresponding test suite to work with the CEP-47 token.
     - You will be using the `cep47-token.wasm` file from this repository for the deployment. This is the compiled implementation of the CEP-47 contract.
 -  [Casper JavaScript Client](https://github.com/casper-network/casper-contracts-js-clients): This repository contains the files which execute the Javascript handle for the CEP-47 contract and other supporting classes to run the client. This contains the JavaScript handle for ERC-20 contract as well. 
     - You will be executing the `install.ts` file and `usage.ts` from this repository for the deployment
