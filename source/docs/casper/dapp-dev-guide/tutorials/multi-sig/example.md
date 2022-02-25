@@ -16,28 +16,30 @@ In this example, we will set up an account with the following weights and thresh
 :::note
 
 For all the commands used in this tutorial, here are a few pointers:
-- The `node-address` attribute is a combination of a peer node IP address from the Mainnet or Testnet prefixed with `:7777`, which is the RPC port. 
+- The `node-address` attribute is a combination of a peer node IP address from the Mainnet or Testnet prefixed with `7777`, which is the RPC port. 
 - The `chain-name` attribute, is `casper-test` for Testnet and `casper` for Mainnet.
 - The `amount` attribute is the cost of the transaction in motes.
-- Hexadecimal public key is found in the public_key_hex file, copy the contents and paste it in the command that calls for it.
--  
+- Hexadecimal public key is found in the `public_key_hex` file, copy the contents and paste it in the command that calls for it.
 
 :::
 
 ## Creating Accounts
 
-To create accounts on the Casper blockchain, you need to generate keys and fund your accounts, for more information see [Account and Cryptographic Keys](../../keys.md). To fund you Testnet account, see [Funding Testnet Accounts](../../../workflow/testnet-faucet.md)
+Create three sets of keys one each for the Manager, Supervisor and Clerk. 
+
+To create accounts on the Casper blockchain, you need to generate keys and fund your accounts, for more information see [Account and Cryptographic Keys](../../keys.md). To fund your Testnet account, see [Funding Testnet Accounts](../../../workflow/testnet-faucet.md).
 
 ## Deploying the Keys Manager Contract
 
 Before you deploy the keys manager contract, you must clone the keys-manager repo and build the contract, see [Contract Example](contract.md) for more information.
 
-You can deploy the keys manager contract using the `put-deploy` command as illustrated here.
+You can deploy the keys manager contract using the `put-deploy` command as illustrated below.
 
 ```bash
-casper-client put-deploy --chain-name casper-test \
+casper-client put-deploy \
+--chain-name casper-test \
 --node-address http://138.201.54.44:7777 \
---secret-key <path to Manager secret_key.pem> \
+--secret-key <path to secret_key.pem> \
 --session-path <path to keys-manager.wasm> \
 --payment-amount 10000000000
 ```
@@ -58,10 +60,11 @@ casper-client put-deploy --chain-name casper-test \
 
 ### Check deploy status {#check-deploy-status}
 
-The deploy hash from the previous output is used to find the deploy status.
+The deploy hash from the previous output is used to find the deploy status. The deploy usually takes a few minutes to execute, so please be patient.
 
 ```bash
-casper-client get-deploy 3d55c71ae0892c9f5b63be56c8ca3e107e39e812ebc925383881cfa003aaced7 --node-address http://138.201.54.44:7777
+casper-client get-deploy 3d55c71ae0892c9f5b63be56c8ca3e107e39e812ebc925383881cfa003aaced7 \
+--node-address http://138.201.54.44:7777
 ```
 
 <details>
@@ -290,9 +293,15 @@ casper-client get-deploy 3d55c71ae0892c9f5b63be56c8ca3e107e39e812ebc925383881cfa
 
 ### View account details {#view-account-details}
 
+The following command gets the account details after the deploy is successful:
+
 ```
-casper-client get-account-info --public-key <hexadecimal public key> --node-address http://138.201.54.44:7777
+casper-client get-account-info \
+--public-key <hexadecimal public key> \
+--node-address http://138.201.54.44:7777
 ```
+
+In the output of this command, you can see the key weight, key management threshold, and deploy threshold. Also observe the main purse structure, it has the `keys_manager_hash` uref address. This uref address is used to find the smart contract's [session hash](#find-session-hash).
 
 <details>
 <summary>Sample output with named keys for the keys manager contract</summary>
@@ -334,7 +343,7 @@ casper-client get-account-info --public-key <hexadecimal public key> --node-addr
 
 In the above output, you can see the named keys for the contract and the uref for keys_manager_hash. This uref hash will be used to find the session hash of the contract.
 
-### Find session hash for keys manager contract
+### Find session hash
 
 To find the session hash, we need the state root hash and the uref hash of the keys manager contract. 
 
@@ -507,19 +516,19 @@ casper-client put-deploy \
 --session-arg "weight:u8='2'"
 ```
 
-In the above command, notice the following:
+In the above command, observe the following:
 - The `secret-key` should point to the `secret_key.pem` file of the main account (Manager). The amount for the transaction will be deducted from the main purse of this account.
 - The hexadecimal public key should be of the account you wish to associate with the main account. In this case, it is the Supervisor's account.
 
 :::note
 
-You can use this command to set the weight for the Clerk's account as well. To do so just replace the hexadecimal public key with that of the Clerk's account and keep the weight as 1.
+You can use this command to set the weight for the Clerk's account as well. To do so, replace the hexadecimal public key with that of the Clerk's account and keep the weight as 1.
 
 :::
 
-### Viewing Account Structure with All Keys Linked
+### Viewing Account Structure with All Associated Keys
 
-You view the updated account structure using the following command:
+You can view the updated account structure using the following command:
 
 ```bash
 casper-client get-account-info \
@@ -575,7 +584,7 @@ casper-client get-account-info \
 
 ## Setting Key Management Threshold to 4
 
-You can use the following command to set the key management threshold:
+To set the key management threshold we will use the `set_key_management_threshold` entry point. Also, keep in mind these [restrictions](#key-management-restrictions) while setting the thresholds for account management. You can use the following command to set the key management threshold:
 
 ```bash
 casper-client put-deploy \
@@ -588,8 +597,16 @@ casper-client put-deploy \
 --session-arg "weight:u8='4'"
 ```
 
+Use the following command to see the updated account structure:
+
+```bash
+casper-client get-account-info \
+--public-key <hex public key of Manager account> \
+--node-address http://138.201.54.44:7777
+```
+
 <details>
-<summary>Sample account details with the updated key management threshold</summary>
+<summary>Sample output with the updated key management threshold</summary>
 
 {
   "id": 2760750489916445167,
@@ -707,4 +724,21 @@ The following account structure will be visible after all the key weights and th
 
 </details>
 
+
+## Key Management Restrictions
+
+This section explains a few rules that apply to key management:
+
+- Set the deployment threshold lower than or equal to the key-management threshold
+- Set the deployment threshold lower than or equal to all other thresholds
+- Ensure the account used to set the thresholds has sufficient permissions
+- Set the thresholds to a value lower than the total weight of associated keys 
+
+We offer some additional examples of account management in the next section.
+
+:::tip
+
+To make a transfer using your multisig account, see [Transferring Tokens using a Multisig Account](../../../workflow/deploy-transfer.md).
+
+:::
 
