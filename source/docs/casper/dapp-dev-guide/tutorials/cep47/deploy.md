@@ -2,9 +2,7 @@
 # Contract Deployment
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Now that you have implemented the smart contract for CEP-47, it's time to deploy it to the blockchain. The deployment process for CEP-47 contract will be a bit different from ERC-20 contract. You will use a JavaScript client with in-built TypeScript (TS) classes to execute the CEP-47 contract deployment. The JS client also resides in a separate repository. You need to clone that repository to your machine and proceed with the steps to accomplish the deployment.
-
-Let's dive into CEP-47 contract deployment process.
+Now that you have implemented the smart contract for CEP-47, it's time to deploy it to the blockchain. You will use a JavaScript client with in-built TypeScript (TS) classes to execute the CEP-47 contract deployment. The JS client also resides in a separate repository. Clone that repository to your machine and proceed with these deployment steps.
 
 ### Pre-requisites
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
@@ -26,21 +24,13 @@ You will be using two Casper repositories for this deployment process.
 -  [Casper JavaScript Client](https://github.com/casper-network/casper-contracts-js-clients): This repository contains the files which execute the Javascript handle for the CEP-47 contract and other supporting classes to run the client. This contains the JavaScript handle for ERC-20 contract as well.
     - You will be executing the [install.ts](https://github.com/casper-network/casper-contracts-js-clients/blob/master/e2e/cep47/install.ts) file from this repository for the deployment.
 
-### Steps to Perform the Deployment
-These are the main steps you will be performing to complete the deployment. Each step is illustrated in next sections.
-
-1. [Preparing the CEP-47 smart contract](./deploy#preparing-the-cep-47-smart-contract)
-2. [Getting and preparing node addresses for the deployment](./deploy#getting-and-preparing-node-addresses-for-the-deployment)
-3. [Preparing JS Client repository](./deploy#preparing-js-client-repository)
-4. [Deploying the contract](./deploy#deploying-the-smart-contract-to-the-network)
-5. [Deploying the entry points of the contract](../cep47/events)
 
 ## Preparing the CEP-47 Contract Repository
 Refer to the [contract preparation](../cep47/prepare) step to prepare the CEP-47 contract for deployment. This step will make the build environment, create the target location and compile the contract to a .wasm file.
 
-- Output from this will be a `WASM file` (Eg:- cep47-token.wasm) which is later used by the JS compiler for the contract deployment
+- Output from this would be a `WASM file` (Eg: *cep47-token.wasm), which is later used by the JS compiler for contract deployment.
 
-## Preparing JS Client Repository
+## Preparing the JS Client Repository
 The JS client can be used to install the smart contract on the Casper network and perform further actions with the CEP-47 token contract. We are using the JS client classes to invoke the NFT installation on the network using a pre-defined set of environment variables.
 
 ### Cloning the JS Client Repository
@@ -74,7 +64,7 @@ git clone https://github.com/casper-network/casper-contracts-js-clients.git
 :::note
 It is mandatory to update the above list of parameters to align with your working environment.
 
-Follow [getting an ip-address from a testnet peer](../erc20/deploy#getting-an-ip-address-from-a-testnet-peer) guide to get a node address for the deployment. 
+Follow [getting an IP-address from a Testnet peer](../erc20/deploy#getting-an-ip-address-from-a-testnet-peer) guide to get a node address for the deployment. 
 :::
 
 ### Building the JS Client
