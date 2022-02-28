@@ -64,6 +64,11 @@ module.exports = {
             label: "FAQ",
             position: "left",
         },
+        {
+            href: "https://discord.gg/casperblockchain",
+            label: "Chat",
+        },
+
         // {
         //     to: `${routePrefix}/developer`,
         //     activeBasePath: `${routePrefix}/developer`,

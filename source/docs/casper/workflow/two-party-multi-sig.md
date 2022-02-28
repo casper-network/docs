@@ -125,7 +125,7 @@ To check that your account was configured correctly, you need the `state-root-ha
 Use the `state_root_hash` and the `hex-encoded-public-key` of the main account to query the network for the account and check its configuration.
 
 ```bash
-casper-client query-state \
+casper-client query-global-state \
 --node-address http://<peer-ip-address>:7777/rpc \
 --state-root-hash <state-root-hash-from-block> \
 --key <hex-encoded-public-key-MA>

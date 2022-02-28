@@ -1,21 +1,23 @@
-module.exports = {
+ module.exports = {
     workflow: [
         "workflow/index",
+        "workflow/block-explorer",
         "workflow/staking",
         "workflow/ledger-setup",
         "workflow/signer-guide",
         "workflow/token-transfer",
+        "workflow/testnet-faucet",
         "workflow/setup",
         "workflow/querying",
         "workflow/account-hash",
         "workflow/two-party-multi-sig",
-    {
-        type: "category",
+        {
+            type: "category",
             label: "Transferring Tokens",
             collapsible: true,
             collapsed: true,
             items: ["workflow/transfers", "workflow/transfer-workflow", "workflow/deploy-transfer", "workflow/verify-transfer"],
-    },
+        },
         "workflow/delegate",
         "workflow/undelegate",
         {
@@ -32,9 +34,12 @@ module.exports = {
                 "workflow/erc-20-sample-guide/final-balance",
             ],
         },
+        "workflow/contribute",
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
+        "dapp-dev-guide/why-build-on-casper",
+		"dapp-dev-guide/list-cspr",
         "dapp-dev-guide/getting-started",
         {
             type: "category",
@@ -50,12 +55,19 @@ module.exports = {
         "dapp-dev-guide/calling-contracts",
         "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
+        "dapp-dev-guide/understanding-hash-types",
         {
             type: "category",
             label: "SDK Client Libraries",
             collapsible: true,
             collapsed: true,
-            items: ["dapp-dev-guide/sdk/index", "dapp-dev-guide/sdk/script-sdk", "dapp-dev-guide/sdk/csharp-sdk", "dapp-dev-guide/sdk/go-sdk", "dapp-dev-guide/sdk/python-sdk"],
+            items: [
+                "dapp-dev-guide/sdk/index",
+                "dapp-dev-guide/sdk/script-sdk",
+                "dapp-dev-guide/sdk/csharp-sdk",
+                "dapp-dev-guide/sdk/go-sdk",
+                "dapp-dev-guide/sdk/python-sdk",
+            ],
         },
         {
             type: "category",

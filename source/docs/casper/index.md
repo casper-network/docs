@@ -14,35 +14,9 @@ Casper is a new [Turing-complete](glossary/T#turing-complete-blockchain) smart-c
 
 The network's consensus protocol is called [Highway](https://arxiv.org/pdf/2101.02159.pdf), and it has several benefits over classic Byzantine Fault Tolerant (BFT) consensus protocols. First, Highway allows networks to reach higher thresholds of _finality_, meaning that more blocks are finalized, and validators agree to add them to the blockchain. Second, the protocol achieves flexibility by expressing block finality in ways not possible in BFT models. This protocol is built on the [correct-by-construction (CBC) Casper](https://github.com/cbc-casper/cbc-casper-paper) research.
 
-Additionally, the Casper Network is optimized for enterprise and developer adoption. While leveraging blockchain technology, the network seeks to accelerate business operations via unique features like predictable network fees, upgradeable contracts, on-chain governance, privacy flexibility, and developer-friendly languages.
+Additionally, the Casper Network is optimized for enterprise and developer adoption. While leveraging blockchain technology, the network seeks to accelerate business operations via unique features like predictable network fees, upgradeable contracts, on-chain governance, privacy flexibility, and developer-friendly languages. Casper's [core features and strengths](dapp-dev-guide/why-build-on-casper.md) enable developers and enterprises to reap the benefits of blockchain technology.
 
 Casper also solves the scalability trilemma. Notably, the network is optimized for security, decentralization, and high throughput. All this is achieved while evolving to provide leading solutions for open-source projects and enterprises.
-
-## Why choose Casper? {#why-choose-casper}
-
-Casper has core features and strengths that enable developers and enterprises to reap the benefits of blockchain technology.
-
-### Upgradeable Contracts {#upgradeable-contracts}
-
-Casper allows the direct upgrading of on-chain smart contracts, eliminating the need for complex migration processes and making it easy for developers to correct smart contract vulnerabilities.
-
-### Developer-Friendly Language {#developer-friendly-language}
-
-Casper Network's development ecosystem is designed to support WebAssembly, rather than being written in proprietary languages like Solidity. This feature simplifies the development path for enterprises and development teams that want to build on the Casper Network.
-
-:::note
-
-Rust is the primary programming language for smart contracts on the Casper blockchain because of its good support for compilation to wasm. However, the platform does not make assumptions about the source language and supports libraries facilitating contract development in other programming languages having wasm as a compile target.
-
-:::
-
-### Account Management {#account-management}
-
-Other essential features include an account permissions model that allows the recovery of lost keys and a permissions model to securely share state between accounts and contracts (without expensive cryptographic checks).
-
-### Predictable Network Fees {#predictable-network-fees}
-
-Casper seeks to eliminate volatility and improve developer and enterprise experiences by establishing transparent, consistent, and predictable gas prices. This feature seeks to promote active and diverse network behaviour.
 
 ## How does Casper work? {#how-does-casper-work}
 
@@ -55,7 +29,8 @@ Follow the links below to learn more about the Casper Network.
 | Category | Content |
 | --- | --- |
 | [How To's](workflow/index.md) | Guides for interacting with the Casper Network |
-| [Developers](dapp-dev-guide/index.md) | Get started with smart contract development on the Casper blockchain in AssemblyScript or Rust Node Operators Run node infrastructure on the Casper Network |
+| [Developers](dapp-dev-guide/index.md) | Get started with smart contract development on the Casper blockchain in Rust |
+| [Node Operators](operators/index.md) | Run node infrastructure on the Casper Network |
 | [Design](design/index.md) | Understand the architecture of the Casper Network, including network communication, execution semantics, account management, block structure, global state, serialization, unforgeable references, and tokens |
 | [Economics](economics/index.md) | Conceptualize Casper's economic activity by understanding consensus, runtime, ecosystem, and the macroeconomy |
 | [Staking Guide](staking/index.md) | Participate in the protocol by staking CSPR tokens with a validator in the Casper Network |

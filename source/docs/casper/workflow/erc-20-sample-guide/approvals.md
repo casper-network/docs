@@ -51,7 +51,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 
 ```bash
 
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash d068439dc1f62e330a15e008e5e926e777fd3599baed4ece508d482c50bd263b
 ```
@@ -71,7 +71,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash e863633b47b0689033744855739009b45a8654dadd4ed723f527fd38157a1d92
 ```
@@ -106,7 +106,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash e9f069c2c03b18f86c15fec54286ac66ece368ac36d9d28024d0cd6cfc93fcf5
 ```
@@ -141,7 +141,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash eb506808fe0749364163fea646c3f4ef35bb55363ea849da219badcd6ba3ee80
 ```
@@ -162,7 +162,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash 0ce2c4991543758337a38d1d8f7fe56a42616b95ec93b17aec35a6f03b5e389c
 ```
@@ -183,7 +183,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash 215c50c0e86950cb91bd8e1045315c1129bbaa02d4e49e00bed60130c4dfa69c
 ```
@@ -204,7 +204,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash 4e8b0de303f834cb7c61bef148046e3de4446903bd15a395c9c37a6d96efe8c6
 ```
@@ -226,7 +226,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash d6d4d3e59017dfc21e2c9a8e235e2a2b3a446284a066a1f1f6704559fbb35a66
 ```
@@ -266,7 +266,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```
 
 ```bash
-casper-client query-state -n http://3.143.158.19:7777 \
+casper-client query-global-state -n http://3.143.158.19:7777 \
 --key uref-56efe683287668bab985d472b877b018ad24a960aafadb48ebc5217737b45c85-007 \
 --state-root-hash be29754920f158f093c1daac780fba37bed06c751f256a43fcdc7b5b2775e487
 ```
