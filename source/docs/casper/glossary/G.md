@@ -14,6 +14,9 @@ Gas is the virtual currency for calculating the cost of transaction execution. T
 
 The state of the virtual machine at the beginning of the blockchain.
 
+## Groups {#groups}
+The Groups feature provides access control to a contract's runtime context. It is used only once to restrict the use of the constructor entry_point, which sets up necessary data storage in the contract context.
+
 ## Global state {#global-state}
 
 When thinking of a [blockchain](B.md#blockchain) as a decentralized computer, the global state is its memory state.

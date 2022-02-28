@@ -1,18 +1,40 @@
-# Introduction
+# The NFT Standard on Casper (CEP-47)
 
-This tutorial takes you through the NFT implementation of the Casper Network. Before diving deep into the Casper NFT implementation, let's cover some knowledge on overall NFT design. The following sections illustrate the origin and the development of NFTs in the blockchain domain.
+This tutorial takes you through the standard of implementing [non-fungible tokens](/docs/glossary/N#non-fungible-token) on the Casper Network. Before diving into the Casper NFT implementation, let's cover some knowledge on overall NFT design. The following sections illustrate the origin and the development of NFTs in the blockchain domain.
 
-### ERC-721 Standard
-ERC-721 is the standard defined to implement the [non-fungible tokens](/docs/glossary/N#non-fungible-token) inside Ethereum blockchain. This standard defines a minimum interface a smart contract should implement to manage, own and trade the unique tokens.  
+### The NFT Standard on Ethereum
+[ERC-721](https://eips.ethereum.org/EIPS/eip-721) is the standard defined to implement NFTs on the Ethereum blockchain. This standard defines a minimum interface a smart contract should implement to manage, own, and trade unique tokens. 
 
-## ERC-721 Implementation within Casper Network
-While [ERC-721](https://eips.ethereum.org/EIPS/eip-721) is the original name for the standard given in Ethereum blockchain, CEP-47 is the customized standard for the Casper platform. CEP-47 standard supports the NFT behaviors inside the Casper network. Casper ecosystem needs an NFT standard to enable further development of the NFT-based products. Due to the unique features within the Casper VM, the standards originate from Ethereum ecosystem are not the best choice for the Casper platform. Hence, CEP-47 is built to support these deviations and it is mainly focused on a gas-efficient design to support those unique traits.
+## The NFT Standard on Casper
+[CEP-47](https://github.com/casper-ecosystem/casper-nft-cep47) is the NFT standard for the Casper blockchain, supporting the unique traits of the Casper Virtual Machine and its gas-efficient design. 
 
-## CEP-47 Standard
-CEP47 takes full advantage of the URef feature to optimize smart contracts interactions. It also uses the Groups feature to optimize gas costs. Since this is a different type of token there are special endpoint implementations to support that unique features. You can find the [main functions](./index#cep-47-function-types) when going through the [contract file](https://github.com/casper-ecosystem/casper-nft-cep47/blob/master/cep47/bin/cep47_token.rs) inside the [CEP-47 repository](https://github.com/casper-ecosystem/casper-nft-cep47).
+CEP-47 takes full advantage of [unforgeable references](/docs/design/uref) to store values and manage permissions to them. The standard also takes advantage of other access control features (such as [groups](/docs/glossary/G#groups)). We recommend exploring the [main functions](../cep47/#cep-47-function-types) of the [contract](https://github.com/casper-ecosystem/casper-nft-cep47/blob/master/cep47/bin/cep47_token.rs) to understand the standard further.
 
 ### CEP-47 Function Types
-CEP-47 standard contains endpoints to enable the NFT functionalities. The basic attributes of tokens are addressed by *name*, *symbol*, *total_supply*, and *balance_of* endpoints.The token ownership is managed by *owner_of*, *get_token_by_index* endpoints. Token metadata is handled  through *meta*, *token_meta*, *update_token_meta* endpoints. Main behaviors of NFTs are handled through *mint*, *mint_copies*, *burn*, *transfer*, *transfer_from*, *approve*, *get_approved* endpoints.
+CEP-47 standard contains following endpoints to enable the NFT functionalities. 
+The CEP-47 standard contains the following endpoints:
+Metadata endpoints will be used by other smart contracts
+- [*name*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L44-L47) - Returns the name of the NFT contract
+- [*symbol*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L50-L53) - Returns the symbol of the NFT contract
+- [*meta*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L56-L59) - Returns the metadata of NFT
+- [*total_supply*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L62-L65)- Returns the amount of issued NFTs
+- [*balance_of*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L68-L72) - Returns an amount of NFT instances the `owner` owns
+- [*get_token_by_index*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L75-L80) - Getter for token index. Tokens are stored by tokenId and by an index
+- [*owner_of*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L83-L87) - Getter for the owner of a given token
+- [*token_meta*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L90-L94) - Getter for the metadata for a given token
+- [*update_token_meta*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L97-L103) -  A function to update the metadata of a token
+- [*mint*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L106-L113) - Creates a list of tokens with the given ids and the given metas for one given recipient. tokenIds and metas are paired in order
+- [*mint_copies*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L116-L124) - Creates for an address, several tokens with the given tokenIds but with the same meta
+- [*burn*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L127-L133) - Destroys the given tokens for a given account
+- [*transfer*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L136-L142) - Transfers tokens to another account
+- [*transfer_from*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L145-L152) - Transfer tokens from a given account to another account
+- [*approve*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L155-L161) - Give an account 'approved rights' to transfer tokens that you hold
+- [*get_approved*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L164-L169) - Getter function to see if the owner has given you approved rights to the required tokens 
 
+:::note
+These functions can only be called from inside contracts, as they return data.
+- *name*, *symbol*, *meta*, and *total_supply*: Return details regarding the whole contract
+- *balance_of* and *get_token_by_index*:Rretrieve details of tokens related to a specific account
+- *owner_of* and *token_meta*:Rretrieve the details of a specific token
+:::
 
-If you haven't read [Writing Rust Contracts on Casper](../../writing-contracts/rust.md), we recommend you start there to learn more about smart contracts.
