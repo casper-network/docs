@@ -1,8 +1,8 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 # Ledger Setup
 
-A Ledger Device is a hardware wallet that is considered one of the most secure ways to store your digital assets. Ledger uses an offline, or cold storage, method of generating private keys, making it a preferred method for many crypto users. This guide will help you to connect your Ledger device to the Casper Web wallet (<https://cspr.live>). The Casper Web wallet enables you to send and receive CSPR tokens.
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+A Ledger Device is a hardware wallet that is considered one of the most secure ways to store your digital assets. Ledger uses an offline, or cold storage, method of generating private keys, making it a preferred method for many crypto users. This guide will help you to connect your Ledger device to a Casper Web wallet on a block explorer such as [cspr.live](https://cspr.live/). The Casper Web wallet enables you to send and receive CSPR tokens.
 
 If you need help, contact us on the following services:
 
@@ -11,6 +11,8 @@ If you need help, contact us on the following services:
 -   Telegram: <https://t.me/casperblockchain>
 
 ## Requirements {#requirements}
+
+You can also find these instructions at the official Ledger support site [here](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true).
 
 ### Before you begin {#before-you-begin}
 

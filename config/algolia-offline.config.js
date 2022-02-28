@@ -4,7 +4,7 @@ module.exports = {
     // must start with "/" and correspond to the routeBasePath configured for the docs plugin
     // use "/" if you use docs-only-mode
     // (see https://v2.docusaurus.io/docs/2.0.0-alpha.70/docs-introduction#docs-only-mode)
-    docsRouteBasePath: "/",
+    // docsRouteBasePath: "/",
 
     // Whether to also index the titles of the parent categories in the sidebar of a doc page.
     // 0 disables this feature.
