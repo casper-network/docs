@@ -411,7 +411,7 @@ casper-client query-state \
 </details>
 
 
-## Set Manager's Key Weight to 4
+## Setting the Manager's Key Weight to 4
 
 Let's setup the main account (Manager) with a key weight of 4.  
 
