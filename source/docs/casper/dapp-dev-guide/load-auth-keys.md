@@ -5,7 +5,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 In an account with multiple associated keys (multisig account), the key weights and thresholds define the hierarchy of the keys. You can extend this hierarchy using the `list_authorization_keys` API. This API lets you access the account hashes of the keys that sign a deploy.
 
-When you deploy a smart contract using a multisig account, the hierarchy of keys within the account is verified before the deploy is signed. Once the authorized keys sign the deploy, the WASM code is executed. During the execution of the WASM code, the `list_authorization_keys` API returns the account hashes of the keys used to sign the deploy. You can use these account hashes to further role-based security.
+When you deploy a smart contract using a multisig account, the hierarchy of keys within the account is verified before the deploy is signed. Once the authorized keys sign the deploy, the WebAssembly (Wasm) code is executed. During the execution of the Wasm code, the `list_authorization_keys` API returns the account hashes of the keys used to sign the deploy. You can use these account hashes to further role-based security.
 
 The following diagram depicts a high-level flow of a multisig account deploying a smart contact that uses the `list_authorization_keys` API:
 
