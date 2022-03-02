@@ -500,7 +500,7 @@ casper-client get-account-info \
 
 </details>
 
-## Link the Other Accounts and Set Key Weights 
+## Linking the Other Accounts and Setting Key Weights 
 
 You can link an account and set the key weight for that account in one command. To do this, use the secret_key.pem file of the main account and the hexadecimal primary key of the account to link. An example of how the `put-deploy` command is used to link accounts and set weights, is shown here:
 
