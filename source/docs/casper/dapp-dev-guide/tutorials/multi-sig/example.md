@@ -31,7 +31,7 @@ To create accounts on the Casper blockchain, you need to generate keys and fund 
 
 ## Deploying the Keys Manager Contract
 
-Before you deploy the keys manager contract, you must clone the keys-manager repo and build the contract, see [Contract Example](contract.md) for more information.
+Before you deploy the keys manager contract, you must clone the keys-manager repository and build the [contract](contract.md).
 
 You can deploy the keys manager contract using the `put-deploy` command as illustrated below.
 
