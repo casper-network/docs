@@ -19,5 +19,13 @@ There are several well-maintained Software Development Kits (SDKs) available to 
 -   Casper is integrated with BitGo for enterprise grade custody. If your exchange uses BitGo, support for Casper is available already.
 -   Casper transactions are executed only after they are finalized through consensus. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it.
 -   Exchanges can check finality signatures from validators for additional security. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. The default configuration of the Casper node provides event streaming on the `/events` endpoint of port `9999`.
+    -   The FinalitySignature is emitted on `/events/sigs` endpoint, whenever a new finality signature is received.  
+    -   The DeployAccepted events are emitted on `/events/deploys` endpoint. This means when a deploy is received by the node and it passes the first set of validity checks, it is stored locally, gossiped to peers and enqueued for inclusion in a block - at this point the DeployAccepted event is emitted. 
+    -   The other events such as BlockAdded, DeployProcessed, DeployExpired, Fault and Step are emitted on the `/events/main` endpoint.
+        -   BlockAdded - This event is emitted whenever a new block is added to the blockchain.
+        -   DeployProcessed - This event is emitted when the deploy processing is complete.
+        -   DeployExpired - This event is emitted if a deploy is not added to a block for processing by a validator before the deploy's time to live (TTL) expires. 
+        -   Fault - This event is emitted if there is a validator error.
+        -   Step - This event is emitted at the end of every era.
 
 
