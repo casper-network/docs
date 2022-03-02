@@ -39,7 +39,12 @@ Each deploy is an atomic piece of computation in the sense that, whatever effect
 
 A deploy goes through the following phases on Casper:
 
-<p align="center"><img src={useBaseUrl("/image/Execution_Lifecycle-5.jpg")} width="600"/></p>
+1. Deploy Received
+2. Deploy Gossiped
+3. Block Proposed
+4. Block Gossiped
+5. Consensus Reached
+6. Deploy Executed
 
 ### Deploy Received
 
