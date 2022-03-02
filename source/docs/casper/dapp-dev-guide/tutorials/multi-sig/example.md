@@ -19,7 +19,7 @@ For all the commands used in this tutorial, here are a few pointers:
 - The `node-address` attribute is a combination of a peer node IP address from the Mainnet or Testnet prefixed with `7777`, which is the RPC port. 
 - The `chain-name` attribute, is `casper-test` for Testnet and `casper` for Mainnet.
 - The `amount` attribute is the cost of the transaction in motes.
-- Hexadecimal public key is found in the `public_key_hex` file, copy the contents and paste it in the command that calls for it.
+- Hexadecimal public key is found in the `public_key_hex` file. Copy the contents of this file and paste it in the command that calls for it.
 
 :::
 
@@ -27,7 +27,9 @@ For all the commands used in this tutorial, here are a few pointers:
 
 Create three sets of keys one each for the Manager, Supervisor and Clerk. 
 
-To create accounts on the Casper blockchain, you need to generate keys and fund your accounts, for more information see [Account and Cryptographic Keys](../../keys.md). To fund your Testnet account, see [Funding Testnet Accounts](../../../workflow/testnet-faucet.md).
+To create accounts on the Casper blockchain, you need to generate keys and fund your accounts. For more information see [Account and Cryptographic Keys](../../keys.md). 
+
+To fund your Testnet account, see [Funding Testnet Accounts](../../../workflow/testnet-faucet.md).
 
 ## Deploying the Keys Manager Contract
 
