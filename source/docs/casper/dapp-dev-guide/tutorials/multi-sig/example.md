@@ -33,7 +33,7 @@ To fund your Testnet account, see [Funding Testnet Accounts](../../../workflow/t
 
 ## Deploying the Keys Manager Contract
 
-Before you deploy the keys manager contract, you must clone the keys-manager repo and build the contract, see [Contract Example](contract.md) for more information.
+Before you deploy the keys manager contract, you must clone the keys-manager repository and build the [contract](contract.md).
 
 You can deploy the keys manager contract using the `put-deploy` command as illustrated below.
 
@@ -303,7 +303,7 @@ casper-client get-account-info \
 --node-address http://138.201.54.44:7777
 ```
 
-In the output of this command, you can see the key weight, key management threshold, and deploy threshold. Also observe the main purse structure, it has the `keys_manager_hash` uref address. This uref address is used to find the smart contract's [session hash](#find-session-hash).
+In the output of this command, you can see the key weight, key management threshold, and deploy threshold. Also, observe the main purse structure, which has the `keys_manager_hash` uref address. This uref address is used to find the smart contract's [session hash](#find-session-hash).
 
 <details>
 <summary>Sample output with named keys for the keys manager contract</summary>
@@ -413,7 +413,7 @@ casper-client query-state \
 </details>
 
 
-## Set Manager's Key Weight to 4
+## Setting the Manager's Key Weight to 4
 
 Let's setup the main account (Manager) with a key weight of 4.  
 
@@ -502,7 +502,7 @@ casper-client get-account-info \
 
 </details>
 
-## Link the Other Accounts and Set Key Weights 
+## Linking the Other Accounts and Setting Key Weights 
 
 You can link an account and set the key weight for that account in one command. To do this, use the secret_key.pem file of the main account and the hexadecimal primary key of the account to link. An example of how the `put-deploy` command is used to link accounts and set weights, is shown here:
 
