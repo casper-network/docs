@@ -54,7 +54,7 @@ The client sending the deploy will send it to one or more nodes via their JSON R
 After a node accepts a new deploy, it will gossip to all other nodes. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new block for the chain. This mechanism is efficient and ensures all nodes in the network eventually hold the given deploy.
 
 ### Block Proposed
-Validator leader for this round will propose a block which includes as many deploys from the block proposer buffer as can fit in a block.
+The validator leader for this round will propose a block that includes as many deploys from the block proposer buffer as can fit in a block.
 
 ### Block Gossiped
 The proposed block is propagated to all other nodes.
