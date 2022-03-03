@@ -65,7 +65,7 @@ casper-client put-deploy \
 The deploy hash from the previous output is used to find the deploy status. The deploy usually takes a few minutes to execute, so please be patient.
 
 ```bash
-casper-client get-deploy 3d55c71ae0892c9f5b63be56c8ca3e107e39e812ebc925383881cfa003aaced7 \
+casper-client get-deploy <deploy hash> \
 --node-address http://138.201.54.44:7777
 ```
 
@@ -388,6 +388,8 @@ casper-client query-state \
 --state-root-hash <network state root hash>
 ```
 
+In the following output, the parsed value is the session hash `fc8eaf47329d45c76c4f80ec4e6fdb08e74dbe4ae0391447c5ebd15f1c962476`.
+
 <details>
 <summary>Sample output with session hash</summary>
 
@@ -422,7 +424,7 @@ casper-client put-deploy \
 --chain-name casper-test \
 --node-address http://138.201.54.44:7777 \
 --secret-key <local path of secret_key.pem file> \
---session-hash fc8eaf47329d45c76c4f80ec4e6fdb08e74dbe4ae0391447c5ebd15f1c962476 \
+--session-hash <session hash of keys manager contract>\
 --payment-amount 1000000000 \
 --session-entry-point set_key_weight \
 --session-arg "account:public_key='01b2200091357e1db95a52101ad7050d552c75a54ac6724c11756f514a181d520a'" \
@@ -511,7 +513,7 @@ casper-client put-deploy \
 --chain-name casper-test \
 --node-address http://138.201.54.44:7777 \
 --secret-key <path to Manager secret_key.pem> \
---session-hash fc8eaf47329d45c76c4f80ec4e6fdb08e74dbe4ae0391447c5ebd15f1c962476 \
+--session-hash <session hash of keys manager contract> \
 --payment-amount 1000000000 \
 --session-entry-point set_key_weight \
 --session-arg "account:public_key='01e6c6000a88f122d463ed083e81f77da2c58cb92529eb422274641e4b3b2126a'" \
@@ -593,7 +595,7 @@ casper-client put-deploy \
 --chain-name casper-test \
 --node-address http://138.201.54.44:7777 \
 --secret-key <path to Manager secret_key.pem> \
---session-hash fc8eaf47329d45c76c4f80ec4e6fdb08e74dbe4ae0391447c5ebd15f1c962476 \
+--session-hash <session hash of keys manager contract> \
 --payment-amount 5000000000 \
 --session-entry-point set_key_management_threshold \
 --session-arg "weight:u8='4'"
@@ -662,7 +664,7 @@ casper-client put-deploy \
 --chain-name casper-test \
 --node-address http://138.201.54.44:7777 \
 --secret-key <path to Manager secret_key.pem> \
---session-hash fc8eaf47329d45c76c4f80ec4e6fdb08e74dbe4ae0391447c5ebd15f1c962476 \
+--session-hash <session hash of keys manager contract> \
 --payment-amount 5000000000 \
 --session-entry-point set_deployment_threshold \
 --session-arg "weight:u8='3'"
