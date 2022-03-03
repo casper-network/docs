@@ -40,7 +40,7 @@ You can deploy the keys manager contract using the `put-deploy` command as illus
 ```bash
 casper-client put-deploy \
 --chain-name casper-test \
---node-address http://138.201.54.44:7777 \
+--node-address http://[NODE_IP_ADDRESS]:7777 \
 --secret-key <path to secret_key.pem> \
 --session-path <path to keys-manager.wasm> \
 --payment-amount 10000000000
@@ -66,7 +66,7 @@ The deploy hash from the previous output is used to find the deploy status. The 
 
 ```bash
 casper-client get-deploy <deploy hash> \
---node-address http://138.201.54.44:7777
+--node-address http://[NODE_IP_ADDRESS]:7777
 ```
 
 <details>
@@ -300,7 +300,7 @@ The following command gets the account details after the deploy is successful:
 ```
 casper-client get-account-info \
 --public-key <hexadecimal public key> \
---node-address http://138.201.54.44:7777
+--node-address http://[NODE_IP_ADDRESS]:7777
 ```
 
 In the output of this command, you can see the key weight, key management threshold, and deploy threshold. Also, observe the main purse structure, which has the `keys_manager_hash` uref address. This uref address is used to find the smart contract's [session hash](#find-session-hash).
@@ -354,7 +354,7 @@ To find the session hash, we need the state root hash and the uref hash of the k
 Use the following command to find the state root hash:
 
 ```bash
-casper-client get-state-root-hash --node-address http://138.201.54.44:7777
+casper-client get-state-root-hash --node-address http://[NODE_IP_ADDRESS]:7777
 ```
 
 <details>
@@ -383,7 +383,7 @@ Use the following command to get the session hash of the smart contract:
 
 ```bash
 casper-client query-state \
---node-address http://138.201.54.44:7777 \
+--node-address http://[NODE_IP_ADDRESS]:7777 \
 --key <uref of keys_manager_hash> \
 --state-root-hash <network state root hash>
 ```
@@ -422,7 +422,7 @@ Let's setup the main account (Manager) with a key weight of 4.
 ```bash
 casper-client put-deploy \
 --chain-name casper-test \
---node-address http://138.201.54.44:7777 \
+--node-address http://[NODE_IP_ADDRESS]:7777 \
 --secret-key <local path of secret_key.pem file> \
 --session-hash <session hash of keys manager contract>\
 --payment-amount 1000000000 \
@@ -459,7 +459,7 @@ You view the updated account structure using the following command:
 ```bash
 casper-client get-account-info \
 --public-key <hex public key of Manager account> \
---node-address http://138.201.54.44:7777
+--node-address http://[NODE_IP_ADDRESS]:7777
 ```
 
 <details>
@@ -511,7 +511,7 @@ You can link an account and set the key weight for that account in one command. 
 ```bash
 casper-client put-deploy \
 --chain-name casper-test \
---node-address http://138.201.54.44:7777 \
+--node-address http://[NODE_IP_ADDRESS]:7777 \
 --secret-key <path to Manager secret_key.pem> \
 --session-hash <session hash of keys manager contract> \
 --payment-amount 1000000000 \
@@ -537,7 +537,7 @@ You can view the updated account structure using the following command:
 ```bash
 casper-client get-account-info \
 --public-key <hex public key of Manager account> \
---node-address http://138.201.54.44:7777
+--node-address http://[NODE_IP_ADDRESS]:7777
 ```
 
 <details>
@@ -593,7 +593,7 @@ To set the key management threshold we will use the `set_key_management_threshol
 ```bash
 casper-client put-deploy \
 --chain-name casper-test \
---node-address http://138.201.54.44:7777 \
+--node-address http://[NODE_IP_ADDRESS]:7777 \
 --secret-key <path to Manager secret_key.pem> \
 --session-hash <session hash of keys manager contract> \
 --payment-amount 5000000000 \
@@ -606,7 +606,7 @@ Use the following command to see the updated account structure:
 ```bash
 casper-client get-account-info \
 --public-key <hex public key of Manager account> \
---node-address http://138.201.54.44:7777
+--node-address http://[NODE_IP_ADDRESS]:7777
 ```
 
 <details>
@@ -662,7 +662,7 @@ You can use the following command to set the deploy threshold to 3.
 ```bash
 casper-client put-deploy \
 --chain-name casper-test \
---node-address http://138.201.54.44:7777 \
+--node-address http://[NODE_IP_ADDRESS]:7777 \
 --secret-key <path to Manager secret_key.pem> \
 --session-hash <session hash of keys manager contract> \
 --payment-amount 5000000000 \
@@ -677,7 +677,7 @@ Once again we will use the `get-account-info` command to view the main account s
 ```bash
 casper-client get-account-info \
 --public-key <hex public key of Manager account> \
---node-address http://138.201.54.44:7777
+--node-address http://[NODE_IP_ADDRESS]:7777
 ```
 
 The following account structure will be visible after all the key weights and thresholds are set.
