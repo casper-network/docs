@@ -303,7 +303,7 @@ casper-client get-account-info \
 --node-address http://[NODE_IP_ADDRESS]:7777
 ```
 
-In the output of this command, you can see the key weight, key management threshold, and deploy threshold. Also, observe the main purse structure, which has the `keys_manager_hash` uref address. This uref address is used to find the smart contract's [session hash](#find-session-hash).
+In the output of this command, you can see the key weight, key management threshold, and deploy threshold. Also, observe the main purse structure, which has the `keys_manager_hash` uref address. In the next steps, this uref address is used to find the smart contract's [session hash](#find-session-hash).
 
 <details>
 <summary>Sample output with named keys for the keys manager contract</summary>
