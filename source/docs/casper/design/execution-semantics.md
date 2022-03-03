@@ -64,7 +64,7 @@ Once the other validators reach consensus that the proposed block is valid, all 
 
 ### Deploy Executed 
 
-A deploy is executed in distinct phases in order to accommodate paying for computation in a flexible way. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, then the session code is executed during the session phase. And, independently of whether the session code was executed, the finalization phase is executed, which does some bookkeeping around payment.
+A deploy is executed in distinct phases to accommodate flexibly paying for computation. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, the session code is executed during the session phase. And, independently of session code execution, the finalization phase does some bookkeeping around payment.
 
 
 #### Payment code {#execution-semantics-payment}
