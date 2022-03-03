@@ -343,7 +343,7 @@ In the output of this command, you can see the key weight, key management thresh
 
 </details>
 
-In the above output, you can see the named keys for the contract and the uref for keys_manager_hash. This uref hash will be used to find the session hash of the contract.
+In the above output, you can see the named keys for the contract and the uref for `keys_manager_hash`. This uref hash will be used to find the session hash of the contract.
 
 ### Find session hash
 
