@@ -60,7 +60,7 @@ The validator leader for this round will propose a block that includes as many d
 The proposed block is propagated to all other nodes.
 
 ### Consensus Reached
-Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed and it becomes the final block, added to the chain.
+Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed, and this block becomes the final block added to the chain.
 
 ### Deploy Executed 
 
