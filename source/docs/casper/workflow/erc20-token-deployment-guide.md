@@ -75,13 +75,15 @@ To install the contract, execute the following command:
 
 `npm run erc20iface deploy`
 
-If deployment succeeds, your last log line will tell you the name of the installed token.
+You'll know your deployment succeeded when the name of the contract is printed out in the console.
 
 `... Contract name: Test Token`
 
 Your ERC-20 token contract is now successfully installed. Next we'll go about transferring tokens.
 
 **Note:**
+
+An error message will be provided if a deploy fails. Deployments may fail for a number of reasons, including out-of-gas errors, and internet connectivity issues.
 
 *For help, run `npm run erc20iface help`*
 
@@ -94,4 +96,8 @@ You will need an amount and a destination to execute a transferral. The amount c
 `npm run erc20iface transfer 200 0166795bb8895dcec5631690fa3d5dd3daacde7efeefb1e79176e9d879fd669b47`
 
 To send tokens from the address you just funded, just change the `KEYS` constant to use the path of that account's public and secret keys (in this case account `0166795bb8895dcec5631690fa3d5dd3daacde7efeefb1e79176e9d879fd669b47`).
+
+## Conclusion
+
+Thank you for reading Casper's ERC-20 deployment guide. Learn how to write your own ERC-20 smart contracts by following [this guide](https://casper.network/docs/erc20). To learn more about Casper's JavaScript SDKs read [this guide](https://casper.network/docs/dapp-dev-guide/sdk/script-sdk).
 
