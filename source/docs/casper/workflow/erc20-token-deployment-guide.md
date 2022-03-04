@@ -1,4 +1,4 @@
-# Deploy an ERC-20 Compliant Token to the Casper Network with Node.js
+# Deploying an ERC-20 Compliant Token on Casper
 
 On the Casper Network, it is possible to create smart contracts that emulate ERC-20 tokens on Ethereum. These tokens have all of the capabilities of traditional ERC-20 tokens, allowing one to approve, transfer, inquire the balance of, etc. By following this guide, you'll be able to create your own ERC-20 token and deploy it to the Casper Network.
 
