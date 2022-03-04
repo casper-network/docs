@@ -56,6 +56,7 @@
         "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
+        "dapp-dev-guide/sdkspecifications",
         {
             type: "category",
             label: "SDK Client Libraries",
