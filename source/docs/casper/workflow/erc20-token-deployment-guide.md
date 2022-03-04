@@ -16,7 +16,7 @@ On the Casper Network, it is possible to create smart contracts that emulate ERC
 
 ## Cloning the JavaScript Interface
 
-For this tutorial, we'll be starting in the home (`~`) directory. Navigate here first:
+We'll be starting in the home (`~`) directory for this tutorial. Navigate here first:
 
 `cd ~`
 
