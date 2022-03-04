@@ -3,9 +3,26 @@ name: Docusaurus CICD
 on:
   push:
     branches: "*"
+  pull_request:
+    types: [ opened, reopened, synchronize ]
 
 jobs:
-  cicd:
+  backup:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: gh-pages-backup
+          path: .
+
+
+  build:
     runs-on: ubuntu-latest
 
     env:
@@ -19,7 +36,21 @@ jobs:
         with:
           node-version: ${{ env.selected_node_version }}
           cache: yarn
-          
+
+      - name: Template credentials
+        if: github.ref == 'refs/heads/main'
+        uses: cuchi/jinja2-action@v1.2.0
+        with:
+          template: .github/templates/.env.production.j2
+          output_file: .env.production
+        env:
+          ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          CROWDIN_PERSONAL_ACCESS_TOKEN: ${{ secrets.CROWDIN_PERSONAL_ACCESS_TOKEN }}
+          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
+          GOOGLE_ANALYTICS_ANONYMIZE_IP: ${{ secrets.GOOGLE_ANALYTICS_ANONYMIZE_IP }}
+          GOOGLE_TAG_TRACKING_ID: ${{ secrets.GOOGLE_TAG_TRACKING_ID }}
+
       - name: Yarn install
         run: |
           yarn install
@@ -28,13 +59,127 @@ jobs:
         run: |
           yarn format
 
+      - name: Validate external links
+        run: |
+          yarn check:externals
+
       - name: Build app
         run: |
           yarn build --out-dir ./docs
 
-      - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: actions/upload-artifact@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          name: gh-pages-depl-payload
+          path: ./docs
+
+  system-tests-predeployment:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+        bundler-cache: true
+
+    - name: Install Jekyll
+      run: |
+        sudo gem install jekyll
+
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-depl-payload
+        path: ./docs
+
+    - name: Create Jekyll site
+      run: |
+        jekyll new --skip-bundle --force .
+      working-directory: ./docs
+
+    - name: Edit GemFile
+      run: |
+        sed -i 's/^gem "jekyll", .*$/gem "github-pages", "~> 219", group: :jekyll_plugins/' Gemfile
+      working-directory: ./docs
+
+    - name: Run bundle install
+      run: |
+        bundle install
+      working-directory: ./docs
+
+    - name: Edit baseurl in _config.yml
+      run: |
+        sed -i 's/^baseurl.*$/baseurl: "\/docs"/' _config.yml
+      working-directory: ./docs
+
+    - name: Run Jekyll site locally and test
+      run: |
+        echo "Serve Jekyll site"
+        bundle exec jekyll serve &
+        while ! nc -z 127.0.0.1 4000; do   
+          sleep 0.1
+        done
+        echo "Jekyll site is up..."
+        echo "Testing if homepage responds correctly"
+        curl --fail http://127.0.0.1:4000/docs/
+        echo "Testing if a page responds correctly"
+        curl --fail http://127.0.0.1:4000/docs/operators/create/
+        echo "Testing if a page responds correctly"
+        curl --fail http://127.0.0.1:4000/docs/design/serialization-standard/
+      working-directory: ./docs
+
+  deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    needs: [backup, system-tests-predeployment]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-depl-payload
+        path: ./docs
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+
+  system-tests-postdeployment:
+    needs: deploy-prod
+    runs-on: ubuntu-latest
+
+    env:
+      prod_pages_url: ${{ secrets.PROD_PAGES_URL }}
+
+    steps:
+      - name: Test home page
+        run: |
+          echo "Testing if homepage responds correctly"
+          curl --fail $prod_pages_url
+      - name: Test a random page
+        run: |
+          echo "Testing if a page responds correctly"
+          curl --fail $prod_pages_url/operators/create
+      - name: Test another random page
+        run: |
+          echo "Testing if a page responds correctly"
+          curl --fail $prod_pages_url/design/serialization-standard
+
+  rollback-if-tests-fail:
+    if: ${{ always() && (needs.system-tests-postdeployment.result=='failure') }}
+    needs: system-tests-postdeployment
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-backup
+        path: ./docs
+
+    - name: Deploy the previous version to Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+
+

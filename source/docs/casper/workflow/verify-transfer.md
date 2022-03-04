@@ -26,7 +26,7 @@ casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 Next, we will query for information about the _Source_ account, using the `state-root-hash` of the block containing our transfer and the public key of the _Target_ account.
 
 ```bash
-casper-client query-state \
+casper-client query-global-state \
 --id 4 \
 --node-address http://<node-ip-address>:7777 \
 --state-root-hash <state-root-hash> \
@@ -99,7 +99,7 @@ casper-client query-state \
 We will repeat the previous step to query information about the _Target_ account.
 
 ```bash
-casper-client query-state \
+casper-client query-global-state \
 --id 5 \
 --state-root-hash <state-root-hash> \
 --key <hex-encoded-target-account-public-key>
@@ -274,7 +274,7 @@ Deploys in a Casper Network can contain multiple transfers. When such a deploy i
 We will use the `transfer-` to query more details about the transfer.
 
 ```bash
-casper-client query-state \
+casper-client query-global-state \
 --id 8 \
 --node-address http://<node-ip-address>:7777 \
 --state-root-hash <state-root-hash> \

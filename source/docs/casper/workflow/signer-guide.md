@@ -6,6 +6,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. The CSPR wallet can be used to transfer CSPR tokens to another user, delegate stake, or ungelegate stake. The Casper Signer can be used for more than one CSPR account and all the accounts are securely stored in a vault, which is a mechanism to protect online information with a password. You set a password for the vault while creating a Casper Signer account. To login using Casper Signer, you must download and install the CasperLabs Signer extension for your browser. The following sections take you through the process of downloading and signing in to the Casper Signer.
 
+> **Note**: These steps use the [cspr.live](https://cspr.live/) as an example, you can install and setup your Signer account on any Casper Network [block explorer](block-explorer). 
+
 ### 1.1 Installing the CasperLabs Signer Extension
 
 To install the CaperLabs Signer extension, follow these steps:
@@ -16,7 +18,7 @@ Alternatively, you can use this link to download the [CasperLabs Signer](https:/
 
 :::
 
-1. Navigate to the CSPR mainnet https://cspr.live/, using Chrome or a Chromium-based browser like Brave.
+1. Navigate to [cspr.live](https://cspr.live/), using Chrome or a Chromium-based browser like Brave.
 2. Click the **Sign in** option on the top-right corner of the screen. The Casper Signer is displayed.
 3. In the Casper Signer, click the **Download Signer** button. A new window with the Chrome extension is displayed.
 4. On the CasperLabs Signer extension page, click the **Add to Chrome** button. A pop-up will let you know the permissions required. To approve the extension access, click **Add extension**. The CasperLabs Signer extension is now added to your browser.
@@ -58,7 +60,7 @@ The Casper Signer allows you to create an account and generates a set of keys ba
 -   Ed25519 is fast and provides a high level of security with foolproof session keys, among other features. It is the default algorithm used while creating new accounts.
 -   Secp256k1 is an efficient encryption algorithm, also used by Bitcoin and Ethereum. If you would like to derive Ethereum or Bitcoin keys in the future using your private key, then choose the Secp256k1 algorithm.
 
-To learn more about cryptographic keys, see [Working with Cryptographic Keys](../dapp-dev-guide/keys.md).
+To learn more about cryptographic keys, see [Accounts and Cryptographic Keys](../dapp-dev-guide/keys.md).
 
 To create an account, do the following:
 
@@ -84,7 +86,7 @@ The Casper Signer allows you to add your existing keys to the Signer wallet. You
 
 ## 4. Managing an Account
 
-The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active keys, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window.
+The main menu of the Casper Signer allows you to perform various functions, such as switching between accounts, managing keys, viewing connected sites, downloading active key, setting the timeout for your Signer session, and locking your vault. The main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> is located at the top-right corner of the Casper Signer window.
 
 **Figure 2**: Casper Signer Main Menu <img src={useBaseUrl("/image/tutorials/signer/main-menu.png")} width="200"/>
 
@@ -94,7 +96,7 @@ The main menu displays the names of all the accounts registered with the Casper 
 
 ### 4.2 Key Management
 
-Key management allows you to manage the keys added to your Signer wallet. You can rename the keys, delete a key, view the account information (public key hex and the account hash) and download the keys (public key, public key hex, and the secret key) for each account.
+Key management allows you to manage the keys added to your Signer wallet. You can rename the account, delete a key, view the account information (public key hex and the account hash) and download the secret key for each account.
 
 To view the various functions available, on the main menu, select **Key Management**. The list of keys available are displayed along with the icons to manage keys.
 
@@ -103,7 +105,7 @@ To view the various functions available, on the main menu, select **Key Manageme
 -   To rename an account, click the edit icon next to the account name, enter the new name and click **UPDATE**.
 -   To delete an account, click the delete icon next to the account name. A Remove Account notification pops-up. To approve the deletion, enter the password to your vault and click **REMOVE**.
 -   To view the account information, such as the public key and the account hash, click the key-shaped icon.
--   To download a copy of the account keys, click the down-arrow icon. A set of three keys, the public key, public key hex, and the secret key are downloaded to your computer.
+-   To download a copy of the secret key, click the down-arrow icon. The secret key is downloaded to your computer.
 
 ### 4.3 Connected Sites
 
@@ -127,9 +129,9 @@ If the website is not integrated with Casper Signer, the roll-over text displays
 
 :::
 
-### 4.4 Download Active Keys
+### 4.4 Download Active Key
 
-This feature allows you to download the set of cryptographic keys from your active account. To download the set of keys for the selected active account, click the main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> and select **Download Active Keys**.
+This feature allows you to download the secret key from your active account. To download the secret key for the selected active account, click the main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> and select **Download Active Key**.
 
 ### 4.5 Timeout
 
@@ -141,7 +143,7 @@ This feature allows you to lock your vault. You must enter your vault password a
 
 ## 5. Resetting the Vault
 
-Once you have created a password for the vault, every time you access it, you will see a **Reset Vault?** link below the UNLOCK button. You can click this link to delete all your CSPR accounts from the vault. If you have downloaded your account keys, you can create a new vault password and import the keys to your account to recover all the transactions.
+Once you have created a password for the vault, every time you access it, you will see a **Reset Vault?** link below the UNLOCK button. You can click this link to delete all your CSPR accounts from the vault. If you have downloaded your account keys, you can create a new vault password and import the keys to your account and recover all the transactions.
 
 ## 6. Viewing Account Details
 
@@ -152,18 +154,18 @@ To view your account information, do the following:
 1. On the CSPR home page, click the option in the top-right corner of the screen that displays a few digits of your public key. A menu with your public key is displayed.
 2. To view your account details for the displayed public key, click **View Account**.
 
-## 7. Accessing the CSPR Wallet from cspr.live
+## 7. Accessing the CSPR Wallet from a Block Explorer
 
 Once you are logged in to the Casper Signer, you can access the wallet for each account registered in the Signer. For more information on how to log in to the Signer, see [Logging in to the Casper Signer](signer-guide#12-logging-in-to-the-casper-signer).
 
 Alternatively, you can follow these steps to log in to your Signer/CSPR wallet:
 
-1. Navigate to the CSPR Mainnet https://cspr.live/.
+1. Navigate to [cspr.live](https://cspr.live/), using Chrome or a Chromium-based browser like Brave.
 2. Click the **Sign in** option on the top-right corner of the screen. The Casper Signer is displayed.
 3. In the Casper Signer, click the **Sign In** button. The Unlock Vault pop-up is displayed.
 4. Enter your password and click **UNLOCK**. The Connection Request message is displayed.
 5. To continue with the connection, click **CONNECT**. The Approve Connection message appears.
-6. To approve the connection, click **CONNECT**. You are now connected to the CSPR wallet.
+6. To approve the connection, click **CONNECT**. You are now connected to your CSPR wallet.
 
 ## 8. Logging out of the Casper Signer
 

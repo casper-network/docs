@@ -1,10 +1,12 @@
-module.exports = {
+ module.exports = {
     workflow: [
         "workflow/index",
+        "workflow/block-explorer",
         "workflow/staking",
         "workflow/ledger-setup",
         "workflow/signer-guide",
         "workflow/token-transfer",
+        "workflow/testnet-faucet",
         "workflow/setup",
         "workflow/querying",
         "workflow/account-hash",
@@ -33,9 +35,12 @@ module.exports = {
             ],
         },
         "workflow/erc20-token-deployment-guide",
+        "workflow/contribute",
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
+        "dapp-dev-guide/why-build-on-casper",
+		"dapp-dev-guide/list-cspr",
         "dapp-dev-guide/getting-started",
         {
             type: "category",
@@ -51,6 +56,7 @@ module.exports = {
         "dapp-dev-guide/calling-contracts",
         "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
+        "dapp-dev-guide/understanding-hash-types",
         {
             type: "category",
             label: "SDK Client Libraries",
@@ -93,6 +99,7 @@ module.exports = {
                         "dapp-dev-guide/tutorials/erc20/index",
                         "dapp-dev-guide/tutorials/erc20/prepare",
                         "dapp-dev-guide/tutorials/erc20/implementation",
+                        "dapp-dev-guide/tutorials/erc20/deploy",
                         "dapp-dev-guide/tutorials/erc20/tests",
                     ],
                 },
@@ -118,9 +125,10 @@ module.exports = {
     operators: [
         "operators/index",
         "operators/hardware",
+        "operators/setup",
         "operators/create",
         "operators/joining",
-        "operators/setup",
+        "operators/upgrade",
         "operators/bonding",
         "operators/unbonding",
     ],

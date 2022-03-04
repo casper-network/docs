@@ -1,24 +1,24 @@
 # Client Example
 
-This section covers an example client that invokes a smart contract for key management. In addition to the main account, the client code will add two additional accounts to perform deployments. The two deployment accounts will perform deployments but will not be able to add another account.
+This section covers an example client that invokes a smart contract for key management. In addition to the main account, the client code will add two additional associated accounts to perform deployments. These associated accounts will perform deployments but will not be able to add another account.
 
-You will test your client using [nctl](https://github.com/casper-network/casper-node/tree/master/utils/nctl), and you will interact with your local blockchain.
+You will test the client example using [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl), and interact with your local network.
 
 ## Prerequisites {#prerequisites}
 
 -   You have compiled the [example contract](https://github.com/casper-ecosystem/keys-manager) for key management
 -   You have set up the [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) tool according to the [NCTL guide](../../setup-nctl.md)
 
-## Setting up a local Casper Network {#setting-up-a-local-casper-network}
+## Setting up a Local Casper Network {#setting-up-a-local-casper-network}
 
-Navigate to your `casper-node` folder and run the following NCTL commands.
+Use the following commands to activate an NCTL environment and run a local network:
 
 ```bash
-nctl-compile
+source casper-node/utils/nctl/activate
 nctl-assets-setup && nctl-start
 ```
 
-The network you created with the NCTL tool has a special account called a faucet account, which holds your tokens. You will need these tokens to interact with the network. If the network is up and running, you can see your faucet account details with the command below.
+The network you created with the NCTL tool has a special account called a faucet account, which holds your tokens. You will need these tokens to interact with the network. If the network is up and running, you can see your faucet account details with the following command.
 
 ```bash
 nctl-view-faucet-account
@@ -33,7 +33,7 @@ Now you need to specify the configuration needed for your client to communicate 
 -   The `BASE_KEY_PATH` for the absolute path to your faucet account
 -   The `NODE_URL` for the first node in your local network
 
-Navigate to your `keys-manager/client/` folder and create an `.env` file to specify the required configurations.
+Navigate to your `keys-manager/client/` folder and create a `.env` file to specify the required configurations.
 
 ```bash
 cd keys-manager/client/
@@ -41,16 +41,20 @@ touch .env
 open -e .env
 ```
 
-Your `.env` file will look like this (\<ENTER_YOUR_PATH> stores your local path):
+Your `.env` file will look like this:
 
 >     BASE_KEY_PATH=<ENTER_YOUR_PATH>/casper-node/utils/nctl/assets/net-1/faucet/
 >     NODE_URL=http://localhost:11101/rpc
 
+:::note
+
+Replace <ENTER_YOUR_PATH> with the absolute path of your local drive, because the relative path does not work in this context.
+
+:::
+
 If you would like to customize your setup further, you can set other optional environment variables described in the table below.
 
-Variable Description Default value
-
-| Variable        | Description                                                  | Default value                                                         |
+| Variable        | Description                                                  | Default Value                                                         |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------------------------- |
 | WASM_PATH       | The path of the compiled WASM contract.                      | `../contract/target/wasm32-unknown-unknown/release/keys-manager.wasm` |
 | NETWORK_NAME    | The name of your local network set up by NCTL.               | `casper-net-1`                                                        |
@@ -74,210 +78,187 @@ npm run start:atomic
 
 **Note**: You may have to wait some time after entering the above command until you see a result.
 
-If the code works, the beginning of the output will look like this:
+You can match the output against the expected output described in the next section.
 
-![An image of the beginning of the keys-manager output.](/image/tutorials/multisig/output_begin.png)
+### Exploring the Client Output {#exploring-the-client-output}
 
-You can match the rest of the output against the expected output described in the next section while exploring the client code.
+We will explore the client example with the help of its output. The client example executes the following steps:
 
-### Exploring the Client Code {#exploring-the-client-code}
+1. Set the main account's weight to 3
+2. Set the key management threshold to 3
+3. Set the deploy threshold to 2
+4. Add first account new key with weight 1
+5. Add second account new key with weight 1 
+6. Transfer tokens from the main account using the associated accounts
+7. Remove the first account
+8. Remove the second account
 
-If you would like to explore the client output and how the client code implements key management, open the client output and the `keys-manager.js` file side by side.
+In Step 1, the weight for the main account is set to 3. This ensures the main account has permissions to manage the account thresholds even after the new keys are added.
 
-In the code, we set the weight for the primary account to 3.
-
-```javascript
-deploy = utils.keys.setKeyWeightDeploy(mainAccount, mainAccount, 3);
-```
-
-At this point, we expect an account structure similar to the following, with real account addresses replacing the sample addresses:
-
-```sh
-"Account": {
-"account_address": "account-address-123…",
-   "action_thresholds": {
-      "deployment": 1,
-      "key_management": 1
-},
-"associated_keys": [
-   {
-      "account_address": "account-address-123…",
-      "weight": 3
-   }
-],
-"main_purse": "uref-…",
-"named_keys": []
-}
-```
-
-Next, we set the key management threshold for the main account to 3. With this threshold, you can manage other keys and have control over the entire account.
-
-```javascript
-deploy = utils.keys.setKeyManagementThresholdDeploy(mainAccount, 3);
-```
-
-We expect an account structure similar to this:
+<details>
+<summary>Partial sample output for Step 1</summary>
 
 ```sh
-"Account": {
-"account_address": "account-address-123…",
-   "action_thresholds": {
-      "deployment": 1,
-      "key_management": 3
-},
-"associated_keys": [
-   {
-      "account_address": "account-address-123…",
-      "weight": 3
-   }
-],
-"main_purse": "uref-…",
-"named_keys": []
-}
+  mainPurse: 'uref-939bab468f222fc5ae5ff4dbfc2b6c280e311c7a6fb7fcf21370ff6b63bf9d73-007',
+  associatedKeys: [
+    {
+      accountHash: 'account-hash-1b9352869f5e3d9569e4ad4cc97a2a62e34555958c7f70caac56bbb107af8d7f',
+      weight: 3
+    }
+  ],
+  actionThresholds: { deployment: 1, keyManagement: 1 }
 ```
+</details>
 
-Next, the client code sets the deployment threshold to 2 for this account.
+In Step 2, the key management threshold for the main account is set to 3. With this threshold, the main account can manage other associated keys and have control over the entire account.
 
-```javascript
-deploy = utils.keys.setDeploymentThresholdDeploy(mainAccount, 2);
-```
-
-We expect an account structure similar to this:
+<details>
+<summary>Partial sample output for Step 2</summary>
 
 ```sh
-"Account": {
-"account_address": "account-address-123…",
-   "action_thresholds": {
-      "deployment": 2,
-      "key_management": 3
-},
-"associated_keys": [
-   {
-      "account_address": "account-address-123…",
-      "weight": 3
-   }
-],
-"main_purse": "uref-…",
-"named_keys": []
-}
+  mainPurse: 'uref-939bab468f222fc5ae5ff4dbfc2b6c280e311c7a6fb7fcf21370ff6b63bf9d73-007',
+  associatedKeys: [
+    {
+      accountHash: 'account-hash-1b9352869f5e3d9569e4ad4cc97a2a62e34555958c7f70caac56bbb107af8d7f',
+      weight: 3
+    }
+  ],
+  actionThresholds: { deployment: 1, keyManagement: 3 }
 ```
+</details>
 
-The next step is to add a new key with weight 1. You cannot do anything with this key alone since all the action thresholds are higher than 1.
+In Step 3, the deployment threshold is set to 2. This means that the key used to deploy must have a weight of 2 or higher, or else you would have to sign the deploy with multiple keys to meet the deployment threshold.
 
-```javascript
-deploy = utils.keys.setKeyWeightDeploy(mainAccount, firstAccount, 1);
-```
-
-We expect this account structure, with a new associated key and account address:
+<details>
+<summary>Partial sample output for Step 3</summary>
 
 ```sh
-"Account": {
-"account_address": "account-address-123…",
-   "action_thresholds": {
-      "deployment": 1,
-      "key_management": 3
-},
-"associated_keys": [
-   {
-      "account_address": "account-address-123…",
-      "weight": 3
-   },
-   {
-      "account_address": "account-address-456…",
-      "weight": 1
-   }
-],
-"main_purse": "uref-…",
-"named_keys": []
-}
+  mainPurse: 'uref-939bab468f222fc5ae5ff4dbfc2b6c280e311c7a6fb7fcf21370ff6b63bf9d73-007',
+  associatedKeys: [
+    {
+      accountHash: 'account-hash-1b9352869f5e3d9569e4ad4cc97a2a62e34555958c7f70caac56bbb107af8d7f',
+      weight: 3
+    }
+  ],
+  actionThresholds: { deployment: 2, keyManagement: 3 }
 ```
+</details>
 
-We will add another key with weight 1. If you use this key with the second key, you can deploy, since the weights add up to 2.
+In Step 4, a new key with weight 1 is added to the account. You cannot do anything with this key alone since all the action thresholds are higher than 1.
 
-```javascript
-deploy = utils.keys.setKeyWeightDeploy(mainAccount, secondAccount, 1);
-```
-
-We expect an account structure similar to the following:
+<details>
+<summary>Partial sample output for Step 4</summary>
 
 ```sh
-"Account": {
-"account_address": "account-address-123…",
-   "action_thresholds": {
-      "deployment": 1,
-      "key_management": 3
-},
-"associated_keys": [
-   {
-      "account_address": "account-address-123…",
-      "weight": 3
-   },
-   {
-      "account_address": "account-address-456…",
-      "weight": 1
-   },
-   {
-      "account_address": "account-address-789…",
-      "weight": 1
-   }
-],
-"main_purse": "uref-…",
-"named_keys": []
-}
+  mainPurse: 'uref-939bab468f222fc5ae5ff4dbfc2b6c280e311c7a6fb7fcf21370ff6b63bf9d73-007',
+  associatedKeys: [
+    {
+      accountHash: 'account-hash-1b9352869f5e3d9569e4ad4cc97a2a62e34555958c7f70caac56bbb107af8d7f',
+      weight: 3
+    },
+    {
+      accountHash: 'account-hash-5795d2d6d858a22ddd6192092a31e2f16c28df53ddbe2c98d1bd632d10065de9',
+      weight: 1
+    }
+  ],
+  actionThresholds: { deployment: 2, keyManagement: 3 }
 ```
+</details>
 
-Next, we will transfer tokens from the main account and perform a deployment. When the deployment accounts sign the transaction, they can transfer funds from the faucet account since their combined weight is 2, which meets the deployment threshold.
+In Step 5, a second key with weight 1 is added. If you use this key with the first key, you can deploy, since the weights add up to 2.
 
-```javascript
-deploy = utils.transferDeploy(mainAccount, firstAccount, 1);
-await utils.sendDeploy(deploy, [firstAccount, secondAccount]);
-```
-
-![Image showing the output of the funds transfer.](/image/tutorials/multisig/step_6.png)
-
-If you dive into the _transferDeploy_ function, you will see the transfer of funds.
-
-```javascript
-function transferDeploy(fromAccount, toAccount, amount) {
-    let deployParams = new DeployUtil.DeployParams(fromAccount.publicKey, networkName);
-    let transferParams = DeployUtil.ExecutableDeployItem.newTransfer(amount, toAccount.publicKey);
-    let payment = DeployUtil.standardPayment(100000000000);
-    return DeployUtil.makeDeploy(deployParams, transferParams, payment);
-}
-```
-
-After the above transfer of funds, the client code removes both deployment accounts.
-
-```javascript
-...
-deploy = utils.keys.setKeyWeightDeploy(mainAccount, firstAccount, 0);
-...
-deploy = utils.keys.setKeyWeightDeploy(mainAccount, secondAccount, 0);
-...
-```
-
-At this point, we expect the following account structure:
+<details>
+<summary>Partial sample output for Step 5</summary>
 
 ```sh
-"Account": {
-"account_address": "account-address-123…",
-   "action_thresholds": {
-      "deployment": 1,
-      "key_management": 3
-},
-"associated_keys": [
-   {
-      "account_address": "account-address-123…",
-      "weight": 3
-   }
-],
-"main_purse": "uref-…",
-"named_keys": []
+  mainPurse: 'uref-939bab468f222fc5ae5ff4dbfc2b6c280e311c7a6fb7fcf21370ff6b63bf9d73-007',
+  associatedKeys: [
+    {
+      accountHash: 'account-hash-1b9352869f5e3d9569e4ad4cc97a2a62e34555958c7f70caac56bbb107af8d7f',
+      weight: 3
+    },
+    {
+      accountHash: 'account-hash-5795d2d6d858a22ddd6192092a31e2f16c28df53ddbe2c98d1bd632d10065de9',
+      weight: 1
+    },
+    {
+      accountHash: 'account-hash-d0bc795436850e7d66e72f7bf3ac2b08ca75270aaaf212849a4ffe7de7f74b21',
+      weight: 1
+    }
+  ],
+  actionThresholds: { deployment: 2, keyManagement: 3 }
+```
+</details>
+
+In Step 6, a deploy is made to transfer tokens from the main account. When the associated accounts sign the transaction, they can transfer funds from the faucet account since their combined weight is 2, which meets the deployment threshold. In the sample output, you can observe that the deploy is signed by both the associated accounts.
+
+<details>
+<summary>Partial sample output for Step 6</summary>
+
+```sh
+Signed by: account-hash-5795d2d6d858a22ddd6192092a31e2f16c28df53ddbe2c98d1bd632d10065de9
+Signed by: account-hash-d0bc795436850e7d66e72f7bf3ac2b08ca75270aaaf212849a4ffe7de7f74b21
+Deploy hash: 8d1688ae4e3d40f89ace5402972121710b109f51198501512e0b267bbefe8be9
+Deploy result:
+{
+  deploy: {
+    hash: '8d1688ae4e3d40f89ace5402972121710b109f51198501512e0b267bbefe8be9',
+    header: {
+      account: '0203bd1ddbd9224dd0c8199076e4da8c0ed701b79b6f3bd08af498f05eb3e47cf8a8',
+      timestamp: '2022-01-24T14:43:54.086Z',
+      ttl: '30m',
+      gas_price: 1,
+      body_hash: '1f2e7efbb3f2f8694582984a608e9ff08a3607b2f484d5992e4c57f2b677b001',
+      dependencies: [],
+      chain_name: 'casper-net-1'
+    },
+    payment: { ModuleBytes: [Object] },
+    session: { Transfer: [Object] },
+    approvals: [ [Object], [Object] ]
+  }
 }
 ```
+</details>
 
-Congratulations! You have completed this tutorial.
+After the transfer of funds, the client code removes both deployment accounts in step 7 and 8, and only the main account is left.
 
-You can now employ a similar strategy to set up your account using multiple keys.
+<details>
+<summary>Sample account structure after the client code execution is complete</summary>
+
+```sh
+{
+  _accountHash: 'account-hash-1b9352869f5e3d9569e4ad4cc97a2a62e34555958c7f70caac56bbb107af8d7f',
+  namedKeys: [
+    {
+      name: 'keys_manager',
+      key: 'hash-3ae881f0874bb220179715a66b7ccb588d2a016c632a873646dc6835b8d829b3'
+    },
+    {
+      name: 'keys_manager_hash',
+      key: 'uref-a67f68ff2d176be69723bb9b735ebfb8b76b313863e30fb7387077c632fc977b-007'
+    }
+  ],
+  mainPurse: 'uref-939bab468f222fc5ae5ff4dbfc2b6c280e311c7a6fb7fcf21370ff6b63bf9d73-007',
+  associatedKeys: [
+    {
+      accountHash: 'account-hash-1b9352869f5e3d9569e4ad4cc97a2a62e34555958c7f70caac56bbb107af8d7f',
+      weight: 3
+    }
+  ],
+  actionThresholds: { deployment: 2, keyManagement: 3 }
+}
+```
+</details>
+
+You can now employ a similar strategy to set up your account using multiple keys.  
+
+<!-- ### Key Management Restrictions
+
+This section explains a few rules that apply to key management:
+
+- Set the deployment threshold lower than or equal to the key-management threshold
+- Set the deployment threshold lower than or equal to all other thresholds
+- Ensure the account used to set the thresholds has sufficient permissions
+- Set the thresholds to a value lower than the total weight of associated keys -->
 
 We offer some additional examples of account management in the next section.

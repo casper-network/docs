@@ -11,23 +11,7 @@ This section will help you get set up with each prerequisite.
 
 ## The Casper Client {#the-casper-client}
 
-You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
-
-Run the commands below to install the client on most flavors of Linux and macOS. 
-
-```bash
-cargo install casper-client
-```
-
-The Casper client can print out _help_ information, which provides an up-to-date list of supported commands.
-
-```bash
-casper-client --help
-```
-
-### Building the Client from Source {#building-the-client-from-source}
-
-[Instructions](https://github.com/casper-network/casper-node/tree/master/client)
+The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ### Check the Client Version {#check-the-client-version}
 
@@ -36,10 +20,10 @@ There is an official Rust client, that works with the Casper [Testnet](https://t
 To check the client version run:
 
 ```bash
-$ casper-client --version
+casper-client --version
 ```
 
-If you want to send your deployments to an external network, use the latest released version of the client. If you are building the client locally, check the gitHash and ensure it matches the githash of the network.
+If you want to send your deployments to an external network, use the latest released version of the client. If you are building the client locally, check the gitHash and ensure it matches the gitHash of the network.
 
 ### Token to Pay for Deployments {#token-to-pay-for-deployments}
 
@@ -51,10 +35,10 @@ When sending a deploy, the client needs to know which host will receive the depl
 
 ### Creating Keys {#creating-keys}
 
-Blockchains use asymmetric key encryption to secure transactions. The secret key used to sign the deployment will be the secret key of the account that is being used to pay for the transaction. The transaction will execute in this account's context unless key delegation and the `from` parameter is being used. To create keys using the rust client, execute the following command:
+Blockchains use asymmetric key encryption to secure transactions. For more information, see [Accounts and Cryptographic Keys](keys.md). The secret key used to sign the deployment will be the secret key of the account that is used to pay for the transaction. The transaction will execute in this account's context unless key delegation and the `from` parameter is being used. To create keys using the rust client, execute the following command:
 
 ```bash
-$ casper-client keygen <TARGET DIRECTORY>
+casper-client keygen <TARGET DIRECTORY>
 ```
 
 This process will create 3 files:
@@ -63,7 +47,7 @@ This process will create 3 files:
 -   public-key.pem
 -   public_key_hex
 
-When passing in the public key as hex, it's recommended to `$(cat public_key_hex)` in the transaction, or extract the contents of the file. Use the secret-key.pem file to sign transaction.
+When passing in the public key as hex, it's recommended to `$(cat public_key_hex)` in the transaction, or extract the contents of the file. Use the secret-key.pem file to sign transaction. 
 
 ## Sending a Deployment to the Testnet {#sending-a-deployment-to-the-testnet}
 
@@ -71,14 +55,19 @@ The easiest way to deploy a contract is to use an existing public network. The T
 
 ### Obtain Token {#obtain-token}
 
-To send a deploy to the network, create keys and obtain token. Token can be obtained via a faucet or by a participant that has token. Connect to our [Discord](https://discordapp.com/invite/Q38s3Vh) to get token via an existing participant.
+To send a deploy to the network, create keys and obtain token. Token can be obtained via a faucet or by a participant that has token. Connect to our [Discord](https://discord.com/invite/Q38s3Vh) to get token via an existing participant.
 
 ### A Basic Deployment using the Command Line (Rust Client) {#a-basic-deployment-using-the-command-line-rust-client}
 
 As described above, a basic deployment must provide some essential information. Here is an example deployment using the Rust client that will work with the basic contract we created using the [Contracts SDK for Rust](writing-contracts/rust.md). The default port is 7777:
 
 ```bash
-$ casper-client put-deploy --chain-name <NETWORK_NAME> --node-address http://<HOST:PORT> --secret-key /home/keys/secret_key.pem --session-path /home/casper-node/target/wasm32-unknown-unknown/release/do_nothing.wasm  --payment-amount 10000000
+casper-client put-deploy \
+--chain-name <NETWORK_NAME> \
+--node-address http://<HOST:PORT> \
+--secret-key /home/keys/secret_key.pem \
+--session-path /home/casper-node/target/wasm32-unknown-unknown/release/do_nothing.wasm \
+--payment-amount 10000000
 ```
 
 If your deployment command is correct, expect to see a success message that looks like this:
@@ -94,12 +83,14 @@ Note: Each deploy gets a unique hash. This is part of the cryptographic security
 Once the network has received the deployment, it will queue up in the system before being listed in a block for execution. Sending a transaction (deployment) to the network does not mean that the transaction processed successfully. Therefore, it's important to check to see that the contract executed properly, and that the block was finalized.
 
 ```bash
-$ casper-client get-deploy --chain-name <NETWORK_NAME> --node-address http://<HOST:PORT> <DEPLOY_HASH>
+casper-client get-deploy \
+--chain-name <NETWORK_NAME> \
+--node-address http://<HOST:PORT> <DEPLOY_HASH>
 ```
 
 Which will return a data structure like this:
 
-```bash
+```json
 {
   "api_version": "1.0.0",
   "deploy": {
@@ -201,7 +192,7 @@ From this data structure we can observe some properties about the deploy (some o
 -   There were no dependencies for this deploy
 -   The Time to Live was 1 hour
 
-It is also possible to check the contract's state by performing a `query-state` command using the client.
+It is also possible to check the contract's state by performing a `query-global-state` command using the client.
 
 ### A Note about Gas Prices {#a-note-about-gas-prices}
 
@@ -228,17 +219,17 @@ The Casper Network supports complex deployments.
 Casper contracts support arguments for deployments, which enables powerful capabilities for smart contract development. The casper client provides some examples on how to do this:
 
 ```bash
-$ casper-client put-deploy --show-arg-examples
+casper-client put-deploy --show-arg-examples
 ```
 
 #### Creating, signing, and deploying contracts with multiple signatures {#creating-signing-and-deploying-contracts-with-multiple-signatures}
 
 The `deploy` command on its own provides multiple actions strung together optimizing for the common case, with the capability to separate concerns between your key management and deploy creation. See details about generating account key pairs in the Developer Guide.
 
-Every account can associate multiple keys with it and give each a weight. Collective weight of signing keys decides whether an action of certain type can be made. To learn more about how weights and threshholds work, please review the [Blockchain Design](../design/accounts.md). In order to collect weight of different associated keys, a deploy has to be signed by corresponding private keys. The `put-deploy` command creates a deploy, signs it and deploys to the node but doesn't allow for signing with multiple keys. Therefore, we split `deploy` into separate commands:
+Every account can associate multiple keys with it and give each a weight. Collective weight of signing keys decides whether an action of certain type can be made. To learn more about how weights and thresholds work, please review the [Blockchain Design](../design/accounts.md). In order to collect weight of different associated keys, a deploy has to be signed by corresponding private keys. The `put-deploy` command creates a deploy, signs it and deploys to the node but doesn't allow for signing with multiple keys. Therefore, we split `deploy` into separate commands:
 
 -   `make-deploy` - creates a deploy from input parameters
 -   `sign-deploy` - signs a deploy with given private key
 -   `send-deploy` - sends a deploy to a Casper node
 
-To make a deploy signed with multiple keys: first create the deploy with `make-deploy`. This generates a deploy file that can be sent to the other signers, who then sign it with their keys by calling `sign-deploy` for each key. Signatures need to be gathered on the deploy one after another, untill all requisite parties have signed the deploy. Finally the signed deploy is sent to the node with `send-deploy` for processing by the network.
+To make a deploy signed with multiple keys: first create the deploy with `make-deploy`. This generates a deploy file that can be sent to the other signers, who then sign it with their keys by calling `sign-deploy` for each key. Signatures need to be gathered on the deploy one after another, until all requisite parties have signed the deploy. Finally the signed deploy is sent to the node with `send-deploy` for processing by the network.

@@ -111,7 +111,7 @@ This code snippet builds the context and includes the compiled contract _.wasm_ 
 
 **Note**: These accounts have a positive initial balance.
 
-The full and most recent code implementation is available on [GitHub](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-tests/src/test_fixture.rs>).
+The full and most recent code implementation is available on [GitHub](https://github.com/casper-ecosystem/erc20/blob/master/example/erc20-tests/src/test_fixture.rs).
 
 ```rust
 

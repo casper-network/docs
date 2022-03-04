@@ -392,6 +392,7 @@ All data which can be assigned a (non-`Any`) `CLType` can be serialized accordin
 | `Tuple2`    | > 19              |
 | `Tuple3`    | > 20              |
 | `Any`       | > 21              |
+| `PublicKey` | > 22              |
 
 A complete `CLValue`, including both the data and the type, can also be serialized (to store it in the global state). This is done by concatenating: the serialization of the length (as a 32-bit integer) of the serialized data (in bytes), the serialized data itself, and the serialization of the type.
 
@@ -399,7 +400,7 @@ A complete `CLValue`, including both the data and the type, can also be serializ
 
 Contracts are a special value type because they contain the on-chain logic of the applications running on the Casper network. A _contract_ contains the following data:
 
--   a [wasm module](https://webassembly.org/docs/modules/)
+-   a [wasm module](https://webassembly.github.io/spec/core/syntax/modules.html)
 -   a collection of named keys
 -   a protocol version
 
