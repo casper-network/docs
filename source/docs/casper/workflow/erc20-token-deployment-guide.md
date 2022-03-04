@@ -57,7 +57,7 @@ Let's take a look at what these constants refer to.
 * `TOTAL_SUPPLY`: The total supply of your ERC-20 token.
 * `GAS_LIMIT`: The gas limit in motes that will be used to pay for the deployment.
 * `WASM_PATH`: The path to the compiled contract.
-* `NODE_ADDRESS`: The validator node used to submit the deploy. The address listed directs to a valid, online node, but this may change in the future. If this node does not respond, you can select another online peer from the list [here](https://testnet.cspr.live/tools/peers). Note that you'll need to replace the port with `7777` for most nodes, as well as will need to add `/rpc` to the end of the address.
+* `NODE_ADDRESS`: The validator node used to submit the deploy. The address listed directs to a valid online node, but this may change in the future. If this node does not respond, you can select another online peer from the list [here](https://testnet.cspr.live/tools/peers). Note that you'll need to replace the port with `7777` for most nodes and add `/rpc` to the end of the address.
 * `NETWORK_NAME`: The name of the network to which you'll be deploying. By default, we have the Casper Testnet specified as `"casper-test"`. To deploy on the Mainnet, you may change this to `"casper"`.
 
 As long as you generated the keys with the aforementioned command within your project's root folder, the paths to your keys should be the same as already written in the code. Otherwise, you'll need to put in the alternate path to your keys in the `KEYS` constant.
@@ -79,7 +79,7 @@ You'll know your deployment succeeded when the name of the contract is printed o
 
 `... Contract name: Test Token`
 
-Your ERC-20 token contract is now successfully installed. Next we'll go about transferring tokens.
+Your ERC-20 token contract is now successfully installed. Next, we'll go about transferring tokens.
 
 **Note:**
 
@@ -91,7 +91,7 @@ An error message will be provided if a deploy fails. Deployments may fail for a 
 
 You can send ERC-20 compliant tokens on the Casper Network as per the ERC specification. We'll use the same  `erc20iface` script to execute the transfer deployments.
 
-You will need an amount and a destination to execute a transferral. The amount corresponds to the number of tokens you want transferred, and the destination is the hexadecimal public key of the receiving account. Your command should look like this
+You will need an amount and a destination to execute a transfer. The amount corresponds to the number of tokens you want to transfer, and the destination is the hexadecimal public key of the receiving account. Your command should look like this:
 
 `npm run erc20iface transfer 200 0166795bb8895dcec5631690fa3d5dd3daacde7efeefb1e79176e9d879fd669b47`
 
@@ -99,5 +99,5 @@ To send tokens from the address you just funded, just change the `KEYS` constant
 
 ## Conclusion
 
-Thank you for reading Casper's ERC-20 deployment guide. Learn how to write your own ERC-20 smart contracts by following [this guide](https://casper.network/docs/erc20). To learn more about Casper's JavaScript SDKs read [this guide](https://casper.network/docs/dapp-dev-guide/sdk/script-sdk).
+Thank you for reading Casper's ERC-20 deployment guide. Next, you can learn how to write your own [ERC-20 smart contracts](https://casper.network/docs/erc20), and use [Casper's JavaScript SDKs](https://casper.network/docs/dapp-dev-guide/sdk/script-sdk).
 
