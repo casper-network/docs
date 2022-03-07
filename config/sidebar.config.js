@@ -34,6 +34,7 @@
                 "workflow/erc-20-sample-guide/final-balance",
             ],
         },
+        "workflow/erc20-token-deployment-guide",
         "workflow/contribute",
     ],
     "dapp-dev-guide": [
