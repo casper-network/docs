@@ -56,7 +56,18 @@
         "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
-        "dapp-dev-guide/sdkspecifications",
+        {
+            type: "category",
+            label: "Casper SDK Specification",
+            collapsible: true,
+            collapsed: true,
+            items: [
+                "dapp-dev-guide/sdkspec/json-rpc",
+                "dapp-dev-guide/sdkspec/sse",
+                "dapp-dev-guide/sdkspec/rest",
+                "dapp-dev-guide/sdkspec/components",
+            ],
+        },
         {
             type: "category",
             label: "SDK Client Libraries",
