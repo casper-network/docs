@@ -1,5 +1,5 @@
 
-# Contract Implementation
+# Implementation
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This tutorial introduces the implementation of the ERC-721 standard for the Casper blockchain. CEP-47 is the Casper implementation for the NFTs. Know more about ERC_721 and CEP-47 in our [CEP-47 Introduction](/docs/dapp-dev-guide/tutorials/cep47/index) section. You can refer [Github CEP-47 repository](https://github.com/casper-ecosystem/casper-nft-cep47) which contains the code for this tutorial for further studies.

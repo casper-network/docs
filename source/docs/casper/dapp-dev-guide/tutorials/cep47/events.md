@@ -1,7 +1,7 @@
-# Deploying Token Events
+# Token Management
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-CEP-47 contract contains a set of event implementations for token management. These events occur when contract tries to communicate with dapps and other smart contracts. The developers of the smart contract will decide when these events should be emitted and with what types of parameters.
+The NFT contract contains a set of event implementations for token management. These events occur when the contract tries to communicate with dApps and other smart contracts. The smart contract developers will decide when these events should be emitted and with what types of parameters.
 
 There are 7 main event implementations for the Casper CEP-47 token contract. Those are:
 - [Mint](./events#minting-tokens)
@@ -16,10 +16,10 @@ We will go through each one with examples in the next sections.
 
 **Pre-requisite**
 
-Make sure you have [installed the CEP-47 contract](../cep47/deploy) on the Casper network, before moving to the event deployment.
+Make sure you have [installed the CEP-47 contract](../cep47/deploy) on the Casper Network.
 
-## Deploying the CEP-47 Event Stream
-To deploy the event stream, you have to  run the `casper-contracts-js-clients/e2e/cep47/usage.ts` file using node js. It will execute the methods related to the CEP-47 event stream.
+## Enabling the Event Stream
+To execute the methods related to the contract event stream, you must run the *casper-contracts-js-clients/e2e/cep47/usage.ts* file using NodeJS. 
 
 This is the command to run the file:
 ```bash
@@ -29,7 +29,7 @@ npm run e2e:cep47:usage
 You will see the output as below:
 
 <details>
-<summary>Console output for deploying token event stream</summary>
+<summary>Console output for deploying the token event stream</summary>
 
 ```bash
 ... Account Info:
@@ -71,9 +71,9 @@ You will see the output as below:
 
 </details>
 
-### Minting Tokens
+### Minting tokens
 
-Mint process converts a probable non-fungible item into an NFT. The Casper virtual machine executes the code stored in the smart contract and maps the item to a token on the blockchain which contains certain attributes known as metadata. The creator's public key serves as a certificate of authenticity for that particular NFT.
+The token minting process creates NFTs from certain items. The Casper virtual machine executes the code stored in the smart contract and maps the item to a blockchain token containing certain attributes known as metadata. The creator's public key serves as a certificate of authenticity for that particular NFT.
 
 #### Executing mint() method
 
