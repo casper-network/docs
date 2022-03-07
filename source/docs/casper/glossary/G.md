@@ -15,7 +15,10 @@ Gas is the virtual currency for calculating the cost of transaction execution. T
 The state of the virtual machine at the beginning of the blockchain.
 
 ## Groups {#groups}
-The Groups feature provides access control to a contract's runtime context. It is used only once to restrict the use of the constructor entry_point, which sets up necessary data storage in the contract context.
+The *user groups* feature provides access control to the entry points of a contract by creating a new user group for that contract (versioned or not). This feature restricts the use of the constructor entry_point, which sets up the necessary data storage in the runtime context that belongs to the contract. Here is how it works:
+- User groups associate a set of URefs with a label.
+- The entry points on a contract can accept a list of labels
+- The runtime checks that a URef from at least one of the allowed groups is present in the caller's context before execution.
 
 ## Global state {#global-state}
 
