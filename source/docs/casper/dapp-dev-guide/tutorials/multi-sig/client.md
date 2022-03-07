@@ -250,15 +250,6 @@ After the transfer of funds, the client code removes both deployment accounts in
 ```
 </details>
 
-You can now employ a similar strategy to set up your account using multiple keys.  
+You can now employ a similar strategy to set up your account using multiple keys, see [Setting up a Multi-sig Account](example.md).  
 
-<!-- ### Key Management Restrictions
 
-This section explains a few rules that apply to key management:
-
-- Set the deployment threshold lower than or equal to the key-management threshold
-- Set the deployment threshold lower than or equal to all other thresholds
-- Ensure the account used to set the thresholds has sufficient permissions
-- Set the thresholds to a value lower than the total weight of associated keys -->
-
-We offer some additional examples of account management in the next section.

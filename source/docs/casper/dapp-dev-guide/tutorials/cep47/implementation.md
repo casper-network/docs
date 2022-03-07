@@ -1,4 +1,3 @@
-
 # Implementation
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -49,3 +48,4 @@ Metadata endpoints will be used by other smart contracts
 - [*transfer_from*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L145-L152) - Transfer tokens from a given account to another account
 - [*approve*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L155-L161) - Give an account 'approved rights' to transfer tokens that you hold
 - [*get_approved*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L164-L169) - Getter function to see if the owner has given you approved rights to the required tokens 
+

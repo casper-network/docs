@@ -1,4 +1,4 @@
-module.exports = {
+ module.exports = {
     workflow: [
         "workflow/index",
         "workflow/block-explorer",
@@ -34,10 +34,13 @@ module.exports = {
                 "workflow/erc-20-sample-guide/final-balance",
             ],
         },
+        "workflow/erc20-token-deployment-guide",
+        "workflow/contribute",
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
         "dapp-dev-guide/why-build-on-casper",
+		"dapp-dev-guide/list-cspr",
         "dapp-dev-guide/getting-started",
         {
             type: "category",
@@ -99,6 +102,19 @@ module.exports = {
                         "dapp-dev-guide/tutorials/erc20/deploy",
                         "dapp-dev-guide/tutorials/erc20/tests",
                     ],
+                },                
+                {
+                    type: "category",
+                    label: "CEP-47 Tutorial",
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        "dapp-dev-guide/tutorials/cep47/index",
+                        "dapp-dev-guide/tutorials/cep47/prepare",
+                        "dapp-dev-guide/tutorials/cep47/implementation",
+                        "dapp-dev-guide/tutorials/cep47/deploy",
+                        "dapp-dev-guide/tutorials/cep47/test",
+                    ],
                 },
                 {
                     type: "category",
@@ -122,7 +138,8 @@ module.exports = {
                         "dapp-dev-guide/tutorials/multi-sig/concepts",
                         "dapp-dev-guide/tutorials/multi-sig/contract",
                         "dapp-dev-guide/tutorials/multi-sig/client",
-                        "dapp-dev-guide/tutorials/multi-sig/additional",
+                        "dapp-dev-guide/tutorials/multi-sig/example",
+                        "dapp-dev-guide/tutorials/multi-sig/additional",           
                     ],
                 },
                 "dapp-dev-guide/tutorials/upgrade-tutorial",
