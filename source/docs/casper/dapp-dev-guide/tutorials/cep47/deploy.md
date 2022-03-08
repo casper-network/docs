@@ -3,7 +3,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Now that you have implemented a smart contract for CEP-47, it's time to deploy it to the network. You will use a JavaScript client with in-built TypeScript (TS) classes to execute the contract deployment. The JS client also resides in a separate repository. Clone that repository to your machine and proceed with these deployment steps.
 
-## Pre-requisites
+## Prerequisites
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
 - Ensure you have [set up an account](/docs/workflow/setup#setting-up-an-account) with a public and private key pair to initiate the deploy
 - Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow [fund your account](/docs/workflow/setup#fund-your-account) guide to add CSPR tokens to your account

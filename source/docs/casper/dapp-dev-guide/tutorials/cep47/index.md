@@ -33,7 +33,7 @@ The CEP-47 standard contains the following functions to enable NFTs.
 :::note
 These functions can only be called from inside contracts, as they return data.
 - *name*, *symbol*, *meta*, and *total_supply*: Return details regarding the whole contract
-- *balance_of* and *get_token_by_index*:Rretrieve details of tokens related to a specific account
-- *owner_of* and *token_meta*:Rretrieve the details of a specific token
+- *balance_of* and *get_token_by_index*: Retrieve details of tokens related to a specific account
+- *owner_of* and *token_meta*: Retrieve the details of a specific token
 :::
 

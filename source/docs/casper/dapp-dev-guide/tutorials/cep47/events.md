@@ -3,7 +3,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The NFT contract contains a set of event implementations for token management. These events occur when the contract tries to communicate with dApps and other smart contracts. The smart contract developers will decide when these events should be emitted and with what types of parameters.
 
-There are 7 main event implementations for the Casper CEP-47 token contract. Those are:
+There are seven main event implementations for the Casper CEP-47 token contract. Those are:
 - [Mint](./events#minting-tokens)
 - [Burn](./events#burning-tokens)
 - [Mint Copies](./events#minting-copies-of-tokens)
@@ -14,7 +14,7 @@ There are 7 main event implementations for the Casper CEP-47 token contract. Tho
 
 We will go through each one with examples in the next sections. 
 
-**Pre-requisite**
+**Prerequisite**
 
 Make sure you have [installed the CEP-47 contract](../cep47/deploy) on the Casper Network.
 
@@ -78,7 +78,7 @@ The token minting process creates NFTs from certain items. The Casper virtual ma
 #### 1. Execute the mint method
 The `mint` method requires input parameters like recipient address, token ID, token metadata, and the payment amount to generate the NFT token. The list of input parameters is specified in the *.env.cep47* file and can be customized for each NFT implementation. This method will execute those parameters and generate the deploy object as `mintDeploy`. Then that deploy object is sent to the network via the node address to get the `mintDeployHash`. The console will output the deploy hash, name of the event, CL values, and the token mint successful message.
 
-The code snippet below is an example of executing the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method. In this example, a toke with ID 1 is minted with the metadata *number* and *one*.
+The code snippet below is executing the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method. In this example, a toke with ID 1 is minted with the metadata *number* and *one*.
 
 
 ```javascript
@@ -99,7 +99,7 @@ After minting the token with ID 1, you can check the balance of tokens assigned 
 const balanceOf1 = await cep47.balanceOf(KEYS.publicKey);
 ```
 #### 3. Check token ownership
-You can check the token owner by calling the `getOwnerOf` method. This method takes the token ID as the input parameter and returns the prefixed account hash of the account owning this specific token. Note: the prefix is *account-hash-*. 
+You can check the token owner by calling the `getOwnerOf` method. This method takes the token ID as the input parameter and returns the prefixed account hash of the account owning this specific token. **Note**: the prefix is *account-hash-*. 
 
 ```javascript
 const ownerOfTokenOne = await cep47.getOwnerOf("1");
@@ -336,7 +336,8 @@ Create the recipient address from a random number and assign it to `transferOneR
 const transferOneRecipient = CLPublicKey.fromHex("016e5ee177b4008a538d5c9df7f8beb392a890a06418e5b9729231b077df9d7215");
 ```
 
-Use the token with ID 2 and the `transferOneRecipient` address along with other input parameters to generate the `transferOneDeploy` object. This will complete the transfer event call.
+Use the token with ID 2 and the `transferOneRecipient` address along with other input parameters to generate the `transferOneDeploy` object. This completes the transfer event call.
+
 ```javascript
 const transferOneDeploy = await cep47.transfer(
     transferOneRecipient, 
@@ -380,7 +381,7 @@ ownerOfTokenTwo = await cep47.getOwnerOf("2");
 </details>
 
 ### Approving Tokens
-This method is used when you need to hand over the token transfer capability to another account. In this example, the new owner's public key is created before performing the transfer. Then the new account will perform the token transfer.
+This method is used to hand over the token transfer capability to another account. In this example, the new owner's public key is created before the transfer. Then the new account will perform the token transfer.
 
 #### Executing the approve method
 The below code snippet will execute when calling the [approve](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L259-L267) method.
@@ -431,7 +432,7 @@ const allowanceOfTokenFive = await cep47.getAllowance(KEYS.publicKey, "5");
 </details>
 
 ### Transferring Tokens from Another Account
-Here, you will transfer tokens on behalf of another account. You will use some randomly generated account address to check the behavior of this method.
+Here, you will transfer tokens on behalf of another account. You will use some randomly generated account addresses to check the behavior of this method.
 
 #### Executing the transferFrom method
 The below code snippet will execute when calling the [transferFrom](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L297-L302) method.
@@ -446,7 +447,7 @@ Then, generate the recipient address from a random number.
 ```javascript
 const transferFromRecipient = CLPublicKey.fromHex("019548b4f31b06d1ce81ab4fd90c9a88e4a5aee9d71cac97044280905707248da4");
 ```
-Then, you can generate the `transferFromDeploy` deploy object using the new recipient address and the rest of the input parameters and complete the transfer from another account process. This will completes the transfer-from event call.
+Then, you can generate the `transferFromDeploy` deploy object using the new recipient address and the rest of the input parameters and complete the transfer from another account process. This completes the transfer-from event call.
 ```javascript
 const transferFromDeploy = await cep47.transferFrom(
     transferFromRecipient,
@@ -497,7 +498,8 @@ First, check the metadata of the token with ID 4.
 let tokenFourMeta = await cep47.getTokenMeta("4");
 ```
 
-Then, execute the `updateTokenMeta` method and generate the `updateMetadataDeploy` object. This will completes the update metadata call.
+Then, execute the `updateTokenMeta` method and generate the `updateMetadataDeploy` object. This completes the update metadata call.
+
 ```javascript
 const updateMetadataDeploy = await cep47.updateTokenMeta(
     "4",
