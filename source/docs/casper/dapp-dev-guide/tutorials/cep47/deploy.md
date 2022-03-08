@@ -6,8 +6,7 @@ Now that you have implemented a smart contract for CEP-47, it's time to deploy i
 ## Pre-requisites
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
 - Ensure you have [set up an account](/docs/workflow/setup#setting-up-an-account) with a public and private key pair to initiate the deploy
-- Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Fund your account [here](/docs/workflow/setup#fund-your-account). 
-- Follow [fund your account](/docs/workflow/setup#fund-your-account) guide to add CSPR tokens to your account
+- Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow [fund your account](/docs/workflow/setup#fund-your-account) guide to add CSPR tokens to your account
 - CSPR tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
 
 ## Basic Flows of the Deployment
@@ -23,16 +22,16 @@ You will be using two Casper repositories for the deployment process.
 - [casper-contracts-js-clients](https://github.com/casper-network/casper-contracts-js-clients) - a repository containing a JS client for the CEP-47 contract and other supporting classes to run the client. 
     - You will be executing the [install.ts](https://github.com/casper-network/casper-contracts-js-clients/blob/master/e2e/cep47/install.ts) file for the deployment.
 
-## Deploying CEP-47 Contract to Casper Network
+## Deploying the Contract
 
 ### 1. Preparing the CEP-47 contract repository
 
-Refer to the [contract preparation](../cep47/prepare) step to prepare the CEP-47 contract for deployment. This step will make the build environment, create the target location and compile the contract to a .wasm file.
+Refer to the [contract preparation](../cep47/prepare) step to prepare the NFT contract for deployment. This step will make the build environment, create the target location and compile the contract to a .wasm file.
 
 - Output from this would be a `WASM file` (Eg: *cep47-token.wasm), which is later used by the JS compiler for contract deployment.
 
 ### 2.  Preparing the JS client repository
-The JS client can be used to install the smart contract on the Casper Network and perform further actions with the CEP-47 token contract. We are using the JS client classes to invoke the NFT installation on the network using a pre-defined set of environment variables.
+The JS client can be used to install the smart contract on the Casper Network and perform further actions with the contract. We are using the JS client classes to invoke the NFT installation on the network using a pre-defined set of environment variables.
 
 ### 3.  Cloning the JS client repository
 Clone the [casper-contracts-js-clients](https://github.com/casper-network/casper-contracts-js-clients) repository using the below command.
@@ -58,9 +57,7 @@ git clone https://github.com/casper-network/casper-contracts-js-clients.git
     - `USER_KEY_PAIR_PATH` - Path to the generated key pair of another party, which in this case, it would be the same as your `MASTER_KEY_PAIR_PATH`
 
 :::note
-It is mandatory to update the above list of parameters to align with your working environment.
-
-Follow [getting an IP-address from a Testnet peer](../erc20/deploy#getting-an-ip-address-from-a-testnet-peer) guide to get a node address for the deployment. 
+You must update the above list of parameters to align with your working environment. If you need an IP address for a node on the network, [follow this guide](/docs/workflow/setup#acquire-node-address-from-network-peers).
 :::
 
 ### 5.  Building the JS client
@@ -71,12 +68,13 @@ npm run dist
 ```
 
 ### 6. Deploy the contract
-Run the following command to deploy and execute the CEP-47 installer. The command will execute the *./e2e/cep47/install.ts* file and you can check the outcome on the console.
+Run the following command to deploy and execute the CEP-47 installer. The command executes the *./e2e/cep47/install.ts* file.
 
 ```
 npm run e2e:cep47:install
 ```
-If the execution succeeds, you should see output similar to the following:
+ 
+A Successful command execution produces similar output as below.
 
 <details>
 <summary>Console output for contract installation </summary>
@@ -177,7 +175,7 @@ Then the generated installation deploy hash is sent to the node address that you
 const hash = await installDeployHash.send(NODE_ADDRESS!);
 ```
 
-After that, check if the deploy is successful and retrieve account information using the node address and public key. Next, you can see the "Contract installed successfully.." message on the console.
+After that, check if the deploy is successful and retrieve the account information using the node address and public key. Next, you can see the "Contract installed successfully.." message on the console.
 
 ```javascript
 await getDeploy(NODE_ADDRESS!, hash)

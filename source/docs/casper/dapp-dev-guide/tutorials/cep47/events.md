@@ -75,9 +75,11 @@ You will see the output as below:
 
 The token minting process creates NFTs from certain items. The Casper virtual machine executes the code stored in the smart contract and maps the item to a blockchain token containing certain attributes known as metadata. The creator's public key serves as a certificate of authenticity for that particular NFT.
 
-#### Executing mint() method
+#### 1. Execute the mint method
+The `mint` method requires input parameters like recipient address, token ID, token metadata, and the payment amount to generate the NFT token. The list of input parameters is specified in the *.env.cep47* file and can be customized for each NFT implementation. This method will execute those parameters and generate the deploy object as `mintDeploy`. Then that deploy object is sent to the network via the node address to get the `mintDeployHash`. The console will output the deploy hash, name of the event, CL values, and the token mint successful message.
 
-Mint method requires input parameters like recipient address, token id, token metadata, payment amount to generate the CEP-47 token. Below code snippet will execute when calling the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method. 
+The code snippet below is an example of executing the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method. In this example, a toke with ID 1 is minted with the metadata *number* and *one*.
+
 
 ```javascript
 const mintDeploy = await cep47.mint(
@@ -90,25 +92,21 @@ const mintDeploy = await cep47.mint(
   );
 ```
 
-The list of input parameters is hardcoded or taken from the .env.cep47 file. This method will execute those parameters and generate the deploy object as `mintDeploy`. Then that deploy object is sent to the Casper Testnet via the node address to get the `mintDeployHash`. The console will output the deploy hash, name of the event, CL values, and the token mint successful message.
-
-- In this specific example token id 1 is minted with 'number' and 'one' metadata.
-
-#### Check account balance
-After minting the token id 1, you can check the balance of tokens assigned to a specific public key using the balanceOf() function. This function will return the number of tokens stored in this account.
+#### 2. Check the account balance
+After minting the token with ID 1, you can check the balance of tokens assigned to a specific public key using the `balanceOf` method. This method returns the number of tokens stored in this account.
 
 ```javascript
 const balanceOf1 = await cep47.balanceOf(KEYS.publicKey);
 ```
-#### Check owner of the token
-Then you can check the owner of the token by calling the getOwnerOf() method. This method takes the token id as the input parameter and returns the prefixed (account-hash-) account hash of the account owning this specific token. 
+#### 3. Check token ownership
+You can check the token owner by calling the `getOwnerOf` method. This method takes the token ID as the input parameter and returns the prefixed account hash of the account owning this specific token. Note: the prefix is *account-hash-*. 
 
 ```javascript
 const ownerOfTokenOne = await cep47.getOwnerOf("1");
 ```
 
-#### Check token metadata and index
-You can also check the details of token metadata, index of the token and token id of certain index using below methods.
+#### Token index and metadata
+You can also check the token metadata, the index of the token, and the token ID using the methods below.
 
 ```javascript
 const tokenOneMeta = await cep47.getTokenMeta("1");
@@ -147,10 +145,10 @@ const tokenByIndex1 = await cep47.getTokenByIndex(KEYS.publicKey, indexByToken1)
 </details>
 
 ### Burning Tokens
-Token burning process permanently removes the tokens from circulation within the blockchain network. The tokens are sent to a wallet address called "burner" or "eater" that cannot be used for transactions other than receiving the tokens. Even though the tokens will still exist on the blockchain, there will be no way of accessing them. 
+The token burning process permanently removes the tokens from circulation within the blockchain network. The tokens are sent to a wallet address called "burner" or "eater" that cannot be used for transactions other than receiving these tokens. Even though the tokens will still exist on the blockchain, there will be no way of accessing them. 
 
-#### Executing burn() method
-Below code snippet will execute when calling the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method.
+#### Executing the burn() method
+The code snippet below will execute when calling the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method.
 
 ```javascript
 const burnDeploy = await cep47.burn(
@@ -162,7 +160,7 @@ const burnDeploy = await cep47.burn(
   );
 ```
 
-Method will execute the input parameters and generate the deploy object as `burnDeploy` object and it is sent to the Casper Testnet via the node address to get the `burndeplyHash`. The console will output the deploy hash, name of the event and CL values, and the token mint successful message.
+The `burn` method executes given the values passed in and generates a `burnDeploy` object, which is sent to the blockchain. After execution, the console outputs the deploy hash, the name of the event and corresponding CL values, and a message indicating success or failure.
 
 <details>
 <summary>Console output for token burning</summary>
@@ -222,11 +220,10 @@ Method will execute the input parameters and generate the deploy object as `burn
 </details>
 
 ### Minting Copies of Tokens
-Mint copies will create several tokens with different ids but with the same metadata. It process is the same as minting one token but with multiple ids and metadata. The payment amount also changes accordingly.
-Minting token copies 
+The method `mintCopies` creates several tokens with different IDs but the same metadata. The process is the same as minting one token but with multiple IDs and metadata. The payment amount also changes accordingly.
 
-#### Executing mintCopies() method
-Below code snippet will execute when calling the [mintCopies](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L187-L195) method.
+#### Executing mintCopies
+The below code snippet executes when calling the [mintCopies](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L187-L195) method.
 
 ```javascript
 const mintCopiesDeploy = await cep47.mintCopies(
@@ -239,34 +236,34 @@ const mintCopiesDeploy = await cep47.mintCopies(
     [KEYS]
   );
 ```
-This method takes multiple token ids and token metadata, count of the tokens, and other general input parameters to generate the `mintCopiesDeploy` object. This will output a list of minted tokens. Since it is a series of tokens, we will check the token balance, owner of tokens, token metadata, and index details of those tokens.
+This method takes multiple token IDs and metadata, the token count, and other general input parameters to generate the `mintCopiesDeploy` object. The output is a list of minted tokens. Since it is a series of tokens, we will check the token balance, owner, metadata, and index.
 
-#### Checking the balance
-This method will check the balance of tokens in master account:
+#### Checking token balance
+This method will check the balance of tokens in the master account:
 ```javascript
  const balanceOf2 = await cep47.balanceOf(KEYS.publicKey);
 ```
 
 #### Checking the owner
-This method will check the owner of token id 5:
+This method checks the owner of the token with ID 5:
 ```javascript
 let ownerOfTokenFive = await cep47.getOwnerOf("5");
 ```
 
 #### Checking token metadata
-This method will check the metadata of token id 5,
+This method checks the metadata of the token with ID 5:
 ```javascript
 const tokenFiveMeta = await cep47.getTokenMeta("5");
 ```
 
 #### Checking the index 
-This method will check the index of token id 5,
+This method checks the index of the token with ID 5:
 ```javascript
 const indexByToken5 = await cep47.getIndexByToken(KEYS.publicKey, "5");
 ```
 
-#### Checking the token id 
-This method will check the id of the token 5,
+#### Checking the token ID 
+This method checks the ID of token 5:
 ```javascript
  const tokenByIndex5 = await cep47.getTokenByIndex(KEYS.publicKey, indexByToken5);
 ```
@@ -327,19 +324,19 @@ This method will check the id of the token 5,
 </details>
 
 ### Transferring Tokens
-This method enables the NFT token transferring to other accounts. Transfer process will initiate from your account address and sent to the selected recipient address. The recipient address will be a randomly selected account hash for this example.
+This method enables NFT token transfers to other accounts. The transfer process will initiate from your account address and be sent to the selected recipient address. The recipient address will be a randomly selected account hash in this example.
 
-#### Executing transfer() method
+#### Executing a transfer
 
-Below code snippet will execute when calling the [transfer](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L234-L235) method.
+The code snippet below executes when calling the [transfer](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L234-L235) method.
 
 
-Create the recipient address from random number and assign it to `transferOneRecipient`.
+Create the recipient address from a random number and assign it to `transferOneRecipient`.
 ```javascript
 const transferOneRecipient = CLPublicKey.fromHex("016e5ee177b4008a538d5c9df7f8beb392a890a06418e5b9729231b077df9d7215");
 ```
 
-Use the token id 2 and `transferOneRecipient` address along with other input parameters to generate the `transferOneDeploy` object. This will completed the transfer event call.
+Use the token with ID 2 and the `transferOneRecipient` address along with other input parameters to generate the `transferOneDeploy` object. This will complete the transfer event call.
 ```javascript
 const transferOneDeploy = await cep47.transfer(
     transferOneRecipient, 
@@ -349,18 +346,18 @@ const transferOneDeploy = await cep47.transfer(
     [KEYS]);
 ```
 
-Then, send the deploy to the network. At the end this, token transfer event completes successfully.
+Then, send the deploy to the network.
 ```javascript
  const transferOneHash = await transferOneDeploy.send(NODE_ADDRESS!);
 ```
 
-Finally, check the owner of token id 2. Confirm that the owner has changed from your account hash to the recipient account hash.
+Finally, check the owner of the token with ID 2. Confirm that the owner has changed from your account hash to the recipient account hash.
 ```javascript
 ownerOfTokenTwo = await cep47.getOwnerOf("2");
 ```
 
 <details>
-<summary>Console output for token transferring</summary>
+<summary>Console output for transferring tokens</summary>
 
 ```bash
 ... Transfer #1
@@ -383,18 +380,18 @@ ownerOfTokenTwo = await cep47.getOwnerOf("2");
 </details>
 
 ### Approving Tokens
-This method is used when you need to hand over the token transfer capability to some other account. In this example, the new owner's public key is created before performing the transfer. Then the new account will perform the token transfer.
+This method is used when you need to hand over the token transfer capability to another account. In this example, the new owner's public key is created before performing the transfer. Then the new account will perform the token transfer.
 
-#### Executing approve() method
-Below code snippet will execute when calling the [approve](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L259-L267) method.
+#### Executing the approve method
+The below code snippet will execute when calling the [approve](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L259-L267) method.
 
-Create `allowedAccount` recipient address using the `KEYS_USER` variable from .env.cep47 file. It indicates the new spender of the token.
+Create the `allowedAccount` recipient address using the `KEYS_USER` variable from the *.env.cep47* file. This variable indicates the new spender of the token.
 
 ```javascript
 const allowedAccount = KEYS_USER!.publicKey;
 ```
 
-Next, execute the approve() method and create the `aaproveDeploy` object. Here, token id 5 will be used for the approval. This will completes the approve event call.
+Next, execute the `approve` method and create the `approveDeploy` object. Here, the token with ID 5 will be used for approval.
 
 ```javascript
   const approveDeploy = await cep47.approve(
@@ -407,13 +404,13 @@ Next, execute the approve() method and create the `aaproveDeploy` object. Here, 
 ```
 
 #### Checking the new account
-After generating the deploy hash for the approval, you can check which account is allowed to do the approval. It will return the account-hash of the account owning this specific token.
+After generating the deploy hash for the approval, you can check which account is allowed to do the approval. It will return the account hash of the account owning this specific token.
 ```javascript
 const allowanceOfTokenFive = await cep47.getAllowance(KEYS.publicKey, "5");
 ```
 
 <details>
-<summary>Console output for token approving</summary>
+<summary>Console output for token approval</summary>
 
 ```bash
 ... Approve
@@ -434,15 +431,17 @@ const allowanceOfTokenFive = await cep47.getAllowance(KEYS.publicKey, "5");
 </details>
 
 ### Transferring Tokens from Another Account
-This will transfer the tokens on behalf of another account, You will use some randomly generated account address to check the behavior of this method.
+Here, you will transfer tokens on behalf of another account. You will use some randomly generated account address to check the behavior of this method.
 
-#### Executing transferFrom() method
-Below code snippet will execute when calling the [transferFrom](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L297-L302) method.
+#### Executing the transferFrom method
+The below code snippet will execute when calling the [transferFrom](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L297-L302) method.
 
-First, check the owner of token id 5.
+First, check the owner of the token with ID 5.
+
 ```javascript
 ownerOfTokenFive = await cep47.getOwnerOf("5");
 ```
+
 Then, generate the recipient address from a random number.
 ```javascript
 const transferFromRecipient = CLPublicKey.fromHex("019548b4f31b06d1ce81ab4fd90c9a88e4a5aee9d71cac97044280905707248da4");
@@ -458,13 +457,13 @@ const transferFromDeploy = await cep47.transferFrom(
 ```
 
 #### Checking the new owner
-Finally, check the owner of the token id 5 and note that it has changed to the new recipient.
+Finally, check the owner of the token with ID 5 and note that it has changed to the new recipient.
 ```javascript
 ownerOfTokenFive = await cep47.getOwnerOf("5");
 ```
 
 <details>
-<summary>Console output for transferring from process</summary>
+<summary>Console output for transferring tokens from another account</summary>
 
 ```bash
 ... Transfer From #1
@@ -489,15 +488,16 @@ ownerOfTokenFive = await cep47.getOwnerOf("5");
 ### Updating Token Metadata 
 This method will update the metadata of a selected token.
 
-#### Executing updateTokenMeta() method
-Below code snippet will execute when calling the [update metadata](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L329-L335) method.
+#### Executing the updateTokenMeta method
+The below code snippet will execute when calling the [update metadata](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L329-L335) method.
 
-First, check the metadata details of token num 4.
+First, check the metadata of the token with ID 4.
+
 ```javascript
 let tokenFourMeta = await cep47.getTokenMeta("4");
 ```
 
-Then, execute the updateTokenMeta() and generate the `updateMetadataDeploy` object. This will completes the update metadata call.
+Then, execute the `updateTokenMeta` method and generate the `updateMetadataDeploy` object. This will completes the update metadata call.
 ```javascript
 const updateMetadataDeploy = await cep47.updateTokenMeta(
     "4",
@@ -508,7 +508,7 @@ const updateMetadataDeploy = await cep47.updateTokenMeta(
   );
 ```
 
-Again, check the metadata details of token id 4 and confirm the data has changed.
+Again, check the metadata of the token with ID 4 and confirm the data has changed.
 ```javascript
 tokenFourMeta = await cep47.getTokenMeta("4");
 ```
