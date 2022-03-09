@@ -1,31 +1,29 @@
 # JSON-RPC Methods
 
-This document outlines the methods and endpoints available to developers crafting an SDK for use with Casper networks.  They are divided into a fundamental and a secondary section based upon the necessity of their use for interacting with the Casper blockchain.
+This document outlines the methods and endpoints available to developers crafting an SDK for use with Casper networks. The separation of these methods pertains to their use and potential necessity for specific forms of SDK. While a full-featured SDK may feature all the following methods, there are use cases for SDKs that are purely transactional or informational.
 
 For examples of completed SDKs, please refer to our [SDK Client Libraries](https://casper.network/docs/sdk) section.
 
-## Fundamental JSON-RPC Methods {#primary-json-rpc-methods}
+## Transactional JSON-RPC Method {#transactional}
 
-The following methods are fundamental to any SDK interacting with a Casper network. To gain approval, a Casper SDK must include means to interact with the these JSON-RPC methods.
+---
 
 ### account_put_deploy {#account-put-deploy}
 
-This is a method through which users can interact with a node on a Casper network. It takes in a [deploy](https://casper.network/docs/design/execution-semantics#execution-semantics-deploys) as an argument, which is then sent to a node on the network, gossiped and finally executed by nodes on the network.
-
-This method allows users to send their compiled WASM as deploys to the network for execution.
+This is the only means by which users can send their compiled WASM (as part of a Deploy) to a node on a Casper network. The request takes in the [Deploy](https://casper.network/docs/design/execution-semantics#execution-semantics-deploys) as a parameter, which is then sent to a node on a network for execution.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[deploy](../sdkspec/components#deploy)|Object|A deploy consists of an item containing a smart contract along with the requester's signature(s).|
+|[deploy](../sdkspec/components#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
 
 #### `account_put_deploy_result`
 
-The result contains the [deploy_hash](../sdkspec/components#deployhash), which is the primary identifier of a deploy within a Casper network.
+The result contains the [deploy_hash](../sdkspec/components#deployhash), which is the primary identifier of a Deploy within a Casper network.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[deploy_hash](../sdkspec/components#deployhash)|String| A hex-encoded hash of the deploy as sent.|
+|[deploy_hash](../sdkspec/components#deployhash)|String| A hex-encoded hash of the Deploy as sent.|
 
 <details>
 
@@ -103,63 +101,161 @@ The result contains the [deploy_hash](../sdkspec/components#deployhash), which i
 
 </details>
 
-### state_get_account_info {#state-get-account-info}
+## Network Informational JSON-RPC Methods {#network-informational}
 
-This method returns a JSON representation of an [Account](https://casper.network/docs/design/accounts) from the network. The `block_identifier` must refer to a block after the account's creation, or the method will return empty.
+The following methods return information from a node on a Casper network. The response should be identical, regardless of the node queried, as the information in question is objective and common to all nodes within a network.
+
+---
+
+### chain_get_block {#chain-get-block}
+
+This method returns the JSON representation of a [Block](https://casper.network/docs/design/block-structure) from the network.
 
 |Parameter|Type|Description|
-|---------|----|-----------|
-|[public_key](../sdkspec/components#publickey)|String| The public key of the Account.|
-|[block_identifier](../sdkspec/components#blockidentifier)|Object| The block identifier.|
+|---------|----|-----------| 
+|[block_identifier](../sdkspec/components#blockidentifier)|Object|The Block hash or the block height.|
 
-#### `state_get_account_info_result`
+#### `chain_get_block_result`
 
 |Parameter|Type|Description|
-|---------|----|-----------|    
+|---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[account](../sdkspec/components#account)|Object|A JSON representation of the account structure.| 
-|[merkle_proof](../sdkspec/components#merkleproof)|String|The merkle proof.|
+|[block](../sdkspec/components#jsonblock)|Object|The Block, if found. (Not required)|
 
 <details>
 
-<summary><b>Example state_get_account_info</b></summary>
+<summary><b>Example chain_get_block</b></summary>
 
 ```bash
 
 {
-          "name": "state_get_account_info_example",
+          "name": "chain_get_block_example",
           "params": [
             {
               "name": "block_identifier",
               "value": {
                 "Hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb"
               }
-            },
-            {
-              "name": "public_key",
-              "value": "013b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29"
             }
           ],
           "result": {
-            "name": "state_get_account_info_example_result",
+            "name": "chain_get_block_example_result",
             "value": {
-              "account": {
-                "account_hash": "account-hash-e94daaff79c2ab8d9c31d9c3058d7d0a0dd31204a5638dc1451fa67b2e3fb88c",
-                "action_thresholds": {
-                  "deployment": 1,
-                  "key_management": 1
-                },
-                "associated_keys": [
-                  {
-                    "account_hash": "account-hash-e94daaff79c2ab8d9c31d9c3058d7d0a0dd31204a5638dc1451fa67b2e3fb88c",
-                    "weight": 1
-                  }
-                ],
-                "main_purse": "uref-09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db-007",
-                "named_keys": []
-              },
               "api_version": "1.4.4",
-              "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3"
+              "block": {
+                "body": {
+                  "deploy_hashes": [],
+                  "proposer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+                  "transfer_hashes": [
+                    "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa"
+                  ]
+                },
+                "hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
+                "header": {
+                  "accumulated_seed": "ac979f51525cfd979b14aa7dc0737c5154eabe0db9280eceaa8dc8d2905b20d5",
+                  "body_hash": "cd502c5393a3c8b66d6979ad7857507c9baf5a8ba16ba99c28378d3a970fff42",
+                  "era_end": {
+                    "era_report": {
+                      "equivocators": [
+                        "013b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29"
+                      ],
+                      "inactive_validators": [
+                        "018139770ea87d175f56a35466c34c7ecccb8d8a91b4ee37a25df60f5b8fc9b394"
+                      ],
+                      "rewards": [
+                        {
+                          "amount": 1000,
+                          "validator": "018a88e3dd7409f195fd52db2d3cba5d72ca6709bf1d94121bf3748801b40f6f5c"
+                        }
+                      ]
+                    },
+                    "next_era_validator_weights": [
+                      {
+                        "validator": "016e7a1cdd29b0b78fd13af4c5598feff4ef2a97166e3ca6f2e4fbfccd80505bf1",
+                        "weight": "456"
+                      },
+                      {
+                        "validator": "018a875fff1eb38451577acd5afee405456568dd7c89e090863a0557bc7af49f17",
+                        "weight": "789"
+                      },
+                      {
+                        "validator": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+                        "weight": "123"
+                      }
+                    ]
+                  },
+                  "era_id": 1,
+                  "height": 10,
+                  "parent_hash": "0707070707070707070707070707070707070707070707070707070707070707",
+                  "protocol_version": "1.0.0",
+                  "random_bit": true,
+                  "state_root_hash": "0808080808080808080808080808080808080808080808080808080808080808",
+                  "timestamp": "2020-11-17T00:39:24.072Z"
+                },
+                "proofs": [
+                  {
+                    "public_key": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+                    "signature": "016291a7b2689e2edcc6e79030be50edd02f9bd7d809921ae2654012f808c7b9a0f125bc32d6aa610cbd012395a9832ccfaa9262023339f1db71ca073a13bb9707"
+                  }
+                ]
+              }
+            }
+          }
+        }
+
+```
+
+</details>
+
+### chain_get_block_transfers {#chain-get-block-transfers}
+
+This method returns all native transfers within a given [Block](https://casper.network/docs/design/block-structure) from a network.
+
+|Parameter|Type|Description|
+|---------|----|-----------| 
+|[block_identifier](../sdkspec/components#blockidentifier)|Object|The Block hash.|
+
+#### `chain_get_block_transfers_result`
+
+|Parameter|Type|Description|
+|---------|----|-----------| 
+|api_version|String|The RPC API version.|
+|[block_hash](../sdkspec/components#blockhash)|Object|The Block hash, if found. (Not required)|
+|[transfers](../sdkspec/components#transfer)|Array|The Block's transfers, if found. (Not required)|
+
+<details>
+
+<summary><b>Example chain_get_block_transfers</b></summary>
+
+```bash
+
+{
+          "name": "chain_get_block_transfers_example",
+          "params": [
+            {
+              "name": "block_identifier",
+              "value": {
+                "Hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb"
+              }
+            }
+          ],
+          "result": {
+            "name": "chain_get_block_transfers_example_result",
+            "value": {
+              "api_version": "1.4.4",
+              "block_hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
+              "transfers": [
+                {
+                  "amount": "0",
+                  "deploy_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+                  "from": "account-hash-0000000000000000000000000000000000000000000000000000000000000000",
+                  "gas": "0",
+                  "id": null,
+                  "source": "uref-0000000000000000000000000000000000000000000000000000000000000000-000",
+                  "target": "uref-0000000000000000000000000000000000000000000000000000000000000000-000",
+                  "to": null
+                }
+              ]
             }
           }
         }
@@ -174,7 +270,7 @@ This method returns a state root hash at a given [Block](https://casper.network/
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[block_identifier](../sdkspec/components#blockidentifier)|Object|The block hash. (Optional)|
+|[block_identifier](../sdkspec/components#blockidentifier)|Object|The Block hash. (Optional)|
 
 #### `chain_get_state_root_hash_result`
 
@@ -212,77 +308,25 @@ This method returns a state root hash at a given [Block](https://casper.network/
 
 </details>
 
-### state_get_balance {#state-get-balance}
-
-This method returns a purse's balance from a network.
-
-This method takes in the formatted representation of the account main purse, which can be found using [`state_get_account_info`](#stategetaccountinfo). It returns the associated balance in motes. One [CSPR](https://casper.network/docs/glossary/C#cspr) is made up of 1,000,000,000 motes.
-
-This method takes in the formatted representation of a purse URef. If you wish to query for the balance of an account, you must provide the formatted representation of the account's main purse URef. It returns the balance of a purse in motes.
-
-For the Casper Mainnet network, 1 CSPR is made up of 1,000,000,000 motes.
-
-|Parameter|Type|Description|
-|---------|----|-----------|
-|[state_root_hash](../sdkspec/components#digest)|String|The hash of state root.|
-|purse_uref|String|Formatted URef.|
-
-#### `state_get_balance_result`
-
-|Parameter|Type|Description|
-|---------|----|-----------|
-|api_version|String|The RPC API version.|
-|[balance_value](../sdkspec/components#u512)|String|The balance value in motes.|
-|[merkle_proof](../sdkspec/components#merkle-proof)|String|The merkle proof.|
-
-<details>
-<summary><b>Example state_get_balance</b></summary>
-
-```bash
-
-{
-          "name": "state_get_balance_example",
-          "params": [
-            {
-              "name": "purse_uref",
-              "value": "uref-09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db-007"
-            },
-            {
-              "name": "state_root_hash",
-              "value": "0808080808080808080808080808080808080808080808080808080808080808"
-            }
-          ],
-          "result": {
-            "name": "state_get_balance_example_result",
-            "value": {
-              "api_version": "1.4.4",
-              "balance_value": "123456",
-              "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3"
-            }
-          }
-        }
-
-```
-
-</details>
-
 ### info_get_deploy {#info-get-deploy}
 
-This method returns a [Deploy](https://casper.network/docs/design/execution-semantics#execution-semantics-deploys) from the network. It requires a `deploy_hash` to query the deploy.
+This method retrieves a [Deploy](https://casper.network/docs/design/execution-semantics#execution-semantics-deploys) from the network. It requires a `deploy_hash` to query the Deploy.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[deploy_hash](../sdkspec/components#deployhash)|String|The deploy hash.|
+|[deploy_hash](../sdkspec/components#deployhash)|String|The Deploy hash.|
 
 #### `info_get_deploy_result`
 
-If the `execution_results` is empty, it means that the network processed the `deploy`, but has yet to execute it. If the network executed the `deploy`, it will return the results of the execution. Execution results contain the block hash which contains the deploy.
+The response contains the Deploy and the results of executing the Deploy.
+
+If the `execution_results` field is empty, it means that the network processed the `Deploy`, but has yet to execute it. If the network executed the `Deploy`, it will return the results of the execution. The execution results contain the Block hash which contains the Deploy.
 
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
-|[deploy](../sdkspec/components#deploy)|Object|The deploy.|
-|[execution_results](../sdkspec/components#jsonexecutionresult)|Object|The map of block hash to execution result.|
+|[deploy](../sdkspec/components#deploy)|Object|The Deploy.|
+|[execution_results](../sdkspec/components#jsonexecutionresult)|Object|The map of Block hash to execution result.|
 
 <details>
 
@@ -398,7 +442,6 @@ If the `execution_results` is empty, it means that the network processed the `de
 
 </details>
 
-
 ### query_global_state {#query-global-state}
 
 This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](https://casper.network/docs/design/block-structure#block_hash) or state root hash.
@@ -416,7 +459,7 @@ This method allows for you to query for a value stored under certain keys in glo
 |Parameter|Type|Description|
 |---------|----|-----------|     
 |api_version|String|The RPC API version.|
-|[block_header](../sdkspec/components#jsonblockheader)|Object|The block header if a Block hash was provided. (Not required)|
+|[block_header](../sdkspec/components#jsonblockheader)|Object|The Block header if a Block hash was provided. (Not required)|
 |[stored_value](../sdkspec/components#storedvalue)|Object|The stored value.|
 |[merkle_proof](../sdkspec/components#merkle-proof)|String|The merkle proof.|
 
@@ -515,6 +558,123 @@ This method allows for you to query for a value stored under certain keys in glo
 
 </details>
 
+### state_get_account_info {#state-get-account-info}
+
+This method returns a JSON representation of an [Account](https://casper.network/docs/design/accounts) from the network. The `block_identifier` must refer to a block after the Account's creation, or the method will return an empty response*.
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|[public_key](../sdkspec/components#publickey)|String|The public key of the Account.|
+|[block_identifier](../sdkspec/components#blockidentifier)|Object|The Block identifier.|
+
+#### `state_get_account_info_result`
+
+|Parameter|Type|Description|
+|---------|----|-----------|    
+|api_version|String|The RPC API version.|
+|[account](../sdkspec/components#account)|Object|A JSON representation of the Account structure.| 
+|[merkle_proof](../sdkspec/components#merkleproof)|String|The merkle proof.|
+
+<details>
+
+<summary><b>Example state_get_account_info</b></summary>
+
+```bash
+
+{
+          "name": "state_get_account_info_example",
+          "params": [
+            {
+              "name": "block_identifier",
+              "value": {
+                "Hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb"
+              }
+            },
+            {
+              "name": "public_key",
+              "value": "013b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29"
+            }
+          ],
+          "result": {
+            "name": "state_get_account_info_example_result",
+            "value": {
+              "account": {
+                "account_hash": "account-hash-e94daaff79c2ab8d9c31d9c3058d7d0a0dd31204a5638dc1451fa67b2e3fb88c",
+                "action_thresholds": {
+                  "deployment": 1,
+                  "key_management": 1
+                },
+                "associated_keys": [
+                  {
+                    "account_hash": "account-hash-e94daaff79c2ab8d9c31d9c3058d7d0a0dd31204a5638dc1451fa67b2e3fb88c",
+                    "weight": 1
+                  }
+                ],
+                "main_purse": "uref-09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db-007",
+                "named_keys": []
+              },
+              "api_version": "1.4.4",
+              "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3"
+            }
+          }
+        }
+
+```
+
+</details>
+
+### state_get_balance {#state-get-balance}
+
+This method returns a purse's balance from a network. The request takes in the formatted representation of a purse URef as a parameter.
+
+To query for the balance of an Account, you must provide the formatted representation of the Account's main purse URef, which can be obtained from the  [`state_get_account_info`](#stategetaccountinfo-state-get-account-info) response. The response contains the balance of a purse in motes.
+
+For instance, one native layer-1 token of the Casper Mainnet [CSPR](https://casper.network/docs/glossary/C#cspr) is comprised of 1,000,000,000 motes. On a different Casper network, the representation of token-to-motes may differ.
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|[state_root_hash](../sdkspec/components#digest)|String|The hash of state root.|
+|purse_uref|String|Formatted URef.|
+
+#### `state_get_balance_result`
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|api_version|String|The RPC API version.|
+|[balance_value](../sdkspec/components#u512)|String|The balance value in motes.|
+|[merkle_proof](../sdkspec/components#merkle-proof)|String|The merkle proof.|
+
+<details>
+<summary><b>Example state_get_balance</b></summary>
+
+```bash
+
+{
+          "name": "state_get_balance_example",
+          "params": [
+            {
+              "name": "purse_uref",
+              "value": "uref-09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db-007"
+            },
+            {
+              "name": "state_root_hash",
+              "value": "0808080808080808080808080808080808080808080808080808080808080808"
+            }
+          ],
+          "result": {
+            "name": "state_get_balance_example_result",
+            "value": {
+              "api_version": "1.4.4",
+              "balance_value": "123456",
+              "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3"
+            }
+          }
+        }
+
+```
+
+</details>
+
 ### state_get_dictionary_item {#state-get-dictionary-item}
 
 This method returns an item from a Dictionary. Every dictionary has a seed URef, findable by using a `dictionary_identifier`. The address of a stored value is the blake2b hash of the seed URef and the byte representation of the dictionary key.
@@ -578,9 +738,11 @@ You may query a stored value directly using the dictionary address.
 
 </details>
 
-## Informational or Secondary JSON-RPC Methods {#secondary-json-rpc-methods}
+## Node Informational JSON-RPC Methods {#node-informational}
 
-These methods are considered informational or secondary. Initial approval may not hinge upon the inclusion of these methods. Yet, they provide useful interactions for some clients and should be included as possible.
+The following methods return information from a node on a Casper network. The responses return information specific to the queried node, and as such, will vary.
+
+---
 
 ### info_get_peers {#info-get-peers}
 
@@ -635,7 +797,7 @@ This method returns the current status of the node.
 |[next_upgrade](../sdkspec/components#nextupgrade)|Object|Information about the next scheduled upgrade. (Not Required)|
 |[our_public_signing_key](../sdkspec/components#publickey)|String|Our public signing key. (Not required)|
 |[peers](../sdkspec/components#peersmap)|Array|The node ID and network address of each connected peer.|
-|[round_length](../sdkspec/components#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a block. (Not required)|
+|[round_length](../sdkspec/components#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block. (Not required)|
 |[starting_state_root_hash](../sdkspec/components#digest)|String|The state root hash used at the start of the current session.|
 |[uptime](../sdkspec/components#timediff)|Integer|Time that passed since the node has started.|
 
@@ -684,293 +846,19 @@ This method returns the current status of the node.
 
 </details>
 
-### info_get_validator_changes {#info-get-validator-changes}
+## Proof of Stake JSON-RPC Methods {#proof-of-stake}
 
-This method returns status changes of active validators. Listed changes occurred during the `EraId` contained within the response itself. A validator may show more than one change in a single era.
+The following methods pertain to the Proof-of-Stake functionality of a Casper network. They return information related to auctions, bids and validators. This information is necessary for users involved with node operations and validation.
 
-Potential change types:
-
-|Change Type|Description|
-|-----------|-----------|
-|Added|The validator has been added to the set.|
-|Removed|The validator has been removed from the set.|
-|Banned|The validator has been banned in the current era.|
-|CannotPropose|The validator cannot propose a block.|
-|SeenAsFaulty|The validator has performed questionable activity.|
-
-#### `info_get_validator_changes_result`
-
-If no changes occurred in the current era, `info_get_validator_changes` will return empty.
-    
-|Parameter|Type|Description|
-|---------|----|-----------| 
-|api_version|String|The RPC API version.|
-|[changes](../sdkspec/components#jsonvalidatorchanges)|Object|The validators' status changes.|
-
-<details>
-
-<summary><b>Example info_get_validator_changes</b></summary>
-
-```bash
-
-{
-          "name": "info_get_validator_changes_example",
-          "params": [],
-          "result": {
-            "name": "info_get_validator_changes_example_result",
-            "value": {
-              "api_version": "1.4.4",
-              "changes": [
-                {
-                  "public_key": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-                  "status_changes": [
-                    {
-                      "era_id": 1,
-                      "validator_change": "Added"
-                    }
-                  ]
-                }
-              ]
-            }
-          }
-        }
-
-```
-
-</details>
-
-### chain_get_block {#chain-get-block}
-
-This method returns the JSON representation of a [Block](https://casper.network/docs/design/block-structure) from the network.
-
-|Parameter|Type|Description|
-|---------|----|-----------| 
-|[block_identifier](../sdkspec/components#blockidentifier)|Object|The block hash or the block height.|
-
-#### `chain_get_block_result`
-
-|Parameter|Type|Description|
-|---------|----|-----------| 
-|api_version|String|The RPC API version.|
-|[block](../sdkspec/components#jsonblock)|Object|The block, if found. (Not required)|
-
-<details>
-
-<summary><b>Example chain_get_block</b></summary>
-
-```bash
-
-{
-          "name": "chain_get_block_example",
-          "params": [
-            {
-              "name": "block_identifier",
-              "value": {
-                "Hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb"
-              }
-            }
-          ],
-          "result": {
-            "name": "chain_get_block_example_result",
-            "value": {
-              "api_version": "1.4.4",
-              "block": {
-                "body": {
-                  "deploy_hashes": [],
-                  "proposer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-                  "transfer_hashes": [
-                    "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa"
-                  ]
-                },
-                "hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
-                "header": {
-                  "accumulated_seed": "ac979f51525cfd979b14aa7dc0737c5154eabe0db9280eceaa8dc8d2905b20d5",
-                  "body_hash": "cd502c5393a3c8b66d6979ad7857507c9baf5a8ba16ba99c28378d3a970fff42",
-                  "era_end": {
-                    "era_report": {
-                      "equivocators": [
-                        "013b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29"
-                      ],
-                      "inactive_validators": [
-                        "018139770ea87d175f56a35466c34c7ecccb8d8a91b4ee37a25df60f5b8fc9b394"
-                      ],
-                      "rewards": [
-                        {
-                          "amount": 1000,
-                          "validator": "018a88e3dd7409f195fd52db2d3cba5d72ca6709bf1d94121bf3748801b40f6f5c"
-                        }
-                      ]
-                    },
-                    "next_era_validator_weights": [
-                      {
-                        "validator": "016e7a1cdd29b0b78fd13af4c5598feff4ef2a97166e3ca6f2e4fbfccd80505bf1",
-                        "weight": "456"
-                      },
-                      {
-                        "validator": "018a875fff1eb38451577acd5afee405456568dd7c89e090863a0557bc7af49f17",
-                        "weight": "789"
-                      },
-                      {
-                        "validator": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-                        "weight": "123"
-                      }
-                    ]
-                  },
-                  "era_id": 1,
-                  "height": 10,
-                  "parent_hash": "0707070707070707070707070707070707070707070707070707070707070707",
-                  "protocol_version": "1.0.0",
-                  "random_bit": true,
-                  "state_root_hash": "0808080808080808080808080808080808080808080808080808080808080808",
-                  "timestamp": "2020-11-17T00:39:24.072Z"
-                },
-                "proofs": [
-                  {
-                    "public_key": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-                    "signature": "016291a7b2689e2edcc6e79030be50edd02f9bd7d809921ae2654012f808c7b9a0f125bc32d6aa610cbd012395a9832ccfaa9262023339f1db71ca073a13bb9707"
-                  }
-                ]
-              }
-            }
-          }
-        }
-
-```
-
-</details>
-
-### chain_get_block_transfers {#chain-get-block-transfers}
-
-This method returns all native transfers within a given [Block](https://casper.network/docs/design/block-structure) from a network.
-
-|Parameter|Type|Description|
-|---------|----|-----------| 
-|[block_identifier](../sdkspec/components#blockidentifier)|Object|The block hash.|
-
-#### `chain_get_block_transfers_result`
-
-|Parameter|Type|Description|
-|---------|----|-----------| 
-|api_version|String|The RPC API version.|
-|[block_hash](../sdkspec/components#blockhash)|Object|The block hash, if found. (Not required)|
-|[transfers](../sdkspec/components#transfer)|Array|The block's transfers, if found. (Not required)|
-
-<details>
-
-<summary><b>Example chain_get_block_transfers</b></summary>
-
-```bash
-
-{
-          "name": "chain_get_block_transfers_example",
-          "params": [
-            {
-              "name": "block_identifier",
-              "value": {
-                "Hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb"
-              }
-            }
-          ],
-          "result": {
-            "name": "chain_get_block_transfers_example_result",
-            "value": {
-              "api_version": "1.4.4",
-              "block_hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
-              "transfers": [
-                {
-                  "amount": "0",
-                  "deploy_hash": "0000000000000000000000000000000000000000000000000000000000000000",
-                  "from": "account-hash-0000000000000000000000000000000000000000000000000000000000000000",
-                  "gas": "0",
-                  "id": null,
-                  "source": "uref-0000000000000000000000000000000000000000000000000000000000000000-000",
-                  "target": "uref-0000000000000000000000000000000000000000000000000000000000000000-000",
-                  "to": null
-                }
-              ]
-            }
-          }
-        }
-
-```
-
-</details>
-
-### chain_get_era_info_by_switch_block
-
-This method returns an EraInfo from the network. Only the last block in an `era`, known as a switch block, will contain an `era_summary`.
-
-|Parameter|Type|Description|
-|---------|----|-----------| 
-|[block_identifier](../sdkspec/components#blockidentifier)|Object|The block identifier. If you do not supply a `block_identifier`, the returned information will be the most recent block. (Optional)|
-
-#### `chain_get_era_info_by_switch_block_result`
-
-|Parameter|Type|Description|
-|---------|----|-----------|
-|api_version|String|The RPC API version.|
-|[era_summary](../sdkspec/components#erasummary)|Object|The era summary (If found).|
-
-<details>
-
-<summary><b>Example chain_get_era_info_by_switch_block</b></summary>
-
-```bash
-
-{
-          "name": "chain_get_era_info_by_switch_block_example",
-          "params": [
-            {
-              "name": "block_identifier",
-              "value": {
-                "Hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb"
-              }
-            }
-          ],
-          "result": {
-            "name": "chain_get_era_info_by_switch_block_example_result",
-            "value": {
-              "api_version": "1.4.4",
-              "era_summary": {
-                "block_hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
-                "era_id": 42,
-                "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3",
-                "state_root_hash": "0808080808080808080808080808080808080808080808080808080808080808",
-                "stored_value": {
-                  "EraInfo": {
-                    "seigniorage_allocations": [
-                      {
-                        "Delegator": {
-                          "amount": "1000",
-                          "delegator_public_key": "01e1b46a25baa8a5c28beb3c9cfb79b572effa04076f00befa57eb70b016153f18",
-                          "validator_public_key": "012a1732addc639ea43a89e25d3ad912e40232156dcaa4b9edfc709f43d2fb0876"
-                        }
-                      },
-                      {
-                        "Validator": {
-                          "amount": "2000",
-                          "validator_public_key": "012a1732addc639ea43a89e25d3ad912e40232156dcaa4b9edfc709f43d2fb0876"
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-
-```
-
-</details>
+---
 
 ### state_get_auction_info {#state-get-auction-info}
 
-This method returns the [bids](https://casper.network/docs/economics/consensus#bids) and [validators](https://casper.network/docs/glossary/V#validator) as of either a specific block (by height or hash). If you do not provide a  `block_identifier`, `state_get_auction_info` will return information from the most recent block.
+This method returns the [bids](https://casper.network/docs/economics/consensus#bids) and [validators](https://casper.network/docs/glossary/V#validator) as of either a specific Block (by height or hash). If you do not provide a  `block_identifier`, `state_get_auction_info` will return information from the most recent Block.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[block_identifier](../sdkspec/components#blockidentifier)|Object|The block identifier.|
+|[block_identifier](../sdkspec/components#blockidentifier)|Object|The Block identifier.|
 
 #### `state_get_auction_info_result`
 
@@ -1025,6 +913,130 @@ This method returns the [bids](https://casper.network/docs/economics/consensus#b
                   }
                 ],
                 "state_root_hash": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+              }
+            }
+          }
+        }
+
+```
+
+</details>
+
+
+### info_get_validator_changes {#info-get-validator-changes}
+
+This method returns status changes of active validators. Listed changes occurred during the `EraId` contained within the response itself. A validator may show more than one change in a single era.
+
+Potential change types:
+
+|Change Type|Description|
+|-----------|-----------|
+|Added|The validator has been added to the set.|
+|Removed|The validator has been removed from the set.|
+|Banned|The validator has been banned in the current era.|
+|CannotPropose|The validator cannot propose a Block.|
+|SeenAsFaulty|The validator has performed questionable activity.|
+
+#### `info_get_validator_changes_result`
+
+If no changes occurred in the current era, `info_get_validator_changes` will return empty.
+    
+|Parameter|Type|Description|
+|---------|----|-----------| 
+|api_version|String|The RPC API version.|
+|[changes](../sdkspec/components#jsonvalidatorchanges)|Object|The validators' status changes.|
+
+<details>
+
+<summary><b>Example info_get_validator_changes</b></summary>
+
+```bash
+
+{
+          "name": "info_get_validator_changes_example",
+          "params": [],
+          "result": {
+            "name": "info_get_validator_changes_example_result",
+            "value": {
+              "api_version": "1.4.4",
+              "changes": [
+                {
+                  "public_key": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+                  "status_changes": [
+                    {
+                      "era_id": 1,
+                      "validator_change": "Added"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+
+```
+
+</details>
+
+### chain_get_era_info_by_switch_block
+
+This method returns an EraInfo from the network. Only the last Block in an `era`, known as a switch block, will contain an `era_summary`.
+
+|Parameter|Type|Description|
+|---------|----|-----------| 
+|[block_identifier](../sdkspec/components#blockidentifier)|Object|The Block identifier. If you do not supply a `block_identifier`, the returned information will be the most recent Block. (Optional)|
+
+#### `chain_get_era_info_by_switch_block_result`
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|api_version|String|The RPC API version.|
+|[era_summary](../sdkspec/components#erasummary)|Object|The era summary (If found).|
+
+<details>
+
+<summary><b>Example chain_get_era_info_by_switch_block</b></summary>
+
+```bash
+
+{
+          "name": "chain_get_era_info_by_switch_block_example",
+          "params": [
+            {
+              "name": "block_identifier",
+              "value": {
+                "Hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb"
+              }
+            }
+          ],
+          "result": {
+            "name": "chain_get_era_info_by_switch_block_example_result",
+            "value": {
+              "api_version": "1.4.4",
+              "era_summary": {
+                "block_hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
+                "era_id": 42,
+                "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3",
+                "state_root_hash": "0808080808080808080808080808080808080808080808080808080808080808",
+                "stored_value": {
+                  "EraInfo": {
+                    "seigniorage_allocations": [
+                      {
+                        "Delegator": {
+                          "amount": "1000",
+                          "delegator_public_key": "01e1b46a25baa8a5c28beb3c9cfb79b572effa04076f00befa57eb70b016153f18",
+                          "validator_public_key": "012a1732addc639ea43a89e25d3ad912e40232156dcaa4b9edfc709f43d2fb0876"
+                        }
+                      },
+                      {
+                        "Validator": {
+                          "amount": "2000",
+                          "validator_public_key": "012a1732addc639ea43a89e25d3ad912e40232156dcaa4b9edfc709f43d2fb0876"
+                        }
+                      }
+                    ]
+                  }
+                }
               }
             }
           }

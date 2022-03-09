@@ -63,8 +63,6 @@
             collapsed: true,
             items: [
                 "dapp-dev-guide/sdkspec/json-rpc",
-                "dapp-dev-guide/sdkspec/sse",
-                "dapp-dev-guide/sdkspec/rest",
                 "dapp-dev-guide/sdkspec/components",
             ],
         },
