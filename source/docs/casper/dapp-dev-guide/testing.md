@@ -15,9 +15,9 @@ It is also possible to build scripts with this environment and set up continuous
 
 The following steps guide you through the initialization of the system and deploy creation.
 
-1. [Define global variables and constants](../dapp-dev-guide/testing#define-global-variables-and-constants)
-2. [Import builders and constants](../dapp-dev-guide/testing#import-builders-and-constants)
-3. [Create a deploy item](../dapp-dev-guide/testing#create-a-deploy-item)
+1. [Define global variables and constants](#define-global-variables-and-constants)
+2. [Import builders and constants](#import-builders-and-constants)
+3. [Create a deploy item](#create-a-deploy-item)
 
 ### Define Global Variables and Constants
 
@@ -104,16 +104,16 @@ The deploy item contains the following elements:
 -   *`session_code`* : Sets the session code for the deploy using session_code and session_args
 
     -   *PathBuff* : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities
--   *`authorization_keys`* : Sets authorization keys to authorize the deploy. To check the list of keys that authorize the call. See: [Permissions model](../design/accounts#accounts-permissions).
+-   *`authorization_keys`* : Sets authorization keys to authorize the deploy. To check the list of keys that authorize the call. See: [Permissions model](/design/accounts#accounts-permissions).
 -   *`address`* : Sets the address of the deploy
 
 ## Deploy the Smart Contract
 
 Follow these steps to deploy the smart contract:
 
-1. [Create the builder](../dapp-dev-guide/testing#create-the-builder)
-2. [Create the execute request](../dapp-dev-guide/testing#create-an-execute-request)
-3. [Deploy the contract](../dapp-dev-guide/testing#deploy-the-contract)
+1. [Create the builder](#create-the-builder)
+2. [Create the execute request](#create-an-execute-request)
+3. [Deploy the contract](#deploy-the-contract)
 
 ### Create the Builder
 
@@ -153,9 +153,9 @@ This is the final step of the test contract execution. In this step, you will cr
 
 Query and assertion steps are as below:
 
-1. [Pre-assert the state](../dapp-dev-guide/testing#pre-assert-the-status)
-2. [Deploy the contract](../dapp-dev-guide/testing#deploy-the-contract-1)
-3. [Post-assertion to confirm deploy](../dapp-dev-guide/testing#post-assertion-to-confirm-deploy)
+1. [Pre-assert the state](#pre-assert-the-status)
+2. [Deploy the contract](#deploy-the-contract-1)
+3. [Post-assertion to confirm deploy](#post-assertion-to-confirm-deploy)
 
 The smart contract creates a new value _hello world_ under the KEY, _my-key-name_. You can extract this value from the global state of the blockchain using the `query_result`.
 
