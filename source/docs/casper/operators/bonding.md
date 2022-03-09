@@ -9,14 +9,14 @@ The most secure way to send a bonding transaction is to compile the contract and
 1. Fork and clone the [`casper-node` repository](https://github.com/casper-network/casper-node)
 2. Make sure that [all prerequisites](https://github.com/casper-network/casper-node#pre-requisites-for-building) are installed
 3. [Build the contracts](#build-contracts)
-4. Ensure that the keys you will use for bonding [are available and have been funded](setup#create-fund-keys)
+4. Ensure that the keys you will use for bonding [are available and have been funded](../setup/#create-fund-keys)
 5. Create the bonding transaction and deploy it, see [Example Bonding Transaction](#example-bonding-transaction)
 6. Query the system to verify that your bid was accepted, see [Check the Status of the Transaction](#check-the-status-of-the-transaction)
 7. Check the status of the auction to see if you have won a slot, see [Check the Status of the bid in the Auction](#check-the-status-of-the-bid-in-the-auction)
 
 ## Build the Contracts {#build-contracts}
 
-Because bonding transactions are generic transactions, it is necessary to build the contract that submits a bid. Clone the casper-node repository and build the contracts. To build contracts, set up Rust and install all dependencies. For detailed instructions, see [Installing Rust](../dapp-dev-guide/getting-started#installing-rust).
+Because bonding transactions are generic transactions, it is necessary to build the contract that submits a bid. Clone the casper-node repository and build the contracts. To build contracts, set up Rust and install all dependencies. For detailed instructions, see [Installing Rust](/dapp-dev-guide/getting-started/#installing-rust).
 
 Build the contracts in release mode.
 

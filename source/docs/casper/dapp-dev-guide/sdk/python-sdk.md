@@ -30,8 +30,8 @@ You can find examples of testing this library with python scripts in the `test` 
 
 In this section, we outline a couple of essential tasks you can accomplish with the Python SDK:
 
-* [Sending a transfer](../sdk/python-sdk#sending-a-transfer) between two accounts
-* [Staking](../sdk/python-sdk#staking) tokens with a validator
+* [Sending a transfer](#sending-a-transfer) between two accounts
+* [Staking](#staking) tokens with a validator
 
 For further examples, take a look at the [How-tos](https://github.com/casper-network/casper-python-sdk/tree/main/how_tos).
 

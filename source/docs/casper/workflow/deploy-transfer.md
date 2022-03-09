@@ -243,7 +243,7 @@ You can observe towards the end of the following output there is an **approvals*
 
 ### Sending the Deploy
 
-The next step is to send the deploy for execution on the network. As described in the [Prerequisites](deploy-transfer#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node http://80.92.204.108 from the Testnet, replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
+The next step is to send the deploy for execution on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node http://80.92.204.108 from the Testnet, replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
 
 ```bash
 casper-client send-deploy --input transfer2.deploy --node-address http://80.92.204.108:7777
