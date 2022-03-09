@@ -34,6 +34,7 @@
                 "workflow/erc-20-sample-guide/final-balance",
             ],
         },
+        "workflow/erc20-token-deployment-guide",
         "workflow/contribute",
     ],
     "dapp-dev-guide": [
@@ -110,6 +111,19 @@
                         "dapp-dev-guide/tutorials/erc20/implementation",
                         "dapp-dev-guide/tutorials/erc20/deploy",
                         "dapp-dev-guide/tutorials/erc20/tests",
+                    ],
+                },                
+                {
+                    type: "category",
+                    label: "CEP-47 Tutorial",
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        "dapp-dev-guide/tutorials/cep47/index",
+                        "dapp-dev-guide/tutorials/cep47/prepare",
+                        "dapp-dev-guide/tutorials/cep47/implementation",
+                        "dapp-dev-guide/tutorials/cep47/deploy",
+                        "dapp-dev-guide/tutorials/cep47/test",
                     ],
                 },
                 "dapp-dev-guide/tutorials/kv-storage-tutorial",

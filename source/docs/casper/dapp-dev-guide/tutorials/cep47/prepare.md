@@ -3,12 +3,13 @@
 First clone the contract from GitHub:
 
 ```bash
-git clone https://github.com/casper-ecosystem/erc20 && cd erc20
+git clone https://github.com/casper-ecosystem/casper-nft-cep47.git
 ```
 
-Prepare your environment with the following command:
+Then, move to cloned folder and prepare your environment with the following command:
 
 ```bash
+cd casper-nft-cep47
 make prepare
 ```
 
