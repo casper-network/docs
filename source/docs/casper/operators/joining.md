@@ -59,11 +59,11 @@ casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20
 casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20 | jq -r .result.block.hash
 ```
 
-A good IP to use above are those listed in your `config.toml` as `known_addresses`. For more information on trusted hash, see [Trusted Hash for Synchronizing](setup#trusted-hash-for-synchronizing).
+A good IP to use above are those listed in your `config.toml` as `known_addresses`. For more information on trusted hash, see [Trusted Hash for Synchronizing](../setup/#trusted-hash-for-synchronizing).
 
 ### Updating `config.toml` file {#updating-config-file}
 
-At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. For more information and the path to the `config.toml` file, see [Config File](setup#config-file).
+At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. For more information and the path to the `config.toml` file, see [Config File](../setup/#config-file).
 
 ```
 # ================================

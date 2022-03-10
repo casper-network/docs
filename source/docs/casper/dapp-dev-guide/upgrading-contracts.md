@@ -7,4 +7,4 @@ Our smart contract packaging tools enable you to:
 -   Version your contracts and deprecate old versions
 -   Set permissions around who can perform contract upgrades
 
-To learn more about how to upgrade your smart contracts, see the [Smart Contract Upgrade Tutorial](../dapp-dev-guide/tutorials/upgrade-tutorial).
+To learn more about how to upgrade your smart contracts, see the [Smart Contract Upgrade Tutorial](../tutorials/upgrade-tutorial).
