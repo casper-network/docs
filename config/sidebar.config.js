@@ -62,8 +62,12 @@
             collapsible: true,
             collapsed: true,
             items: [
-                "dapp-dev-guide/sdkspec/json-rpc",
-                "dapp-dev-guide/sdkspec/components",
+                "dapp-dev-guide/sdkspec/introduction",
+                "dapp-dev-guide/sdkspec/json-rpc-transactional",
+                "dapp-dev-guide/sdkspec/json-rpc-informational",
+                "dapp-dev-guide/sdkspec/json-rpc-pos",
+                "dapp-dev-guide/sdkspec/types_chain",
+                "dapp-dev-guide/sdkspec/types_cl",
             ],
         },
         {
