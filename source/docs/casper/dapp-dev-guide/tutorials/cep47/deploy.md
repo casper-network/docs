@@ -26,7 +26,7 @@ You will be using two Casper repositories for the deployment process.
 
 ### 1. Preparing the CEP-47 contract repository
 
-Refer to the [contract preparation](../cep47/prepare) step to prepare the NFT contract for deployment. This step will make the build environment, create the target location and compile the contract to a .wasm file.
+Refer to the [contract preparation](prepare) step to prepare the NFT contract for deployment. This step will make the build environment, create the target location and compile the contract to a .wasm file.
 
 - Output from this would be a Wasm file (Eg: *cep47-token.wasm), which is later used by the JS compiler for contract deployment.
 

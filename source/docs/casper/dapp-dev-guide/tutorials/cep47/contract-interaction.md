@@ -18,7 +18,7 @@ We will go through each one with examples in the next sections.
 
 **Prerequisite**
 
-Make sure you have [installed the CEP-47 contract](../cep47/deploy) on the Casper Network.
+Make sure you have [installed the CEP-47 contract](deploy) on the Casper Network.
 
 ## Enabling the Event Stream
 To trigger the events related to the contract, you must run the *casper-contracts-js-clients/e2e/cep47/usage.ts* file using NodeJS. 
