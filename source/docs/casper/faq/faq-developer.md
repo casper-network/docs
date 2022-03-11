@@ -135,7 +135,7 @@ If you receive this error, try specifying a higher amount of CSPR for the deploy
 <details>
  <summary><b>How do I know that a deploy was finalized?</b></summary>
   
-If a deploy was executed, then it has been finalized. If the deploy status comes back as null, that means the deploy has not been executed yet. Once the deploy executes, it is finalized, and no other confirmation is needed. Exchanges that are not running a read-only node must also keep track of <a href="./faq-developer#finality-signatures">finality signatures</a> to prevent any attacks from high-risk nodes.
+If a deploy was executed, then it has been finalized. If the deploy status comes back as null, that means the deploy has not been executed yet. Once the deploy executes, it is finalized, and no other confirmation is needed. Exchanges that are not running a read-only node must also keep track of <a href="/faq/faq-developer/#finality-signatures">finality signatures</a> to prevent any attacks from high-risk nodes.
 
 </details>
 
@@ -209,7 +209,7 @@ With these APIs, you can pull information from the node, such as transaction set
 <details>
   <summary><b>How should we work with the PEM keys?</b></summary>
   
-  The <a href="https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html">Keys API</a> provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="../dapp-dev-guide/keys">GitHub</a> and the documentation. For more information on creating and working with keys, see <a href="../dapp-dev-guide/keys">Accounts and Cryptographic Keys</a>.
+  The <a href="https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html">Keys API</a> provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="/dapp-dev-guide/keys/">GitHub</a> and the documentation. For more information on creating and working with keys, see <a href="/dapp-dev-guide/keys/">Accounts and Cryptographic Keys</a>.
 
 </details>
 

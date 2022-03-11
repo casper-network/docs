@@ -57,7 +57,7 @@ This marks a snapshot of the network state at a moment in time.
 ```bash
 casper-client get-state-root-hash --node-address http://<HOST:PORT>
 ```
-- `<HOST:PORT>`: Use the [Node IP address](../erc20/deploy#getting-an-ip-address-from-a-testnet-peer) taken from a Testnet peer
+- `<HOST:PORT>`: Use the [Node IP address](#getting-an-ip-address-from-a-testnet-peer) taken from a Testnet peer
 
 **Getting the account hash**
 
@@ -110,7 +110,7 @@ casper-client put-deploy \
 ```
 
 ## Querying the Network Status
-You need to get the newest state root hash to view the network status because it has changed with the deploy. The account hash remains the same since you are using the same account. Follow the [View the network state](../erc20/deploy#viewing-the-network-status) to execute this step with the new state root hash.
+You need to get the newest state root hash to view the network status because it has changed with the deploy. The account hash remains the same since you are using the same account. Follow the [View the network state](#viewing-the-network-status) to execute this step with the new state root hash.
 
 
 ## Verifying the Deploy

@@ -6,7 +6,6 @@ On the Casper Network, it is possible to create smart contracts that emulate ERC
 
 - Set up your machine as per the [prerequisites](https://casper.network/docs/workflow/setup).
 
-- [Install the `casper-client`](https://casper.network/docs/workflow/setup).
 - [Set up an account](https://casper.network/docs/workflow/setup#setting-up-an-account).
 - [Fund your account](https://casper.network/docs/workflow/setup#fund-your-account).
 
@@ -64,7 +63,6 @@ As long as you generated the keys with the aforementioned command within your pr
 
 ```javascript
 const KEYS = Keys.Ed25519.parseKeyFiles(
-  "./keys/public_key.pem",
   "./keys/secret_key.pem"
 );
 ```
