@@ -8,16 +8,16 @@ This is the only means by which users can send their compiled WASM (as part of a
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[deploy](../sdkspec/types_chain#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
+|[deploy](../types_chain#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
 
 ### `account_put_deploy_result`
 
-The result contains the [deploy_hash](../sdkspec/types_chain#deployhash), which is the primary identifier of a Deploy within a Casper network.
+The result contains the [deploy_hash](../types_chain#deployhash), which is the primary identifier of a Deploy within a Casper network.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[deploy_hash](../sdkspec/types_chain#deployhash)|String| A hex-encoded hash of the Deploy as sent.|
+|[deploy_hash](../types_chain#deployhash)|String| A hex-encoded hash of the Deploy as sent.|
 
 <details>
 
