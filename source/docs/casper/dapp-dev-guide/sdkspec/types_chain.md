@@ -4,7 +4,7 @@ The following definitions expand on parameters seen elsewhere within the SDK spe
 
 ## Account {#account}
 
-Structure representing a user's account, stored in global state.
+Structure representing a user's Account, stored in global state.
 
 Required Parameters:
 
@@ -20,7 +20,7 @@ Required Parameters:
 
 ## AccountHash {#accounthash}
 
-Hex-encoded account hash.
+Hex-encoded Account hash.
 
 ## ActionThresholds {#actionthresholds}
 
@@ -52,7 +52,7 @@ Required Parameters:
 
 ## AssociatedKey {#associatedkey}
 
-A key granted limited permissions to an account, for purposes such as multisig.
+A key granted limited permissions to an Account, for purposes such as multisig.
 
 Required Parameters:
 
@@ -102,11 +102,11 @@ A cryptographic hash identifying a `Block`.
 
 ## BlockIdentifier {#blockidentifier}
 
-Identifier for possible ways to retrieve a block.
+Identifier for possible ways to retrieve a Block.
 
-* [`Hash`](#blockhash) Identify and retrieve the block with its hash.
+* [`Hash`](#blockhash) Identify and retrieve the Block with its hash.
 
-* `Height` Identify and retrieve the block with its height.
+* `Height` Identify and retrieve the Block with its height.
 
 ## Contract {#contract} 
 
@@ -182,7 +182,7 @@ Additional Parameters:
 
 ## Deploy {#deploy}
 
-A deploy; an item containing a smart contract along with the requester's signature(s).
+A Deploy; an item containing a smart contract along with the requester's signature(s).
 
 Required properties:
 
@@ -198,11 +198,11 @@ Required properties:
 
 ## DeployHash {#deployhash}
 
-Hex-encoded deploy hash.
+Hex-encoded Deploy hash.
 
 ## DeployHeader {#deployheader}
 
-The header portion of a deploy.
+The header portion of a Deploy.
 
 Required Parameters:
 
@@ -244,7 +244,7 @@ Options for dictionary item lookups.
 
     Required Parameters:
 
-    `key` The account key as a formatted string whose named keys contain dictionary_name.
+    `key` The Account key as a formatted string whose named keys contain dictionary_name.
 
     `dictionary_name` The named key under which the dictionary seed URef is stored.
 
@@ -324,7 +324,7 @@ The summary of an era.
 
 Required Parameters:
 
-* [`block_hash`](#blockhash) The block hash.
+* [`block_hash`](#blockhash) The Block hash.
 
 * [`era_id`](#eraid) The era id.
 
@@ -336,7 +336,7 @@ Required Parameters:
 
 ## ExecutableDeployItem {#executabledeployitem}
 
-Represents possible variants of an executable deploy.
+Represents possible variants of an executable Deploy.
 
 ### `ModuleBytes` {#modulebytes}
 
@@ -364,7 +364,7 @@ Required Parameters:
 
 ### `StoredContractByName` {#storedcontractbyname}
 
-Stored contract referenced by a named key existing in the signer's account context, entry point and an instance of `RuntimeArgs`.
+Stored contract referenced by a named key existing in the signer's Account context, entry point and an instance of `RuntimeArgs`.
 
 Required Parameters:
 
@@ -392,7 +392,7 @@ Additional Parameters:
 
 ### `StoredVersionContractByName` {#storedversioncontractbyname}
 
-Stored versioned contract referenced by a named key existing in the signer's account context, entry point and an instance of `RuntimeArgs`.
+Stored versioned contract referenced by a named key existing in the signer's Account context, entry point and an instance of `RuntimeArgs`.
 
 Required Parameters:
 
@@ -416,7 +416,7 @@ Required Parameters:
 
 ## ExecutionEffect {#executioneffect} 
 
-The journal of execution transforms from a single deploy.
+The journal of execution transforms from a single Deploy.
 
 Required Parameters:
 
@@ -426,7 +426,7 @@ Required Parameters:
 
 ## ExecutionResult {#executionresult}
 
-The result of executing a single deploy.
+The result of executing a single Deploy.
 
 * `Failure` The result of a failed execution`
 
@@ -438,7 +438,7 @@ The result of executing a single deploy.
 
     [`cost`](#u512)
 
-    `error_message` The error message associated with executing the deploy.
+    `error_message` The error message associated with executing the Deploy.
 
 * `Success` The result of a successful execution.
 
@@ -454,7 +454,7 @@ The result of executing a single deploy.
 
 Identifier for possible ways to query global state.
 
-* [`BlockHash`](#blockhash) Query using a block hash.
+* [`BlockHash`](#blockhash) Query using a Block hash.
 
 * [`StateRootHash`](#digest) Query using the state root hash.
 
@@ -502,13 +502,13 @@ A JSON-friendly representation of `Block`.
 
 Required Parameters:
 
-* [`body`](#jsonblockbody) JSON-friendly block body.
+* [`body`](#jsonblockbody) JSON-friendly Block body.
 
 * [`hash`](#blockhash) BlockHash.
 
-* [`header`](#jsonblockheader) JSON-friendly block header.
+* [`header`](#jsonblockheader) JSON-friendly Block header.
 
-* [`proofs`](#jsonproof) JSON-friendly list of proofs for this block.
+* [`proofs`](#jsonproof) JSON-friendly list of proofs for this Block.
 
 ## JsonBlockBody {#jsonblockbody}
 
@@ -524,15 +524,15 @@ Required Parameters:
 
 ## JsonBlockHeader {#jsonblockheader}
 
-JSON representation of a block header.
+JSON representation of a Block header.
 
 * [`accumulated_seed`](#digest) Accumulated seed.
 
 * [`body_hash`](#digest) The body hash.
 
-* [`era_id`](#eraid) The block era id.
+* [`era_id`](#eraid) The Block era id.
 
-* `height` The block height.
+* `height` The Block height.
 
 * [`parent_hash`](#blockhash) The parent hash.
 
@@ -542,7 +542,7 @@ JSON representation of a block header.
 
 * [`state_root_hash`](#digest) The state root hash.
 
-* [`timestamp`](#timestamp) The block timestamp.
+* [`timestamp`](#timestamp) The Block timestamp.
 
 Additional Parameters:
 
@@ -572,7 +572,7 @@ Required Parameters:
 
 ## JsonEraReport {#jsonerareport}
 
-Equivocation and reward information to be included in the terminal block.
+Equivocation and reward information to be included in the terminal Block.
 
 Required Parameters:
 
@@ -594,7 +594,7 @@ Required Parameters:
 
 ## JsonExecutionResult {#jsonexecutionresult}
 
-The execution result of a single deploy.
+The execution result of a single Deploy.
 
 * [`block_hash`](#blockhash)
 
@@ -602,7 +602,7 @@ The execution result of a single deploy.
 
 ## JsonProof {#jsonproof}
 
-A JSON-friendly representation of a proof, i.e. a block's finality signature.
+A JSON-friendly representation of a proof, i.e. a Block's finality signature.
 
 Required Parameters:
 
@@ -688,7 +688,7 @@ Required Parameters:
 
 ## Operation {#operation}
 
-An operation performed while executing a deploy.
+An operation performed while executing a Deploy.
 
 Required Parameters:
 
@@ -698,7 +698,7 @@ Required Parameters:
 
 ## OpKind {#opkind}
 
-The type of operation performed while executing a deploy.
+The type of operation performed while executing a Deploy.
 
 ## Parameter {#parameter}
 
@@ -774,7 +774,7 @@ Representation of a value stored in global state. `Account`, `Contract` and `Con
 
 * [`CLValue`](#clvalue) A CasperLabs value.
 
-* [`Account`](#account) An account.
+* [`Account`](#account) An Account.
 
 * `ContractWasm` A contract's WASM.
 
@@ -784,7 +784,7 @@ Representation of a value stored in global state. `Account`, `Contract` and `Con
 
 * [`Transfer`](#transfer) A record of a transfer.
 
-* [`DeployInfo`](#deployinfo) A record of a deploy.
+* [`DeployInfo`](#deployinfo) A record of a Deploy.
 
 * [`EraInfo`](#erainfo) Auction metadata.
 
@@ -830,7 +830,7 @@ Hex-encoded transfer address.
 
 ## Transform {#transform}
 
-The actual transformation performed while executing a deploy.
+The actual transformation performed while executing a Deploy.
 
 * `WriteCLValue` Write the given [CLValue](#clvalue) to global state.
 
@@ -862,7 +862,7 @@ The actual transformation performed while executing a deploy.
 
 ## TransformEntry {#transformentry}
 
-A transformation performed while executing a deploy.
+A transformation performed while executing a Deploy.
 
 Required Parameters:
 
