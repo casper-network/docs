@@ -6,19 +6,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 The NFT contract emits events. These events occur when some operation (like minting token) succeeds.
 
 There are seven main event types for Casper CEP-47 token contract. Those are:
-- [Mint](./contract-interaction#minting-tokens)
-- [Burn](./contract-interaction#burning-tokens)
-- [Mint Copies](./contract-interaction#minting-copies-of-tokens)
-- [Transfer](./contract-interaction#transferring-tokens)
-- [Approve](./contract-interaction#approving-tokens)
-- [Transfer From](./contract-interaction#transferring-tokens-from-another-account)
-- [Update Metadata](./contract-interaction#updating-token-metadata)
+- [Mint](./#minting-tokens)
+- [Burn](./#burning-tokens)
+- [Mint Copies](./#minting-copies-of-tokens)
+- [Transfer](./#transferring-tokens)
+- [Approve](./#approving-tokens)
+- [Transfer From](./#transferring-tokens-from-another-account)
+- [Update Metadata](./
+#updating-token-metadata)
 
 We will go through each one with examples in the next sections. 
 
 **Prerequisite**
 
-Make sure you have [installed the CEP-47 contract](../cep47/deploy) on the Casper Network.
+Make sure you have [installed the CEP-47 contract](./deploy) on the Casper Network.
 
 ## Enabling the Event Stream
 To trigger the events related to the contract, you must run the *casper-contracts-js-clients/e2e/cep47/usage.ts* file using NodeJS. 
@@ -72,6 +73,34 @@ You will see the output as below:
 ```
 
 </details>
+
+The *casper-cep47-js-clients* provides a `CEP47EventsParser` which can be used in combination with JS-SDK’s [EventStream](https://github.com/casper-ecosystem/casper-js-sdk/blob/master/src/services/EventStream.ts#L73-L141).
+
+Example code:
+```rust
+const es = new EventStream(EVENT_STREAM_ADDRESS!);
+
+es.subscribe(EventName.DeployProcessed, (event) => {
+  const parsedEvents = CEP47EventParser({
+    contractPackageHash, 
+    eventNames: [
+      CEP47Events.MintOne,
+      CEP47Events.TransferToken,
+      CEP47Events.BurnOne,
+      CEP47Events.MetadataUpdate,
+      CEP47Events.ApproveToken
+    ]
+  }, event);
+
+  if (parsedEvents && parsedEvents.success) {
+    console.log("*** EVENT ***");
+    console.log(parsedEvents.data);
+    console.log("*** ***");
+  }
+});
+
+es.start();
+```
 
 ### Minting Tokens
 

@@ -20,7 +20,7 @@ rustup target add wasm32-unknown-unknown
 info: component 'rust-std' for target 'wasm32-unknown-unknown' is up to date
 ```
 
-If you do not see this message, check [the Getting Started guide](../../getting-started.md).
+If you do not see this message, check the [getting started guide](../../getting-started.md).
 
 Next, compile your contract and run the contract unit tests.
 
