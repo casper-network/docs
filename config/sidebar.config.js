@@ -113,7 +113,7 @@
                         "dapp-dev-guide/tutorials/cep47/prepare",
                         "dapp-dev-guide/tutorials/cep47/implementation",
                         "dapp-dev-guide/tutorials/cep47/deploy",
-                        "dapp-dev-guide/tutorials/cep47/events",
+                        "dapp-dev-guide/tutorials/cep47/contract-interaction",
                         "dapp-dev-guide/tutorials/cep47/test",   
                     ],
                 },

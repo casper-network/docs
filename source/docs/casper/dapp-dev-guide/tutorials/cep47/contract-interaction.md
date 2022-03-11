@@ -1,16 +1,18 @@
-# Token Management
+# Contract Interaction and Events
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-The NFT contract contains a set of event implementations for token management. These events occur when the contract tries to communicate with dApps and other smart contracts. The smart contract developers will decide when these events should be emitted and with what types of parameters.
 
-There are seven main event implementations for the Casper CEP-47 token contract. Those are:
-- [Mint](./events#minting-tokens)
-- [Burn](./events#burning-tokens)
-- [Mint Copies](./events#minting-copies-of-tokens)
-- [Transfer](./events#transferring-tokens)
-- [Approve](./events#approving-tokens)
-- [Transfer From](./events#transferring-tokens-from-another-account)
-- [Update Metadata](./events#updating-token-metadata)
+The NFT contract emits events. These events occur when some operation (like minting token) succeeds.
+
+There are seven main event types for Casper CEP-47 token contract. Those are:
+- [Mint](./contract-interaction#minting-tokens)
+- [Burn](./contract-interaction#burning-tokens)
+- [Mint Copies](./contract-interaction#minting-copies-of-tokens)
+- [Transfer](./contract-interaction#transferring-tokens)
+- [Approve](./contract-interaction#approving-tokens)
+- [Transfer From](./contract-interaction#transferring-tokens-from-another-account)
+- [Update Metadata](./contract-interaction#updating-token-metadata)
 
 We will go through each one with examples in the next sections. 
 
@@ -19,7 +21,7 @@ We will go through each one with examples in the next sections.
 Make sure you have [installed the CEP-47 contract](../cep47/deploy) on the Casper Network.
 
 ## Enabling the Event Stream
-To execute the methods related to the contract event stream, you must run the *casper-contracts-js-clients/e2e/cep47/usage.ts* file using NodeJS. 
+To trigger the events related to the contract, you must run the *casper-contracts-js-clients/e2e/cep47/usage.ts* file using NodeJS. 
 
 This is the command to run the file:
 ```bash
@@ -71,12 +73,12 @@ You will see the output as below:
 
 </details>
 
-### Minting tokens
+### Minting Tokens
 
-The token minting process creates NFTs from certain items. The Casper virtual machine executes the code stored in the smart contract and maps the item to a blockchain token containing certain attributes known as metadata. The creator's public key serves as a certificate of authenticity for that particular NFT.
+The token minting process creates NFTs. The Casper virtual machine executes the code stored in the smart contract and maps the item to a blockchain token containing certain attributes known as metadata. The creator's public key serves as a certificate of authenticity for that particular NFT.
 
 #### 1. Execute the mint method
-The `mint` method requires input parameters like recipient address, token ID, token metadata, and the payment amount to generate the NFT token. The list of input parameters is specified in the *.env.cep47* file and can be customized for each NFT implementation. This method will execute those parameters and generate the deploy object as `mintDeploy`. Then that deploy object is sent to the network via the node address to get the `mintDeployHash`. The console will output the deploy hash, name of the event, CL values, and the token mint successful message.
+The `mint` method requires input parameters like recipient address, token ID, token metadata, and the payment amount to generate the NFT token. The list of input parameters is specified in the *.env.cep47* file and can be customized for each NFT implementation. This method will execute those parameters and generate the deploy object as `mintDeploy`. Then that deploy object is sent to the network via the node address to get the `mintDeployHash`. The console will output the deploy hash. Then when minting got confirmed through event stream - name of the event, CL values, and the token mint successful message will be printed.
 
 The code snippet below is executing the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method. In this example, a toke with ID 1 is minted with the metadata *number* and *one*.
 
@@ -90,6 +92,12 @@ const mintDeploy = await cep47.mint(
     KEYS.publicKey,
     [KEYS]
   );
+```
+
+#### 2. Sending the deploy to the network
+Send the 'mintDeploy' to the network via the node address and get the deploy hash.
+```bash
+ const mintDeployHash = await mintDeploy.send(NODE_ADDRESS!);
 ```
 
 #### 2. Check the account balance
@@ -148,7 +156,7 @@ const tokenByIndex1 = await cep47.getTokenByIndex(KEYS.publicKey, indexByToken1)
 The token burning process permanently removes the tokens from circulation within the blockchain network. The tokens are sent to a wallet address called "burner" or "eater" that cannot be used for transactions other than receiving these tokens. Even though the tokens will still exist on the blockchain, there will be no way of accessing them. 
 
 #### Executing the burn() method
-The code snippet below will execute when calling the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method.
+The code snippet below will execute when calling the [burn()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L165-L171) method.
 
 ```javascript
 const burnDeploy = await cep47.burn(
@@ -158,9 +166,15 @@ const burnDeploy = await cep47.burn(
     KEYS.publicKey,
     [KEYS]
   );
+
 ```
 
-The `burn` method executes given the values passed in and generates a `burnDeploy` object, which is sent to the blockchain. After execution, the console outputs the deploy hash, the name of the event and corresponding CL values, and a message indicating success or failure.
+#### Sending the deploy to the network
+```javascript
+const burnDeployHash = await burnDeploy.send(NODE_ADDRESS!);
+```
+
+The `burn` method executes given the values passed in and generates a `burnDeploy` object. The, the deply is sent to the network. When the `burn` operation got confirmed by the event stream, the name of the event and corresponding CL values, and a message indicating success or failure got printed.
 
 <details>
 <summary>Console output for token burning</summary>
@@ -236,7 +250,13 @@ const mintCopiesDeploy = await cep47.mintCopies(
     [KEYS]
   );
 ```
-This method takes multiple token IDs and metadata, the token count, and other general input parameters to generate the `mintCopiesDeploy` object. The output is a list of minted tokens. Since it is a series of tokens, we will check the token balance, owner, metadata, and index.
+
+#### Sending the deploy to the network
+```burn
+const mintCopiesDeployHash = await mintCopiesDeploy.send(NODE_ADDRESS!);
+```
+
+This method takes multiple token IDs and metadata, the token count, and other general input parameters to generate the `mintCopiesDeploy` object. Then it sends the deploy to the network. Since it is a series of tokens, we will check the token balance, owner, metadata, and index.
 
 #### Checking token balance
 This method will check the balance of tokens in the master account:
@@ -254,18 +274,6 @@ let ownerOfTokenFive = await cep47.getOwnerOf("5");
 This method checks the metadata of the token with ID 5:
 ```javascript
 const tokenFiveMeta = await cep47.getTokenMeta("5");
-```
-
-#### Checking the index 
-This method checks the index of the token with ID 5:
-```javascript
-const indexByToken5 = await cep47.getIndexByToken(KEYS.publicKey, "5");
-```
-
-#### Checking the token ID 
-This method checks the ID of token 5:
-```javascript
- const tokenByIndex5 = await cep47.getTokenByIndex(KEYS.publicKey, indexByToken5);
 ```
 
 <details>
@@ -324,7 +332,7 @@ This method checks the ID of token 5:
 </details>
 
 ### Transferring Tokens
-This method enables NFT token transfers to other accounts. The transfer process will initiate from your account address and be sent to the selected recipient address. The recipient address will be a randomly selected account hash in this example.
+This method transfers NFT token(s) to other accounts. The transfer process will initiate from your account address and be sent to the selected recipient address. The recipient address will be a randomly selected account hash in this example.
 
 #### Executing a transfer
 
@@ -336,7 +344,7 @@ Create the recipient address from a random number and assign it to `transferOneR
 const transferOneRecipient = CLPublicKey.fromHex("016e5ee177b4008a538d5c9df7f8beb392a890a06418e5b9729231b077df9d7215");
 ```
 
-Use the token with ID 2 and the `transferOneRecipient` address along with other input parameters to generate the `transferOneDeploy` object. This completes the transfer event call.
+Use the token with ID 2 and the `transferOneRecipient` address along with other input parameters to generate the `transferOneDeploy` object, and send that deploy to the network. This completes the transfer event call.
 
 ```javascript
 const transferOneDeploy = await cep47.transfer(
@@ -347,7 +355,8 @@ const transferOneDeploy = await cep47.transfer(
     [KEYS]);
 ```
 
-Then, send the deploy to the network.
+#### Sending the deploy to the network
+
 ```javascript
  const transferOneHash = await transferOneDeploy.send(NODE_ADDRESS!);
 ```
@@ -392,7 +401,7 @@ Create the `allowedAccount` recipient address using the `KEYS_USER` variable fro
 const allowedAccount = KEYS_USER!.publicKey;
 ```
 
-Next, execute the `approve` method and create the `approveDeploy` object. Here, the token with ID 5 will be used for approval.
+Next, execute the `approve` method, create the `approveDeploy` object, and send it to the network. Here, the token with ID 5 will be used for approval.
 
 ```javascript
   const approveDeploy = await cep47.approve(
@@ -402,6 +411,10 @@ Next, execute the `approve` method and create the `approveDeploy` object. Here, 
     KEYS.publicKey,
     [KEYS]
   );
+```
+#### Sending the deploy to the network
+```javascript
+const approveDeployHash = await approveDeploy.send(NODE_ADDRESS!);
 ```
 
 #### Checking the new account
@@ -447,7 +460,7 @@ Then, generate the recipient address from a random number.
 ```javascript
 const transferFromRecipient = CLPublicKey.fromHex("019548b4f31b06d1ce81ab4fd90c9a88e4a5aee9d71cac97044280905707248da4");
 ```
-Then, you can generate the `transferFromDeploy` deploy object using the new recipient address and the rest of the input parameters and complete the transfer from another account process. This completes the transfer-from event call.
+Then, generate the `transferFromDeploy` deploy object using the new recipient address and the rest of the input parameters, complete the transfer from another account process, and send it to the network. This completes the transfer-from event call.
 ```javascript
 const transferFromDeploy = await cep47.transferFrom(
     transferFromRecipient,
@@ -455,6 +468,11 @@ const transferFromDeploy = await cep47.transferFrom(
     ["5"],
     TRANSFER_ONE_PAYMENT_AMOUNT!,
     KEYS_USER.publicKey, [KEYS_USER]);
+```
+
+#### Sending the deploy to the network
+```javascript
+const transferFromHash = await transferFromDeploy.send(NODE_ADDRESS!);
 ```
 
 #### Checking the new owner
@@ -498,7 +516,7 @@ First, check the metadata of the token with ID 4.
 let tokenFourMeta = await cep47.getTokenMeta("4");
 ```
 
-Then, execute the `updateTokenMeta` method and generate the `updateMetadataDeploy` object. This completes the update metadata call.
+Then, execute the `updateTokenMeta` method, generate the `updateMetadataDeploy` object, and send it to the network. This completes the update metadata call.
 
 ```javascript
 const updateMetadataDeploy = await cep47.updateTokenMeta(
@@ -508,6 +526,11 @@ const updateMetadataDeploy = await cep47.updateTokenMeta(
     KEYS_USER.publicKey, 
     [KEYS_USER]
   );
+```
+
+#### Sending the deploy to the network
+```javascript
+const updateMetadataHash = await updateMetadataDeploy.send(NODE_ADDRESS!);
 ```
 
 Again, check the metadata of the token with ID 4 and confirm the data has changed.
