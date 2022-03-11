@@ -6,13 +6,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 The NFT contract emits events. These events occur when some operation (like minting token) succeeds.
 
 There are seven main event types for Casper CEP-47 token contract. Those are:
-- [Mint](./contract-interaction#minting-tokens)
-- [Burn](./contract-interaction#burning-tokens)
-- [Mint Copies](./contract-interaction#minting-copies-of-tokens)
-- [Transfer](./contract-interaction#transferring-tokens)
-- [Approve](./contract-interaction#approving-tokens)
-- [Transfer From](./contract-interaction#transferring-tokens-from-another-account)
-- [Update Metadata](./contract-interaction#updating-token-metadata)
+- [Mint](#minting-tokens)
+- [Burn](#burning-tokens)
+- [Mint Copies](#minting-copies-of-tokens)
+- [Transfer](#transferring-tokens)
+- [Approve](#approving-tokens)
+- [Transfer From](#transferring-tokens-from-another-account)
+- [Update Metadata](#updating-token-metadata)
 
 We will go through each one with examples in the next sections. 
 
