@@ -77,10 +77,10 @@ You will see the output as below:
 
 The token minting process creates NFTs. The Casper virtual machine executes the code stored in the smart contract and maps the item to a blockchain token containing certain attributes known as metadata. The creator's public key serves as a certificate of authenticity for that particular NFT.
 
-#### 1. Execute the mint method
+#### 1. Minting the token
 The `mint` method requires input parameters like recipient address, token ID, token metadata, and the payment amount to generate the NFT token. The list of input parameters is specified in the *.env.cep47* file and can be customized for each NFT implementation. This method will execute those parameters and generate the deploy object as `mintDeploy`. Then that deploy object is sent to the network via the node address to get the `mintDeployHash`. The console will output the deploy hash. Then when minting got confirmed through event stream - name of the event, CL values, and the token mint successful message will be printed.
 
-The code snippet below is executing the [mint()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method. In this example, a toke with ID 1 is minted with the metadata *number* and *one*.
+The code snippet below is executing the [mint](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L123-L130) method. In this example, a token with ID 1 is minted with the metadata *number* and *one*.
 
 
 ```javascript
@@ -100,20 +100,20 @@ Send the 'mintDeploy' to the network via the node address and get the deploy has
  const mintDeployHash = await mintDeploy.send(NODE_ADDRESS!);
 ```
 
-#### 2. Check the account balance
+#### 3. Check the account balance
 After minting the token with ID 1, you can check the balance of tokens assigned to a specific public key using the `balanceOf` method. This method returns the number of tokens stored in this account.
 
 ```javascript
 const balanceOf1 = await cep47.balanceOf(KEYS.publicKey);
 ```
-#### 3. Check token ownership
+#### 4. Check token ownership
 You can check the token owner by calling the `getOwnerOf` method. This method takes the token ID as the input parameter and returns the prefixed account hash of the account owning this specific token. **Note**: the prefix is *account-hash-*. 
 
 ```javascript
 const ownerOfTokenOne = await cep47.getOwnerOf("1");
 ```
 
-#### Token index and metadata
+#### 5. Token index and metadata
 You can also check the token metadata, the index of the token, and the token ID using the methods below.
 
 ```javascript
@@ -155,8 +155,8 @@ const tokenByIndex1 = await cep47.getTokenByIndex(KEYS.publicKey, indexByToken1)
 ### Burning Tokens
 The token burning process permanently removes the tokens from circulation within the blockchain network. The tokens are sent to a wallet address called "burner" or "eater" that cannot be used for transactions other than receiving these tokens. Even though the tokens will still exist on the blockchain, there will be no way of accessing them. 
 
-#### Executing the burn() method
-The code snippet below will execute when calling the [burn()](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L165-L171) method.
+#### Executing the burn method
+The code snippet below will execute when calling the [burn](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L165-L171) method.
 
 ```javascript
 const burnDeploy = await cep47.burn(
@@ -393,7 +393,7 @@ ownerOfTokenTwo = await cep47.getOwnerOf("2");
 This method is used to hand over the token transfer capability to another account. In this example, the new owner's public key is created before the transfer. Then the new account will perform the token transfer.
 
 #### Executing the approve method
-The below code snippet will execute when calling the [approve](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L259-L267) method.
+The following code snippet will execute when calling the [approve](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L259-L267) method.
 
 Create the `allowedAccount` recipient address using the `KEYS_USER` variable from the *.env.cep47* file. This variable indicates the new spender of the token.
 
@@ -445,10 +445,10 @@ const allowanceOfTokenFive = await cep47.getAllowance(KEYS.publicKey, "5");
 </details>
 
 ### Transferring Tokens from Another Account
-Here, you will transfer tokens on behalf of another account. You will use some randomly generated account addresses to check the behavior of this method.
+Here, you will transfer tokens to another account. You will use some randomly generated account addresses to check the behavior of this method.
 
 #### Executing the transferFrom method
-The below code snippet will execute when calling the [transferFrom](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L297-L302) method.
+The following code snippet will execute when calling the [transferFrom](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L297-L302) method.
 
 First, check the owner of the token with ID 5.
 
@@ -508,7 +508,7 @@ ownerOfTokenFive = await cep47.getOwnerOf("5");
 This method will update the metadata of a selected token.
 
 #### Executing the updateTokenMeta method
-The below code snippet will execute when calling the [update metadata](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L329-L335) method.
+The following code snippet will execute when calling the [update metadata](https://github.com/casper-network/casper-contracts-js-clients/blob/b210261ba6b772a7cb25f62f2bdf00f0f0064ed5/e2e/cep47/usage.ts#L329-L335) method.
 
 First, check the metadata of the token with ID 4.
 

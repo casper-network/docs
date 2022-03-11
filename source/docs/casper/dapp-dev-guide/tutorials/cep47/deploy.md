@@ -5,7 +5,7 @@ Now that you have implemented a smart contract for CEP-47, it's time to deploy i
 
 ## Prerequisites
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
-- Ensure you have [set up an account](/docs/workflow/setup#setting-up-an-account) with a public and private key pair to initiate the deploy
+- Ensure you have [set up an account](/docs/workflow/setup#setting-up-an-account) with a public and secret key pair to initiate the deploy
 - Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow [fund your account](/docs/workflow/setup#fund-your-account) guide to add CSPR tokens to your account
 - CSPR tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
 
@@ -28,13 +28,13 @@ You will be using two Casper repositories for the deployment process.
 
 Refer to the [contract preparation](../cep47/prepare) step to prepare the NFT contract for deployment. This step will make the build environment, create the target location and compile the contract to a .wasm file.
 
-- Output from this would be a `WASM file` (Eg: *cep47-token.wasm), which is later used by the JS compiler for contract deployment.
+- Output from this would be a Wasm file (Eg: *cep47-token.wasm), which is later used by the JS compiler for contract deployment.
 
 ### 2.  Preparing the JS client repository
 The JS client can be used to install the smart contract on the Casper Network and perform further actions with the contract. We are using the JS client classes to invoke the NFT installation on the network using a pre-defined set of environment variables.
 
 ### 3.  Cloning the JS client repository
-Clone the [casper-contracts-js-clients](https://github.com/casper-network/casper-contracts-js-clients) repository using the below command.
+Clone the [casper-contracts-js-clients](https://github.com/casper-network/casper-contracts-js-clients) repository using the following command.
 
 ```
 git clone https://github.com/casper-network/casper-contracts-js-clients.git
@@ -54,7 +54,7 @@ git clone https://github.com/casper-network/casper-contracts-js-clients.git
     - `NODE_ADDRESS ` - Address of the node's JSON-RPC server. Use port 7777 or whatever is specified as the *rpc_server.address* in the node's config.toml, and append */rpc* to the path. Example: 195.201.174.222:7777/rpc
     - `EVENT_STREAM_ADDRESS`: Address of the node's event stream server. Use port 9999 or whatever is specified as the *event_stream_server.address* in the node's config.toml, and append  */events/main* to the path. Example: 195.201.174.222:9999/events/main
     - `MASTER_KEY_PAIR_PATH` - Path to the generated key pair for your signature
-    - `USER_KEY_PAIR_PATH` - Path to the generated key pair of another party, which in this case, it would be the same as your `MASTER_KEY_PAIR_PATH`
+    - `USER_KEY_PAIR_PATH` - Path to the generated key pair, which in this case would be the same as your `MASTER_KEY_PAIR_PATH` (In certain test scenarios, this could be a different key pair)
 
 :::note
 You must update the above list of parameters to align with your working environment. If you need an IP address for a node on the network, [follow this guide](/docs/workflow/setup#acquire-node-address-from-network-peers).
@@ -67,10 +67,10 @@ npm install
 npm run dist
 ```
 
-### 6. Deploy the contract
+### 6. Deploying the contract
 Run the following command to deploy and execute the CEP-47 installer. The command executes the *./e2e/cep47/install.ts* file.
 
-```
+```bash
 npm run e2e:cep47:install
 ```
  
@@ -151,7 +151,7 @@ const test = async () => {
     CHAIN_NAME!
   ); 
 ```
-Next, it runs the installer by calling `cep47.install()`. This function takes the WASM file path, token metadata, payment amount, public key, and associated keys for multiple signatures as parameters. The result is stored in `installDeployHash`.
+Next, it runs the installer by calling `cep47.install()`. This function takes the Wasm file path, token metadata, payment amount, and keys as parameters. The result is stored in `installDeployHash`.
 
 
 ```javascript
