@@ -10,14 +10,14 @@ This method returns the JSON representation of a [Block](https://casper.network/
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
-|[block_identifier](types_chain#blockidentifier)|Object|The Block hash or the Block height.|
+|[block_identifier](../../sdkspec/types_chain#blockidentifier)|Object|The Block hash or the Block height.|
 
 ### `chain_get_block_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[block](types_chain#jsonblock)|Object|The Block, if found. (Not required)|
+|[block](../../sdkspec/types_chain#jsonblock)|Object|The Block, if found. (Not required)|
 
 <details>
 
@@ -110,15 +110,15 @@ This method returns all native transfers within a given [Block](https://casper.n
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
-|[block_identifier](types_chain#blockidentifier)|Object|The Block hash.|
+|[block_identifier](../../sdkspec/types_chain#blockidentifier)|Object|The Block hash.|
 
 ### `chain_get_block_transfers_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[block_hash](types_chain#blockhash)|Object|The Block hash, if found.|
-|[transfers](types_chain#transfer)|Array|The Block's transfers, if found.|
+|[block_hash](../../sdkspec/types_chain#blockhash)|Object|The Block hash, if found.|
+|[transfers](../../sdkspec/types_chain#transfer)|Array|The Block's transfers, if found.|
 
 <details>
 
@@ -167,14 +167,14 @@ This method returns a state root hash at a given [Block](https://casper.network/
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[block_identifier](types_chain#blockidentifier)|Object|The Block hash. (Optional)|
+|[block_identifier](../../sdkspec/types_chain#blockidentifier)|Object|The Block hash. (Optional)|
 
 ### `chain_get_state_root_hash_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[state_root_hash](types_chain#digest)|String| Hex-encoded hash of the state root.|
+|[state_root_hash](../../sdkspec/types_chain#digest)|String| Hex-encoded hash of the state root.|
 
 <details>
 
@@ -211,7 +211,7 @@ This method retrieves a [Deploy](https://casper.network/docs/design/execution-se
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[deploy_hash](types_chain#deployhash)|String|The Deploy hash.|
+|[deploy_hash](../../sdkspec/types_chain#deployhash)|String|The Deploy hash.|
 
 ### `info_get_deploy_result`
 
@@ -222,8 +222,8 @@ If the `execution_results` field is empty, it means that the network processed t
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
-|[deploy](types_chain#deploy)|Object|The Deploy.|
-|[execution_results](types_chain#jsonexecutionresult)|Object|The map of Block hash to execution result.|
+|[deploy](../../sdkspec/types_chain#deploy)|Object|The Deploy.|
+|[execution_results](../../sdkspec/types_chain#jsonexecutionresult)|Object|The map of Block hash to execution result.|
 
 <details>
 
@@ -347,7 +347,7 @@ This method allows for you to query for a value stored under certain keys in glo
 
 |Parameter|Type|Description|
 |---------|----|-----------|   
-|[state_identifier](types_chain#globalstateidentifier)|Object|The identifier used for the query.|
+|[state_identifier](../../sdkspec/types_chain#globalstateidentifier)|Object|The identifier used for the query.|
 |key|String|`casper_types::Key` as a formatted string.|
 |path|Array|The path components starting from the key as base.|
     
@@ -356,9 +356,9 @@ This method allows for you to query for a value stored under certain keys in glo
 |Parameter|Type|Description|
 |---------|----|-----------|     
 |api_version|String|The RPC API version.|
-|[block_header](types_chain#jsonblockheader)|Object|The Block header if a Block hash was provided. (Not required)|
-|[stored_value](types_chain#storedvalue)|Object|The stored value.|
-|[merkle_proof](types_chain#merkle-proof)|String|The merkle proof.|
+|[block_header](../../sdkspec/types_chain#jsonblockheader)|Object|The Block header if a Block hash was provided. (Not required)|
+|[stored_value](../../sdkspec/types_chain#storedvalue)|Object|The stored value.|
+|[merkle_proof](../../sdkspec/types_chain#merkle-proof)|String|The merkle proof.|
 
 <details>
 
@@ -461,16 +461,16 @@ This method returns a JSON representation of an [Account](https://casper.network
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[public_key](types_chain#publickey)|String|The public key of the Account.|
-|[block_identifier](types_chain#blockidentifier)|Object|The Block identifier.|
+|[public_key](../../sdkspec/types_chain#publickey)|String|The public key of the Account.|
+|[block_identifier](../../sdkspec/types_chain#blockidentifier)|Object|The Block identifier.|
 
 ### `state_get_account_info_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
-|[account](types_chain#account)|Object|A JSON representation of the Account structure.| 
-|[merkle_proof](types_chain#merkleproof)|String|The merkle proof.|
+|[account](../../sdkspec/types_chain#account)|Object|A JSON representation of the Account structure.| 
+|[merkle_proof](../../sdkspec/types_chain#merkleproof)|String|The merkle proof.|
 
 <details>
 
@@ -530,7 +530,7 @@ For instance, one native layer-1 token of the Casper Mainnet [CSPR](https://casp
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[state_root_hash](types_chain#digest)|String|The hash of state root.|
+|[state_root_hash](../../sdkspec/types_chain#digest)|String|The hash of state root.|
 |purse_uref|String|Formatted URef.|
 
 ### `state_get_balance_result`
@@ -538,8 +538,8 @@ For instance, one native layer-1 token of the Casper Mainnet [CSPR](https://casp
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[balance_value](types_chain#u512)|String|The balance value in motes.|
-|[merkle_proof](types_chain#merkle-proof)|String|The merkle proof.|
+|[balance_value](../../sdkspec/types_chain#u512)|String|The balance value in motes.|
+|[merkle_proof](../../sdkspec/types_chain#merkle-proof)|String|The merkle proof.|
 
 <details>
 <summary><b>Example state_get_balance</b></summary>
@@ -580,8 +580,8 @@ You may query a stored value directly using the dictionary address.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[state_root_hash](types_chain#digest)|String|Hash of the state root.|
-|[dictionary_identifier](types_chain#dictionaryidentifier)|Object|The Dictionary query identifier.|
+|[state_root_hash](../../sdkspec/types_chain#digest)|String|Hash of the state root.|
+|[dictionary_identifier](../../sdkspec/types_chain#dictionaryidentifier)|Object|The Dictionary query identifier.|
     
 ### `state_get_dictionary_item_result`
 
@@ -589,8 +589,8 @@ You may query a stored value directly using the dictionary address.
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
 |dictionary_key|String|The key under which the value is stored.|
-|[stored_value](types_chain#storedvalue)|Object|The stored value.|
-|[merkle_proof](types_chain#merkle-proof)|String|The merkle proof.|
+|[stored_value](../../sdkspec/types_chain#storedvalue)|Object|The stored value.|
+|[merkle_proof](../../sdkspec/types_chain#merkle-proof)|String|The merkle proof.|
 
 <details>
 
@@ -651,7 +651,7 @@ This method returns a list of peers connected to the node.
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[peers](types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
+|[peers](../../sdkspec/types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
 
 <details>
 
@@ -691,13 +691,13 @@ This method returns the current status of a node.
 |api_version|String|The RPC API version.|
 |build_version|String|The compiled node version.|
 |chainspec_name|String|The chainspec name, used to identify the currently connected network.|
-|[last_added_block_info](types_chain#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
-|[next_upgrade](types_chain#nextupgrade)|Object|Information about the next scheduled upgrade.|
-|[our_public_signing_key](types_chain#publickey)|String|Our public signing key.|
-|[peers](types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
-|[round_length](types_chain#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
-|[starting_state_root_hash](types_chain#digest)|String|The state root hash used at the start of the current session.|
-|[uptime](types_chain#timediff)|Integer|Time that passed since the node has started.|
+|[last_added_block_info](../../sdkspec/types_chain#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
+|[next_upgrade](../../sdkspec/types_chain#nextupgrade)|Object|Information about the next scheduled upgrade.|
+|[our_public_signing_key](../../sdkspec/types_chain#publickey)|String|Our public signing key.|
+|[peers](../../sdkspec/types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
+|[round_length](../../sdkspec/types_chain#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
+|[starting_state_root_hash](../../sdkspec/types_chain#digest)|String|The state root hash used at the start of the current session.|
+|[uptime](../../sdkspec/types_chain#timediff)|Integer|Time that passed since the node has started.|
 
 <details>
 
