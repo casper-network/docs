@@ -6,20 +6,19 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 The NFT contract emits events. These events occur when some operation (like minting token) succeeds.
 
 There are seven main event types for Casper CEP-47 token contract. Those are:
-- [Mint](./#minting-tokens)
-- [Burn](./#burning-tokens)
-- [Mint Copies](./#minting-copies-of-tokens)
-- [Transfer](./#transferring-tokens)
-- [Approve](./#approving-tokens)
-- [Transfer From](./#transferring-tokens-from-another-account)
-- [Update Metadata](./
-#updating-token-metadata)
+- [Mint](#minting-tokens)
+- [Burn](#burning-tokens)
+- [Mint Copies](#minting-copies-of-tokens)
+- [Transfer](#transferring-tokens)
+- [Approve](#approving-tokens)
+- [Transfer From](#transferring-tokens-from-another-account)
+- [Update Metadata](#updating-token-metadata)
 
 We will go through each one with examples in the next sections. 
 
 **Prerequisite**
 
-Make sure you have [installed the CEP-47 contract](./deploy) on the Casper Network.
+Make sure you have [installed the CEP-47 contract](deploy.md) on the Casper Network.
 
 ## Enabling the Event Stream
 To trigger the events related to the contract, you must run the *casper-contracts-js-clients/e2e/cep47/usage.ts* file using NodeJS. 
