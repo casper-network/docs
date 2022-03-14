@@ -2,7 +2,7 @@
 
 This tutorial takes you through the standard of implementing [non-fungible tokens](/docs/glossary/N#non-fungible-token) on the Casper Network. Before diving into the Casper NFT implementation, let's cover some knowledge on overall NFT design. The following sections illustrate the origin and the development of NFTs in the blockchain domain.
 
-### The NFT Standard on Ethereum
+## The NFT Standard on Ethereum
 [ERC-721](https://eips.ethereum.org/EIPS/eip-721) is the standard defined to implement NFTs on the Ethereum blockchain. This standard defines a minimum interface a smart contract should implement to manage, own, and trade unique tokens. 
 
 ## The NFT Standard on Casper
@@ -10,7 +10,7 @@ This tutorial takes you through the standard of implementing [non-fungible token
 
 The Casper NFT standard takes full advantage of [unforgeable references](/docs/design/uref) to store values and manage permissions to them. It also takes advantage of other access control features (such as [groups](/docs/glossary/G#groups)). We recommend exploring the [main functions](../cep47/#cep-47-function-types) of the [contract](https://github.com/casper-ecosystem/casper-nft-cep47/blob/master/cep47/bin/cep47_token.rs) to understand the standard further.
 
-### CEP-47 Functions
+## Casper NFT (CEP-47) Functions
 The CEP-47 standard contains the following functions to enable NFTs.  
 
 - [*name*](https://github.com/casper-ecosystem/casper-nft-cep47/blob/09b40b0caf4cfc6f73d1e5f7d5b9c868228f7621/cep47/bin/cep47_token.rs#L44-L47) - Returns the name of the NFT contract
@@ -33,7 +33,7 @@ The CEP-47 standard contains the following functions to enable NFTs.
 :::note
 These functions can only be called from inside contracts, as they return data.
 - *name*, *symbol*, *meta*, and *total_supply*: Return details regarding the whole contract
-- *balance_of* and *get_token_by_index*:Rretrieve details of tokens related to a specific account
-- *owner_of* and *token_meta*:Rretrieve the details of a specific token
+- *balance_of* and *get_token_by_index*: Retrieve details of tokens related to a specific account
+- *owner_of* and *token_meta*: Retrieve the details of a specific token
 :::
 
