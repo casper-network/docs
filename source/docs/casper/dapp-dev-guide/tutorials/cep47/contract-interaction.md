@@ -101,7 +101,7 @@ es.subscribe(EventName.DeployProcessed, (event) => {
 es.start();
 ```
 
-### Minting Tokens
+### Minting tokens
 
 The token minting process creates NFTs. The Casper virtual machine executes the code stored in the smart contract and maps the item to a blockchain token containing certain attributes known as metadata. The creator's public key serves as a certificate of authenticity for that particular NFT.
 
@@ -180,7 +180,7 @@ const tokenByIndex1 = await cep47.getTokenByIndex(KEYS.publicKey, indexByToken1)
 
 </details>
 
-### Burning Tokens
+### Burning tokens
 The token burning process permanently removes the tokens from circulation within the blockchain network. The tokens are sent to a wallet address called "burner" or "eater" that cannot be used for transactions other than receiving these tokens. Even though the tokens will still exist on the blockchain, there will be no way of accessing them. 
 
 #### Executing the burn method
@@ -202,7 +202,7 @@ const burnDeploy = await cep47.burn(
 const burnDeployHash = await burnDeploy.send(NODE_ADDRESS!);
 ```
 
-The `burn` method executes given the values passed in and generates a `burnDeploy` object. The, the deply is sent to the network. When the `burn` operation got confirmed by the event stream, the name of the event and corresponding CL values, and a message indicating success or failure got printed.
+The `burn` method executes given the values passed in and generates a `burnDeploy` object. Then, the deploy is sent to the network. When the `burn` operation got confirmed by the event stream, the name of the event and corresponding CL values, and a message indicating success or failure got printed.
 
 <details>
 <summary>Console output for token burning</summary>
@@ -261,7 +261,7 @@ The `burn` method executes given the values passed in and generates a `burnDeplo
 
 </details>
 
-### Minting Copies of Tokens
+### Minting copies of tokens
 The method `mintCopies` creates several tokens with different IDs but the same metadata. The process is the same as minting one token but with multiple IDs and metadata. The payment amount also changes accordingly.
 
 #### Executing mintCopies
@@ -359,7 +359,7 @@ const tokenFiveMeta = await cep47.getTokenMeta("5");
 
 </details>
 
-### Transferring Tokens
+### Transferring tokens
 This method transfers NFT token(s) to other accounts. The transfer process will initiate from your account address and be sent to the selected recipient address. The recipient address will be a randomly selected account hash in this example.
 
 #### Executing a transfer
@@ -417,7 +417,7 @@ ownerOfTokenTwo = await cep47.getOwnerOf("2");
 
 </details>
 
-### Approving Tokens
+### Approving tokens
 This method is used to hand over the token transfer capability to another account. In this example, the new owner's public key is created before the transfer. Then the new account will perform the token transfer.
 
 #### Executing the approve method
@@ -472,7 +472,7 @@ const allowanceOfTokenFive = await cep47.getAllowance(KEYS.publicKey, "5");
 
 </details>
 
-### Transferring Tokens from Another Account
+### Transferring tokens from another account
 Here, you will transfer tokens to another account. You will use some randomly generated account addresses to check the behavior of this method.
 
 #### Executing the transferFrom method
@@ -532,7 +532,7 @@ ownerOfTokenFive = await cep47.getOwnerOf("5");
 
 </details>
 
-### Updating Token Metadata 
+### Updating token metadata 
 This method will update the metadata of a selected token.
 
 #### Executing the updateTokenMeta method

@@ -7,7 +7,7 @@ Now that you have implemented a smart contract for CEP-47, it's time to deploy i
 - Set up your machine as per the [prerequisites](/docs/workflow/setup)
 - Ensure you have [set up an account](/docs/workflow/setup#setting-up-an-account) with a public and secret key pair to initiate the deploy
 - Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow [fund your account](/docs/workflow/setup#fund-your-account) guide to add CSPR tokens to your account
-- CSPR tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
+- CSPR tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
 
 ## Basic Flows of the Deployment
 Here are the basic steps for deploying your contract on the Casper Network.
@@ -26,21 +26,21 @@ You will be using two Casper repositories for the deployment process.
 
 ### 1. Preparing the CEP-47 contract repository
 
-Refer to the [contract preparation](prepare.md) step to prepare the NFT contract for deployment. This step will make the build environment, create the target location and compile the contract to a .wasm file.
+Refer to the [contract preparation](prepare.md) step to prepare the [NFT contract](https://github.com/casper-ecosystem/casper-nft-cep47) for deployment. This step will make the build environment, create the target location and compile the contract to a .wasm file.
 
 - Output from this would be a Wasm file (Eg: *cep47-token.wasm), which is later used by the JS compiler for contract deployment.
 
-### 2.  Preparing the JS client repository
+
+### 2. Preparing the JS client repository
 The JS client can be used to install the smart contract on the Casper Network and perform further actions with the contract. We are using the JS client classes to invoke the NFT installation on the network using a pre-defined set of environment variables.
 
-### 3.  Cloning the JS client repository
 Clone the [casper-contracts-js-clients](https://github.com/casper-network/casper-contracts-js-clients) repository using the following command.
 
 ```
 git clone https://github.com/casper-network/casper-contracts-js-clients.git
 ```
 
-### 4.  Adding the environment variables 
+### 3.  Adding the environment variables 
 
 1. In the root folder of the newly-cloned repository, copy or rename the sample .env file from *.env.cep47.example* to *.env.cep47*:
   ```bash
@@ -60,14 +60,14 @@ git clone https://github.com/casper-network/casper-contracts-js-clients.git
 You must update the above list of parameters to align with your working environment. If you need an IP address for a node on the network, [follow this guide](/docs/workflow/setup#acquire-node-address-from-network-peers).
 :::
 
-### 5.  Building the JS client
+### 4.  Building the JS client
 Run the following commands to install the dependencies and build the client:
 ```bash
 npm install
 npm run dist
 ```
 
-### 6. Deploying the contract
+### 5. Deploying the contract
 Run the following command to deploy and execute the CEP-47 installer. The command executes the *./e2e/cep47/install.ts* file.
 
 ```bash
@@ -118,7 +118,7 @@ A Successful command execution produces similar output as below.
 </details>
 
 
-### 7.  Installing the contract
+### 6.  Installing the contract
 This section clarifies how the contract deployment happens through the [install.ts](https://github.com/casper-network/casper-contracts-js-clients/blob/master/e2e/cep47/install.ts) file.
 
 Firstly, the client reads the contents of the .wasm file into the `getBinary` constant.
@@ -175,7 +175,7 @@ Then the generated installation deploy hash is sent to the node address that you
 const hash = await installDeployHash.send(NODE_ADDRESS!);
 ```
 
-After that, check if the deploy is successful and retrieve the account information using the node address and public key. Next, you can see the "Contract installed successfully.." message on the console.
+After that, check if the deploy is successful and retrieve the account information using the node address and public key. Next, you can see the "Contract installed successfully." message on the console.
 
 ```javascript
 await getDeploy(NODE_ADDRESS!, hash)
