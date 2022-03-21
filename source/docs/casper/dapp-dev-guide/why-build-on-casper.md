@@ -15,7 +15,7 @@ This guide intends to briefly show you the current features and advantages of bu
 - [Low Gas Fees](#low-gas-fees)
 
 ## Thriving Ecosystem {#thriving-ecosystem}
-The Casper Ecosystem is growing every day, with new dApps and tools being added. Here is a short list of tools you can use.
+The Casper Ecosystem is growing every day through the addition of new dApps and tools. Here is a short list of tools you can use.
 
 ### Wallets
 - [Ledger](https://www.ledger.com/supported-crypto-assets/token)
