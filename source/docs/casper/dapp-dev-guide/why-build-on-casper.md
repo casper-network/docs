@@ -51,7 +51,7 @@ Casper smart contracts use a package management model, which allows the direct u
 
 ### IDE Integration {#ide-integration}
 
-The Casper development process is designed to be familiar to all developers. You can run and build code locally within an IDE and use assertions and tests to verify the functionality of your application. You can set the contract's starting state and create and run tests on your development machine. Casper contracts function like regular software, so there is very little you need to know about the blockchain to get started.
+The Casper development process strives to be familiar to all developers. You can run and build code locally within an IDE and use assertions and tests to verify the functionality of your application. You can set the contract's starting state and create and run tests on your development machine. Casper contracts function like regular software, so there is little you need to know about the blockchain to get started.
 
 
 ### CI/CD {#ci-cd}
