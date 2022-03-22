@@ -257,7 +257,7 @@ Each `StoredValue` is serialized when written to the global state. The serializa
 The details of `CLType` serialization are in the following section. Using the serialization format for `CLValue` as a basis, we can succinctly write the serialization rules for contracts and accounts:
 
 -   contracts serialize in the same way as data with `CLType` equal to `Tuple3(List(U8), Map(String, Key), Tuple3(U32, U32, U32))`;
--   accounts serialize in the same way as data with `CLType` equal to `Tuple5(FixedList(U8, 32), Map(String, Key), URef, Map(FixedList(U8, 32), U8), Tuple2(U8, U8))`.
+-   accounts serialize in the same way as data with `CLType` equal to `Tuple5(ByteArray(U8, 32), Map(String, Key), URef, Map(ByteArray(U8, 32), U8), Tuple2(U8, U8))`.
 
 Note: `Tuple5` is not a presently supported `CLType`. However, it is clear how to generalize the rules for `Tuple1`, `Tuple2`, `Tuple3` to any size tuple.
 
@@ -282,12 +282,12 @@ enum CLType {
    U512, // unsigned 512-bit integer primitive
    Unit, // singleton value without additional semantics
    String, // e.g. "Hello, World!"
-   URef, // unforgeable reference (see above)
    PublicKey // A Casper system PublicKey type
+   URef, // unforgeable reference (see above)
    Key, // global state key (see above)
    Option(CLType), // optional value of the given type
    List(CLType), // list of values of the given type (e.g. Vec in rust)
-   FixedList(CLType, u32), // same as `List` above, but number of elements
+   ByteArray(CLType, u32), // same as `List` above, but number of elements
                            // is statically known (e.g. arrays in rust)
    Result(CLType, CLType), // co-product of the the given types;
                            // one variant meaning success, the other failure
@@ -340,7 +340,7 @@ All data which can be assigned a (non-`Any`) `CLType` can be serialized accordin
     -   E.g. `Ok(314u64)` serializes as `0x013a01000000000000`
     -   E.g. `Err("Uh oh")` serializes as `0x00050000005568206f68`
 
--   Tuples serialize as the concatenation of their serialized elements. Similar to `FixedList` the number of elements is not included in the serialization because it is statically known in the type.
+-   Tuples serialize as the concatenation of their serialized elements. Similar to `ByteArray` the number of elements is not included in the serialization because it is statically known in the type.
 
     -   E.g. `(1u32, "Hello, World!", true)` serializes as `0x010000000d00000048656c6c6f2c20576f726c642101`
 
@@ -350,14 +350,14 @@ All data which can be assigned a (non-`Any`) `CLType` can be serialized accordin
 
 | Access Rights    | Serialization |
 | ---------------- | ------------- |
-| `NONE`           | > 0           |
-| `READ`           | > 1           |
-| `WRITE`          | > 2           |
-| `READ_WRITE`     | > 3           |
-| `ADD`            | > 4           |
-| `READ_ADD`       | > 5           |
-| `ADD_WRITE`      | > 6           |
-| `READ_ADD_WRITE` | > 7           |
+| `NONE`           |  0           |
+| `READ`           |  1           |
+| `WRITE`          |  2           |
+| `READ_WRITE`     |  3           |
+| `ADD`            |  4           |
+| `READ_ADD`       |  5           |
+| `ADD_WRITE`      |  6           |
+| `READ_ADD_WRITE` |  7           |
 
 -   `PublicKey` serializes as a single byte tag representing the algorithm followed by 32 bytes of the `PublicKey` itself:
 
@@ -366,33 +366,33 @@ All data which can be assigned a (non-`Any`) `CLType` can be serialized accordin
 
 -   `Key` values serialize as a single byte tag representing the variant, followed by the serialization of the data that variant contains. For most variants, this is simply a fixed-length 32-byte array. The exception is `Key::URef`, which contains a `URef`; so its data serializes per the description above. The tags are as follows: `Key::Account` serializes as `0`, `Key::Hash` as `1`, `Key::URef` as `2`.
 
-`CLType` itself also has rules for serialization. A `CLType` serializes as a single-byte tag, followed by the concatenation of serialized inner types, if any (e.g., lists and tuples have inner types). `FixedList` is a minor exception because it also includes the length in the type. However, the length is included in the serialization (as a 32-bit integer, per the serialization rules above), following the serialization of the inner type. The tags are as follows:
+`CLType` itself also has rules for serialization. A `CLType` serializes as a single-byte tag, followed by the concatenation of serialized inner types, if any (e.g., lists and tuples have inner types). `ByteArray` is a minor exception because it also includes the length in the type. However, the length is included in the serialization (as a 32-bit integer, per the serialization rules above), following the serialization of the inner type. The tags are as follows:
 
 | `CLType`    | Serialization Tag |
 | ----------- | ----------------- |
-| `Bool`      | > 0               |
-| `I32`       | > 1               |
-| `I64`       | > 2               |
-| `U8`        | > 3               |
-| `U32`       | > 4               |
-| `U64`       | > 5               |
-| `U128`      | > 6               |
-| `U256`      | > 7               |
-| `U512`      | > 8               |
-| `Unit`      | > 9               |
-| `String`    | > 10              |
-| `URef`      | > 11              |
-| `Key`       | > 12              |
-| `Option`    | > 13              |
-| `List`      | > 14              |
-| `FixedList` | > 15              |
-| `Result`    | > 16              |
-| `Map`       | > 17              |
-| `Tuple1`    | > 18              |
-| `Tuple2`    | > 19              |
-| `Tuple3`    | > 20              |
-| `Any`       | > 21              |
-| `PublicKey` | > 22              |
+| `Bool`      |  0               |
+| `I32`       |  1               |
+| `I64`       |  2               |
+| `U8`        |  3               |
+| `U32`       |  4               |
+| `U64`       |  5               |
+| `U128`      |  6               |
+| `U256`      |  7               |
+| `U512`      |  8               |
+| `Unit`      |  9               |
+| `String`    |  10              |
+| `Key`       |  11              |
+| `URef`      |  12              |
+| `Option`    |  13              |
+| `List`      |  14              |
+| `ByteArray` |  15              |
+| `Result`    |  16              |
+| `Map`       |  17              |
+| `Tuple1`    |  18              |
+| `Tuple2`    |  19              |
+| `Tuple3`    |  20              |
+| `Any`       |  21              |
+| `PublicKey` |  22              |
 
 A complete `CLValue`, including both the data and the type, can also be serialized (to store it in the global state). This is done by concatenating: the serialization of the length (as a 32-bit integer) of the serialized data (in bytes), the serialized data itself, and the serialization of the type.
 
@@ -463,15 +463,15 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 
 | `Key`        | Serialization Tag |
 | ------------ | ----------------- |
-| `Account`    | > 0               |
-| `Hash`       | > 1               |
-| `URef`       | > 2               |
-| `Transfer`   | > 3               |
-| `DeployInfo` | > 4               |
-| `EraInfo`    | > 5               |
-| `Balance`    | > 6               |
-| `Bid`        | > 7               |
-| `Withdraw`   | > 8               |
+| `Account`    |  0               |
+| `Hash`       |  1               |
+| `URef`       |  2               |
+| `Transfer`   |  3               |
+| `DeployInfo` |  4               |
+| `EraInfo`    |  5               |
+| `Balance`    |  6               |
+| `Bid`        |  7               |
+| `Withdraw`   |  8               |
 
 -   `Account` serializes as a 32 byte long buffer containing the byte representation of the underlying `AccountHash`
 -   `Hash` serializes as a 32 byte long buffer containing the byte representation of the underlying `Hash` itself.
