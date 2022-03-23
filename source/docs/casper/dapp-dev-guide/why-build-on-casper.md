@@ -2,8 +2,9 @@
 
 This guide intends to briefly show you the current features and advantages of building on the Casper Network.
 
+- [Thriving Ecosystem](#thriving-ecosystem)
 - [Developer-Friendly Language](#developer-friendly-language)
-- [Advanced Account Management](#advanced-account-management)
+- [Powerful Accounts](#powerful-accounts)
 - [Contract Upgrades](#contract-upgrades)
 - [Development Tools](#development-tools)
    - [IDE Integration](#ide-integration)
@@ -13,8 +14,24 @@ This guide intends to briefly show you the current features and advantages of bu
 - [SDK Client Libraries](#sdk-client-libraries)
 - [Low Gas Fees](#low-gas-fees)
 
+## Thriving Ecosystem {#thriving-ecosystem}
+The Casper Ecosystem is growing every day through the addition of new dApps and tools. Here is a short list of tools you can use.
+
+### Wallets
+- [Ledger](https://www.ledger.com/supported-crypto-assets/token)
+- [Tor.us](https://app.tor.us/)
+- [Casper Signer](https://chrome.google.com/webstore/search/casper?hl=en)
+
+### Block Explorers
+- [cspr.live](https://cspr.live)
+- [casperstats.io](https://casperstats.io)
+
+### Developer Tools
+- [casperholders.io](https://casperholders.io)
+
+
 ## Developer-Friendly Language {#developer-friendly-language}
-Casper Network's development ecosystem is designed to support WebAssembly, rather than being written in proprietary languages like Solidity. This feature simplifies the development path for enterprises and development teams that want to build on the Casper Network.
+Casper Network's development ecosystem supports WebAssembly by design, rather than requiring proprietary languages like Solidity. Casper contracts function just like regular software. This feature simplifies the development path for enterprises and development teams that want to build on the Casper Network.
 
 Rust is a beloved programming language for its safety and performance. We offer a Rust experience and a runtime environment for developing smart contracts . The Rust smart contracts are compiled to WebAssembly (WASM), which is an [open standard](https://en.wikipedia.org/wiki/Open_standard) for performance and portability of modern web applications. 
 
@@ -24,17 +41,17 @@ WASM can support any language compiled or interpreted on any operating system wi
 
 :::
 
-## Advanced Account Management {#advanced-account-management}
-The Casper Network offers advanced account management with weighted keys for separating permissions and account actions, supporting delegation, weighted multi-signatures, and more. Other essential features include an account permissions model that allows the recovery of lost keys and a permissions model to securely share state between accounts and contracts (without expensive cryptographic checks). Refer to the [Casper Permissions Model](https://casper.network/docs/design/accounts#accounts-permissions) for more details.
+## Powerful Accounts {#powerful-accounts}
+The Casper Network offers powerful accounts that are more than just public keys. Accounts offer weights for separate key management and transaction signing rights, and the ability to run session code (wasm) in the account context. By running session code in the account, it's possible to delegate transaction signing to multiple keys, revoke lost keys to recover accounts and store data within the account itself. It is also possible to securely share state between accounts and contracts (without expensive cryptographic checks). Refer to the [Casper Permissions Model](https://casper.network/docs/design/accounts#accounts-permissions) for more details.
 
 ## Contract Upgrades {#contract-upgrades}
-Casper allows the direct upgrading of on-chain smart contracts, eliminating the need for complex migration processes and making it easy for developers to correct smart contract vulnerabilities. Contracts can be upgradable or immutable,  and organizations can version their contracts, deprecate old versions, and set permissions around who can perform contract upgrades. 
+Casper smart contracts use a package management model, which allows the direct upgrading of on-chain smart contracts, eliminating the need for complex migration processes and making it easy for developers to add new features or fix bugs by adding a new version of the contract. When installing a contract, it's possible to designate a contract as 'not upgradeable', which is suitable for DeFi contracts.
 
 ## Development Tools {#development-tools}
 
 ### IDE Integration {#ide-integration}
 
-The Casper development process is designed to be familiar to all developers. You can run and build code locally within an IDE and use assertions and tests to verify the functionality of your application. You can set the contract's starting state and create and run tests on your development machine. 
+The Casper development process strives to be familiar to all developers. You can run and build code locally within an IDE and use assertions and tests to verify the functionality of your application. You can set the contract's starting state and create and run tests on your development machine. Casper contracts function like regular software, so there is little you need to know about the blockchain to get started.
 
 
 ### CI/CD {#ci-cd}
