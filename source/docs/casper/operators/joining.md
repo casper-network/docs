@@ -59,7 +59,12 @@ casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20
 casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20 | jq -r .result.block.hash
 ```
 
-A good IP to use above are those listed in your `config.toml` as `known_addresses`. For more information on trusted hash, see [Trusted Hash for Synchronizing](../setup/#trusted-hash-for-synchronizing).
+For more information on trusted hash, see [Trusted Hash for Synchronizing](../setup/#trusted-hash-for-synchronizing).
+
+### Known Addresses {#known-addresses}
+
+In order for the node to connect to a network, the node needs a set of trusted peers for that network. For mainnet, 
+these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least 2 trusted IP addresses for peers in that network. 
 
 ### Updating `config.toml` file {#updating-config-file}
 
