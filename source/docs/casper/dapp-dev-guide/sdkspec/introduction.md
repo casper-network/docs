@@ -4,6 +4,8 @@ This document outlines the methods, endpoints, and types available to developers
 
 For examples of completed SDKs, please refer to our [SDK Client Libraries](https://casper.network/docs/sdk) section.
 
+You can find information on our serialization standard [here](https://casper.network/docs/design/serialization-standard/).
+
 |Page|Description|
 |----|-----------|
 |[Transactional JSON-RPC Method](../sdkspec/json-rpc-transactional.md)|Description of `account_put_deploy`, the only means by which users can send their compiled WASM (as part of a Deploy) to a node on a Casper network.|
