@@ -63,8 +63,7 @@ For more information on trusted hash, see [Trusted Hash for Synchronizing](../se
 
 ### Known Addresses {#known-addresses}
 
-In order for the node to connect to a network, the node needs a set of trusted peers for that network. For mainnet, 
-these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least 2 trusted IP addresses for peers in that network. 
+For the node to connect to a network, the node needs a set of trusted peers for that network. For [Mainnet](https://cspr.live/), these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least two trusted IP addresses for peers in that network. Here is an [example configuration](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml). The [casper-protocol-release](https://github.com/casper-network/casper-protocol-release) repository stores configurations for various environments, which you can also use as examples.
 
 ### Updating `config.toml` file {#updating-config-file}
 
