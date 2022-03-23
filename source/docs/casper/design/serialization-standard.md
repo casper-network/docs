@@ -2,6 +2,84 @@
 
 We provide a custom implementation to serialize data structures used by the Casper node to their byte representation. This document details how this custom serialization is implemented, allowing developers to build a library that implements the custom serialization.
 
+## Account {#serialization-standard-account}
+
+An Account is a structure that represents a user on a Casper Network. The account structure consists of the following fields:
+
+[account_hash](#account-hash)
+
+[named_keys](#namedkey)
+
+[main_purse](#main-purse)
+
+The account's main purse `URef`. You may find information on `URef` serialization [here](#clvalue-uref).
+
+[associated_keys](#associated-keys)
+
+A mapping of account hashes to the weight of an account corresponding to that account hash.
+
+-   `account_hash` The [account hash](#account-hash) of the associated key.
+
+-   `weight` The weight of an associated key. The weight serializes as a [`u8` value](#clvalue-numeric).
+
+[action_thresholds](#action-thresholds)
+
+## Account Hash {#account-hash}
+
+A `blake2b` hash of the public key, representing the address of a user's account. The account hash serializes as a 32-byte buffer containing the bytes of the account hash.
+
+## Action Thresholds {#action-thresholds}
+
+The minimum weight thresholds that have to be met when executing an action of a certain type.
+
+-   `deployment` The minimum weight threshold required to perform deployment actions as a `u8` value.
+
+-   `key_management` The minimum weight threshold required to perform key management actions as a `u8` value.
+
+## Activation Point {#activation-point}
+
+First u8 = EraID or Genesis
+
+The first era to which the associated protocol version applies.
+
+-   `era_id` An Era ID newtype identifying the era when the protocol version will activate.
+
+-   `timestamp` A timestamp if the activation point is of the Genesis variant.
+
+## Approval {#approval}
+
+A struct containing a signature and the public key of the signer.
+
+-   `signature` The approval signature, which serializes as the byte representation of the `Signature`. The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
+
+-   `signer` The public key of the approvals signer. It serializes to the byte representation of the `PublicKey`. If the `PublicKey` is an `Ed25519` key, then the first byte within the serialized buffer is 1 followed by the bytes of the key itself; else, in the case of `Secp256k1`, the first byte is 2.
+
+## AssociatedKey {#associatedkey}
+
+A key granted limited permissions to an Account, for purposes such as multisig. It is serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of keys and weights held within. The remainder consists of a repeating pattern of serialized named keys and then weights of the length dictated by the first four bytes.
+
+-   `account_hash` The [account hash](#account-hash) of the associated key.
+
+-   `weight` The weight of an associated key. The weight serializes as a [`u8` value](#clvalue-numeric).
+
+## Bid {#bid}
+
+An entry in the validator map. The structure consists of the following fields:
+
+-   `validator_public_key` The validator's public key. It serializes as a [`PublicKey`](#clvalue-publickey).
+
+-   `bonding_purse` The purse used for bonding. It serializes as a [`Uref`](#clvalue-uref).
+
+-   `staked_amount` The amount of tokens staked by a validator (not including delegators). It serializes as a [`U512` value](#clvalue-numeric).
+
+-   `delegation_rate` The delegation rate of the bid. It serializes as an `i32` signed 32-bit integer primitive.
+
+-   `vesting_schedule` The vesting schedule for a genesis validator. `None` if it is a non-genesis validator. It serializes as an [`Option`](#clvalue-option).
+
+-   `delegators` The validator's delegators, indexed by their public keys. They are serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number   of `PublicKey`s and delegators held within. The remainder consists of a repeating pattern of serialized `PublicKey`s and then delegators of the length dictated by the first four bytes.
+
+-   `inactive` If the validator has been evicted. A [boolean](#clvalue-boolean) value that serializes as a single byte; `true` maps to `1`, while `false` maps to `0`.
+
 ## Block {#serialization-standard-block}
 
 A block is the core component of the Casper linear blockchain, used in two contexts:
@@ -72,6 +150,66 @@ When we serialize the `BlockBody`, we create a buffer that contains the serializ
 -   `proposer`: serializes to the byte representation of the `PublicKey`. If the `PublicKey` is an `Ed25519` key, then the first byte within the serialized buffer is 1 followed by the bytes of the key itself; else, in the case of `Secp256k1`, the first byte is 2.
 -   `deploy_hashes`: serializes to the byte representation of all the deploy_hashes within the block header. Its length is `32 * n`, where n denotes the number of deploy hashes present within the body.
 -   `transfer_hashes`: serializes to the byte representation of all the deploy_hashes within the block header. Its length is `32 * n`, where n denotes the number of transfers present within the body.
+
+## BlockIdentifier {#blockidentifier}
+
+Identifier for possible ways to retrieve a Block. It can consist of any of the following in most situations:
+
+-   [`hash`](#block-hash) Identify and retrieve a Block with its hash. The `BlockHash` serializes as the byte representation of the hash itself.
+
+-   `height` Identify and retrieve the Block with its height. Height serializes as a single `u64` value.
+
+-   `state_root_hash` Identify and retrieve the Block with its state root hash. It serializes to the byte representation of the `state root hash`. The serialized buffer of the `state_root_hash` is 32 bytes long.
+
+## Contract {#contract}
+
+ A contract struct containing the following fields:
+
+ -  [`contract_package_hash`](#contractpackagehash)
+
+ -  [`contract_wasm_hash`](#contractwasmhash)
+
+ -  [`named_keys`](#namedkey)
+
+ -  [`entry_points`](#entrypoint)
+
+ -  [`protocol_version`](#protocolversion)
+
+## ContractHash {#contracthash}
+
+A `blake2b` hash of a contract. The contract hash serializes as a 32-byte buffer containing the bytes of the contract hash.
+
+## ContractPackageHash {#contractpackagehash}
+
+A `blake2b` hash of a contract package. The contract package hash serializes as a 32-byte buffer containing the bytes of the contract package hash.
+
+## ContractVersion {#contractversion}
+
+The version of the contract.
+
+-   [`contract_hash`](#contracthash) The contract hash of the contract.
+
+-   `contract_version` The version of the contract within the protocol major version. It serializes as a [`u32` value](#clvalue-numeric).
+
+-   `protocol_version_major` The major element of the protocol version this contract is compatible with. It serializes as a [`u32` value](#clvalue-numeric).
+
+## ContractWasmHash {#contractwasmhash}
+
+A `blake2b` hash of a contract's WASM. The contract's WASM hash serializes as a 32-byte buffer containing the bytes of the contract's WASM hash.
+
+## Delegator {#delegator}
+
+Represents a party delegating their stake to a validator (or "delegatee"). The structure consists of the following fields:
+
+-   `delegator_public_key` The public key of the delegator, serialized as a [`PublicKey`](#clvalue-publickey).
+
+-   `staked_amount` The amount staked by the delegator, serialized as a [`U512` value](#clvalue-numeric).
+
+-   `bonding_purse` The bonding purse associated with the delegation. It serializes as a [`URef` value](#clvalue-uref).
+
+-   `validator_public_key` The public key of the validator that the delegator will be delegating to, serialized as a [`PublicKey`](#clvalue-publickey).
+
+-   `vesting_schedule` The vesting schedule for the provided delegator bid. `None` if it is a non-genesis validator. It serializes as an [`Option`](#clvalue-option).
 
 ## Deploy {#serialization-standard-deploy}
 
@@ -238,179 +376,96 @@ The above deploy will serialize to:
 
 `01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900ca856a4d37501000080ee36000000000001000000000000004811966d37fe5674a8af4001884ea0d9042d1c06668da0c963769c3a01ebd08f0100000001010101010101010101010101010101010101010101010101010101010101010e0000006361737065722d6578616d706c6501da3c604f71e0e7df83ff1ab4ef15bb04de64ca02e3d2b78de6950e8b5ee187020e0000006361737065722d6578616d706c65130000006578616d706c652d656e7472792d706f696e7401000000080000007175616e7469747904000000e803000001050100000006000000616d6f756e7404000000e8030000010100000001d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c012dbf03817a51794a8e19e0724884075e6d1fbec326b766ecfa6658b41f81290da85e23b24e88b1c8d9761185c961daee1adab0649912a6477bcd2e69bd91bd08`
 
-## Values {#serialization-standard-values}
+## DeployInfo {#deployinfo}
 
-A value stored in the global state is a `StoredValue`. A `StoredValue` is one of three possible variants:
+Information relating to a given deploy. The structure consists of the following fields:
 
--   A `CLValue`
--   A contract
--   An account
+-   `deploy_hash` The hash of the relevant deploy, serialized as a byte representation of the hash itself.
 
-We discuss `CLValue` and contract in more detail below. Details about accounts can be found in [accounts-head](./accounts.md#accounts-head).
+-   `transfers` Transfers performed by the deploy, serialized as a [`List`](#clvalue-list).
 
-Each `StoredValue` is serialized when written to the global state. The serialization format consists of a single byte tag, indicating which variant of `StoredValue` it is, followed by the serialization of that variant. The tag for each variant is as follows:
+-   `from` The account identifier of the creator of the deploy, serialized as an [`account_hash`](#account-hash).
 
--   `CLValue` is `0`
--   `Account` is `1`
--   `Contract` is `2`
+-   `source` The source purse used for payment of the deploy, serialized as a [`URef`](#clvalue-uref).
 
-The details of `CLType` serialization are in the following section. Using the serialization format for `CLValue` as a basis, we can succinctly write the serialization rules for contracts and accounts:
+-   `gas` The gas cost of executing the deploy, serialized as a [`U512`](#clvalue-numeric).
 
--   contracts serialize in the same way as data with `CLType` equal to `Tuple3(List(U8), Map(String, Key), Tuple3(U32, U32, U32))`;
--   accounts serialize in the same way as data with `CLType` equal to `Tuple5(FixedList(U8, 32), Map(String, Key), URef, Map(FixedList(U8, 32), U8), Tuple2(U8, U8))`.
+## Digest {#digest}
 
-Note: `Tuple5` is not a presently supported `CLType`. However, it is clear how to generalize the rules for `Tuple1`, `Tuple2`, `Tuple3` to any size tuple.
+A `blake2b` hash digest. The digest serializes as as a byte representation of the hash itself.
 
-Note: links to further serialization examples and a reference implementation are found in [Appendix B](./appendix.md#appendix-b).
+## DisabledVersions {#disabledversions}
 
-### `CLValue` {#clvalue}
+Disabled contract versions, containing the following:
 
-`CLValue` is used to describe data that is used by smart contracts. This could be as a local state variable, input argument, or return value. A `CLValue` consists of two parts: a `CLType` describing the type of the value and an array of bytes representing the data in our serialization format.
+-   `contract_version` The version of the contract within the protocol major version. It serializes as a [`u32` value](#clvalue-numeric).
 
-`CLType` is described by the following recursive data type:
+-   `protocol_version_major` The major element of the protocol version this contract is compatible with. It serializes as a [`u32` value](#clvalue-numeric).
 
-```rust
-enum CLType {
-   Bool, // boolean primitive
-   I32, // signed 32-bit integer primitive
-   I64, // signed 64-bit integer primitive
-   U8, // unsigned 8-bit integer primitive
-   U32, // unsigned 32-bit integer primitive
-   U64, // unsigned 64-bit integer primitive
-   U128, // unsigned 128-bit integer primitive
-   U256, // unsigned 256-bit integer primitive
-   U512, // unsigned 512-bit integer primitive
-   Unit, // singleton value without additional semantics
-   String, // e.g. "Hello, World!"
-   URef, // unforgeable reference (see above)
-   PublicKey // A Casper system PublicKey type
-   Key, // global state key (see above)
-   Option(CLType), // optional value of the given type
-   List(CLType), // list of values of the given type (e.g. Vec in rust)
-   FixedList(CLType, u32), // same as `List` above, but number of elements
-                           // is statically known (e.g. arrays in rust)
-   Result(CLType, CLType), // co-product of the the given types;
-                           // one variant meaning success, the other failure
-   Map(CLType, CLType), // key-value association where keys and values have the given types
-   Tuple1(CLType), // single value of the given type
-   Tuple2(CLType, CLType), // pair consisting of elements of the given types
-   Tuple3(CLType, CLType, CLType), // triple consisting of elements of the given types
-   Any // Indicates the type is not known
-}
-```
+## EntryPoint {#entrypoint}
 
-All data which can be assigned a (non-`Any`) `CLType` can be serialized according to the following rules (this defines the Casper serialization format):
+A type of signature method. Order of arguments matters, since this can be referenced by index as well as name.
 
--   Boolean values serialize as a single byte; `true` maps to `1`, while `false` maps to `0`.
+-   `name` The name of the entry point, serialized as a [`String`](#clvalue-string).
 
--   Numeric values consisting of 64 bits or less serialize in the two's complement representation with little-endian byte order, and the appropriate number of bytes for the bit-width.
+-   `args` Arguments for this method. They serialize as a list of the [`Parameter`](#parameter)s, where each parameter represents an argument passed to the entrypoint.
 
-    -   E.g. `7u8` serializes as `0x07`
-    -   E.g. `7u32` serializes as `0x07000000`
-    -   E.g. `1024u32` serializes as `0x00040000`
+-   `ret` The return type of the method, serialized as a [`Unit`](#clvalue-unit).
 
--   Wider numeric values (i.e. `U128`, `U256`, `U512`) serialize as one byte given the length of the next number (in bytes), followed by the two's complement representation with little-endian byte order. The number of bytes should be chosen as small as possible to represent the given number. This is done to reduce the serialization size when small numbers are represented within a wide data type.
+-   `access` An enum describing the possible access control options for a contract entry point. It serializes as a 1 for public or a 1 followed by a [`List`](#clvalue-list) of authorized users.
 
-    -   E.g. `U512::from(7)` serializes as `0x0107`
-    -   E.g. `U512::from(1024)` serializes as `0x020004`
-    -   E.g. `U512::from("123456789101112131415")` serializes as `0x0957ff1ada959f4eb106`
+-   `entry_point_type` Identifies the type of entry point. It serializes as a `0` for Session and a `1` for Contract.
 
--   Unit serializes to an empty byte array.
+## EraID {#eraid}
 
--   Strings serialize as a 32-bit integer representing the length in bytes (note: this might be different than the number of characters since special characters, such as emojis, take more than one byte), followed by the UTF-8 encoding of the characters in the string.
+An Era ID newtype. It serializes as a single `u64` value.
 
-    -   E.g. `"Hello, World!"` serializes as `0x0d00000048656c6c6f2c20576f726c6421`
+## EraInfo {#erainfo}
 
--   Optional values serialize with a single byte tag, followed by the serialization of the value itself. The tag is equal to `0` if the value is missing, and `1` if it is present.
+Auction metadata, intended to be recorded each era. It serializes as a [`List`](#clvalue-list) of [seigniorage allocations](#seigniorageallocation).
 
-    -   E.g. `None` serializes as `0x00`
-    -   E.g. `Some(10u32)` serializes as `0x010a000000`
 
--   A list of values serializes as a 32-bit integer representing the number of elements in the list (note this differs from strings where it gives the number of _bytes_), followed by the concatenation of each serialized element.
+## ExecutionEffect {#executioneffect}
 
-    -   E.g. `List()` serializes as `0x00000000`
-    -   E.g. `List(1u32, 2u32, 3u32)` serializes as `0x03000000010000000200000003000000`
+The journal of execution transforms from a single deploy.
 
--   A fixed-length list of values serializes as the concatenation of the serialized elements. Unlike a variable-length list, the length is not included in the serialization because it is statically known by the type of the value.
+-   `operations` The resulting operations, serialized as a [`List`](#list-clvalue-list) of [operations](#operation).
 
-    -   E.g. `[1u32, 2u32, 3u32]` serializes as `0x010000000200000003000000`
+-   `transforms` The actual [transformation](#transform) performed while executing a deploy.
 
--   A `Result` serializes as a single byte tag followed by the serialization of the contained value. The tag is equal to `1` for the success variant and `0` for the error variant.
+## ExecutionResult {#executionresult}
 
-    -   E.g. `Ok(314u64)` serializes as `0x013a01000000000000`
-    -   E.g. `Err("Uh oh")` serializes as `0x00050000005568206f68`
+The result of a single deploy. It serializes as a `u8` tag indicating either `Failure` as a 0 or `Success` as a 1. This is followed by the appropriate structure below:
 
--   Tuples serialize as the concatenation of their serialized elements. Similar to `FixedList` the number of elements is not included in the serialization because it is statically known in the type.
+### `Failure`
 
-    -   E.g. `(1u32, "Hello, World!", true)` serializes as `0x010000000d00000048656c6c6f2c20576f726c642101`
+The result of a failed execution.
 
--   A `Map` serializes as a list of key-value tuples. There must be a well-defined ordering on the keys, and in the serialization, the pairs are listed in ascending order. This is done to ensure determinism in the serialization, as `Map` data structures can be unordered.
+-   `effect` The [effect](#executioneffect) of executing the deploy.
 
--   `URef` values serialize as the concatenation of its address (which is a fixed-length list of `u8`) and a single byte tag representing the access rights. Access rights are converted as follows:
+-   `transfers` A record of transfers performed while executing the deploy, serialized as a [`List`](#clvalue-list).
 
-| Access Rights    | Serialization |
-| ---------------- | ------------- |
-| `NONE`           | > 0           |
-| `READ`           | > 1           |
-| `WRITE`          | > 2           |
-| `READ_WRITE`     | > 3           |
-| `ADD`            | > 4           |
-| `READ_ADD`       | > 5           |
-| `ADD_WRITE`      | > 6           |
-| `READ_ADD_WRITE` | > 7           |
+-   `cost` The cost of executing the deploy, serializes as a [`U512`](#clvalue-numeric) value.
 
--   `PublicKey` serializes as a single byte tag representing the algorithm followed by 32 bytes of the `PublicKey` itself:
+-   `error_message` The error message associated with executing the deploy, serialized as a [`String`](#clvalue-string).
 
-    -   If the `PublicKey` is an `Ed25519` key, the single tag byte is `1` followed by the individual bytes of the serialized key.
-    -   If the `PublicKey` is a `Secp256k1` key, the single tag byte is a `2` followed by the individual bytes of the serialized key.
+### `Success`
 
--   `Key` values serialize as a single byte tag representing the variant, followed by the serialization of the data that variant contains. For most variants, this is simply a fixed-length 32-byte array. The exception is `Key::URef`, which contains a `URef`; so its data serializes per the description above. The tags are as follows: `Key::Account` serializes as `0`, `Key::Hash` as `1`, `Key::URef` as `2`.
+The result of a successful execution.
 
-`CLType` itself also has rules for serialization. A `CLType` serializes as a single-byte tag, followed by the concatenation of serialized inner types, if any (e.g., lists and tuples have inner types). `FixedList` is a minor exception because it also includes the length in the type. However, the length is included in the serialization (as a 32-bit integer, per the serialization rules above), following the serialization of the inner type. The tags are as follows:
+-   `effect` The [effect](#executioneffect) of executing the deploy.
 
-| `CLType`    | Serialization Tag |
-| ----------- | ----------------- |
-| `Bool`      | > 0               |
-| `I32`       | > 1               |
-| `I64`       | > 2               |
-| `U8`        | > 3               |
-| `U32`       | > 4               |
-| `U64`       | > 5               |
-| `U128`      | > 6               |
-| `U256`      | > 7               |
-| `U512`      | > 8               |
-| `Unit`      | > 9               |
-| `String`    | > 10              |
-| `URef`      | > 11              |
-| `Key`       | > 12              |
-| `Option`    | > 13              |
-| `List`      | > 14              |
-| `FixedList` | > 15              |
-| `Result`    | > 16              |
-| `Map`       | > 17              |
-| `Tuple1`    | > 18              |
-| `Tuple2`    | > 19              |
-| `Tuple3`    | > 20              |
-| `Any`       | > 21              |
-| `PublicKey` | > 22              |
+-   `transfers` A record of transfers performed while executing the deploy, serialized as a [`List`](#clvalue-list).
 
-A complete `CLValue`, including both the data and the type, can also be serialized (to store it in the global state). This is done by concatenating: the serialization of the length (as a 32-bit integer) of the serialized data (in bytes), the serialized data itself, and the serialization of the type.
+-   `cost` The cost of executing the deploy, serializes as a [`U512`](#clvalue-numeric) value.
 
-### Contracts {#global-state-contracts}
+## Group {#group}
 
-Contracts are a special value type because they contain the on-chain logic of the applications running on the Casper network. A _contract_ contains the following data:
+A (labeled) "user group". Each method of a versioned contract may be associated with one or more user groups which are allowed to call it. User groups are serialized as a [String](#clvalue-string).
 
--   a [wasm module](https://webassembly.github.io/spec/core/syntax/modules.html)
--   a collection of named keys
--   a protocol version
+## Groups {#groups}
 
-The wasm module must contain a function named `call`, which takes no arguments and returns no values. This is the main entry point into the contract. Moreover, the module may import any of the functions supported by the Casper runtime; a list of all supported functions can be found in [Appendix A](./appendix.md#appendix-a).
-
-Note: though the `call` function signature has no arguments and no return value, within the `call` function body, the `get_named_arg` runtime function can be used to accept arguments (by ordinal), and the `ret` runtime function can be used to return a single `CLValue` to the caller.
-
-The named keys are used to give human-readable names to keys in the global state, which are essential to the contract. For example, the hash key of another contract it frequently calls may be stored under a meaningful name. It is also used to store the `URef`s, which are known to the contract (see the section on Permissions for details).
-
-Each contract specifies the Casper protocol version that was active when the contract was written to the global state.
+They are serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of user groups and `BTreeSets` of [`URef`](#clvalue-uref)s held within. The remainder consists of a repeating pattern of serialized user groups and `BTreeSets` of the length dictated by the first four bytes.
 
 ## Keys {#serialization-standard-state-keys}
 
@@ -463,15 +518,15 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 
 | `Key`        | Serialization Tag |
 | ------------ | ----------------- |
-| `Account`    | > 0               |
-| `Hash`       | > 1               |
-| `URef`       | > 2               |
-| `Transfer`   | > 3               |
-| `DeployInfo` | > 4               |
-| `EraInfo`    | > 5               |
-| `Balance`    | > 6               |
-| `Bid`        | > 7               |
-| `Withdraw`   | > 8               |
+| `Account`    |  0               |
+| `Hash`       |  1               |
+| `URef`       |  2               |
+| `Transfer`   |  3               |
+| `DeployInfo` |  4               |
+| `EraInfo`    |  5               |
+| `Balance`    |  6               |
+| `Bid`        |  7               |
+| `Withdraw`   |  8               |
 
 -   `Account` serializes as a 32 byte long buffer containing the byte representation of the underlying `AccountHash`
 -   `Hash` serializes as a 32 byte long buffer containing the byte representation of the underlying `Hash` itself.
@@ -501,3 +556,319 @@ There are three types of actions that can be done on a value: read, write, add. 
 ---
 
 Refer to [URef permissions](uref.md) on how permissions are handled in the case of `URef`s.
+
+## NamedArg {#namedarg}
+
+Named arguments to a contract. It is serialized by the combination of a [`String`](#clvalue-string) followed by the associated [`CLValue`](#clvalue-clvalue).
+
+## NamedKey {#namedkey}
+
+A mapping of string identifiers to a Casper `Key` type. It is serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of named keys and values held within. The remainder consists of a repeating pattern of serialized named keys and then values of the length dictated by the first four bytes.
+
+-   `name` The name of the entry. It serializes as a [`string`](#clvalue-string).
+
+-   `key` The value of the entry, which is a Casper `Key` type.
+
+The named keys portion of the account structure serializes as a mapping of a string to Casper `Key` values as described [here](#serialization-standard-serialization-key).
+
+## Operation {#operation}
+
+An operation performed while executing a deploy. It contains:
+
+-   `key` The formatted string of the key, serialized as a [`String`](#clvalue-string).
+
+-   `kind` OpKind, The type of operation performed. It serializes as a single byte based on the following table:
+
+|OpKind|Serialization|
+|------|-------------|
+|Read  | 0           |
+|Write | 1           |
+|Add   | 2           |
+|NoOp  | 3           |
+
+## Parameter {#parameter}
+
+Parameter to a method, structured as a name followed by a `CLType`. It is serialized as a [`String`](#clvalue-string) followed by a [`CLType`](#clvalue-cltype).
+
+## ProtocolVersion {#protocolversion}
+
+A newtype indicating the Casper Platform protocol version. It is serialized as three [`u32`] values indicating major, minor and patch versions in that order.
+
+## PublicKey {#publickey}
+
+Hex-encoded cryptographic public key, including the algorithm tag prefix. Serialization can be found under [`PublicKey`](#clvalue-publickey).
+
+## RuntimeArgs {#runtimeargs}
+
+Represents a collection of arguments passed to a smart contract. They serialize as a [`List`](#clvalue-list) comprised of [`Tuples`](#clvalue-tuple).
+
+## SeigniorageAllocation {#seigniorageallocation}
+
+Information about seigniorage allocation.
+
+If the seigniorage allocation in question is for a validator, it serializes as the validator's [`PublicKey`](#clvalue-publickey) followed by the [`U512` amount](#clvalue-numeric).
+
+If it is a delegator, it serializes as the delegator's [`PublicKey`](#clvalue-publickey), followed by the validator's [`PublicKey`](#clvalue-publickey) and finally the [`U512` amount](#clvalue-numeric).
+
+## Signature {#signature}
+
+Hex-encoded cryptographic signature, which serializes as the byte representation of the `Signature`. The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
+
+## TimeDiff {#timediff}
+
+A human-readable duration between two timestamps. It serializes as a single [`u64`](#clvalue-numeric) value.
+
+## Timestamp {#timestamp}
+
+A timestamp formatted as per RFC 3339 and serialized as a single [`u64`](#clvalue-numeric) value.
+
+## TransferAddr {#transferaddr}
+
+Hex-encoded transfer address, which serializes as a byte representation of itself.
+
+## Transform {#transform}
+
+The actual transformation performed while executing a deploy. It serializes as a single `u8` value indicating the type of transform performed as per the following table. The remaining bytes represent the information and serialization as listed.
+
+| Transform Type       | Serialization | Description                                                                  |
+|----------------------|---------------|------------------------------------------------------------------------------|
+|Identity              | 0             | A transform having no effect.                                                |
+|Write_CLValue         | 1             | Writes the given [`CLValue`](#clvalue-calvalue) to global state.             |
+|Write_Account         | 2             | Write the given [`Account`](#account-hash) to global state.                  |
+|Write_Contract_WASM   | 3             | Writes a smart [contract as Wasm](#contractwasmhash) to global state.        |
+|Write_Contract        | 4             | Writes a smart [contract](#contracthash) to global state.                    | 
+|Write_Contract_Package| 5             | Writes a smart [contract package](#contractpackagehash) to global state.     |
+|Write_Deploy_Info     | 6             | Writes the given [`DeployInfo`](#deployinfo) to global state.                |
+|Write_Transfer        | 7             | Writes the given [Transfer](#transferaddr) to global state.                  |
+|Write_Era_Info        | 8             | Writes the given [`EraInfo`](#erainfo) to global state.                      |
+|Write_Bid             | 9             | Writes the given [`Bid`](#bid) to global state.                              |
+|Write_Withdraw        | 10            | Writes the given [Withdraw](#unbondingpurse) to global state.                |
+|Add_INT32             | 11            | Adds the given [`i32`](#clvalue-numeric).                                    |
+|Add_UINT64            | 12            | Adds the given [`u64`](#clvalue-numeric).                                    |
+|Add_UINT128           | 13            | Adds the given [`U128`](#clvalue-numeric).                                   |
+|Add_UINT256           | 14            | Adds the given [`U256`](#clvalue-numeric).                                   |
+|Add_UINT512           | 15            | Adds the given [`U512`](#clvalue-numeric).                                   |
+|Add_Keys              | 16            | Adds the given collection of [named keys](#namedkey).                        |
+|Failure               | 17            | A failed transformation, containing an error message.                        |
+
+## TransformEntry {#transformentry}
+
+A transformation performed while executing a deploy.
+
+## UnbondingPurse {#unbondingpurse}
+
+A purse used for unbonding. The structure consists of the folloinwg:
+
+-   `bonding_purse` The bonding purse, serialized as a [`URef`](#clvalue-uref).
+
+-   `validator_public_key` The public key of the validator, serialized as a [`PublicKey`](#clvalue-publickey).
+
+-   `unbonder_public_key` The public key of the unbonder, serialized as a [`PublicKey`](#clvalue-publickey).
+
+-   `era_of_creation` Era in which this unbonding request was created, as an [`EraId`](#eraid) newtype, which serializes as a [`u64`](#clvalue-numeric) value.
+
+-   `amount` The unbonding amount, serialized as a [`U512`](#clvalue-numeric) value.
+
+## Values {#serialization-standard-values}
+
+A value stored in the global state is a `StoredValue`. A `StoredValue` is one of three possible variants:
+
+-   A `CLValue`
+-   A contract
+-   An account
+
+We discuss `CLValue` and contract in more detail below. Details about accounts can be found in [accounts-head](./accounts.md#accounts-head).
+
+Each `StoredValue` is serialized when written to the global state. The serialization format consists of a single byte tag, indicating which variant of `StoredValue` it is, followed by the serialization of that variant. The tag for each variant is as follows:
+
+-   `CLValue` is `0`
+-   `Account` is `1`
+-   `Contract` is `2`
+
+The details of `CLType` serialization are in the following section. Using the serialization format for `CLValue` as a basis, we can succinctly write the serialization rules for contracts and accounts:
+
+-   contracts serialize in the same way as data with `CLType` equal to `Tuple3(List(U8), Map(String, Key), Tuple3(U32, U32, U32))`;
+-   accounts serialize in the same way as data with `CLType` equal to `Tuple5(ByteArray(U8, 32), Map(String, Key), URef, Map(ByteArray(U8, 32), U8), Tuple2(U8, U8))`.
+
+Note: `Tuple5` is not a presently supported `CLType`. However, it is clear how to generalize the rules for `Tuple1`, `Tuple2`, `Tuple3` to any size tuple.
+
+Note: links to further serialization examples and a reference implementation are found in [Appendix B](./appendix.md#appendix-b).
+
+### `CLValue` {#clvalue}
+
+`CLValue` is used to describe data that is used by smart contracts. This could be as a local state variable, input argument, or return value. A `CLValue` consists of two parts: a `CLType` describing the type of the value and an array of bytes representing the data in our serialization format.
+
+`CLType` is described by the following recursive data type:
+
+```rust
+enum CLType {
+   Bool, // boolean primitive
+   I32, // signed 32-bit integer primitive
+   I64, // signed 64-bit integer primitive
+   U8, // unsigned 8-bit integer primitive
+   U32, // unsigned 32-bit integer primitive
+   U64, // unsigned 64-bit integer primitive
+   U128, // unsigned 128-bit integer primitive
+   U256, // unsigned 256-bit integer primitive
+   U512, // unsigned 512-bit integer primitive
+   Unit, // singleton value without additional semantics
+   String, // e.g. "Hello, World!"
+   URef, // unforgeable reference (see above)
+   Key, // global state key (see above)
+   PublicKey // A Casper system PublicKey type
+   Option(CLType), // optional value of the given type
+   List(CLType), // list of values of the given type (e.g. Vec in rust)
+   ByteArray(CLType, u32), // same as `List` above, but number of elements
+                           // is statically known (e.g. arrays in rust)
+   Result(CLType, CLType), // co-product of the the given types;
+                           // one variant meaning success, the other failure
+   Map(CLType, CLType), // key-value association where keys and values have the given types
+   Tuple1(CLType), // single value of the given type
+   Tuple2(CLType, CLType), // pair consisting of elements of the given types
+   Tuple3(CLType, CLType, CLType), // triple consisting of elements of the given types
+   Any // Indicates the type is not known
+}
+```
+
+All data which can be assigned a (non-`Any`) `CLType` can be serialized according to the following rules (this defines the Casper serialization format):
+
+#### Boolean {#clvalue-boolean}
+
+Boolean values serialize as a single byte; `true` maps to `1`, while `false` maps to `0`.
+
+#### Numeric {#clvalue-numeric}
+
+Numeric values consisting of 64 bits or less serialize in the two's complement representation with little-endian byte order, and the appropriate number of bytes for the bit-width.
+
+-   E.g. `7u8` serializes as `0x07`
+-   E.g. `7u32` serializes as `0x07000000`
+-   E.g. `1024u32` serializes as `0x00040000`
+
+-   Wider numeric values (i.e. `U128`, `U256`, `U512`) serialize as one byte given the length of the next number (in bytes), followed by the two's complement representation with little-endian byte order. The number of bytes should be chosen as small as possible to represent the given number. This is done to reduce the serialization size when small numbers are represented within a wide data type.
+
+-   E.g. `U512::from(7)` serializes as `0x0107`
+-   E.g. `U512::from(1024)` serializes as `0x020004`
+-   E.g. `U512::from("123456789101112131415")` serializes as `0x0957ff1ada959f4eb106`
+
+#### Unit {#clvalue-unit} 
+
+Unit serializes to an empty byte array.
+
+#### String {#clvalue-string}
+
+Strings serialize as a 32-bit integer representing the length in bytes (note: this might be different than the number of characters since special characters, such as emojis, take more than one byte), followed by the UTF-8 encoding of the characters in the string.
+
+-   E.g. `"Hello, World!"` serializes as `0x0d00000048656c6c6f2c20576f726c6421`
+
+#### Option {#clvalue-option}
+
+Optional values serialize with a single byte tag, followed by the serialization of the value itself. The tag is equal to `0` if the value is missing, and `1` if it is present.
+
+-   E.g. `None` serializes as `0x00`
+-   E.g. `Some(10u32)` serializes as `0x010a000000`
+
+#### List {#clvalue-list}
+
+A list of values serializes as a 32-bit integer representing the number of elements in the list (note this differs from strings where it gives the number of _bytes_), followed by the concatenation of each serialized element.
+
+-   E.g. `List()` serializes as `0x00000000`
+-   E.g. `List(1u32, 2u32, 3u32)` serializes as `0x03000000010000000200000003000000`
+
+#### ByteArray {#clvalue-ByteArray}
+
+A fixed-length list of values serializes as the concatenation of the serialized elements. Unlike a variable-length list, the length is not included in the serialization because it is statically known by the type of the value.
+
+-   E.g. `[1u32, 2u32, 3u32]` serializes as `0x010000000200000003000000`
+
+#### Result {#clvalue-result}
+
+A `Result` serializes as a single byte tag followed by the serialization of the contained value. The tag is equal to `1` for the success variant and `0` for the error variant.
+
+    -   E.g. `Ok(314u64)` serializes as `0x013a01000000000000`
+    -   E.g. `Err("Uh oh")` serializes as `0x00050000005568206f68`
+
+#### Tuple {#clvalue-tuple}
+
+Tuples serialize as the concatenation of their serialized elements. Similar to `ByteArray` the number of elements is not included in the serialization because it is statically known in the type.
+
+    -   E.g. `(1u32, "Hello, World!", true)` serializes as `0x010000000d00000048656c6c6f2c20576f726c642101`
+
+#### Map {#clvalue-map}
+
+A `Map` serializes as a list of key-value tuples. There must be a well-defined ordering on the keys, and in the serialization, the pairs are listed in ascending order. This is done to ensure determinism in the serialization, as `Map` data structures can be unordered.
+
+#### URef {#clvalue-uref}
+
+`URef` values serialize as the concatenation of its address (which is a fixed-length list of `u8`) and a single byte tag representing the access rights. Access rights are converted as follows:
+
+| Access Rights    | Serialization |
+| ---------------- | ------------- |
+| `NONE`           |  0           |
+| `READ`           |  1           |
+| `WRITE`          |  2           |
+| `READ_WRITE`     |  3           |
+| `ADD`            |  4           |
+| `READ_ADD`       |  5           |
+| `ADD_WRITE`      |  6           |
+| `READ_ADD_WRITE` |  7           |
+
+#### PublicKey {#clvalue-publickey}
+
+`PublicKey` serializes as a single byte tag representing the algorithm followed by 32 bytes of the `PublicKey` itself:
+
+-   If the `PublicKey` is an `Ed25519` key, the single tag byte is `1` followed by the individual bytes of the serialized key.
+-   If the `PublicKey` is a `Secp256k1` key, the single tag byte is a `2` followed by the individual bytes of the serialized key.
+
+#### Key {#clvalue-key}
+
+`Key` values serialize as a single byte tag representing the variant, followed by the serialization of the data that variant contains. For most variants, this is simply a fixed-length 32-byte array. The exception is `Key::URef`, which contains a `URef`; so its data serializes per the description above. The tags are as follows: `Key::Account` serializes as `0`, `Key::Hash` as `1`, `Key::URef` as `2`.
+
+#### CLType {#clvalue-cltype}
+
+`CLType` itself also has rules for serialization. A `CLType` serializes as a single-byte tag, followed by the concatenation of serialized inner types, if any (e.g., lists and tuples have inner types). `ByteArray` is a minor exception because it also includes the length in the type. However, the length is included in the serialization (as a 32-bit integer, per the serialization rules above), following the serialization of the inner type. The tags are as follows:
+
+| `CLType`    | Serialization Tag |
+| ----------- | ----------------- |
+| `Bool`      |  0               |
+| `I32`       |  1               |
+| `I64`       |  2               |
+| `U8`        |  3               |
+| `U32`       |  4               |
+| `U64`       |  5               |
+| `U128`      |  6               |
+| `U256`      |  7               |
+| `U512`      |  8               |
+| `Unit`      |  9               |
+| `String`    |  10              |
+| `Key`       |  11              |
+| `URef`      |  12              |
+| `Option`    |  13              |
+| `List`      |  14              |
+| `ByteArray` |  15              |
+| `Result`    |  16              |
+| `Map`       |  17              |
+| `Tuple1`    |  18              |
+| `Tuple2`    |  19              |
+| `Tuple3`    |  20              |
+| `Any`       |  21              |
+| `PublicKey` |  22              |
+
+#### CLValue {#clvalue-clvalue}
+
+A complete `CLValue`, including both the data and the type, can also be serialized (to store it in the global state). This is done by concatenating: the serialization of the length (as a 32-bit integer) of the serialized data (in bytes), the serialized data itself, and the serialization of the type.
+
+### Contracts {#global-state-contracts}
+
+Contracts are a special value type because they contain the on-chain logic of the applications running on the Casper network. A _contract_ contains the following data:
+
+-   a [wasm module](https://webassembly.github.io/spec/core/syntax/modules.html)
+-   a collection of named keys
+-   a protocol version
+
+The wasm module must contain a function named `call`, which takes no arguments and returns no values. This is the main entry point into the contract. Moreover, the module may import any of the functions supported by the Casper runtime; a list of all supported functions can be found in [Appendix A](./appendix.md#appendix-a).
+
+Note: though the `call` function signature has no arguments and no return value, within the `call` function body, the `get_named_arg` runtime function can be used to accept arguments (by ordinal), and the `ret` runtime function can be used to return a single `CLValue` to the caller.
+
+The named keys are used to give human-readable names to keys in the global state, which are essential to the contract. For example, the hash key of another contract it frequently calls may be stored under a meaningful name. It is also used to store the `URef`s, which are known to the contract (see the section on Permissions for details).
+
+Each contract specifies the Casper protocol version that was active when the contract was written to the global state.
