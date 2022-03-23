@@ -6,23 +6,17 @@ We provide a custom implementation to serialize data structures used by the Casp
 
 An Account is a structure that represents a user on a Casper Network. The account structure consists of the following fields:
 
--   [account_hash](#account-hash)
+-   [`account_hash`](#account-hash)
 
--   [named_keys](#namedkey)
+-   [`named_keys`](#namedkey)
 
--   [main_purse](#main-purse)
+-   `main_purse`
 
     The account's main purse `URef`. You may find information on `URef` serialization [here](#clvalue-uref).
 
--   [associated_keys](#associated-keys)
+-   [`associated_keys`](#associated-keys)
 
-    A mapping of account hashes to the weight of an account corresponding to that account hash.
-
--   `account_hash` The [account hash](#account-hash) of the associated key.
-
--   `weight` The weight of an associated key. The weight serializes as a [`u8` value](#clvalue-numeric).
-
-[action_thresholds](#action-thresholds)
+-   [`action_thresholds`](#action-thresholds)
 
 ## Account Hash {#account-hash}
 
