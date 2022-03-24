@@ -1,16 +1,16 @@
-# Safely Transferring Tokens to a Contract
+# Safely Transfer Tokens to a Contract
 
-This tutorial covers two methods through which you can handle tokens via a contract. There are a variety of potential applications that necessitate such a configuration. However, this is not a native process to the Casper network and will require the use of custom code. As such, the following two scenarios provide a framework for developers, as well as the pros and cons of each example. Developers should choose the option that best suits their individual needs.
+This tutorial covers two methods to handle tokens via a contract. This is not a native process to the Casper Network and will require the use of custom code. The following two scenarios provide a framework for developers and the pros and cons of each example. Developers should choose the option that best suits their individual needs.
 
 ## Scenario 1 - Creating a Throw-Away Purse {#scenario1}
 
 The first scenario involves the use of a single-use, throw-away purse. The caller creates and funds a purse independent of their main purse, before passing the URef to the callee.
 
-In this example, the smart contract retains full access to the purse, creating security concerns over its reuse by the caller. Further, it is possible for the caller to also retain full access to the disposable purse, although this is not demonstrated in the example. As such, the contract should remove any tokens from the purse and transfer them to another purse under their control to avoid issues.
+In this example, the smart contract retains full access to the purse, creating security concerns over its reuse by the caller. Further, it is also possible for the caller to retain full access to the disposable purse, although not demonstrated in the example. The contract should remove any tokens from the purse and transfer them to another purse under their control to avoid issues.
 
 This scenario is less complex, but more wasteful than the second scenario. Any purses created in this fashion remain permanent, but unused after the initial operation.
 
-* Please note that the creation of a purse costs 2.5 CSPR on the Casper mainnet.
+Please note that the creation of a purse costs 2.5 CSPR on the Casper Mainnet.
 
 ```
 
@@ -54,11 +54,11 @@ Advanced versions of this scenario can mitigate the wastefulness inherent in the
 
 ## Scenario 2 - Maintaining a Reusable Purse within Contract Logic {#scenario2}
 
-The second scenario involves more complex internal logic to allow for a purse's reuse. The contract itself keeps track of a purse, associated with the caller, as a means of internal bookkeeping.
+The second scenario involves more complex internal logic to allow for a purse's reuse. The contract itself keeps track of a purse associated with the caller as internal bookkeeping.
 
-In [Scenario 1](#scenario1), the newly created purse serves as a pure means of transferring tokens from the caller to the callee. In contrast, Scenario 2 maintains an internal purse associated with the caller's address. This purse serves as token storage for actions the caller wishes the contract to undertake on their behalf. It differs from [Scenario 1's Advanced Variation](#scenario1-advanced) in that the purse in question is under the control of the contract rather than the caller.
+In [Scenario 1](#scenario1), the newly created purse is a pure means of transferring tokens from the caller to the callee. In contrast, Scenario 2 maintains an internal purse associated with the caller's address. This purse serves as token storage for actions the caller wishes the contract to undertake on their behalf. It differs from [Scenario 1's Advanced Variation](#scenario1-advanced) in that the purse in question is under the control of the contract rather than the caller.
 
-Scenario 2 offers a less wasteful means of transferring tokens to a contract, but comes with the added burden of internal complexity. When choosing between the two scenarios, you must evaluate the scope and needs of your project and choose accordingly.
+Scenario 2 offers a less wasteful means of transferring tokens to a contract but comes with the added burden of internal complexity. When choosing between the two scenarios, you must evaluate the scope and needs of your project and choose accordingly.
 
 ```
 
@@ -101,6 +101,6 @@ pub extern "C" fn call() {
 
 ### Scenario 2 - Advanced Variation {#scenario2-advanced}
 
-In Scenario 2, the contract in question maintains a purse for each associated caller. The advanced variation establishes an internal ledger that records the balance of each caller. In this fashion, a single purse can store the motes of all callers accessing the contract. The contract can record the information for each caller as a dictionary item and respond accordingly.
+In Scenario 2, the contract in question maintains a purse for each associated caller. The advanced variation establishes an internal ledger that records the balance of each caller. The contract can record the information for each caller as a dictionary item and respond accordingly. In this fashion, a single purse can store the motes of all callers accessing the contract.
 
-This streamlines the internal accounting process of the contract, but does require a greater degree of complexity during initial setup.
+This design streamlines the internal accounting process of the contract but does require a greater degree of complexity during the initial setup.
