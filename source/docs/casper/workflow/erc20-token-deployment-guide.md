@@ -4,8 +4,6 @@ On the Casper Network, it is possible to create smart contracts that emulate ERC
 
 ## Prerequisites
 
-- Set up your machine as per the [prerequisites](https://casper.network/docs/workflow/setup).
-
 - [Set up an account](https://casper.network/docs/workflow/setup#setting-up-an-account).
 - [Fund your account](https://casper.network/docs/workflow/setup#fund-your-account).
 
@@ -62,7 +60,7 @@ Let's take a look at what these constants refer to.
 As long as you generated the keys with the aforementioned command within your project's root folder, the paths to your keys should be the same as already written in the code. Otherwise, you'll need to put in the alternate path to your keys in the `KEYS` constant.
 
 ```javascript
-const KEYS = Keys.Ed25519.parseKeyFiles(
+const KEYS = Keys.Ed25519.loadKeyPairFromPrivateFile(
   "./keys/secret_key.pem"
 );
 ```
