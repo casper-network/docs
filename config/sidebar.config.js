@@ -132,7 +132,6 @@
                         "dapp-dev-guide/tutorials/multi-sig/additional",           
                     ],
                 },
-                // "dapp-dev-guide/tutorials/upgrade-tutorial",
                 "dapp-dev-guide/tutorials/upgrade-contract",
                 "dapp-dev-guide/tutorials/casper-signer",
             ],
