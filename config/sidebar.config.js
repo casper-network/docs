@@ -133,6 +133,7 @@
                     ],
                 },
                 "dapp-dev-guide/tutorials/upgrade-contract",
+                "dapp-dev-guide/tutorials/transfer-token-to-contract",
                 "dapp-dev-guide/tutorials/casper-signer",
             ],
         },
