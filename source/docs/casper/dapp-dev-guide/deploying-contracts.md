@@ -188,10 +188,10 @@ Which will return a data structure like this:
 
 From this data structure we can observe some properties about the deploy (some of which can be set by the user):
 
--   Execution cost 164645 gas
--   No errors were returned by the contract
--   There were no dependencies for this deploy
--   The Time to Live was 1 hour
+-   Execution cost 164,645 motes, but we paid 10,000,000 motes. See the [note about gas prices](#a-note-about-gas-prices).
+-   No errors were returned by the contract.
+-   There were no dependencies for this deploy.
+-   The time-to-live was 1 hour.
 
 It is also possible to check the contract's state by performing a `query-global-state` command using the client. Run the following command for details.
 
