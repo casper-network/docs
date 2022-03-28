@@ -98,9 +98,7 @@ Start by creating an account using the [Casper Signer](../workflow/signer-guide.
 
 The Signer does not allow you to download the corresponding public key and hexadecimal representation of the public key. But, you can view them if you click the account details.
 
-<img src={useBaseUrl("/image/workflow/view-account.png")} alt="Signer View Account Option" width="200"/>
-
-<img src={useBaseUrl("/image/workflow/account-details.png")} alt="Signer Account Details" width="200" />
+<img src={useBaseUrl("/image/workflow/account-details.png")} alt="Signer Account Details" width="200" class="inline-img" />
 
 For [ed25519](../dapp-dev-guide/keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
 
