@@ -193,7 +193,12 @@ From this data structure we can observe some properties about the deploy (some o
 -   There were no dependencies for this deploy
 -   The Time to Live was 1 hour
 
-It is also possible to check the contract's state by performing a `query-global-state` command using the client.
+It is also possible to check the contract's state by performing a `query-global-state` command using the client. Run the following command for details.
+
+```bash
+casper-client  query-global-state --help
+```
+
 
 ### A Note about Gas Prices {#a-note-about-gas-prices}
 
