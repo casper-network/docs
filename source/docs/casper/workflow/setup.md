@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Prerequisites
 
 This section explains how to fulfill the prerequisites needed to interact with a Casper Network.
@@ -88,15 +90,20 @@ casper-client account-address --public-key <path-to-public_key.pem/public-key-he
 
 This option is available on networks that have a block explorer.
 
-For instance, on the official Testnet network the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
+For instance, on the official Testnet network, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
 
-Start by creating an account using the [Casper Signer](../workflow/signer-guide.md). You will need to download the keys of your new account by clicking on the `Download Active Key` option in the Casper Signer menu. Note that the account is not stored on chain.
+Start by creating an account using the [Casper Signer](../workflow/signer-guide.md). The Signer will prompt you to download the secret key of your new account by clicking on the `Download` option. The Signer will download the secret key in a file ending in `secret_key.cer`. We recommend securely storing this file. Note that the account is not stored on chain.
 
-The system will prompt you to save the following three files for your new account. These are your keys, so we recommend securely storing them:
+<img src={useBaseUrl("/image/workflow/download-prompt.png")} alt="Signer Secret Key Download Prompt" width="200" />
 
-1.  `secret_key.pem` - PEM encoded secret key
-2.  `public_key.pem` - PEM encoded public key
-3.  `public_key_hex` - Hexadecimal-encoded string of the public key
+The Signer does not allow you to download the corresponding public key and hexadecimal representation of the public key. But, you can view them if you click the account details.
+
+<img src={useBaseUrl("/image/workflow/view-account.png")} alt="Signer View Account Option" width="200"/>
+
+<img src={useBaseUrl("/image/workflow/account-details.png")} alt="Signer Account Details" width="200" />
+
+For [ed25519](../dapp-dev-guide/keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
+
 
 ## Fund your Account {#fund-your-account}
 
