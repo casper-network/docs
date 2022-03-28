@@ -1,244 +1,333 @@
-# Deploying Contracts
+# On-Chain Contracts
 
-Ultimately, smart contracts are meant to run on the blockchain. Once your smart contract is complete, it's time to deploy the contract to the blockchain. There are a few pre-requisites to doing this:
+Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](https://casper.network/docs/design/execution-semantics#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
--   A Client that communicates with the network
--   The private key for the account that pays for the deployment
--   Token to pay for the deployment on the network in the account associated with the private key. Each token transfer costs exactly 0.0001 CSPR (10000 motes). Also, the amount transferred needs to be a minimum of 2.5 CSPR.
+- You will need a client to interact with the network, such as the [default Casper client](../workflow/setup#the-casper-command-line-client).
+- Ensure you have an [Account](https://casper.network/docs/workflow/setup#setting-up-an-account) and its associated [keys](keys.md). This account will pay for the deploy, and its secret key will sign the deploy.
+- Ensure this account has enough CSPR tokens to pay for the deploy.
 
-This section will help you get set up with each prerequisite.
+## Paying for Deploys {#paying-for-deploys}
 
-## The Casper Client {#the-casper-client}
+CSPR tokens are used to pay for transactions on the Casper Network. There are several ways to fund your account:
 
-The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
+- You may want to [transfer tokens from an exchange](https://casper.network/docs/workflow/staking/#51-transfer-cspr-from-an-exchange).
+- You can use a [block explorer to transfer tokens](https://casper.network/docs/workflow/token-transfer/) between accounts.
+- You can also [transfer tokens using the default Casper client](https://casper.network/docs/workflow/transfers/).
+- On the Testnet, you can use the [faucet functionality](https://casper.network/docs/workflow/testnet-faucet/) for testing your smart contracts.
 
-### Check the Client Version {#check-the-client-version}
+## Sending a Deploy to the Network {#sending-the-deploy}
 
-There is an official Rust client, that works with the Casper [Testnet](https://testnet.cspr.live/) and [Mainnet](https://cspr.live/).
-
-To check the client version run:
-
-```bash
-casper-client --version
-```
-
-If you want to send your deployments to an external network, use the latest released version of the client. If you are building the client locally, check the gitHash and ensure it matches the gitHash of the network.
-
-### Token to Pay for Deployments {#token-to-pay-for-deployments}
-
-Blockchains are supported by infrastructure providers called "Validators". To use the Validator infrastructure, it's necessary to acquire token to pay for deployments (transactions). In a testnet, this is possible by using a faucet. Alternatively, accounts can be funded in Genesis, or token can be transferred from a Genesis account to a new account. In a production system, token is typically acquired by visiting an exchange.
-
-### Target Network {#target-network}
-
-When sending a deploy, the client needs to know which host will receive the deployment. The `node-address` and `chain-name` parameters provide this info.
-
-### Creating Keys {#creating-keys}
-
-Blockchains use asymmetric key encryption to secure transactions. For more information, see [Accounts and Cryptographic Keys](keys.md). The secret key used to sign the deployment will be the secret key of the account that is used to pay for the transaction. The transaction will execute in this account's context unless key delegation and the `from` parameter is being used. To create keys using the rust client, execute the following command:
-
-```bash
-casper-client keygen <TARGET DIRECTORY>
-```
-
-This process will create 3 files:
-
--   secret-key.pem
--   public-key.pem
--   public_key_hex
-
-When passing in the public key as hex, it's recommended to `$(cat public_key_hex)` in the transaction, or extract the contents of the file. Use the secret-key.pem file to sign transaction. 
-
-## Sending a Deployment to the Testnet {#sending-a-deployment-to-the-testnet}
-
-The easiest way to deploy a contract is to use an existing public network. The Testnet is operated by external validators that can accept transactions.
-
-### Obtain Token {#obtain-token}
-
-To send a deploy to the network, create keys and obtain token. Token can be obtained via a faucet or by a participant that has token. Connect to our [Discord](https://discord.com/invite/Q38s3Vh) to get token via an existing participant.
-
-### A Basic Deployment using the Command Line (Rust Client) {#a-basic-deployment-using-the-command-line-rust-client}
-
-As described above, a basic deployment must provide some essential information. Here is an example deployment using the Rust client that will work with the basic contract we created using the [Contracts SDK for Rust](writing-contracts/rust.md). The default port is 7777:
+You can call the Casper client's `put-deploy` command to put the compiled contract on the chain.
 
 ```bash
 casper-client put-deploy \
---chain-name <NETWORK_NAME> \
---node-address http://<HOST:PORT> \
---secret-key /home/keys/secret_key.pem \
---session-path /home/casper-node/target/wasm32-unknown-unknown/release/do_nothing.wasm \
---payment-amount 10000000
+    --node-address <HOST:PORT> \
+    --chain-name casper-test \
+    --secret-key <PATH> \
+    --payment-amount [PAYMENT_AMOUNT] \
+    --session-path <SESSION-PATH>
 ```
 
-If your deployment command is correct, expect to see a success message that looks like this:
+1.  `node-address` - An IP address of a [peer](https://casper.network/docs/workflow/setup/#acquire-node-address-from-network-peers) on the network. The default port on Mainnet and Testnet is 7777.
+2. `secret-key` - The file name containing the secret key of the account paying for the deploy
+3. `chain-name` - The chain-name to the network where you wish to send the deploy. This example uses the Testnet
+4. `payment-amount` - The payment for the deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-prices) below
+5. `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer.
 
-```bash
-{"api_version":"1.0.0","deploy_hash":"8c3068850354c2788c1664ac6a275ee575c8823676b4308851b7b3e1fe4e3dcc"}
-```
+Once you call this command, it will return a deploy hash, which you will need to verify that the deploy successfully took place. Sending a deploy to the network does not mean that the transaction was processed successfully. Once the network has received the deploy, it will queue up in the system before being listed in a block for execution. Therefore, you will need to check to see that the contract was executed as expected.
 
-Note: Each deploy gets a unique hash. This is part of the cryptographic security of blockchain technology. No two deploys will ever return the same hash.
-
-### Check Deploy Status {#check-deploy-status}
-
-Once the network has received the deployment, it will queue up in the system before being listed in a block for execution. Sending a transaction (deployment) to the network does not mean that the transaction processed successfully. Therefore, it's important to check to see that the contract executed properly, and that the block was finalized.
-
-```bash
-casper-client get-deploy \
---chain-name <NETWORK_NAME> \
---node-address http://<HOST:PORT> <DEPLOY_HASH>
-```
-
-Which will return a data structure like this:
+**Note**: Each deploy gets a unique hash, which is part of the cryptographic security of blockchain technology. No two deploys will ever return the same hash.
 
 <details>
-<summary>Sample deploy status</summary>
+<summary>Sample put-deploy result</summary>
 
 ```json
 {
-  "api_version": "1.0.0",
-  "deploy": {
-    "approvals": [
-      {
-        "signature": "01350549b0e0173e8612100dc954dcb021e2c3de2161050d397cba8cad5607b2e234115c0f419aeae8ce6cef1464e54b76c857923c42015277f9dd6ae920842c00",
-        "signer": "016af0262f67aa93a225d9d57451023416e62aaa8391be8e1c09b8adbdef9ac19d"
-      }
-    ],
-    "hash": "8c3068850354c2788c1664ac6a275ee575c8823676b4308851b7b3e1fe4e3dcc",
-    "header": {
-      "account": "016af0262f67aa93a225d9d57451023416e62aaa8391be8e1c09b8adbdef9ac19d",
-      "body_hash": "03cd3112fd235f7e3e474338ec08e2a8019789e02396cc2eb63f0006ffca6925",
-      "chain_name": "casper-charlie-testnet-7",
-      "dependencies": [],
-      "gas_price": 10,
-      "timestamp": "2020-10-21T19:30:39.601Z",
-      "ttl": "1h"
-    },
-    "payment": {
-      "ModuleBytes": {
-        "args": "0100000006000000616d6f756e74040000000380969808",
-        "module_bytes": ""
-      }
-    },
-    "session": {
-      "ModuleBytes": {
-        "args": "00000000",
-        "Module_bytes":
- }
-    }
-  },
-  "execution_results": [
-    {
-      "block_hash": "75df7506a8d150c81ddcfe8303362e22cea3b2359e845b96bccee0735b774e17",
-      "result": {
-        "cost": "164645",
-        "effect": {
-          "operations": {
-                      },
-          "transforms": {
-                          }
-            },
-            "hash-1e0c2b6c77bdfe707f9d452295b21b14196e74968886eecda16d68be4c298883": "WriteContract",
-            "hash-3284d00f39e9ceefa93884b7c171a8f7f9efc5d32b2104c41a12c77667ff03c3": "Identity",
-            "hash-439d5326bf89bd34d3b2c924b3af2f5e233298b473d5bd8b54fab61ccef6c003": "Identity",
-            "hash-46aa3a71a3824ccaa35273b9fa840f31400a1403d95f0e4c1caa992b272d15fc": "WriteContractWasm",
-            "hash-9f458c8e49b65a2e8cc1df2610d0639657f9b1010acfc94a08fd0be9962d3892": "Identity",
-            "hash-d4e7fc49e390a5789da70ff25a45fdf7348b1a72fdb37369f6d46f6fea65deff": "WriteContractPackage",
-            "hash-d74beacad19223c6f90953254b82e86d6499b0bb6824ed86a52e3c16491431d4": "Identity",
-            "hash-ebe6e4ad78c5913a4bca6d132d99b12df143f5129de946efca77d8d2a15174da": "Identity",
-            "uref-0994d1e6631ca447f5a324776175c8c98ffd8d46d964de3c67776804b61a7bdf-000": "Identity",
-            "uref-83b591182be016e97ba6640d9947b8358fbc106f97466e60fae9f10fa23737ee-000": {
-              "WriteCLValue": {
-                "bytes": "",
-                "cl_type": "Unit"
-              }
-            },
-            "uref-8dedcbbabf23d395dd7cc4933a862eda6335f1b9029394bce6df3e05f73d2061-000": {
-              "AddUInt512": "1646450"
-            },
-            "uref-a44cb28d40ac091da0c42f01d175ff10bae86e89457290e34ee7828ddbd32902-000": {
-              "WriteCLValue": {
-                "bytes": "",
-                "cl_type": "Unit"
-              }
-            },
-            "uref-c91b4bef8a426fff315aee6f05d6485ecf474296a9882f9bee8fa11e560e6c91-000": {
-              "WriteCLValue": {
-                "bytes": "1e0c2b6c77bdfe707f9d452295b21b14196e74968886eecda16d68be4c298883",
-                "cl_type": {
-                  "FixedList": [
-                    "U8",
-                    32
-                  ]
-                }
-              }
-            },
-            "uref-e2054113bc3d57386b3152d38ee774cb58dee3c87886d102ece04d9f3be274bf-000": {
-              "WriteCLValue": {
-                "bytes": "07c76fa8687e8d03",
-                "cl_type": "U512"
-              }
-            }
-          }
-        },
-        "error_message": null
-      }
-    }
+  "id": -6958186952964949950,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.5",
+    "deploy_hash": "34550c8b86d5e38260882466e98427c62a27a96d85c13f49041a1579ebf84496"
+  }
+}
 ```
+
 </details>
 
-From this data structure we can observe some properties about the deploy (some of which can be set by the user):
+Use the deploy hash to verify the deploy with the `get-deploy` command. 
 
--   Execution cost 164,645 motes, but we paid 10,000,000 motes. See the [note about gas prices](#a-note-about-gas-prices).
--   No errors were returned by the contract.
+```bash
+casper-client get-deploy \
+    --node-address <HOST:PORT> <DEPLOY-HASH>
+```
+
+If the deploy was successful, the `get-deploy` command would return a JSON object with the full details of the deploy.
+
+<details>
+<summary>Sample get-deploy result</summary>
+
+```json
+{
+  "id": -3532286620275982221,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.5",
+    "deploy": {
+      "approvals": [
+        {
+          "signature": "015a7b0178e144fbf5ce52147c44a3e6bd6aae898ec6bb47c97b5802f3bcb6cd26331f7db18464cd1e51764c14ceb24b7ab9c4e3595505c32465fc0702e8d5510b",
+          "signer": "01e76e0279a08b96d9d68e6b86c618de24a0c324d7d0c1fa8c035f0bc2af1a396d"
+        }
+      ],
+      "hash": "34550c8b86d5e38260882466e98427c62a27a96d85c13f49041a1579ebf84496",
+      "header": {
+        "account": "01e76e0279a08b96d9d68e6b86c618de24a0c324d7d0c1fa8c035f0bc2af1a396d",
+        "body_hash": "b1956600be3c11d7555ada11426ab1a8bdf36102f59838d6bf69cec321111a22",
+        "chain_name": "casper-test",
+        "dependencies": [],
+        "gas_price": 1,
+        "timestamp": "2022-03-24T12:05:57.579Z",
+        "ttl": "30m"
+      },
+      "payment": {
+        "ModuleBytes": {
+          "args": [
+            [
+              "amount",
+              {
+                "bytes": "05000c774203",
+                "cl_type": "U512",
+                "parsed": "14000000000"
+              }
+            ]
+          ],
+          "module_bytes": ""
+        }
+      },
+      "session": {
+        "ModuleBytes": {
+          "args": [],
+          "module_bytes": "[94478 hex chars]"
+        }
+      }
+    },
+    "execution_results": [
+      {
+        "block_hash": "098b618878a2413393925e1fbf6d3cf92f1208f4f8662a904e86b49b0c4ab9f0",
+        "result": {
+          "Success": {
+            "cost": "13327900740",
+            "effect": {
+              "operations": [],
+              "transforms": [
+                {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-624dbe2395b9d9503fbee82162f1714ebff6b639f96d2084d26d944c354ec4c5",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-9824d60dc3a5c44a20b9fd260a412437933835b52fc683d8ae36e4ec2114843e",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-3a61ed9a3b472f35f4cf1e241d674fad8a5f9509c97a56d62bb03f7bcc4b8474",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-98d945f5324f865243b7c02c0417ab6eac361c5c56602fd42ced834a1ba201b6",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-3a61ed9a3b472f35f4cf1e241d674fad8a5f9509c97a56d62bb03f7bcc4b8474",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "0500279bd1ca",
+                      "cl_type": "U512",
+                      "parsed": "871100000000"
+                    }
+                  }
+                },
+                {
+                  "key": "balance-98d945f5324f865243b7c02c0417ab6eac361c5c56602fd42ced834a1ba201b6",
+                  "transform": {
+                    "AddUInt512": "14000000000"
+                  }
+                },
+                {
+                  "key": "uref-82a7b5713f2b9b3f9e1b4f2d1f312a5fec7c3a0bed6fa897501913951729dbbf-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "00000000",
+                      "cl_type": "I32",
+                      "parsed": 0
+                    }
+                  }
+                },
+                {
+                  "key": "uref-ea022d75ff618533baf46040cc57692fb7f7840774c979c9dec0b5c3ddcec7e9-000",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "",
+                      "cl_type": "Unit",
+                      "parsed": null
+                    }
+                  }
+                },
+                {
+                  "key": "hash-4d0e2bfb5d243ea567e9b37aa8229d2b8b01de838c4bd7ca570a178e012d6b82",
+                  "transform": "WriteContractPackage"
+                },
+                {
+                  "key": "hash-4d0e2bfb5d243ea567e9b37aa8229d2b8b01de838c4bd7ca570a178e012d6b82",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-3b69bafcc13b4541dddd7d5492e4754feee41c636990aeb6bf78d58fdd39fc43",
+                  "transform": "WriteContractWasm"
+                },
+                {
+                  "key": "hash-c39dd923df84c637e46e46a8a3326fcf85e43c60814878f44a08efd0074cb523",
+                  "transform": "WriteContract"
+                },
+                {
+                  "key": "hash-4d0e2bfb5d243ea567e9b37aa8229d2b8b01de838c4bd7ca570a178e012d6b82",
+                  "transform": "WriteContractPackage"
+                },
+                {
+                  "key": "account-hash-f407926760b91c2ce3af8bda7448841b3aa68c6e98053331d10819ef2d0a808e",
+                  "transform": {
+                    "AddKeys": [
+                      {
+                        "key": "hash-c39dd923df84c637e46e46a8a3326fcf85e43c60814878f44a08efd0074cb523",
+                        "name": "counter"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "key": "deploy-34550c8b86d5e38260882466e98427c62a27a96d85c13f49041a1579ebf84496",
+                  "transform": {
+                    "WriteDeployInfo": {
+                      "deploy_hash": "34550c8b86d5e38260882466e98427c62a27a96d85c13f49041a1579ebf84496",
+                      "from": "account-hash-f407926760b91c2ce3af8bda7448841b3aa68c6e98053331d10819ef2d0a808e",
+                      "gas": "13327900740",
+                      "source": "uref-3a61ed9a3b472f35f4cf1e241d674fad8a5f9509c97a56d62bb03f7bcc4b8474-007",
+                      "transfers": []
+                    }
+                  }
+                },
+                {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-624dbe2395b9d9503fbee82162f1714ebff6b639f96d2084d26d944c354ec4c5",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-98d945f5324f865243b7c02c0417ab6eac361c5c56602fd42ced834a1ba201b6",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-9824d60dc3a5c44a20b9fd260a412437933835b52fc683d8ae36e4ec2114843e",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-98d945f5324f865243b7c02c0417ab6eac361c5c56602fd42ced834a1ba201b6",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-0a24ef56971d46bfefbd5590afe20e5f3482299aba74e1a0fc33a55008cf9453",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-98d945f5324f865243b7c02c0417ab6eac361c5c56602fd42ced834a1ba201b6",
+                  "transform": {
+                    "WriteCLValue": {
+                      "bytes": "00",
+                      "cl_type": "U512",
+                      "parsed": "0"
+                    }
+                  }
+                },
+                {
+                  "key": "balance-0a24ef56971d46bfefbd5590afe20e5f3482299aba74e1a0fc33a55008cf9453",
+                  "transform": {
+                    "AddUInt512": "14000000000"
+                  }
+                }
+              ]
+            },
+            "transfers": []
+          }
+        }
+      }
+    ]
+  }
+}
+
+```
+
+</details>
+
+We want to draw your attention to a few properties in the example output:
+
+-   Execution cost 13327900740 motes, yet we paid 14000000000 motes. See the [note about gas prices](#a-note-about-gas-prices).
+- The contract returned no errors. If you see an "Out of gas error", you did not have enough CSPR in your account to pay for contract execution.
 -   There were no dependencies for this deploy.
--   The time-to-live was 1 hour.
+-   The time-to-live was 30 minutes.
 
-It is also possible to check the contract's state by performing a `query-global-state` command using the client. Run the following command for details.
+It is also possible to check the deploy state by performing a `query-global-state` command using the client. Run the following command for details.
 
 ```bash
 casper-client  query-global-state --help
 ```
 
-### Check Deploy Execution {#check-deploy-execution}
+## Note about Gas Prices {#a-note-about-gas-prices}
 
-TBD
+A common question frequently arises: "How do I know what the payment amount (gas cost) should be?" 
 
+We recommend deploying your contracts in a test environment, either on the [Testnet](https://testnet.cspr.live/) or locally, with [nctl](https://casper.network/docs/dapp-dev-guide/setup-nctl/), making sure the cost tables match those of your production Casper Network. If you plan to deploy to Mainnet, you can use the Testnet. If you use nctl, you need to set it up to match the Mainnet chainspec.
 
-### A Note about Gas Prices {#a-note-about-gas-prices}
+If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost when deployed. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
 
-If you notice in the put-deploy command above, we supplied a payment amount argument:
+## Advanced Features {#advanced-features}
 
-```bash
---payment-amount 10000000
-```
+The Casper Network supports complex deploys using multiple signatures or deploy arguments.
 
-But the actual execution cost was only `164645` when it was run on the chain!
+### Deploys with multiple signatures {#multi-sig-deploys}
 
-A common question that frequently arises is: "How do I know what the payment amount (gas cost) should be?" The honest answer is that we are hard at work to create tools to help you estimate your costs. Currently, we recommend using the [NCTL](./setup-nctl.md) tool on your local machine or the testnet to deploy your contracts in a test environment. As you just saw, you can check a deploy status and roughly see how much it would actually cost when deployed.
+[Casper Accounts](../design/accounts.md) use a powerful permissions model to enable a multi-signature scheme for deploys.
 
-You can estimate the costs in this way, and then add a small buffer in case the network state has changed. So in this example above, you might have chosen to set the payment to 175000 or 200000, rather than the 10000000 that was used.
+The `put-deploy` command performs multiple actions under the hood, optimizing the typical use case. It creates a deploy, signs it, and deploys to the network without allowing multiple signatures. However, it is possible to call the following three commands and separate key management from account creation:
 
-Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage, fees, and refunding mechanisms.
+-   `make-deploy` - Creates a deploy and outputs it to a file or stdout. As a file, the deploy can subsequently be signed by other parties using the `sign-deploy` subcommand and then sent to the network for execution using the `send-deploy` subcommand
+-   `sign-deploy` - Reads a previously-saved deploy from a file, cryptographically signs it, and outputs it to a file or stdout
+-   `send-deploy` - Reads a previously-saved deploy from a file and sends it to the network for execution
 
-### Advanced Deployments {#advanced-deployments}
+To sign a deploy with multiple keys, create the deploy with the `make-deploy` command. The generated deploy file can be sent to the other signers, who then sign it with their keys by calling the `sign-deploy` for each key. Signatures need to be gathered on the deploy one after another until all required parties have signed the deploy. Finally, the signed deploy is sent to the network with the `send-deploy` command for processing.
 
-The Casper Network supports complex deployments.
+For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](https://casper.network/docs/workflow/two-party-multi-sig/) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper Network.
 
-#### Using Arguments with Deployments {#using-arguments-with-deployments}
+### Using arguments with deploys {#using-arguments-with-deploys}
 
-Casper contracts support arguments for deployments, which enables powerful capabilities for smart contract development. The casper client provides some examples on how to do this:
+Casper contracts support arguments for deploys, which enable powerful capabilities for smart contract development. The Casper client provides some examples of how to do this:
 
 ```bash
 casper-client put-deploy --show-arg-examples
 ```
-
-#### Creating, signing, and deploying contracts with multiple signatures {#creating-signing-and-deploying-contracts-with-multiple-signatures}
-
-The `deploy` command on its own provides multiple actions strung together optimizing for the common case, with the capability to separate concerns between your key management and deploy creation. See details about generating account key pairs in the Developer Guide.
-
-Every account can associate multiple keys with it and give each a weight. Collective weight of signing keys decides whether an action of certain type can be made. To learn more about how weights and thresholds work, please review the [Blockchain Design](../design/accounts.md). In order to collect weight of different associated keys, a deploy has to be signed by corresponding private keys. The `put-deploy` command creates a deploy, signs it and deploys to the node but doesn't allow for signing with multiple keys. Therefore, we split `deploy` into separate commands:
-
--   `make-deploy` - creates a deploy from input parameters
--   `sign-deploy` - signs a deploy with given private key
--   `send-deploy` - sends a deploy to a Casper node
-
-To make a deploy signed with multiple keys: first create the deploy with `make-deploy`. This generates a deploy file that can be sent to the other signers, who then sign it with their keys by calling `sign-deploy` for each key. Signatures need to be gathered on the deploy one after another, until all requisite parties have signed the deploy. Finally the signed deploy is sent to the node with `send-deploy` for processing by the network.
