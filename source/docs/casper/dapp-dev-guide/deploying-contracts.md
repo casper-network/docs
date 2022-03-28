@@ -90,6 +90,9 @@ casper-client get-deploy \
 
 Which will return a data structure like this:
 
+<details>
+<summary>Sample deploy status</summary>
+
 ```json
 {
   "api_version": "1.0.0",
@@ -120,7 +123,6 @@ Which will return a data structure like this:
       "ModuleBytes": {
         "args": "00000000",
         "Module_bytes":
-CONTRACT BYTECODE
  }
     }
   },
@@ -131,10 +133,8 @@ CONTRACT BYTECODE
         "cost": "164645",
         "effect": {
           "operations": {
-LIST OF OPERATIONS
                       },
           "transforms": {
-LIST OF TRANSFORMS
                           }
             },
             "hash-1e0c2b6c77bdfe707f9d452295b21b14196e74968886eecda16d68be4c298883": "WriteContract",
@@ -184,6 +184,7 @@ LIST OF TRANSFORMS
       }
     }
 ```
+</details>
 
 From this data structure we can observe some properties about the deploy (some of which can be set by the user):
 
