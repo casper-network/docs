@@ -2,7 +2,6 @@
 
 Ultimately, smart contracts are meant to run on the blockchain. Once your smart contract is complete, it's time to deploy the contract to the blockchain. There are a few pre-requisites to doing this:
 
--   An `upgrade` function to upgrade the smart contract, see [Smart Contract Upgrade Tutorial](../tutorials/upgrade-tutorial/) for more information
 -   A Client that communicates with the network
 -   The private key for the account that pays for the deployment
 -   Token to pay for the deployment on the network in the account associated with the private key. Each token transfer costs exactly 0.0001 CSPR (10000 motes). Also, the amount transferred needs to be a minimum of 2.5 CSPR.
@@ -198,6 +197,10 @@ It is also possible to check the contract's state by performing a `query-global-
 ```bash
 casper-client  query-global-state --help
 ```
+
+### Check Deploy Execution {#check-deploy-execution}
+
+TBD
 
 
 ### A Note about Gas Prices {#a-note-about-gas-prices}
