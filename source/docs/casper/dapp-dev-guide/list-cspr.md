@@ -1,6 +1,6 @@
 # Listing CSPR
 
-The Casper Network [whitepaper](../../../docs/casper/index.md) describes the capabilities of the network in detail. This document is tailored specifically for exchanges that wish to list the Casper token (CSPR). 
+This document is tailored specifically for exchanges that wish to list the Casper token (CSPR). 
 
 CSPR is listed on over 25 exchanges worldwide. As a token, CSPR is very straightforward to integrate. Developers can complete integration and testing in a matter of days.
 
