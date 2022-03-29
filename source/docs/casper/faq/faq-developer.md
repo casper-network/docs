@@ -140,10 +140,16 @@ If a deploy was executed, then it has been finalized. If the deploy status comes
 </details>
 
 <details>
-<summary><b>Is there an API available to query a node RPC endpoint?</b></summary>
+<summary><b>Is there a client API to query a Casper node's RPC endpoint?</b></summary>
 
-The client API of Casper Node is available at [Casper RPC API](http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/). You can find specific node-addresses at cspr.live for the [Testnet](https://testnet.cspr.live/tools/peers) or [Mainnet](https://cspr.live/tools/peers).
+The client API to query a node's RPC endpoint is available at [Casper RPC API](http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/). You can find specific node-addresses at cspr.live for the [Testnet](https://testnet.cspr.live/tools/peers) or [Mainnet](https://cspr.live/tools/peers).
 
+</details>
+
+<details>
+<summary><b>How can I monitor the events a node is emitting?</b></summary>
+
+You can monitor a node's event stream on the port specified as the event_stream_server.address in the node's config.toml, which is by default 9999 on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers. You will need the IP address of a [peer](https://casper.network/docs/workflow/setup/#acquire-node-address-from-network-peers) on the network. For more details and examples, visit the [Monitoring Events](../dapp-dev-guide/monitoring-events) page.
 </details>
 
 <details>
