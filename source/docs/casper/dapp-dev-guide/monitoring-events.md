@@ -19,7 +19,7 @@ curl -s http://<HOST>:9999/events/deploys
 To monitor FinalitySignature events, you can use this command:
 
 ```bash
-curl -s http://<HOST>:9999/events/deploys
+curl -s http://<HOST>:9999/events/sigs
 ```
 
 For all other event types, you can monitor the main endpoint:
@@ -28,4 +28,17 @@ For all other event types, you can monitor the main endpoint:
 curl -s http://<HOST>:9999/events/main
 ```
 
+If you have an old event ID, you can use the following command to query it. Replace HOST, EVENT_TYPE, and ID with the values you need.
+
+```bash
+curl -s http://<HOST>:9999/events/<EVENT_TYPE>?start_from=<ID>
+```
+
+**Example:**
+
+This example will output all the DeployAccepted events starting with event ID 29267508.
+
+```bash
+curl -s http://65.21.235.219:9999/events/main?start_from=29267508
+```
 
