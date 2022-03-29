@@ -2,20 +2,11 @@
 
 This guide intends to briefly show you the current features and advantages of building on the Casper Network.
 
-- [Why Build on Casper](#why-build-on-casper)
   - [Thriving Ecosystem {#thriving-ecosystem}](#thriving-ecosystem-thriving-ecosystem)
-    - [Wallets](#wallets)
-    - [Block Explorers](#block-explorers)
-    - [Developer Tools](#developer-tools)
   - [Developer-Friendly Language {#developer-friendly-language}](#developer-friendly-language-developer-friendly-language)
   - [Powerful Accounts {#powerful-accounts}](#powerful-accounts-powerful-accounts)
   - [Contract Upgrades {#contract-upgrades}](#contract-upgrades-contract-upgrades)
   - [Development Tools {#development-tools}](#development-tools-development-tools)
-    - [IDE Integration {#ide-integration}](#ide-integration-ide-integration)
-    - [CI/CD {#ci-cd}](#cicd-ci-cd)
-    - [Local Network Testing {#local-network-testing}](#local-network-testing-local-network-testing)
-    - [Public Mainnet and Testnet {#public-mainnet-and-testnet}](#public-mainnet-and-testnet-public-mainnet-and-testnet)
-    - [AWS {#aws}](#aws-aws)
   - [SDK Client Libraries {#sdk-client-libraries}](#sdk-client-libraries-sdk-client-libraries)
   - [Low Gas Fees {#low-gas-fees}](#low-gas-fees-low-gas-fees)
 
