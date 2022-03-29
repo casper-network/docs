@@ -146,6 +146,7 @@
                         "dapp-dev-guide/tutorials/multi-sig/additional",           
                     ],
                 },
+                "dapp-dev-guide/tutorials/transfer-token-to-contract",
                 "dapp-dev-guide/tutorials/upgrade-tutorial",
                 "dapp-dev-guide/tutorials/casper-signer",
             ],
