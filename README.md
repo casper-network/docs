@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://docs.casperlabs.io/docs.
+Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://docs.casperlabs.io/.
 
 ## Setup
 
