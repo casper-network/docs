@@ -72,7 +72,7 @@ rsync -av --inplace --sparse  /var/lib/casper/ /new_mount
 <details>
 <summary><b>Does Casper run on ARM?</b></summary>
 
-Casper-node does not work with ARM type servers. You can see our hardware specifications [here](../operators/hardware).
+Casper-node does not work with ARM type servers. You can see our hardware specifications [here](/operators/hardware/).
 
 </details>
 
@@ -80,13 +80,6 @@ Casper-node does not work with ARM type servers. You can see our hardware specif
 <summary><b>What operating systems are supported for casper-node?</b></summary>
 
 Casper is currently tested and packaged for Ubuntu 18.04 or 20.04.
-
-</details>
-
-<details>
-<summary><b>Do you have Ledger support?</b></summary>
-
-Casper is working with Ledger to integrate wallet solutions. You can monitor the progress [here](https://github.com/Zondax/ledger-casper).
 
 </details>
 

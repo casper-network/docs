@@ -5,6 +5,7 @@ module.exports = {
     tagline: "The best search experience for docs, integrated in minutes, for free",
     url: "https://operators.casper.network/",
     baseUrl: "/docs/",
+    trailingSlash: true,
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "throw",
     onDuplicateRoutes: "throw",
