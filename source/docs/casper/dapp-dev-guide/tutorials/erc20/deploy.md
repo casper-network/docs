@@ -38,7 +38,7 @@ make test
 ```
 
 ## Getting an IP Address from a Testnet Peer 
-Use the [acquire node address](/docs/workflow/setup#acquire-node-address-from-network-peers) section to get a node-ip-address. We use [peers](https://testnet.cspr.live/tools/peers) on Testnet since we are deploying to the Testnet. Select a peer address from the list and do the address format as below,
+Use the [acquire node address](/workflow/setup#acquire-node-address-from-network-peers) section to get a node-ip-address. We use [peers](https://testnet.cspr.live/tools/peers) on Testnet since we are deploying to the Testnet. Select a peer address from the list and do the address format as below,
 :::note
 Acquire a node address from the Testnet and use port '7777' instead of '35000' to send your deploy. If the selected peer is unresponsive, pick a different peer and try again
 :::
@@ -91,7 +91,7 @@ casper-client put-deploy \
 - `WASM FILE PATH`: The session-path argument should point to the location of your compiled ERC-20 WASM file
 
 :::note
-- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/docs/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
+- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
 
 - **We currently do not refund any tokens as part of a deploy.**
 
