@@ -2,7 +2,7 @@
 
 Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](https://casper.network/docs/design/execution-semantics#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
-- You will need a client to interact with the network, such as the [default Casper client](../workflow/setup#the-casper-command-line-client).
+- You will need a client to interact with the network, such as the [default Casper client](https://casper.network/docs/workflow/setup#the-casper-command-line-client).
 - Ensure you have an [Account](https://casper.network/docs/workflow/setup#setting-up-an-account) and its associated [keys](keys.md). This account will pay for the deploy, and its secret key will sign the deploy.
 - Ensure this account has enough CSPR tokens to pay for the deploy.
 
