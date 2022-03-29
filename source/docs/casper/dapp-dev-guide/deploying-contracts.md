@@ -34,7 +34,7 @@ curl -s http://65.21.235.219:9999/events/deploys?start_from=<ID>
 
 ## Sending a Deploy to the Network {#sending-the-deploy}
 
-You can call the Casper client's `put-deploy` command to put the compiled contract on the chain.
+You can call the Casper client's `put-deploy` command to put the compiled contract on the chain. In this example, the deploy will execute in the account's context. See the [advanced features](#advanced-features) section for key delegation and the use of deploy arguments.
 
 ```bash
 casper-client put-deploy \
@@ -78,7 +78,7 @@ casper-client get-deploy \
     --node-address <HOST:PORT> <DEPLOY-HASH>
 ```
 
-If the deploy was successful, the `get-deploy` command would return a JSON object with the full details of the deploy.
+If the deploy succeeded, the `get-deploy` command would return a JSON object with the full details of the deploy.
 
 <details>
 <summary>Sample get-deploy result</summary>
