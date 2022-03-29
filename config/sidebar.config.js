@@ -50,6 +50,7 @@ module.exports = {
         "dapp-dev-guide/setup-nctl",
         "dapp-dev-guide/upgrading-contracts",
         "dapp-dev-guide/deploying-contracts",
+        "dapp-dev-guide/monitoring-events",
         "dapp-dev-guide/calling-contracts",
         "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
