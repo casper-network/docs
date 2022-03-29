@@ -14,10 +14,10 @@ The [Prerequisites](/workflow/setup#the-casper-command-line-client) page lists i
 
 ## Monitoring the Event Stream for Deploys
 
-Before sending your deploy to the network, you can start monitoring a node's event stream for DeployAccepted events. This section will focus only on DeployAccepted events, but there are other event types described [here](). You need the following information to proceed:
+Before sending your deploy to the network, you can start monitoring a node's event stream for DeployAccepted events. This section will focus only on DeployAccepted events, but there are other event types described [here](monitoring-events.md). You need the following information to proceed:
 
 - The IP address of a [peer](https://casper.network/docs/workflow/setup/#acquire-node-address-from-network-peers) on the network
-- The port specified as the event_stream_server.address in the node's config.toml, which is by default 9999 on Mainnet and Testnet
+- The port specified as the *event_stream_server.address* in the node's *config.toml*, which is by default 9999 on Mainnet and Testnet
 - The URL for DeployAccepted events, which is <HOST:PORT>/events/deploys
 
 With the following command, you can start watching the event stream for DeployAccepted events. Note the event ID recorded when you send your deploy in the next section.
