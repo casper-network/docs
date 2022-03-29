@@ -24,6 +24,6 @@ If you do not see this message, check [the Getting Started guide](../../getting-
 Next, compile your contract and run the contract unit tests.
 
 ```bash
-make build-contracts
+make build-contract
 make test
 ```

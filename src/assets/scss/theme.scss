@@ -77,6 +77,15 @@ nav.menu {
             font-size: 14px;
             text-transform: capitalize;
             cursor: pointer;
+            padding-left: 20px;
+        }
+    }
+
+    .theme-doc-sidebar-item-category-level-1 {
+        .theme-doc-sidebar-item-category-level-2 {
+            .menu__link--sublist {
+                padding-left: 35px;
+            }
         }
     }
 }

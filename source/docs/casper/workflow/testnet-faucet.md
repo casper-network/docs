@@ -23,5 +23,5 @@ To request test tokens, follow these steps:
 
     <img src={useBaseUrl("/image/workflow/faucet-function.png")} width="500" />
 
-4. The Testnet will credit your account with test tokens. For instructions on how to view your CSPR balance, see [Viewing Account Details](signer-guide#6-viewing-account-details).
+4. The Testnet will credit your account with test tokens. For instructions on how to view your CSPR balance, see [Viewing Account Details](../signer-guide/#6-viewing-account-details).
 

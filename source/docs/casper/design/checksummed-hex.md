@@ -8,7 +8,7 @@ A checksum hex encoding is a format that includes an embedded checksum to avoid 
 Checksum hex-encoded keys are safer to use than lowercase hex-encoded keys because they enforce the validity of the key. They make it easier to ensure that the system cannot process transactions with invalid or nonexistent keys. For example, suppose you accidentally change a character in a checksum hex-encoded key. In that case, it will make the key impossible to decode so that the system would not send tokens to invalid addresses. However, if someone accidentally changes a character in a regular hex-encoded key, the system would accept it, potentially stranding tokens in an inaccessible account.
 
 
-The following [keys](../design/serialization-standard#serialization-standard-serialization-key) are checksum-hex encoded:
+The following [keys](/design/serialization-standard#serialization-standard-serialization-key) are checksum-hex encoded:
 
 - Account
 - Hash
