@@ -18,7 +18,7 @@ This guide intends to briefly show you the current features and advantages of bu
 The Casper Ecosystem is growing every day through the addition of new dApps and tools. Here is a short list of tools you can use.
 
 ### Wallets
-- [Ledger](https://www.ledger.com/supported-crypto-assets/token)
+- [Ledger](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true)
 - [Tor.us](https://app.tor.us/)
 - [Casper Signer](https://chrome.google.com/webstore/search/casper?hl=en)
 
