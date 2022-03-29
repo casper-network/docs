@@ -15,6 +15,26 @@ CSPR tokens are used to pay for transactions on the Casper Network. There are se
 - You can also [transfer tokens using the default Casper client](https://casper.network/docs/workflow/transfers/).
 - On the Testnet, you can use the [faucet functionality](https://casper.network/docs/workflow/testnet-faucet/) for testing your smart contracts.
 
+## Monitoring the Event Stream for Deploys
+
+Before sending your deploy to the network, you can start monitoring a node's event stream for DeployAccepted events. This section will focus only on DeployAccepted events, but there are other event types described [here](). You need the following information to proceed:
+
+- The IP address of a [peer](https://casper.network/docs/workflow/setup/#acquire-node-address-from-network-peers) on the network
+- The port specified as the event_stream_server.address in the node's config.toml, which is by default 9999 on Mainnet and Testnet
+- The URL for DeployAccepted events, which is <HOST:PORT>/events/deploys
+
+With the following command, you can start watching the event stream for DeployAccepted events. Note the event ID recorded when you send your deploy in the next section.
+
+```bash
+curl -s http://65.21.235.219:9999/events/deploys
+```
+
+**Note**: If you have an old ID for a DeployAccepted event, you can use the following command to query it:
+
+```bash
+curl -s http://65.21.235.219:9999/events/deploys?start_from=<ID>
+```
+
 ## Sending a Deploy to the Network {#sending-the-deploy}
 
 You can call the Casper client's `put-deploy` command to put the compiled contract on the chain.
@@ -28,7 +48,7 @@ casper-client put-deploy \
     --session-path <SESSION-PATH>
 ```
 
-1.  `node-address` - An IP address of a [peer](https://casper.network/docs/workflow/setup/#acquire-node-address-from-network-peers) on the network. The default port on Mainnet and Testnet is 7777.
+1. `node-address` - An IP address of a peer on the network. The default port on Mainnet and Testnet is 7777.
 2. `secret-key` - The file name containing the secret key of the account paying for the deploy
 3. `chain-name` - The chain-name to the network where you wish to send the deploy. This example uses the Testnet
 4. `payment-amount` - The payment for the deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-prices) below
@@ -54,7 +74,7 @@ Once you call this command, it will return a deploy hash, which you will need to
 
 </details>
 
-Use the deploy hash to verify the deploy with the `get-deploy` command. 
+Verify the deploy details with the `get-deploy` command and the deploy_hash received above.
 
 ```bash
 casper-client get-deploy \
@@ -298,14 +318,6 @@ It is also possible to check the deploy state by performing a `query-global-stat
 casper-client  query-global-state --help
 ```
 
-## Note about Gas Prices {#a-note-about-gas-prices}
-
-A common question frequently arises: "How do I know what the payment amount (gas cost) should be?" 
-
-We recommend deploying your contracts in a test environment, either on the [Testnet](https://testnet.cspr.live/) or locally, with [nctl](https://casper.network/docs/dapp-dev-guide/setup-nctl/), making sure the cost tables match those of your production Casper Network. If you plan to deploy to Mainnet, you can use the Testnet. If you use nctl, you need to set it up to match the Mainnet chainspec.
-
-If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost when deployed. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
-
 ## Advanced Features {#advanced-features}
 
 The Casper Network supports complex deploys using multiple signatures or deploy arguments.
@@ -331,3 +343,11 @@ Casper contracts support arguments for deploys, which enable powerful capabiliti
 ```bash
 casper-client put-deploy --show-arg-examples
 ```
+
+## A Note about Gas Prices {#a-note-about-gas-prices}
+
+A common question frequently arises: "How do I know what the payment amount (gas cost) should be?" 
+
+We recommend deploying your contracts in a test environment, either on the [Testnet](https://testnet.cspr.live/) or locally, with [nctl](https://casper.network/docs/dapp-dev-guide/setup-nctl/), making sure the cost tables match those of your production Casper Network. If you plan to deploy to Mainnet, you can use the Testnet. If you use nctl, you need to set it up to match the Mainnet chainspec.
+
+If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost when deployed. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
