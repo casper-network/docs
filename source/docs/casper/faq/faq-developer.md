@@ -203,9 +203,9 @@ casper-client get-block-transfers --help
 </details>
 
 <details>
- <summary><b>When is the balance updated for a deploy containing a transfer?</b></summary>
+ <summary><b>When is the balance updated after a deploy?</b></summary>
 
- Execution occurs after consensus. As outlined [here in the dApp Development Guide]( https://docs.casperlabs.io/dapp-dev-guide/deploying-contracts#check-deploy-status), deployments are queued in the system before being listed in a block for execution.
+ Execution occurs after consensus. As outlined [in the dApp Developer Guide](/dapp-dev-guide/on-chain-contracts#monitoring-the-event-stream-for-deploys), deploys are queued in the system before being listed in a block for execution.
 
  Balance updates should occur after contract execution and block finalization.
 
@@ -228,9 +228,9 @@ casper-client get-block-transfers --help
 </details>
 
 <details>
-<summary><b>What is the difference between key management and deployment?</b></summary>
+<summary><b>What is the difference between key management and deploys?</b></summary>
 
-There are two types of action that an account can perform: deployment and key management. Deployment is simply executing some code on the blockchain, while key management involves changing the associated keys. Key management cannot occur independently, but must come via a deploy. Therefore, a key management action implies that a deployment action also occurs.
+There are two types of action that an account can perform: a deploy and key management. Deploys are simply executing some code on the blockchain, while key management involves changing the associated keys. Key management cannot occur independently but must come via a deploy. Therefore, a key management action implies that a deploy action also occurs.
 
 You may also reference the following two documents for additional information:
 
