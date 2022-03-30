@@ -108,7 +108,7 @@ jobs:
 
     - name: Edit baseurl in _config.yml
       run: |
-        sed -i 's/^baseurl.*$/baseurl: "\/docs"/' _config.yml
+        sed -i 's/^baseurl.*$/baseurl: "\/"/' _config.yml
       working-directory: ./docs
 
     - name: Run Jekyll site locally and test
@@ -120,11 +120,11 @@ jobs:
         done
         echo "Jekyll site is up..."
         echo "Testing if homepage responds correctly"
-        curl --fail http://127.0.0.1:4000/docs/
+        curl --fail http://127.0.0.1:4000/
         echo "Testing if a page responds correctly"
-        curl --fail http://127.0.0.1:4000/docs/operators/create/
+        curl --fail http://127.0.0.1:4000/operators/create/
         echo "Testing if a page responds correctly"
-        curl --fail http://127.0.0.1:4000/docs/design/serialization-standard/
+        curl --fail http://127.0.0.1:4000/design/serialization-standard/
       working-directory: ./docs
 
   deploy-prod:

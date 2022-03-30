@@ -108,7 +108,7 @@ No, smart contracts cannot interact with the world outside of the blockchain on 
 <details>
 <summary><b>Why do I receive a 'casper-client: command not found' error?</b></summary>
 
-Refer to the [Casper Command-line Client](https://casper.network/docs/workflow/setup#the-casper-command-line-client) document for instructions on interacting with the Casper Network.
+Refer to the [Casper Command-line Client](https://docs.casperlabs.io/workflow/setup#the-casper-command-line-client) document for instructions on interacting with the Casper Network.
 
 </details>
 
@@ -197,7 +197,7 @@ With these APIs, you can pull information from the node, such as transaction set
 <details>
  <summary><b> When is the balance updated after a deploy?</b></summary>
 
- Execution occurs after consensus. As outlined [here in the dApp Development Guide]( https://casper.network/docs/dapp-dev-guide/on-chain-contracts#check-deploy-status), deployments are queued in the system before being listed in a block for execution.
+ Execution occurs after consensus. As outlined [here in the dApp Development Guide](/dapp-dev-guide/on-chain-contracts#check-deploy-status), deployments are queued in the system before being listed in a block for execution.
 
  Balance updates should occur after contract execution and block finalization.
 
@@ -226,15 +226,15 @@ There are two types of action that an account can perform: deployment and key ma
 
 You may also reference the following two documents for additional information:
 
-- [Accounts](https://casper.network/docs/design/accounts)
-- [Multi-Signature Tutorial](https://casper.network/docs/multi-sig)
+- [Accounts](https://docs.casperlabs.io/design/accounts)
+- [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig)
 
 </details>
 
 <details>
 <summary><b>How is 'Keys-manager.js' used in the Multi-Signature Tutorial?</b></summary>
 
-In the [Multi-Signature Tutorial](https://casper.network/docs/multi-sig), `scenario-*.js` accesses functions from `key-manager.js` through `const keyManager = require('./key-manager');`.
+In the [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig), `scenario-*.js` accesses functions from `key-manager.js` through `const keyManager = require('./key-manager');`.
 
 </details>
 
