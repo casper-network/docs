@@ -149,7 +149,7 @@ The client API to query a node's RPC endpoint is available at [Casper RPC API](h
 <details>
 <summary><b>How can I monitor the events a node is emitting?</b></summary>
 
-You can monitor a node's event stream on the port specified as the *event_stream_server.address* in the node's configuration (config.toml), which is by default 9999 on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](/dapp-dev-guide/monitoring-events.md) page.
+You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](/dapp-dev-guide/monitoring-events.md) page.
 
 </details>
 
