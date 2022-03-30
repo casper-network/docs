@@ -11,7 +11,7 @@
         "workflow/querying",
         "workflow/account-hash",
         "workflow/two-party-multi-sig",
-        {
+                {
             type: "category",
             label: "Transferring Tokens",
             collapsible: true,
@@ -48,6 +48,13 @@
             collapsible: true,
             collapsed: true,
             items: ["dapp-dev-guide/writing-contracts/index", "dapp-dev-guide/writing-contracts/rust", "dapp-dev-guide/writing-contracts/assembly-script"],
+        },
+        {
+            type: "category",
+            label: "Casper Smart Contracts",
+            collapsible: true,
+            collapsed: true,
+            items: ["dapp-dev-guide/smart-contracts/overview", "dapp-dev-guide/smart-contracts/create-smart-contract"],
         },
         "dapp-dev-guide/testing",
         "dapp-dev-guide/setup-nctl",
