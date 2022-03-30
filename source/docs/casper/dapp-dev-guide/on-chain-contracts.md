@@ -14,7 +14,7 @@ The [Prerequisites](/workflow/setup#the-casper-command-line-client) page lists i
 
 ## Monitoring the Event Stream for Deploys
 
-Before sending your deploy to the network, you can start monitoring a node's event stream for DeployAccepted events. This section will focus only on DeployAccepted events, but there are other event types described [here](monitoring-events.md). You need the following information to proceed:
+If you want to follow the [lifecycle](../design/execution-semantics.md/#execution-semantics-phases) of the deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](monitoring-events.md). You need the following information to proceed:
 
 - The IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network
 - The port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default 9999 on Mainnet and Testnet
@@ -351,6 +351,6 @@ For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](/workf
 
 A common question frequently arises: "How do I know what the payment amount (gas cost) should be?" 
 
-We recommend deploying your contracts in a test environment, either on the [Testnet](https://testnet.cspr.live/) or locally, with [nctl](/dapp-dev-guide/setup-nctl/), making sure the cost tables match those of your production Casper Network. If you plan to deploy to Mainnet, you can use the Testnet. If you use nctl, you need to set it up to match the Mainnet chainspec.
+We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper Network to which you want to send the deploy. If you plan on sending a deploy to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the deploy.
 
-If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost when deployed. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
+If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
