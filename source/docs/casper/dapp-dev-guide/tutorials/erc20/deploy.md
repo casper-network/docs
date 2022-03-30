@@ -2,16 +2,16 @@
 # Contract Deployment
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Now that you have implemented the smart contract for ERC-20, it's time to deploy it to the blockchain. Deploying the ERC-20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer to the [Deploying Contracts](/docs/dapp-dev-guide/deploying-contracts#advanced-deployments) section to learn more about overall contract deployment.
+Now that you have implemented the smart contract for ERC-20, it's time to deploy it to the blockchain. Deploying the ERC-20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer to the [Deploying Contracts](/dapp-dev-guide/deploying-contracts#advanced-deployments) section to learn more about overall contract deployment.
 
 Let's dive into the deployment process.
 
 ### Pre-requisites
 
-- Set up your machine as per the [prerequisites](/docs/workflow/setup)
-- Ensure you have an [Account](https://casper.network/docs/workflow/setup#setting-up-an-account), the associated key pair,  and the required amount of tokens to perform the deploy
+- Set up your machine as per the [prerequisites](/workflow/setup)
+- Ensure you have an [Account](https://docs.casperlabs.io/workflow/setup#setting-up-an-account), the associated key pair,  and the required amount of tokens to perform the deploy
 - Ensure your [account](https://testnet.cspr.live/tools/faucet) contains enough `CSPR Tokens` to perform the execution. 
-  -CSPR Tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](https://casper.network/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
+  -CSPR Tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](https://docs.casperlabs.io/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
 - Install [Casper client](/dapp-dev-guide/tutorials/counter/setup) to interact with the network
 
 ## Basic Flow
@@ -38,7 +38,7 @@ make test
 ```
 
 ## Getting an IP Address from a Testnet Peer 
-Use the [acquire node address](/docs/workflow/setup#acquire-node-address-from-network-peers) section to get a node-ip-address. We use [peers](https://testnet.cspr.live/tools/peers) on Testnet since we are deploying to the Testnet. Select a peer address from the list and do the address format as below,
+Use the [acquire node address](/workflow/setup#acquire-node-address-from-network-peers) section to get a node-ip-address. We use [peers](https://testnet.cspr.live/tools/peers) on Testnet since we are deploying to the Testnet. Select a peer address from the list and do the address format as below,
 :::note
 Acquire a node address from the Testnet and use port '7777' instead of '35000' to send your deploy. If the selected peer is unresponsive, pick a different peer and try again
 :::
@@ -91,11 +91,11 @@ casper-client put-deploy \
 - `WASM FILE PATH`: The session-path argument should point to the location of your compiled ERC-20 WASM file
 
 :::note
-- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/docs/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
+- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
 
 - **We currently do not refund any tokens as part of a deploy.**
 
-  Eg:- If you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the extra 9 CSPR. Refer to the [computational cost and gas amounts](https://casper.network/docs/design/execution-semantics#execution-semantics-gas) for further details
+  Eg:- If you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the extra 9 CSPR. Refer to the [computational cost and gas amounts](https://docs.casperlabs.io/design/execution-semantics#execution-semantics-gas) for further details
 :::
 
 Find the sample *put-deploy* command below:
