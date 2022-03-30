@@ -51,7 +51,7 @@ casper-client put-deploy \
 1. `node-address` - An IP address of a peer on the network. The default port on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the deploy
 3. `chain-name` - The chain-name to the network where you wish to send the deploy. This example uses the Testnet
-4. `payment-amount` - The payment for the deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-prices) below
+4. `payment-amount` - The payment for the deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-price) below
 5. `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
 
 Once you call this command, it will return a deploy hash, which you will need to verify that the deploy successfully took place. Sending a deploy to the network does not mean that the transaction was processed successfully. Once the network has received the deploy, it will queue up in the system before being listed in a block for execution. Therefore, you will need to check to see that the contract was executed as expected.
@@ -307,7 +307,7 @@ If the deploy succeeded, the `get-deploy` command would return a JSON object wit
 
 We want to draw your attention to a few properties in the example output:
 
--   Execution cost 13327900740 motes, yet we paid 14000000000 motes. See the [note about gas prices](#a-note-about-gas-prices)
+-   Execution cost 13327900740 motes, yet we paid 14000000000 motes. See the [note about gas price](#a-note-about-gas-price)
 - The contract returned no errors. If you see an "Out of gas error", you did not have enough CSPR in your account to pay for contract execution
 -   There were no dependencies for this deploy
 -   The time-to-live was 30 minutes
@@ -344,7 +344,7 @@ Casper contracts support arguments for deploys, which enable powerful capabiliti
 casper-client put-deploy --show-arg-examples
 ```
 
-## A Note about Gas Prices {#a-note-about-gas-prices}
+## A Note about Gas Price {#a-note-about-gas-price}
 
 A common question frequently arises: "How do I know what the payment amount (gas cost) should be?" 
 

@@ -128,7 +128,7 @@ If the calls use the same arguments, yet the cost is increasing, you might consi
 <details>
 <summary><b>Why does my deploy get an 'Out of Gas' error?</b></summary>
 
-If you receive this error, try specifying a higher amount of CSPR for the deployment.
+If you received this error, the specified payment amount for the deploy was insufficient. Try specifying a higher amount of CSPR and re-send the deploy. See the [note about gas price](dapp-dev-guide/on-chain-contracts.md#a-note-about-gas-price) for [On-Chain Contracts](dapp-dev-guide/on-chain-contracts.md).
 
 </details>
 

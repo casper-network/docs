@@ -92,7 +92,7 @@ casper-client put-deploy \
 
 :::note
 
-- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/dapp-dev-guide/on-chain-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
+- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/dapp-dev-guide/on-chain-contracts#a-note-about-gas-price) to understand more about payment amounts and gas price adjustments
 
 - **We currently do not refund any tokens as part of a deploy.**
 
