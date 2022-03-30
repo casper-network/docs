@@ -6,7 +6,14 @@ The Casper node streams deploy execution effects and finality signatures through
 - `/events/sigs` for FinalitySignature events
 - `/events/main` for all other event types
 
-Each URL can have a query string added of the form `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events. Such purging happens because a limited number of historical events are available in the event cache.
+Each URL can have a query string added of the form `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events.
+
+:::note
+
+The server keeps only a limited number of events cached to allow replaying the stream to clients using the `?start_from=` query string. The cache size can be set differently on each node using the `event_stream_buffer_length` value in the *config.toml*. By default, it is only 5000. 
+The intended use case is to allow a client consuming the event stream that loses its connection to reconnect and hopefully catch up with events that were emitted while it was disconnected.
+
+:::
 
 ## Usage
 
