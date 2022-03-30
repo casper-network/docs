@@ -142,14 +142,23 @@ If a deploy was executed, then it has been finalized. If the deploy status comes
 <details>
 <summary><b>Is there a client API to query a Casper node's RPC endpoint?</b></summary>
 
-The client API to query a node's RPC endpoint is available at [Casper RPC API](http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/). You can find specific node-addresses at cspr.live for the [Testnet](https://testnet.cspr.live/tools/peers) or [Mainnet](https://cspr.live/tools/peers).
+You can query the JSON-RPC API of a node on a Casper network. You will need the IP address of a node and the REST endpoint for status and metrics, which is by default 8888 on Mainnet and Testnet. You can find specific node addresses for [Testnet](https://testnet.cspr.live/tools/peers) or [Mainnet](https://cspr.live/tools/peers).
 
+```bash
+http://<HOST>:8888/rpc-schema
+```
+
+You can also run the Casper client `list-rpcs` command to get the full list of available JSON-RPC methods. You will need the RPC endpoint for interaction with the casper-client, which is by default 7777 on Mainnet and Testnet.
+
+```bash
+casper-client list-rpcs --node-address <HOST:7777>
+```
 </details>
 
 <details>
 <summary><b>How can I monitor the events a node is emitting?</b></summary>
 
-You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](/dapp-dev-guide/monitoring-events.md) page.
+You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on Testnet and Mainnet. You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](dapp-dev-guide/monitoring-events.md) page.
 
 </details>
 
@@ -164,7 +173,7 @@ On-chain accounts are associated with an account address. Deploy data includes a
 <details>
   <summary><b>When are finality signatures needed?</b></summary>
   
-  Finality signatures are confirmations from validators that they have executed the deploy. Exchanges should be asserting finality by collecting the weight of two-thirds of deploy signatures. If an exchange runs a read-only node, it can collect these finality signatures from its node. Otherwise, the exchange must assert finality by collecting finality signatures and have proper monitoring infrastructure to prevent a Byzantine attack.
+  Finality signatures are confirmations from validators that they have executed the deploy. Exchanges should be asserting finality by collecting the weight of two-thirds of finality signatures. If an exchange runs a read-only node, it can collect these finality signatures from its node. Otherwise, the exchange must assert finality by collecting finality signatures and have proper monitoring infrastructure to prevent a Byzantine attack.
 <br/><br/>
 Suppose an exchange connects to someone else's node RPC to send deploys to the network. In this case, the node is considered high risk, and the exchange must assert finality by checking to see how many validators have run the deploys in the network.
 
@@ -178,21 +187,19 @@ Suppose an exchange connects to someone else's node RPC to send deploys to the n
 </details>
 
 <details>
-  <summary><b>Can you provide an example of a deploy?</b></summary>
-  
-  You can find a deploy reference in <a href="https://github.com/casper-ecosystem/casper-js-sdk/blob/next/test/lib/DeployUtil.test.ts#L5">GitHub</a>.
-</details>
-
-<details>
  <summary><b>Does the node API have a 'getTransactions' function?</b></summary>
 
-The node API JSON-RPC is found <a href="http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/">here</a>. Also, the node emits the following events:
+The Casper node provides a `chain_get_block_transfers` JSON-RPC method, which returns all transfers for a block from the network. Run the Casper client `list-rpcs` command to get the full details. You will need the IP address of a node and the RPC endpoint for interaction with the casper-client, which is by default 7777 on Mainnet and Testnet.
 
--   BlockAdded
--   DeployProcessed
--   ConsensusFinalitySignature
+```bash
+casper-client list-rpcs --node-address <HOST:7777>
+```
 
-With these APIs, you can pull information from the node, such as transaction sets.
+The Casper client also provides the `get-block-transfers` subcommand, which uses `chain_get_block_transfers` under the hood. To find out more about `get-block-transfers`, run the help command:
+
+```bash
+casper-client get-block-transfers --help
+```
 
 </details>
 
