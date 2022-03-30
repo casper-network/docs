@@ -1,25 +1,25 @@
 # On-Chain Contracts
 
-Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](https://casper.network/docs/design/execution-semantics#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
+Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](/design/execution-semantics#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
-- You will need a client to interact with the network, such as the [default Casper client](https://casper.network/docs/workflow/setup#the-casper-command-line-client).
-- Ensure you have an [Account](https://casper.network/docs/workflow/setup#setting-up-an-account) and its associated [keys](keys.md). This account will pay for the deploy, and its secret key will sign the deploy.
+- You will need a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client).
+- Ensure you have an [Account](/workflow/setup#setting-up-an-account) and its associated [keys](keys.md). This account will pay for the deploy, and its secret key will sign the deploy.
 - Ensure this account has enough CSPR tokens to pay for the deploy.
 
 ## Paying for Deploys {#paying-for-deploys}
 
 CSPR tokens are used to pay for transactions on the Casper Network. There are several ways to fund your account:
 
-- You may want to [transfer tokens from an exchange](https://casper.network/docs/workflow/staking/#51-transfer-cspr-from-an-exchange).
-- You can use a [block explorer to transfer tokens](https://casper.network/docs/workflow/token-transfer/) between accounts.
-- You can also [transfer tokens using the default Casper client](https://casper.network/docs/workflow/transfers/).
-- On the Testnet, you can use the [faucet functionality](https://casper.network/docs/workflow/testnet-faucet/) for testing your smart contracts.
+- You may want to [transfer tokens from an exchange](/workflow/staking/#51-transfer-cspr-from-an-exchange).
+- You can use a [block explorer to transfer tokens](/workflow/token-transfer/) between accounts.
+- You can also [transfer tokens using the default Casper client](/workflow/transfers/).
+- On the Testnet, you can use the [faucet functionality](/workflow/testnet-faucet/) for testing your smart contracts.
 
 ## Monitoring the Event Stream for Deploys
 
 Before sending your deploy to the network, you can start monitoring a node's event stream for DeployAccepted events. This section will focus only on DeployAccepted events, but there are other event types described [here](monitoring-events.md). You need the following information to proceed:
 
-- The IP address of a [peer](https://casper.network/docs/workflow/setup/#acquire-node-address-from-network-peers) on the network
+- The IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network
 - The port specified as the *event_stream_server.address* in the node's *config.toml*, which is by default 9999 on Mainnet and Testnet
 - The URL for DeployAccepted events, which is <HOST:PORT>/events/deploys
 
@@ -334,7 +334,7 @@ The `put-deploy` command performs multiple actions under the hood, optimizing th
 
 To sign a deploy with multiple keys, create the deploy with the `make-deploy` command. The generated deploy file can be sent to the other signers, who then sign it with their keys by calling the `sign-deploy` for each key. Signatures need to be gathered on the deploy one after another until all required parties have signed the deploy. Finally, the signed deploy is sent to the network with the `send-deploy` command for processing.
 
-For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](https://casper.network/docs/workflow/two-party-multi-sig/) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper Network.
+For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](/workflow/two-party-multi-sig/) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper Network.
 
 ### Using arguments with deploys {#using-arguments-with-deploys}
 
@@ -348,6 +348,6 @@ casper-client put-deploy --show-arg-examples
 
 A common question frequently arises: "How do I know what the payment amount (gas cost) should be?" 
 
-We recommend deploying your contracts in a test environment, either on the [Testnet](https://testnet.cspr.live/) or locally, with [nctl](https://casper.network/docs/dapp-dev-guide/setup-nctl/), making sure the cost tables match those of your production Casper Network. If you plan to deploy to Mainnet, you can use the Testnet. If you use nctl, you need to set it up to match the Mainnet chainspec.
+We recommend deploying your contracts in a test environment, either on the [Testnet](https://testnet.cspr.live/) or locally, with [nctl](/dapp-dev-guide/setup-nctl/), making sure the cost tables match those of your production Casper Network. If you plan to deploy to Mainnet, you can use the Testnet. If you use nctl, you need to set it up to match the Mainnet chainspec.
 
 If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost when deployed. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
