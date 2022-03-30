@@ -171,7 +171,7 @@ Suppose an exchange connects to someone else's node RPC to send deploys to the n
 <details>
   <summary><b>How is a deploy_hash different than a transfer_hash?</b></summary>
   
-  Essentially, there is no difference between a  <i>deploy_hash</i> and a <i>transfer_hash</i> since they are both deploys. However, the platform is labeling the subset of deploys which are transfers, to filter transfers from other types of deploys. In other words, a <i>transfer_hash</i> is a native transfer, while a <i>deploy_hash</i> is another kind of deploy.
+  Essentially, there is no difference between a <i>deploy_hash</i> and a <i>transfer_hash</i> since they are both hashes of deploys. However, the platform is labeling the subset of deploys which are transfers, to filter transfers from other types of deploys. In other words, a <i>transfer_hash</i> is a native transfer, while a <i>deploy_hash</i> is any other kind of deploy.
 
 </details>
 
@@ -195,7 +195,7 @@ With these APIs, you can pull information from the node, such as transaction set
 </details>
 
 <details>
- <summary><b> When is the balance updated after a deploy?</b></summary>
+ <summary><b>When is the balance updated for a deploy containing a transfer?</b></summary>
 
  Execution occurs after consensus. As outlined [here in the dApp Development Guide]( https://docs.casperlabs.io/dapp-dev-guide/deploying-contracts#check-deploy-status), deployments are queued in the system before being listed in a block for execution.
 
