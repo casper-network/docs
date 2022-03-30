@@ -6,7 +6,9 @@ The Casper node streams deploy execution effects and finality signatures through
 - `/events/sigs` for FinalitySignature events
 - `/events/main` for all other event types
 
-Each URL can have a query string added of the form `?start_from=<ID>`, where ID is an integer representing an old event ID.
+Each URL can have a query string added of the form `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events. Such purging happens because a limited number of historical events are available in the event cache.
+
+## Usage
 
 To proceed, you need to acquire the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. 
 
@@ -28,15 +30,13 @@ For all other event types, you can monitor the main endpoint:
 curl -s http://<HOST>:9999/events/main
 ```
 
-If you have an old event ID, you can use the following command to query it. Replace HOST, EVENT_TYPE, and ID with the values you need.
+Replay the event stream from an old event onwards. Replace HOST, EVENT_TYPE, and ID with the values you need in this command:
 
 ```bash
 curl -s http://<HOST>:9999/events/<EVENT_TYPE>?start_from=<ID>
 ```
 
 **Example:**
-
-This example will output all the DeployAccepted events starting with event ID 29267508.
 
 ```bash
 curl -s http://65.21.235.219:9999/events/main?start_from=29267508
