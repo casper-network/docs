@@ -149,8 +149,10 @@ The client API to query a node's RPC endpoint is available at [Casper RPC API](h
 <details>
 <summary><b>How can I monitor the events a node is emitting?</b></summary>
 
-You can monitor a node's event stream on the port specified as the *event_stream_server.address* in the node's configuration (config.toml), which is by default 9999 on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers. You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](../dapp-dev-guide/monitoring-events.md) page.
+You can monitor a node's event stream on the port specified as the *event_stream_server.address* in the node's configuration (config.toml), which is by default 9999 on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](/dapp-dev-guide/monitoring-events.md) page.
+
 </details>
+
 
 <details>
  <summary><b>How can I query a deploy for an account?</b></summary>
@@ -171,7 +173,7 @@ Suppose an exchange connects to someone else's node RPC to send deploys to the n
 <details>
   <summary><b>How is a deploy_hash different than a transfer_hash?</b></summary>
   
-  Essentially, there is no difference between a  <i>deploy_hash</i> and a <i>transfer_hash</i> since they are both deploys. However, the platform is labeling the subset of deploys which are transfers, to filter transfers from other types of deploys. In other words, a <i>transfer_hash</i> is a native transfer, while a <i>deploy_hash</i> is another kind of deploy.
+  Essentially, there is no difference between a <i>deploy_hash</i> and a <i>transfer_hash</i> since they are both hashes of deploys. However, the platform is labeling the subset of deploys which are transfers, to filter transfers from other types of deploys. In other words, a <i>transfer_hash</i> is a native transfer, while a <i>deploy_hash</i> is any other kind of deploy.
 
 </details>
 
@@ -195,7 +197,7 @@ With these APIs, you can pull information from the node, such as transaction set
 </details>
 
 <details>
- <summary><b> When is the balance updated after a deploy?</b></summary>
+ <summary><b>When is the balance updated for a deploy containing a transfer?</b></summary>
 
  Execution occurs after consensus. As outlined [here in the dApp Development Guide](/dapp-dev-guide/on-chain-contracts#check-deploy-status), deployments are queued in the system before being listed in a block for execution.
 
