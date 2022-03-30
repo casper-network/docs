@@ -8,7 +8,7 @@ The Casper node streams deploy execution effects and finality signatures through
 
 Each URL can have a query string added of the form `?start_from=<ID>`, where ID is an integer representing an old event ID.
 
-To proceed, you need to acquire the IP address of a [peer](https://casper.network/docs/workflow/setup/#acquire-node-address-from-network-peers) on the network. 
+To proceed, you need to acquire the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. 
 
 With the following command, you can start watching the event stream for DeployAccepted events. Replace the HOST field with the peer IP address.
 
