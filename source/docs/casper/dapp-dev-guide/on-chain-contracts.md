@@ -2,9 +2,9 @@
 
 Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](/design/execution-semantics#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
-- You will need a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client).
-- Ensure you have an [Account](/workflow/setup#setting-up-an-account) and its associated [keys](keys.md). This account will pay for the deploy, and its secret key will sign the deploy.
-- Ensure this account has enough CSPR tokens to pay for the deploy.
+- You will need a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
+- Ensure you have an [Account](/workflow/setup#setting-up-an-account) and its associated [keys](keys.md) This account will pay for the deploy, and its secret key will sign the deploy
+- Ensure this account has enough CSPR tokens to pay for the deploy
 
 ## Paying for Deploys {#paying-for-deploys}
 
@@ -45,11 +45,11 @@ casper-client put-deploy \
     --session-path <SESSION-PATH>
 ```
 
-1. `node-address` - An IP address of a peer on the network. The default port on Mainnet and Testnet is 7777.
+1. `node-address` - An IP address of a peer on the network. The default port on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the deploy
 3. `chain-name` - The chain-name to the network where you wish to send the deploy. This example uses the Testnet
 4. `payment-amount` - The payment for the deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-prices) below
-5. `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer.
+5. `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
 
 Once you call this command, it will return a deploy hash, which you will need to verify that the deploy successfully took place. Sending a deploy to the network does not mean that the transaction was processed successfully. Once the network has received the deploy, it will queue up in the system before being listed in a block for execution. Therefore, you will need to check to see that the contract was executed as expected.
 
@@ -304,10 +304,10 @@ If the deploy succeeded, the `get-deploy` command would return a JSON object wit
 
 We want to draw your attention to a few properties in the example output:
 
--   Execution cost 13327900740 motes, yet we paid 14000000000 motes. See the [note about gas prices](#a-note-about-gas-prices).
-- The contract returned no errors. If you see an "Out of gas error", you did not have enough CSPR in your account to pay for contract execution.
--   There were no dependencies for this deploy.
--   The time-to-live was 30 minutes.
+-   Execution cost 13327900740 motes, yet we paid 14000000000 motes. See the [note about gas prices](#a-note-about-gas-prices)
+- The contract returned no errors. If you see an "Out of gas error", you did not have enough CSPR in your account to pay for contract execution
+-   There were no dependencies for this deploy
+-   The time-to-live was 30 minutes
 
 It is also possible to check the deploy state by performing a `query-global-state` command using the client. Run the following command for details.
 
