@@ -1,5 +1,8 @@
 name: Docusaurus CICD
 
+env:
+  prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
+
 on:
   push:
     branches: "*"
@@ -20,7 +23,6 @@ jobs:
         with:
           name: gh-pages-backup
           path: .
-
 
   build:
     runs-on: ubuntu-latest
@@ -66,6 +68,10 @@ jobs:
       - name: Build app
         run: |
           yarn build --out-dir ./docs
+
+      - name: Add CNAME file to the build output payload to keep the custom domain settings of GitHub Pages enabled
+        run: |
+          echo "$prod_pages_fqdn" > ./docs/CNAME
 
       - uses: actions/upload-artifact@v2
         with:
@@ -148,22 +154,19 @@ jobs:
     needs: deploy-prod
     runs-on: ubuntu-latest
 
-    env:
-      prod_pages_url: ${{ secrets.PROD_PAGES_URL }}
-
     steps:
       - name: Test home page
         run: |
           echo "Testing if homepage responds correctly"
-          curl --fail $prod_pages_url
+          curl --fail https://$prod_pages_fqdn
       - name: Test a random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail $prod_pages_url/operators/create
+          curl --fail https://$prod_pages_fqdn/operators/create
       - name: Test another random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail $prod_pages_url/design/serialization-standard
+          curl --fail https://$prod_pages_fqdn/design/serialization-standard
 
   rollback-if-tests-fail:
     if: ${{ always() && (needs.system-tests-postdeployment.result=='failure') }}
