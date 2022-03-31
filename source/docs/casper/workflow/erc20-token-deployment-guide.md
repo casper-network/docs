@@ -95,5 +95,5 @@ To send tokens from the address you just funded, just change the `KEYS` constant
 
 ## Conclusion
 
-Thank you for reading Casper's ERC-20 deployment guide. Next, you can learn how to write your own [ERC-20 smart contracts](https://docs.casperlabs.io/erc20), and use [Casper's JavaScript SDK](https://docs.casperlabs.io/dapp-dev-guide/sdk/script-sdk).
+Thank you for reading Casper's ERC-20 deployment guide. Next, you can learn how to write your own [ERC-20 smart contracts](https://github.com/casper-ecosystem/erc20/blob/master/TUTORIAL.md), and use [Casper's JavaScript SDK](https://docs.casperlabs.io/dapp-dev-guide/sdk/script-sdk).
 
