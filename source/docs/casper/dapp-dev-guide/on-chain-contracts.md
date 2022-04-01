@@ -302,7 +302,7 @@ We want to draw your attention to a few properties in the example output:
 - The contract returned no errors. If you see an "Out of gas error", you did not specify a high enough value in the `--payment-amount` arg
 - The time-to-live was 30 minutes
 
-It is also possible to check the deploy state by performing a `query-global-state` command using the Casper client and providing a state root hash or a block hash from the time after the deploy was executed. 
+It is also possible to get a summary of the deploy's information by performing a `query-global-state` command using the Casper client and providing a state root hash or a block hash from a block at or after the one in which the deploy was executed.
 
 ```bash
 casper-client get-state-root-hash --node-address <HOST:PORT>
