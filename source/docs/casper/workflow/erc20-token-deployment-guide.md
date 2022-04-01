@@ -4,8 +4,8 @@ On the Casper Network, it is possible to create smart contracts that emulate ERC
 
 ## Prerequisites
 
-- [Set up an account](https://casper.network/docs/workflow/setup#setting-up-an-account).
-- [Fund your account](https://casper.network/docs/workflow/setup#fund-your-account).
+- [Set up an account](https://docs.casperlabs.io/workflow/setup#setting-up-an-account).
+- [Fund your account](https://docs.casperlabs.io/workflow/setup#fund-your-account).
 
 - You will need to have [Node.js](https://nodejs.org/en/) installed. Follow the [instructions](https://nodejs.org/en/download) to install it on your system.
 
@@ -17,7 +17,7 @@ We'll be starting in the home (`~`) directory for this tutorial. Navigate here f
 
 `cd ~`
 
-Now clone the prewritten [JavaScript deployer project](https://github.com/casper-ecosystem/casper-erc20-js-interface), so you don't have to reinvent the wheel. This project includes a precompiled ERC-20 contract with only basic functionality. If you'd like to write your own ERC-20 contract with custom logic, please follow the instructions [here](https://casper.network/docs/writing-contracts). Execute this command in your home directory:
+Now clone the prewritten [JavaScript deployer project](https://github.com/casper-ecosystem/casper-erc20-js-interface), so you don't have to reinvent the wheel. This project includes a precompiled ERC-20 contract with only basic functionality. If you'd like to write your own ERC-20 contract with custom logic, please follow the instructions [here](https://docs.casperlabs.io/writing-contracts). Execute this command in your home directory:
 
 `git clone https://github.com/casper-ecosystem/casper-erc20-js-interface.git`
 
@@ -95,5 +95,5 @@ To send tokens from the address you just funded, just change the `KEYS` constant
 
 ## Conclusion
 
-Thank you for reading Casper's ERC-20 deployment guide. Next, you can learn how to write your own [ERC-20 smart contracts](https://casper.network/docs/erc20), and use [Casper's JavaScript SDK](https://casper.network/docs/dapp-dev-guide/sdk/script-sdk).
+Thank you for reading Casper's ERC-20 deployment guide. Next, you can learn how to write your own [ERC-20 smart contracts](https://github.com/casper-ecosystem/erc20/blob/master/TUTORIAL.md), and use [Casper's JavaScript SDK](https://docs.casperlabs.io/dapp-dev-guide/sdk/script-sdk).
 

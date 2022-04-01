@@ -104,7 +104,7 @@ You will be prompted to save the following three files for your new account. The
 
 Once the cryptographic key-pair for the account has been generated, the account must be funded so it can be created on chain.
 
-In Testnet, you can fund the account by using the _Request tokens_ button on the [Faucet Page](https://testnet.cspr.live/tools/faucet) to receive tokens.
+In Testnet, you can fund the account by using the _Request tokens_ button on the [Faucet Page](https://testnet.cspr.live/tools/faucet) to receive tokens. You can request tokens only once from the faucet. If you need more tokens, you will need to use another account.
 
 In Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the process of setting up an account. The _Source_ account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the _Target_ account. This transfer will automatically create the _Target_ account if it does not exist. Currently, this is the only way an account can be created on Mainnet.
 
