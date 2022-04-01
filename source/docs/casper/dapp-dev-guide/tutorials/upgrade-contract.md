@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 This tutorial guides you on how to upgrade your existing contract. Upgrading a smart contract is same as upgrading any other software; that it needs to add a new version including the required changes to the contract. Changes of the contract could be adding, editing, or deleting functionalities within your existing smart contract. The steps to upgrade a contract is illustrated in the below steps.
 
 ## Pre-requisites
-- - You should have a previously created smart contract, which should not be locked. A locked contract is not upgradable and has only one enabled version.
+- You should have a previously created smart contract, which should not be locked. A locked contract is not upgradable and has only one enabled version.
 - You should be familiar with [writing smart contracts](/docs/writing-contracts), [deploying contracts](/docs/dapp-dev-guide/deploying-contracts), and [calling contracts](/docs/dapp-dev-guide/calling-contracts) on the Casper Network.
 
 
@@ -17,26 +17,61 @@ These are the steps to add a new version to your contract.
 <img src={useBaseUrl("/image/contract-upgrade-flow.png")} alt="contract-upgrade-flow" width="500"/>
 
 ### Step 1. Creating a new contract file 
-a) Create a new smart contract file that contains the base contract.
+a) Create a new smart contract file that contains the base contract. The name of the new contract file could be different but we prefer a similar name since it is a new version of the base file.
 
 b) Then, add the required modification to the contract. This can be adding a new entry point or modifying the behavior of an existing entry point in the contract.
 
-### Step 2. Implementing the generic method
+### Step 2. Add handle to the contract package hash
+Implement the `call` method with a handle to the base contract's contractPackageHash. This connects the new version and old version to the contract package. 
 
-You need to implement the [`add_contract_version`](https://github.com/casper-network/casper-node/blob/9aa22ac6c998c9d2d5288721974266b0fb44fb36/smart_contracts/contract/src/contract_api/storage.rs#L277-L313) generic method with your contract details. This method is executed automatically when creating a brand new contract and it is considered the very first version of the contract. For future contract modifications, again this method is implemented inside the new contract version file to enable the versioning.
+   E.g.
+```rust
+let (contract_package_hash, _): (ContractPackageHash, URef) = storage::create_contract_package_at_hash();
+```
+
+### Step 3. Implementing the generic method
+
+You need to implement the [`add_contract_version`](https://github.com/casper-network/casper-node/blob/18571e0c22d7918a953f497649b733151cfb3c3c/smart_contracts/contracts/client/counter-define/src/main.rs#L78-L79) generic method with your contract details. This method is executed automatically when creating a brand new contract and it is considered the very first version of the contract. For future contract modifications, again this method is implemented inside the new contract version file to enable the versioning.
 
 
 a) Import required packages to implement the method.
+```rust
+extern crate alloc;
+
+use alloc::string::String;
+
+use casper_contract::{
+    contract_api::{runtime, storage, system},
+    unwrap_or_revert::UnwrapOrRevert,
+};
+use casper_types::{
+    contracts::NamedKeys, CLType, CLValue, ContractPackageHash, EntryPoint, EntryPointAccess,
+    EntryPointType, EntryPoints, Parameter, URef,
+};
+```
 
 b) Include the three arguments; contract_package_hash, entry_points, and named_keys inside the method call.
   - `contract_package_hash` - This represents a collection of contract hashes. A [`ContractPackageHash`](/docs/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) is a type that wraps a *HashAddr* which references a ContractPackage in the global state. The Casper execution engine creates the ContractPackageHash when creating a contract.
   - `entry_points` - Entry points of the contract, which can be modified or newly added
   - `named_keys` - Named key pairs of the contract
-  
-  <img src={useBaseUrl("/image/contract-representation.png")} alt="contract-representation" width="500"/>
 
+The contract package hash is like a container, with different versions of the contract, similar to an npm package or a Rust crate. It has several versions of software (v1, v2, v3) with functionality that can differ in certain versions. The contract package is created automatically when you install the contract on the blockchain. 
 
-### Step 3. Compiling and building the contract
+<img src={useBaseUrl("/image/contract-representation.png")} alt="contract-representation" width="500"/>
+
+#### Sample Contract Implementation
+1. Define the new contract as explained in [Creating a new contract](./#step-1-creating-a-new-contract-file) file step.
+2. Implement the `call` method with a handle to the base contract's contractPackageHash. This connects the new version and old version to the contract package. 
+
+   E.g.
+```rust
+let (contract_package_hash, _): (ContractPackageHash, URef) = storage::create_contract_package_at_hash();
+```
+3. Implement the `add_contract_version` method as in [ Implementing the generic method](http://localhost:3000/docs/dapp-dev-guide/tutorials/upgrade-contract/#step-2-implementing-the-generic-method) step.
+
+4. Then perform the steps 4, 5, and 6 to proceed with the new contract deployment.
+
+### Step 4. Compiling and building the contract
 Use these commands to prepare, compile and build the new contract.
 
 ```bash
@@ -45,7 +80,7 @@ make prepare
 make build-contract
 ```
 
-### Step 4. Deploying the contract 
+### Step 5. Deploying the contract 
 
 Use the below command to deploy your contract to the selected network. Make sure you add your specific arguments to the command. Refer to the [deploying contracts](/docs/dapp-dev-guide/deploying-contracts/) guide to learn more about contract deployment.
 
@@ -64,7 +99,12 @@ casper-client put-deploy \
 4. `AMOUNT`: Token amount used for the deployment
 5. `WASM_FILE_PATH`: Path to your contract Wasm 
 
-### Step 5. Verifying the deploy changes 
+### Step 6. Verifying the deploy changes 
+
+#### Testing the upgrade contract 
+You can write unit tests to verify the accuracy of the new contract version. Refer to the code in this [file](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/test/contract-context/src/main.rs) to get an idea about creating the unit test. This file contains the code for building the test contract with the required constants and entry points. It creates the named-keys fields and adds the call to `add_contract_version` method with arguments inside the [install_version](https://github.com/casper-network/casper-node/blob/18571e0c22d7918a953f497649b733151cfb3c3c/smart_contracts/contracts/test/contract-context/src/main.rs#L152-L163). Finally, it executes the `call` method to generate and verify the new contract.
+
+#### Verify the deploy by querying the network
 Verify the changes by retrieving the deploy object and querying the network status.
 
 Get the details of the installed deploy .
@@ -86,3 +126,5 @@ casper-client query-global-state --node-address [NODE_ADDRESS] \
 1. `NODE_ADDRESS`: An IP address of a node on the network
 2. `LATEST_STATE_ROOT`: Hash indicates the current status of the network
 3. `YOUR_ACCOUNT_HASH`: Provided account hash
+
+
