@@ -7,7 +7,7 @@ This tutorial guides you on how to upgrade your existing contract. Upgrading a s
 
 ## Pre-requisites
 - You should have a previously created smart contract, which should not be locked. A locked contract is not upgradable and has only one enabled version.
-- You should be familiar with [writing smart contracts](/docs/writing-contracts), [deploying contracts](/docs/dapp-dev-guide/deploying-contracts), and [calling contracts](/docs/dapp-dev-guide/calling-contracts) on the Casper Network.
+- You should be familiar with [writing smart contracts](./writing-contracts), [deploying contracts](/dapp-dev-guide/deploying-contracts), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network.
 
 
 #### Contract Versioning Flow
@@ -51,7 +51,7 @@ use casper_types::{
 ```
 
 b) Include the three arguments; contract_package_hash, entry_points, and named_keys inside the method call.
-  - `contract_package_hash` - This represents a collection of contract hashes. A [`ContractPackageHash`](/docs/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) is a type that wraps a *HashAddr* which references a ContractPackage in the global state. The Casper execution engine creates the ContractPackageHash when creating a contract.
+  - `contract_package_hash` - This represents a collection of contract hashes. A [`ContractPackageHash`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) is a type that wraps a *HashAddr* which references a ContractPackage in the global state. The Casper execution engine creates the ContractPackageHash when creating a contract.
   - `entry_points` - Entry points of the contract, which can be modified or newly added
   - `named_keys` - Named key pairs of the contract
 
@@ -82,7 +82,7 @@ make build-contract
 
 ### Step 5. Deploying the contract 
 
-Use the below command to deploy your contract to the selected network. Make sure you add your specific arguments to the command. Refer to the [deploying contracts](/docs/dapp-dev-guide/deploying-contracts/) guide to learn more about contract deployment.
+Use the below command to deploy your contract to the selected network. Make sure you add your specific arguments to the command. Refer to the [deploying contracts](/dapp-dev-guide/deploying-contracts/) guide to learn more about contract deployment.
 
 ```bash
 casper-client put-deploy \
