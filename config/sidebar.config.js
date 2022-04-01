@@ -54,7 +54,7 @@
             label: "Casper Smart Contracts",
             collapsible: true,
             collapsed: true,
-            items: ["dapp-dev-guide/smart-contracts/overview", "dapp-dev-guide/smart-contracts/create-smart-contract"],
+            items: ["dapp-dev-guide/smart-contracts/create-smart-contract"],
         },
         "dapp-dev-guide/testing",
         "dapp-dev-guide/setup-nctl",
