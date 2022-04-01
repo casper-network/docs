@@ -308,8 +308,8 @@ It is also possible to get a summary of the deploy's information by performing a
 casper-client get-state-root-hash --node-address <HOST:PORT>
 
 casper-client query-global-state --node-address <HOST:PORT> \
---key account-hash-<HEX STRING> \
---state-root-hash <>
+    --key deploy-<DEPLOY-HASH-HEX-STRING> \
+    --state-root-hash <STATE-ROOT-HASH-HEX-STRING>
 ```
 
 ```bash
