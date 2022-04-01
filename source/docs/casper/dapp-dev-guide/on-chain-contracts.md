@@ -327,7 +327,7 @@ casper-client query-global-state --help
 
 ## Using arguments with deploys {#using-arguments-with-deploys}
 
-The session Wasm (or payment Wasm if you choose _not_ to use the standard payment) of a deploy often requires arguments to be passed to it when executed. These "runtime args" should be provided by using the `--session-arg` or `--payment-arg` options, once for each arg required. The Casper client provides some examples of how to do this:
+The session Wasm (or payment Wasm if you choose to _not_ use the standard payment) of a deploy often requires arguments to be passed to it when executed. These "runtime args" should be provided by using the `--session-arg` or `--payment-arg` options, once for each arg required. The Casper client provides some examples of how to do this:
 
 ```bash
 casper-client put-deploy --show-arg-examples
