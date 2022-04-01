@@ -189,7 +189,7 @@ Suppose an exchange connects to someone else's node RPC to send deploys to the n
 <details>
  <summary><b>Does the node API have a 'getTransactions' function?</b></summary>
 
-The Casper node provides a `chain_get_block_transfers` JSON-RPC method, which returns all transfers for a block from the network. Run the Casper client `list-rpcs` command to get the full details. You will need the IP address of a node and the RPC endpoint for interaction with the casper-client, which is by default 7777 on Mainnet and Testnet.
+The Casper node provides a `chain_get_block_transfers` JSON-RPC method, which returns all transfers for a block from the network. Run the Casper client `list-rpcs` command to get the full details of the RPC API. You will need the IP address of a node and the RPC endpoint for interaction with the casper-client, which is by default 7777 on Mainnet and Testnet.
 
 ```bash
 casper-client list-rpcs --node-address <HOST:7777>
