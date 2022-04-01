@@ -327,6 +327,22 @@ Run the help command for `query-global-state` to see its usage.
 casper-client query-global-state --help
 ```
 
+### Deploy Payments {#deploy-payments}
+
+Dependent upon the complexity and needs of the deployment in question, several options exist to allow users to pay for smart contract execution.
+
+The simplest way to pay for a deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional WASM ran within will come at an additional cost on top of the payment.
+
+You may find the host side functionality of standard payment insufficient for your purposes. In this event, Casper provides the following options for custom payment code:
+
+•	`StoredContractByHash`
+
+•	`StoredContractByName`
+
+•	`StoredVersionContractByHash`
+
+•	`StoredVersionContractByName`
+
 ## Using arguments with deploys {#using-arguments-with-deploys}
 
 The session Wasm (or payment Wasm if you choose to _not_ use the standard payment) of a deploy often requires arguments to be passed to it when executed. These "runtime args" should be provided by using the `--session-arg` or `--payment-arg` options, once for each arg required. The Casper client provides some examples of how to do this:
