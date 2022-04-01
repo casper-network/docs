@@ -2,7 +2,7 @@
 # Contract Deployment
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Now that you have implemented the smart contract for ERC-20, it's time to deploy it to the blockchain. Deploying the ERC-20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer to the [Deploying Contracts](/dapp-dev-guide/deploying-contracts#advanced-deployments) section to learn more about overall contract deployment.
+Now that you have implemented the smart contract for ERC-20, it's time to deploy it to the blockchain. Deploying the ERC-20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer to the [Deploying Contracts](/dapp-dev-guide/on-chain-contracts#advanced-deployments) section to learn more about overall contract deployment.
 
 Let's dive into the deployment process.
 
@@ -91,11 +91,12 @@ casper-client put-deploy \
 - `WASM FILE PATH`: The session-path argument should point to the location of your compiled ERC-20 WASM file
 
 :::note
-- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/dapp-dev-guide/deploying-contracts#a-note-about-gas-prices) to understand more about payment amounts and gas price adjustments
+
+- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/dapp-dev-guide/on-chain-contracts#a-note-about-gas-price) to understand more about payment amounts and gas price adjustments
 
 - **We currently do not refund any tokens as part of a deploy.**
 
-  Eg:- If you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the extra 9 CSPR. Refer to the [computational cost and gas amounts](https://docs.casperlabs.io/design/execution-semantics#execution-semantics-gas) for further details
+  Eg:- If you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the extra 9 CSPR. Refer to the [computational cost and gas amounts](/design/execution-semantics#execution-semantics-gas) for further details
 :::
 
 Find the sample *put-deploy* command below:

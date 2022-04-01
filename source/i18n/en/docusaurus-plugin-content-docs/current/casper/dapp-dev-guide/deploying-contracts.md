@@ -209,7 +209,7 @@ From this data structure we can observe some properties about the deploy (some o
 
 It is also possible to check the contract's state by performing a `query-global-state` command using the client.
 
-### A Note about Gas Prices {#a-note-about-gas-prices}
+### A Note about Gas Price {#a-note-about-gas-price}
 
 If you notice in the put-deploy command above, we supplied a payment amount argument:
 

@@ -112,7 +112,7 @@ Refer to the [Casper Command-line Client](https://docs.casperlabs.io/workflow/se
 
 </details>
 
-### Deploys/Transactions {#deploys-transactions}
+### Deploys {#deploys}
 
 <details>
 <summary><b>What determines the cost of a deploy?</b></summary>
@@ -128,7 +128,7 @@ If the calls use the same arguments, yet the cost is increasing, you might consi
 <details>
 <summary><b>Why does my deploy get an 'Out of Gas' error?</b></summary>
 
-If you receive this error, try specifying a higher amount of CSPR for the deployment.
+If you received this error, the specified payment amount for the deploy was insufficient. Try specifying a higher amount of CSPR and re-send the deploy. See the [note about gas price](dapp-dev-guide/on-chain-contracts.md#a-note-about-gas-price) for [On-Chain Contracts](dapp-dev-guide/on-chain-contracts.md).
 
 </details>
 
@@ -140,67 +140,82 @@ If a deploy was executed, then it has been finalized. If the deploy status comes
 </details>
 
 <details>
-<summary><b>Is there an API available to query network transactions?</b></summary>
+<summary><b>Is there a client API to query a Casper node's RPC endpoint?</b></summary>
 
-The client API of Casper Node is available at [Casper RPC API](http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/). You can find specific node-addresses at cspr.live for the [testnet](https://testnet.cspr.live/tools/peers) or [mainnet](https://cspr.live/tools/peers).
+You can query the JSON-RPC API of a node on a Casper network. You will need the IP address of a node and the REST endpoint for status and metrics, which is by default 8888 on Mainnet and Testnet. You can find specific node addresses for [Testnet](https://testnet.cspr.live/tools/peers) or [Mainnet](https://cspr.live/tools/peers).
 
+```bash
+http://<HOST>:8888/rpc-schema
+```
+
+You can also run the Casper client `list-rpcs` command to get the full list of available JSON-RPC methods. You will need the RPC endpoint for interaction with the casper-client, which is by default 7777 on Mainnet and Testnet.
+
+```bash
+casper-client list-rpcs --node-address <HOST:7777>
+```
 </details>
 
 <details>
- <summary><b>How can I query a transaction for an account?</b></summary>
+<summary><b>How can I monitor the events a node is emitting?</b></summary>
 
-On-chain accounts are associated with an account address. Transaction data includes account address as a sub-field.
+You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on Testnet and Mainnet. You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](dapp-dev-guide/monitoring-events.md) page.
+
+</details>
+
+
+<details>
+ <summary><b>How can I query a deploy for an account?</b></summary>
+
+On-chain accounts are associated with an account address. Deploy data includes account address as a sub-field.
 
 </details>
 
 <details>
   <summary><b>When are finality signatures needed?</b></summary>
   
-  Finality signatures are confirmations from validators that they have executed the transaction. Exchanges should be asserting finality by collecting the weight of two-thirds of transaction signatures. If an exchange runs a read-only node, it can collect these finality signatures from its node. Otherwise, the exchange must assert finality by collecting finality signatures and have proper monitoring infrastructure to prevent a Byzantine attack.
+  Finality signatures are confirmations from validators that they have executed the deploy. Exchanges should be asserting finality by collecting the weight of two-thirds of finality signatures. If an exchange runs a read-only node, it can collect these finality signatures from its node. Otherwise, the exchange must assert finality by collecting finality signatures and have proper monitoring infrastructure to prevent a Byzantine attack.
 <br/><br/>
-Suppose an exchange connects to someone else's node RPC to send transactions to the network. In this case, the node is considered high risk, and the exchange must assert finality by checking to see how many validators have run the transactions in the network.
+Suppose an exchange connects to someone else's node RPC to send deploys to the network. In this case, the node is considered high risk, and the exchange must assert finality by checking to see how many validators have run the deploys in the network.
 
 </details>
 
 <details>
   <summary><b>How is a deploy_hash different than a transfer_hash?</b></summary>
   
-  Essentially, there is no difference between a  <i>deploy_hash</i> and a <i>transfer_hash</i> since they are both deploy transactions. However, the platform is labeling the subset of deploys which are transfers, to filter transfers from other types of deploys. In other words, a <i>transfer_hash</i> is a native transfer, while a <i>deploy_hash</i> is another kind of deploy.
+  Essentially, there is no difference between a <i>deploy_hash</i> and a <i>transfer_hash</i> since they are both hashes of deploys. However, the platform is labeling the subset of deploys which are transfers, to filter transfers from other types of deploys. In other words, a <i>transfer_hash</i> is a native transfer, while a <i>deploy_hash</i> is any other kind of deploy.
 
-</details>
-
-<details>
-  <summary><b>Can you provide an example of a deploy?</b></summary>
-  
-  You can find a deploy reference in <a href="https://github.com/casper-ecosystem/casper-js-sdk/blob/next/test/lib/DeployUtil.test.ts#L5">GitHub</a>.
 </details>
 
 <details>
  <summary><b>Does the node API have a 'getTransactions' function?</b></summary>
 
-The node API JSON-RPC is found <a href="http://casper-rpc-docs.s3-website-us-east-1.amazonaws.com/ ">here</a>. Also, the node emits the following events:
+The Casper node provides a `chain_get_block_transfers` JSON-RPC method, which returns all transfers for a block from the network. Run the Casper client `list-rpcs` command to get the full details of the RPC API. You will need the IP address of a node and the RPC endpoint for interaction with the casper-client, which is by default 7777 on Mainnet and Testnet.
 
--   BlockAdded
--   DeployProcessed
--   ConsensusFinalitySignature
+```bash
+casper-client list-rpcs --node-address <HOST:7777>
+```
 
-With these APIs, you can pull information from the node, such as transaction sets.
+The Casper client also provides the `get-block-transfers` subcommand, which uses `chain_get_block_transfers` under the hood. To find out more about `get-block-transfers`, run the help command:
+
+```bash
+casper-client get-block-transfers --help
+```
 
 </details>
 
 <details>
- <summary><b> When is the balance updated after a transaction?</b></summary>
+ <summary><b>When is the balance updated after a deploy?</b></summary>
 
- Execution occurs after consensus. As outlined [here in the dApp Development Guide]( https://docs.casperlabs.io/dapp-dev-guide/deploying-contracts#check-deploy-status), deployments are queued in the system before being listed in a block for execution.
+ Execution occurs after consensus. As outlined [in the dApp Developer Guide](/dapp-dev-guide/on-chain-contracts#monitoring-the-event-stream-for-deploys), deploys are queued in the system before being listed in a block for execution.
 
  Balance updates should occur after contract execution and block finalization.
 
 </details>
 
 <details>
- <summary><b>How do I handle a transaction composed of multiple transfers?</b></summary>
+ <summary><b>How do I handle a deploy composed of multiple transfers?</b></summary>
 
- Applying a unique ID to each transfer can mitigate issues with multiple transfers. Once deployed to a block, the network finalizes the transaction composed of multiple transfers.
+ Applying a unique ID to each transfer can mitigate issues with multiple transfers in a single deploy. Once included in a block, the network finalizes the deploy containing multiple transfers.
 
 </details>
 
@@ -214,9 +229,9 @@ With these APIs, you can pull information from the node, such as transaction set
 </details>
 
 <details>
-<summary><b>What is the difference between key management and deployment?</b></summary>
+<summary><b>What is the difference between key management and deploys?</b></summary>
 
-There are two types of action that an account can perform: deployment and key management. Deployment is simply executing some code on the blockchain, while key management involves changing the associated keys. Key management cannot occur independently, but must come via a deploy. Therefore, a key management action implies that a deployment action also occurs.
+There are two types of action that an account can perform: a deploy and key management. Deploys are simply executing some code on the blockchain, while key management involves changing the associated keys. Key management cannot occur independently but must come via a deploy. Therefore, a key management action implies that a deploy action also occurs.
 
 You may also reference the following two documents for additional information:
 
