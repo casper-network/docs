@@ -314,9 +314,8 @@ casper-client query-global-state --node-address <HOST:PORT> \
 
 ```bash
 casper-client query-global-state --node-address <HOST:PORT> \
---key account-hash-<HEX STRING>
---block-hash <HEX STRING> \
-
+    --key deploy-<DEPLOY-HASH-HEX STRING>
+    --block-hash <BLOCK-HASH-HEX-STRING>
 ```
 
 Run the help command for `query-global-state` to see its usage.
