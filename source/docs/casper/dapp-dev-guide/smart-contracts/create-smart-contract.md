@@ -17,8 +17,6 @@ Casper smart contracts are programs that run on the Casper Network. These can ex
 
 Casper smart contracts can be written in any language that compiles to wasm binaries. In this section of the tutorial, you will be focusing specifically on writing a smart contract in the Rust language. The rust compiler compiles the contract code to the wasm binary. After that, the wasm binary is sent to the network as part of the installation on the Casper Network through a node. Then, the node executes the wasm, adds it to the [global state](./glossary/G/#global-state), and [gossips](./design/p2p/#communications-gossiping) that deployed to other nodes. Finally, all the nodes in the network will repeat the process.
 
-The flow for creating Casper smart contract:
-<img src={useBaseUrl("/image/smart-contract/smart-contract-lc.png")} alt="smart-contract-life-ycle" width="500" align="center"/>
 
 The Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) for each package. The new contract is added to this contract package with a `contractHash` key. The contract is stored inside a `ContractPackage` which is a collection of contracts with different versions. ContractPackage is created through `new_contract` or `new_locked_contract` methods which are executed at the wasm installation step. 
 
