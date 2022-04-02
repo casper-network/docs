@@ -20,7 +20,7 @@ Casper smart contracts can be written in any language that compiles to wasm bina
 The flow for creating Casper smart contract:
 <img src={useBaseUrl("/image/smart-contract/smart-contract-lc.png")} alt="smart-contract-life-ycle" width="500" align="center"/>
 
-The Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/docs/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) for each package. The new contract is added to this contract package with a `contractHash` key. The contract is stored inside a `ContractPackage` which is a collection of contracts with different versions. ContractPackage is created through `new_contract` or `new_locked_contract` methods which are executed at the wasm installation step. 
+The Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) for each package. The new contract is added to this contract package with a `contractHash` key. The contract is stored inside a `ContractPackage` which is a collection of contracts with different versions. ContractPackage is created through `new_contract` or `new_locked_contract` methods which are executed at the wasm installation step. 
 
 The contract contains the required metadata and is primarily identified by its hash known as the contract hash.
 
