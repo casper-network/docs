@@ -3,35 +3,35 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## What is a Smart Contract
-A Smart contract is a self-executing computerized transaction protocol which is stored on the blockchain network and start executing run when predetermined conditions are met. 
+A smart contract is a self-executing computerized transaction protocol that is stored on the blockchain network and starts executing when predetermined conditions are met. 
 
-Before diving into writing smart contracts on the Casper blockchain, it is mandatory to understand the difference between the [smart contract](/docs/glossary/S/#smart-contract) and the [session code](/docs/glossary/S/#session-code). Both are used to trigger actions on the network through a deployment. Refer to thesmart contract vs session code guide for more information.
+Before diving into writing smart contracts on the Casper blockchain, it is mandatory to understand the difference between the [smart contract](./glossary/S/#smart-contract) and the [session code](./glossary/S/#session-code). Both are used to trigger actions on the network through a deployment. Refer to the smart contract vs session code guide for more information.
 
 ## Why Do You Want to Use a Smart Contract
-Session code is useful when handling stateless, small scale and simple use cases. However, as your business logic increases in scope, complexity and needs to be stateful, smart contract is the best approach. Smart contracts allow you to increase the scale while maintaining the state of more complex functionalities in an efficient manner.
+Session code is useful when handling stateless, small scale and simple use cases. However, as your business logic increases in scope and complexity, a smart contract is the best approach. Smart contracts allow you to increase the scale while maintaining the state of more complex functionalities efficiently.
 
-It also has added benefits like adding versions to contracts, ability to send large wasm deploys to the network in a cost effective way.
+It also has added benefits like adding versions to contracts, the ability to send large wasm deploys to the network in a cost-effective way.
 
 ## How Casper Smart Contract Works
 Casper smart contracts are programs that run on the Casper Network. These can express triggers, conditions, and business logic to enable complex programmable transactions. 
 
-Casper smart contracts can be written in any language that compiles to wasm binaries. In this section of the tutorial, you will be focusing specifically on writing a smart contract in the Rust langauge. The rust compiler compiles the contract code to the wasm binary. After that, the wasm binary is sent to the network as part of the installation on the Casper Network through a node. Then, the node executes the wasm, adds it to the [global state](./glossary/G/#global-state), and [gossips](./design/p2p/#communications-gossiping) that deployed to other nodes. Finally, all the nodes in the network will repeat the process.
+Casper smart contracts can be written in any language that compiles to wasm binaries. In this section of the tutorial, you will be focusing specifically on writing a smart contract in the Rust language. The rust compiler compiles the contract code to the wasm binary. After that, the wasm binary is sent to the network as part of the installation on the Casper Network through a node. Then, the node executes the wasm, adds it to the [global state](./glossary/G/#global-state), and [gossips](./design/p2p/#communications-gossiping) that deployed to other nodes. Finally, all the nodes in the network will repeat the process.
 
 The flow for creating Casper smart contract:
 <img src={useBaseUrl("/image/smart-contract/smart-contract-lc.png")} alt="smart-contract-life-ycle" width="500" align="center"/>
 
-The Casper execution engine creates the a new contract package automatically and assigns a [`ContractPackageHash`](/docs/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) for each package. The new contract is added to this contract package with a `contractHash` key. The contract is stored inside a `ContractPackage` that is a collection of contracts with different versions. ContractPackage is created through `new_contract` or `new_locked_contract` methods which are executed at the wasm installation step. 
+The Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/docs/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) for each package. The new contract is added to this contract package with a `contractHash` key. The contract is stored inside a `ContractPackage` which is a collection of contracts with different versions. ContractPackage is created through `new_contract` or `new_locked_contract` methods which are executed at the wasm installation step. 
 
-The contract contains the required metadata and is primarily identified by it's hash known as the contract hash.
+The contract contains the required metadata and is primarily identified by its hash known as the contract hash.
 
 <img src={useBaseUrl("/image/smart-contract/contract-package.png")} alt="contract-in-contract-package" width="500" align="center"/>
 
 ## How to Write a Basic Smart Contract
 
 ### Step 1. Creating the directory structure
-First, create the directory for the new contract. This folder should have two sub-directories named as `contract` and `test`. 
+First, create the directory for the new contract. This folder should have two sub-directories named `contract` and `test`. 
 
-- `Contract` directory -  This contains the code that becomes the wasm which eventually send to the network    
+- `Contract` directory -  This contains the code that becomes the wasm which is eventually sent to the network    
 - `test` directory -  This contains all the tests that you will send to the network
 
 Use the below command to create a new contract folder. This creates the `contract` folder with */src/main.rs* file and *cargo.toml* file
@@ -44,12 +44,12 @@ a) Remove the auto-generated main function and add file configurations.
 
 b) Adjust the file attributes to support the wasm execution environment
 
-- `#![no_main]` - This attributes indicates that the program won't use the standard main function as its entry point.
+- `#![no_main]` - This attribute indicates that the program won't use the standard main function as its entry point.
 - `#![no_std]` - This attribute indicates that the program won't import standard libraries
 
 c) Import the required dependencies
-   - `contract_api` - This is a command line tool for creating a Wasm smart contract and tests for use on the Casper network
-   - `typescript` - These the types shared by many casper crates for use on the Casper network.
+   - `contract_api` - This is a command-line tool for creating a Wasm smart contract and tests for use on the Casper network
+   - `typescript` - These are the types shared by many Casper crates for use on the Casper network.
 
 Add these dependencies to the *Cargo.toml* file
 ```typescript
@@ -62,8 +62,8 @@ Then, add the import line in the main.rs file along with other imports
 use casper_contract::contract_api::{runtime, storage};
 ```
 
-### Step 3. Define the global contants
-Define these gloabl constants to use in the funtions.
+### Step 3. Define the global constants
+Define these gloabl constants to use in the funtions. Use the below format to define the constants.
 
 ```typescript
 const TOGGLE_ENTRY_POINT: &str = "toggle";
@@ -75,7 +75,7 @@ const ARG_NUMBER_2: &str = "number_2";
 ```
 
 ### Step 4. Defining the contract entry points
-These are the functions that serves the contract's objectives. You can add meaningful names for these functions depending on the business logic it performs. You can start definining the entry point adding `#[no_mangle]` to preserve method names. The, define the variables for the entry points. Next, add the business logic you want to achieve using those variables and finally, add code to save the state of results and any named-keys
+These are the functions that serve the contract's objectives. You can add meaningful names for these functions depending on the business logic it performs. You can start defining the entry point by adding `#[no_mangle]` to preserve method names. Then, define the variables for the entry points. Next, add the business logic you want to achieve using those variables, and finally, add code to save the state of results and any named-keys
 
 This sample entry point takes two arguments: *number_1* and *number_2*, adds those as the *result* and writes the result of calling this entry point under the URef. You can see type convertions to String and URef and error handling are done within the same code.
 
@@ -101,7 +101,7 @@ Use  the `#[no_mangle]` flag to tell the compiler not to change or mangle the na
 This is the function that starts the code execution and will be the function responsible for installing the contract. If you have some setup or initialization required for our contract we can do it in this function.
 
 #### a) Defining the runtime arguments
-These constants be passed in as runtime arguments at the time of install. Use this pattern of variable definition to collect any type of sentinel values that dictate the behavior of the contract. If the entry point takes in arguments then you must declare those as part of the definition of the entry point.
+These parameters will be passed in as runtime arguments at the time of installation. Use this pattern of variable definition to collect any type of sentinel values that dictate the behavior of the contract. If the entry point takes in arguments then you must declare those as part of the definition of the entry point.
 
 ```typescript
 let adder_parameter_1 = Parameter::new(ARG_NUMBER_1, CLType::U64);
@@ -109,7 +109,7 @@ let adder_parameter_2 = Parameter::new(ARG_NUMBER_2, CLType::U64);
 ```
 
 #### b) Inserting the entry points to the call function
-This step incooporates the previously created entry points to the call function binding the logic of the entry points to the contract. There must be a one-to-one mapping of entry definition to the entry points specified at this point. If the entry point is not inserted at this point, the execution engine will throw an error saying the entry point doesn't exist. All the entry points defined for this contract should be summoned inside the `call` function.
+This step incorporates the previously created entry points to the call function binding the logic of the entry points to the contract. There must be a one-to-one mapping of entry definition to the entry points specified at this point. If the entry point is not inserted at this point, the execution engine will throw an error saying the entry point doesn't exist. All the entry points defined for this contract should be summoned inside the `call` function.
 
 ```typescript
 let entry_points = {
@@ -122,10 +122,10 @@ let toggle_entry_point = EntryPoint::new(
             EntryPointType::Contract
         );
 ```
-Entry point should have following arguments:
-- `name` - Name of the entry point, this should be exactly the same as initial definition.
-- `arguments` - A list of runtime arguments declared as part of the definiton of the entry point.
-- `return type` - CLType that returned by the entry point. Use type *Unit* for empty return types.
+The entry point should have the below arguments:
+- `name` - Name of the entry point, this should be the same as the initial definition.
+- `arguments` - A list of runtime arguments declared as part of the definition of the entry point.
+- `return type` - CLType that is returned by the entry point. Use type *Unit* for empty return types.
 - `access level` - Accessibility of the entry point.
 - `entry point type` - This can be Contract or Session Code.
 
@@ -139,7 +139,7 @@ entry_points.add_entry_point(adder_entry_point);
 entry_points
 ```
 #### d) Creating the contract
-Use `new_contract` method to actually create the contract, with its named keys and its entry points. This creates the contract object and will save the access_uref and the contract package hash in the current' context. Context in this specific use case is the context of the account calling the "call" function. The contract package will be created automatically with the contractPackageHash and the contract is added to the package later with the contractHash.
+Use the `new_contract` method to create the contract, with its named keys and its entry points. This creates the contract object and will save the access_uref and the contract package hash in the current context. The context in this specific use case is the context of the account calling the "call" function. The contract package will be created automatically with the contractPackageHash and the contract is added to the package later with the contractHash.
 
 ```typescript
 let (toggle_contract, toggle_contract_version) = storage::new_contract(
@@ -149,7 +149,7 @@ let (toggle_contract, toggle_contract_version) = storage::new_contract(
         Some("toggle_contract_package_access_uref".to_string())
 );
 ```
-This section explains the creation of basic smart contract. Usually these contracts are upgradable with ability to adding new versions. if you want to prevent any upgrades to a contract use the `new_locked_contract` method to create the contract inside the call function.
+This section explains the creation of a basic smart contract. Usually, these contracts are upgradable with the ability to add new versions. if you want to prevent any upgrades to a contract use the `new_locked_contract` method to create the contract inside the call function.
 
 #### Locked Contracts
 Locked contracts cannot contain other versions in the same contract package, thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and avoid any further upgrades to the contract. Use locked contracts when you need to  deal with very secure business scenarios and there is complicated business logic. 
