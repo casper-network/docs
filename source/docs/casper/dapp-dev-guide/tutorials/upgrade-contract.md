@@ -17,7 +17,7 @@ These are the steps to add a new version to your contract.
 <img src={useBaseUrl("/image/contract-upgrade-flow.png")} alt="contract-upgrade-flow" width="500"/>
 
 ### Step 1. Creating a new contract file 
-a) Create a new smart contract file that contains the base contract. The name of the new contract file could be different but we prefer a similar name since it is a new version of the base file.
+a) Create a new smart contract file that contains the base contract. The name of the new contract file could be different since after being compiled to wasms; the contract versions are identified by contractHash and connected by the contract package.
 
 b) Then, add the required modification to the contract. This can be adding a new entry point or modifying the behavior of an existing entry point in the contract.
 
@@ -29,10 +29,9 @@ Implement the `call` method with a handle to the base contract's contractPackage
 let (contract_package_hash, _): (ContractPackageHash, URef) = storage::create_contract_package_at_hash();
 ```
 
-### Step 3. Implementing the generic method
+### Step 3. Call add_contract_version function
 
-You need to implement the [`add_contract_version`](https://github.com/casper-network/casper-node/blob/18571e0c22d7918a953f497649b733151cfb3c3c/smart_contracts/contracts/client/counter-define/src/main.rs#L78-L79) generic method with your contract details. This method is executed automatically when creating a brand new contract and it is considered the very first version of the contract. For future contract modifications, again this method is implemented inside the new contract version file to enable the versioning.
-
+Call [`add_contract_version`](https://github.com/casper-network/casper-node/blob/18571e0c22d7918a953f497649b733151cfb3c3c/smart_contracts/contracts/client/counter-define/src/main.rs#L78-L79) function passing in the new entrypoints. This function will add a contract version to the package marking "upgrading" a contract.
 
 a) Import required packages to implement the method.
 ```rust
@@ -58,18 +57,6 @@ b) Include the three arguments; contract_package_hash, entry_points, and named_k
 The contract package hash is like a container, with different versions of the contract, similar to an npm package or a Rust crate. It has several versions of software (v1, v2, v3) with functionality that can differ in certain versions. The contract package is created automatically when you install the contract on the blockchain. 
 
 <img src={useBaseUrl("/image/contract-representation.png")} alt="contract-representation" width="500"/>
-
-#### Sample Contract Implementation
-1. Define the new contract as explained in [Creating a new contract](./#step-1-creating-a-new-contract-file) file step.
-2. Implement the `call` method with a handle to the base contract's contractPackageHash. This connects the new version and old version to the contract package. 
-
-   E.g.
-```rust
-let (contract_package_hash, _): (ContractPackageHash, URef) = storage::create_contract_package_at_hash();
-```
-3. Implement the `add_contract_version` method as in [ Implementing the generic method](http://localhost:3000/docs/dapp-dev-guide/tutorials/upgrade-contract/#step-2-implementing-the-generic-method) step.
-
-4. Then perform the steps 4, 5, and 6 to proceed with the new contract deployment.
 
 ### Step 4. Compiling and building the contract
 Use these commands to prepare, compile and build the new contract.
