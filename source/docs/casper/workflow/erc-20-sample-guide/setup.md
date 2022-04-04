@@ -7,8 +7,8 @@ Clone the ERC-20 contract repository and run the `make build-contract` command. 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --chain-name integration-test \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
---session-path ~/casper/ibm_demo/erc20_token.wasm \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
+--session-path ~/casper/demo/erc20_token.wasm \
 --session-arg "name:string='ERC20'" \
 --session-arg "symbol:string='gris'" \
 --session-arg "total_supply:u256='100'" \
@@ -21,8 +21,8 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --chain-name integration-test \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
---session-path ~/casper/ibm_demo/erc20_test_call.wasm \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
+--session-path ~/casper/demo/erc20_test_call.wasm \
 --payment-amount 90000000000
 ```
 
