@@ -69,7 +69,7 @@ make build-contract
 
 ### Step 5. Deploying the contract 
 
-Use the below command to deploy your contract to the selected network. Make sure you add your specific arguments to the command. Refer to the [deploying contracts](/dapp-dev-guide/deploying-contracts/) guide to learn more about contract deployment.
+Use the below command to deploy your contract to the selected network. Make sure you add your specific arguments to the command. 
 
 ```bash
 casper-client put-deploy \
@@ -92,7 +92,7 @@ casper-client put-deploy \
 You can write unit tests to verify the accuracy of the new contract version. Refer to the code in this [file](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/test/contract-context/src/main.rs) to get an idea about creating the unit test. This file contains the code for building the test contract with the required constants and entry points. It creates the named-keys fields and adds the call to `add_contract_version` method with arguments inside the [install_version](https://github.com/casper-network/casper-node/blob/18571e0c22d7918a953f497649b733151cfb3c3c/smart_contracts/contracts/test/contract-context/src/main.rs#L152-L163). Finally, it executes the `call` method to generate and verify the new contract.
 
 #### Verify the deploy by querying the network
-Verify the changes by retrieving the deploy object and querying the network status.
+Verify the changes by retrieving the deploy object and querying the network status. Follow the [deploy verification](/dapp-dev-guide/on-chain-contracts/#monitoring-the-event-stream-for-deploys) step to learn more about monitoring the event stream of deploys.
 
 Get the details of the installed deploy .
 
