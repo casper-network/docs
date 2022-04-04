@@ -7,7 +7,7 @@ This tutorial guides you on how to upgrade your existing contract. Upgrading a s
 
 ## Pre-requisites
 - You should have a previously created smart contract, which should not be locked. A locked contract is not upgradable and has only one enabled version.
-- You should be familiar with [writing smart contracts](./writing-contracts), [deploying contracts](/dapp-dev-guide/deploying-contracts), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network.
+- You should be familiar with [writing smart contracts](./writing-contracts), [on-chain contracts](/dapp-dev-guide/on-chain-contracts/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network.
 
 
 #### Contract Versioning Flow
