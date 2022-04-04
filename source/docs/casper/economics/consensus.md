@@ -19,7 +19,7 @@ Each bid contains a delegation rate and activity status. The delegation rate can
 
 Delegation allows third parties to participate in consensus by adding weight to their preferred validators. Rewards received by validators are distributed in proportion to tokens bid and delegated. The current or prospective validator responsible for the bid receives a portion of the delegator rewards set by the delegation rate.
 
-Currently, delegation is unrestricted. Please visit [Delegation details](/docs/economics/delegation) page to check more about delegation cost and related details.
+Currently, delegation is unrestricted. Please visit [Delegation details](/economics/delegation) page to check more about delegation cost and related details.
 
 ## Incentives {#incentives}
 

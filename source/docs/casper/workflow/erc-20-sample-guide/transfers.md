@@ -7,7 +7,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --chain-name integration-test \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-hash hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180 \
 --session-entry-point "transfer" \
 --session-arg "recipient:key='account-hash-9f81014b9c7406c531ebf0477132283f4eb59143d7903a2fae54358b26cea44b" \
@@ -21,7 +21,7 @@ We then call our utility contract to invoke the `balance_of` entry point and wri
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_balance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -45,7 +45,7 @@ casper-client query-global-state -n http://3.143.158.19:7777 \
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --chain-name integration-test \
---secret-key ~/casper/ibm_demo/user_b/secret_key.pem \
+--secret-key ~/casper/demo/user_b/secret_key.pem \
 --session-hash hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180 \
 --session-entry-point "transfer" \
 --session-arg "recipient:key='account-hash-89422a0f291a83496e644cf02d2e3f9d6cbc5f7c877b6ba9f4ddfab8a84c2670'" \
@@ -59,7 +59,7 @@ We must then call the utility contract once for every balance we wish to check.
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_balance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -80,7 +80,7 @@ casper-client query-global-state -n http://3.143.158.19:7777
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_balance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -101,7 +101,7 @@ casper-client query-global-state -n http://3.143.158.19:7777 \
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_balance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -123,7 +123,7 @@ casper-client query-global-state -n http://3.143.158.19:7777 \
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --chain-name integration-test \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-hash hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180 \
 --session-entry-point "approve" \
 --session-arg "spender:key='account-hash-9f81014b9c7406c531ebf0477132283f4eb59143d7903a2fae54358b26cea44b'" \
@@ -137,7 +137,7 @@ As we did for `balance_of` to read out the balance values, we must perform a sim
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_allowance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -160,7 +160,7 @@ casper-client query-global-state -n http://3.143.158.19:7777 \
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --chain-name integration-test \
---secret-key ~/casper/ibm_demo/user_b/secret_key.pem \
+--secret-key ~/casper/demo/user_b/secret_key.pem \
 --session-hash hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180 \
 --session-entry-point "transfer_from" \
 --session-arg "owner:key='account-hash-303c0f8208220fe9a4de40e1ada1d35fdd6c678877908f01fddb2a56502d67fd'" \
@@ -173,7 +173,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_balance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -194,7 +194,7 @@ casper-client query-global-state -n http://3.143.158.19:7777 \
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_balance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -215,7 +215,7 @@ casper-client query-global-state -n http://3.143.158.19:7777 \
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_balance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -236,7 +236,7 @@ casper-client query-global-state -n http://3.143.158.19:7777 \
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_balance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
@@ -251,7 +251,7 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "erc20_test_call" \
 --session-entry-point "check_allowance_of" \
 --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
