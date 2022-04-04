@@ -10,7 +10,7 @@ This workflow assumes:
 2.  You are using the Casper command-line client
 3.  You have a main `PublicKey` hex (**MA**) and a `PublicKey` hex to associate (**AA**)
 4.  You have a valid `node-address`
-5.  You have previously [deployed a smart contract](../dapp-dev-guide/deploying-contracts.md) to a Casper Network
+5.  You have previously [deployed a smart contract](../dapp-dev-guide/on-chain-contracts.md) to a Casper Network
 
 ## Configuring the Main Account {#configuring-the-main-account}
 
