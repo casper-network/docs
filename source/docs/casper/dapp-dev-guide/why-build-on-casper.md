@@ -2,13 +2,13 @@
 
 This guide intends to briefly show you the current features and advantages of building on the Casper Network.
 
-  - [Thriving Ecosystem {#thriving-ecosystem}](#thriving-ecosystem-thriving-ecosystem)
-  - [Developer-Friendly Language {#developer-friendly-language}](#developer-friendly-language-developer-friendly-language)
-  - [Powerful Accounts {#powerful-accounts}](#powerful-accounts-powerful-accounts)
-  - [Contract Upgrades {#contract-upgrades}](#contract-upgrades-contract-upgrades)
-  - [Development Tools {#development-tools}](#development-tools-development-tools)
-  - [SDK Client Libraries {#sdk-client-libraries}](#sdk-client-libraries-sdk-client-libraries)
-  - [Low Gas Fees {#low-gas-fees}](#low-gas-fees-low-gas-fees)
+  - [Thriving Ecosystem](#thriving-ecosystem)
+  - [Developer-Friendly Language](#developer-friendly-language)
+  - [Powerful Accounts](#powerful-accounts)
+  - [Contract Upgrades](#contract-upgrades)
+  - [Development Tools](#development-tools)
+  - [SDK Client Libraries](#sdk-client-libraries)
+  - [Low Gas Fees](#low-gas-fees)
 
 ## Thriving Ecosystem {#thriving-ecosystem}
 The Casper Ecosystem is growing every day through the addition of new dApps and tools. Here is a short list of tools you can use.
