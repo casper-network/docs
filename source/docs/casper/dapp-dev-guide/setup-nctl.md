@@ -189,6 +189,8 @@ Here is the command line output you would expect.
 
 <img src={useBaseUrl("/image/nctl/nctl_output.png")} alt="nctl_output"/>
 
+*Note: The default block-time is 32 seconds. You can change this value by altering `deploy_delay` in resources/local/config.toml*
+
 ## Stopping the Network {#stopping-the-network}
 
 **Step 15.** Although not necessary, you can stop and clean the NCTL setup with the following commands.
