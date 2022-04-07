@@ -27,5 +27,5 @@ Before you dive into the details of this guide, ensure you meet these requiremen
 -   Set up your machine as per the [prerequisites](/workflow/setup)
 -   Use the Casper command-line client
 -   Get a valid `node-address`
--   Know how to deploy a [smart contract](/dapp-dev-guide/on-chain-contracts) to a Casper network
+-   Know how to deploy a [smart contract](/dapp-dev-guide/on-chain-contracts.md) to a Casper Network
 -   Get some CSPR tokens to pay for transactions

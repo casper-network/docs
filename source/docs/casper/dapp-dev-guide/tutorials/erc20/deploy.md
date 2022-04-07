@@ -96,7 +96,7 @@ casper-client put-deploy \
 
 - **We currently do not refund any tokens as part of a deploy.**
 
-  Eg:- If you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the extra 9 CSPR. Refer to the [computational cost and gas amounts](https://docs.casperlabs.io/design/execution-semantics#execution-semantics-gas) for further details
+  Eg:- If you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the extra 9 CSPR. Refer to the [computational cost and gas amounts](/design/execution-semantics#execution-semantics-gas) for further details
 :::
 
 Find the sample *put-deploy* command below:
