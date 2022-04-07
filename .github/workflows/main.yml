@@ -2,6 +2,7 @@ name: Docusaurus CICD
 
 env:
   prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
+  stag_pages_fqdn: ${{ secrets.STAG_PAGES_FQDN }}
 
 on:
   push:
@@ -170,7 +171,7 @@ jobs:
         AWS_S3_BUCKET: ${{ secrets.AWS_DEV_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEV_SECRET_ACCESS_KEY }}
-        SOURCE_DIR: ./docs
+        SOURCE_DIR: docs
 
   system-tests-postdeployment-prod:
     needs: deploy-prod
@@ -245,6 +246,6 @@ jobs:
         AWS_S3_BUCKET: ${{ secrets.AWS_DEV_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEV_SECRET_ACCESS_KEY }}
-        SOURCE_DIR: ./docs
+        SOURCE_DIR: docs
 
 
