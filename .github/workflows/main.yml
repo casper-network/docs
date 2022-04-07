@@ -4,6 +4,7 @@ env:
   prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
   stag_pages_fqdn: ${{ secrets.STAG_PAGES_FQDN }}
 
+
 on:
   push:
     branches: "*"
@@ -247,6 +248,7 @@ jobs:
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --follow-symlinks --delete
+
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_DEV_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_ACCESS_KEY_ID }}
