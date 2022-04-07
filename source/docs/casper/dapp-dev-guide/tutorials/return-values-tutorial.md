@@ -93,7 +93,7 @@ pub extern "C" fn call() {
     );
 
     // Creates another named key with the contract hash under the calling account.
-    runtime::put_key("adder_cointract_hash", contract_hash.into());
+    runtime::put_key("adder_contract_hash", contract_hash.into());
 }
 ```
 
