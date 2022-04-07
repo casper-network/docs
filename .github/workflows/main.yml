@@ -199,15 +199,15 @@ jobs:
       - name: Test home page
         run: |
           echo "Testing if homepage responds correctly"
-          curl --fail -k https://$stag_pages_fqdn
+          curl --fail -k http://$stag_pages_fqdn
       - name: Test a random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail -k https://$stag_pages_fqdn/operators/create
+          curl --fail -k http://$stag_pages_fqdn/operators/create
       - name: Test another random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail -k https://$stag_pages_fqdn/design/serialization-standard
+          curl --fail -k http://$stag_pages_fqdn/design/serialization-standard
 
   rollback-if-tests-fail-prod:
     if: ${{ always() && (needs.system-tests-postdeployment-prod.result=='failure') }}
@@ -236,6 +236,11 @@ jobs:
       with:
         name: gh-pages-backup
         path: ./docs
+
+    #Remove .git directory
+    - name: Remove .git directory
+      run: |
+        rm -rf ./docs/.git
 
     #Deploy to S3 bucket
     - name: Deploy to S3 bucket
