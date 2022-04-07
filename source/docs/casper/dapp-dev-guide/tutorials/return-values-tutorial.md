@@ -2,7 +2,7 @@
 
 Users interacting with the Casper Network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, where contract code executes on global state through a smart contract. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
-As session code executes directly from the account, there is no caller to return a value to. Instead, `runtime::ret()` allows for a contract to return information to the session code that called it. The session code can then store the returned information in a local `named_key` under the calling account.
+As session code executes directly from the account, the [runtime::ret()](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.ret.html) function allows for a contract to return information to the session code that called it. The session code can then store the returned information in a local [NamedKey](https://docs.rs/casper-types/latest/casper_types/struct.NamedKey.html) under the calling account.
 
 ## Contract Code {#return-contract-code}
 
@@ -102,7 +102,7 @@ pub extern "C" fn call() {
 
 ## Session Code {#return-session-code}
 
-On the other end of this interaction, the session code needs to store the value it receives in a `named_key` for future access. The following code outlines this process:
+On the other end of this interaction, the session code needs to store the value it receives in a NamedKey for future access. The following code outlines this process:
 
 ```rust
 
@@ -158,6 +158,6 @@ pub extern "C" fn call(){
 
 This session code calls the previously listed contract code by using the `contract_hash`, supplying it with two arguments: `number_1` and `number_2`. It does so through the defined entry point named `add`.
 
-When the session code receives the return value, it stores it in a `named_key` associated with the calling account. The first option creates a new `named_key` every time that it calls the contract. Option 2 only creates a new `named_key` if there is no previous associated storage, otherwise it overwrites the stored value.
+When the session code receives the return value, it stores it in `result`, which is a NamedKey associated with the calling account. The first option creates a new `result` every time it calls the contract. Option 2 only creates a new `result` if there is no previous associated storage, otherwise, it overwrites the stored value.
 
-The user can then view the stored information by accessing their `named_key`.
+The user can then view the stored information by accessing their NamedKey.
