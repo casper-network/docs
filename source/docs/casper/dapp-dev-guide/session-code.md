@@ -1,23 +1,20 @@
 # Understanding Session Code
-
-[Introduction placeholder]
-
+This section explains the concept of session code, why we need it and how can you write it.
 
 ## What is Session code?
-Session code is the simplest piece of code you can execute on the Casper network. It has only on entry point, which is the `call` function and it runs within the context of the account executing the session code.
-
-The context of the account means that the session code will run with the permissions of the account, this means like having access to the main purse (the session code could transfer tokens out of the accounts main purse).
+Session code is the simplest piece of logic you can execute on the Casper network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. The context of the account means that the session code will run with the permissions of the account, this means like having access to the main purse (the session code could transfer tokens out of the accounts main purse). 
+Session code can be written in any programming language that compiles to Wasm.
 
 **Note**: Before you sign and execute the session code, ensure that you know what exactly the session code is doing. Because if you don't know what it is exactly meant for, then it could be doing something malicious.
 
 ## Project Structure
-
+For this guide we are doing this process of creating the project structure manually, however, 
 
 
 ## Writing Session Code
 The following steps illustrate the process of writing session code and the important components to include within your session code:
 
-1. Create a new folder that will contain the session code and would also include another folder for tests which will help us test the functionality of our session code. 
+1. Create a new top level directory that will contain the session code and would also include another folder for tests which will help us test the functionality of our session code. 
 
 2. Inside the new folder run the following command to create a new binary package called contract:
 
@@ -25,25 +22,24 @@ The following steps illustrate the process of writing session code and the impor
     cargo new contract
     ```
 
-    This folder will contain the logic that you will compile to Wasm. The code contained within this folder will be the code we execute on a node within the Casper network.
-
+    This folder will contain the logic that will be compiled to Wasm and will be executed on a node within the Casper network.
 
 3. Within the contract package, you can find the `main.rs` file inside the `src` folder. You will write your session code in the `main.rs` file. 
 
-4. Few things to note while writing session code:
+4.  In the `cargo.toml` file include the following dependencies:
+    -   `casper-contract = "1.4.3"`
+    -   `casper-types = "1.4.6"`
+    
+    You can find the latest versions of the dependencies at https://crates.io/
+
+5. Few things to note while writing session code:
     -   Include the following:
         -   `#![no_std]` - This indicates to not import the standard library.
         -   `#![no_main]` - This indicates that the main function is not required, since the session code has only one entry point as the `call` function.
     -   Import the casper contract API:
         `use casper_contract::contract_api::{runtime, storage};` this example uses only runtime and storage crates, however, you might need to import the crates relevant to your session code.
 
-5.  In the `cargo.toml` file include the following dependencies:
-    -   `casper-contract = "1.4.3"`
-    -   `casper-types = "1.4.6"`
-    
-    You can find the latest versions of the dependencies at https://crates.io/
-
-### Sample session code
+## Sample Session Code
 This sample code demonstrates a simple session code passing arguments, processing the arguments, and storing the result. In general, that is what you will use session code for. In this example, we are adding two numbers and storing the result in a URef.
 
 ```rust
@@ -64,11 +60,40 @@ pub extern "C" fn call() {
     let result = num1 + num2;
     // Write the answer under some URef
     let result_uref = storage::new_uref(result);
-    // Put the URef in the current context, which is the context
+    // Put the URef in the current context's NamedKeys, which is the context i
     // of the account calling this piece of session code.
     runtime::put_key("answer", result_uref.into())
 }
 ```
+
+### Understanding the sample code
+Let's try to understand what each line of code in the above sample is trying to achieve.
+
+```rust
+#![no_std]
+#![no_main]
+```
+This indicates to not import the standard library and that the main function is not required, since the session code has only one entry point as the `call` function.
+
+```rust
+use casper_contract::contract_api::{runtime, storage};
+```
+Imports the casper contract API. This example uses only runtime and storage crates, however, you might need to import the crates relevant to your session code.
+
+```rust
+const ARG_NUMBER_1: &str = "number_1";
+const ARG_NUMBER_2: &str = "number_2";
+```
+
+
+
+
+```rust
+#[no_mangle]
+```
+When some Wasm is sent to be executed by the execution engine (EE) that lives within each node of the Casper network, `#[no_mangle]` ensures that the function name that follows it is retained as is in string form in the Wasm output. For session code, this retains the `call` string and marks the entry point for the execution engine.
+
+
 
 ## Testing the Session Code
 Once you have written the session code, you can test it. Let's go through the steps required to test your session code.  
