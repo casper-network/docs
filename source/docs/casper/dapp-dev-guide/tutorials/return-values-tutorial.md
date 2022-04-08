@@ -117,8 +117,8 @@ const CONTRACT_HASH: ContractHash = ContractHash::default();
 pub extern "C" fn call(){
     // This defines the variables included within the function.
     let contract_hash = runtime::get_named_arg("contract_hash");
-    let number_1 = runtime::get_named_arg("number_1");
-    let number_2 = runtime::get_named_arg("number_2");
+    let number_1: u32 = runtime::get_named_arg("number_1");
+    let number_2: u32 = runtime::get_named_arg("number_2");
 
     let runtime_args = runtime_args! {
         "number_1" => number_1,
