@@ -3,11 +3,12 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
-This tutorial guides you on how to upgrade your existing contract. Upgrading a smart contract is same as upgrading any other software; that it needs to add a new version including the required changes to the contract. Changes of the contract could be adding, editing, or deleting functionalities within your existing smart contract. The steps to upgrade a contract is illustrated in the below steps.
+This tutorial examines how to upgrade an existing contract, which is similar to upgrading any other software. You can change an unlocked Casper contract by adding, editing, or deleting functionality. Once you have the new contract, you can add it to an existing contract package by knowing the contract package hash and using the `add_contract_version` API. Note that a locked contract cannot be versioned and is therefore not upgradable.
+
 
 ## Pre-requisites
-- You should have a previously created smart contract, which should not be locked. A locked contract is not upgradable and has only one enabled version.
-- You should be familiar with [writing smart contracts](./writing-contracts), [on-chain contracts](/dapp-dev-guide/on-chain-contracts/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network.
+- You need the contract package hash identifying the contract package where you want to add a new version of the contract
+- You should be familiar with [writing smart contracts](./writing-contracts), [on-chain contracts](/dapp-dev-guide/on-chain-contracts/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network
 
 
 #### Contract Versioning Flow
