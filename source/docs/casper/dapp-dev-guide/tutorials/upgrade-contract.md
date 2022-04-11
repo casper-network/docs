@@ -2,7 +2,7 @@
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This tutorial examines how to upgrade an existing contract, which is similar to upgrading any other software. You can change an unlocked Casper contract by adding, editing, or deleting functionality. Once you have the new contract, you can add it to an existing contract package by knowing the contract package hash and using the [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html) API. Note that a [locked contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) cannot be versioned and is therefore not upgradable.
+This tutorial examines how to upgrade an existing contract, similar to upgrading any other software. You can change an unlocked Casper contract by adding, editing, or deleting functionality. Once you have the new contract, you can add it to an existing contract package by knowing the contract package hash and using the [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html) API. Note that a [locked contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) cannot be versioned and is therefore not upgradable.
 
 ## Pre-requisites
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
@@ -85,7 +85,7 @@ You can write unit tests to verify the behavior of the new contract version. For
 
 :::note
 
-You could store the latest version of the contract package under a NamedKey, as [here](https://github.com/casper-network/casper-node/blob/8356f393d361832b18fee7227b5dcd65e29db768/smart_contracts/contracts/client/counter-define/src/main.rs#L81). Then, you can query the NamedKey to check the latest version of the contract.
+You could store the latest version of the contract package under a NamedKey, as shown [here](https://github.com/casper-network/casper-node/blob/8356f393d361832b18fee7227b5dcd65e29db768/smart_contracts/contracts/client/counter-define/src/main.rs#L81). Then, you can query the NamedKey to check the latest version of the contract.
 
 <details>
 <summary><b>Example test function</b></summary>
