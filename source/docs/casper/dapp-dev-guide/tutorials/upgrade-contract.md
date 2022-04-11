@@ -7,7 +7,7 @@ This tutorial examines how to upgrade an existing contract, which is similar to 
 
 
 ## Pre-requisites
-- You need the contract package hash identifying the contract package where you want to add a new version of the contract
+- You need the contract package hash identifying the contract package where you want to add a new version of the unlocked contract
 - You should be familiar with [writing smart contracts](./writing-contracts), [on-chain contracts](/dapp-dev-guide/on-chain-contracts/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network
 
 
@@ -15,7 +15,11 @@ This tutorial examines how to upgrade an existing contract, which is similar to 
 
 These are the steps to add a new version to your contract.
 
-<img src={useBaseUrl("/image/contract-upgrade-flow.png")} alt="contract-upgrade-flow" width="500"/>
+1. Create a new contract, or modify an existing contract
+2. Use the `add_contract_version` API to specify the contract package hash where the contract should be installed
+3. Build the contract and generate the corresponding .wasm file
+4. Install the contract on the network via a deploy
+5. Verify that your new contract version works as desired
 
 ### Step 1. Creating a new contract file 
 a) Create a new smart contract file that contains the base contract. The name of the new contract file could be different since after being compiled to wasms; the contract versions are identified by contractHash and connected by the contract package.
