@@ -139,6 +139,12 @@ Instructions for MacOS and Linux:
 (env) $ git clone https://github.com/casper-network/casper-node-launcher
 ```
 
+:::note
+
+Assuming you have set up a small local network, you can speed up the process of creating new blocks with NCTL by reducing the `deploy_delay` in your [local config.toml](https://github.com/casper-network/casper-node/blob/dev/resources/local/config.toml#L390) before running `nctl-assets-setup`.
+
+:::
+
 **Step 11.** Next, clone the _casper-node_ software, also in your working directory.
 
 Instructions for MacOS and Linux:
