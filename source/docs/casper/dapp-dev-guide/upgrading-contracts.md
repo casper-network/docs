@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Upgrading Contracts
 
 Our smart contract packaging tools enable you to:
@@ -7,7 +9,10 @@ Our smart contract packaging tools enable you to:
 -   Version your contracts and deprecate old versions
 -   Set permissions around who can perform contract upgrades
 
-The upgrade workflow is essentially adding new versions to the contract package. Upgrading a contract is not an in-place replacement but an additive process. When you upgrade the contract, you simply add a new version of the contract in the contract package. The original version of the contract is still there. The developer can enable specific versions of the contract. You can disable a contract version if needed.
+When you upgrade a contract, you add a new contract version in a contract package. The versioning process is additive rather than an in-place replacement of an existing contract. The original version of the contract is still there, and you can enable certain versions for specific clients. You can also disable a contract version if needed.
 
+<img src={useBaseUrl("/image/contract-representation.png")} alt="contract-representation" width="500"/>
+
+The contract package is like a container for different contract versions, with functionality that can differ slightly or significantly among versions. The contract package is created when you install the contract on the blockchain. 
 
 To learn more about how to upgrade your smart contracts, see the [Smart Contract Upgrade Tutorial](/dapp-dev-guide/tutorials/upgrade-contract/).
