@@ -2,9 +2,9 @@
 
 This document outlines the methods, endpoints, and types available to developers crafting an SDK for use with Casper networks. The separation of these methods pertains to their use and potential necessity for specific forms of SDK. While a full-featured SDK may feature all methods, there are use cases for SDKs that are purely transactional or informational.
 
-For examples of completed SDKs, please refer to our [SDK Client Libraries](https://casper.network/docs/sdk) section.
+For examples of completed SDKs, please refer to our [SDK Client Libraries](../../../sdk/) section.
 
-You can find information on our serialization standard [here](https://casper.network/docs/design/serialization-standard/).
+You can find information on our serialization standard [here](../../../design/serialization-standard/).
 
 |Page|Description|
 |----|-----------|
