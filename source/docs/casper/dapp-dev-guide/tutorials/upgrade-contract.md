@@ -15,7 +15,7 @@ Here is an example workflow for creating a versioned contract. Your workflow may
 
 1. Create a contract that can be versioned
 2. Add a new version of the contract using [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html)
-3. Build the contract and generate the corresponding .wasm file
+3. Build the contract and generate the corresponding `.wasm` file
 4. Install the contract on the network via a deploy
 5. Verify that your new contract version works as desired
 
