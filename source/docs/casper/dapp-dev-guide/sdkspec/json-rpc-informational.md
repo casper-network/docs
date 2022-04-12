@@ -207,7 +207,7 @@ This method returns a state root hash at a given [Block](../../design/block-stru
 
 ## info_get_deploy {#info-get-deploy}
 
-This method retrieves a [Deploy](../../design/execution-semantics#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
+This method retrieves a [Deploy](../../design/execution-semantics.md#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
