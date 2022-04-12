@@ -4,7 +4,7 @@ This document outlines the methods, endpoints, and types available to developers
 
 For examples of completed SDKs, please refer to our [SDK Client Libraries](../sdk/index.md) section.
 
-You can find information on our serialization standard [here](../design/serialization-standard/).
+You can find information on our serialization standard [here](../../design/serialization-standard/).
 
 |Page|Description|
 |----|-----------|
