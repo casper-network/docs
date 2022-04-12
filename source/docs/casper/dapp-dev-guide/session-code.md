@@ -1,37 +1,47 @@
 # Understanding Session Code
-This section explains the concept of session code, why we need it and how can you write it.
+This section explains the concept of session code, why we need it and how can you write it. Session code is used when the use case to be solved requires very little state of no state at all. Stateless is when the execution doesn't depend on a previous state, so the output of the execution is the same each time. Stateful is when the execution depends on a previous state, which makes the output differ each time. 
 
 ## What is Session code?
 Session code is the simplest piece of logic you can execute on the Casper network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. The context of the account means that the session code will run with the permissions of the account, this means like having access to the main purse (the session code could transfer tokens out of the accounts main purse). 
 Session code can be written in any programming language that compiles to Wasm.
 
-**Note**: Before you sign and execute the session code, ensure that you know what exactly the session code is doing. Because if you don't know what it is exactly meant for, then it could be doing something malicious.
+**Note**: Before you sign and execute the session code, ensure that you know exactly what the session code is doing. Because if you don't know what it is exactly meant for, then it could be doing something malicious.
 
 ## Project Structure
-For this guide we are doing this process of creating the project structure manually, however, 
+For this guide, we are creating the project structure manually, however, you can use the  
+
+
+
+
 
 
 ## Writing Session Code
 The following steps illustrate the process of writing session code and the important components to include within your session code:
 
-1. Create a new top level directory that will contain the session code and would also include another folder for tests which will help us test the functionality of our session code. 
+1. Create a new top level directory that will contain the session code and would also include another folder for tests, which will help us test the functionality of our session code. 
 
 2. Inside the new folder run the following command to create a new binary package called contract:
 
     ```bash
     cargo new contract
     ```
-
+    
     This folder will contain the logic that will be compiled to Wasm and will be executed on a node within the Casper network.
 
 3. Within the contract package, you can find the `main.rs` file inside the `src` folder. You will write your session code in the `main.rs` file. 
 
 4.  In the `cargo.toml` file include the following dependencies:
-    -   `casper-contract = "1.4.3"`
-    -   `casper-types = "1.4.6"`
+    -   `casper-contract = "1.4.3"` - For more information on this crate, see [doc.rs](https://docs.rs/casper-contract/latest/casper_contract/)
+    -   `casper-types = "1.4.6"` - For more information on this crate, see [doc.rs](https://docs.rs/casper-types/latest/casper_types/)
     
-    You can find the latest versions of the dependencies at https://crates.io/
+    You need to include the casper-types crate as this crate includes the types that the node uses and the execution engine (EE) understands.
+    
+    
 
+
+    
+    You can find the latest versions of the dependencies at https://crates.io/.
+    
 5. Few things to note while writing session code:
     -   Include the following:
         -   `#![no_std]` - This indicates to not import the standard library.
@@ -84,14 +94,31 @@ Imports the casper contract API. This example uses only runtime and storage crat
 const ARG_NUMBER_1: &str = "number_1";
 const ARG_NUMBER_2: &str = "number_2";
 ```
-
-
-
+It is a good habit to define constants, because if you use the same argument in multiple places and you want to change the argument, you can do that where you just defined the constant. And this change will reflect everywhere the argument is used.
 
 ```rust
 #[no_mangle]
 ```
 When some Wasm is sent to be executed by the execution engine (EE) that lives within each node of the Casper network, `#[no_mangle]` ensures that the function name that follows it is retained as is in string form in the Wasm output. For session code, this retains the `call` string and marks the entry point for the execution engine.
+
+```rust
+pub extern "C" fn call()
+```
+Defines the `call` function.
+
+```rust
+let num1: u32 = runtime::get_named_arg(ARG_NUMBER_1);
+let num2: u32 = runtime::get_named_arg(ARG_NUMBER_2);
+let result = num1 + num2;
+```
+Get the input numbers in `u32` format and perform a 
+
+
+
+
+
+
+
 
 
 
