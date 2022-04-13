@@ -75,7 +75,7 @@ Explanation of arguments:
    - Pin your client contract to the contract hash of a specific version
    - Use [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html) with a version number to pin your client contract to that version
    - Call a contract using [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html) and version "None", which uses the newest version of the contract
-   <!-- Add a link to Calling Contracts here, when that page is refreshed. -->
+
 :::
 
 
