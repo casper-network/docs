@@ -71,8 +71,11 @@ Explanation of arguments:
 :::note
 
 - The new contract version carries on named keys from the previous version. If you specify a new set of named keys, they will be combined with the old named keys in the new contract version. If the old and new contract versions use the same named keys, then the new values would be present in the new version of the contract
-- You need to decide how to manage contract versioning with clients using older versions
-
+- You will need to manage contract versioning, considering clients that may use older versions. Here are a few options: 
+   - Pin your client contract to the contract hash of a specific version
+   - Use [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html) with a version number to pin your client contract to that version
+   - Call a contract using [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html) and version "None", which uses the newest version of the contract
+   <!-- Add a link to Calling Contracts here, when that page is refreshed. -->
 :::
 
 
