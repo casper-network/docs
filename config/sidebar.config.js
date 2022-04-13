@@ -91,7 +91,21 @@ module.exports = {
             collapsible: true,
             collapsed: true,
             items: [
-                "dapp-dev-guide/tutorials/index",
+                "dapp-dev-guide/tutorials/casper-signer",
+                {
+                    type: "category",
+                    label: "CEP-47 Tutorial",
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        "dapp-dev-guide/tutorials/cep47/index",
+                        "dapp-dev-guide/tutorials/cep47/prepare",
+                        "dapp-dev-guide/tutorials/cep47/implementation",
+                        "dapp-dev-guide/tutorials/cep47/deploy",
+                        "dapp-dev-guide/tutorials/cep47/contract-interaction",
+                        "dapp-dev-guide/tutorials/cep47/test",
+                    ],
+                },
                 {
                     type: "category",
                     label: "A Counter Contract Tutorial",
@@ -118,20 +132,6 @@ module.exports = {
                         "dapp-dev-guide/tutorials/erc20/tests",
                     ],
                 },
-                {
-                    type: "category",
-                    label: "CEP-47 Tutorial",
-                    collapsible: true,
-                    collapsed: true,
-                    items: [
-                        "dapp-dev-guide/tutorials/cep47/index",
-                        "dapp-dev-guide/tutorials/cep47/prepare",
-                        "dapp-dev-guide/tutorials/cep47/implementation",
-                        "dapp-dev-guide/tutorials/cep47/deploy",
-                        "dapp-dev-guide/tutorials/cep47/contract-interaction",
-                        "dapp-dev-guide/tutorials/cep47/test",
-                    ],
-                },
                 "dapp-dev-guide/tutorials/kv-storage-tutorial",
                 {
                     type: "category",
@@ -149,7 +149,6 @@ module.exports = {
                 },
                 "dapp-dev-guide/tutorials/transfer-token-to-contract",
                 "dapp-dev-guide/tutorials/upgrade-tutorial",
-                "dapp-dev-guide/tutorials/casper-signer",
             ],
         },
     ],
