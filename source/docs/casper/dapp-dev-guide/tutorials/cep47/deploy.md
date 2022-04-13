@@ -64,6 +64,7 @@ You must update the above list of parameters to align with your working environm
 Run the following commands to install the dependencies and build the client:
 ```bash
 npm install
+npm run boostrap
 npm run dist
 ```
 
