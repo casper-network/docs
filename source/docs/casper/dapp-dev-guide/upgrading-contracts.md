@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Our smart contract packaging tools enable you to:
 
--   [Upgrade your contracts](/dapp-dev-guide/tutorials/upgrade-contract/) and specify how the state of the contract is managed
+-   [Upgrade your contracts](/tutorials/upgrade-contract/) and specify how the state of the contract is managed
 -   Specify whether a contract is upgradable or immutable
 -   Version your contracts and deprecate old versions
 -   Set permissions around who can perform contract upgrades
@@ -15,4 +15,4 @@ When you upgrade a contract, you add a new contract version in a contract packag
 
 The contract package is like a container for different contract versions, with functionality that can differ slightly or significantly among versions. The contract package is created when you install the contract on the blockchain. 
 
-To learn more about how to upgrade your smart contracts, see the [Smart Contract Upgrade Tutorial](/dapp-dev-guide/tutorials/upgrade-contract/).
+To learn more about how to upgrade your smart contracts, see the [Smart Contract Upgrade Tutorial](/tutorials/upgrade-contract/).
