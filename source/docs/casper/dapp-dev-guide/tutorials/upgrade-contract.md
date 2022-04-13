@@ -39,6 +39,13 @@ You need the access key URef returned from `create_contract_package_at_hash` in 
 
 The [simple counter example](https://github.com/casper-network/casper-node/blob/118a80650da8219aba6eb76d9b4611b7a88d9827/smart_contracts/contracts/client/counter-define/src/main.rs#L65-L68) shows you the essential structure of a contract package that can be versioned. Notice that in the `call` function, the contract is stored under a ContractPackageHash.
 
+:::note
+
+- We are versioning the contract package, not the contract. The contract is always at a set version, and it is the package that specifies the contract version to be used
+- The contract file name could differ from the base contract since the contract package hash connects the contract's versions after compiling to Wasm
+
+:::
+
 ### Step 2. Add a new contract to the package
 
 There are many changes you could make to a Casper contract, including:
@@ -63,10 +70,7 @@ Explanation of arguments:
 
 :::note
 
-A few notes to consider:
-
-- We are versioning the contract package, not the contract. The contract is always at a set version, and it is the package that specifies the contract version to be used
-- The contract file name could differ from the base contract since the contract package hash connects the contract's versions after compiling to Wasm
+- The new contract version carries on named keys from the previous version. If you specify a new set of named keys, they will be combined with the old named keys in the new contract version. If the old and new contract versions use the same named keys, then the new values would be present in the new version of the contract
 - You need to decide how to manage contract versioning with clients using older versions
 
 :::
