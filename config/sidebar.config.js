@@ -91,6 +91,7 @@ module.exports = {
             collapsible: true,
             collapsed: true,
             items: [
+                "dapp-dev-guide/tutorials/index",
                 "dapp-dev-guide/tutorials/casper-signer",
                 {
                     type: "category",
