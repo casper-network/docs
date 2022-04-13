@@ -4,14 +4,14 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This tutorial examines how to upgrade an existing contract, a process similar to upgrading any other software. You can change an unlocked [contract package](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) by adding a new contract and updating the default contract version that the contract package should use. You will need to know the contract package hash and use the [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html) API. 
 
-**Note:** a [locked contract package](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) cannot be versioned and is therefore not upgradable.
+**Note:** you can also create a [locked contract package](#locked-contract-package) that cannot be versioned and is therefore not upgradable.
 
-## Pre-requisites
+## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
 - You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/on-chain-contracts/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network
 
 
-## Contract Versioning Flow
+## Contract Versioning Flow {#contract-versioning-flow}
 
 Here is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash.
 
@@ -26,14 +26,18 @@ Here is an example workflow for creating a versioned contract package. Your work
 
 Create a new contract package using the [create_contract_package_at_hash](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.create_contract_package_at_hash.html#) function to store the new (versioned) contract under a key in global state.
 
+You need the access key URef returned from `create_contract_package_at_hash` in your context, giving you access to your named keys. Without the access key URef, you cannot add new contract versions for security reasons.
+
 ```rust
-    // Create a contract package for this contract and save its hash value
-    let (contract_package_hash, _): (ContractPackageHash, URef) =
-    storage::create_contract_package_at_hash();
+    // Create a contract package for this contract
+    // Save its package hash and access URef for further modifications
+    let (contract_package_hash, access_uref): (ContractPackageHash, URef) =
+        storage::create_contract_package_at_hash();
+    runtime::put_key(HASH_KEY_NAME, contract_package_hash.into());
+    runtime::put_key(ACCESS_KEY_NAME, access_uref.into());
 ```
 
-This [simple example](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/client/counter-define/src/main.rs) shows you the essential structure of a contract package that can be versioned. Notice that in the `call` function, the contract is [stored under a ContractPackageHash](https://github.com/casper-network/casper-node/blob/8356f393d361832b18fee7227b5dcd65e29db768/smart_contracts/contracts/client/counter-define/src/main.rs#L65-L68).
-
+The [simple counter example](https://github.com/casper-network/casper-node/blob/118a80650da8219aba6eb76d9b4611b7a88d9827/smart_contracts/contracts/client/counter-define/src/main.rs#L65-L68) shows you the essential structure of a contract package that can be versioned. Notice that in the `call` function, the contract is stored under a ContractPackageHash.
 
 ### Step 2. Add a new contract to the package
 
@@ -115,3 +119,12 @@ You could store the latest version of the contract package under a NamedKey, as 
 
 :::
 
+## Creating a Locked Contract Package {#locked-contract-package}
+
+You can create a [locked contract package](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) and forbid further upgrades by discarding the access key URef returned by the `create_contract_package_at_hash` function:
+
+```rust
+    // Create a locked contract package that prevents further upgrades 
+    let (contract_package_hash, _): (ContractPackageHash, URef) =
+    storage::create_contract_package_at_hash();
+```
