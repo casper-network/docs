@@ -18,4 +18,3 @@ The following table provides links to the SDK documentation, in addition to the 
 |[Python SDK](/dapp-dev-guide/sdk/python-sdk) |[Casper-python-sdk](https://github.com/casper-network/casper-python-sdk/)|[Mark A. Greenslade](mailto:mark@casper.network)|
 |Java SDK by SyntiFi|[Casper-sdk](https://github.com/syntifi/casper-sdk)|[Remo Stieger](mailto:remo@syntifi.com)/[Andre Bertolace](mailto:andre@syntifi.com)|
 |PHP SDK|[Casper-php-sdk](https://github.com/make-software/casper-php-sdk)|Roman Bylbas, Ihor Burlachenko, Michael Steuer|
-|Erlang SDK| In Development|Robert Carbone (Telegram: [@ophiucan](https://t.me/ophiucan))|

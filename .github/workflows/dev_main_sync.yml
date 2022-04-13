@@ -1,0 +1,45 @@
+name: dev to main sync
+
+
+#Run workflow on successful merge to dev
+on:
+  push:
+    branches:
+      - dev
+
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.PRBOT_APP_ID }}
+          private_key: ${{ secrets.PRBOT_APP_PRIVATE_KEY }}
+
+      #Sync dev branch to the main branch to keep it updated
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Opening pull request
+        id: pull
+        uses: tretuna/sync-branches@1.4.0
+        with:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          FROM_BRANCH: "dev"
+          TO_BRANCH: "main"
+          REVIEWERS: '["bradjohnl"]'
+          CONTENT_COMPARISON: true
+          PULL_REQUEST_BODY: "This PR is created by the PR Bot to sync the dev branch to the main branch."
+          PULL_REQUEST_TITLE: "Sync dev to main"
+
+      #Display the pull request URL:
+      - name: Display the pull request URL
+        run: | 
+          echo "The pull request URL is: ${{ steps.pull.outputs.PULL_REQUEST_URL }}"
