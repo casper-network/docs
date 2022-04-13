@@ -42,7 +42,7 @@ The [simple counter example](https://github.com/casper-network/casper-node/blob/
 :::note
 
 - We are versioning the contract package, not the contract. The contract is always at a set version, and it is the package that specifies the contract version to be used
-- The contract file name could differ from the base contract since the contract package hash connects the contract's versions after compiling to Wasm
+- The Wasm file name of the new contract could differ from the old contract; after sending the deploy to the network, the contract package hash connects the different contract versions
 
 :::
 
