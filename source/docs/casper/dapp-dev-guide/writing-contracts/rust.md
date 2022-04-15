@@ -1,4 +1,4 @@
-# Rust
+# A Basic Smart Contract in Rust
 
 This section explains step by step how to write a new smart contract on Casper. Start with `main.rs` from the previous section.
 

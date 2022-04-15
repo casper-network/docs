@@ -9,8 +9,9 @@ This section shows you how to write smart contracts in Rust and WebAssembly (WAS
 
 | Title                                       | Description                     |
 | ------------------------------------------- | ------------------------------- |
-| [Rust contracts](rust.md)                   | Smart contract examples in Rust |
-| [WebAssembly contracts](assembly-script.md) | Smart contract examples in WASM |
+|[Getting Started with Rust](../getting-started.md)| An introduction to using Rust with the Casper Platform|
+|[A Basic Smart Contract in Rust](rust.md)   | An example of a smart contract built in Rust|
+|[A Basic Smart Contract in AssemblyScript](assembly-script.md) | An example of a smart contract built in AssemblyScript |
 
 Additionally, the following tutorials outline some aspects of writing smart contracts on the Casper Network.
 
