@@ -8,7 +8,7 @@ This workflow assumes:
 2.  You are using the Casper command-line client
 3.  You have an undelegation contract or WASM to execute on the network
 4.  You have a valid `node-address`
-5.  You have previously [deployed a smart contract](../dapp-dev-guide/on-chain-contracts.md) to a Casper Network
+5.  You have previously [deployed a smart contract](../dapp-dev-guide/transaction-lifecycle.md) to a Casper Network
 6.  You have delegated tokens to a validator
 
 ## Building The Undelegation WASM {#building-the-undelegation-wasm}

@@ -1,4 +1,4 @@
-# Upgrading Contracts
+# Contract Packages
 
 Our smart contract packaging tools enable you to:
 

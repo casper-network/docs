@@ -128,7 +128,7 @@ If the calls use the same arguments, yet the cost is increasing, you might consi
 <details>
 <summary><b>Why does my deploy get an 'Out of Gas' error?</b></summary>
 
-If you received this error, the specified payment amount for the deploy was insufficient. Try specifying a higher amount of CSPR and re-send the deploy. See the [note about gas price](dapp-dev-guide/on-chain-contracts.md#a-note-about-gas-price) for [On-Chain Contracts](dapp-dev-guide/on-chain-contracts.md).
+If you received this error, the specified payment amount for the deploy was insufficient. Try specifying a higher amount of CSPR and re-send the deploy. See the [note about gas price](dapp-dev-guide/transaction-lifecycle.md#a-note-about-gas-price) within the [Transaction Lifecycle](dapp-dev-guide/transaction-lifecycle.md).
 
 </details>
 
@@ -206,7 +206,7 @@ casper-client get-block-transfers --help
 <details>
  <summary><b>When is the balance updated after a deploy?</b></summary>
 
- Execution occurs after consensus. As outlined [in the dApp Developer Guide](/dapp-dev-guide/on-chain-contracts#monitoring-the-event-stream-for-deploys), deploys are queued in the system before being listed in a block for execution.
+ Execution occurs after consensus. As outlined [in the dApp Developer Guide](/dapp-dev-guide/transaction-lifecycle#monitoring-the-event-stream-for-deploys), deploys are queued in the system before being listed in a block for execution.
 
  Balance updates should occur after contract execution and block finalization.
 
