@@ -1,6 +1,6 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 # Gas and the Casper Blockchain
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## What is gas?
 
