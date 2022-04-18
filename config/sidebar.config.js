@@ -79,7 +79,7 @@ module.exports = {
                 },
                 "dapp-dev-guide/setup-nctl",
                 "dapp-dev-guide/monitoring-events",
-                "dapp-dev-guide/tutorials/casper-signer",
+                "dapp-dev-guide/casper-signer",
             ],
         },
         {

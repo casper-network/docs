@@ -9,7 +9,6 @@ The following tutorials present several Casper features in depth:
 
 | Title                                                       | Description                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |
-|[Casper Signer dApp Integration](casper-signer.md)           | Learn to use the Casper Signer to connect a wallet to your website |
 |[CEP-47 Tutorial](cep47/index.md)                            | Implementing the CEP-47 Casper NFT standard                      |
 |[Counter Contract Tutorial](counter/index.md)                | A simple example contract that maintains a counter variable      |
 |[ERC-20 Implementation](erc20/index.md)                      | Implement the ERC-20 standard for Casper                         |
