@@ -14,9 +14,7 @@ Before transacting with a Casper Network, SDK authors should focus on querying t
 
 ### Serialization
 
-The Casper platform uses WebAssembly (WASM) to allow for a wide variety of compatible programming languages. It accomplishes this through the use of binary-code format, requiring serialization of values prior to sending, and subsequent deserialization of information as it returns. To this end, we've established a [serialization standard](../../../design/serialization-standard/) that allows SDK developers a quick reference for the various types and their associated serialization.
-
-&Mention custom serialization format&
+The Casper platform uses WebAssembly (WASM) to allow for a wide variety of compatible programming languages. It accomplishes this through the use of binary-code format, requiring serialization of values prior to sending, and subsequent deserialization of information as it returns. The Casper platform uses custom serialization, and to this end, we've established a [serialization standard](../../../design/serialization-standard/) that allows SDK developers a quick reference for the various types and their associated serialization.
 
 ### Deploys on a Casper Network
 
