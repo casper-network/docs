@@ -22,6 +22,6 @@ Additionally, the following tutorials outline some aspects of writing smart cont
 |[ERC-20 Implementation](../tutorials/erc20/index.md)                      | Implement the ERC-20 standard for Casper                         |
 |[Key-Value Storage with Casper DSL](../tutorials/kv-storage-tutorial.md)  | Design a simple contract to store a value and use the Casper DSL |
 |[Multi-Signatures and Key Recovery](../tutorials/multi-sig/index.md)      | Learn to sign transactions with multiple keys                    |
-|[Interacting with Runtime Return Values](return-values-tutorial.md)| Learning how to return a value using contract code         |
+|[Interacting with Runtime Return Values](../tutorials/return-values-tutorial.md)| Learning how to return a value using contract code         |
 |[Safely Transfer Tokens to a Contract](../tutorials/transfer-token-to-contract.md) | How to handle tokens via a contract                     |
 |[Smart Contract Upgrades](../tutorials/upgrade-tutorial.md)               | Learn how to upgrade smart contracts                             |
