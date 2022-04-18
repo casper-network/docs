@@ -1,163 +1,73 @@
 # Interacting with Runtime Return Values
 
-Users interacting with the Casper Network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, where contract code executes on global state through a smart contract. Any action undertaken by a contract must initiate through an outside call, usually via session code.
+Users interacting with a Casper Network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
-As session code executes directly from the account, the [runtime::ret()](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.ret.html) function allows for a contract to return information to the session code that called it. The session code can then store the returned information in a local [NamedKey](https://docs.rs/casper-types/latest/casper_types/struct.NamedKey.html) under the calling account.
+Developers should note the difference between a caller and an immediate caller. The immediate caller represents the session or contract code that directly accessed the entry point. The caller is the original, initiating session code that started the entire process. There are many cases where contract code may call additional contract code. In this case, the immediate caller may be another instance of contract code. Even in this event, the overall caller will be the initiating session code, while there may be several layers of stacked contract code acting as immediate callers.
+
+Contract code can optionally return a value to their immediate caller via `runtime::ret()`, whether that immediate caller is another contract code or session code. The returned value may be used within the context of the session or contract code, stored for later use, or discarded if not needed. Use of return values depends entirely on what the developer needs in that instance.
+
+Session code initiates actions on behalf of an account which is considered to be the caller. Therefore, it cannot return anything.
 
 ## Contract Code {#return-contract-code}
 
-For example, if we create a contract that adds two numbers, we would use `runtime::ret()` to define the results that should be passed to the calling session code as per the following:
+For example, if we create a contract to accept and keep a record of donations, we would use `runtime::ret()` to define the results that should be passed nto the caller as per the following:
 
 ```rust
 
 #[no_mangle]
-
-// This function serves as a potential entry point for users executing session code
-// to add numbers as per the contract deploy.
-
-pub extern "C" fn add() {
-
-    // The contract accepts the first argument as a number to be added.
-
-    let number_1: u32 = runtime::get_named_arg("number_1");
-
-    // The contract accepts the second argument as a number to be added.
-
-    let number_2: u32 = runtime::get_named_arg("number_2");
-
-    // The contract adds the two arguments together to create 'result' in the form of a CLValue.
-
-    let result_as_cl_value = ClValue::from_t( t: number_1 + number_2)
+pub extern "C" fn donate() {
+    let donating_account_key: Key = runtime::get_named_arg(DONATING_ACCOUNT_KEY);
+    if let Key::Account(donating_account_hash) = donating_account_key {
+        update_ledger_record(donating_account_hash.to_string())
+    } else {
+        runtime::revert(FundRaisingError::InvalidKeyVariant)
+    }
+    let donation_purse = *runtime::get_key(FUNDRAISING_PURSE)
+        .unwrap_or_revert_with(FundRaisingError::MissingFundRaisingPurseURef)
+        .as_uref()
         .unwrap_or_revert();
-
-    // The contract returns the added value to the calling session code. It must be returned 
-    // as a CLValue. More complex information can be returned, as long as it conforms to CLType, 
-    // ToBytes and FromBytes. If you wish to send your own type of object across the WASM 
-    // boundary, this can be done through the `Any` CLType, but will require custom adherence 
-    // to the serialization standard. 
-
-    runtime::ret(result_as_cl_value)
+    let value = CLValue::from_t(donation_purse.into_add()).unwrap_or_revert();
+    runtime::ret(value)
 }
 
 ```
 
-The above code takes in two runtime arguments, `number_1` and `number_2` provided by session code. It then adds these two values to create `result_as_cl_value`, which it passes back to the caller via `runtime::ret(result_as_cl_value)`. 
+In this example, the return value is the URef corresponding to the purse used to raise funds, with `add` permission only. Using this information, the calling code will be able to then transfer funds into the purse, after calling the `donate` entry point.
 
-Without the addition of the `runtime::ret`, this information would not return to the caller. In addition to the code above, the developer would need to define the `call` function and appropriate entry point as per the following:
-
-<details>
-
-<summary><b>Additional Example Code</b></summary>
-
-```rust
-#[no_mangle]
-pub extern "C" fn call() {
-    // Creating a parameter from the value supplied by number_1
-    let parameter_1 = Parameter::new(
-        name: "number_1",
-        cl_type: CLType::u32,
-    );
-    // Creating a parameter from the value supplied by number_2
-    let parameter_2 = Parameter::new(
-        name: "number_2",
-        cl_type: CLType::u32,
-    );
-    //Creating an entry point for the 'Adder' 
-    let adder_entry_point = EntryPoint::new(
-        // The name of the entry point.
-        name: "add",
-        // How the arguments will be provided to the entry point.
-        args: vec![parameter_1, parameter_2],
-        // Information on the returned information.
-        ret: CLType::u32,
-        // Access permission for the entry point - i.e. This entry point may be used by
-        // anyone due to it being 'Public'
-        EntryPointAccess::Public
-        // The type of entry point
-        entry_point_type: EntryPointType::Contract
-    );
-
-    // Defining the adder entry point as an entry point.
-    let mut entry_points = EntryPoints::new();
-    entry_points.add_entry_point(adder_entry_point);
-
-    // This creates a new contract stored under a Key::Hash at version 1.
-    let (contract_hash,:ContractHash , contract_version :ContractVersion ) = storage::new_contract(
-        entry_points,
-        // This contract does not use named keys.
-        named_keys: None,
-        // These create named keys ON THE ACCOUNT that store the package hash associated with
-        // the contract and the access URef that allows adding/disabling contract versions.
-        hash_name: Some("adder_package_hash".to_string()),
-        uref_name: Some("adder_access_uref".tostring()),
-    );
-
-    // Creates another named key with the contract hash under the calling account.
-    runtime::put_key("adder_contract_hash", contract_hash.into());
-}
-```
-
-</details>
-
+Without the addition of the `runtime::ret`, the purse would not be returned to the caller.
 
 ## Session Code {#return-session-code}
 
-On the other end of this interaction, the session code needs to store the value it receives in a NamedKey for future access. The following code outlines this process:
+The following is an example of session code calling the [specified entry point](#return-contract-code). Keep in mind that the caller does not need to be session code, and the immediate caller could be another instance of contract code.
 
 ```rust
 
-// Establishes a named argument for Contract Hash, as session code rather than 
-// contract code. This is more efficient.
-const CONTRACT_HASH: ContractHash = ContractHash::default();
-
 #[no_mangle]
-// The Call function serves as a main function - it will execute automatically on 
-// launch. Casper searches for the 'call' function rather than main - for both session
-// and smart contract.
-pub extern "C" fn call(){
-    // This defines the variables included within the function.
-    let contract_hash = runtime::get_named_arg("contract_hash");
-    let number_1: u32 = runtime::get_named_arg("number_1");
-    let number_2: u32 = runtime::get_named_arg("number_2");
+pub extern "C" fn call() {
+    let fundraiser_contract_hash: ContractHash = runtime::get_named_arg(FUNDRAISER_CONTRACT_HASH);
+    let donating_account_key: Key = runtime::get_named_arg(DONATING_ACCOUNT_KEY);
+    let donation_amount: U512 = runtime::get_named_arg(DONATION_AMOUNT);
 
-    let runtime_args = runtime_args! {
-        "number_1" => number_1,
-        "number_2" => number_2,
-    };
-
-    // This calls the contract using the arguments listed within.
-    let result: u32 = runtime::call_contract::<u32>(
-        // The contract hash, used as a means of identifying the contract in question
-        // that we are attempting to access.
-        contract_hash: CONTRACT_HASH,
-        // The entry point within the contract. Contract hash identifies the contract
-        // to target, entry point targets the action within the contract that we are 
-        // looking to use.
-        entry_point_name: "add",
-        // The runtime arguments are the variables we are providing to the entry point.
-        // In the case of this example, they represent the two numbers to be added.
-        runtime_args
+    let donating_purse_uref: URef = runtime::call_contract(
+        fundraiser_contract_hash,
+        ENTRY_POINT_DONATE,
+        runtime_args! {
+            DONATING_ACCOUNT_KEY => donating_account_key
+        },
     );
-
-    // Option 1, which creates a new URef for each use of the adder.
-    runtime::put_key(name: "result", storage::new_uref(init: result).into()) 
-    
-    // Option 2, which reuses the same Uref if one already exists. Otherwise, it will create a new URef.
-    match runtime::get_key("result") {
-        None => {
-            runtime::put_key("result", storage::new_uref(init: result).into())
-        }
-        Some(result_key :Key) => {
-            let result_uref = result_key.into_uref().unwrap_or_revert();
-            storage::write(result_uref, result)
-        }
-    }
+    system::transfer_from_purse_to_purse(
+        account::get_main_purse(),
+        donating_purse_uref,
+        donation_amount,
+        None
+    )
+        .unwrap_or_revert()
 }
 
 ```
 
-This session code calls the previously listed contract code by using the `contract_hash`, supplying it with two arguments: `number_1` and `number_2`. It does so through the defined entry point named `add`.
+This session code calls into a contract's entry point by using `runtime::call_contract`, supplying the `contract_hash` to identify the contract to be called, and the name of the entry point to be invoked, in this case `donate`. It supplies the `donating_account_key`, which in this case is the account key of the caller. The contract will then provide a return value, in this case `donating_purse_uref`. To call an entry point, you will need to know the [CLType](../../../sdkspec/types_cl.md) of the return value and identify it within the code.
 
-When the session code receives the return value, it stores it in `result`, which is a NamedKey associated with the calling account. The first option creates a new `result` every time it calls the contract. Option 2 only creates a new `result` if there is no previous associated storage, otherwise, it overwrites the stored value.
+You can determine the type of the return value by [querying the contract object](../../../workflow/querying/#querying-an-account) in global state. To query a contract rather than an account, replace the key parameter with the formatted string representation of the contract hash.
 
-The user can then view the stored information by accessing their NamedKey.
+This example code takes that returned value and transfers a `donation_amount` from the calling account's main purse to the established donation purse. It is not necessary for the code to store, or even use, the returned value. Use of the returned value depends on the needs of the developer.
