@@ -16,5 +16,6 @@ The following tutorials present several Casper features in depth:
 |[Key-Value Storage with Casper DSL](kv-storage-tutorial.md)  | Design a simple contract to store a value and use the Casper DSL |
 |[Multi-Signatures and Key Recovery](multi-sig/index.md)      | Learn to sign transactions with multiple keys                    |
 |[Safely Transfer Tokens to a Contract](transfer-token-to-contract.md) | How to handle tokens via a contract                     |
-|[Smart Contract Upgrades](upgrade-tutorial.md)               | Learn how to upgrade smart contracts                             |
+|[Smart Contract Upgrades](upgrade-contract.md)            | Learn how to upgrade smart contracts                             |
+
 
