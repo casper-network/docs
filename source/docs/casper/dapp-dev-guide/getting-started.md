@@ -1,4 +1,4 @@
-# Getting Started
+# Getting Started with Rust
 
 This guide covers the basic tools you will need to set up your first Casper smart contract. You will also be able to build a sample smart contract and run a few basic tests on it on your local machine.
 
