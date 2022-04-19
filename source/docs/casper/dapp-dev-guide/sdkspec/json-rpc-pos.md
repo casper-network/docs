@@ -6,7 +6,7 @@ The following methods pertain to the Proof-of-Stake functionality of a Casper ne
 
 ## state_get_auction_info {#state-get-auction-info}
 
-This method returns the [bids](https://casper.network/docs/economics/consensus#bids) and [validators](https://casper.network/docs/glossary/V#validator) as of either a specific Block (by height or hash). If you do not provide a  `block_identifier`, `state_get_auction_info` will return information from the most recent Block.
+This method returns the [bids](../../../economics/consensus#bids) and [validators](../../../glossary/V#validator) as of either a specific Block (by height or hash). If you do not provide a  `block_identifier`, `state_get_auction_info` will return information from the most recent Block.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
