@@ -5,7 +5,7 @@ slug: /writing-contracts
 
 # Writing Smart Contracts
 
-This section shows you how to write smart contracts in Rust and WebAssembly (WASM).
+This section shows you how to write smart contracts in Rust and WebAssembly (Wasm).
 
 | Title                                       | Description                     |
 | ------------------------------------------- | ------------------------------- |
