@@ -41,13 +41,12 @@ module.exports = {
         "dapp-dev-guide/index",
         "dapp-dev-guide/why-build-on-casper",
         "dapp-dev-guide/list-cspr",
-        "dapp-dev-guide/getting-started",
         {
             type: "category",
             label: "Writing Smart Contracts",
             collapsible: true,
             collapsed: true,
-            items: ["dapp-dev-guide/writing-contracts/index", "dapp-dev-guide/writing-contracts/rust", "dapp-dev-guide/writing-contracts/assembly-script"],
+            items: ["dapp-dev-guide/writing-contracts/index", "dapp-dev-guide/getting-started", "dapp-dev-guide/writing-contracts/rust", "dapp-dev-guide/writing-contracts/assembly-script"],
         },
         "dapp-dev-guide/testing",
         "dapp-dev-guide/setup-nctl",
@@ -91,6 +90,7 @@ module.exports = {
             collapsible: true,
             collapsed: true,
             items: [
+                "dapp-dev-guide/tutorials/index",
                 "dapp-dev-guide/tutorials/casper-signer",
                 {
                     type: "category",
@@ -117,19 +117,6 @@ module.exports = {
                         "dapp-dev-guide/tutorials/counter/commands",
                         "dapp-dev-guide/tutorials/counter/setup",
                         "dapp-dev-guide/tutorials/counter/walkthrough",
-                    ],
-                },
-                {
-                    type: "category",
-                    label: "ERC-20 Tutorial",
-                    collapsible: true,
-                    collapsed: true,
-                    items: [
-                        "dapp-dev-guide/tutorials/erc20/index",
-                        "dapp-dev-guide/tutorials/erc20/prepare",
-                        "dapp-dev-guide/tutorials/erc20/implementation",
-                        "dapp-dev-guide/tutorials/erc20/deploy",
-                        "dapp-dev-guide/tutorials/erc20/tests",
                     ],
                 },
                 "dapp-dev-guide/tutorials/kv-storage-tutorial",
