@@ -1,5 +1,5 @@
 # Understanding Session Code
-This section explains the concept of session code, why we need it and how to write it. Session code is used when the use case to be solved requires very little state or no state at all. Stateless means when the execution doesn't depend on a previous state, so the output of the execution is the same each time. Stateful is when the execution depends on a previous state, which makes the output differ each time.
+This section explains the concept of session code, why we need it and how to write it. Session code’s use case is when the situation calls for little or no state. Stateless means when the execution doesn't depend on a previous state, so the output of the execution is the same each time. Stateful is when the execution depends on a previous state, which makes the output differ each time.
 
 In the following sections we will explore the concept of session code, the project structure that is required for the session code to be tested and executed correctly, and a simple example of a session code.
 
