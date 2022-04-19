@@ -10,7 +10,7 @@ Session code initiates actions on behalf of an account which is considered to be
 
 ## Contract Code {#return-contract-code}
 
-For example, if we create a contract to accept and keep a record of donations, we would use `runtime::ret()` to define the results that should be passed nto the caller as per the following:
+For example, if we create a contract to accept and keep a record of donations, we would use `runtime::ret()` to define the results that should be passed to the caller as per the following:
 
 ```rust
 
