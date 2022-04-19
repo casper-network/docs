@@ -30,7 +30,7 @@ In the above directory structure the `contract` folder contains the session code
 The `tests` folder contains the code required to test the session code on before it is deployed on the Casper network.
 
 ## Writing Session Code
-The following steps illustrate the process of writing session code and the important components to include within your session code:
+The following steps illustrate the process of writing session code and the important components to include:
 
 1. Create a new top level directory that will contain the session code and would also include another folder for tests, which will help us test the functionality of our session code. 
 
