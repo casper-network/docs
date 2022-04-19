@@ -4,7 +4,7 @@ This section explains the concept of session code, why we need it and how to wri
 In the following sections we will explore the concept of session code, the project structure that is required for the session code to be tested and executed correctly, and a simple example of a session code.
 
 ## What is Session code?
-Session code is the simplest piece of logic you can execute on the Casper network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. The context of the account means that the session code will run with the permissions of the account, this means like having access to the main purse (the session code could transfer tokens out of the accounts main purse). 
+Session code is the simplest piece of logic you can execute on a Casper network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. This means that the session code will run with the permissions of the account, such as having access to the main purse (the session code could transfer tokens out of the account's main purse). 
 Session code can be written in any programming language that compiles to Wasm.
 
 **Note**: Before you sign and execute the session code, ensure that you know exactly what the session code is doing. Because if you don't know what it is exactly meant for, then it could be doing something malicious.
