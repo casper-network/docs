@@ -166,7 +166,7 @@ casper-client put-deploy \
 -   `payment-amount` - The payment for the deploy in motes.  
 -   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer.
 
-## Comparing Session Code and Smart Contract
+## Comparing Session Code and Contract Code
 The following points try to explain the difference between session code and smart contract:
 - When `put_key` is used to store a URef, it depends where the key is stored based on if the session code or the smart contract is making the call. When the session code is executed the key is added to the named keys of the account that called the session code. Whereas, when a smart contract is executed the key is added to the named keys of the smart contract. 
 - Smart contract is Wasm that is stored on the network. Whereas session code is simple code you can use to interact with the smart contract.
