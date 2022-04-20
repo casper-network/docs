@@ -27,7 +27,7 @@ Top-Level Directory
     |_ Cargo.toml
 
 In the above directory structure the `contract` folder contains the session code in the `main.rs` file and the needed dependencies in the `Cargo.toml` file. 
-The `tests` folder contains the code required to test the session code on before it is deployed on the Casper network.
+The `tests` folder contains the code required to test the session code on before it is deployed on a Casper network.
 
 ## Writing Session Code
 The following steps illustrate the process of writing session code and the important components to include:
