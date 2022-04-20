@@ -1,5 +1,10 @@
 name: Docusaurus CICD
 
+env:
+  prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
+  stag_pages_fqdn: ${{ secrets.STAG_PAGES_FQDN }}
+
+
 on:
   push:
     branches: "*"
@@ -8,7 +13,7 @@ on:
 
 jobs:
   backup:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +25,6 @@ jobs:
         with:
           name: gh-pages-backup
           path: .
-
 
   build:
     runs-on: ubuntu-latest
@@ -67,6 +71,10 @@ jobs:
         run: |
           yarn build --out-dir ./docs
 
+      - name: Add CNAME file to the build output payload to keep the custom domain settings of GitHub Pages enabled
+        run: |
+          echo "$prod_pages_fqdn" > ./docs/CNAME
+
       - uses: actions/upload-artifact@v2
         with:
           name: gh-pages-depl-payload
@@ -108,7 +116,7 @@ jobs:
 
     - name: Edit baseurl in _config.yml
       run: |
-        sed -i 's/^baseurl.*$/baseurl: "\/docs"/' _config.yml
+        sed -i 's/^baseurl.*$/baseurl: "\/"/' _config.yml
       working-directory: ./docs
 
     - name: Run Jekyll site locally and test
@@ -120,11 +128,11 @@ jobs:
         done
         echo "Jekyll site is up..."
         echo "Testing if homepage responds correctly"
-        curl --fail http://127.0.0.1:4000/docs/
+        curl --fail http://127.0.0.1:4000/
         echo "Testing if a page responds correctly"
-        curl --fail http://127.0.0.1:4000/docs/operators/create/
+        curl --fail http://127.0.0.1:4000/operators/create/
         echo "Testing if a page responds correctly"
-        curl --fail http://127.0.0.1:4000/docs/design/serialization-standard/
+        curl --fail http://127.0.0.1:4000/design/serialization-standard/
       working-directory: ./docs
 
   deploy-prod:
@@ -144,30 +152,67 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
 
-  system-tests-postdeployment:
-    needs: deploy-prod
+  deploy-dev:
+    if: github.ref == 'refs/heads/dev'
+    needs: [backup, system-tests-predeployment]
     runs-on: ubuntu-latest
 
-    env:
-      prod_pages_url: ${{ secrets.PROD_PAGES_URL }}
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-depl-payload
+        path: ./docs
+
+    #Deploy to S3 bucket
+    - name: Deploy to S3 bucket
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_DEV_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEV_SECRET_ACCESS_KEY }}
+        SOURCE_DIR: docs
+
+  system-tests-postdeployment-prod:
+    needs: deploy-prod
+    runs-on: ubuntu-latest
 
     steps:
       - name: Test home page
         run: |
           echo "Testing if homepage responds correctly"
-          curl --fail $prod_pages_url
+          curl --fail https://$prod_pages_fqdn
       - name: Test a random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail $prod_pages_url/operators/create
+          curl --fail https://$prod_pages_fqdn/operators/create
       - name: Test another random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail $prod_pages_url/design/serialization-standard
+          curl --fail https://$prod_pages_fqdn/design/serialization-standard
 
-  rollback-if-tests-fail:
-    if: ${{ always() && (needs.system-tests-postdeployment.result=='failure') }}
-    needs: system-tests-postdeployment
+  system-tests-postdeployment-dev:
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test home page
+        run: |
+          echo "Testing if homepage responds correctly"
+          curl --fail -k http://$stag_pages_fqdn
+      - name: Test a random page
+        run: |
+          echo "Testing if a page responds correctly"
+          curl --fail -k http://$stag_pages_fqdn/operators/create
+      - name: Test another random page
+        run: |
+          echo "Testing if a page responds correctly"
+          curl --fail -k http://$stag_pages_fqdn/design/serialization-standard
+
+  rollback-if-tests-fail-prod:
+    if: ${{ always() && (needs.system-tests-postdeployment-prod.result=='failure') }}
+    needs: system-tests-postdeployment-prod
     runs-on: ubuntu-latest
 
     steps:
@@ -181,5 +226,33 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
+
+  rollback-if-tests-fail-dev:
+    if: ${{ always() && (needs.system-tests-postdeployment-dev.result=='failure') }}
+    needs: system-tests-postdeployment-dev
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-backup
+        path: ./docs
+
+    #Remove .git directory
+    - name: Remove .git directory
+      run: |
+        rm -rf ./docs/.git
+
+    #Deploy to S3 bucket
+    - name: Deploy to S3 bucket
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --follow-symlinks --delete
+
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_DEV_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEV_SECRET_ACCESS_KEY }}
+        SOURCE_DIR: docs
 
 

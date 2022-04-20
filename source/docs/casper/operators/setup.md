@@ -105,11 +105,11 @@ This command will do the following:
 
 ## Client Installation {#client-installation}
 
-The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
+The [Prerequisites](/workflow/setup/#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ## Create and Fund Keys {#create-fund-keys}
 
-The Rust client generates keys via the `keygen` command. The process generates 2 _pem_ files and 1 _text_ file. To learn about options for generating keys, include `--help` when running the `keygen` command. The following command will create the keys in the `/etc/casper/validator_keys` folder. For details on funding your accounts, see [Prerequisites](../workflow/setup#fund-your-account).
+The Rust client generates keys via the `keygen` command. The process generates 2 _pem_ files and 1 _text_ file. To learn about options for generating keys, include `--help` when running the `keygen` command. The following command will create the keys in the `/etc/casper/validator_keys` folder. For details on funding your accounts, see [Prerequisites](/workflow/setup/#fund-your-account).
 
 ```bash
 sudo -u casper casper-client keygen /etc/casper/validator_keys

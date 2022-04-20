@@ -233,11 +233,11 @@ After compiling the contract, you need to deploy the compiled WASM to the networ
 The following example shows you how to use the Casper client to retrieve the contract session hash and the block hash where the contract is deployed. The paths for the _secret-key_ and _session-path_ are relative to your system. You need to specify the paths on your machine to run the command.
 
 ```bash
-casper-client put-deploy
-    --chain-name <CHAIN-NAME>
-    --node-address http://<HOST>:<PORT>
-    --secret-key <PATH>/secretkey.pem
-    --session-path  $HOME/kv-storage-contract/target/wasm32-unknown-unknown/release/contract.wasm
+casper-client put-deploy \
+    --chain-name <CHAIN-NAME> \
+    --node-address http://<HOST>:<PORT> \
+    --secret-key <PATH>/secretkey.pem \
+    --session-path  $HOME/kv-storage-contract/target/wasm32-unknown-unknown/release/contract.wasm \
     --payment-amount 1000000000000
 ```
 
@@ -252,13 +252,14 @@ Once the contract is deployed, you can create another deploy, which calls one of
 The kv-client has four distinct commands to set key-values for U64, string, U512, and account hash. In this example, we will use a String.
 
 ```bash
-casper-client put-deploy
-    --session-name kvstorage_contract
-    --session-entry-point store-string
-    --session-arg=name:"string=`test`"
-    --payment-amount 100000000000
-    --chain-name <CHAIN-NAME>
-    --node-address http://<HOST>:<PORT>
+casper-client put-deploy \
+    --session-name kvstorage_contract \
+    --session-entry-point store_string \
+    --session-arg=name:"string='test'" \
+    --session-arg=value:"string='your test string here'" \
+    --payment-amount 100000000000 \
+    --chain-name <CHAIN-NAME> \
+    --node-address http://<HOST>:<PORT> \
     --secret-key <PATH>/secretkey.pem
 ```
 

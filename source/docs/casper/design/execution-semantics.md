@@ -1,5 +1,7 @@
 # Execution Semantics {#execution-semantics-head}
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 ## Introduction {#execution-semantics-intro}
 
 The Casper Network is a decentralized computation platform. In this chapter we describe aspects of the computational model we use.
@@ -33,23 +35,49 @@ A _deploy_ represents a request from a user to perform computation on our platfo
 
 Each deploy is an atomic piece of computation in the sense that, whatever effects a deploy would have on the global state must be entirely included in a block or the entire deploy must not be included in a block.
 
-### Phases of deploy execution {#execution-semantics-phases}
+### Deploy Lifecycle {#execution-semantics-phases}
 
-A deploy is executed in distinct _phases_ in order to accommodate paying for computation in a flexible way. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, then the sessions code is executed during the session phase. And, finally (independent of whether session code was executed), the finalization phase is executed, which does some bookkeeping around payment.
+A deploy goes through the following phases on Casper:
 
-According to new amendments, the finalization phase does not refund the user any unspent `Gas` originally purchased (after converting back to motes). Please refer to the [gas refunding](./execution-semantics.md#gas-refunding) section for more details. The finalization phase does not include any user-defined logic, it is merely upkeep for the system.
+1. Deploy Received
+2. Deploy Gossiped
+3. Block Proposed
+4. Block Gossiped
+5. Consensus Reached
+6. Deploy Executed
 
-### Payment code {#execution-semantics-payment}
+### Deploy Received
+
+The client sending the deploy will send it to one or more nodes via their JSON RPC servers. The deploy acceptor, which is the component responsible for receiving the deploy from the JSON-RPC or another node, will run validity checks on the deploy and allow the lifecycle to continue or return an appropriate error. Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. 
+
+### Deploy Gossiped
+After a node accepts a new deploy, it will gossip to all other nodes. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new block for the chain. This mechanism is efficient and ensures all nodes in the network eventually hold the given deploy.
+
+### Block Proposed
+The validator leader for this round will propose a block that includes as many deploys from the block proposer buffer as can fit in a block.
+
+### Block Gossiped
+The proposed block is propagated to all other nodes.
+
+### Consensus Reached
+Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed, and this block becomes the final block added to the chain.
+
+### Deploy Executed 
+
+A deploy is executed in distinct phases to accommodate flexibly paying for computation. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, the session code is executed during the session phase. And, independently of session code execution, the finalization phase does some bookkeeping around payment.
+
+
+#### Payment code {#execution-semantics-payment}
 
 _Payment code_ provides the logic used to pay for the computation the deploy will do. Payment code is allowed to include arbitrary logic, providing maximal flexibility in how a deploy can be paid for (e.g., the simplest payment code could use the account's [main purse](./tokens.md#tokens-purses-and-accounts), while an enterprise application may require deploys to pay via a multi-sig application accessing a corporate purse). We restrict the gas limit of the payment code execution, based on the current conversion rate between gas and motes, such that no more than `MAX_PAYMENT_COST` motes (a constant of the system) are spent. To ensure payment code will pay for its own computation, we only allow accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST`, to execute deploys.
 
 Payment code ultimately provides its payment by performing a [token transfer](./tokens.md#tokens-mint-interface) into the [Handle Payment contract's payment purse](https://github.com/casper-network/casper-node/blob/cb1d20ad1ea6e245cd8237f9406885a1e785c669/types/src/system/handle_payment/mod.rs#L65). If payment is not given or not enough is transferred, then payment execution is not considered successful. In this case the effects of the payment code on the global state are reverted and the cost of the computation is covered by motes taken from the offending account's main purse.
 
-### Session code {#execution-semantics-session}
+#### Session code {#execution-semantics-session}
 
 _Session code_ provides the main logic for the deploy. It is only executed if the payment code is successful. The gas limit for this computation is determined based on the amount of payment given (after subtracting the cost of the payment code itself).
 
-### Specifying payment code and session code {#execution-semantics-specifying-code}
+#### Specifying payment code and session code {#execution-semantics-specifying-code}
 
 The user-defined logic of a deploy can be specified in a number of ways:
 

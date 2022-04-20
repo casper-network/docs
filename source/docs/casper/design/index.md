@@ -50,4 +50,3 @@ slug: /design
 -   [Appendix](./appendix.md)
     -   [A - Casper Rust Library](./appendix.md#appendix-a)
     -   [B - Serialization Format](./appendix.md#appendix-b)
-    -   [C - Parallel Execution](./appendix.md#appendix-c)
