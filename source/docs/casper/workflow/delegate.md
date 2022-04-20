@@ -9,7 +9,7 @@ This workflow assumes:
 3.  You have the public key of a validator on a Casper Network
 4.  You have the delegation contract or WASM to execute on the network
 5.  You have a valid `node-address`
-6.  You have previously [deployed a smart contract](../dapp-dev-guide/transaction-lifecycle.md) to a Casper Network
+6.  You have previously [deployed a smart contract](../dapp-dev-guide/sending-deploys.md) to a Casper Network
 
 ## Building The Delegation WASM {#building-the-delegation-wasm}
 

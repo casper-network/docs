@@ -2,7 +2,7 @@
 # Contract Deployment
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Now that you have implemented the smart contract for ERC-20, it's time to deploy it to the blockchain. Deploying the ERC-20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer to the [Deploying Contracts](/dapp-dev-guide/transaction-lifecycle#advanced-deployments) section to learn more about overall contract deployment.
+Now that you have implemented the smart contract for ERC-20, it's time to deploy it to the blockchain. Deploying the ERC-20 contract is similar to deploying other smart contracts, while only the WASM files and parameters will differ. Refer to the [Deploying Contracts](/dapp-dev-guide/sending-deploys#advanced-deployments) section to learn more about overall contract deployment.
 
 Let's dive into the deployment process.
 
@@ -92,7 +92,7 @@ casper-client put-deploy \
 
 :::note
 
-- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/dapp-dev-guide/transaction-lifecycle#a-note-about-gas-price) to understand more about payment amounts and gas price adjustments
+- If you are performing the deploy on the Mainnet, we recommend trying several put deploys on the Testnet to understand the exact amount required for that deploy. Refer to the [note about gas price](/dapp-dev-guide/sending-deploys#a-note-about-gas-price) to understand more about payment amounts and gas price adjustments
 
 - **We currently do not refund any tokens as part of a deploy.**
 

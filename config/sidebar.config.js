@@ -63,7 +63,7 @@ module.exports = {
             collapsible: true,
             collapsed: true,
             items: [
-                "dapp-dev-guide/transaction-lifecycle",
+                "dapp-dev-guide/sending-deploys",
                 {
                     type: "category",
                     label: "SDK Client Libraries",
