@@ -4,7 +4,7 @@ This document outlines the methods, endpoints, and types available to developers
 
 ## Creating a Casper SDK
 
-The Casper platform offers a robust working environment that leverages WebAssembly to allow for the creation of SDKs in most popular programming languages. We maintain a Rust SDK as a first-party entity, alongside this SDK Standard that allows for third-party support of alternate languages. Any additional SDKs developed for the Casper platform will be required to comply with the SDK Standard and maintain consistency with the underlying terminology and structure. 
+The Casper platform offers a robust working environment that leverages WebAssembly to allow for the creation of SDKs in the most popular programming languages. We maintain a Rust SDK as a first-party entity alongside this SDK Standard, allowing for third-party support of alternate languages. Any additional SDKs developed for the Casper platform will be required to comply with the SDK Standard and maintain consistency with the underlying terminology and structure. 
 
 For examples of completed SDKs, please refer to our [SDK Client Libraries](../../../sdk/) section.
 

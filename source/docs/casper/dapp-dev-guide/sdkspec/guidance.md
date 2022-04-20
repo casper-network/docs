@@ -16,4 +16,4 @@ For example, an SDK developer could create an advanced function that automated t
 
 ## Consistency
 
-When developing an SDK for the Casper platform, consistency in terminology, language and functionality will be necessary for compliance. Method and type names should be consistent across various SDKs, regardless of how they are incorporated into any given SDK. Endpoints built on top of JSON RPC methods should follow the underlying language to avoid confusion for developers, users and support personnel.
+When developing an SDK for the Casper platform, consistency in terminology, language, and functionality will be necessary for compliance. Method and type names should be consistent across various SDKs, regardless of how they are incorporated into any given SDK. Endpoints built on top of JSON RPC methods should follow the underlying language to avoid confusion for developers, users, and support personnel.
