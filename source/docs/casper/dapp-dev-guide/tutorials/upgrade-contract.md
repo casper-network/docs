@@ -8,7 +8,7 @@ This tutorial examines how to upgrade an existing contract, a process similar to
 
 ## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
-- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/on-chain-contracts/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network
+- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/sending-deploys/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network
 
 
 ## Contract Versioning Flow {#contract-versioning-flow}
@@ -91,7 +91,7 @@ make build-contract
 
 ### Step 4. Install the contract
 
-[Install the contract](/dapp-dev-guide/on-chain-contracts/#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](/dapp-dev-guide/on-chain-contracts/#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
+[Install the contract](/dapp-dev-guide/sending-deploys/#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](/dapp-dev-guide/sending-deploys/#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
 ### Step 5. Verify your changes 
 
