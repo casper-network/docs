@@ -1,4 +1,4 @@
-# Casper Signer in a dApp
+# Using Casper Signer
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 

@@ -95,7 +95,7 @@ module.exports = {
                 "dapp-dev-guide/writing-contracts/rust",
                 "dapp-dev-guide/writing-contracts/assembly-script",
                 "dapp-dev-guide/testing",
-                "dapp-dev-guide/contract-packages",
+                "dapp-dev-guide/upgrading-contracts",
                 "dapp-dev-guide/calling-contracts",
                 "dapp-dev-guide/execution-error-codes",
             ],
@@ -107,7 +107,6 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/tutorials/index",
-                "dapp-dev-guide/tutorials/casper-signer",
                 {
                     type: "category",
                     label: "CEP-47 Tutorial",
@@ -167,7 +166,6 @@ module.exports = {
                 "dapp-dev-guide/tutorials/return-values-tutorial",
                 "dapp-dev-guide/tutorials/upgrade-contract",
                 "dapp-dev-guide/tutorials/transfer-token-to-contract",
-                "dapp-dev-guide/tutorials/casper-signer",
             ],
         },
     ],
