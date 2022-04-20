@@ -1,7 +1,5 @@
 # Required Methods for Minimal Compliance
 
-The following methods should be considered the most basic, fundamental endpoints for a viable and compliant Casper SDK. 
-
 The methods included in this document represent the most basic, fundamental endpoints for a viable and compliant Casper SDK. They allow the user to retrieve the information necessary to interact with the Casper Network, as well as the means to interact.
 
 * [`account_put_deploy`](../json-rpc-transactional#account-put-deploy) - This method allows users to send their compiled WASM (as part of a Deploy) to a node on a Casper Network. Deploys represent the only means by which a user can perform computation on the platform, without which their interaction with the Casper Network will be entirely passive.
