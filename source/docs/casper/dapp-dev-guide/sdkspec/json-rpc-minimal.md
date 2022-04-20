@@ -12,7 +12,7 @@ The methods included in this document represent the most basic, fundamental endp
 
 * [`info_get_deploy`](../json-rpc-informational#info-get-deploy) - This method allows retrieval of a Deploy from a Casper Network. Without this method, users will be unable to verify any subsequent information relating to a sent Deploy.
 
-* [`query_global_state`](../json-rpc-informational#query-global-state) - This method allows for querying values stored under certain keys in global state. Aside from purse balance's, this is the main means of recovering stored data from a Casper Network.
+* [`query_global_state`](../json-rpc-informational#query-global-state) - This method allows for querying values stored under certain keys in global state. Aside from purse balances, this is the main means of recovering stored data from a Casper Network.
 
 * [`state_get_account_info`](../json-rpc-informational#state-get-account-info) - This method returns a JSON representation of an Account from the network. `state_get_account_info` is required to view associated account information, including any associated keys, named keys, action thresholds and the main purse.
 
