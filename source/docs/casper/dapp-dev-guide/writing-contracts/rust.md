@@ -1,4 +1,4 @@
-# Rust
+# A Basic Smart Contract in Rust
 
 This section explains step by step how to write a new smart contract on Casper. Start with `main.rs` from the previous section.
 
@@ -106,7 +106,7 @@ When a contract exits with an error code, the exit code is visible in the Block 
 
 ### Tests {#tests}
 
-Refer to the [Testing Contract](/docs/dapp-dev-guide/testing) section to view more details about the smart contract testing procedure.
+Refer to the [Testing Contract](/dapp-dev-guide/testing) section to view more details about the smart contract testing procedure.
 
 ### WASM File Size {#wasm-file-size}
 

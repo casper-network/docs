@@ -4,10 +4,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Now that you have implemented a smart contract for CEP-47, it's time to deploy it to the network. You will use a JavaScript client with in-built TypeScript (TS) classes to execute the contract deployment. The JS client also resides in a separate repository. Clone that repository to your machine and proceed with these deployment steps.
 
 ## Prerequisites
-- Set up your machine as per the [prerequisites](/docs/workflow/setup)
-- Ensure you have [set up an account](/docs/workflow/setup#setting-up-an-account) with a public and secret key pair to initiate the deploy
-- Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow [fund your account](/docs/workflow/setup#fund-your-account) guide to add CSPR tokens to your account
-- CSPR tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](/docs/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
+- Set up your machine as per the [prerequisites](/workflow/setup)
+- Ensure you have [set up an account](/workflow/setup#setting-up-an-account) with a public and secret key pair to initiate the deploy
+- Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow [fund your account](/workflow/setup#fund-your-account) guide to add CSPR tokens to your account
+- CSPR tokens are used to pay for the transactions on the Casper Network. Follow the [transfer tokens](/workflow/token-transfer#2-the-faucet) guide to learn more about token transferring on the Casper Testnet
 
 ## Basic Flows of the Deployment
 Here are the basic steps for deploying your contract on the Casper Network.
@@ -57,13 +57,14 @@ git clone https://github.com/casper-network/casper-contracts-js-clients.git
     - `USER_KEY_PAIR_PATH` - Path to the generated key pair, which in this case would be the same as your `MASTER_KEY_PAIR_PATH` (In certain test scenarios, this could be a different key pair)
 
 :::note
-You must update the above list of parameters to align with your working environment. If you need an IP address for a node on the network, [follow this guide](/docs/workflow/setup#acquire-node-address-from-network-peers).
+You must update the above list of parameters to align with your working environment. If you need an IP address for a node on the network, [follow this guide](/workflow/setup#acquire-node-address-from-network-peers).
 :::
 
 ### 4.  Building the JS client
 Run the following commands to install the dependencies and build the client:
 ```bash
 npm install
+npm run bootstrap
 npm run dist
 ```
 

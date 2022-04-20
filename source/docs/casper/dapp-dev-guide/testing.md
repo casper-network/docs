@@ -202,7 +202,7 @@ This will query the post-deploy value and assert for its change.
 
 -   *`query()`* : Queries the state for a given value
 -   *`expect()`* : Validates the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash
--   *`as_cl_value()`* : Returns a wrapped [CLValue](/docs/design/serialization-standard#serialization-standard-values) if this is a CLValue variant
+-   *`as_cl_value()`* : Returns a wrapped [CLValue](design/serialization-standard#serialization-standard-values) if this is a CLValue variant
 
 -   *`clone()`* : Breaks the reference to the CLValue so that it will provide brand new CLValue
 -   *`Into_t()`* : Converts the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type
