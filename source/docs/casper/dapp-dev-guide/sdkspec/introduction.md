@@ -10,7 +10,7 @@ For examples of completed SDKs, please refer to our [SDK Client Libraries](../..
 
 ### Querying the Network
 
-Before transacting with a Casper Network, SDK authors should focus on querying the network and retrieving [pertinent information](../sdkspec/json-rpc-informational.md). These methods allow users to retrieve information stored in [global state](../../../glossary/G#global-state). Transacting, in the form of sending Deploys, requires knowledge of the current global state and the ability to monitor the status of Deploys after they are sent. Therefore, prioritization of querying the Network creates the necessary framework for further development.
+Before transacting with a Casper Network, SDK authors should focus on querying the network and retrieving [pertinent information](../sdkspec/json-rpc-informational.md). These methods allow users to retrieve information stored in [global state](../../../glossary/G#global-state). Transacting, in the form of sending deploys, requires knowledge of the current global state and the ability to monitor the status of deploys after they are sent. Therefore, prioritization of querying the Network creates the necessary framework for further development.
 
 ### Serialization
 
