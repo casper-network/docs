@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## What is a Smart Contract?
 
-A smart contract is a self-contained program installed on a blockchain. In the context of a Casper Network, a smart contract consists of contract code installed on [global state](../../glossary/g#global-state) through the use of a [deploy](../../design/execution-semantics/#execution-semantics-deploys).
+A smart contract is a self-contained program installed on a blockchain. In the context of a Casper Network, a smart contract consists of contract code installed on [global state](../../../glossary/g#global-state) through the use of a [deploy](../../../design/execution-semantics/#execution-semantics-deploys).
 
 Before writing smart contracts on a Casper Network, developers should be familiar with the difference between contract code and session code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
