@@ -1,4 +1,4 @@
-# On-Chain Contracts
+# Sending Deploys to the Network
 
 Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](/design/execution-semantics#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
