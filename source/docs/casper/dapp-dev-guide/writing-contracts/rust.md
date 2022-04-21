@@ -36,7 +36,7 @@ This tutorial creates a simple smart contract that allows callers to donate fund
 
 First, create the directory for the new contract. This folder should have two sub-directories named `contract` and `test`.
 
-- `Contract` -  This directory contains the code that becomes the Wasm which is eventually sent to the network.    
+- `contract` -  This directory contains the code that becomes the Wasm which is eventually sent to the network.    
 - `test` -  This directory contains all the tests that you will send to the network.
 
 Use the below command to create a new contract folder. This creates the `contract` folder with */src/main.rs* file and *cargo.toml* file
