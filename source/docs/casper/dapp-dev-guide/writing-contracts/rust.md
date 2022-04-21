@@ -99,7 +99,7 @@ use casper_types::{runtime_args, CLType, CLValue, EntryPoint, EntryPointAccess, 
 
 ### Step 3. Defining the Global Constants
 
-After importing the necessary dependencies, you should define the constants that you will use within the contract itself. This includes both entry points and values. The following example outlines the necessary constants for a 
+After importing the necessary dependencies, you should define the constants that you will use within the contract itself. This includes both entry points and values. The following example outlines the necessary constants for our example contract. 
 
 ```rust
 
