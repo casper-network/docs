@@ -32,7 +32,7 @@ This tutorial creates a simple smart contract that allows callers to donate fund
 
 -------
 
-### Step 1. Creating the directory structure
+### Step 1. Creating the Directory Structure
 
 First, create the directory for the new contract. This folder should have two sub-directories named `contract` and `test`.
 
@@ -49,7 +49,7 @@ cargo new [CONTRACT_NAME]
 --------
 
 
-### Step 2. Configuring the main.rs file
+### Step 2. Configuring the Main.rs File
 
 1) Remove the auto-generated main function and add file configurations 
 
