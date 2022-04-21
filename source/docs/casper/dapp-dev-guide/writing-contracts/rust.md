@@ -296,7 +296,7 @@ let (contract_hash, _contract_version) = storage::new_contract(
 
 ```
 
-This section explains the creation of a basic smart contract. Usually, these contracts are upgradable with the ability to add new versions. if you want to prevent any upgrades to a contract use the `new_locked_contract` method to create the contract inside the call function.
+This section explains the creation of a basic smart contract. Usually, these contracts are upgradable with the ability to add new versions. If you want to prevent any upgrades to a contract, use the `new_locked_contract` method to create the contract inside the call function.
 
 #### Locked Contracts
 
