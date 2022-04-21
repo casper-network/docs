@@ -40,7 +40,7 @@ The following steps illustrate the process of writing session code and the impor
     cargo new contract
     ```
     
-    This folder will contain the logic that will be compiled to Wasm and will be executed on a node within the Casper network.
+    This folder will contain the logic that will be compiled to Wasm and will be executed on a node within a Casper network.
 
 3. Within the contract package, you can find the `main.rs` file inside the `src` folder. You will write your session code in the `main.rs` file. 
 
@@ -55,7 +55,7 @@ The following steps illustrate the process of writing session code and the impor
         -   `#![no_std]` - This indicates to not import the standard library.
         -   `#![no_main]` - This indicates that the main function is not required, since the session code has only one entry point as the `call` function.
     -   Import the casper contract API:
-        `use casper_contract::contract_api::{runtime, storage};` this example uses only runtime and storage crates, however, you might need to import the crates relevant to your session code.
+        `use casper_contract::contract_api::{account, runtime, storage, system};` this example uses account, runtime, storage, and system crates, however, you might need to import the crates relevant to your session code.
 
 ## Sample Session Code
 This sample code demonstrates a simple session code passing arguments, processing the arguments, and storing the result. In general, that is what you will use session code for. In this example, we are adding two numbers and storing the result in a URef.
@@ -64,23 +64,29 @@ This sample code demonstrates a simple session code passing arguments, processin
 #![no_std]
 #![no_main]
 
-use casper_contract::contract_api::{runtime, storage};
+use casper_contract::contract_api::{account, runtime, storage, system};
+use casper_contract::unwrap_or_revert::UnwrapOrRevert;
+use casper_types::{runtime_args, ContractHash, Key, PublicKey, RuntimeArgs, URef, U512};
 
-const ARG_NUMBER_1: &str = "number_1";
-const ARG_NUMBER_2: &str = "number_2";
+const FUNDRAISER_CONTRACT_HASH: &str = "fundraiser_contract_hash";
+const ENTRY_POINT_GET_DONATION_COUNT: &str = "get_donation_count";
+const DONATING_ACCOUNT_KEY: &str = "donating_account_key";
 
 #[no_mangle]
 pub extern "C" fn call() {
-    // Get the named arg number_1.
-    let num1: u32 = runtime::get_named_arg(ARG_NUMBER_1);
-    // Get the named_arg number_2.
-    let num2: u32 = runtime::get_named_arg(ARG_NUMBER_2);
-    let result = num1 + num2;
-    // Write the answer under some URef
-    let result_uref = storage::new_uref(result);
-    // Put the URef in the current context's NamedKeys, which is the context
-    // of the account calling this piece of session code.
-    runtime::put_key("answer", result_uref.into())
+    let fundraiser_contract_hash: ContractHash = runtime::get_named_arg(FUNDRAISER_CONTRACT_HASH);
+    let donating_account_key: Key = runtime::get_named_arg(DONATING_ACCOUNT_KEY);
+
+    let donation_count: u64 = runtime::call_contract(
+        fundraiser_contract_hash,
+        ENTRY_POINT_GET_DONATION_COUNT,
+        runtime_args! {
+            DONATING_ACCOUNT_KEY => donating_account_key
+        },
+    );
+
+    let donation_count_uref = storage::new_uref(donation_count);
+    runtime::put_key("donation_count", donation_count_uref.into())
 }
 ```
 
@@ -94,20 +100,23 @@ Let's try to understand what each line of code in the above sample is trying to 
 This indicates to not import the standard library and that the main function is not required, since the session code has only one entry point as the `call` function.
 
 ```rust
-use casper_contract::contract_api::{runtime, storage};
+use casper_contract::contract_api::{account, runtime, storage, system};
+use casper_contract::unwrap_or_revert::UnwrapOrRevert;
+use casper_types::{runtime_args, ContractHash, Key, PublicKey, RuntimeArgs, URef, U512};
 ```
-Imports the casper contract API. This example uses only runtime and storage crates, however, you might need to import the crates relevant to your session code.
+Imports the casper contract API. This example uses account, runtime, storage, and system crates, however, you might need to import the crates relevant to your session code.
 
 ```rust
-const ARG_NUMBER_1: &str = "number_1";
-const ARG_NUMBER_2: &str = "number_2";
+const FUNDRAISER_CONTRACT_HASH: &str = "fundraiser_contract_hash";
+const ENTRY_POINT_GET_DONATION_COUNT: &str = "get_donation_count";
+const DONATING_ACCOUNT_KEY: &str = "donating_account_key";
 ```
 It is a good habit to define constants, because if you use the same argument in multiple places and you want to change the argument, you can do that where you just defined the constant. This change will reflect everywhere the argument is used.
 
 ```rust
 #[no_mangle]
 ```
-When some Wasm is sent to be executed by the execution engine (EE) that lives within each node of the Casper network, `#[no_mangle]` ensures that the function name that follows it is retained as is in string form in the Wasm output. For session code, this retains the `call` string and marks the entry point for the execution engine.
+When some Wasm is sent to be executed by the execution engine (EE) that lives within each node of a Casper network, `#[no_mangle]` ensures that the function name that follows it is retained as is in string form in the Wasm output. For session code, this retains the `call` string and marks the entry point for the execution engine.
 
 ```rust
 pub extern "C" fn call()
@@ -115,24 +124,31 @@ pub extern "C" fn call()
 This initiates the `call` function. When compiled, the resulting Wasm could then be linked to from a C library, and the function could be used as if it was from any other library.
 
 ```rust
-let num1: u32 = runtime::get_named_arg(ARG_NUMBER_1);
-let num2: u32 = runtime::get_named_arg(ARG_NUMBER_2);
-let result = num1 + num2;
+let fundraiser_contract_hash: ContractHash = runtime::get_named_arg(FUNDRAISER_CONTRACT_HASH);
+    let donating_account_key: Key = runtime::get_named_arg(DONATING_ACCOUNT_KEY);
+
+    let donation_count: u64 = runtime::call_contract(
+        fundraiser_contract_hash,
+        ENTRY_POINT_GET_DONATION_COUNT,
+        runtime_args! {
+            DONATING_ACCOUNT_KEY => donating_account_key
+        },
+    );
 ```
-This piece of code tries to demonstrate how to get two numbers as arguments in `u32` format and then perform an simple operation with them, such as adding the two numbers. The `runtime::get_named_arg()` takes a string as an argument and returns the named argument to the host in the current runtime.
+This piece of code tries to demonstrate how to get the contract hash and donating account key as arguments and then perform a simple operation with them, such as get the final donation count. The `runtime::get_named_arg()` takes a string as an argument and returns the named argument to the host in the current runtime.
 
 ```rust
-let result_uref = storage::new_uref(result);
+let donation_count_uref = storage::new_uref(donation_count);
 ```
 Once you have the result, you might want to save it at a location that can be accessed later. This code puts the URef in the current context's NamedKeys, which is the context of the account calling this piece of session code.
 
 ```rust    
-runtime::put_key("answer", result_uref.into())
+runtime::put_key("donation_count", donation_count_uref.into())
 ```
-The `put_key` function stores the URef of the result in the current context's NamedKeys, which is the context of the account calling this piece of session code. Once this session code tis executed, the account that called the session code will have a new named key `answer` added to the account.
+The `put_key` function stores the URef of the result in the current context's NamedKeys, which is the context of the account calling this piece of session code. Once this session code is executed, the account that called the session code will have a new named key `donation_count` added to the account.
 
 ## Compiling the Session Code
-Before you deploy the session code on the Casper network, you need to compile it to Wasm. 
+Before you deploy the session code on a Casper network, you need to compile it to Wasm. 
 
 Use the following command to move to the *contract* directory:
 
@@ -144,7 +160,7 @@ Inside the *contract* directory execute the following command to compile the ses
 ```bash
 cargo build --release --target wasm32-unknown-unknown
 ```
-Once the session code is compiled you can deploy it on the Casper network.
+Once the session code is compiled you can deploy it on a Casper network.
 
 ## Deploying the Session Code
 Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using NCTL. For more information on how to build an NCTL network, see [Local Network Testing](setup-nctl.md).
@@ -169,6 +185,6 @@ casper-client put-deploy \
 ## Comparing Session Code and Contract Code
 The following points try to explain the difference between session code and contract code.
 - When `put_key` is used to store a URef, it depends where the key is stored based on if the session code or the contract code is making the call. When the session code is executed the key is added to the named keys of the account that called the session code. Whereas, when contract code is executed the key is added to the named keys of the smart contract. 
-- Contract code is Wasm that is stored on the network. Whereas session code is simple code you can use to interact with the smart contract.
+- Contract code is Wasm that is stored on the network. Whereas, session code is simple code you can use to interact with the smart contract.
 - A smart contract is stateful and session code is stateless.
 
