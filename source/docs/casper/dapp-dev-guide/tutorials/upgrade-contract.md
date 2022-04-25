@@ -141,4 +141,4 @@ The contract maintenance process is generally covered through the [contract upgr
 
 Only the major version changes would require specific contract maintenance, especially with major releases. Otherwise, minor contract version changes are addressed through the contract upgrade process. So far we are not anticipating major contract changes in Casper Network. Therefore, the contract upgrade process can cater to any minor contract maintenance.
 
-On instances like new node releases, type upgrades, and bug-fixes; we advise you to adhere to the same [contract upgrade tutorial](#prerequisites).
+On instances like new node version releases, type upgrades, and bug fixes, we advise you to adhere to the same [contract upgrade tutorial](#prerequisites).
