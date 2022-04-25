@@ -11,7 +11,7 @@ This tutorial examines how to upgrade an existing contract, a process similar to
 - You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/sending-deploys/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network
 
 
-## Contract Upgrade Flow {#contract-versioning-flow}
+## Contract Versioning Flow {#contract-versioning-flow}
 
 Here is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash.
 
@@ -135,10 +135,3 @@ You can create a [locked contract package](https://docs.rs/casper-contract/lates
     let (contract_package_hash, _): (ContractPackageHash, URef) =
     storage::create_contract_package_at_hash();
 ```
-
-## Maintaining a Contract
-The contract maintenance process is generally covered through the [contract upgrade process](#prerequisites).
-
-Only major version changes in the Casper node software or APIs would require specific contract maintenance. Otherwise, minor contract version changes can be addressed through the contract upgrade process. At the moment, we are not anticipating major contract changes in the Casper Network. Therefore, the contract upgrade process can cater to any minor contract maintenance.
-
-On instances like new node version releases, type upgrades, and bug fixes, we advise you to adhere to the same [contract upgrade tutorial](#prerequisites).

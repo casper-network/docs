@@ -1,6 +1,6 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Upgrading Contracts
+# Upgrading and Maintaining Contracts
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Our smart contract packaging tools enable you to:
 
@@ -16,3 +16,10 @@ When you upgrade a contract, you add a new contract version in a contract packag
 The contract package is like a container for different contract versions, with functionality that can differ slightly or significantly among versions. The contract package is created when you install the contract on the blockchain. 
 
 To learn more about how to upgrade your smart contracts, see the [Smart Contract Upgrade Tutorial](/dapp-dev-guide/tutorials/upgrade-contract.md).
+
+## Maintaining a Contract
+The contract maintenance process is generally covered through the [contract upgrade process](/dapp-dev-guide/tutorials/upgrade-contract/).
+
+Only major version changes in the Casper node software or APIs would require specific contract maintenance. Otherwise, minor contract version changes can be addressed through the contract upgrade process. At the moment, we are not anticipating major contract changes in the Casper Network. Therefore, the contract upgrade process can cater to any minor contract maintenance.
+
+On instances like new node version releases, type upgrades, and bug fixes, we advise you to adhere to the same [contract upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract/).
