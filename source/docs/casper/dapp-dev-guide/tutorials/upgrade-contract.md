@@ -139,6 +139,6 @@ You can create a [locked contract package](https://docs.rs/casper-contract/lates
 ## Maintaining a Contract
 The contract maintenance process is generally covered through the [contract upgrade process](#prerequisites).
 
-Only the major version changes would require specific contract maintenance, especially with major releases. Otherwise, minor contract version changes are addressed through the contract upgrade process. So far we are not anticipating major contract changes in Casper Network. Therefore, the contract upgrade process can cater to any minor contract maintenance.
+Only major version changes in the Casper node software or APIs would require specific contract maintenance. Otherwise, minor contract version changes can be addressed through the contract upgrade process. At the moment, we are not anticipating major contract changes in the Casper Network. Therefore, the contract upgrade process can cater to any minor contract maintenance.
 
 On instances like new node version releases, type upgrades, and bug fixes, we advise you to adhere to the same [contract upgrade tutorial](#prerequisites).
