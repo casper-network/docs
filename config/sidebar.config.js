@@ -104,6 +104,7 @@ module.exports = {
             collapsible: true,
             collapsed: true,
             items: [
+                "dapp-dev-guide/tutorials/index",
                 {
                     type: "category",
                     label: "A Counter Contract Tutorial",
