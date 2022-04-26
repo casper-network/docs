@@ -34,7 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           FROM_BRANCH: "dev"
           TO_BRANCH: "main"
-          REVIEWERS: '["bradjohnl"]'
+          REVIEWERS: '["bradjohnl", "ipopescu", "ACStoneCL", "bdkpathi", "GloreenS"]'
           CONTENT_COMPARISON: true
           PULL_REQUEST_BODY: "This PR is created by the PR Bot to sync the dev branch to the main branch."
           PULL_REQUEST_TITLE: "Sync dev to main"
