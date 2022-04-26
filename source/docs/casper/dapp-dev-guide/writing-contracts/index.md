@@ -17,7 +17,7 @@ Additionally, the following tutorials outline some aspects of writing smart cont
 
 | Title                                                       | Description                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |
-|[CEP-47 Tutorial](../tutorials/cep47/index.md)                            | Implementing the CEP-47 Casper NFT standard                      |
+|[CEP-47 Tutorial](https://github.com/casper-ecosystem/casper-nft-cep47/blob/master/README.md)                            | Implementing the CEP-47 Casper NFT standard                      |
 |[Counter Contract Tutorial](../tutorials/counter/index.md)                | A simple example contract that maintains a counter variable      |
 |[ERC-20 Implementation](https://github.com/casper-ecosystem/erc20/blob/master/TUTORIAL.md#contract-implementation)                      | Implement the ERC-20 standard for Casper                         |
 |[Key-Value Storage with Casper DSL](../tutorials/kv-storage-tutorial.md)  | Design a simple contract to store a value and use the Casper DSL |
