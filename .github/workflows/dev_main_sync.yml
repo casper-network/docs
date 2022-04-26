@@ -34,9 +34,9 @@ jobs:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           FROM_BRANCH: "dev"
           TO_BRANCH: "main"
-          REVIEWERS: '["bradjohnl"]'
+          REVIEWERS: '["bradjohnl", "ipopescu", "ACStoneCL", "bdkpathi", "GloreenS"]'
           CONTENT_COMPARISON: true
-          PULL_REQUEST_BODY: "This PR is created by the PR Bot to sync the dev branch to the main branch."
+          PULL_REQUEST_BODY: "This PR is created by the PR Bot to sync the dev branch to the main branch. Please check the content changes also on the staging site if you want. You can feel free to ignore this or approve + merge it. If you merge, the prod deployment will start automatically. If you ignore it, it will get renewed the next time a new feature gets merged to the dev branch."
           PULL_REQUEST_TITLE: "Sync dev to main"
 
       #Display the pull request URL:
