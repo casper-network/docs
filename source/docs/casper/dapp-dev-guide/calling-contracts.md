@@ -1,38 +1,15 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Installing and Calling Contracts with the Rust Client
+# Calling Contracts with the Rust Client
 
-Smart contracts exist to install programs to [global state](../../..///glossary/g#global-state), thereby allowing disparate users to call the included entry points. This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust.md/#smart-contracts-on-casper) guide, and covers ways to install and call Casper contracts via the `put-deploy` command of the [Casper command-line client](/workflow/setup/#the-casper-command-line-client).
+Smart contracts exist to install programs to [global state](../../..///glossary/g#global-state), thereby allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts via the `put-deploy` command of the [Casper command-line client](/workflow/setup/#the-casper-command-line-client).
 
-**IMPORTANT**: Every time you call the `put-deploy` command below, you will receive a deploy hash. You need this hash to verify that the deploy executed successfully. Follow the guide on [sending and verifying deploys](/dapp-dev-guide/sending-deploys.md#sending-the-deploy) for more details.
+**IMPORTANT**: You will receive a deploy hash every time you call the `put-deploy` command below. You need this hash to verify that the deploy executed successfully.
 
 ## Prerequisites
 
-- You need a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
-- You need to know how to [send and verify deploys](/dapp-dev-guide/sending-deploys.md#sending-the-deploy)
-- You need to understand how to write basic contract code and session code <!-- TODO add links when the content is live -->
-- You need a contract Wasm that you will deploy to a Casper network, which could be the [Testnet](https://testnet.cspr.live/), the [Mainnet](https://cspr.live/), a local [NCTL](/dapp-dev-guide/setup-nctl/) network, or any other Casper network
-
-## Installing a Contract in Global State {#installing-a-smart-contract}
-
-To install the contract in global state, you need to send a deploy to the network. You can do so by using the `put-deploy` command. Remember to [verify the deploy](/dapp-dev-guide/sending-deploys.md#sending-the-deploy).
-
-```bash
-casper-client put-deploy \
-    --node-address [NODE_SERVER_ADDRESS] \
-    --chain-name [CHAIN_NAME] \
-    --secret-key [KEY_PATH]/secret_key.pem \
-    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
-```
-
--   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
--   `chain-name` - The chain name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
--   `secret-key` - The file name containing the secret key of the account paying for the deploy
--   `payment-amount` - The payment for the deploy in motes
--   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
-
-**Note:** The Wasm that you install in global state can act on another contract and change another contract's state. In this case, you would use the same `put-deploy` command as above. The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/) shows you how to change the state of one contract (counter-define.wasm) using another (counter-call.wasm). 
+- You know how to [send and verify deploys](/dapp-dev-guide/sending-deploys.md#sending-the-deploy)
+- You know how to [install contracts and query global state](#installing-contracts) using the [default Casper client](/workflow/setup#the-casper-command-line-client)
 
 ## Calling Contracts by Hash {#calling-contracts-by-hash}
 
@@ -73,7 +50,7 @@ casper-client put-deploy \
 
 ## Calling Versioned Contracts by Hash {#calling-versioned-contracts-by-hash}
 
-<!-- TODO -->
+<!-- TODO Add content. Add a link in upgrading-contracts to this page. -->
 
 When you want to call a specific version of a contract with a specific entry point (that may not exist in another version), you can call `put-deploy` using the ContractPackageHash, entry point, and RuntimeArgs. 
 
@@ -176,27 +153,41 @@ casper-client put-deploy \
     --session-arg "donate_purse:UREf=uref-111111111111111111112222222222222233333333333344444444444444c003-007"
 ```                                        
 
+## Calling a Contract from Another Contract {#calling-a-contract-from-another}
 
-## Querying a Contract's State {#query-the-contract-state}
-
-Given the hash of the contract, you can query the contract's internal state. We pass in the contract's hash and the global state hash to do this. If we look at the ERC20 contract, we see a token name specified as `_name`. We can query for the value stored here.
-
-```bash
-casper-client query-global-state --node-address http://localhost:7777 -k hash-d527103687bfe3188caf02f1e487bfb8f60bfc01068921f7db24db72a313cedb -s 0c3aaf547a55dd500c6c9bbd42bae45e97218f70a45fee6bf8ab04a89ccb9adb -q _name | jq -r
-```
-
-And we should see something like this:
+The Wasm that you install in global state can act on another Wasm and change another contract's state. In this case, you would use the same `put-deploy` command as you did when [installing a contract in query global state](#installing-contracts).
 
 ```bash
-{
-  "api_version": "1.0.0",
-  "stored_value": {
-    "CLValue": {
-      "bytes": "0b000000e280984d65646861e28099",
-      "cl_type": "String"
-    }
-  }
-}
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
 ```
 
-The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/) takes you through a detailed walkthrough on how to query global state to verify a contract's state.
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
+-   `chain-name` - The chain name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+-   `secret-key` - The file name containing the secret key of the account paying for the deploy
+-   `payment-amount` - The payment for the deploy in motes
+-   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
+
+**Example:**
+
+The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/) shows you how to change the state of a contract (counter-define.wasm) using another contract (counter-call.wasm).
+
+```bash
+
+casper-client put-deploy \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
+    --payment-amount 25000000000 \
+    --session-path [PATH_TO_YOUR_COMPILED_WASM]/counter-call.wasm
+
+```
+
+## What's Next?
+
+- [Tutorials for Smart Contract Authors](/tutorials/)
+- [Developer How To Guides](/workflow/#developer-guides) 
