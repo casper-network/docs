@@ -1,19 +1,19 @@
-# Guidance for Minimum SDK Compliance
+# Guidance for JSON-RPC SDK Compliance
 
-Developers should view the SDK Standard as the minimum required implementation for a complete Casper SDK. A compliant informational Casper SDK must include all the methods and associated types within the [Informational JSON-RPC Methods](../json-rpc-informational) specification. This is also true for a minimal compliant SDK, a transactional SDK, or a Proof-of-Stake SDK.
+A compliant Casper JSON-RPC SDK implementation must support all the endpoints and relevant types within the specification. The specification allows everything ranging from a minimal viable implementation to a full implementation, and a given SDK should cite which level of implementation they claim to be compliant with. For example, an SDK claiming to be an informational SDK must have implemented all entry points and relevant types described in the [informational JSON-RPC methods](../sdkspec/json-rpc-informational.md) page.
 
-**A fully featured, complete Caper SDK will be expected to include all possible methods.**
-
-Users seeking official compliance status must adhere to the expectations in this document and include the associated methods to ensure a consistent development experience across various SDKs and aid in ease of technical support.
-
-## Advanced Functionality
-
-SDK developers are allowed and encouraged to add their advanced functionality using the available methods and possible combinations. Casper’s platform allows for a wide range of possibilities.
-
-However, it is critical that SDK developers avoid misleading or improperly characterizing the purpose and scope of the available methods. Custom functionality should improve on the basic building blocks of the Casper Platform, offering added convenience.
-
-For example, an SDK developer could create an advanced function that automated the combination of `chain_get_state_root_hash` and `state_get_balance`. The state root hash is necessary for the `state_get_balance` method and combining the two is convenient and logical for an end-user.
+**A Casper JSON-RPC SDK claiming to be complete is expected to implement *all* endpoints and *all* types defined in the serialization standard.**
 
 ## Consistency
 
-When developing an SDK for the Casper platform, consistency in terminology, language, and functionality will be necessary for compliance. Method and type names should be consistent across various SDKs, regardless of how they are incorporated into any given SDK. Endpoints built on top of JSON RPC methods should follow the underlying language to avoid confusion for developers, users, and support personnel.
+A Casper JSON-RPC SDK must be consistent in terminology, language, and functionality relative to the Casper platform's architecture and design. Use actual terms such as Account and Deploy, not similar terms such as wallet or transaction.
+ 
+Care should be taken to maintain a universal language and not obscure the domain concepts of the Casper platform, which could confuse users of the SDK. The goal is to not make it difficult for users of an SDK to understand the documentation of the Casper platform and be able to communicate effectively with technical support personnel that understand the terminology of the Casper platform and not the variant terminology of an SDK.
+
+## Advanced Functionality
+
+SDK developers are allowed and encouraged to add convenience methods, supporting utilities, domain specific or macro support and extended functionality using the available endpoints and possible combinations.
+
+However, it is critical that SDK developers avoid misleading or improperly characterizing the purpose and scope of the available endpoints. Custom functionality should improve on the basic building blocks of the Casper Platform, offering added convenience.
+
+For example, some languages have strong idiomatic opinions and programmers using those languages are comfortable with or even expect SDKs in that language to follow those idioms. This is acceptable, as long as they do not obfuscate underlying terminology or semantics of the Casper platform.
