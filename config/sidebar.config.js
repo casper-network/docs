@@ -49,6 +49,8 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/sdkspec/introduction",
+                "dapp-dev-guide/sdkspec/guidance",
+                "dapp-dev-guide/sdkspec/json-rpc-minimal",
                 "dapp-dev-guide/sdkspec/json-rpc-transactional",
                 "dapp-dev-guide/sdkspec/json-rpc-informational",
                 "dapp-dev-guide/sdkspec/json-rpc-pos",
