@@ -1,84 +1,183 @@
-# Installing and Calling Contracts
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-The most efficient way to use blockchain is to store (install) your contract on the system and then call it. This section outlines the steps to do this.
+# Installing and Calling Contracts with the Rust Client
 
-## Installing a Smart Contract {#installing-a-smart-contract}
+Smart contracts exist to install programs to [global state](../../..///glossary/g#global-state), thereby allowing disparate users to call the included entry points. This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust.md/#smart-contracts-on-casper) guide, and covers ways to install and call Casper contracts via the `put-deploy` command of the [Casper command-line client](/workflow/setup/#the-casper-command-line-client).
 
-First, set up the contract name so you can call it using the name in subsequent deploys. The following code sample uses `sample_contract` as the contract name.
+**IMPORTANT**: Every time you call the `put-deploy` command below, you will receive a deploy hash. You need this hash to verify that the deploy executed successfully. Follow the guide on [sending and verifying deploys](/dapp-dev-guide/sending-deploys.md#sending-the-deploy) for more details.
+
+## Prerequisites
+
+- You need a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
+- You need to know how to [send and verify deploys](/dapp-dev-guide/sending-deploys.md#sending-the-deploy)
+- You need to understand how to write basic contract code and session code <!-- TODO add links when the content is live -->
+- You need a contract Wasm that you will deploy to a Casper network, which could be the [Testnet](https://testnet.cspr.live/), the [Mainnet](https://cspr.live/), a local [NCTL](/dapp-dev-guide/setup-nctl/) network, or any other Casper network
+
+## Installing a Contract in Global State {#installing-a-smart-contract}
+
+To install the contract in global state, you need to send a deploy to the network. You can do so by using the `put-deploy` command. Remember to [verify the deploy](/dapp-dev-guide/sending-deploys.md#sending-the-deploy).
+
+```bash
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
+```
+
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
+-   `chain-name` - The chain name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+-   `secret-key` - The file name containing the secret key of the account paying for the deploy
+-   `payment-amount` - The payment for the deploy in motes
+-   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
+
+**Note:** The Wasm that you install in global state can act on another contract and change another contract's state. In this case, you would use the same `put-deploy` command as above. The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/) shows you how to change the state of one contract (counter-define.wasm) using another (counter-call.wasm). 
+
+## Calling Contracts by Hash {#calling-contracts-by-hash}
+
+After installing a contract, you can use the contract's hash to call one of its entry points. Note that an entry point is required when calling a contract by its hash.
+
+This usage of `put-deploy` allows you to call entry points (functions) defined in a smart contract.
+
+```bash
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-hash [HEX_STRING] \
+    --session-entry-point [ENTRY_POINT_FUNCTION]
+```
+
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
+-   `chain-name` - The chain name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+-   `secret-key` - The file name containing the secret key of the account paying for the deploy
+-   `payment-amount` - The payment for the deploy in motes
+-   `session-hash` - Hex-encoded hash of the stored contract to be called as the session
+-   `session-entry-point` - Name of the method that will be used when calling the session contract
+
+**Example:**
+
+A hash string can identify the stored contract in this example, and there is an entry-point named "init" defined within it.
+
+```bash
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-hash hash-abcdefghijklmnopqrstuvwxyz111111111111111222222222222223333333ab \
+    --session-entry-point "init"
+```
+
+## Calling Versioned Contracts by Hash {#calling-versioned-contracts-by-hash}
+
+<!-- TODO -->
+
+When you want to call a specific version of a contract with a specific entry point (that may not exist in another version), you can call `put-deploy` using the ContractPackageHash, entry point, and RuntimeArgs. 
+
+If no value is specified, the call defaults to the highest enabled version, a more common use case described above.
+
+## Calling Contracts by Name {#calling-contracts-by-name}
+
+We reference a contract using a key (or a contract name) in many cases. The key you specify will enable you to reference the contract later by name. When you write the contract, use the `put_key` function to add the ContractHash under the contract's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#).
 
 ```rust
-let contract_hash = storage::add_contract_version(contract_package_hash,
-                                                  entry_points,
-                                                  Default::default());
-runtime::put_key("sample_contract", contract_hash.into());
-
-runtime::call_contract::<()>(contract_hash, "store_hello_world", {
-   let mut named_args = RuntimeArgs::new();
-   named_args.insert("s", s);
-   named_args.insert("a", a);
-   named_args
-});
+runtime::put_key("fundraiser_contract_hash", contract_hash.into());
 ```
 
-Next, deploy the smart contract using the `put-deploy` command and send in the compiled wasm as `--session code`.
+This code stores the ContractHash into a URef, which will reference the contract once installed in global state. In this case, the ContractHash will be stored under the `fundraiser_contract_hash` NamedKey.
 
-## Querying Global State for the Address of a Contract {#querying-global-state-for-the-address-of-a-contract}
-
-The `query-global-state` command is a generic query against [global state](../glossary/G.md#global-state). Earlier, we queried global state for the account's main purse. Here, we query the state of a contract. We can do so by including the contract address rather than the account public key in the `query-global-state` command.
-
-Here we query to get the address of an ERC20 contract from Global State.
-
-### Step 1: Get the Latest Global State Hash {#step-1-get-the-latest-global-state-hash}
-
-We need to obtain the global state hash after our contract has been deployed to the network.
+Having this key (contract name) enables you to call a contract's entry-point in global state by using the `put-deploy` command as illustrated here:
 
 ```bash
-casper-client get-state-root-hash --node-address http://NODE:PORT | jq -r
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-name [NAMED_KEY_FOR_SMART_CONTRACT] \
+    --session-entry-point [ENTRY_POINT_FUNCTION]
 ```
 
-### Step 2: Query State {#step-2-query-global-state}
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
+-   `chain-name` - The chain name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+-   `secret-key` - The file name containing the secret key of the account paying for the deploy
+-   `payment-amount` - The payment for the deploy in motes
+-   `session-name` - Name of the stored contract (associated with the executing account) to be called as the session
+-   `session-entry-point` - Name of the method that will be used when calling the session contract
 
-Take the global state hash from Step 1 and include it here, along with the account public key that created the contract.
+**Example:**
+
+This example uses a contract stored in global state under the "counter" key and an entry-point called "counter_inc".
 
 ```bash
-casper-client query-global-state --node-address http://NODE:PORT -k <PUBLIC KEY IN  HEX> -s <STATE_ROOT_HASH>
+casper-client put-deploy \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
+    --payment-amount 100000000 \
+    --session-name "counter" \
+    --session-entry-point "counter_inc"
 ```
 
-### Example Result {#example-result}
+:::note
 
-If there is a contract stored in an account, it will appear under `named-keys`.
+Notice that this command is nearly identical to the command used to install the contract. But, instead of `session-path` pointing to the WASM binary, we have `session-name` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain. We also reduced the payment amount to 0.1 CSPR (100000000 motes) for this entry-point.
+
+:::
+
+<!-- TODO add more details here -->
+
+
+## Calling Versioned Contracts by Name {#calling-versioned-contracts-by-name}
+
+<!-- TODO -->
+
+When you want to call a specific version of a contract by name, with a specific entry point that may not exist in another version, you can call `put-deploy` using the ContractPackageHash, entry point, and RuntimeArgs. 
+
+If no value is specified, the call defaults to the highest enabled version, a more common use case described above.
+
+## Calling Contracts that Return a Value
+
+Visit the [Interacting with Runtime Return Values](/dapp-dev-guide/tutorials/return-values-tutorial.md) tutorial to learn how to call a contract that returns a value.
+
+<!-- TODO -->
 
 ```bash
-casper-client query-global-state --node-address http://localhost:7777 -k 016af0262f67aa93a225d9d57451023416e62aaa8391be8e1c09b8adbdef9ac19d -s 0c3aaf547a55dd500c6c9bbd42bae45e97218f70a45fee6bf8ab04a89ccb9adb |jq -r
-{
-  "api_version": "1.0.0",
-  "stored_value": {
-    "Account": {
-      "account_hash": "804af75bc8161e1ec4189e7d4441eb1bf1047ff6fc13b1d71026f34c5f96f937",
-      "action_thresholds": {
-        "deployment": 1,
-        "key_management": 1
-      },
-      "associated_keys": [
-        {
-          "account_hash": "804af75bc8161e1ec4189e7d4441eb1bf1047ff6fc13b1d71026f34c5f96f937",
-          "weight": 1
-        }
-      ],
-      "main_purse": "uref-439d5326bf89bd34d3b2c924b3af2f5e233298b473d5bd8b54fab61ccef6c003-007",
-      "named_keys": {
-        "ERC20": "hash-d527103687bfe3188caf02f1e487bfb8f60bfc01068921f7db24db72a313cedb",
-        "ERC20_hash": "uref-80d9d36d628535f0bc45ae4d28b0228f9e07f250c3e85a85176dba3fc76371ce-007",
-
-      }
-    }
-  }
-}
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
+    --session-arg ["NAME:TYPE='VALUE'" OR "NAME:TYPE=null"]...
 ```
 
-#### Step 3: Query the contract State {#step-3-query-the-contract-state}
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
+-   `chain-name` - The chain name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+-   `secret-key` - The file name containing the secret key of the account paying for the deploy
+-   `payment-amount` - The payment for the deploy in motes
+-   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
+-   `session-arg` - For simple CLTypes, a named and typed arg is passed to the Wasm code. To see an example for each type, run the casper-client with '--show-arg-examples'
 
-Now that we have the hash of the contract, we can query the contract's internal state. To do this, we pass in the contract's hash and the global state hash. If we look at the ERC20 contract, we see a token name specified as `_name`. We can query for the value stored here.
+**Example:**
+
+```bash
+casper-client put-deploy \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
+    --payment-amount 100000000 \
+    --session-path ~/donate.wasm \
+    --session-arg "donate_purse:UREf=uref-111111111111111111112222222222222233333333333344444444444444c003-007"
+```                                        
+
+
+## Querying a Contract's State {#query-the-contract-state}
+
+Given the hash of the contract, you can query the contract's internal state. We pass in the contract's hash and the global state hash to do this. If we look at the ERC20 contract, we see a token name specified as `_name`. We can query for the value stored here.
 
 ```bash
 casper-client query-global-state --node-address http://localhost:7777 -k hash-d527103687bfe3188caf02f1e487bfb8f60bfc01068921f7db24db72a313cedb -s 0c3aaf547a55dd500c6c9bbd42bae45e97218f70a45fee6bf8ab04a89ccb9adb -q _name | jq -r
@@ -98,35 +197,4 @@ And we should see something like this:
 }
 ```
 
-**Note**: This result is returned as bytes. These bytes need to be deserialized into the correct CLType in a smart contract or a dApp. Refer to [casper-types](https://docs.rs/casper-types/latest/casper_types/bytesrepr/index.html) to find the latest APIs for deserialization.
-
-## Calling a Contract by Name & Entry Point {#calling-a-contract-by-name--entry-point}
-
-To call a contract by its name, run the `put-deploy` command using the `session-name` option:
-
-```bash
-casper-client put-deploy --session-name <NAME> --session-entry-point <FUNCTION_NAME>
-```
-
-It is possible to create entry points in the contract, which you can invoke while the contract lives on the blockchain. The following code shows you an example entry point:
-
-```rust
-#[no_mangle]
-pub extern "C" fn store_u64() {
-   read_and_store::<u64>();
-}
-
-fn read_and_store<T: CLTyped + FromBytes + ToBytes>() {
-   let name: String = runtime::get_named_arg("name");
-   let value: T = runtime::get_named_arg("value");
-   set_key(name.as_str(), value);
-}
-```
-
-## Calling a Contract by Hash and Entry Point {#calling-a-contract-by-hash-and-entry-point}
-
-After deploying a contract and querying the global state, you can use a contract's hash to call it in a new deploy. An entry point is required when calling a contract by its hash.
-
-```bash
-casper-client put-deploy  --session-hash <HEX STRING> --session-entry-point <FUNCTION_NAME>
-```
+The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/) takes you through a detailed walkthrough on how to query global state to verify a contract's state.
