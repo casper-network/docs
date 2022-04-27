@@ -141,9 +141,11 @@ If no value is specified, the call defaults to the highest enabled version, a mo
 
 ## Calling Contracts that Return a Value
 
+<!-- TODO - add this explanation when the link is ready.
+
 Visit the [Interacting with Runtime Return Values](/dapp-dev-guide/tutorials/return-values-tutorial.md) tutorial to learn how to call a contract that returns a value.
 
-<!-- TODO -->
+-->
 
 ```bash
 casper-client put-deploy \
