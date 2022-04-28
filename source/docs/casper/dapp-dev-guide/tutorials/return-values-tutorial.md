@@ -38,7 +38,7 @@ Without the addition of the `runtime::ret`, the purse would not be returned to t
 
 ## Session Code {#return-session-code}
 
-The following is an example of session code calling the [specified entry point](#return-contract-code). Keep in mind that the caller does not need to be session code, and the immediate caller could be another instance of contract code.
+The following is an example of session code calling the [specified entry point](#return-contract-code). Keep in mind that the immediate caller does not need to be session code, and the immediate caller could be another instance of contract code.
 
 ```rust
 
