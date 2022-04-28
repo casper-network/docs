@@ -119,7 +119,7 @@ casper-client put-deploy \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-package-hash hash-abcdefghijklmnopqrstuvwxyz99999999999999988888888888888aaaaaaabb \
     --session-entry-point "init" \
-    --session-version 3
+    --session-version 1
 ```
 
 ## Calling Contracts by Name {#calling-contracts-by-name}
@@ -164,17 +164,24 @@ casper-client put-deploy \
 
 ## Calling Versioned Contracts by Name {#calling-versioned-contracts-by-name}
 
-<!-- TODO Double check the code and put-deploy in this section. Is contract name = contract package name? -->
+<!-- TODO Double check the code and put-deploy in this section. -->
 
 You can access an entry point in a specific contract version by referencing the contract name, entry point, and version number. When creating the contract using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html), provide the `hash_name`, which puts the [ContractHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) in the context's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#).
 
 ```rust
-    let (contract_hash, _contract_version) = storage::new_contract(
-        entry_points,
-        named_keys,
-        Some("contract_name".to_string()),
-        Some("contract_access_uref".to_string()),
+    
+    let (stored_contract_hash, contract_version) =
+        storage::new_contract(counter_entry_points, 
+            Some(counter_named_keys), 
+            Some("counter_package_name".to_string()),
+            Some("counter_access_uref".to_string())
     );
+
+    // The current version of the contract will be reachable through named keys
+    // The constant is defined previously as: const CONTRACT_VERSION_KEY: &str = "version";
+    let version_uref = storage::new_uref(contract_version);
+    runtime::put_key(CONTRACT_VERSION_KEY, version_uref.into());
+
 ```
 
 This example code stores the "contract_name" into a NamedKey, which you can reference once you install the contract in global state. In this case, the ContractHash will be stored under the "contract_name" NamedKey.
@@ -215,7 +222,7 @@ This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/wor
 
 **Example 2:**
 
-This example uses the contract name "counter", version 3, the entry point "counter-inc", without any runtime arguments. 
+This example uses the contract name "counter", version 1, the entry point "counter-inc", without any runtime arguments. 
 
 ```bash
 casper-client put-deploy \
@@ -223,9 +230,9 @@ casper-client put-deploy \
     --chain-name [CHAIN_NAME] \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-package-name "counter" \
+    --session-package-name "counter_package_name" \
     --session-entry-point "counter-inc" \
-    --session-version 3
+    --session-version 1
 ```      
 
 
