@@ -62,7 +62,7 @@ cargo new [CONTRACT_NAME]
 
 3) Import the required dependencies.
 
-- `contract_api` - This is a command-line tool for creating a Wasm smart contract and tests for use on a Casper network.
+- `casper-contract - A library for developing Casper network smart contracts. This crate contains the API required to author smart contracts
 - `casper_types` - These are the types shared by many Casper crates for use on a Casper Network.
 
 Add these dependencies to the *Cargo.toml* file.
