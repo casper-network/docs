@@ -2,21 +2,22 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Installing Contracts and Querying Global State
 
-This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust) guide, and covers the installation of Casper contracts using the `put-deploy` command of the [Casper command-line client](/workflow/setup/#the-casper-command-line-client). <!-- TODO add latest links when the content is live -->
+This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust) guide, and covers the installation of Casper contracts using the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command. <!-- TODO add latest links when the content is live -->
+
 
 ## Prerequisites
 
-- You need to know how to [send and verify deploys](/dapp-dev-guide/sending-deploys.md#sending-the-deploy)
-   - Fulfill these [prerequisites](https://docs.casperlabs.io/workflow/setup/) to send deploys. Note that you will need a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
-   - Ensure you have [set up an account](https://docs.casperlabs.io/workflow/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
-   - CSPR tokens are used to pay for deploys on the Casper Network. If you plan to use the Casper Testnet, learn about the [faucet](https://docs.casperlabs.io//workflow/token-transfer#2-the-faucet) to fund your testing account
-- You need to understand how to write basic contract code and session code <!-- TODO add links when the content is live -->
-- You need a contract Wasm that you will send to a Casper network, which could be the [Testnet](https://testnet.cspr.live/), the [Mainnet](https://cspr.live/), a local [NCTL](/dapp-dev-guide/setup-nctl/) network, or any other Casper network
+- You know how to [send and verify deploys](sending-deploys.md)
+   - Your environment meets these [prerequisites](/workflow/setup/) and you have a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
+   - You have a [Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
+   - You have enough CSPR tokens in your account to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](/workflow/token-transfer#2-the-faucet) to fund your testing account
+- You understand how to write basic contract code and session code <!-- TODO add links when the content is live -->
+- You have a contract Wasm to send to a Casper network
 
 
-## Installing a Contract in Global State {#installing-a-smart-contract}
+## Installing a Contract in Global State {#installing-contract-code}
 
-To install the contract in global state, you need to send a deploy to the network. You can do so by using the `put-deploy` command. Remember to [verify the deploy](/dapp-dev-guide/sending-deploys.md#sending-the-deploy).
+To install a contract in global state, you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](sending-deploys.md#sending-the-deploy).
 
 ```bash
 casper-client put-deploy \
@@ -27,6 +28,7 @@ casper-client put-deploy \
     --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
 ```
 
+The arguments used above are:
 -   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
 -   `chain-name` - The chain name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
 -   `secret-key` - The file name containing the secret key of the account paying for the deploy
@@ -60,5 +62,5 @@ And we should see something like this:
 
 ## What's Next?
 
-- Learn [different ways to call contracts](calling-contracts) using the Casper command-line client
-- The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/) takes you through a detailed walkthrough on how to query global state to verify a contract's state
+- Learn [different ways to call contracts](calling-contracts.md) using the Casper command-line client
+- The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
