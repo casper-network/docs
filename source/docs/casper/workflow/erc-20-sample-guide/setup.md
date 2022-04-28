@@ -1,6 +1,6 @@
 # Setup
 
-Clone the ERC-20 contract repository and run the `make build-contract` command. This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC-20 token balances throughout this workflow.
+Clone the [ERC-20 contract](https://github.com/casper-ecosystem/erc20) repository and run the `make build-contract` command. This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC-20 token balances throughout this workflow.
 
 ## Install the Main ERC-20 Contract
 
