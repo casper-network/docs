@@ -95,7 +95,7 @@ The arguments used above are:
 
 **Example 1:**
 
-To find details about the installed contract, query global state using your account hash. If you need your account hash, you can run the `account-address` command first. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where we install a "counter" contract on chain.
+To find details about the installed contract, query global state using your account hash. You can run the `account-address` command first if you need your account hash. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where we install a "counter" contract on the chain.
 
 ```bash
 casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]
@@ -163,7 +163,7 @@ Notice that the sample response contains several named keys, including "counter"
 
 **Example 2:**
 
-This example shows you how to query global state given a contract hash. Here, we will use the contract hash from the sample response in Example 1, above.
+This example shows you how to query global state given a contract hash. We will use the contract hash from the sample response in Example 1 above.
 
 ```bash
 casper-client query-global-state \
