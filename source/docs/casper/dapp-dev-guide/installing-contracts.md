@@ -95,25 +95,65 @@ The arguments used above are:
 
 **Example 1:**
 
-Given the hash of a contract, query the contract's internal state. Pass in the contract's hash and the global state root hash.
+To find details about the installed contract, query global state using your account hash. If you need your account hash, you can run the `account-address` command first. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where we install a "counter" contract on chain.
+
+```bash
+casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]
+```
 
 ```bash
 casper-client query-global-state \
   --node-address http://localhost:11101 \
-  --state-root-hash [STATE_ROOT_HASH] \
-  --key [CONTRACT_HASH] -q "counter"
+  --state-root-hash fa968344a2000282686303f1664c474465f9a028f32ec4f51791d9fa64c0bcd7 \
+  --key account-hash-1d17e3fdad268f866a73558d1ae45e1eea3924c247871cb63f67ebf1a116e66d
 ```
+
+Notice that the sample response contains several named keys, including "counter", "counter_package_name", and "version". You can use these values to query the contract state further, as shown in the next example.
 
 <details>
 <summary><b>Sample response</b></summary>
 
 ```bash
 {
-  "api_version": "1.0.0",
-  "stored_value": {
-    "CLValue": {
-      "bytes": "0b000000e280984d65646861e28099",
-      "cl_type": "String"
+  "id": -6831525034388467034,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.5",
+    "block_header": null,
+    "merkle_proof": "[27614 hex chars]",
+    "stored_value": {
+      "Account": {
+        "account_hash": "account-hash-1d17e3fdad268f866a73558d1ae45e1eea3924c247871cb63f67ebf1a116e66d",
+        "action_thresholds": {
+          "deployment": 1,
+          "key_management": 1
+        },
+        "associated_keys": [
+          {
+            "account_hash": "account-hash-1d17e3fdad268f866a73558d1ae45e1eea3924c247871cb63f67ebf1a116e66d",
+            "weight": 1
+          }
+        ],
+        "main_purse": "uref-d92e420120199f90005802bf3036362f368ab69bebf17e7e53856d6ac82e117f-007",
+        "named_keys": [
+          {
+            "key": "hash-22228188b85b6ee4a4a41c7e98225c3918139e9a5eb4b865711f2e409d85e88e",
+            "name": "counter"
+          },
+          {
+            "key": "uref-41c3f4ae3c1ce2446f6fd880a96e698ae5abc715151e45e357d88bb739489c03-007",
+            "name": "counter_access_uref"
+          },
+          {
+            "key": "hash-76a8c3daa6d6ac799ce9f46d82ac98efb271d2d64b517861ec89a06051ef019e",
+            "name": "counter_package_name"
+          },
+          {
+            "key": "uref-917762490591a1404cba59ed8dcf0bcfa7f644ef6c6be9bf5ea7b1641617cad0-007",
+            "name": "version"
+          }
+        ]
+      }
     }
   }
 }
@@ -123,13 +163,74 @@ casper-client query-global-state \
 
 **Example 2:**
 
-It is also possible to check the state of a specific variable in global state.
+This example shows you how to query global state given a contract hash. Here, we will use the contract hash from the sample response in Example 1, above.
 
 ```bash
-casper-client query-global-state \ 
-    --node-address http://localhost:11101 \
-    --state-root-hash [STATE_ROOT_HASH] \
-    --key [CONTRACT_HASH] -q "counter/count"
+casper-client query-global-state \
+  --node-address http://localhost:11101  \
+  --state-root-hash fa968344a2000282686303f1664c474465f9a028f32ec4f51791d9fa64c0bcd7 \
+  --key hash-22228188b85b6ee4a4a41c7e98225c3918139e9a5eb4b865711f2e409d85e88e
+```
+
+The sample response contains useful details such as the `contract_package_hash`, the contract `entry_points`, and the `named_keys` for the contract.
+
+<details>
+<summary><b>Sample response</b></summary>
+
+```bash
+{
+  "id": -4657473054587773855,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.5",
+    "block_header": null,
+    "merkle_proof": "[21330 hex chars]",
+    "stored_value": {
+      "Contract": {
+        "contract_package_hash": "contract-package-wasm76a8c3daa6d6ac799ce9f46d82ac98efb271d2d64b517861ec89a06051ef019e",
+        "contract_wasm_hash": "contract-wasm-576b1718711d524a79ab2f05ce801006a3fd32eb48b9f7dac69a9fa966d634e3",
+        "entry_points": [
+          {
+            "access": "Public",
+            "args": [],
+            "entry_point_type": "Contract",
+            "name": "counter_get",
+            "ret": "I32"
+          },
+          {
+            "access": "Public",
+            "args": [],
+            "entry_point_type": "Contract",
+            "name": "counter_inc",
+            "ret": "Unit"
+          }
+        ],
+        "named_keys": [
+          {
+            "key": "uref-d40613e50c7b405b02795e3fe3252554bef49b4b522e31a55f39b87c442f922a-007",
+            "name": "count"
+          }
+        ],
+        "protocol_version": "1.4.5"
+      }
+    }
+  }
+}
+
+```
+</details>
+<br></br>
+
+
+**Example 3:**
+
+Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where a "count" variable is incremented and stored under a named key for the "counter" contract.
+
+```bash
+casper-client query-global-state \
+  --node-address http://localhost:11101 \
+  --state-root-hash [STATE_ROOT_HASH] \
+  --key [CONTRACT_HASH] -q "count"
 ```
 
 <details>
@@ -137,17 +238,38 @@ casper-client query-global-state \
 
 ```bash
 {
-  "api_version": "1.0.0",
-  "stored_value": {
-    "CLValue": {
-      "bytes": "0b000000e280984d65646861e28099",
-      "cl_type": "String"
+  "id": -2540117660598287261,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.5",
+    "block_header": null,
+    "merkle_proof": "[56562 hex chars]",
+    "stored_value": {
+      "CLValue": {
+        "bytes": "00000000",
+        "cl_type": "I32",
+        "parsed": 0
+      }
     }
   }
 }
 ```
 </details>
 <br></br>
+
+**Example 4:**
+
+It is also possible to check the state of a specific contract variable in global state given the account hash under which the contract was installed.
+
+```bash
+casper-client query-global-state \ 
+    --node-address http://localhost:11101 \
+    --state-root-hash fa968344a2000282686303f1664c474465f9a028f32ec4f51791d9fa64c0bcd7 \
+    --key account-hash-1d17e3fdad268f866a73558d1ae45e1eea3924c247871cb63f67ebf1a116e66d \
+    -q "counter/count"
+```
+
+The response should be the same as in Example 3, above.
 
 ## What's Next? {#whats-next}
 
