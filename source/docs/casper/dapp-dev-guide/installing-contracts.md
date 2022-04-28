@@ -63,7 +63,7 @@ Here we look at how to query the global state to see when the network has succes
 
 First, you will need to get the state root hash. After sending deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you would be looking at past events.
 
-The state root hash is an identifier of the current network state, or global state. It is much like a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. We use it to query global state after sending deploys to the network.
+The state root hash identifies the current network state (global state). It is much like a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. We use it to query global state after sending deploys to the network.
 
 ```bash
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
@@ -77,7 +77,7 @@ casper-client get-state-root-hash --node-address http://localhost:11101
 
 ### Query global state {#query-global-state}
 
-Next, query the state of a Casper network at a given moment in time, which is specified by the `state-root-hash` described above. You can dive into the data stored in global state using the query path argument `q`.
+Next, query the state of a Casper network at a given time, specified by the `state-root-hash` described above. You can dive into the data stored in global state using the query path argument `q`.
 
 ```bash
 casper-client query-global-state \
@@ -123,7 +123,7 @@ casper-client query-global-state \
 
 **Example 2:**
 
-It is also possible check the state of a specific variable in global state.
+It is also possible to check the state of a specific variable in global state.
 
 ```bash
 casper-client query-global-state \ 

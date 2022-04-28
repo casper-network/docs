@@ -2,9 +2,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Calling Contracts with the Rust Client
 
-Smart contracts exist as stored on-chain logic, thereby allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
+Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
 
-**IMPORTANT**: You will receive a deploy hash when you call the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
+**IMPORTANT**: You will receive a deploy hash when calling the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
 
 ## Prerequisites {#prerequisites}
 
@@ -55,7 +55,7 @@ Notice that this `put-deploy` command is nearly identical to the command used to
 
 ## Calling Contracts with Session Arguments {#calling-contracts-with-session-args}
 
-When calling contract entry points, you may need to pass in information using session arguments. The `put-deploy` allows you to do this with the `--session-arg` option:
+You may need to pass in information using session arguments when calling contract entry points. The `put-deploy` allows you to do this with the `--session-arg` option:
 
 ```bash
 casper-client put-deploy \
@@ -73,7 +73,7 @@ The arguments of interest are:
 
 **Example:**
 
-This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract entry point "transfer" with two arguments; one argument specifies the recipient and the other specifies the amount to be transferred.
+This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract entry point "transfer" with two arguments; one argument specifies the recipient, and the other specifies the amount to be transferred.
 
 ```bash
 casper-client put-deploy 
@@ -260,5 +260,5 @@ Visit the [Interacting with Runtime Return Values]() tutorial to learn to call a
 ## What's Next? {#whats-next}
 
 - [The ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/) has many useful examples
-- Also look into the [Tutorials for Smart Contract Authors](/tutorials/)
+- Also, look into the [Tutorials for Smart Contract Authors](/tutorials/)
 - See the rest of the [Developer How To Guides](/workflow/#developer-guides) 
