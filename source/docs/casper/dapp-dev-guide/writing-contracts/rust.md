@@ -12,7 +12,7 @@ Before writing smart contracts on a Casper Network, developers should be familia
 
 Smart contracts exist as stored on-chain logic, thereby allowing disparate users to call the included entry points. These contracts can, in turn, call one another to perform interconnected operations and create more complex programs. The decentralized nature of blockchain technology means that these smart contracts do not suffer from any single point of failure. Even if a Casper node leaves the network, other nodes will continue to allow the contract to operate as intended.
 
-Further, the Casper platform allows for [upgradeable contracts](../../../dapp-dev-guide/upgrading-contracts/) and implementation through a variety of developer-friendly programming languages. 
+Further, the Casper platform allows for [upgradable contracts](../../../dapp-dev-guide/upgrading-contracts/) and implementation through a variety of developer-friendly programming languages. 
 
 ## Smart Contracts on Casper
 
@@ -39,7 +39,7 @@ This tutorial creates a simple smart contract that allows callers to donate fund
 First, create the directory for the new contract. This folder should have two sub-directories named `contract` and `test`.
 
 - `contract` -  This directory contains the code that becomes the Wasm which is eventually sent to the network.    
-- `test` -  This directory contains all the tests that you will send to the network.
+- `test` -  This is an optionial directory that will contain tests for unit testing and asserting that the behavior of the contract matches expectations. As users must pay for execution, these test should be considered a best practice. However, they are not required.
 
 Use the below command to create a new contract folder. This creates the `contract` folder with */src/main.rs* file and *cargo.toml* file
 
@@ -301,7 +301,7 @@ let (contract_hash, _contract_version) = storage::new_contract(
 
 ```
 
-Usually, these contracts are upgradable with the ability to add new [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html). If you want to prevent any upgrades to a contract, use the `new_locked_contract` method to create the contract inside the call function.
+Usually, these contracts are upgradable with the ability to add new [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html). To add a new contract version, you will need the access URef to the contract package. This can be accomplished by passing the `Some("fundraiser_access_uref".to_string())` argument to the `new_method` contract. If you want to prevent any upgrades to a contract, use the `new_locked_contract` method to create the contract inside the call function.
 
 #### Locked Contracts
 
@@ -330,10 +330,3 @@ pub fn new_locked_contract(
 5) Create the `NamedKeys`.
 
 You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) as the last step to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values.
-
-```rust
-
-    runtime::put_key("toggle_contract_hash", toggle_contract.into());
-    runtime::put_key("toggle_contract_version", storage::new_uref(toggle_contract_version).into());
-
-```
