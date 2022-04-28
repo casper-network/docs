@@ -12,7 +12,7 @@ Before writing smart contracts on a Casper Network, developers should be familia
 
 Smart contracts exist as means to install programs to global state, thereby allowing disparate users to call the included entry points. These contracts can, in turn, call one another to perform interconnected operations and create more complex programs. The decentralized nature of blockchain technology means that these smart contracts do not suffer from any single point of failure. Even if a Casper node leaves the network, other nodes will continue to allow the contract to operate as intended.
 
-Further, the Casper platform allows for upgradeable contracts and implementation through a variety of developer-friendly programming languages. 
+Further, the Casper platform allows for [upgradeable contracts](/dapp-dev-guide/upgrading-contracts/) and implementation through a variety of developer-friendly programming languages. 
 
 ## Smart Contracts on Casper
 
@@ -28,7 +28,7 @@ The contract contains required metadata and is primarily identified by its hash 
 
 As stated, this tutorial covers the process of writing a smart contract in the Rust programming language. Casper maintains a Rust SDK as a first-party entity, while also providing an [SDK Specification](../../dapp-dev-guide/sdkspec/introduction.md) for third-parties wishing to develop additional language SDKs.
 
-This tutorial creates a simple smart contract that allows callers to donate funds to a central purse, as well as track the total funds received and individual contributions.
+This tutorial creates a simple smart contract that allows callers to donate funds to a central purse, as well as track the total funds received and the number of individual contributions.
 
 -------
 
@@ -63,7 +63,7 @@ cargo new [CONTRACT_NAME]
 - `contract_api` - This is a command-line tool for creating a Wasm smart contract and tests for use on the Casper network.
 - `typescript` - These are the types shared by many Casper crates for use on the Casper network.
 
-Add these dependencies to the *Cargo.toml* file
+Add these dependencies to the *Cargo.toml* file.
 
 ```typescript
 
@@ -75,7 +75,7 @@ casper-types = "1.4.6"
 
 ```
 
-Then, add your imports in the main.rs file along with other imports
+Then, add your imports in the main.rs file along with other imports.
 
 ```rust
 
@@ -192,15 +192,15 @@ pub extern "C" fn get_funds_raised() {
 
 ### Step 5. Defining the Call Function
 
-This is the function that starts the code execution and will be the function responsible for installing the contract. In this case, it also initializes the contract by creating a donation purse and ledger for record keeping.
+The `call` function starts the code execution and is the function responsible for installing the contract. In this case, it also initializes the contract by creating a donation purse and ledger for record-keeping.
 
-1) Defining the Runtime Arguments
+1) Define the runtime arguments.
 
-These parameters will be passed in as runtime arguments at the time of installation. Use this pattern of variable definition to collect any type of sentinel values that dictate the behavior of the contract. If the entry point takes in arguments then you must declare those as part of the definition of the entry point.
+At the time of contract installation, pass in parameters as runtime arguments. Use this pattern of variable definition to collect any sentinel values that dictate the behavior of the contract. If the entry point takes in arguments, you must declare those as part of the definition of the entry point.
 
 In the donation contract example, the only variable parameter is the `DONATING_ACCOUNT_KEY`.
 
-2) Inserting the Entry Points in to the Call Function
+2) Insert the function entry points into the `call` function.
 
 The `call` function replaces a traditional `main` function and executes automatically when a caller interacts with the contract code. Within the `call` function, we define entry points that the caller can access using another instance of code. The calling code may be an instance of session or contract code. When writing code that will call an entry point, there must be a one-to-one mapping of the entry point name. Otherwise, the execution engine will return an error that the entry point does not exist.
 
@@ -252,19 +252,19 @@ pub extern "C" fn call() {
 
 The entry point should have the below arguments:
 
-- `name` - Name of the entry point, this should be the same as the initial definition.
+- `name` - Name of the entry point, which should be the same as the initial definition.
 
 - `arguments` - A list of runtime arguments declared as part of the definition of the entry point.
 
 - `return type` - CLType that is returned by the entry point. Use type *Unit* for empty return types.
 
-- `access level` - Accessibility of the entry point.
+- `access level` - Access permissions of the entry point.
 
 - `entry point type` - This can be `contract` or `session` code.
 
-3) Adding the Entry Points
+3) Add the entry points.
 
-This step adds the individual entry points using `add_entry_point` method to one object and returns it to the `new_contract` method.
+This step adds the individual entry points using the `add_entry_point` method to one object and returns it to the `new_contract` method.
 
 ```rust
 
@@ -276,9 +276,9 @@ This step adds the individual entry points using `add_entry_point` method to one
 
 ```
 
-4) Creating the Contract
+4) Create the contract.
 
-Use the `new_contract` method to create the contract, with its named keys and entry points. This creates the contract object and will save the access_uref and the contract package hash in the context of the caller. The contract package will be created automatically with the contractPackageHash and the contract is added to the package later with the contractHash.
+Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) method to create the contract, with its named keys and entry points. This method creates the contract object and saves the access URef and the contract package hash in the context of the caller. The execution engine automatically creates a contract package and assigns it a `contractPackageHash`. Then, it adds the contract to the package with a `contractHash`.
 
 ```rust
 
@@ -296,11 +296,11 @@ let (contract_hash, _contract_version) = storage::new_contract(
 
 ```
 
-This section explains the creation of a basic smart contract. Usually, these contracts are upgradable with the ability to add new versions. If you want to prevent any upgrades to a contract, use the `new_locked_contract` method to create the contract inside the call function.
+Usually, these contracts are upgradable with the ability to add new versions. If you want to prevent any upgrades to a contract, use the `new_locked_contract` method to create the contract inside the call function.
 
 #### Locked Contracts
 
-Locked contracts cannot contain other versions in the same contract package, thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and prevent any further upgrades to the contract. Use locked contracts when you need to ensure high security will not require updates to your contract. 
+Locked contracts cannot contain other versions in the same contract package; thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and prevent any further upgrades to the contract. Use locked contracts when you need to ensure high security and will not require updates to your contract. 
 
 ```rust
 
@@ -317,12 +317,12 @@ pub fn new_locked_contract(
 
 - `entry_points`: The set of entry points defined inside the smart contract.
 - `named_keys`: Any named-key pairs for the contract.
-- `hash_name`: Contract hash value. Puts contract hash in current context's named keys under `hash_name`. 
-- `uref_name`: Access URef value. Puts access_uref in current context's named keys under `uref_name`.
+- `hash_name`: Contract hash value. Puts contractHash in the current context's named keys under `hash_name`. 
+- `uref_name`: Access URef value. Puts access_uref in the current context's named keys under `uref_name`.
 
-* The current context is the context of the person who initiated the `call` function. Usually, it will be an account.
+**Note**: The current context is the context of the person who initiated the `call` function, usually an account.
 
-5) Creating the `NamedKeys`
+5) Create the `NamedKeys`.
 
 You can create `NamedKeys` as the last step to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values.
 
