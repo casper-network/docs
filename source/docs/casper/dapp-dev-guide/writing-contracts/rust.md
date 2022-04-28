@@ -315,10 +315,10 @@ pub fn new_locked_contract(
 
 ```
 
-- `entry_points`: The set of entry points defined inside the smart contract.
-- `named_keys`: Any [named-key](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) pairs for the contract.
-- `hash_name`: Contract hash value. Puts [contractHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) in the current context's named keys under `hash_name`. 
-- `uref_name`: Access URef value. Puts access_uref in the current context's named keys under `uref_name`.
+- `entry_points` - The set of entry points defined inside the smart contract.
+- `named_keys` - Any [named-key](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) pairs for the contract.
+- `hash_name` - Contract hash value. Puts [contractHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) in the current context's named keys under `hash_name`. 
+- `uref_name` - Access URef value. Puts access_uref in the current context's named keys under `uref_name`.
 
 **Note**: The current context is the context of the person who initiated the `call` function, usually an account.
 
