@@ -90,7 +90,7 @@ casper-client query-global-state \
 The arguments used above are:
 -   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
 -   `state-root-hash` - 
--   `key` - The identifier for the query. It must be the account public key, account hash, contract address hash, transfer hash, or deploy hash
+-   `key` - The identifier for the query. It must be the account public key, account hash, contract package hash, transfer hash, or deploy hash
 -   `q` - An optional query path argument that allows you to drill into the specifics of a query with respect to the key
 
 **Example 1:**
@@ -270,6 +270,50 @@ casper-client query-global-state \
 ```
 
 The response should be the same as in Example 3, above.
+
+**Example 5:**
+
+Query the contract package hash to get the contract hash and contract version.
+
+```bash
+casper-client query-global-state \
+  --node-address http://localhost:11101 \ 
+  --key hash-76a8c3daa6d6ac799ce9f46d82ac98efb271d2d64b517861ec89a06051ef019e \
+  --state-root-hash 763e737cf55a298d54bcdfb4ee55526538a1a086128914b9cc25ccbdebbbb966
+```
+
+The response will contain the `contract_hash`, which you will need to [call a contract by hash](calling-contracts.md#calling-contracts-by-hash) in the next section. You will also see the `access_key` for the `ContractPackage` and the current `contract_version`.
+
+<details>
+<summary><b>Sample response</b></summary>
+
+```bash
+{
+  "id": -6225901853092301031,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.5",
+    "block_header": null,
+    "merkle_proof": "[20964 hex chars]",
+    "stored_value": {
+      "ContractPackage": {
+        "access_key": "uref-41c3f4ae3c1ce2446f6fd880a96e698ae5abc715151e45e357d88bb739489c03-007",
+        "disabled_versions": [],
+        "groups": [],
+        "versions": [
+          {
+            "contract_hash": "contract-22228188b85b6ee4a4a41c7e98225c3918139e9a5eb4b865711f2e409d85e88e",
+            "contract_version": 1,
+            "protocol_version_major": 1
+          }
+        ]
+      }
+    }
+  }
+}
+```
+</details>
+<br></br>
 
 ## What's Next? {#whats-next}
 

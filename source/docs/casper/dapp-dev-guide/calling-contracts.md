@@ -35,7 +35,7 @@ The arguments used above are:
 
 **Example:**
 
-In this example, a hash identifies a stored contract with an entry-point named "init".
+In this example from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), a hash identifies a stored contract called "counter" with an entry-point named "counter-inc".
 
 ```bash
 casper-client put-deploy \
@@ -43,15 +43,33 @@ casper-client put-deploy \
     --chain-name [CHAIN_NAME] \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-hash hash-abcdefghijklmnopqrstuvwxyz111111111111111222222222222223333333ab \
-    --session-entry-point "init"
+    --session-hash hash-22228188b85b6ee4a4a41c7e98225c3918139e9a5eb4b865711f2e409d85e88e \
+    --session-entry-point "counter-inc"
 ```
 
 :::note
 
-Notice that this `put-deploy` command is nearly identical to the command used to install the contract. But, instead of `session-path` pointing to the WASM binary, we have `session-name` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain.
+Notice that this `put-deploy` command is nearly identical to the command used to install the contract. But, instead of `session-path` pointing to the WASM binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain.
 
 :::
+
+The sample response will contain a `deploy_hash`, which you need to use as described [here](installing-contracts.md#querying-global-state), to verify the changes in global state.
+
+<details>
+<summary><b>Sample response</b></summary>
+
+```bash
+{
+  "id": 1197172763279676268,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.5",
+    "deploy_hash": "24b58fbc0cbbfa3be978e7b78b9b37fc1d17c887b1abed2b2e2e704f7ee5427c"
+  }
+}
+```
+</details>
+<br></br>
 
 ## Calling Contracts with Session Arguments {#calling-contracts-with-session-args}
 
@@ -64,11 +82,13 @@ casper-client put-deploy \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-hash [HEX_STRING] \
+    --session-entry-point [ENTRY_POINT_FUNCTION] \
     --session-arg ["NAME:TYPE='VALUE'" OR "NAME:TYPE=null"]...
 ```
 
 The arguments of interest are:
--   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
+-   `session-hash` - Hex-encoded hash of the stored contract to be called as the session
+-   `session-entry-point` - Name of the method that will be used when calling the session contract
 -   `session-arg` - For simple CLTypes, a named and typed arg is passed to the Wasm code. To see an example for each type, run the casper-client with '--show-arg-examples'
 
 **Example:**
@@ -85,7 +105,7 @@ casper-client put-deploy
     --session-entry-point "transfer" \
     --session-arg "recipient:key='account-hash-89422a0f291a83496e644cf02d2e3f9d6cbc5f7c877b6ba9f4ddfab8a84c2670'" \
     --session-arg "amount:u256='20'" 
-```       
+```
 
 ## Calling Versioned Contracts by Hash {#calling-versioned-contracts-by-hash}
 
@@ -109,7 +129,7 @@ The arguments of interest are:
 
 **Example:**
 
-In this example, a hash identifies a stored contract package and the version number identifying the contract. The entry point invoked is "init".
+In this example, call a contract identified by a stored contract package hash and a version number. The entry point invoked is "counter-inc", also from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md).
 
 ```bash
 casper-client put-deploy \
@@ -117,9 +137,18 @@ casper-client put-deploy \
     --chain-name [CHAIN_NAME] \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-package-hash hash-abcdefghijklmnopqrstuvwxyz99999999999999988888888888888aaaaaaabb \
-    --session-entry-point "init" \
+    --session-package-hash hash-76a8c3daa6d6ac799ce9f46d82ac98efb271d2d64b517861ec89a06051ef019e \
+    --session-entry-point "counter-inc" \
     --session-version 1
+```
+
+To find the contract package hash, look at the named keys associated with your contract. Here is an example:
+
+```bash
+{
+    "key": "hash-76a8c3daa6d6ac799ce9f46d82ac98efb271d2d64b517861ec89a06051ef019e",
+    "name": "counter_package_name"
+}
 ```
 
 ## Calling Contracts by Name {#calling-contracts-by-name}
@@ -162,9 +191,9 @@ casper-client put-deploy \
     --session-entry-point "counter_inc"
 ```
 
-## Calling Versioned Contracts by Name {#calling-versioned-contracts-by-name}
+The sample response will contain a `deploy_hash`, which you need to use as described [here](installing-contracts.md#querying-global-state), to verify the changes in global state.
 
-<!-- TODO Double check the code and put-deploy in this section. -->
+## Calling Versioned Contracts by Name {#calling-versioned-contracts-by-name}
 
 You can access an entry point in a specific contract version by referencing the contract name, entry point, and version number. When creating the contract using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html), provide the `hash_name`, which puts the [ContractHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) in the context's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#).
 
@@ -276,5 +305,6 @@ Visit the [Interacting with Runtime Return Values]() tutorial to learn to call a
 ## What's Next? {#whats-next}
 
 - [The ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/) has many useful examples
+- The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
 - Also, look into the [Tutorials for Smart Contract Authors](/tutorials/)
 - See the rest of the [Developer How To Guides](/workflow/#developer-guides)
