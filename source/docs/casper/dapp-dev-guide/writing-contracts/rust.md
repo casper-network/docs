@@ -20,9 +20,9 @@ Casper smart contracts are programs that run on a Casper Network. They interact 
 
 On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. In this tutorial, we will focus specifically on writing a smart contract in the Rust language. The Rust compiler will compile the contract code into Wasm binary. After that, we will send the Wasm binary to a node on a Casper Network through the use of a `put_deploy`. When the node executes the Wasm, it is added to [global state](./glossary/G/#global-state), and [gossips](./design/p2p/#communications-gossiping) that deploy to other nodes. Finally, all nodes within a network will repeat this process.
 
-A ContractPackage is created through the `new_contract` or `new_locked_contract` methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). The new contract is added to this contract package with a `ContractHash` key. The execution engine stores the new contract within the contract package, alongside any previously installed versions of the contract, if applicable.
+A ContractPackage is created through the `new_contract` or `new_locked_contract` methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). The new contract is added to this contract package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package, alongside any previously installed versions of the contract, if applicable.
 
-The contract contains required metadata and is primarily identified by its hash known as the contract hash.
+The contract contains required metadata and is primarily identified by its hash known as the contract hash. The [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) identifies a specific [version of a contract](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) and the `contractPackageHash` serves as a more stable identifier for the most recent version.
 
 ## Writing a Basic Smart Contract
 
@@ -51,17 +51,17 @@ cargo new [CONTRACT_NAME]
 
 ### Step 2. Configuring the Main.rs File
 
-1) Remove the auto-generated main function and add file configurations 
+1) Remove the auto-generated main function and add file configurations. 
 
-2) Adjust the file attributes to support the Wasm execution environment
+2) Adjust the file attributes to support the Wasm execution environment.
 
 - `#![no_main]` - This attribute tells the program not to use the standard main function as its entry point.
 - `#![no_std]` - This attribute tells the program not to import the standard libraries.
 
-3) Import the required dependencies
+3) Import the required dependencies.
 
-- `contract_api` - This is a command-line tool for creating a Wasm smart contract and tests for use on the Casper network.
-- `typescript` - These are the types shared by many Casper crates for use on the Casper network.
+- `contract_api` - This is a command-line tool for creating a Wasm smart contract and tests for use on a Casper network.
+- `typescript` - These are the types shared by many Casper crates for use on a Casper Network.
 
 Add these dependencies to the *Cargo.toml* file.
 
@@ -70,7 +70,7 @@ Add these dependencies to the *Cargo.toml* file.
 [dependencies]
 // A library for developing Casper network smart contracts.
 casper-contract = "1.4.4"
-// Types shared by many Casper crates for use on the Casper Network.
+// Types shared by many Casper crates for use on a Casper Network.
 casper-types = "1.4.6"
 
 ```
@@ -278,7 +278,7 @@ This step adds the individual entry points using the `add_entry_point` method to
 
 4) Create the contract.
 
-Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) method to create the contract, with its named keys and entry points. This method creates the contract object and saves the access URef and the contract package hash in the context of the caller. The execution engine automatically creates a contract package and assigns it a `contractPackageHash`. Then, it adds the contract to the package with a `contractHash`.
+Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) method to create the contract, with its [named keys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) and entry points. This method creates the contract object and saves the access URef and the contract package hash in the context of the caller. The execution engine automatically creates a contract package and assigns it a `contractPackageHash`. Then, it adds the contract to the package with a [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html).
 
 ```rust
 
@@ -296,11 +296,11 @@ let (contract_hash, _contract_version) = storage::new_contract(
 
 ```
 
-Usually, these contracts are upgradable with the ability to add new versions. If you want to prevent any upgrades to a contract, use the `new_locked_contract` method to create the contract inside the call function.
+Usually, these contracts are upgradable with the ability to add new [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html). If you want to prevent any upgrades to a contract, use the `new_locked_contract` method to create the contract inside the call function.
 
 #### Locked Contracts
 
-Locked contracts cannot contain other versions in the same contract package; thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and prevent any further upgrades to the contract. Use locked contracts when you need to ensure high security and will not require updates to your contract. 
+Locked contracts cannot contain other [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) in the same contract package; thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and prevent any further upgrades to the contract. Use locked contracts when you need to ensure high security and will not require updates to your contract. 
 
 ```rust
 
@@ -316,15 +316,15 @@ pub fn new_locked_contract(
 ```
 
 - `entry_points`: The set of entry points defined inside the smart contract.
-- `named_keys`: Any named-key pairs for the contract.
-- `hash_name`: Contract hash value. Puts contractHash in the current context's named keys under `hash_name`. 
+- `named_keys`: Any [named-key](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) pairs for the contract.
+- `hash_name`: Contract hash value. Puts [contractHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) in the current context's named keys under `hash_name`. 
 - `uref_name`: Access URef value. Puts access_uref in the current context's named keys under `uref_name`.
 
 **Note**: The current context is the context of the person who initiated the `call` function, usually an account.
 
 5) Create the `NamedKeys`.
 
-You can create `NamedKeys` as the last step to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values.
+You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) as the last step to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values.
 
 ```rust
 
