@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## What is a Smart Contract?
 
-A smart contract is a self-contained program installed on a blockchain. In the context of a Casper Network, a smart contract consists of contract code installed on chain through the use of a [deploy](../../../design/execution-semantics/#execution-semantics-deploys).
+A smart contract is a self-contained program installed on a blockchain. In the context of a Casper Network, a smart contract consists of contract code installed on chain using a [deploy](../../../design/execution-semantics/#execution-semantics-deploys).
 
 Before writing smart contracts on a Casper Network, developers should be familiar with the difference between contract code and session code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
@@ -18,13 +18,13 @@ Further, the Casper platform allows for [upgradable contracts](../../../dapp-dev
 
 Casper smart contracts are programs that run on a Casper Network. They interact with accounts and other contracts through entry points and allow for various triggers, conditions and logic.
 
-On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. In this tutorial, we will focus specifically on writing a smart contract in the Rust language. The Rust compiler will compile the contract code into Wasm binary. After that, we will send the Wasm binary to a node on a Casper Network through the use of a `put_deploy`. Nodes within the network then [gossip deploys](../../../design/p2p/#communications-gossiping), include them within a block and ultimately finalize them. After finalizing, deploys within the block are executed by the network.
+On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. In this tutorial, we will focus specifically on writing a smart contract in the Rust language. The Rust compiler will compile the contract code into Wasm binary. After that, we will send the Wasm binary to a node on a Casper Network using a `put_deploy`. Nodes within the network then [gossip deploys](../../../design/p2p/#communications-gossiping), include them within a block and finalize them. After finalizing, deploys within the block are executed by the network.
 
 A ContractPackage is created through the `new_contract` or `new_locked_contract` methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](../../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). The new contract is added to this contract package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package, alongside any previously installed versions of the contract, if applicable.
 
-The `new_contract` and `new_locked_contract` methods are a convenience that automatically creates the package associated with a new contract. Developers choosing not to use these methods must first create a contract package to act as a container for their new contract.
+The `new_contract` and `new_locked_contract` methods are a convenience that automatically creates the package associated with a new contract. Developers choosing not to use these methods must first create a contract package to function as a container for their new contract.
 
-The contract contains required metadata and is primarily identified by its hash known as the contract hash. The [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) identifies a specific [version of a contract](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) and the `contractPackageHash` serves as a more stable identifier for the most recent version.
+The contract contains required metadata and it is primarily identified by its hash known as the contract hash. The [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) identifies a specific [version of a contract](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) and the `contractPackageHash` serves as a more stable identifier for the most recent version.
 
 ## Writing a Basic Smart Contract
 
@@ -39,7 +39,7 @@ This tutorial creates a simple smart contract that allows callers to donate fund
 First, create the directory for the new contract. This folder should have two sub-directories named `contract` and `test`.
 
 - `contract` -  This directory contains the code that becomes the Wasm which is eventually sent to the network.    
-- `test` -  This is an optionial directory that will contain tests for unit testing and asserting that the behavior of the contract matches expectations. As users must pay for execution, these test should be considered a best practice. However, they are not required.
+- `test` -  This is an optionial directory that will contain tests for unit testing and asserting that the behavior of the contract matches expectations. As users must pay for execution, these tests should be considered a best practice. However, they are not required.
 
 Use the below command to create a new contract folder. This creates the `contract` folder with */src/main.rs* file and *cargo.toml* file
 
@@ -120,7 +120,7 @@ const FUNDRAISING_PURSE: &str = "fundraising_purse";
 
 ### Step 4. Defining the Contract Entry Points
 
-Entry points serve as a means to access contract code installed on global state. These functions may be called by either session code or another instance of contract code. When creating contract code, you should clearly define entry point functions through the use of meaningful names that describe the actions that they perform.
+Entry points serve as a means to access contract code installed on global state. These functions may be called by either session code or another instance of contract code. When creating contract code, you should clearly define entry point functions by using meaningful names that describe the actions that they perform.
 
 When defining entry points, begin with a `#[no_mangle]` line to ensure that the system does not change critical syntax within the method names. Each entry point should contain the contract code that drives the action you wish the function to accomplish. Finally, include any storage or return values needed as applicable.
 
