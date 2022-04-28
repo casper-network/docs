@@ -24,7 +24,7 @@ A ContractPackage is created through the `new_contract` or `new_locked_contract`
 
 The `new_contract` and `new_locked_contract` methods are a convenience that automatically creates the package associated with a new contract. Developers choosing not to use these methods must first create a contract package to function as a container for their new contract.
 
-The contract contains required metadata and it is primarily identified by its hash known as the contract hash. The [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) identifies a specific [version of a contract](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) and the `contractPackageHash` serves as a more stable identifier for the most recent version.
+The contract contains required metadata and it is primarily identified by its hash, known as the contract hash. The [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) identifies a specific [version of a contract](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) and the `contractPackageHash` serves as a more stable identifier for the most recent version.
 
 ## Writing a Basic Smart Contract
 
@@ -38,7 +38,7 @@ This tutorial creates a simple smart contract that allows callers to donate fund
 
 First, create the directory for the new contract. This folder should have two sub-directories named `contract` and `test`.
 
-- `contract` -  This directory contains the code that becomes the Wasm which is eventually sent to the network.    
+- `contract` -  This directory contains the code that becomes the Wasm, which is eventually sent to the network.    
 - `test` -  This is an optionial directory that will contain tests for unit testing and asserting that the behavior of the contract matches expectations. As users must pay for execution, these tests should be considered a best practice. However, they are not required.
 
 Use the below command to create a new contract folder. This creates the `contract` folder with */src/main.rs* file and *cargo.toml* file
