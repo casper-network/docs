@@ -49,6 +49,8 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/sdkspec/introduction",
+                "dapp-dev-guide/sdkspec/guidance",
+                "dapp-dev-guide/sdkspec/json-rpc-minimal",
                 "dapp-dev-guide/sdkspec/json-rpc-transactional",
                 "dapp-dev-guide/sdkspec/json-rpc-informational",
                 "dapp-dev-guide/sdkspec/json-rpc-pos",
@@ -106,20 +108,6 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/tutorials/index",
-                {
-                    type: "category",
-                    label: "CEP-47 Tutorial",
-                    collapsible: true,
-                    collapsed: true,
-                    items: [
-                        "dapp-dev-guide/tutorials/cep47/index",
-                        "dapp-dev-guide/tutorials/cep47/prepare",
-                        "dapp-dev-guide/tutorials/cep47/implementation",
-                        "dapp-dev-guide/tutorials/cep47/deploy",
-                        "dapp-dev-guide/tutorials/cep47/contract-interaction",
-                        "dapp-dev-guide/tutorials/cep47/test",
-                    ],
-                },
                 {
                     type: "category",
                     label: "A Counter Contract Tutorial",
