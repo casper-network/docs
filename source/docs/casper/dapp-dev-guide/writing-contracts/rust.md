@@ -12,21 +12,23 @@ Before writing smart contracts on a Casper Network, developers should be familia
 
 Smart contracts exist as stored on-chain logic, thereby allowing disparate users to call the included entry points. These contracts can, in turn, call one another to perform interconnected operations and create more complex programs. The decentralized nature of blockchain technology means that these smart contracts do not suffer from any single point of failure. Even if a Casper node leaves the network, other nodes will continue to allow the contract to operate as intended.
 
-Further, the Casper platform allows for [upgradeable contracts](/dapp-dev-guide/upgrading-contracts/) and implementation through a variety of developer-friendly programming languages. 
+Further, the Casper platform allows for [upgradeable contracts](../../../dapp-dev-guide/upgrading-contracts/) and implementation through a variety of developer-friendly programming languages. 
 
 ## Smart Contracts on Casper
 
 Casper smart contracts are programs that run on a Casper Network. They interact with accounts and other contracts through entry points and allow for various triggers, conditions and logic.
 
-On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. In this tutorial, we will focus specifically on writing a smart contract in the Rust language. The Rust compiler will compile the contract code into Wasm binary. After that, we will send the Wasm binary to a node on a Casper Network through the use of a `put_deploy`. When the node executes the Wasm, it is added to [global state](./glossary/G/#global-state), and [gossips](./design/p2p/#communications-gossiping) that deploy to other nodes. Finally, all nodes within a network will repeat this process.
+On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. In this tutorial, we will focus specifically on writing a smart contract in the Rust language. The Rust compiler will compile the contract code into Wasm binary. After that, we will send the Wasm binary to a node on a Casper Network through the use of a `put_deploy`. Nodes within the network then [gossip deploys](../../../design/p2p/#communications-gossiping), include them within a block and ultimately finalize them. After finalizing, deploys within the block are executed by the network.
 
-A ContractPackage is created through the `new_contract` or `new_locked_contract` methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). The new contract is added to this contract package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package, alongside any previously installed versions of the contract, if applicable.
+A ContractPackage is created through the `new_contract` or `new_locked_contract` methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](../../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). The new contract is added to this contract package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package, alongside any previously installed versions of the contract, if applicable.
+
+The `new_contract` and `new_locked_contract` methods are a convenience that automatically creates the package associated with a new contract. Developers choosing not to use these methods must first create a contract package to act as a container for their new contract.
 
 The contract contains required metadata and is primarily identified by its hash known as the contract hash. The [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) identifies a specific [version of a contract](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) and the `contractPackageHash` serves as a more stable identifier for the most recent version.
 
 ## Writing a Basic Smart Contract
 
-As stated, this tutorial covers the process of writing a smart contract in the Rust programming language. Casper maintains a Rust SDK as a first-party entity, while also providing an [SDK Specification](../../dapp-dev-guide/sdkspec/introduction.md) for third-parties wishing to develop additional language SDKs.
+As stated, this tutorial covers the process of writing a smart contract in the Rust programming language. Casper provides a [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html) within our [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/index.html) crate.
 
 This tutorial creates a simple smart contract that allows callers to donate funds to a purse owned by the contract, as well as track the total funds received and the number of individual contributions.
 
@@ -61,7 +63,7 @@ cargo new [CONTRACT_NAME]
 3) Import the required dependencies.
 
 - `contract_api` - This is a command-line tool for creating a Wasm smart contract and tests for use on a Casper network.
-- `typescript` - These are the types shared by many Casper crates for use on a Casper Network.
+- `casper_types` - These are the types shared by many Casper crates for use on a Casper Network.
 
 Add these dependencies to the *Cargo.toml* file.
 
@@ -149,6 +151,9 @@ pub extern "C" fn donate() {
         .unwrap_or_revert_with(FundRaisingError::MissingFundRaisingPurseURef)
         .as_uref()
         .unwrap_or_revert();
+    // The return value is the donation_purse URef with `add` access only. As a result
+    // the entity receiving this purse URef may only add to the purse, and cannot remove
+    // funds.
     let value = CLValue::from_t(donation_purse.into_add()).unwrap_or_revert();
     runtime::ret(value)
 }
