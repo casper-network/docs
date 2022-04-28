@@ -164,11 +164,20 @@ casper-client put-deploy \
 
 ## Calling Versioned Contracts by Name {#calling-versioned-contracts-by-name}
 
-You can also access an entry point in a specific version of a contract by name (see [contract upgrades](upgrading-contracts.md)). When creating the contract, use the `put_key` function to add the ContractPackageHash under the contract package's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#).
+<!-- TODO Double check the code and put-deploy in this section. Is contract name = contract package name? -->
 
-<!-- TODO ADD CODE -->
+You can access an entry point in a specific contract version by referencing the contract name, entry point, and version number. When creating the contract using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html), provide the `hash_name`, which puts the [ContractHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) in the context's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#).
 
-This example code stores the ContractPackageHash into a URef, which you can reference once you install the contract and contract package in global state. In this case, the ContractPackageHash will be stored under the "counterPackage" NamedKey.
+```rust
+    let (contract_hash, _contract_version) = storage::new_contract(
+        entry_points,
+        named_keys,
+        Some("contract_name".to_string()),
+        Some("contract_access_uref".to_string()),
+    );
+```
+
+This example code stores the "contract_name" into a NamedKey, which you can reference once you install the contract in global state. In this case, the ContractHash will be stored under the "contract_name" NamedKey.
 
 The package key and version number enable you to access a contract's entry-point in global state by using the `put-deploy` command as illustrated here:
 
@@ -190,7 +199,7 @@ The arguments of interest are:
 
 **Example 1:**
 
-This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract package named key and use runtime arguments. The call defaults to the highest enabled version since no version is specified.
+This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract named key and use runtime arguments. The call defaults to the highest enabled version since no version is specified.
 
 ```bash
     casper-client put-deploy \
@@ -206,7 +215,7 @@ This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/wor
 
 **Example 2:**
 
-This example uses the package name "counterPackage", version number 3, the entry point "counter-inc", without any runtime arguments. 
+This example uses the contract name "counter", version 3, the entry point "counter-inc", without any runtime arguments. 
 
 ```bash
 casper-client put-deploy \
@@ -214,7 +223,7 @@ casper-client put-deploy \
     --chain-name [CHAIN_NAME] \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-package-name "counterPackage" \
+    --session-package-name "counter" \
     --session-entry-point "counter-inc" \
     --session-version 3
 ```      
@@ -261,4 +270,4 @@ Visit the [Interacting with Runtime Return Values]() tutorial to learn to call a
 
 - [The ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/) has many useful examples
 - Also, look into the [Tutorials for Smart Contract Authors](/tutorials/)
-- See the rest of the [Developer How To Guides](/workflow/#developer-guides) 
+- See the rest of the [Developer How To Guides](/workflow/#developer-guides)
