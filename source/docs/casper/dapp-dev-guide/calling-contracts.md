@@ -6,7 +6,7 @@ Smart contracts exist to install programs to global state, thereby allowing disp
 
 **IMPORTANT**: You will receive a deploy hash when you call the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
 - You know how to [send and verify deploys](sending-deploys.md)
 - You know how to [install contracts and query global state](installing-contracts.md) using the [default Casper client](/workflow/setup#the-casper-command-line-client)
@@ -200,7 +200,8 @@ casper-client put-deploy \
 
 ```
 
-## Calling Contracts with Session Arguments
+## Calling Contracts with Session Arguments {#calling-contracts-with-session-args}
+<!-- Add context -->
 
 ```bash
 casper-client put-deploy \
@@ -234,7 +235,7 @@ casper-client put-deploy \
 Visit the [Interacting with Runtime Return Values]() tutorial to learn to call a contract that returns a value.
 -->
 
-## What's Next?
+## What's Next? {#whats-next}
 
 - [Tutorials for Smart Contract Authors](/tutorials/)
 - [Developer How To Guides](/workflow/#developer-guides) 
