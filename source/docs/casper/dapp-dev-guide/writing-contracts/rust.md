@@ -4,13 +4,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## What is a Smart Contract?
 
-A smart contract is a self-contained program installed on a blockchain. In the context of a Casper Network, a smart contract consists of contract code installed on [global state](../../../glossary/g#global-state) through the use of a [deploy](../../../design/execution-semantics/#execution-semantics-deploys).
+A smart contract is a self-contained program installed on a blockchain. In the context of a Casper Network, a smart contract consists of contract code installed on chain through the use of a [deploy](../../../design/execution-semantics/#execution-semantics-deploys).
 
 Before writing smart contracts on a Casper Network, developers should be familiar with the difference between contract code and session code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
 ## Why Do You Want to Use a Smart Contract?
 
-Smart contracts exist as means to install programs to global state, thereby allowing disparate users to call the included entry points. These contracts can, in turn, call one another to perform interconnected operations and create more complex programs. The decentralized nature of blockchain technology means that these smart contracts do not suffer from any single point of failure. Even if a Casper node leaves the network, other nodes will continue to allow the contract to operate as intended.
+Smart contracts exist as stored on-chain logic, thereby allowing disparate users to call the included entry points. These contracts can, in turn, call one another to perform interconnected operations and create more complex programs. The decentralized nature of blockchain technology means that these smart contracts do not suffer from any single point of failure. Even if a Casper node leaves the network, other nodes will continue to allow the contract to operate as intended.
 
 Further, the Casper platform allows for [upgradeable contracts](/dapp-dev-guide/upgrading-contracts/) and implementation through a variety of developer-friendly programming languages. 
 
@@ -28,7 +28,7 @@ The contract contains required metadata and is primarily identified by its hash 
 
 As stated, this tutorial covers the process of writing a smart contract in the Rust programming language. Casper maintains a Rust SDK as a first-party entity, while also providing an [SDK Specification](../../dapp-dev-guide/sdkspec/introduction.md) for third-parties wishing to develop additional language SDKs.
 
-This tutorial creates a simple smart contract that allows callers to donate funds to a central purse, as well as track the total funds received and the number of individual contributions.
+This tutorial creates a simple smart contract that allows callers to donate funds to a purse owned by the contract, as well as track the total funds received and the number of individual contributions.
 
 -------
 
@@ -135,7 +135,7 @@ pub extern "C" fn init() {
     storage::new_dictionary(LEDGER).unwrap_or_revert();
 }
 
-// This is the main donation entry point. When called, it records the caller's account
+// This is the donation entry point. When called, it records the caller's account
 // hash and returns the donation purse, with add access, to the immediate caller.
 #[no_mangle]
 pub extern "C" fn donate() {
