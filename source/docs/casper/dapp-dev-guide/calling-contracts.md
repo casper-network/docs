@@ -2,7 +2,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Calling Contracts with the Rust Client
 
-Smart contracts exist to install programs to global state, thereby allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
+Smart contracts exist as stored on-chain logic, thereby allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
 
 **IMPORTANT**: You will receive a deploy hash when you call the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
 
@@ -52,6 +52,40 @@ casper-client put-deploy \
 Notice that this `put-deploy` command is nearly identical to the command used to install the contract. But, instead of `session-path` pointing to the WASM binary, we have `session-name` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain.
 
 :::
+
+## Calling Contracts with Session Arguments {#calling-contracts-with-session-args}
+
+When calling contract entry points, you may need to pass in information using session arguments. The `put-deploy` allows you to do this with the `--session-arg` option:
+
+```bash
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-hash [HEX_STRING] \
+    --session-arg ["NAME:TYPE='VALUE'" OR "NAME:TYPE=null"]...
+```
+
+The arguments of interest are:
+-   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
+-   `session-arg` - For simple CLTypes, a named and typed arg is passed to the Wasm code. To see an example for each type, run the casper-client with '--show-arg-examples'
+
+**Example:**
+
+This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract entry point "transfer" with two arguments; one argument specifies the recipient and the other specifies the amount to be transferred.
+
+```bash
+casper-client put-deploy 
+    --node-address http://3.143.158.19:7777 \
+    --chain-name integration-test \
+    --secret-key ~/casper/demo/user_b/secret_key.pem \
+    --payment-amount "10000000000" \
+    --session-hash hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180 \
+    --session-entry-point "transfer" \
+    --session-arg "recipient:key='account-hash-89422a0f291a83496e644cf02d2e3f9d6cbc5f7c877b6ba9f4ddfab8a84c2670'" \
+    --session-arg "amount:u256='20'" 
+```       
 
 ## Calling Versioned Contracts by Hash {#calling-versioned-contracts-by-hash}
 
@@ -154,9 +188,25 @@ The arguments of interest are:
 -   `session-entry-point` - Name of the method that will be used when calling the session contract
 -   `session-version` - Version of the called session contract. The latest will be used by default
 
-**Example:**
+**Example 1:**
 
-In this example, call `put-deploy` using the package name "counterPackage", version number 3, the entry point "init", and any runtime arguments. The call defaults to the highest enabled version if no version is specified.
+This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract package named key and use runtime arguments. The call defaults to the highest enabled version since no version is specified.
+
+```bash
+    casper-client put-deploy \
+    --node-address http://3.143.158.19:7777 \
+    --chain-name integration-test \
+    --secret-key ~/casper/demo/user_a/secret_key.pem \
+    --payment-amount 1000000000 \
+    --session-package-name "erc20_test_call" \
+    --session-entry-point "check_balance_of" \
+    --session-arg "token_contract:account_hash='account-hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180'" \
+    --session-arg "address:key='account-hash-303c0f8208220fe9a4de40e1ada1d35fdd6c678877908f01fddb2a56502d67fd'" 
+```
+
+**Example 2:**
+
+This example uses the package name "counterPackage", version number 3, the entry point "counter-inc", without any runtime arguments. 
 
 ```bash
 casper-client put-deploy \
@@ -165,9 +215,10 @@ casper-client put-deploy \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-package-name "counterPackage" \
-    --session-entry-point "init" \
+    --session-entry-point "counter-inc" \
     --session-version 3
-```                               
+```      
+
 
 ## Calling a Contract from Another Contract {#calling-a-contract-from-another}
 
@@ -200,35 +251,6 @@ casper-client put-deploy \
 
 ```
 
-## Calling Contracts with Session Arguments {#calling-contracts-with-session-args}
-<!-- Add context -->
-
-```bash
-casper-client put-deploy \
-    --node-address [NODE_SERVER_ADDRESS] \
-    --chain-name [CHAIN_NAME] \
-    --secret-key [KEY_PATH]/secret_key.pem \
-    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
-    --session-arg ["NAME:TYPE='VALUE'" OR "NAME:TYPE=null"]...
-```
-
-The arguments of interest are:
--   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
--   `session-arg` - For simple CLTypes, a named and typed arg is passed to the Wasm code. To see an example for each type, run the casper-client with '--show-arg-examples'
-
-**Example:**
-
-```bash
-casper-client put-deploy \
-    --node-address http://[NODE_IP]:7777 \
-    --chain-name [CHAIN_NAME] \
-    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
-    --payment-amount 100000000 \
-    --session-path ~/donate.wasm \
-    --session-arg "donate_purse:UREf=uref-111111111111111111112222222222222233333333333344444444444444c003-007"
-```       
-
 <!-- TODO - add this section when the link is ready.
 ## Calling Contracts that Return a Value
 
@@ -237,5 +259,6 @@ Visit the [Interacting with Runtime Return Values]() tutorial to learn to call a
 
 ## What's Next? {#whats-next}
 
-- [Tutorials for Smart Contract Authors](/tutorials/)
-- [Developer How To Guides](/workflow/#developer-guides) 
+- [The ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/) has many useful examples
+- Also look into the [Tutorials for Smart Contract Authors](/tutorials/)
+- See the rest of the [Developer How To Guides](/workflow/#developer-guides) 
