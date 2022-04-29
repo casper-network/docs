@@ -135,6 +135,7 @@ module.exports = {
                         "dapp-dev-guide/tutorials/multi-sig/additional",
                     ],
                 },
+                "dapp-dev-guide/tutorials/return-values-tutorial",
                 "dapp-dev-guide/tutorials/upgrade-contract",
                 "dapp-dev-guide/tutorials/transfer-token-to-contract",
             ],
