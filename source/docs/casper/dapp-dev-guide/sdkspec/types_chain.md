@@ -1,6 +1,6 @@
 # Types {#types}
 
-The following definitions expand on parameters seen elsewhere within the SDK specifications and are provided for clarity and completeness.
+The following definitions expand on parameters seen elsewhere within the SDK standard and are provided for clarity and completeness.
 
 ## Account {#account}
 
