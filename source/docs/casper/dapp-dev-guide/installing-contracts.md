@@ -10,7 +10,7 @@ This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-gui
    - Your environment meets these [prerequisites](/workflow/setup/) and you have a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
    - You have a [Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
    - You have enough CSPR tokens in your account to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](/workflow/token-transfer#2-the-faucet) to fund your testing account
-- You understand how to write basic contract code and session code
+- You understand how to [write basic contract code](/dapp-dev-guide/writing-contracts/introduction.md) and session code
 - You have a contract Wasm to send to a Casper network
 
 ## Installing a Contract in Global State {#installing-contract-code}
