@@ -1,5 +1,5 @@
 # Writing Session Code
-This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. Session code is useful when little or no state is required.
+This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. Session code is useful when little or no internal state is required. You can use session code when the logic requires very little or no internal data to be tracked, or to simplify the process of interacting with entry points of a contact code.
 
 :::note
 
@@ -10,7 +10,7 @@ Session code can be written in any programming language that compiles to WebAsse
 In the following sections we will explore the concept of session code, the project structure that is required for the session code to be tested and executed correctly, and a simple session code example.
 
 ## What is Session Code?
-Session code is the simplest piece of logic you can execute on a Casper network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. This means that the session code will run with the permissions of the account, such as having access to the main purse (the session code could transfer tokens out of the account's main purse). 
+Session code is the simplest piece of logic you can execute on a Casper Network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. This means that the session code will run with the permissions of the account, such as having access to the main purse (the session code could transfer tokens out of the account's main purse). 
 
 **Note**: Before you sign and execute the session code, ensure that you know exactly what the session code is doing. If you don't know exactly what it is meant for, then it could be doing something malicious.
 
@@ -23,7 +23,7 @@ The following points try to explain the difference between session code and cont
 - A contract code can have multiple entry points that will help you interact with the contract code. 
 
 ## Project Structure
-For this guide, we are creating the project structure manually, however, you can use `cargo casper` to setup this directory structure automatically.
+For this guide, we are creating the project structure manually, however, you can use `cargo casper` to set up this directory structure automatically.
 
 Top-Level Directory
 |_ contract
@@ -40,7 +40,7 @@ Top-Level Directory
     |_ Cargo.toml
 
 In the above directory structure the `contract` folder contains the session code in the `main.rs` file and the needed dependencies in the `Cargo.toml` file. 
-The `tests` folder contains the code required to test the session code on before it is deployed on a Casper network.
+The `tests` folder contains the code required to test the session code on before it is deployed on a Casper Network.
 
 ## Writing Session Code
 The following steps illustrate the process of writing session code and the important components to include:
@@ -53,7 +53,7 @@ The following steps illustrate the process of writing session code and the impor
     cargo new contract
     ```
     
-    This folder will contain the logic that will be compiled to Wasm and will be executed on a node within a Casper network.
+    This folder will contain the logic that will be compiled to Wasm and will be executed on a node within a Casper Network.
 
 3. Within the contract package, you can find the `main.rs` file inside the `src` folder. You will write your session code in the `main.rs` file. 
 
@@ -129,7 +129,7 @@ It is a good habit to define constants, because if you use the same argument in 
 ```rust
 #[no_mangle]
 ```
-When some Wasm is sent to be executed by the execution engine (EE) that lives within each node of a Casper network, `#[no_mangle]` ensures that the function name that follows it is retained as is in string form in the Wasm output. For session code, this retains the `call` string and marks the entry point for the execution engine.
+When some Wasm is sent to be executed by the execution engine (EE) that lives within each node of a Casper Network, `#[no_mangle]` ensures that the function name that follows it is retained as is in string form in the Wasm output. For session code, this retains the `call` string and marks the entry point for the execution engine.
 
 ```rust
 pub extern "C" fn call()
@@ -161,7 +161,7 @@ runtime::put_key("donation_count", donation_count_uref.into())
 The `put_key` function stores the URef of the result in the current context's NamedKeys, which is the context of the account calling this piece of session code. Once this session code is executed, the account that called the session code will have a new named key `donation_count` added to the account.
 
 ## Compiling the Session Code
-Before you deploy the session code on a Casper network, you need to compile it to Wasm. 
+Before you deploy the session code on a Casper Network, you need to compile it to Wasm. 
 
 Use the following command to move to the *contract* directory:
 
@@ -173,7 +173,7 @@ Inside the *contract* directory execute the following command to compile the ses
 ```bash
 cargo build --release --target wasm32-unknown-unknown
 ```
-Once the session code is compiled you can deploy it on a Casper network.
+Once the session code is compiled you can deploy it on a Casper Network.
 
 ## Deploying the Session Code
 Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using NCTL. For more information on how to build an NCTL network, see [Local Network Testing](../setup-nctl.md).
