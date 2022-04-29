@@ -48,6 +48,13 @@ module.exports = {
             collapsed: true,
             items: ["dapp-dev-guide/writing-contracts/index", "dapp-dev-guide/getting-started", "dapp-dev-guide/writing-contracts/rust", "dapp-dev-guide/writing-contracts/assembly-script"],
         },
+		{
+            type: "category",
+            label: "Writing Session Code",
+            collapsible: true,
+            collapsed: true,
+            items: ["dapp-dev-guide/session-code/index", "dapp-dev-guide/session-code/session-code"],
+        },
         "dapp-dev-guide/testing",
         "dapp-dev-guide/setup-nctl",
         "dapp-dev-guide/upgrading-contracts",

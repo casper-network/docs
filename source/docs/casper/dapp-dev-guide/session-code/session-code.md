@@ -1,13 +1,26 @@
-# Understanding Session Code
-This section explains the concept of session code, why we need it and how to write it. Session code’s use case is when the situation calls for little or no state. Stateless means when the execution doesn't depend on a previous state, so the output of the execution is the same each time. Stateful is when the execution depends on a previous state, which makes the output differ each time.
+# Writing Session Code
+This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. Session code is useful when little or no state is required.
 
-In the following sections we will explore the concept of session code, the project structure that is required for the session code to be tested and executed correctly, and a simple example of a session code.
+:::note
 
-## What is Session code?
+Session code can be written in any programming language that compiles to WebAssembly (Wasm).
+
+:::
+
+In the following sections we will explore the concept of session code, the project structure that is required for the session code to be tested and executed correctly, and a simple session code example.
+
+## What is Session Code?
 Session code is the simplest piece of logic you can execute on a Casper network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. This means that the session code will run with the permissions of the account, such as having access to the main purse (the session code could transfer tokens out of the account's main purse). 
-Session code can be written in any programming language that compiles to Wasm.
 
 **Note**: Before you sign and execute the session code, ensure that you know exactly what the session code is doing. If you don't know exactly what it is meant for, then it could be doing something malicious.
+
+### Comparing Session Code and Contract Code
+The following points try to explain the difference between session code and contract code:
+
+- Session code and contract code run in two different type of contexts. Session code always executes in the context of the account that signed the deploy that contains the session code. This means that when a `put_key` call is made within the body of the session code, the key is added to the account's named keys. 
+- Conversely, contract code executes in its own context. Which means that when `put-key` call is made within the contract's execution, the key is inserted into the contract's context. So, the key will appear in the contract's named keys.
+- Session code has only one entry point, that is the `call` function, which you can use to interact with the session code. 
+- A contract code can have multiple entry points that will help you interact with the contract code. 
 
 ## Project Structure
 For this guide, we are creating the project structure manually, however, you can use `cargo casper` to setup this directory structure automatically.
@@ -163,7 +176,7 @@ cargo build --release --target wasm32-unknown-unknown
 Once the session code is compiled you can deploy it on a Casper network.
 
 ## Deploying the Session Code
-Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using NCTL. For more information on how to build an NCTL network, see [Local Network Testing](setup-nctl.md).
+Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using NCTL. For more information on how to build an NCTL network, see [Local Network Testing](../setup-nctl.md).
 
 You can deploy the session code on the Testnet using the following command:
 
@@ -181,10 +194,4 @@ casper-client put-deploy \
 -   `chain-name` - The chain-name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*. 
 -   `payment-amount` - The payment for the deploy in motes.  
 -   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer.
-
-## Comparing Session Code and Contract Code
-The following points try to explain the difference between session code and contract code.
-- When `put_key` is used to store a URef, it depends where the key is stored based on if the session code or the contract code is making the call. When the session code is executed the key is added to the named keys of the account that called the session code. Whereas, when contract code is executed the key is added to the named keys of the smart contract. 
-- Contract code is Wasm that is stored on the network. Whereas, session code is simple code you can use to interact with the smart contract.
-- A smart contract is stateful and session code is stateless.
 
