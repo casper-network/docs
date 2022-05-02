@@ -14,3 +14,10 @@ In the runtime, a `URef` carries its permissions called `AccessRights`. Addition
 Note: that only valid `URef`s may be added to the known `URef`s or cross call boundaries; this means the system cannot be tricked into accepting a forged `URef` by getting it through a contract or stashing it in the known `URef`s.
 
 The ability to pass `URef`s between contexts via `call_contract` / `ret`, allows them to be used to share state among a fixed number of parties while keeping it private from all others.
+
+
+## `URef`s and Purses
+
+Purses represent a unique type of `URef` used for accounting measures within the Casper Network. `URef`s exist as a top-level entity, meaning that individual accounts do not own ‘URef’s.  As described above, accounts and contracts possess certain `Access Rights`, allowing them to interact with the given `URef`. While an account will possess an associated `URef` representing their main purse, this `URef` exists as a [`Unit`](../serialization-standard#clvalue-unit) and corresponds to a balance key within the [Casper Mint](../tokens#mints-and-purses). The individual balance key within the Casper Mint is the account's purse, with transfers authorized solely through the associated `URef` and the `Access Rights` granted to it.
+
+Through this logic, the Casper Mint holds all motes on the network, and transfers between balance keys at the behest of accounts and contracts as required. Further information relating to tokens and mint functions is available [here](../tokens).

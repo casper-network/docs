@@ -2,6 +2,8 @@ name: Docusaurus CICD
 
 env:
   prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
+  stag_pages_fqdn: ${{ secrets.STAG_PAGES_FQDN }}
+
 
 on:
   push:
@@ -170,7 +172,7 @@ jobs:
         AWS_S3_BUCKET: ${{ secrets.AWS_DEV_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEV_SECRET_ACCESS_KEY }}
-        SOURCE_DIR: ./docs
+        SOURCE_DIR: docs
 
   system-tests-postdeployment-prod:
     needs: deploy-prod
@@ -198,15 +200,15 @@ jobs:
       - name: Test home page
         run: |
           echo "Testing if homepage responds correctly"
-          curl --fail -k https://$stag_pages_fqdn
+          curl --fail -k http://$stag_pages_fqdn
       - name: Test a random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail -k https://$stag_pages_fqdn/operators/create
+          curl --fail -k http://$stag_pages_fqdn/operators/create
       - name: Test another random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail -k https://$stag_pages_fqdn/design/serialization-standard
+          curl --fail -k http://$stag_pages_fqdn/design/serialization-standard
 
   rollback-if-tests-fail-prod:
     if: ${{ always() && (needs.system-tests-postdeployment-prod.result=='failure') }}
@@ -236,15 +238,21 @@ jobs:
         name: gh-pages-backup
         path: ./docs
 
+    #Remove .git directory
+    - name: Remove .git directory
+      run: |
+        rm -rf ./docs/.git
+
     #Deploy to S3 bucket
     - name: Deploy to S3 bucket
       uses: jakejarvis/s3-sync-action@be0c4ab89158cac4278689ebedd8407dd5f35a83
       with:
-        args: --acl public-read --follow-symlinks --delete
+        args: --follow-symlinks --delete
+
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_DEV_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_DEV_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_DEV_SECRET_ACCESS_KEY }}
-        SOURCE_DIR: ./docs
+        SOURCE_DIR: docs
 
 
