@@ -29,7 +29,7 @@ jobs:
 
       - name: Opening pull request
         id: pull
-        uses: tretuna/sync-branches@1.4.0
+        uses: tretuna/sync-branches@ea58ab6e406fd3ad016a064b31270bbb41127f41
         with:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           FROM_BRANCH: "dev"
