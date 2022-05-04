@@ -24,7 +24,7 @@ cargo expand | ./src/main-expanded.rs
 
 Once you view the output, you should see that the expanded file is much larger and more complex than the contract we viewed a moment ago. The DSL does a fantastic job of abstracting all this boilerplate code away from the development process.
 
-You usually do not need to generate the expanded code. When the Rust compiler encounters each of the macros, it expands the code in place. The resultant expanded code is then compiled to a WASM binary, which can then be deployed to the blockchain.
+You usually do not need to generate the expanded code. When the Rust compiler encounters each of the macros, it expands the code in place. The resultant expanded code is then compiled to a Wasm binary, which can then be deployed to the blockchain.
 
 Also, keep in mind that once you have expanded and changed the generated code, you should remove the macros from the project configuration before saving the changes and building it.
 
@@ -34,19 +34,19 @@ By building and testing the [Hello World](https://github.com/casper-ecosystem/he
 
 The build process is identical to the one used in the [Getting Started](../getting-started.md) section, but here we do not have the _build.rs_ script that was used before. The following steps will help you manually build the contract.
 
-First, we need to add the WASM target:
+First, we need to add the Wasm target:
 
 ```bash
 rustup target add wasm32-unknown-unknown
 ```
 
-Next, build the contract into a WASM binary:
+Next, build the contract into a Wasm binary:
 
 ```bash
 cargo build --release -p contract --target wasm32-unknown-unknown
 ```
 
-Then we can copy the WASM file into the `tests` folder and run the tests:
+Then we can copy the Wasm file into the `tests` folder and run the tests:
 
 ```bash
 cp target/wasm32-unknown-unknown/release/contract.wasm tests/wasm

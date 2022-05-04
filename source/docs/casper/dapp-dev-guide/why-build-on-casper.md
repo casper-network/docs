@@ -29,11 +29,11 @@ The Casper Ecosystem is growing every day through the addition of new dApps and 
 ## Developer-Friendly Language {#developer-friendly-language}
 Casper Network's development ecosystem supports WebAssembly by design, rather than requiring proprietary languages like Solidity. Casper contracts function just like regular software. This feature simplifies the development path for enterprises and development teams that want to build on the Casper Network.
 
-Rust is a beloved programming language for its safety and performance. We offer a Rust experience and a runtime environment for developing smart contracts . The Rust smart contracts are compiled to WebAssembly (WASM), which is an [open standard](https://en.wikipedia.org/wiki/Open_standard) for performance and portability of modern web applications. 
+Rust is a beloved programming language for its safety and performance. We offer a Rust experience and a runtime environment for developing smart contracts . The Rust smart contracts are compiled to WebAssembly (Wasm), which is an [open standard](https://en.wikipedia.org/wiki/Open_standard) for performance and portability of modern web applications. 
 
 :::note
 
-WASM can support any language compiled or interpreted on any operating system with the help of appropriate tools. Therefore, we can support more languages for smart contracts as compilation targets for WebAssembly become available.  
+Wasm can support any language compiled or interpreted on any operating system with the help of appropriate tools. Therefore, we can support more languages for smart contracts as compilation targets for WebAssembly become available.  
 
 :::
 

@@ -25,7 +25,7 @@ You can use global variables and constants in later steps to derive values and c
 
 **Global Variables and Constants**
 
-The framework uses global variables and constants to find the compiled WASM file and to create the deploy.
+The framework uses global variables and constants to find the compiled Wasm file and to create the deploy.
 
 ```rust
 use std::path::PathBuf;
@@ -37,8 +37,8 @@ const CONTRACT_WASM: &str = "contract.wasm";
 ```
 
 - *`KEY`* and *`VALUE`* : These constants are the global states we are using to test whether the deploy has been executed correctly. KEY acts as the input to the assertion and VALUE acts as the output from the assertion
-- *`PathBuff`* : The contract uses this variable to find the compiled WASM file 
-- *`RUNTIME_ARG_NAME`* and *`CONTRACT_WASM`* : Variables used to build the deploy
+- *`PathBuff`* : The contract uses this variable to find the compiled Wasm file 
+- *`RUNTIME_ARG_NAME`* and *`CONTRACT_Wasm`* : Variables used to build the deploy
 
 ### Import Builders and Constants
 
@@ -76,7 +76,7 @@ let session_args = runtime_args! {
 
 -   *`secret_key`* and *`public_key`* : Derives the account address
 -   *`account address`* : Gets authorization key and location
--   *`session_code`* : Gets the path to your actual contract WASM file on your system
+-   *`session_code`* : Gets the path to your actual contract Wasm file on your system
 -   *`session_args`* : Gets the values of runtime arguments
 
 **Create Deploy Item**
@@ -103,7 +103,7 @@ The deploy item contains the following elements:
 
 -   *`session_code`* : Sets the session code for the deploy using session_code and session_args
 
-    -   *PathBuff* : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities
+    -   *PathBuff* : Helps to find the compiled Wasm file in your Wasm directory. This is a mutable path with some extended functionalities
 -   *`authorization_keys`* : Sets authorization keys to authorize the deploy. To check the list of keys that authorize the call. See: [Permissions model](/design/accounts#accounts-permissions).
 -   *`address`* : Sets the address of the deploy
 
@@ -117,7 +117,7 @@ Follow these steps to deploy the smart contract:
 
 ### Create the Builder
 
-`InMemoryWasmTestBuilder` is the builder for a simple WASM test that uses the state held entirely in memory. It provides methods to simulate deploys to the blockchain array and make queries to whatever state you find in the global state.
+`InMemoryWasmTestBuilder` is the builder for a simple Wasm test that uses the state held entirely in memory. It provides methods to simulate deploys to the blockchain array and make queries to whatever state you find in the global state.
 
 ```rust
 let mut builder = InMemoryWasmTestBuilder::default();
