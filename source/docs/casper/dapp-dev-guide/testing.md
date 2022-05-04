@@ -38,7 +38,7 @@ const CONTRACT_WASM: &str = "contract.wasm";
 
 - *`KEY`* and *`VALUE`* : These constants are the global states we are using to test whether the deploy has been executed correctly. KEY acts as the input to the assertion and VALUE acts as the output from the assertion
 - *`PathBuff`* : The contract uses this variable to find the compiled Wasm file 
-- *`RUNTIME_ARG_NAME`* and *`CONTRACT_Wasm`* : Variables used to build the deploy
+- *`RUNTIME_ARG_NAME`* and *`CONTRACT_WASM`* : Variables used to build the deploy
 
 ### Import Builders and Constants
 
