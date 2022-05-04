@@ -317,5 +317,5 @@ The response will contain the `contract_hash`, which you will need to [call a co
 
 ## What's Next? {#whats-next}
 
-- The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
 - Learn [different ways to call contracts](calling-contracts.md) using the Casper command-line client
+- The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
