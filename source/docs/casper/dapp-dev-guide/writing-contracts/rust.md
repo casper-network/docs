@@ -108,6 +108,6 @@ When a contract exits with an error code, the exit code is visible in the Block 
 
 Refer to the [Testing Contract](/dapp-dev-guide/testing) section to view more details about the smart contract testing procedure.
 
-### WASM File Size {#wasm-file-size}
+### Wasm File Size {#wasm-file-size}
 
-We encourage shrinking the WASM file size as much as possible. Smaller deploys cost less and save the network bandwidth. We recommend reading [Shrinking .wasm Code Size](https://rustwasm.github.io/docs/book/reference/code-size.html) chapter of [The Rust Wasm Book](https://rustwasm.github.io/docs/book/).
+We encourage shrinking the Wasm file size as much as possible. Smaller deploys cost less and save the network bandwidth. We recommend reading [Shrinking .wasm Code Size](https://rustwasm.github.io/docs/book/reference/code-size.html) chapter of [The Rust Wasm Book](https://rustwasm.github.io/docs/book/).

@@ -49,7 +49,7 @@ git clone https://github.com/casper-network/casper-contracts-js-clients.git
   ```
 
 2. In the *.env.cep47* file, replace the following values with your own:
-    - `WASM_PATH` - Path to the compiled *cep47-token.wasm* file
+    - `Wasm_PATH` - Path to the compiled *cep47-token.wasm* file
     - `CHAIN_NAME` - Network name, e.g. *casper* for Mainnet or *casper-test* for Testnet
     - `NODE_ADDRESS ` - Address of the node's JSON-RPC server. Use port 7777 or whatever is specified as the *rpc_server.address* in the node's config.toml, and append */rpc* to the path. Example: 195.201.174.222:7777/rpc
     - `EVENT_STREAM_ADDRESS`: Address of the node's event stream server. Use port 9999 or whatever is specified as the *event_stream_server.address* in the node's config.toml, and append  */events/main* to the path. Example: 195.201.174.222:9999/events/main

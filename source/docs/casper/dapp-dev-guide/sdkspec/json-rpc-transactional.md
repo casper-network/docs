@@ -4,7 +4,7 @@
 
 ## account_put_deploy {#account-put-deploy}
 
-This is the only means by which users can send their compiled WASM (as part of a Deploy) to a node on a Casper network. The request takes in the [Deploy](../../../design/execution-semantics#execution-semantics-deploys) as a parameter, prior to sending it to a node on a network for execution.
+This is the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network. The request takes in the [Deploy](../../../design/execution-semantics#execution-semantics-deploys) as a parameter, prior to sending it to a node on a network for execution.
 
 |Parameter|Type|Description|
 |---------|----|-----------|

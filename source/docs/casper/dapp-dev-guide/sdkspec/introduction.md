@@ -8,7 +8,7 @@ You can find information on our serialization standard [here](../../../design/se
 
 |Page|Description|
 |----|-----------|
-|[Transactional JSON-RPC Method](../sdkspec/json-rpc-transactional.md)|Description of `account_put_deploy`, the only means by which users can send their compiled WASM (as part of a Deploy) to a node on a Casper network.|
+|[Transactional JSON-RPC Method](../sdkspec/json-rpc-transactional.md)|Description of `account_put_deploy`, the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network.|
 |[Informational JSON-RPC Methods](../sdkspec/json-rpc-informational.md)|Descriptions of methods that return information from a network or node within a network.|
 |[Proof-of-Stake](../sdkspec/json-rpc-pos.md)|Descriptions of methods that pertain to Proof-of-Stake functionality on a Casper network.|
 |[Types](../sdkspec/types_chain.md)|Information on types used within JSON-RPC methods.|
