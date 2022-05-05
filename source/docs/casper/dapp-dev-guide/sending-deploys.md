@@ -1,4 +1,4 @@
-# On-Chain Contracts
+# Sending Deploys to the Network
 
 Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](/design/execution-semantics#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
@@ -331,7 +331,7 @@ casper-client query-global-state --help
 
 Dependent upon the complexity and needs of the deployment in question, several options exist to allow users to pay for smart contract execution.
 
-The simplest way to pay for a deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional WASM ran within will come at an additional cost on top of the payment.
+The simplest way to pay for a deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional Wasm ran within will come at an additional cost on top of the payment.
 
 You may find the host side functionality of standard payment insufficient for your purposes. In this event, Casper provides the following options for custom payment code:
 

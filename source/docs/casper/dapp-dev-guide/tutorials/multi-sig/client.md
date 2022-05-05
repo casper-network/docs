@@ -26,7 +26,7 @@ nctl-view-faucet-account
 
 ## Setting up the Client {#setting-up-the-client}
 
-This client code expects a compiled WASM file in the `contract` folder and a local network called `casper-net-1`.
+This client code expects a compiled Wasm file in the `contract` folder and a local network called `casper-net-1`.
 
 Now you need to specify the configuration needed for your client to communicate with the network:
 
@@ -56,7 +56,7 @@ If you would like to customize your setup further, you can set other optional en
 
 | Variable        | Description                                                  | Default Value                                                         |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------------------------- |
-| WASM_PATH       | The path of the compiled WASM contract.                      | `../contract/target/wasm32-unknown-unknown/release/keys-manager.wasm` |
+| WASM_PATH       | The path of the compiled Wasm contract.                      | `../contract/target/wasm32-unknown-unknown/release/keys-manager.wasm` |
 | NETWORK_NAME    | The name of your local network set up by NCTL.               | `casper-net-1`                                                        |
 | FUND_AMOUNT     | Number of motes that accounts will be funded.                | `10000000000000`                                                      |
 | PAYMENT_AMOUNT  | Number of motes that will be used as payment for deploys.    | `100000000000`                                                        |
@@ -70,7 +70,7 @@ npm install
 
 ## Testing the Client {#testing-the-client}
 
-Navigate to your `/keys-manager/client` folder and run the _keys-manager_ using _npm_. Your WASM file's path is relative to the `client` folder, so you need to run the file from here.
+Navigate to your `/keys-manager/client` folder and run the _keys-manager_ using _npm_. Your Wasm file's path is relative to the `client` folder, so you need to run the file from here.
 
 ```bash
 npm run start:atomic

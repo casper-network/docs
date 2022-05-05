@@ -197,7 +197,7 @@ The version of the contract.
 
 ## ContractWasmHash {#contractwasmhash}
 
-A `blake2b` hash of a contract's WASM. The contract's WASM hash serializes as a 32-byte buffer containing the bytes of the contract's WASM hash.
+A `blake2b` hash of a contract's Wasm. The contract's Wasm hash serializes as a 32-byte buffer containing the bytes of the contract's Wasm hash.
 
 ## Delegator {#delegator}
 
