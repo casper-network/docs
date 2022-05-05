@@ -292,7 +292,7 @@ casper-client put-deploy \
 <!-- TODO - add this section when the link is ready.
 ## Calling Contracts that Return a Value
 
-Visit the [Interacting with Runtime Return Values]() tutorial to learn to call a contract that returns a value.
+Visit the [Interacting with Runtime Return Values](/dapp-dev-guide/tutorials/return-values-tutorial/) tutorial to learn to call a contract that returns a value using session code or contract code.
 -->
 
 ## What's Next? {#whats-next}
