@@ -11,7 +11,7 @@ Smart contracts exist as stored on-chain logic, allowing disparate users to call
 
 ## Calling Contracts by Contract Hash {#calling-contracts-by-hash}
 
-After [installing a contract](installing-contracts.md) in global state, you can use the contract's hash to call one of its entry points. The following usage of `put-deploy` allows you to call entry points defined in a smart contract. You will receive a deploy hash when calling the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
+After [installing a contract](installing-contracts.md) in global state, you can use the contract's hash to call one of its entry points. The following usage of `put-deploy` allows you to call an entry point, and you will receive a deploy hash. You need this hash to verify that the deploy executed successfully.
 
 ```bash
 casper-client put-deploy \
@@ -33,7 +33,7 @@ The arguments used above are:
 
 **Example:**
 
-In this example from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), a hash identifies a stored contract called "counter" with an entry-point named "counter-inc".
+In this example from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), a hash identifies a stored contract called "counter" with an entry-point called "counter-inc".
 
 ```bash
 casper-client put-deploy \
@@ -47,7 +47,7 @@ casper-client put-deploy \
 
 :::note
 
-Notice that this `put-deploy` command is nearly identical to the command used to [install the contract](installing-contracts.md#installing-contract-code). But, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain.
+This `put-deploy` command is nearly identical to the command used to [install the contract](installing-contracts.md#installing-contract-code). But, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain.
 
 :::
 
@@ -107,7 +107,7 @@ casper-client put-deploy
 
 ## Calling Contracts by Package Hash {#calling-contracts-by-package-hash}
 
-You can also call an entry point in a contract that is part of a contract package (see [contract upgrades](upgrading-contracts.md)). Call `put-deploy` using the stored package hash, the entry point you wish to access, the contract version number, and any runtime arguments. The call defaults to the highest enabled version if no version is specified.
+You can also call an entry point in a contract that is part of a contract package (see [contract upgrades](upgrading-contracts.md)). Call `put-deploy` using the stored package hash, the entry point you wish to access, the contract version number, and any runtime arguments. The call defaults to the highest enabled version if no version was specified.
 
 ```bash
 casper-client put-deploy \
@@ -127,7 +127,7 @@ The arguments of interest are:
 
 **Example:**
 
-In this example, we call a contract identified by a stored contract package hash and a version number. The entry point invoked is "counter-inc", also from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md).
+In this example, we call a contract by its package hash and version number. The entry point invoked is "counter-inc", also from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md).
 
 ```bash
 casper-client put-deploy \
@@ -151,7 +151,7 @@ To find the contract package hash, look at the named keys associated with your c
 
 ## Calling Contracts by Contract Name {#calling-contracts-by-name}
 
-We can also reference a contract using a key (or a contract name). The key you specify in the contract code will enable you to reference the contract. When you write the contract, use the `put_key` function to add the ContractHash under the contract's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#).
+We can also reference a contract using a key as the contract name. When you write the contract, use the `put_key` function to add the ContractHash under the contract's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#). The key you specify will enable you to reference the contract when calling it using `put-deploy`.
 
 ```rust
 runtime::put_key("counter", contract_hash.into());
@@ -177,7 +177,7 @@ The arguments of interest are:
 
 **Example:**
 
-This example uses a counter contract stored in global state under the "counter" key defined above, and an entry-point called "counter_inc" increments the counter.
+This example uses a counter contract stored in global state under the "counter" key defined in the code snippet above and an entry-point called "counter_inc" that increments the counter.
 
 ```bash
 casper-client put-deploy \
@@ -243,7 +243,7 @@ casper-client put-deploy \
 
 **Example 2:**
 
-This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract that is part of the `erc20_test_call` package using runtime arguments. The call defaults to the highest enabled version since no version is specified.
+This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract that is part of the `erc20_test_call` package using runtime arguments. The call defaults to the highest enabled version since no version was specified.
 
 ```bash
     casper-client put-deploy \
