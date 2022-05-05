@@ -4,8 +4,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
 
-**IMPORTANT**: You will receive a deploy hash when calling the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
-
 ## Prerequisites {#prerequisites}
 
 - You know how to [send and verify deploys](sending-deploys.md)
@@ -13,7 +11,7 @@ Smart contracts exist as stored on-chain logic, allowing disparate users to call
 
 ## Calling Contracts by Hash {#calling-contracts-by-hash}
 
-After installing a contract in global state, you can use the contract's hash to call one of its entry points. The following usage of `put-deploy` allows you to call entry points defined in a smart contract.
+After installing a contract in global state, you can use the contract's hash to call one of its entry points. The following usage of `put-deploy` allows you to call entry points defined in a smart contract. You will receive a deploy hash when calling the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
 
 ```bash
 casper-client put-deploy \
