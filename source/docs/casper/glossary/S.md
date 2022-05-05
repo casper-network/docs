@@ -30,7 +30,7 @@ In Proof-of-Stake, the deposit acts as collateral. The validator guarantees that
 
 Smart contracts are self-executing computer programs that perform specific actions based on pre-programmed terms stored on the blockchain. Once the pre-programmed terms are met, the smart contract executes the action and eliminates the need for a centralized third party.
 
-On the Casper Network, a smart contract is a WebAssembly (WASM) program that the network stores as a value in the [global state](G.md#global-state). The execution of a smart contract causes changes to the global state.
+On the Casper Network, a smart contract is a WebAssembly (Wasm) program that the network stores as a value in the [global state](G.md#global-state). The execution of a smart contract causes changes to the global state.
 
 A smart contract can be invoked by a transaction or by another smart contract. Smart contracts can declare input data as the arguments of a function. When invoking a smart contract, one must provide the input values.
 

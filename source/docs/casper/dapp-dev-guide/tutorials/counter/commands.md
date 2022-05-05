@@ -40,7 +40,7 @@ This command allows you to query the state of a Casper network at a given moment
 
 ## Put Deploys (onto the Chain) {#put-deploys-onto-the-chain}
 
-### Deploy via a compiled WASM binary {#deploy-via-a-compiled-wasm-binary}
+### Deploy via a compiled Wasm binary {#deploy-via-a-compiled-wasm-binary}
 
 ```rust
 casper-client put-deploy \
@@ -53,7 +53,7 @@ casper-client put-deploy \
 
 This command creates a deploy and sends it to the network for execution. In this first usage of the command,
 
--   The _session-path_ points to a compiled WASM contract.
+-   The _session-path_ points to a compiled Wasm contract.
 -   This contract is then deployed to the network specified by _node-address_ and _chain-name_. By default, NCTL names the chain "casper-net-1" but this is configurable.
 -   The _payment-amount_ is in units of motes (1 nano-CSPR) and is required to pay the transaction fee for the deployment. If it is too small, the transaction will get denied due to insufficient funds.
 
