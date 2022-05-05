@@ -11,7 +11,7 @@ Smart contracts exist as stored on-chain logic, allowing disparate users to call
 
 ## Calling Contracts by Hash {#calling-contracts-by-hash}
 
-After installing a contract in global state, you can use the contract's hash to call one of its entry points. The following usage of `put-deploy` allows you to call entry points defined in a smart contract. You will receive a deploy hash when calling the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
+After [installing a contract](installing-contracts.md) in global state, you can use the contract's hash to call one of its entry points. The following usage of `put-deploy` allows you to call entry points defined in a smart contract. You will receive a deploy hash when calling the `put-deploy` command. You need this hash to verify that the deploy executed successfully.
 
 ```bash
 casper-client put-deploy \
@@ -47,7 +47,7 @@ casper-client put-deploy \
 
 :::note
 
-Notice that this `put-deploy` command is nearly identical to the command used to install the contract. But, instead of `session-path` pointing to the WASM binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain.
+Notice that this `put-deploy` command is nearly identical to the command used to [install the contract](installing-contracts.md#installing-contract-code). But, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain.
 
 :::
 
