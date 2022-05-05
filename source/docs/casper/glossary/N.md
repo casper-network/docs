@@ -18,3 +18,6 @@ You will encounter different types of nodes on the network:
 ## Node operator {#node-operator}
 
 See [operator](O.md#operator).
+
+## Non-Fungible Token (NFT) {#non-fungible-token}
+Cryptographic assets on a blockchain with unique identification codes and metadata that distinguish them from each other. They cannot be traded or exchanged at equivalency. This differs from fungible tokens like cryptocurrencies, which are identical to each other and, therefore, can be used as a medium for commercial transactions.

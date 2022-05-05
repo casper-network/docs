@@ -35,6 +35,16 @@ An account cannot transfer less than 2.5 CSPR.
 
 </details>
 
+### Ledger Support {#ledger-support}
+
+<details>
+
+<summary><b>Does Casper offer Ledger support?</b></summary>
+
+Yes. Follow [this guide](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true) to install the Casper app on your Ledger device to manage CSPR.
+
+</details>
+
 ### Staking {#staking}
 
 <details>
@@ -50,14 +60,14 @@ Active engagement in the community is another important aspect.
 <details>
 <summary><b>How do I stake tokens via the command line?</b></summary>
 
-Follow [the delegation workflow](https://casper.network/docs/workflow/delegate) to learn how to stake your tokens via the command line.
+Follow [the delegation workflow](https://docs.casperlabs.io/workflow/delegate) to learn how to stake your tokens via the command line.
 
 </details>
 
 <details>
 <summary><b>How do I stake tokens using cspr.live?</b></summary>
 
-See the article on [How to Stake your CSPR](https://casper.network/docs/workflow/staking).
+See the article on [How to Stake your CSPR](https://docs.casperlabs.io/workflow/staking).
 
 </details>
 

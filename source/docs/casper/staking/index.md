@@ -58,6 +58,6 @@ For security purposes, whenever a token is un-staked or un-delegated, the protoc
     -   [8. Undelegating Tokens](../workflow/staking.md#8-undelegating-tokens)
     -   [ Conclusion](../workflow/staking.md#conclusion)
 -   [Delegating with the Command-line](../workflow/delegate.md)
-    -   [Building The Delegation WASM](../workflow/delegate.md#building-the-delegation-wasm)
+    -   [Building The Delegation Wasm](../workflow/delegate.md#building-the-delegation-wasm)
     -   [Acquiring a Validator’s Public Key](../workflow/delegate.md#acquiring-a-validators-public-key)
     -   [Executing the Delegation Request](../workflow/delegate.md#executing-the-delegation-request)

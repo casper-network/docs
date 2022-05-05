@@ -1,14 +1,14 @@
 # Setup
 
-Clone the ERC-20 contract repository and run the `make build-contract` command. This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token WASM is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC-20 token balances throughout this workflow.
+Clone the ERC-20 contract repository and run the `make build-contract` command. This will create the `erc20_token.wasm` and the `erc20_test_call.wasm`. The token Wasm is the main contract. We will use the `test_call` contract wasm to query the balances and allowances of the ERC-20 token balances throughout this workflow.
 
 ## Install the Main ERC-20 Contract
 
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --chain-name integration-test \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
---session-path ~/casper/ibm_demo/erc20_token.wasm \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
+--session-path ~/casper/demo/erc20_token.wasm \
 --session-arg "name:string='ERC20'" \
 --session-arg "symbol:string='gris'" \
 --session-arg "total_supply:u256='100'" \
@@ -21,8 +21,8 @@ casper-client put-deploy -n http://3.143.158.19:7777 \
 ```bash
 casper-client put-deploy -n http://3.143.158.19:7777 \
 --chain-name integration-test \
---secret-key ~/casper/ibm_demo/user_a/secret_key.pem \
---session-path ~/casper/ibm_demo/erc20_test_call.wasm \
+--secret-key ~/casper/demo/user_a/secret_key.pem \
+--session-path ~/casper/demo/erc20_test_call.wasm \
 --payment-amount 90000000000
 ```
 

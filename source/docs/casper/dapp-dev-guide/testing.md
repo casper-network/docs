@@ -1,4 +1,4 @@
-# Testing Contracts
+# Unit Testing Contracts
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 As part of the Casper local Rust contract development environment, we provide an in-memory virtual machine and a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support) against which you can run your contract. You do not need to set up a full node for testing. We provide a testing framework that simulates deploy execution, enables monitoring global state changes using assertions, and confirms a successful deploy of the smart contract.
@@ -15,9 +15,9 @@ It is also possible to build scripts with this environment and set up continuous
 
 The following steps guide you through the initialization of the system and deploy creation.
 
-1. [Define global variables and constants](../dapp-dev-guide/testing#define-global-variables-and-constants)
-2. [Import builders and constants](../dapp-dev-guide/testing#import-builders-and-constants)
-3. [Create a deploy item](../dapp-dev-guide/testing#create-a-deploy-item)
+1. [Define global variables and constants](#define-global-variables-and-constants)
+2. [Import builders and constants](#import-builders-and-constants)
+3. [Create a deploy item](#create-a-deploy-item)
 
 ### Define Global Variables and Constants
 
@@ -25,7 +25,7 @@ You can use global variables and constants in later steps to derive values and c
 
 **Global Variables and Constants**
 
-The framework uses global variables and constants to find the compiled WASM file and to create the deploy.
+The framework uses global variables and constants to find the compiled Wasm file and to create the deploy.
 
 ```rust
 use std::path::PathBuf;
@@ -37,7 +37,7 @@ const CONTRACT_WASM: &str = "contract.wasm";
 ```
 
 - *`KEY`* and *`VALUE`* : These constants are the global states we are using to test whether the deploy has been executed correctly. KEY acts as the input to the assertion and VALUE acts as the output from the assertion
-- *`PathBuff`* : The contract uses this variable to find the compiled WASM file 
+- *`PathBuff`* : The contract uses this variable to find the compiled Wasm file 
 - *`RUNTIME_ARG_NAME`* and *`CONTRACT_WASM`* : Variables used to build the deploy
 
 ### Import Builders and Constants
@@ -76,7 +76,7 @@ let session_args = runtime_args! {
 
 -   *`secret_key`* and *`public_key`* : Derives the account address
 -   *`account address`* : Gets authorization key and location
--   *`session_code`* : Gets the path to your actual contract WASM file on your system
+-   *`session_code`* : Gets the path to your actual contract Wasm file on your system
 -   *`session_args`* : Gets the values of runtime arguments
 
 **Create Deploy Item**
@@ -103,21 +103,21 @@ The deploy item contains the following elements:
 
 -   *`session_code`* : Sets the session code for the deploy using session_code and session_args
 
-    -   *PathBuff* : Helps to find the compiled WASM file in your WASM directory. This is a mutable path with some extended functionalities
--   *`authorization_keys`* : Sets authorization keys to authorize the deploy. To check the list of keys that authorize the call. See: [Permissions model](../design/accounts#accounts-permissions).
+    -   *PathBuff* : Helps to find the compiled Wasm file in your Wasm directory. This is a mutable path with some extended functionalities
+-   *`authorization_keys`* : Sets authorization keys to authorize the deploy. To check the list of keys that authorize the call. See: [Permissions model](/design/accounts#accounts-permissions).
 -   *`address`* : Sets the address of the deploy
 
 ## Deploy the Smart Contract
 
 Follow these steps to deploy the smart contract:
 
-1. [Create the builder](../dapp-dev-guide/testing#create-the-builder)
-2. [Create the execute request](../dapp-dev-guide/testing#create-an-execute-request)
-3. [Deploy the contract](../dapp-dev-guide/testing#deploy-the-contract)
+1. [Create the builder](#create-the-builder)
+2. [Create the execute request](#create-an-execute-request)
+3. [Deploy the contract](#deploy-the-contract)
 
 ### Create the Builder
 
-`InMemoryWasmTestBuilder` is the builder for a simple WASM test that uses the state held entirely in memory. It provides methods to simulate deploys to the blockchain array and make queries to whatever state you find in the global state.
+`InMemoryWasmTestBuilder` is the builder for a simple Wasm test that uses the state held entirely in memory. It provides methods to simulate deploys to the blockchain array and make queries to whatever state you find in the global state.
 
 ```rust
 let mut builder = InMemoryWasmTestBuilder::default();
@@ -153,9 +153,9 @@ This is the final step of the test contract execution. In this step, you will cr
 
 Query and assertion steps are as below:
 
-1. [Pre-assert the state](../dapp-dev-guide/testing#pre-assert-the-status)
-2. [Deploy the contract](../dapp-dev-guide/testing#deploy-the-contract-1)
-3. [Post-assertion to confirm deploy](../dapp-dev-guide/testing#post-assertion-to-confirm-deploy)
+1. [Pre-assert the state](#pre-assert-the-status)
+2. [Deploy the contract](#deploy-the-contract-1)
+3. [Post-assertion to confirm deploy](#post-assertion-to-confirm-deploy)
 
 The smart contract creates a new value _hello world_ under the KEY, _my-key-name_. You can extract this value from the global state of the blockchain using the `query_result`.
 
@@ -202,7 +202,7 @@ This will query the post-deploy value and assert for its change.
 
 -   *`query()`* : Queries the state for a given value
 -   *`expect()`* : Validates the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash
--   *`as_cl_value()`* : Returns a wrapped [CLValue](/docs/design/serialization-standard#serialization-standard-values) if this is a CLValue variant
+-   *`as_cl_value()`* : Returns a wrapped [CLValue](design/serialization-standard#serialization-standard-values) if this is a CLValue variant
 
 -   *`clone()`* : Breaks the reference to the CLValue so that it will provide brand new CLValue
 -   *`Into_t()`* : Converts the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type

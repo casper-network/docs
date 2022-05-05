@@ -105,7 +105,7 @@ Once you create your account, you can [fund the account](../workflow/setup.md#fu
 
 :::note
 
-Your account is not stored on the blockchain.
+Until you fund your account, it does not exist on the blockchain.
 
 :::
 

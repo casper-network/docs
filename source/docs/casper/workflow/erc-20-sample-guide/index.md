@@ -18,14 +18,14 @@ We will employ the following test accounts to demonstrate the use of an ERC-20 c
 
 To execute transactions on the Casper Network (involving ERC-20 tokens), you will need some CSPR tokens to pay for the transactions.
 
-To understand the implementation of a Casper ERC-20 contract, see the [ERC-20 Tutorial](/docs/erc20).
+To understand the implementation of a Casper ERC-20 contract, see the [ERC-20 Tutorial](https://github.com/casper-ecosystem/erc20/blob/master/TUTORIAL.md).
 
 ## Prerequisites
 
 Before you dive into the details of this guide, ensure you meet these requirements:
 
--   Set up your machine as per the [prerequisites](/docs/workflow/setup)
+-   Set up your machine as per the [prerequisites](/workflow/setup)
 -   Use the Casper command-line client
 -   Get a valid `node-address`
--   Know how to deploy a [smart contract](/docs/dapp-dev-guide/deploying-contracts) to a Casper network
+-   Know how to deploy a [smart contract](/dapp-dev-guide/sending-deploys.md) to a Casper Network
 -   Get some CSPR tokens to pay for transactions
