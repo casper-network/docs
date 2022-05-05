@@ -7,7 +7,8 @@ Lets understand the relation between associated keys and authorization keys. To 
 
 - Associated keys are public keys which are associated with a given account.
 - Authorization keys are public keys which are used to sign a given deploy and are used by the node to check that the deploy has permission to be executed.
-- Authorization keys are always a subset of the associated keys of the account under which the deploy is executed. For example, if an account has two associated keys, anyone or both of the keys can be used to sign a deploy. The key that signs the deploy becomes the authorization key for that execution.
+- Different executions of the same smart contract can have different authorization keys.
+- Authorization keys are always a subset of the associated keys of the account under which the deploy is executed.
 
 ## Benefits of Load Authorization Keys Feature
 The load authorization keys feature helps identify the keys that were used to sign a deploy. Let's try to understand why this feature is important for smart contract developers.
