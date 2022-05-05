@@ -11,7 +11,7 @@ Lets understand the relation between associated keys and authorization keys. To 
 - Authorization keys are always a subset of the associated keys of the account under which the deploy is executed.
 
 <<<<<<< Updated upstream
-## Benefits of Load Authorization Keys Feature
+## Accessing Authorization Keys from a Smart Contract
 A smart contract can retrieve the set of authorization keys for the given execution by calling the `runtime::list_authorization_keys` function.  This returns the set of account hashes representing all the keys used to sign the deploy under which the contract is executing.
 
 This gives developers more fine-grained control within their smart contracts.  For example, developers can define a hierarchy within an account's associated keys, and use that along with the current execution's authorization keys to limit access for certain operations to specific keys.
