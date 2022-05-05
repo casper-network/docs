@@ -1,6 +1,6 @@
 # Types {#types}
 
-The following definitions expand on parameters seen elsewhere within the SDK specifications and are provided for clarity and completeness.
+The following definitions expand on parameters seen elsewhere within the SDK standard and are provided for clarity and completeness.
 
 ## Account {#account}
 
@@ -160,7 +160,7 @@ Required Parameters:
 
 ## ContractWasmHash {#contractwasmhash}
 
-The hash address of the contract WASM.
+The hash address of the contract Wasm.
 
 ## Delegator {#delegator}
 
@@ -340,7 +340,7 @@ Represents possible variants of an executable Deploy.
 
 ### `ModuleBytes` {#modulebytes}
 
-Executable specified as raw bytes that represent WASM code and an instance of `RuntimeArgs`.
+Executable specified as raw bytes that represent Wasm code and an instance of `RuntimeArgs`.
 
 Required Parameters:
 
@@ -408,7 +408,7 @@ Additional Parameters:
 
 ### `Transfer` {#transfer}
 
-A native transfer which does not contain or reference a WASM code.
+A native transfer which does not contain or reference a Wasm code.
 
 Required Parameters:
 
@@ -776,7 +776,7 @@ Representation of a value stored in global state. `Account`, `Contract` and `Con
 
 * [`Account`](#account) An Account.
 
-* `ContractWasm` A contract's WASM.
+* `ContractWasm` A contract's Wasm.
 
 * [`Contract`](#contract) Methods and type signatures supported by a contract`
 

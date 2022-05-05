@@ -7,17 +7,17 @@ This workflow assumes:
 1.  You meet the [prerequisites](setup.md)
 2.  You are using the Casper command-line client
 3.  You have the public key of a validator on a Casper Network
-4.  You have the delegation contract or WASM to execute on the network
+4.  You have the delegation contract or Wasm to execute on the network
 5.  You have a valid `node-address`
-6.  You have previously [deployed a smart contract](../dapp-dev-guide/on-chain-contracts.md) to a Casper Network
+6.  You have previously [deployed a smart contract](../dapp-dev-guide/sending-deploys.md) to a Casper Network
 
-## Building The Delegation WASM {#building-the-delegation-wasm}
+## Building The Delegation Wasm {#building-the-delegation-wasm}
 
 Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository and building the contracts.
 
 To build contracts, set up Rust, and install all dependencies. Visit [Setting up Rust](../dapp-dev-guide/getting-started.md) in the Developer Guide for step-by-step instructions.
 
-Once you build the contracts, you can use the `delegate.wasm` to create a deploy that will initiate the delegation process. The WASM can be found in:
+Once you build the contracts, you can use the `delegate.wasm` to create a deploy that will initiate the delegation process. The Wasm can be found in:
 
     target/wasm32-unknown-unknown/release
 
