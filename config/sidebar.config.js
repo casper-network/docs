@@ -41,7 +41,7 @@ module.exports = {
         "dapp-dev-guide/index",
         "dapp-dev-guide/why-build-on-casper",
         "dapp-dev-guide/keys",
-        "dapp-dev-guide/load-auth-keys",
+        "dapp-dev-guide/list-auth-keys",
         "dapp-dev-guide/understanding-hash-types",
         {
             type: "category",
