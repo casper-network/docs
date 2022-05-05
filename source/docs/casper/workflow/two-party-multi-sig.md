@@ -29,7 +29,7 @@ To enforce the multi-signature (multi-sig) feature for an account on a Casper Ne
 
 ## Code Description {#code-description}
 
-You can run session code that will execute within the context of your main account. Below is the code that will be compiled to WASM and then sent to the network as part of a deploy.
+You can run session code that will execute within the context of your main account. Below is the code that will be compiled to Wasm and then sent to the network as part of a deploy.
 
 **Note**: The following contract example will set up a specific account configuration and is not a general-purpose contract.
 
@@ -69,9 +69,9 @@ The action thresholds for deploys cannot be greater than the action threshold fo
 
 ## Code Execution {#code-execution}
 
-The state of the account can be altered by sending a deploy which executes the WASM that will associate the **AA** account address.
+The state of the account can be altered by sending a deploy which executes the Wasm that will associate the **AA** account address.
 
-For this guide, a smart contract has been written and is stored in its [Github Repository](https://github.com/casper-ecosystem/two-party-multi-sig). The repository contains a _Makefile_ with the build commands necessary to compile the contract to generate the necessary WASM.
+For this guide, a smart contract has been written and is stored in its [Github Repository](https://github.com/casper-ecosystem/two-party-multi-sig). The repository contains a _Makefile_ with the build commands necessary to compile the contract to generate the necessary Wasm.
 
 ```bash
 git clone https://github.com/casper-ecosystem/two-party-multi-sig
@@ -84,11 +84,11 @@ To build the contract, run the following command:
 make build-contract
 ```
 
-The compiled WASM will be saved on this path:
+The compiled Wasm will be saved on this path:
 
     target/wasm32-unknown-unknown/release/contract.wasm
 
-The Casper command-line client can be used to send the compiled WASM to the network for execution.
+The Casper command-line client can be used to send the compiled Wasm to the network for execution.
 
 ```bash
 casper-client put-deploy \
@@ -104,7 +104,7 @@ casper-client put-deploy \
 2.  `secret-key` - The file name containing the secret key of the Main Account
 3.  `chain-name` - The chain-name to the network where you wish to send the deploy (this example uses the Testnet)
 4.  `payment-amount` - The cost of the deploy
-5.  `session-path` - The path to the contract WASM
+5.  `session-path` - The path to the contract Wasm
 6.  `session-arg` - The contract takes the account hash of the Associated account as an argument labeled `deployment-account`. You can pass this argument using the `--session-arg` flag in the command line client
 
 **Important response fields:**
