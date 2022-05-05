@@ -16,7 +16,7 @@ The process of following the [consensus](C.md#consensus) algorithm. The primary 
 
 ## Payment code {#payment-code}
 
-The _payment code_ is the [WASM](W.md#webassembly) program that pays the transaction execution fee.
+The _payment code_ is the [Wasm](W.md#webassembly) program that pays the transaction execution fee.
 
 ## Peer node {#peer-node}
 
