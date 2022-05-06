@@ -1,9 +1,9 @@
 # Writing Session Code
-This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. Session code is useful when little or no internal state is required. You can use session code when the logic requires very little or no internal data to be tracked, or to simplify the process of interacting with entry points of a contact code.
+This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. Session code is useful when little or no internal state is required. You can use session code when the logic requires very little or no internal data to be tracked, or to simplify the process of interacting with entry points of a contract code.
 
 :::note
 
-Session code can be written in any programming language that compiles to WebAssembly (Wasm).
+Session code can be written in any programming language that compiles to WebAssembly (Wasm). However, the examples in this topic use Rust.
 
 :::
 
@@ -20,7 +20,7 @@ The following points try to explain the difference between session code and cont
 - Session code and contract code run in two different type of contexts. Session code always executes in the context of the account that signed the deploy that contains the session code. This means that when a `put_key` call is made within the body of the session code, the key is added to the account's named keys. 
 - Conversely, contract code executes in its own context. Which means that when `put-key` call is made within the contract's execution, the key is inserted into the contract's context. So, the key will appear in the contract's named keys.
 - Session code has only one entry point, that is the `call` function, which you can use to interact with the session code. 
-- A contract code can have multiple entry points that will help you interact with the contract code. 
+- A contract can have multiple entry points that will help you interact with the contract code. 
 
 ## Project Structure
 For this guide, we are creating the project structure manually, however, you can use `cargo casper` to set up this directory structure automatically.
@@ -39,15 +39,15 @@ Top-Level Directory
     |_ Cargo.lock
     |_ Cargo.toml
 
-In the above directory structure the `contract` folder contains the session code in the `main.rs` file and the needed dependencies in the `Cargo.toml` file. 
-The `tests` folder contains the code required to test the session code on before it is deployed on a Casper Network.
+In the above directory structure, the `contract` folder contains the session code in the `main.rs` file and the needed dependencies in the `Cargo.toml` file. 
+The `tests` folder contains the code required to test the session code before it is deployed on a Casper Network.
 
 ## Writing Session Code
 The following steps illustrate the process of writing session code and the important components to include:
 
-1. Create a new top level directory that will contain the session code and would also include another folder for tests, which will help us test the functionality of our session code. 
+1. Create a new top-level directory containing the session code and would also include another folder for tests, which will help us test the functionality of our session code. 
 
-2. Inside the new folder run the following command to create a new binary package called contract:
+2. Inside the new folder run the following command to create a new binary package called *contract*:
 
     ```bash
     cargo new contract
@@ -57,21 +57,28 @@ The following steps illustrate the process of writing session code and the impor
 
 3. Within the contract package, you can find the `main.rs` file inside the `src` folder. You will write your session code in the `main.rs` file. 
 
-4.  In the `cargo.toml` file include the following dependencies, for the purposes of this guide we are using only two, however, you can use more depending on the requirement of your session code:
-    -   `casper-contract = "1.4.3"` - You need to import the casper-contract as it provide the SDK for the execution engine (EE). For more information on this crate, see the [documentation](https://docs.rs/casper-contract/latest/casper_contract/).
-    -   `casper-types = "1.4.6"` - You need to import the casper-types crate as this crate includes the types that the node uses. This is necessary for the execution engine (EE) to understand and interpret the session code. For more information on this crate, see the [documentation](https://docs.rs/casper-types/latest/casper_types/).  
+4.  In the `cargo.toml` file include the following dependencies:
+
+    :::note
+
+    For the purposes of this guide, we are using only two dependencies; however, you can use more depending on the requirement of your session code.
+
+    :::
+
+    -   `casper-contract = "1.4.3"` - You need to import the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) as it provides the SDK for the execution engine (EE).
+    -   `casper-types = "1.4.6"` - You need to import the [casper-types](https://docs.rs/casper-types/latest/casper_types/) crate as this crate includes the types that the node uses. This is necessary for the execution engine (EE) to understand and interpret the session code.  
 
     You can find the latest versions of the dependencies at https://crates.io/.
     
-5. Few things to note while writing session code:
+5. A few things to note while writing session code:
     -   Include the following:
-        -   `#![no_std]` - This indicates to not import the standard library.
-        -   `#![no_main]` - This indicates that the main function is not required, since the session code has only one entry point as the `call` function.
+        -   `#![no_std]` - This indicates not to import the standard library.
+        -   `#![no_main]` - This indicates that the `main` function is not required, since the session code has only one entry point as the `call` function.
     -   Import the casper contract API:
-        `use casper_contract::contract_api::{account, runtime, storage, system};` this example uses account, runtime, storage, and system crates, however, you might need to import the crates relevant to your session code.
+        `use casper_contract::contract_api::{account, runtime, storage, system};` this example uses account, runtime, storage, and system crates. However, you might need to import the crates relevant to your session code.
 
 ## Sample Session Code
-This sample code demonstrates a simple session code passing arguments, processing the arguments, and storing the result. In general, that is what you will use session code for. In this example, we are adding two numbers and storing the result in a URef.
+This sample code demonstrates a simple session code passing arguments, processing the arguments, and storing the result. In general, you will use session code for such operations. In this example, we call a contract that gets a donation amount, and we store the result in a URef.
 
 ```rust
 #![no_std]
@@ -110,14 +117,14 @@ Let's try to understand what each line of code in the above sample is trying to 
 #![no_std]
 #![no_main]
 ```
-This indicates to not import the standard library and that the main function is not required, since the session code has only one entry point as the `call` function.
+This indicates not to import the standard library and that the main function is not required, since the session code has only one entry point as the `call` function.
 
 ```rust
 use casper_contract::contract_api::{account, runtime, storage, system};
 use casper_contract::unwrap_or_revert::UnwrapOrRevert;
 use casper_types::{runtime_args, ContractHash, Key, PublicKey, RuntimeArgs, URef, U512};
 ```
-Imports the casper contract API. This example uses account, runtime, storage, and system crates, however, you might need to import the crates relevant to your session code.
+Imports the casper contract API. This example uses account, runtime, storage, and system crates. However, you might need to import the crates relevant to your session code.
 
 ```rust
 const FUNDRAISER_CONTRACT_HASH: &str = "fundraiser_contract_hash";
@@ -129,12 +136,12 @@ It is a good habit to define constants, because if you use the same argument in 
 ```rust
 #[no_mangle]
 ```
-When some Wasm is sent to be executed by the execution engine (EE) that lives within each node of a Casper Network, `#[no_mangle]` ensures that the function name that follows it is retained as is in string form in the Wasm output. For session code, this retains the `call` string and marks the entry point for the execution engine.
+When the EE (that lives on each node of a Casper network), receives Wasm to execute, the `#[no_mangle]` flag ensures that the function name following it is retained as a string in the Wasm binary. For session code, this retains the `call` string and marks the entry point for the execution engine.
 
 ```rust
 pub extern "C" fn call()
 ```
-This initiates the `call` function. When compiled, the resulting Wasm could then be linked to from a C library, and the function could be used as if it was from any other library.
+This initiates the `call` function, which when compiled could be used from another library. For example, a C library could link to the resulting Wasm.
 
 ```rust
 let fundraiser_contract_hash: ContractHash = runtime::get_named_arg(FUNDRAISER_CONTRACT_HASH);
@@ -148,12 +155,12 @@ let fundraiser_contract_hash: ContractHash = runtime::get_named_arg(FUNDRAISER_C
         },
     );
 ```
-This piece of code tries to demonstrate how to get the contract hash and donating account key as arguments and then perform a simple operation with them, such as get the final donation count. The `runtime::get_named_arg()` takes a string as an argument and returns the named argument to the host in the current runtime.
+This code demonstrates how to get the contract hash and donating account key as arguments. It then performs a simple operation with them, such as getting the final donation count. The `runtime::get_named_arg()` takes a string as an argument and returns the named argument to the host in the current runtime.
 
 ```rust
 let donation_count_uref = storage::new_uref(donation_count);
 ```
-Once you have the result, you might want to save it at a location that can be accessed later. This code puts the URef in the current context's NamedKeys, which is the context of the account calling this piece of session code.
+Once you have the result, you might want to save it at a location that can be accessed later. This code puts the URef in the current context's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html), which is the context of the account calling this piece of session code.
 
 ```rust    
 runtime::put_key("donation_count", donation_count_uref.into())
@@ -176,7 +183,7 @@ cargo build --release --target wasm32-unknown-unknown
 Once the session code is compiled you can deploy it on a Casper Network.
 
 ## Deploying the Session Code
-Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using NCTL. For more information on how to build an NCTL network, see [Local Network Testing](../setup-nctl.md).
+Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using [NCTL](../setup-nctl.md).
 
 You can deploy the session code on the Testnet using the following command:
 
