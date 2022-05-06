@@ -40,28 +40,6 @@ module.exports = {
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
         "dapp-dev-guide/why-build-on-casper",
-        "dapp-dev-guide/list-cspr",
-        {
-            type: "category",
-            label: "Writing Smart Contracts",
-            collapsible: true,
-            collapsed: true,
-            items: ["dapp-dev-guide/writing-contracts/index", "dapp-dev-guide/getting-started", "dapp-dev-guide/writing-contracts/rust", "dapp-dev-guide/writing-contracts/assembly-script"],
-        },
-		{
-            type: "category",
-            label: "Writing Session Code",
-            collapsible: true,
-            collapsed: true,
-            items: ["dapp-dev-guide/session-code/index", "dapp-dev-guide/session-code/session-code"],
-        },
-        "dapp-dev-guide/testing",
-        "dapp-dev-guide/setup-nctl",
-        "dapp-dev-guide/upgrading-contracts",
-        "dapp-dev-guide/on-chain-contracts",
-        "dapp-dev-guide/monitoring-events",
-        "dapp-dev-guide/calling-contracts",
-        "dapp-dev-guide/execution-error-codes",
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
         {
@@ -105,6 +83,13 @@ module.exports = {
                 "dapp-dev-guide/monitoring-events",
                 "dapp-dev-guide/casper-signer",
             ],
+        },
+        {
+            type: "category",
+            label: "Writing Session Code",
+            collapsible: true,
+            collapsed: true,
+            items: ["dapp-dev-guide/session-code/index", "dapp-dev-guide/session-code/session-code"],
         },
         {
             type: "category",
