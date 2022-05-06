@@ -246,7 +246,7 @@ test: build-contract
 ```
 
 :::note
-Use the command `cargo install cargo casper`, if you want to set up the whole directory structure in one command. Refer to [installing casper crates](https://docs.casperlabs.io/dapp-dev-guide/getting-started/#installing-the-casper-crates) section for more details.
+Use the command `cargo install cargo casper`, if you want to set up the whole directory structure in one command. Refer to [installing casper crates](/dapp-dev-guide/getting-started/#installing-the-casper-crates) section for more details.
 :::
 
 ## Complete Code Samples
