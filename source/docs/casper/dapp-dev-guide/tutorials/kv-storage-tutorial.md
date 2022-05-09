@@ -228,7 +228,7 @@ When working with the testnet, create an account on [Testnet CSPR Live](https://
 
 ### Deploy the Contract {#deploy-the-contract}
 
-After compiling the contract, you need to deploy the compiled WASM to the network. This action installs the contract in the blockchain.
+After compiling the contract, you need to deploy the compiled Wasm to the network. This action installs the contract in the blockchain.
 
 The following example shows you how to use the Casper client to retrieve the contract session hash and the block hash where the contract is deployed. The paths for the _secret-key_ and _session-path_ are relative to your system. You need to specify the paths on your machine to run the command.
 
