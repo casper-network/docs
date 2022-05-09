@@ -27,7 +27,7 @@ The Assemblyscript contract API documentation can be found at <https://www.npmjs
 
 ## Usage {#usage}
 
-Add script entries for AssemblyScript to your project's `package.json`. Note that your contract name is used for the name of the WASM file. Replace _your-contract-name_ with the name of your contract.
+Add script entries for AssemblyScript to your project's `package.json`. Note that your contract name is used for the name of the Wasm file. Replace _your-contract-name_ with the name of your contract.
 
 ```json
 {
@@ -89,9 +89,9 @@ export function call(): void {
 
 If you prefer a more complicated first contract, you can look at example contracts on the [Casper Ecosystem GitHub](https://github.com/casper-ecosystem) repository for inspiration.
 
-## Compile to WASM {#compile-to-wasm}
+## Compile to Wasm {#compile-to-wasm}
 
-To compile the contract to WASM, use _npm_ to run the _asbuild_ script from the project root:
+To compile the contract to Wasm, use _npm_ to run the _asbuild_ script from the project root:
 
 ```
 npm run asbuild

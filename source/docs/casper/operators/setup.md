@@ -31,7 +31,7 @@ Multiple versioned folders will exist on a system when upgrades are set up.
 
 :::
 
-The following is the state of the filesystem after installing the `casper-client` and `casper-node-launcher` Debian packages, and also after running the script `/etc/casper/pull_casper_node_version.sh`:
+The following is the state of the filesystem after installing the `casper-client` and `casper-node-launcher` Debian packages, and also after running the command `sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf` (Use casper-test.conf if on testnet).
 
 ### `/usr/bin/` {#usrbin}
 
