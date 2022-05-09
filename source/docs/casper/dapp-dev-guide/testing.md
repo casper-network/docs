@@ -2,7 +2,7 @@
 
 ## Introduction
 
-As part of the Casper local Rust contract development environment, we provide a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/). This framework allows testing of of new contracts without running a full node. Instead, it creates a simulated instance of the Casper execution engine, which allows for monitoring of changes to global state using assertions and confirms the successful sending of a Deploy containing the smart contract.
+As part of the Casper local Rust contract development environment, we provide a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/). This framework allows testing of new contracts without running a full node. Instead, it creates a simulated instance of the Casper execution engine, which allows for monitoring of changes to global state using assertions and confirms the successful sending of a Deploy containing the smart contract.
 
 Our provided test support crate is only one option for testing your Deploys prior to sending them to global state. It provides a degree of assistance, but you are free to create your own testing framework if you prefer.
 
@@ -26,7 +26,7 @@ The Casper test crate must be included within a [Rust workspace](https://doc.rus
 
 ## Creating a Test Crate
 
-Creating a test crate can be done with the following command:
+You can create a test crate with the following command:
 
 ```
 
@@ -34,7 +34,7 @@ cargo new tests
 
 ```
 
-This will create a Rust Cargo package, including the */src/main.rs* and *Cargo.toml* files. As stated above, this should be done within the same workspace as your Wasm producing crates. For this example, we will be using the donation contract outlined in our [Writing a Basic Smart Contract in Rust](../writing-contracts/rust.md) tutorial.
+This will create a Rust Cargo package, including the */src/main.rs* and *Cargo.toml* files. As stated above, you should create the test crate within the same workspace as your Wasm producing crates.  For this example, we will be using the donation contract outlined in our [Writing a Basic Smart Contract in Rust](../writing-contracts/rust.md) tutorial.
 
 As such, you should see the following directories within the workspace:
 
@@ -153,7 +153,7 @@ After we have built our `ExecuteRequestBuilder`, in this example titled 'contrac
 
 ### Building an Execution Request to Run Session Code
 
-In order to unit test the installed contract, we will need an entity to call the contract. In this instance, we will use session code included within *donate.wasm*. Further, we will need the contract hash of the newly installed donation contract.
+To unit test the installed contract, we will need an entity to call the contract. In this instance, we will use session code included within *donate.wasm*. Further, we will need the contract hash of the newly installed donation contract.
 
 The following code retrieves the contract hash from within the named keys of the `DEFAULT_ACCOUNT_ADDR` that sent the Deploy containing the contract.
 
@@ -173,9 +173,9 @@ The following code retrieves the contract hash from within the named keys of the
 
 The session code will use the acquired contract hash to identify the correct contract when calling it. Once again, we will use the `ExecuteRequestBuilder`, this time to simulate the execution of session code calling the `Donation` entry point.
 
-Our session code identifies the account to use for sending the deploy (`DEFAULT_ACCOUNT_ADDR`), the deploy to be sent (`DONATION`) and the runtime arguments required. Namely, the contract will require the contract has, the donating account key and the amount to be donated. In this instance, the session code will be donating 100,000 motes.
+Our session code identifies the account to use for sending the deploy (`DEFAULT_ACCOUNT_ADDR`), the deploy to be sent (`DONATION`) and the runtime arguments required. Namely, the contract will require the contract has, the donating account key and the donation amount. In this instance, the session code will be donating 100,000 motes.
 
-These details are followed by the actual `builder` request to execute the session code.
+The `builder` request follows these details to execute the session code.
 
 ```rust
 
