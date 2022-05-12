@@ -43,4 +43,4 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 - `Key::Bid` is used to keep track of bids for the auction contract. It is not generally used by users.
 - `Key::Withdraw` is used to keep track of withdraws for the auction contract. It is not generally used by users.
 - `Key::Dictionary` is the hash derived from a URef and a piece of arbitrary data and leads to a dictionary.
-- `Key::SystemContractRegistry` is a mapping of the names and ContractHashes for system contracts, including `Mint`, `Auction`, `HandlePayment` and `StandardPayment`. This key is not currently readable, but will be in the future.
+- `Key::SystemContractRegistry` is a unique `Key` under which a mapping of the names and ContractHashes for system contracts, including `Mint`, `Auction`, `HandlePayment` and `StandardPayment`, is stored.
