@@ -14,7 +14,7 @@ This section covers:
 
 You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
 
-Run the commands below to install the Casper client on most flavors of Linux and macOS.
+Run the commands below to install the Casper client on most flavors of Linux and macOS (You should have [Rust](https://www.rust-lang.org/tools/install) installed, otherwise check the alternative installation methods below).
 
 ```bash
 cargo install casper-client
@@ -31,6 +31,32 @@ casper-client --help
 ```bash
 casper-client <command> --help
 ```
+
+### Alternative install methods
+
+#### Debian / Ubuntu based
+
+Head to <https://repo.casperlabs.io/> and follow the instructions compatible with your distribution.
+
+#### Red Hat / CentOS based
+
+Head to [the client's releases on GitHub](https://github.com/casper-ecosystem/casper-client-rs/releases) and download the RPM.
+
+Run: `sudo yum install casper-client-x-x-x*.rpm` (replace the filename with the actual RPM you downloaded).
+
+In RHEL 5 and previous versions, you need to use the following command:
+
+```bash
+sudo yum localinstall casper-client-x-x-x*.rpm
+```
+
+On Fedora, RedHat 8 and other more recent RPM based distributions you can use dnf to install packages:
+
+```bash
+sudo dnf install casper-client-x-x-x*.rpm
+```
+
+
 
 ## Building the Client from Source {#building-the-client-from-source}
 
@@ -58,7 +84,6 @@ Using the Casper command-line client or a block explorer to create an account on
 * A hexadecimal-encoded string representation of the public key
 
 We recommend saving these files securely.
-
 
 ### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
 
