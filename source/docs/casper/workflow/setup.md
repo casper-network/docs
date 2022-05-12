@@ -6,9 +6,9 @@ This section explains how to fulfill the prerequisites needed to interact with a
 
 This section covers:
 
-1.  Installing the official Casper command-line client
-2.  Setting up an account on a Casper Network
-3.  Acquiring the IP address of a peer on the official Testnet or Mainnet
+1. Installing the official Casper command-line client
+2. Setting up an account on a Casper Network
+3. Acquiring the IP address of a peer on the official Testnet or Mainnet  
 
 ## Casper Command-line Client {#the-casper-command-line-client}
 
@@ -40,8 +40,8 @@ casper-client <command> --help
 
 The [Account](../design/accounts.md) creation process consists of two steps:
 
-1.  Creating the account
-2.  Funding the account
+1. Creating the account
+2. Funding the account
 
 ## Creating an Account {#creating-an-account}
 
@@ -72,9 +72,9 @@ casper-client keygen .
 
 The above command will create three files in the current working directory:
 
-1.  `secret_key.pem` - PEM encoded secret key
-2.  `public_key.pem` - PEM encoded public key
-3.  `public_key_hex` - Hexadecimal-encoded string of the public key
+1. `secret_key.pem` - PEM encoded secret key
+2. `public_key.pem` - PEM encoded public key
+3. `public_key_hex` - Hexadecimal-encoded string of the public key
 
 **Note**: Save your keys to a safe place, preferably offline.
 
@@ -102,7 +102,6 @@ The Signer does not allow you to download the corresponding public key and hexad
 
 For [ed25519](../dapp-dev-guide/keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
 
-
 ## Fund your Account {#fund-your-account}
 
 After generating the cryptographic key-pair for the account, you must then fund the account to create it on chain.
@@ -121,8 +120,8 @@ Both the official Testnet and Mainnet provide block explorers that list the IP a
 
 You can get the `node-ip-address` of a node on the network by visiting the following block explorers:
 
--   [Peers](https://testnet.cspr.live/tools/peers) on Testnet
--   [Peers](https://cspr.live/tools/peers) on Mainnet
+* [Peers](https://testnet.cspr.live/tools/peers) on Testnet
+* [Peers](https://cspr.live/tools/peers) on Mainnet
 
 You will see a list of peers, and you can select the IP of any peer on the list.
 
