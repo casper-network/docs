@@ -36,7 +36,7 @@ Importing the dependencies may vary with your project requirements. These are th
 
 - `casper-execution-engine` - This imports the functionalities of the execution engine which enables the wasm execution. Each node contains an instance of an execution engine within it.
 - `casper-engine-test-support` - This is a helper crate that provides the interface to interact with the execution engine to execute the Wasm.
-- `casper-types` - These are types used in the program.
+- `casper-types` - These are Casper's custom types used in the program.
 
 ### Step 3. Configuring the main.rs file
 
