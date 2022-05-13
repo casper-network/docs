@@ -1,5 +1,5 @@
 # Writing Session Code
-This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. Session code is useful when little or no internal state is required. You can use session code when the logic requires very little or no internal data to be tracked, or to simplify the process of interacting with entry points of a contract code.
+This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. You can use session code when the logic requires very little or no internal data to be tracked. Session code is required when interacting and accepting values being returned across the Wasm boundary
 
 :::note
 
