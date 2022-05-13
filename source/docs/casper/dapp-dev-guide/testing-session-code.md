@@ -174,7 +174,7 @@ assert_eq!(3, value);
 }
 ```
 
-The above code snippet starts by initializing the test builder and the genesis request. Then, the contract wasm is loaded to the session code object.  After that, the deploy object is created using the details like payment method, contract wasm, and account address. Then, the deploy object is passed to the created execute request. Finally, the execution engine is invoked to process the execute request. Refer to [creating a test function](/dapp-dev-guide/testing/#deploy-the-smart-contract) for more details about each function. 
+The above code snippet starts by initializing the test builder and the genesis request. Then, the contract Wasm is loaded to the session code object.  After that, the deploy object is created using the details like payment method, contract Wasm, and account address. Then, the deploy object is passed to the created execute request. Finally, the execution engine is invoked to process the execute request. Refer to [creating a test function](/dapp-dev-guide/testing/#deploy-the-smart-contract) for more details about each function. 
 
 ### Step 7. Specifying the binary fields
 This step configures the contract file and wasm file path in the Cargo.toml file. This states that the test program uses the contract specified in the given path to execute the logic. Here, the file name 'main' is equivalent to your contract file name.
