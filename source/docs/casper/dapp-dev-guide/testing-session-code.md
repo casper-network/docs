@@ -188,7 +188,7 @@ path = "source/main.rs"
 ### Step 8. Verifying the test results
 In the above section, the session code is sent to the network. Now it's time to verify the results of that deployment. Once the session code has been executed successfully, we must verify that the results of the execution match our expectations. 
 
-The below code snippet retrieves the value of interest which is named as `answer`. It is stored under the URef which is a part of the account's name keys. Then, the formatted value is asserted against our expected value to verify the success of the test program.
+The below code snippet retrieves the value of interest which is named as `answer`. It is stored under the URef which is a part of the account's named keys. Then, the formatted value is asserted against our expected value to verify the success of the test program.
 
 ```rust
 let result_key = *builder
