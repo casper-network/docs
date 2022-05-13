@@ -38,7 +38,7 @@ Importing the dependencies may vary with your project requirements. These are th
 - `casper-engine-test-support` - This is a helper crate that provides the interface to interact with the execution engine to execute the Wasm.
 - `casper-types` - These are Casper's custom types used in the program.
 
-### Step 3. Configuring the main.rs file
+### Step 3. Writing tests in the main.rs file
 
 You can include the `#![no_main]` annotation or include an empty main method to initialze the test program.
 
