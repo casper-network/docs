@@ -5,7 +5,7 @@ This section describes how to test a session code based on the unit testing mech
 
 The session code executes in the context of the account which sent the deploy. In this scenario, since the session code is executing in the corresponding account's contexts, it has the same access permissions as the corresponding account. 
 
-In this tutorial, we use the example used in the [sample contract](#sample-contract-used-to-build-the-session-code) section to build the test program.
+In this tutorial, we use the example from the [sample contract](#sample-contract-used-to-build-the-session-code) section to build the test program.
 
 
 ## Steps to Create and Run the Unit Test
