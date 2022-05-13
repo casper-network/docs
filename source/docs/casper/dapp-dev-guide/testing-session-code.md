@@ -121,7 +121,7 @@ fn should_add_two_numbers() {
 // Initialize an instance of the execution engine and assign it to the builder variable
 let mut builder = InMemoryWasmTestBuilder::default();
 
-// Set up genesis node
+// Execute the genesis process
 builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
 
 // Retrieve the contract wasm from the specified location and assign to the session code variable
