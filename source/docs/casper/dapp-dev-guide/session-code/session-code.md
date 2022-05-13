@@ -78,7 +78,7 @@ The following steps illustrate the process of writing session code and the impor
         `use casper_contract::contract_api::{account, runtime, storage, system};` this example uses account, runtime, storage, and system crates. However, you might need to import the crates relevant to your session code.
 
 ## Sample Session Code
-This sample code demonstrates a simple session code passing arguments, processing the arguments, and storing the result. In general, you will use session code for such operations. In this example, we call a contract that gets a donation amount, and we store the result in a URef.
+This sample code demonstrates a simple session code passing arguments, processing the arguments, and storing the result. In general, you will use session code for such operations. In this example, we call a contract that gets returns a value and we store the result in a URef, within the account's named keys.
 
 ```rust
 #![no_std]
