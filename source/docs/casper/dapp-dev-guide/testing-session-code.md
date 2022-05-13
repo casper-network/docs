@@ -3,7 +3,7 @@
 
 This section describes how to test a session code based on the unit testing mechanism. It's recommended to follow the [understanding session code](/dapp-dev-guide/writing-contracts/rust/#what-is-a-smart-contract) section before starting this tutorial. Here, we will cover how to test a successful session code execution and how to verify the success of the test program by asserting the return value.
 
-The session code executes in the context of the account which sent the deploy containing that session code. In this scenario, since the session code is executing in the corresponding account's contexts, it has the same access permissions as the corresponding account. 
+The session code executes in the context of the account which sent the deploy. In this scenario, since the session code is executing in the corresponding account's contexts, it has the same access permissions as the corresponding account. 
 
 In this tutorial, we use the example used in the [sample contract](#sample-contract-used-to-build-the-session-code) section to build the test program.
 
