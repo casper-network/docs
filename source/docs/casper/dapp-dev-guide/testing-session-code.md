@@ -20,7 +20,7 @@ This creates the `tests` folder with the `/src/main.rs` file and the `cargo.toml
 
 - `tests` - This is the name you provide for the folder.
 - `main.rs` - This is the file that contains the unit test code required to test the contract. You can rename the file if required.
-- `Cargo.toml` - This is the file with project configurations
+- `Cargo.toml` - This is the file with project configurations.
 
 
 ### Step 2. Adding the project dependencies
