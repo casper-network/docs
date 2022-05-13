@@ -34,7 +34,7 @@ casper-types = "1.5.0"
 ```
 Importing the dependencies may vary with your project requirements. These are the basic dependencies required by this project.
 
-- `casper-execution-engine` - This imports the functionalities of the execution engine which enables the wasm execution. Each node contains an instance of an execution engine within it.
+- `casper-execution-engine` - This imports the functionalities of the execution engine which enables the Wasm execution. Each node contains an instance of an execution engine within it.
 - `casper-engine-test-support` - This is a helper crate that provides the interface to interact with the execution engine to execute the Wasm.
 - `casper-types` - These are Casper's custom types used in the program.
 
@@ -96,8 +96,8 @@ Start with annotating the function with `#[test]` attribute. This indicates the 
 
 ```rust
 #[test]
-mod <your-unit-test-name>{
-   The testing logic goes here...
+fn <your-unit-test-name>{
+   Individual test function implementation...
 }
 ```
 
@@ -107,8 +107,8 @@ The overall test program structure should be as below:
 mod tests {
  
     #[test]
-        mod <your-unit-test-name>{
-            Individual test function implementation...
+    fn <your-unit-test-name>{
+        Individual test function implementation...
     } 
 }
 ```
