@@ -80,7 +80,7 @@ use casper_types::{
 - `casper_types` - These packages enable the general type imports to the test program.
 
 ### Step 5. Defining the constants 
-Runtime arguments are defined as constants. It is mandatory to use the exact names as in the original contract class to define these constants. These are dictated by the arguments specified by the session code. If your session code takes in different arguments, you should define them as constants at this point.
+The names of the runtime arguments are defined as constants. It is mandatory to use the exact names as in the original contract class to define these constants. These are dictated by the arguments specified by the session code. If your session code takes in different arguments, you should define them as constants at this point.
  
 ```rust
 const ARG_NUMBER_1: &str = "number_1";
