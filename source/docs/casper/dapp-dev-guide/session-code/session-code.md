@@ -1,5 +1,5 @@
 # Writing Session Code
-This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. You can use session code when the logic requires very little or no internal data to be tracked. Session code is required when interacting and accepting values being returned across the Wasm boundary
+This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. You can use session code when the logic requires very little or no internal data to be tracked. Session code is required when interacting and accepting values being returned across the Wasm boundary.
 
 :::note
 
@@ -7,7 +7,7 @@ Session code can be written in any programming language that compiles to WebAsse
 
 :::
 
-In the following sections we will explore the concept of session code, the project structure that is required for the session code to be tested and executed correctly, and a simple session code example.
+In the following sections we will explore the concept of session code, the project structure that is required for the session code to be tested and executed correctly, and a simple session code example.  
 
 ## What is Session Code?
 Session code is the simplest piece of logic you can execute on a Casper Network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. This means that the session code will run with the permissions of the account, such as having access to the main purse (the session code could transfer tokens out of the account's main purse). 
@@ -42,7 +42,7 @@ Top-Level Directory
 In the above directory structure, the `contract` folder contains the session code in the `main.rs` file and the needed dependencies in the `Cargo.toml` file. 
 The `tests` folder contains the code required to test the session code before it is deployed on a Casper Network.
 
-## Writing Session Code
+## Process of Writing Session Code
 The following steps illustrate the process of writing session code and the important components to include:
 
 1. Create a new top-level directory containing the session code and would also include another folder for tests, which will help us test the functionality of our session code. 
@@ -193,7 +193,8 @@ casper-client put-deploy \
     --chain-name casper-test \
     --secret-key <PATH> \
     --payment-amount <PAYMENT-AMOUNT> \
-    --session-path <SESSION-PATH>
+    --session-path <SESSION-PATH> \
+    --session-arg <"NAME:TYPE='VALUE'" OR "NAME:TYPE=null">
 ```
 
 -   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777.
@@ -201,4 +202,7 @@ casper-client put-deploy \
 -   `chain-name` - The chain-name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*. 
 -   `payment-amount` - The payment for the deploy in motes.  
 -   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer.
+-   `session-arg` - A named and typed argument, which is passed to the Wasm code.
+
+You can use this command `casper-client put-deploy --help` to view help information, which provides an updated list of supported arguments.
 
