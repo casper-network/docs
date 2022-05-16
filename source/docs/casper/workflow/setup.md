@@ -14,7 +14,7 @@ This section covers:
 
 You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
 
-Run the commands below to install the Casper client on most flavors of Linux and macOS (You should have [Rust](https://www.rust-lang.org/tools/install) installed, otherwise check the alternative installation methods below).
+Run the commands below to install the Casper client on most flavors of Linux and macOS. You should have [Rust](https://www.rust-lang.org/tools/install) installed, otherwise check the [alternative installation methods](#alternative-installation) below.
 
 ```bash
 cargo install casper-client
@@ -32,17 +32,21 @@ casper-client --help
 casper-client <command> --help
 ```
 
-### Alternative install methods
+### Alternative Installation Methods {#alternative-installation}
 
-#### Debian / Ubuntu based
+#### Debian / Ubuntu 
 
-Head to <https://repo.casperlabs.io/> and follow the instructions compatible with your distribution.
+Navigate to <https://repo.casperlabs.io/> and follow the instructions compatible with your distribution.
 
-#### Red Hat / CentOS based
+#### Red Hat / CentOS 
 
-Head to [the client's releases on GitHub](https://github.com/casper-ecosystem/casper-client-rs/releases) and download the RPM.
+Head to [GitHub](https://github.com/casper-ecosystem/casper-client-rs/releases) and download the `.rpm` file for the latest client release.
 
-Run: `sudo yum install casper-client-x-x-x*.rpm` (replace the filename with the actual RPM you downloaded).
+Run the following command by replacing the file's name with the one you downloaded.
+
+```bash
+sudo yum install casper-client-x-x-x*.rpm
+```
 
 In RHEL 5 and previous versions, you need to use the following command:
 
@@ -50,12 +54,11 @@ In RHEL 5 and previous versions, you need to use the following command:
 sudo yum localinstall casper-client-x-x-x*.rpm
 ```
 
-On Fedora, RedHat 8 and other more recent RPM based distributions you can use dnf to install packages:
+On Fedora, RedHat 8, and other more recent RPM-based distributions, you can also use `dnf` to install packages:
 
 ```bash
 sudo dnf install casper-client-x-x-x*.rpm
 ```
-
 
 
 ## Building the Client from Source {#building-the-client-from-source}
