@@ -153,7 +153,16 @@ Instructions for MacOS and Linux:
 (env) $ git clone https://github.com/casper-network/casper-node
 ```
 
-**Step 12.** Activate the NCTL environment with the following command.
+**Step 12.** Finally, clone the _casper-client-rs_ software in your working directory.
+
+Instructions for MacOS and Linux:
+
+```bash
+(env) $ git clone https://github.com/casper-ecosystem/casper-client-rs
+```
+
+
+**Step 13.** Activate the NCTL environment with the following command.
 
 Instructions for MacOS and Linux:
 
@@ -161,7 +170,7 @@ Instructions for MacOS and Linux:
 (env) $ source casper-node/utils/nctl/activate
 ```
 
-**Step 13.** Compile the NCTL binary scripts. The following command compiles both the _casper-node_ and the _casper-client_ in release mode.
+**Step 14.** Compile the NCTL binary scripts. The following command compiles both the _casper-node_ and the _casper-client_ in release mode.
 
 Instructions for MacOS and Linux:
 
@@ -175,7 +184,7 @@ The compilation takes some time, so it might be a perfect moment to get some cof
 
 :::
 
-**Step 14.** Set up all the assets required to run a local network, including binaries, chainspec, config, faucet, and keys. Also, spin up the network right after. The default network will have 10 nodes, with 5 active nodes and 5 inactive nodes.
+**Step 15.** Set up all the assets required to run a local network, including binaries, chainspec, config, faucet, and keys. Also, spin up the network right after. The default network will have 10 nodes, with 5 active nodes and 5 inactive nodes.
 
 Instructions for MacOS and Linux:
 
