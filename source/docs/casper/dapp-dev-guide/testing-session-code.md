@@ -101,18 +101,6 @@ fn <your-unit-test-name>{
 }
 ```
 
-The overall test program structure should be as below:
-```rust
-#[cfg(test)]
-mod tests {
- 
-    #[test]
-    fn <your-unit-test-name>{
-        Individual test function implementation...
-    } 
-}
-```
-
 Following is a code sample of a basic unit test for adding two numbers. `should_add_two_numbers` is the name given to this specific unit test.
 
 ```rust
@@ -176,16 +164,7 @@ assert_eq!(3, value);
 
 The above code snippet starts by initializing the test builder and the genesis request. Then, the contract Wasm is loaded to the session code object.  After that, the deploy object is created using the details like payment method, contract Wasm, and account address. Then, the deploy object is passed to the created execute request. Finally, the execution engine is invoked to process the execute request. Refer to [creating a test function](/dapp-dev-guide/testing/#deploy-the-smart-contract) for more details about each function. 
 
-### Step 7. Specifying the binary fields
-This step configures the contract file and wasm file path in the Cargo.toml file. This states that the test program uses the contract specified in the given path to execute the logic. Here, the file name 'main' is equivalent to your contract file name.
-
-```bash
-[[bin]]
-name = "contract"
-path = "source/main.rs"
-```
-
-### Step 8. Verifying the test results
+### Step 7. Verifying the test results
 In the above section, the session code is sent to the network. Now it's time to verify the results of that deployment. Once the session code has been executed successfully, we must verify that the results of the execution match our expectations. 
 
 The below code snippet retrieves the value of interest which is named as `answer`. It is stored under the URef which is a part of the account's named keys. Then, the formatted value is asserted against our expected value to verify the success of the test program.
@@ -221,7 +200,7 @@ assert_eq!(3, value);
 -   `Into_t()` : Converts the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type
 
 
-### Step 9. Running the test
+### Step 8. Running the test
 Use the below command to run the test.
 
 ```bash
