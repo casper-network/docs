@@ -76,7 +76,7 @@ use casper_types::{
 ```
 - `PathBuf` - This package supports loading the session code Wasm.
 - `casper_engine_test_support` - This package provides the interfaces to write tests and interact with an instance of the execution engine.
-- `casper_execution_engine` - This package imports the required classes from the execution engine including the genesis node and related functionalities.
+- `casper_execution_engine` - This package imports the Casper execution engine itself.
 - `casper_types` - These packages enable the general type imports to the test program.
 
 ### Step 5. Defining the constants 
