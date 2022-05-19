@@ -1,3 +1,7 @@
+---
+tags: ["smart contract developers","rust","put-deploy"]
+---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Calling Contracts with the Rust Client
