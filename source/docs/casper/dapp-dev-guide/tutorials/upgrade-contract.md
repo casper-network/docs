@@ -15,29 +15,37 @@ This tutorial examines how to upgrade an existing contract, a process similar to
 
 Here is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash.
 
-1. Create a contract package that can be versioned
+1. Create a contract in the most usual way, using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html)
 2. Add a new version of the contract using [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html)
 3. Build the new contract and generate the corresponding `.wasm` file
 4. Install the contract on the network via a deploy
 5. Verify that your new contract version works as desired
 
 
-### Step 1. Create a versioned contract package
+### Step 1. Create a new unlocked contract
 
-Create a new contract package using the [create_contract_package_at_hash](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.create_contract_package_at_hash.html#) function to store the new (versioned) contract under a key in global state.
+Create a new contract using the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) function and store the ContractHash returned under a key in global state for later access. Under the hood, the execution engine will create a contract package (a container for the contract) that can be versioned.
 
-You need the access key URef returned from `create_contract_package_at_hash` in your context, giving you access to your named keys. Without the access key URef, you cannot add new contract versions for security reasons.
+When creating the contract, you can specify the package name and access URef for further modifications. Without the access key URef, you cannot add new contract versions for security reasons. Optionally, you can also save the latest version of the contract package under a named key.
 
 ```rust
-    // Create a contract package for this contract
-    // Save its package hash and access URef for further modifications
-    let (contract_package_hash, access_uref): (ContractPackageHash, URef) =
-        storage::create_contract_package_at_hash();
-    runtime::put_key(HASH_KEY_NAME, contract_package_hash.into());
-    runtime::put_key(ACCESS_KEY_NAME, access_uref.into());
+    // Create a new contract and specify a package name and access URef for further modifications
+    let (stored_contract_hash, contract_version) = storage::new_contract(
+        contract_entry_points,
+        Some(contract_named_keys),
+        Some("contract_package_name".to_string()),
+        Some("contract_access_uref".to_string()),
+    );
+
+    // The hash of the installed contract will be reachable through a named key
+    runtime::put_key(CONTRACT_KEY, stored_contract_hash.into());
+
+    // The current version of the contract will be reachable through a named key
+    let version_uref = storage::new_uref(contract_version);
+    runtime::put_key(CONTRACT_VERSION_KEY, version_uref.into());
 ```
 
-The [simple counter example](https://github.com/casper-network/casper-node/blob/118a80650da8219aba6eb76d9b4611b7a88d9827/smart_contracts/contracts/client/counter-define/src/main.rs#L65-L68) shows you the essential structure of a contract package that can be versioned. Notice that in the `call` function, the contract is stored under a ContractPackageHash.
+This [simple counter example](https://github.com/casper-ecosystem/counter/blob/67a7eb8b306e5dcc9da9ff596987b6c4f0a98fd6/contracts/counter-define/src/main.rs#L79-L83) shows you a contract package that can be versioned.
 
 :::note
 
