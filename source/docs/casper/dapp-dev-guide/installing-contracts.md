@@ -2,7 +2,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Installing Contracts and Querying Global State
 
-This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust) guide, and covers the installation of Casper contracts using the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command. <!-- TODO add latest links when the content is live -->
+This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust) guide, and covers the installation of Casper contracts using the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
 
 ## Prerequisites
 
@@ -11,7 +11,7 @@ This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-gui
    - You have a [Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
    - You have enough CSPR tokens in your account to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](/workflow/token-transfer#2-the-faucet) to fund your testing account
 - You understand how to [write basic contract code](/dapp-dev-guide/writing-contracts/index.md) and session code
-- You have a contract Wasm to send to a Casper network
+- You have a contract Wasm to send to a Casper Network
 
 ## Installing a Contract in Global State {#installing-contract-code}
 
@@ -37,7 +37,7 @@ Once you call this command, it will return a deploy hash. You can use this hash 
 
 **Example:**
 
-Here is an example from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/walkthrough/#deploy-the-counter).
+Here we send a `counter-define.wasm` to a local NCTL network.
 
 ```bash
 casper-client put-deploy \
@@ -48,7 +48,7 @@ casper-client put-deploy \
     --session-path ./counter/target/wasm32-unknown-unknown/release/counter-define.wasm
 ```
 
-Verify the deploy using the deploy hash you received from `put-deploy`.
+To verify the deploy, call `get-deploy` and provide the deploy hash you received from `put-deploy`.
 
 ```bash
 casper-client get-deploy \
@@ -61,7 +61,7 @@ Here we look at how to query the global state to see when the network has succes
 
 ### Get the state root hash {#get-state-root-hash}
 
-First, you will need to get the state root hash. After sending deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you would be looking at past events.
+First, you need to get the state root hash. After sending deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you would be looking at past events.
 
 The state root hash identifies the current network state (global state). It is much like a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. We use it to query global state after sending deploys to the network.
 
@@ -69,7 +69,7 @@ The state root hash identifies the current network state (global state). It is m
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
-**Example:**
+Here is an example with the node address filled in:
 
 ```bash
 casper-client get-state-root-hash --node-address http://localhost:11101
@@ -77,7 +77,7 @@ casper-client get-state-root-hash --node-address http://localhost:11101
 
 ### Query global state {#query-global-state}
 
-Next, query the state of a Casper network at a given time, specified by the `state-root-hash` described above. You can dive into the data stored in global state using the query path argument `q`.
+Next, query the state of a Casper Network at a given time, specified by the `state-root-hash` described above. You can dive into the data stored in global state using the query path argument `q`.
 
 ```bash
 casper-client query-global-state \
@@ -93,13 +93,9 @@ The arguments used above are:
 -   `key` - The identifier for the query. It must be the account public key, account hash, contract package hash, transfer hash, or deploy hash
 -   `q` - An optional query path argument that allows you to drill into the specifics of a query with respect to the key
 
-**Example 1:**
+**Example 1 - Query your account:**
 
-To find details about the installed contract, query global state using your account hash. You can run the `account-address` command first if you need your account hash. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where we install a "counter" contract on the chain.
-
-```bash
-casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]
-```
+To find your account details, query global state using your account hash.
 
 ```bash
 casper-client query-global-state \
@@ -108,10 +104,10 @@ casper-client query-global-state \
   --key account-hash-1d17e3fdad268f866a73558d1ae45e1eea3924c247871cb63f67ebf1a116e66d
 ```
 
-Notice that the sample response contains several named keys, including "counter", "counter_package_name", and "version". You can use these values to query the contract state further, as shown in the next example.
+Here is how your account state would look. Notice that the sample response contains several named keys, including "counter", "counter_package_name", and "version". You can use these values to query the contract state further, as shown in the next example.
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary><b>Sample account state</b></summary>
 
 ```bash
 {
@@ -161,9 +157,19 @@ Notice that the sample response contains several named keys, including "counter"
 </details>
 <br></br>
 
-**Example 2:**
+:::note
 
-This example shows you how to query global state given a contract hash. We will use the contract hash from the sample response in Example 1 above.
+If you don't know your account hash, you can run this command:
+
+```bash
+casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]
+```
+
+:::
+
+**Example 2 - Query your contract:**
+
+This example shows how to query global state given a contract hash. We use the contract hash from the sample response in Example 1 above.
 
 ```bash
 casper-client query-global-state \
@@ -172,10 +178,10 @@ casper-client query-global-state \
   --key hash-22228188b85b6ee4a4a41c7e98225c3918139e9a5eb4b865711f2e409d85e88e
 ```
 
-The sample response contains useful details such as the `contract_package_hash`, the contract `entry_points`, and the `named_keys` for the contract.
+Here is how the sample contract would look and would contain details such as the `contract_package_hash`, the contract `entry_points`, and the `named_keys` for the contract.
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary><b>Sample contract state</b></summary>
 
 ```bash
 {
@@ -222,9 +228,9 @@ The sample response contains useful details such as the `contract_package_hash`,
 <br></br>
 
 
-**Example 3:**
+**Example 3 - Query a value using its key and the contract hash:**
 
-Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where a "count" variable is incremented and stored under a named key for the "counter" contract.
+Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where a "count" variable is incremented and stored under a named key.
 
 ```bash
 casper-client query-global-state \
@@ -234,7 +240,7 @@ casper-client query-global-state \
 ```
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary><b>Sample stored value</b></summary>
 
 ```bash
 {
@@ -257,9 +263,9 @@ casper-client query-global-state \
 </details>
 <br></br>
 
-**Example 4:**
+**Example 4 - Query a value using the account hash and named keys:**
 
-It is also possible to check the state of a specific contract variable in global state given the account hash under which the contract was installed.
+It is also possible to check the state of a specific contract variable in global state given the account hash under which the contract was installed. Here we query the named key "count", stored under another key identifying the contract and named "counter".
 
 ```bash
 casper-client query-global-state \ 
@@ -271,9 +277,9 @@ casper-client query-global-state \
 
 The response should be the same as in Example 3, above.
 
-**Example 5:**
+**Example 5 - Query contract package state:**
 
-Query the contract package hash to get the contract hash and contract version.
+You can query information about a contract package, such as the latest contract hash and contract version, given its contract package hash.
 
 ```bash
 casper-client query-global-state \
@@ -282,10 +288,10 @@ casper-client query-global-state \
   --state-root-hash 763e737cf55a298d54bcdfb4ee55526538a1a086128914b9cc25ccbdebbbb966
 ```
 
-The response will contain the `contract_hash`, which you will need to [call a contract by hash](calling-contracts.md#calling-contracts-by-hash) in the next section. You will also see the `access_key` for the `ContractPackage` and the current `contract_version`.
+Here is how the contract package details would look. The response would contain the `contract_hash`, which you would need to [call a contract by hash](calling-contracts.md#calling-contracts-by-hash) in the next section. You would also see the `access_key` for the `ContractPackage` and the current `contract_version`.
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary><b>Sample contract package state</b></summary>
 
 ```bash
 {
@@ -318,4 +324,3 @@ The response will contain the `contract_hash`, which you will need to [call a co
 ## What's Next? {#whats-next}
 
 - Learn [different ways to call contracts](calling-contracts.md) using the Casper command-line client
-- The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
