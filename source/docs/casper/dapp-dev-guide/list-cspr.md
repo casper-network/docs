@@ -12,7 +12,6 @@ This setup enables you to:
 
 -   Have a self-administered gateway to the Casper Network to get data and submit transactions
 -   Have full control over how much historical block data is retained
--   Maintain your service availability even if one node fails
 
 Casper nodes demand relatively high computing power. For specific requirements, please see [Hardware Requirements](../operators/hardware.md).
 
