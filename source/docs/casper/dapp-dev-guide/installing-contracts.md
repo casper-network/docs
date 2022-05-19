@@ -39,7 +39,7 @@ The arguments used above are:
 
 Once you call this command, it will return a deploy hash. You can use this hash to verify that the deploy successfully took place.
 
-**Example:**
+**Example - Install the contract:**
 
 Here we send a `counter-define.wasm` to a local NCTL network.
 
@@ -97,7 +97,7 @@ The arguments used above are:
 -   `key` - The identifier for the query. It must be the account public key, account hash, contract package hash, transfer hash, or deploy hash
 -   `q` - An optional query path argument that allows you to drill into the specifics of a query with respect to the key
 
-**Example 1 - Query your account:**
+**Example - Query the account:**
 
 To find your account details, query global state using your account hash.
 
@@ -171,9 +171,9 @@ casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]
 
 :::
 
-**Example 2 - Query your contract:**
+**Example - Query the contract:**
 
-This example shows how to query global state given a contract hash. We use the contract hash from the sample response in Example 1 above.
+This example shows how to query global state given a contract hash. We use the contract hash from the sample response above.
 
 ```bash
 casper-client query-global-state \
@@ -232,7 +232,7 @@ Here is how the sample contract would look and would contain details such as the
 <br></br>
 
 
-**Example 3 - Query a value using its key and the contract hash:**
+**Example - Query a value using its key and the contract hash:**
 
 Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where a "count" variable is incremented and stored under a named key.
 
@@ -267,7 +267,7 @@ casper-client query-global-state \
 </details>
 <br></br>
 
-**Example 4 - Query a value using the account hash and named keys:**
+**Example - Query a value using the account hash and named keys:**
 
 It is also possible to check the state of a specific contract variable in global state given the account hash under which the contract was installed. Here we query the named key "count", stored under another key identifying the contract and named "counter".
 
@@ -281,7 +281,7 @@ casper-client query-global-state \
 
 The response should be the same as in Example 3, above.
 
-**Example 5 - Query contract package state:**
+**Example - Query contract package state:**
 
 You can query information about a contract package, such as the latest contract hash and contract version, given its contract package hash.
 

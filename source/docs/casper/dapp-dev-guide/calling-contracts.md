@@ -35,7 +35,7 @@ The arguments used above are:
 -   `session-hash` - Hex-encoded hash of the stored contract to be called as the session
 -   `session-entry-point` - Name of the method that will be used when calling the session contract
 
-**Example:**
+**Example - Call a contract by hash:**
 
 In this example from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), a hash identifies a stored contract called "counter" with an entry-point called "counter-inc".
 
@@ -51,14 +51,14 @@ casper-client put-deploy \
 
 :::note
 
-This `put-deploy` command is nearly identical to the command used to [install the contract](installing-contracts.md#installing-contract-code). But, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed since the contract is already on the blockchain.
+This `put-deploy` command is nearly identical to the command used to [install the contract](installing-contracts.md#installing-contract-code). Here, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed in this example, since the contract is already on the blockchain and the entry point doesn’t return a value. If an entry point returns a value, use code to [interact with runtime return values](/dapp-dev-guide/tutorials/return-values-tutorial/).
 
 :::
 
 The sample response will contain a `deploy_hash`, which you need to use as described [here](installing-contracts.md#querying-global-state), to verify the changes in global state.
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary><b>Sample put-deploy response</b></summary>
 
 ```bash
 {
@@ -93,9 +93,9 @@ The arguments of interest are:
 -   `session-entry-point` - Name of the method that will be used when calling the session contract
 -   `session-arg` - For simple CLTypes, a named and typed arg is passed to the Wasm code. To see an example for each type, run the casper-client with '--show-arg-examples'
 
-**Example:**
+**Example - Use session arguments:**
 
-This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract entry point "transfer" with two arguments; one argument specifies the recipient, and the other specifies the amount to be transferred.
+This example demonstrates how to call a contract entry point "transfer" with two arguments; one argument specifies the recipient, and the other specifies the amount to be transferred.
 
 ```bash
 casper-client put-deploy 
@@ -129,7 +129,7 @@ The arguments of interest are:
 -   `session-entry-point` - Name of the method that will be used when calling the session contract
 -   `session-version` - Version of the called session contract. The latest will be used by default
 
-**Example:**
+**Example - Call a contract using the package hash and version:**
 
 In this example, we call a contract by its package hash and version number. The entry point invoked is "counter-inc", also from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md).
 
@@ -179,7 +179,7 @@ The arguments of interest are:
 -   `session-name` - Name of the stored contract (associated with the executing account) to be called as the session
 -   `session-entry-point` - Name of the method that will be used when calling the session contract
 
-**Example:**
+**Example - Call a contract using a named key:**
 
 This example uses a counter contract stored in global state under the "counter" key defined in the code snippet above and an entry-point called "counter_inc" that increments the counter.
 
@@ -230,7 +230,7 @@ This example code stores the "contract_package_name" into a NamedKey, which you 
 
 ```
 
-**Example 1:**
+**Example - Specify the package name and version number:**
 
 This example calls the entry point "counter-inc" as part of the contract package name "counter_package_name", version 1, without any runtime arguments. 
 
@@ -245,9 +245,9 @@ casper-client put-deploy \
     --session-version 1
 ```      
 
-**Example 2:**
+**Example - Use the package name without specifying the version:**
 
-This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/transfers/#invoking-balance_of-entry-point) and demonstrates how to call a contract that is part of the `erc20_test_call` package using runtime arguments. The call defaults to the highest enabled version since no version was specified.
+This example demonstrates how to call a contract that is part of the `erc20_test_call` package using runtime arguments. The call defaults to the highest enabled version since no version was specified.
 
 ```bash
     casper-client put-deploy \
@@ -262,9 +262,9 @@ This example comes from the [ERC-20 Sample Guide](https://docs.casperlabs.io/wor
 ```
 
 
-## Calling a Contract from Another Contract {#calling-a-contract-from-another}
+## Calling a Contract using Wasm {#calling-a-contract-using-wasm}
 
-The Wasm that you install in global state can act on another Wasm and change another contract's state. In this case, you would use the same `put-deploy` command as when [installing a contract in query global state](installing-contracts.md).
+Session code or contract code (compiled to Wasm) can act on a contract and change its state. In this case, you would use the `put-deploy` command as when [installing a contract](installing-contracts.md):
 
 ```bash
 casper-client put-deploy \
@@ -272,15 +272,15 @@ casper-client put-deploy \
     --chain-name [CHAIN_NAME] \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
+    --session-path [PATH]/[FILE_NAME].wasm
 ```
 
 The argument of interest is:
--   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
+-   `session-path` - The path to the compiled Wasm on your computer
 
-**Example:**
+**Example - Session code acting on a contract:**
 
-The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) shows you how to change the state of a contract (counter-define.wasm) using another contract (counter-call.wasm).
+The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) shows you how to change the state of a contract (counter-define.wasm) using session code (counter-call.wasm).
 
 ```bash
 
@@ -293,15 +293,12 @@ casper-client put-deploy \
 
 ```
 
-<!-- TODO - add this section when the link is ready.
 ## Calling Contracts that Return a Value
 
-Visit the [Interacting with Runtime Return Values](/dapp-dev-guide/tutorials/return-values-tutorial/) tutorial to learn to call a contract that returns a value using session code or contract code.
--->
+Visit the [Interacting with Runtime Return Values](/dapp-dev-guide/tutorials/return-values-tutorial/) tutorial to learn how to call a contract that returns a value using session code or contract code.
 
 ## What's Next? {#whats-next}
 
-- [The ERC-20 Sample Guide](https://docs.casperlabs.io/workflow/erc-20-sample-guide/) has many useful examples
 - The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
 - Also, look into the [Tutorials for Smart Contract Authors](/tutorials/)
 - See the rest of the [Developer How To Guides](/workflow/#developer-guides)
