@@ -20,7 +20,7 @@ Once you deploy this smart contract, you cannot change it. As a result, you can 
 
 :::
 
-The account code execution starts in `main.rs`, where the `call` function calls the `execute` function. This code is similar to a script that executes and implements your account behavior. Remember that when you send a contract (WASM file) to the network, the contract execution engine will invoke the `call` function. 
+The account code execution starts in `main.rs`, where the `call` function calls the `execute` function. This code is similar to a script that executes and implements your account behavior. Remember that when you send a contract (Wasm file) to the network, the contract execution engine will invoke the `call` function. 
 
 The following functions defined in `main.rs` will help you manage your keys. 
 
@@ -39,7 +39,7 @@ In the next section, you will prepare and build the smart contract for deploymen
 
 Before building the smart contract for this tutorial, you need to [install Rust](../../getting-started.md) and [set up the development environment](../../getting-started.md#development-environment-setup).
 
-Navigate to the `keys-manager` folder and compile the smart contract to generate the corresponding WASM file.
+Navigate to the `keys-manager` folder and compile the smart contract to generate the corresponding Wasm file.
 
 ```bash
 cd keys-manager

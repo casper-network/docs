@@ -77,7 +77,7 @@ Substitute the state root hash and account hash values you just retrieved into t
 
 Let us try deploying the _counter-define_ contract to the chain. First, we need to compile it.
 
-The makefile included in the repository makes compilation trivial. With these two commands, we can build (in release mode) and test the contract before deploying it. _make prepare_ sets the WASM target and _make test_ builds the contracts and verifies them.
+The makefile included in the repository makes compilation trivial. With these two commands, we can build (in release mode) and test the contract before deploying it. _make prepare_ sets the Wasm target and _make test_ builds the contracts and verifies them.
 
 ```bash
 cd counter
@@ -174,7 +174,7 @@ casper-client put-deploy \
     --session-entry-point "counter_inc"
 ```
 
-Notice that this command is nearly identical to the command used to deploy the contract. However, instead of _session-path_ pointing to the WASM binary, we have _session-name_ and _session-entry-point_ identifying the on-chain contract and its associated function to execute. There is no WASM file needed since the contract is already on the blockchain.
+Notice that this command is nearly identical to the command used to deploy the contract. However, instead of _session-path_ pointing to the Wasm binary, we have _session-name_ and _session-entry-point_ identifying the on-chain contract and its associated function to execute. There is no Wasm file needed since the contract is already on the blockchain.
 
 ## View the Updated Network State Again {#view-the-updated-network-state-again}
 

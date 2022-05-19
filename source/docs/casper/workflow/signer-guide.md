@@ -14,7 +14,7 @@ To install the CaperLabs Signer extension, follow these steps:
 
 :::note
 
-Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to _Step 4_.
+Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to _Step 4_.
 
 :::
 

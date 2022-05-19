@@ -42,7 +42,7 @@ casper-client put-deploy \
     --session-path <SESSION-PATH>
 ```
 
-1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
+1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777. You can find a list of trusted peers in network's configuration file, `config.toml`. Here is an [example](https://github.com/casper-network/casper-node/blob/dev/resources/production/config-example.toml#L131). You may send deploys to one of the trusted nodes or use them to query other online nodes.
 2. `secret-key` - The file name containing the secret key of the account paying for the deploy
 3. `chain-name` - The chain-name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*. As you can see, this example uses the Testnet
 4. `payment-amount` - The payment for the deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-price) below
@@ -331,7 +331,7 @@ casper-client query-global-state --help
 
 Dependent upon the complexity and needs of the deployment in question, several options exist to allow users to pay for smart contract execution.
 
-The simplest way to pay for a deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional WASM ran within will come at an additional cost on top of the payment.
+The simplest way to pay for a deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional Wasm ran within will come at an additional cost on top of the payment.
 
 You may find the host side functionality of standard payment insufficient for your purposes. In this event, Casper provides the following options for custom payment code:
 

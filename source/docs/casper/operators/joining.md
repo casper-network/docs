@@ -26,7 +26,7 @@ make setup-rs
 make build-client-contracts
 ```
 
-These commands will build all the necessary WASM files. You can use these contracts for bonding, retrieving rewards and unbonding:
+These commands will build all the necessary Wasm files. You can use these contracts for bonding, retrieving rewards and unbonding:
 - activate_bid.wasm - reactivates an ejected validator
 - add_bid.wasm - enables bonding for validator stake
 - delegate.wasm - delegates stake

@@ -98,7 +98,7 @@ sudo snap install cmake
 
 No, smart contracts cannot interact with the world outside of the blockchain on which they live. For example, a smart contract cannot act as a REST endpoint or data source. Smart contracts can interact with other contracts in the same environment, or with compatible external libraries. When creating an external library to interact with a Casper smart contract, consider the following:
 
-* WASM is expressed as `little-endian` by default. Check for endianness compatibility.
+* Wasm is expressed as `little-endian` by default. Check for endianness compatibility.
 * As `wasm32-unknown-unknown` is a 32-bit platform, it cannot support 64-bit external code. Your library needs to be compatible with 32-bit code.
 * Consider a library that supports `no_std`.
 * Try to avoid native operating system calls. If the library uses the filesystem, sockets, or other native OS functionality, then it may not work with a Casper smart contract.
@@ -119,7 +119,7 @@ Refer to the [Casper Command-line Client](https://docs.casperlabs.io/workflow/se
 
 Native system transfers have a fixed gas cost. Calling system contracts by their hashes also has a fixed cost.
 
-If two calls with different arguments but for the same hash show different gas costs, it is a result of executed WASM code. Different arguments may lead to different code paths and executed opcodes. You cannot predict the number of executed opcodes or host functions.
+If two calls with different arguments but for the same hash show different gas costs, it is a result of executed Wasm code. Different arguments may lead to different code paths and executed opcodes. You cannot predict the number of executed opcodes or host functions.
 
 If the calls use the same arguments, yet the cost is increasing, you might consider reviewing your global state usage. There is a chance that you are reading a collection from the global state, updating it and writing back with a larger size.
 
@@ -236,14 +236,14 @@ There are two types of action that an account can perform: a deploy and key mana
 You may also reference the following two documents for additional information:
 
 - [Accounts](https://docs.casperlabs.io/design/accounts)
-- [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig)
+- [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig/)
 
 </details>
 
 <details>
 <summary><b>How is 'Keys-manager.js' used in the Multi-Signature Tutorial?</b></summary>
 
-In the [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig), `scenario-*.js` accesses functions from `key-manager.js` through `const keyManager = require('./key-manager');`.
+In the [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig/), `scenario-*.js` accesses functions from `key-manager.js` through `const keyManager = require('./key-manager');`.
 
 </details>
 

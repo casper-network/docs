@@ -20,21 +20,6 @@ module.exports = {
         },
         "workflow/delegate",
         "workflow/undelegate",
-        {
-            type: "category",
-            label: "ERC-20 Sample Guide",
-            collapsible: true,
-            collapsed: true,
-            items: [
-                "workflow/erc-20-sample-guide/index",
-                "workflow/erc-20-sample-guide/setup",
-                "workflow/erc-20-sample-guide/query",
-                "workflow/erc-20-sample-guide/transfers",
-                "workflow/erc-20-sample-guide/approvals",
-                "workflow/erc-20-sample-guide/final-balance",
-            ],
-        },
-        "workflow/erc20-token-deployment-guide",
         "workflow/contribute",
     ],
     "dapp-dev-guide": [
@@ -49,6 +34,8 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/sdkspec/introduction",
+                "dapp-dev-guide/sdkspec/guidance",
+                "dapp-dev-guide/sdkspec/json-rpc-minimal",
                 "dapp-dev-guide/sdkspec/json-rpc-transactional",
                 "dapp-dev-guide/sdkspec/json-rpc-informational",
                 "dapp-dev-guide/sdkspec/json-rpc-pos",
@@ -107,20 +94,6 @@ module.exports = {
                 "dapp-dev-guide/tutorials/index",
                 {
                     type: "category",
-                    label: "CEP-47 Tutorial",
-                    collapsible: true,
-                    collapsed: true,
-                    items: [
-                        "dapp-dev-guide/tutorials/cep47/index",
-                        "dapp-dev-guide/tutorials/cep47/prepare",
-                        "dapp-dev-guide/tutorials/cep47/implementation",
-                        "dapp-dev-guide/tutorials/cep47/deploy",
-                        "dapp-dev-guide/tutorials/cep47/contract-interaction",
-                        "dapp-dev-guide/tutorials/cep47/test",
-                    ],
-                },
-                {
-                    type: "category",
                     label: "A Counter Contract Tutorial",
                     collapsible: true,
                     collapsed: true,
@@ -147,6 +120,7 @@ module.exports = {
                         "dapp-dev-guide/tutorials/multi-sig/additional",
                     ],
                 },
+                "dapp-dev-guide/tutorials/return-values-tutorial",
                 "dapp-dev-guide/tutorials/upgrade-contract",
                 "dapp-dev-guide/tutorials/transfer-token-to-contract",
             ],
@@ -218,5 +192,5 @@ module.exports = {
         "glossary/Y",
         "glossary/Z",
     ],
-    staking: ["staking/index", "workflow/staking", "workflow/delegate"],
+    staking: ["staking/index", "workflow/staking-ledger", "workflow/staking", "workflow/delegate"],
 };
