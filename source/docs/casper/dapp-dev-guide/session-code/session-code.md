@@ -65,8 +65,8 @@ The following steps illustrate the process of writing session code and the impor
 
     :::
 
-    -   `casper-contract = "1.4.3"` - You need to import the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) as it provides the SDK for the execution engine (EE).
-    -   `casper-types = "1.4.6"` - You need to import the [casper-types](https://docs.rs/casper-types/latest/casper_types/) crate as this crate includes the types that the node uses. This is necessary for the execution engine (EE) to understand and interpret the session code.  
+    -   `casper-contract = "1.4.4"` - You need to import the [casper-contract](https://crates.io/crates/casper-contract) as it provides the SDK for the execution engine (EE). You can read more about it [here](https://docs.rs/casper-contract/latest/casper_contract/).
+    -   `casper-types = "1.5.0"` - You need to import the [casper-types](https://crates.io/crates/casper-types) crate as this crate includes the types that the node uses. This is necessary for the execution engine (EE) to understand and interpret the session code.  You can read more about it [here](https://docs.rs/casper-types/latest/casper_types/).
 
     You can find the latest versions of the dependencies at https://crates.io/.
     
