@@ -18,7 +18,7 @@ Session code is the simplest piece of logic you can execute on a Casper Network.
 The following points try to explain the difference between session code and contract code:
 
 - Session code and contract code run in two different type of contexts. Session code always executes in the context of the account that signed the deploy that contains the session code. This means that when a `put_key` call is made within the body of the session code, the key is added to the account's named keys. 
-- Conversely, contract code executes in its own context. Which means that when `put-key` call is made within the contract's execution, the key is inserted into the contract's context. So, the key will appear in the contract's named keys.
+- Conversely, contract code executes in its own context. Which means that when `put_key` call is made within the contract's execution, the key is inserted into the contract's context. So, the key will appear in the contract's named keys.
 - Session code has only one entry point, that is the `call` function, which you can use to interact with the session code. 
 - A contract can have multiple entry points that will help you interact with the contract code. 
 
