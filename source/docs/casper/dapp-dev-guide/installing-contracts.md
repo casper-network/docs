@@ -1,3 +1,7 @@
+---
+tags: ["smart contract developers","rust","put-deploy"]
+---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Installing Contracts and Querying Global State
