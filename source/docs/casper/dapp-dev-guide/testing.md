@@ -2,7 +2,7 @@
 
 ## Introduction
 
-As part of the Casper local Rust contract development environment, we provide a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/). This framework allows testing of new contracts without running a full node. Instead, it creates a simulated instance of the Casper execution engine, which allows for monitoring of changes to global state using assertions and confirms the successful sending of a Deploy containing the smart contract.
+As part of the Casper local Rust contract development environment, we provide a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/). This framework allows testing of new contracts without running a full node. Instead, it creates an instance of the Casper execution engine, which allows for monitoring of changes to global state using assertions and confirms the successful sending of a Deploy containing the smart contract.
 
 Our provided test support crate is only one option for testing your Deploys prior to sending them to global state. It provides a degree of assistance, but you are free to create your own testing framework if you prefer.
 
