@@ -4,7 +4,7 @@ In a Caper network [`Keys`](../../dapp-dev-guide/understanding-hash-types#hash-a
 
 Individual changes to data stored within the `NamedKeys` would require deserialization of the entire `NamedKey` structures, which would have a negative impact by increasing the gas costs over time. Additionally, users storing large subsets of mapped data structures would face the same deep copy problem where minor or single updates required the complete deserialization of the map structure, leading to increased gas costs.
 
-As a solution to this problem, the Casper platform provides the [`Dictionary`](https://github.com/casper-ecosystem/contract-dictionary-example/blob/master/README.md) feature, which allows users a more efficient and scalable means to aggregate data over time.
+As a solution to this problem, the Casper platform provides the [`Dictionary`](https://github.com/casper-ecosystem/contract-dictionary-example) feature, which allows users a more efficient and scalable means to aggregate data over time.
 
 ## Seed URefs
 
