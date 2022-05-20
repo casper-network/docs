@@ -20,21 +20,6 @@ module.exports = {
         },
         "workflow/delegate",
         "workflow/undelegate",
-        {
-            type: "category",
-            label: "ERC-20 Sample Guide",
-            collapsible: true,
-            collapsed: true,
-            items: [
-                "workflow/erc-20-sample-guide/index",
-                "workflow/erc-20-sample-guide/setup",
-                "workflow/erc-20-sample-guide/query",
-                "workflow/erc-20-sample-guide/transfers",
-                "workflow/erc-20-sample-guide/approvals",
-                "workflow/erc-20-sample-guide/final-balance",
-            ],
-        },
-        "workflow/erc20-token-deployment-guide",
         "workflow/contribute",
     ],
     "dapp-dev-guide": [
@@ -214,5 +199,5 @@ module.exports = {
         "glossary/Y",
         "glossary/Z",
     ],
-    staking: ["staking/index", "workflow/staking", "workflow/delegate"],
+    staking: ["staking/index", "workflow/staking-ledger", "workflow/staking", "workflow/delegate"],
 };
