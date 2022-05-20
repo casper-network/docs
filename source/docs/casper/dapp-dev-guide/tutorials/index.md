@@ -9,9 +9,9 @@ The following tutorials present several Casper features in depth:
 
 | Title                                                       | Description                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |
-|[CEP-47 Tutorial](https://github.com/casper-ecosystem/casper-nft-cep47/blob/master/README.md)                            | Implementing the CEP-47 Casper NFT standard                      |
+|[NFTs on Casper](https://github.com/casper-ecosystem/casper-nft-cep47/blob/master/README.md)                            | Implementing the Casper NFT standard                      |
 |[Counter Contract Tutorial](counter/index.md)                | A simple example contract that maintains a counter variable      |
-|[ERC-20 Implementation](https://github.com/casper-ecosystem/erc20/blob/master/TUTORIAL.md#contract-implementation)              | Implement the ERC-20 standard for Casper                         |
+|[Fungible Tokens on Casper](https://github.com/casper-ecosystem/erc20/blob/master/docs/TUTORIAL.md)              | Implement the Casper Fungible Token standard                         |
 |[Key-Value Storage with Casper DSL](kv-storage-tutorial.md)  | Design a simple contract to store a value and use the Casper DSL |
 |[Multi-Signatures and Key Recovery](multi-sig/index.md)      | Learn to sign transactions with multiple keys                    |
 |[Interacting with Runtime Return Values](return-values-tutorial.md)| Learning how to return a value using contract code         |
