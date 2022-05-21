@@ -77,7 +77,7 @@ module.exports = {
             items: [
                 "dapp-dev-guide/writing-contracts/index",
                 "dapp-dev-guide/getting-started",
-                "dapp-dev-guide/session-code",
+                "dapp-dev-guide/writing-contracts/session-code",
                 "dapp-dev-guide/writing-contracts/rust",
                 "dapp-dev-guide/installing-contracts",
                 "dapp-dev-guide/calling-contracts",
