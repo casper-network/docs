@@ -71,19 +71,13 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Writing Session Code",
-            collapsible: true,
-            collapsed: true,
-            items: ["dapp-dev-guide/session-code/index", "dapp-dev-guide/session-code/session-code"],
-        },
-        {
-            type: "category",
             label: "Writing Smart Contracts",
             collapsible: true,
             collapsed: true,
             items: [
                 "dapp-dev-guide/writing-contracts/index",
                 "dapp-dev-guide/getting-started",
+                "dapp-dev-guide/session-code/session-code",
                 "dapp-dev-guide/writing-contracts/rust",
                 "dapp-dev-guide/installing-contracts",
                 "dapp-dev-guide/calling-contracts",
