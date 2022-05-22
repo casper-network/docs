@@ -27,6 +27,7 @@ module.exports = {
         "dapp-dev-guide/why-build-on-casper",
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
+        "dapp-dev-guide/dictionaries",
         {
             type: "category",
             label: "Casper SDK Standard",
