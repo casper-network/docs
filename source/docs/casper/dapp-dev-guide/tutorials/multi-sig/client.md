@@ -26,7 +26,7 @@ nctl-view-faucet-account
 
 ## Setting up the Client {#setting-up-the-client}
 
-This client code expects a compiled WASM file in the `contract` folder and a local network called `casper-net-1`.
+This client code expects a compiled Wasm file in the `contract` folder and a local network called `casper-net-1`.
 
 Now you need to specify the configuration needed for your client to communicate with the network:
 
@@ -56,7 +56,7 @@ If you would like to customize your setup further, you can set other optional en
 
 | Variable        | Description                                                  | Default Value                                                         |
 | --------------- | ------------------------------------------------------------ | --------------------------------------------------------------------- |
-| WASM_PATH       | The path of the compiled WASM contract.                      | `../contract/target/wasm32-unknown-unknown/release/keys-manager.wasm` |
+| WASM_PATH       | The path of the compiled Wasm contract.                      | `../contract/target/wasm32-unknown-unknown/release/keys-manager.wasm` |
 | NETWORK_NAME    | The name of your local network set up by NCTL.               | `casper-net-1`                                                        |
 | FUND_AMOUNT     | Number of motes that accounts will be funded.                | `10000000000000`                                                      |
 | PAYMENT_AMOUNT  | Number of motes that will be used as payment for deploys.    | `100000000000`                                                        |
@@ -70,7 +70,7 @@ npm install
 
 ## Testing the Client {#testing-the-client}
 
-Navigate to your `/keys-manager/client` folder and run the _keys-manager_ using _npm_. Your WASM file's path is relative to the `client` folder, so you need to run the file from here.
+Navigate to your `/keys-manager/client` folder and run the _keys-manager_ using _npm_. Your Wasm file's path is relative to the `client` folder, so you need to run the file from here.
 
 ```bash
 npm run start:atomic
@@ -250,15 +250,6 @@ After the transfer of funds, the client code removes both deployment accounts in
 ```
 </details>
 
-You can now employ a similar strategy to set up your account using multiple keys.  
+You can now employ a similar strategy to set up your account using multiple keys, see [Setting up a Multi-sig Account](example.md).  
 
-<!-- ### Key Management Restrictions
 
-This section explains a few rules that apply to key management:
-
-- Set the deployment threshold lower than or equal to the key-management threshold
-- Set the deployment threshold lower than or equal to all other thresholds
-- Ensure the account used to set the thresholds has sufficient permissions
-- Set the thresholds to a value lower than the total weight of associated keys -->
-
-We offer some additional examples of account management in the next section.

@@ -1,4 +1,4 @@
-# Getting Started
+# Getting Started with Rust
 
 This guide covers the basic tools you will need to set up your first Casper smart contract. You will also be able to build a sample smart contract and run a few basic tests on it on your local machine.
 
@@ -94,13 +94,13 @@ cargo casper my-project
 
 If you look inside the newly-created _my-project_ folder, you will find two crates: `contract` and `tests`. This is a complete basic smart contract that saves a value, passed as an argument, on the blockchain. The `tests` crate provides a runtime environment of the Casper virtual machine, and a basic smart contract test.
 
-### Compiling to WASM {#compiling-to-wasm}
+### Compiling to Wasm {#compiling-to-wasm}
 
-The Casper blockchain uses WebAssembly (WASM) in its runtime environment. Compilation targets for WASM are available for Rust, giving developers access to all the Rust ecosystem tools when developing smart contracts.
+The Casper blockchain uses WebAssembly (Wasm) in its runtime environment. Compilation targets for Wasm are available for Rust, giving developers access to all the Rust ecosystem tools when developing smart contracts.
 
-* Note: WASM allows for the use of other languages, including but not limited to: C/C++, C#, Go, Julia, Lobster and ZIG.
+* Note: Wasm allows for the use of other languages, including but not limited to: C/C++, C#, Go, Julia, Lobster and ZIG.
 
-To compile the smart contract into WASM, go into the _my-project_ folder, and run the following commands:
+To compile the smart contract into Wasm, go into the _my-project_ folder, and run the following commands:
 
 ```bash
 cd my-project

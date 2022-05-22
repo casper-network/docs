@@ -26,7 +26,7 @@ make setup-rs
 make build-client-contracts
 ```
 
-These commands will build all the necessary WASM files. You can use these contracts for bonding, retrieving rewards and unbonding:
+These commands will build all the necessary Wasm files. You can use these contracts for bonding, retrieving rewards and unbonding:
 - activate_bid.wasm - reactivates an ejected validator
 - add_bid.wasm - enables bonding for validator stake
 - delegate.wasm - delegates stake
@@ -59,11 +59,15 @@ casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20
 casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20 | jq -r .result.block.hash
 ```
 
-A good IP to use above are those listed in your `config.toml` as `known_addresses`. For more information on trusted hash, see [Trusted Hash for Synchronizing](setup#trusted-hash-for-synchronizing).
+For more information on trusted hash, see [Trusted Hash for Synchronizing](../setup/#trusted-hash-for-synchronizing).
+
+### Known Addresses {#known-addresses}
+
+For the node to connect to a network, the node needs a set of trusted peers for that network. For [Mainnet](https://cspr.live/), these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least two trusted IP addresses for peers in that network. Here is an [example configuration](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml). The [casper-protocol-release](https://github.com/casper-network/casper-protocol-release) repository stores configurations for various environments, which you can also use as examples.
 
 ### Updating `config.toml` file {#updating-config-file}
 
-At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. For more information and the path to the `config.toml` file, see [Config File](setup#config-file).
+At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. For more information and the path to the `config.toml` file, see [Config File](../setup/#config-file).
 
 ```
 # ================================

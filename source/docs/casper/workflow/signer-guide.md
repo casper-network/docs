@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. The CSPR wallet can be used to transfer CSPR tokens to another user, delegate stake, or ungelegate stake. The Casper Signer can be used for more than one CSPR account and all the accounts are securely stored in a vault, which is a mechanism to protect online information with a password. You set a password for the vault while creating a Casper Signer account. To login using Casper Signer, you must download and install the CasperLabs Signer extension for your browser. The following sections take you through the process of downloading and signing in to the Casper Signer.
 
-> **Note**: These steps use the [cspr.live](https://cspr.live/) as an example, you can install and setup your Signer account on any Casper Network [block explorer](block-explorer). 
+> **Note**: These steps use the [cspr.live](https://cspr.live/) as an example, you can install and setup your Signer account on any Casper Network [block explorer](../block-explorer/). 
 
 ### 1.1 Installing the CasperLabs Signer Extension
 
@@ -14,7 +14,7 @@ To install the CaperLabs Signer extension, follow these steps:
 
 :::note
 
-Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to _Step 4_.
+Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to _Step 4_.
 
 :::
 
@@ -48,8 +48,8 @@ To log in to the Casper Signer, you must create a vault and import or create acc
 
 2. If you have already created a password for your vault, the Unlock Vault pop-up window is displayed. Enter your password and click **UNLOCK**.
 3. You can now import an account or create a new one.
-    1. If you don’t have any existing cryptographic keys, you must create a new account. For more information on creating a new account, see [Creating an Account](signer-guide#2---creating-an-account).
-    2. If you have a set of keys for your account, you can just import the secret key in the Casper Signer. For more information on importing an existing account, see [Importing an Account](signer-guide#3-importing-an-account).
+    1. If you don’t have any existing cryptographic keys, you must create a new account. For more information on creating a new account, see [Creating an Account](#2-creating-an-account).
+    2. If you have a set of keys for your account, you can just import the secret key in the Casper Signer. For more information on importing an existing account, see [Importing an Account](#3-importing-an-account).
 
 **Figure 1**: Casper Signer Home (when you have no existing accounts) <img src={useBaseUrl("/image/tutorials/signer/first-home.png")} alt="Casper Signer Home" width="200" />
 
@@ -71,7 +71,7 @@ To create an account, do the following:
 
 :::note
 
-It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. See [Download Active Keys](signer-guide#44-download-active-keys) for more information.
+It is highly recommended that you download and save your account keys in a safe location (preferably offline). This will allow you to recover your account in case you lose access to your vault. See [Download Active Key](#44-download-active-key) for more information.
 
 :::
 
@@ -116,7 +116,7 @@ This feature allows you to view all the websites and decentralized applications 
 You can use the Casper Signer to connect to various websites and dApps. To connect to a website or dApp, do the following:
 
 1.  Navigate to the website or dApp that is integrated with the Signer.
-2.  Log in to your Signer, for more details see [Logging in to the Casper Signer](signer-guide#12-logging-in-to-the-casper-signer).
+2.  Log in to your Signer, for more details see [Logging in to the Casper Signer](#12-logging-in-to-the-casper-signer).
 3.  On the Signer home, the top bar displays DISCONNECTED. Click this bar to connect to the website. When the website is connected to the Casper Signer, the top bar displays CONNECTED.
 4.  Click the main menu icon <img src={useBaseUrl("/image/tutorials/signer/main-icon.png")} width="25" class="inline-img" /> to open the main menu and select **Connected Sites**. The current website is displayed in the list of connected sites.
 5.  To connect to a site, click the connect icon next to the name of the website.
@@ -156,7 +156,7 @@ To view your account information, do the following:
 
 ## 7. Accessing the CSPR Wallet from a Block Explorer
 
-Once you are logged in to the Casper Signer, you can access the wallet for each account registered in the Signer. For more information on how to log in to the Signer, see [Logging in to the Casper Signer](signer-guide#12-logging-in-to-the-casper-signer).
+Once you are logged in to the Casper Signer, you can access the wallet for each account registered in the Signer. For more information on how to log in to the Signer, see [Logging in to the Casper Signer](#12-logging-in-to-the-casper-signer).
 
 Alternatively, you can follow these steps to log in to your Signer/CSPR wallet:
 

@@ -31,7 +31,7 @@ Multiple versioned folders will exist on a system when upgrades are set up.
 
 :::
 
-The following is the state of the filesystem after installing the `casper-client` and `casper-node-launcher` Debian packages, and also after running the script `/etc/casper/pull_casper_node_version.sh`:
+The following is the state of the filesystem after installing the `casper-client` and `casper-node-launcher` Debian packages, and also after running the command `sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf` (Use casper-test.conf if on testnet).
 
 ### `/usr/bin/` {#usrbin}
 
@@ -45,7 +45,7 @@ The default location for executables from the Debian package install is `/usr/bi
 This is the default location for configuration files. It can be overwritten with the `CASPER_CONFIG_DIR` environment variable. The paths in this document assume the default configuration file location of `/etc/casper`. The data is organized as follows:
 
 - `delete_local_db.sh` - Removes `*.lmdb*` files from `/var/lib/casper/casper-node`
-- `pull_casper_node_version.sh` - Pulls `bin.tar.gz` and `config.tar.gz` from [genesis.casperlabs.io](http://genesis.casperlabs.io/) for a specified protocol version and extracts them into `/var/lib/bin/<protocol_version>` and `/etc/casper/<protocol_version>`
+- `pull_casper_node_version.sh` - Pulls `bin.tar.gz` and `config.tar.gz` from [genesis.casperlabs.io](https://genesis.casperlabs.io/) for a specified protocol version and extracts them into `/var/lib/bin/<protocol_version>` and `/etc/casper/<protocol_version>`
 - `config_from_example.sh` - Gets external IP to replace and create the `config.toml` from `config-example.toml`
 - `node_util.py` - A script that will be replacing other scripts and is the preferred method of performing the actions of `pull_casper_node_version.sh`, `config_from_example.sh`, and `delete_local_db.sh`.  Other scripts will be deprecated in future releases of `casper-node-launcher`.
 - `casper-node-launcher-state.toml` - The local state for the `casper-node-launcher` which is created during the first run
@@ -105,11 +105,11 @@ This command will do the following:
 
 ## Client Installation {#client-installation}
 
-The [Prerequisites](../workflow/setup#the-casper-command-line-client) page lists installation instructions for the Casper client.
+The [Prerequisites](/workflow/setup/#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 ## Create and Fund Keys {#create-fund-keys}
 
-The Rust client generates keys via the `keygen` command. The process generates 2 _pem_ files and 1 _text_ file. To learn about options for generating keys, include `--help` when running the `keygen` command. The following command will create the keys in the `/etc/casper/validator_keys` folder. For details on funding your accounts, see [Prerequisites](../workflow/setup#fund-your-account).
+The Rust client generates keys via the `keygen` command. The process generates 2 _pem_ files and 1 _text_ file. To learn about options for generating keys, include `--help` when running the `keygen` command. The following command will create the keys in the `/etc/casper/validator_keys` folder. For details on funding your accounts, see [Prerequisites](/workflow/setup/#fund-your-account).
 
 ```bash
 sudo -u casper casper-client keygen /etc/casper/validator_keys
