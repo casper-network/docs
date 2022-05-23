@@ -299,6 +299,6 @@ Once we have the two values, we can then use `assert_eq!()` to compare them agai
 
 ## Next Steps and Further Testing
 
-Unit testing is only one way to test potential Deploys prior to sending them to a Casper network. After unit testing your contract, you may wish to perform [local network testing](../../dapp-dev-guide/setup-nctl) using NCTL. This allows you to set up and control multiple local Casper nodes to perform testing in further simulated network environment.
+Unit testing is only one way to test potential Deploys prior to sending them to a Casper network. After unit testing your contract, you may wish to perform [local network testing](../../dapp-dev-guide/setup-nctl) using NCTL. This allows you to set up and control multiple local Casper nodes to perform [testing in a further simulated network environment](../../dapp-dev-guide/nctl-test).
 
 You may also wish to test your Deploys on the Casper [Testnet](https://testnet.cspr.live/).
