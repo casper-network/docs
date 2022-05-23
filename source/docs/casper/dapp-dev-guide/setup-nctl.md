@@ -1,5 +1,5 @@
 
-# Local Network Testing
+# Setting up a Local Network with NCTL
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
