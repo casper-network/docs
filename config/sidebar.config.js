@@ -20,21 +20,6 @@ module.exports = {
         },
         "workflow/delegate",
         "workflow/undelegate",
-        {
-            type: "category",
-            label: "ERC-20 Sample Guide",
-            collapsible: true,
-            collapsed: true,
-            items: [
-                "workflow/erc-20-sample-guide/index",
-                "workflow/erc-20-sample-guide/setup",
-                "workflow/erc-20-sample-guide/query",
-                "workflow/erc-20-sample-guide/transfers",
-                "workflow/erc-20-sample-guide/approvals",
-                "workflow/erc-20-sample-guide/final-balance",
-            ],
-        },
-        "workflow/erc20-token-deployment-guide",
         "workflow/contribute",
     ],
     "dapp-dev-guide": [
@@ -42,6 +27,7 @@ module.exports = {
         "dapp-dev-guide/why-build-on-casper",
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
+        "dapp-dev-guide/dictionaries",
         {
             type: "category",
             label: "Casper SDK Standard",
@@ -92,13 +78,16 @@ module.exports = {
             items: [
                 "dapp-dev-guide/writing-contracts/index",
                 "dapp-dev-guide/getting-started",
+                "dapp-dev-guide/writing-contracts/session-code",
                 "dapp-dev-guide/writing-contracts/rust",
-                "dapp-dev-guide/writing-contracts/assembly-script",
+                "dapp-dev-guide/installing-contracts",
+                "dapp-dev-guide/calling-contracts",
                 "dapp-dev-guide/testing",
                 "dapp-dev-guide/nctl-test",
+                "dapp-dev-guide/testing-session-code",
                 "dapp-dev-guide/upgrading-contracts",
-                "dapp-dev-guide/calling-contracts",
                 "dapp-dev-guide/execution-error-codes",
+                "dapp-dev-guide/writing-contracts/assembly-script",
             ],
         },
         {

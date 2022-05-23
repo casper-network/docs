@@ -44,7 +44,7 @@ As a prospective delegator, you need to select a validating node that you can tr
 
 ## 3. Creating your Wallet with the CasperLabs Signer {#3-creating-your-wallet-with-the-casperlabs-signer}
 
-To stake tokens, you need access to a wallet with CSPR tokens. At the moment, you can use the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) tool. The Signer acts as your CSPR wallet, keeping your accounts secure and helping you perform actions like staking, un-staking, or sending tokens to another account. Please follow the [Signer Guide](signer-guide.md) for additional details on how to set up this tool.
+To stake tokens, you need access to a wallet with CSPR tokens. At the moment, you can use the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) tool. The Signer acts as your CSPR wallet, keeping your accounts secure and helping you perform actions like staking, un-staking, or sending tokens to another account. Please follow the [Signer Guide](signer-guide.md) for additional details on how to set up this tool.
 
 You can create, store, and use one or more CSPR accounts with your Signer wallet. A password protects all accounts in what we call a **vault**.
 
@@ -53,7 +53,7 @@ You can create, store, and use one or more CSPR accounts with your Signer wallet
 If you are new or have logged out of the Signer, you can log in with these steps:
 
 1.  Using Chrome or a Chromium-based browser like Brave, navigate to a block explorer on the Mainnet, (for this example we are using [cspr.live](https://cspr.live/)), and click on the **Sign-in** menu.
-2.  Download the [CasperLabs Signer extension](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce).
+2.  Download the [CasperLabs Signer extension](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce).
 3.  You will need to create a vault that will safeguard your accounts with a password. In this step, we assume that you have not used the Signer before, so click **Reset Vault**.
 4.  Create a password for your new vault. Confirm the password, and then click **Create Vault**.
 5.  Write down and store your password in a secure location. **If you lose it, you will lose access to this wallet!**
@@ -69,7 +69,7 @@ If you are using the CasperLabs Signer for the first time, follow these steps to
 
 1.  Click **CREATE ACCOUNT** in the Signer.
 2.  Give your account a name. In this tutorial, we will use the name _My-CSPR_.
-3.  Select an Algorithm using the dropdown menu. If you need help, review the article on [Working with Cryptographic Keys](https://docs.casperlabs.io/dapp-dev-guide/keys).
+3.  Select an Algorithm using the dropdown menu. If you need help, review the article on [Working with Cryptographic Keys](https://docs.casperlabs.io/dapp-dev-guide/keys/).
 4.  Click **CREATE** to save your account.
 5.  Click **DOWNLOAD** and save the secret key for this account. 
 
