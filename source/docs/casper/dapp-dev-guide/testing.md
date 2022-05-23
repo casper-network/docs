@@ -12,15 +12,15 @@ Our provided test support crate is only one option for testing your Deploys prio
 
 Testing within the Casper ecosystem involves the following steps:
 
-1) [Writing a Wasm Producing Crate](writing-contracts/rust.md)
+1) [Writing a Smart Contract](writing-contracts/rust.md)
 
 2) [Create a Test Crate](#creating-a-test-crate)
 
 3) [Local Network Testing](setup-nctl.md)
 
-4) [Sending the Deploy to Testnet](sending-deploys.md)
+4) Sending the Deploy to [Testnet](https://testnet.cspr.live/)
 
-5) Sending the Tested Deploy to a Casper Network
+5) [Sending the Tested Deploy]((sending-deploys.md) to a Casper Network
 
 ## Initial Setup
 
