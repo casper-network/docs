@@ -1,5 +1,7 @@
 # Testing Smart Contracts with NCTL
 
+NCTL effectively simulates a live Casper network. The process for sending a `Deploy` to an NCTL-based network is therefore similar to doing so on a live network.
+
 Testing `Deploy`s prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](/dapp-dev-guide/writing-contracts/rust.md) and testing it [using the provided framework](/dapp-dev-guide/testing.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
 
 ## Getting Started with NCTL
@@ -26,8 +28,6 @@ You should see five nodes `RUNNING` and five `STOPPED`. Further, verify that the
 
 ## Installing the Smart Contract
 
-NCTL effectively simulates a live Casper network. The process for sending a `Deploy` to an NCTL-based network is therefore similar to doing so on a live network.
-
 This document assumes that you setup your NCTL network using the standard settings in a directory called */casper/*.
 
 You will need the following information to use the `put-deploy` command:
@@ -40,12 +40,17 @@ You will need the following information to use the `put-deploy` command:
 
 * The **path** to your `Deploy` that you wish to send to the NCTL network. This will appear in our example put-deploy as `--session-path <PATH>` and will require you to define the path to your specific `Deploy` Wasm.
 
-* The **node address** for a node on your NCTL network. In this example, we are using the node at `http://localhost:11101/rpc`. On a live network, nodes will use port `7777`. This will appear in our example put-deploy as `--node-address http://localhost:11101/rpc`.
+* The **node address** for a node on your NCTL network. In this example, we are using the node at `http://localhost:11101/rpc`. On the Casper Mainnet or Testnet, nodes will use port `7777`. This will appear in our example put-deploy as `--node-address http://localhost:11101/rpc`.
 
 The command to send your `Deploy` should look similar to the following:
 
 ```
-casper-client put-deploy --chain-name "casper-net-1" --secret-key ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem --payment-amount 2500000000 --session-path <PATH> --node-address http://localhost:11101/rpc
+casper-client put-deploy \
+--chain-name "casper-net-1" \
+--secret-key ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem \
+--payment-amount 2500000000 \
+--session-path <PATH> \
+--node-address http://localhost:11101/rpc
 ```
 
 The response will return something similar to the following information. Note the `deploy_hash`:
@@ -72,11 +77,13 @@ casper-client get-deploy 8e6309cc37bc58d8fedc1094ee1bd264a636d39fc0e05b5e1d72d98
 
 ## Interacting with the Installed Contract
 
-Once your NCTL network executes your `Deploy`, you can test the functionality of the installed contract. To do so, you will first need to identify any arguments to pass to the contract, starting with the `ContractHash` itself. This hash identifies the contract and allows you to target the included entry points. As we used the pre-established node-1 account to send the `Deploy`, we can retrieve the `ContractHash` from the node-1 account information. To do so, we will use the following command with a node address and the `PublicKey` of the node in question. 
+Once your NCTL network executes your `Deploy`, you can test the functionality of the installed contract. To do so, you will first need to identify any arguments to pass to the contract, starting with the `ContractHash` itself. This hash identifies the contract and allows you to target the included entry points. As we used the pre-established node-1 account to [send the `Deploy`](sending-deploys.md), we can retrieve the `ContractHash` from the node-1 account information. To do so, we will use the following command with a node address and the `PublicKey` of the node in question. 
 
 
 ```
-casper-client get-account-info --node-address http://localhost:11101/rpc --public-key ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/public_key.pem
+casper-client get-account-info \
+--node-address http://localhost:11101/rpc \
+--public-key ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/public_key.pem
 ```
 
 This command will return information pertaining to the account, including the `NamedKeys`. The `ContractHash` of the contract to be tested will appear here. The process of calling the contract is similar to that of installing it, as they are both accomplished through sending a `Deploy`. In this instance, you will need the following information:
@@ -92,7 +99,12 @@ This command will return information pertaining to the account, including the `N
 * Any **session arguments** specific to the contract that you are testing. Multiple instances of `--session-arg` may be used as necessary to provide values to the contract, including the `ContractHash` you acquired above. In the example below, you will see a demonstration of the `ContractHash` as a session argument as `--session-arg "contract_key:key='hash-8c13aaeef50ae7f447ee21276965c31cfa45c4ea3abb03d35d078cdd6a40e4a'"`
 
 ```
-casper-client put-deploy --node-address http://localhost:11101/rpc --chain-name "casper-net-1" --payment-amount 500000000 --session-path <PATH> --session-arg "contract_key:key='hash-8c13aaeef50ae7f447ee21276965c31cfa45c4ea3abb03d35d078cdd6a40e4a'"
+casper-client put-deploy \
+--node-address http://localhost:11101/rpc \
+--chain-name "casper-net-1" \
+--payment-amount 500000000 \
+--session-path <PATH> \
+--session-arg "contract_key:key='hash-8c13aaeef50ae7f447ee21276965c31cfa45c4ea3abb03d35d078cdd6a40e4a'"
 ```
 
 ## Verifying Correct Contract Behavior
