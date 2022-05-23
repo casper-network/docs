@@ -6,9 +6,7 @@ As part of the Casper local Rust contract development environment, we provide a 
 
 Our provided test support crate is only one option for testing your Deploys prior to sending them to global state. It provides a degree of assistance, but you are free to create your own testing framework if you prefer.
 
---------
-
-## Testing Procedure
+### Testing Procedure
 
 Testing within the Casper ecosystem involves the following steps:
 
@@ -22,11 +20,9 @@ Testing within the Casper ecosystem involves the following steps:
 
 5) [Sending the Tested Deploy](sending-deploys.md) to a Casper Network
 
-## Initial Setup
+### Initial Setup
 
 The Casper test crate must be included within a [Rust workspace](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) alongside the Wasm producing crate to be tested. A workspace consists of a set of packages that share the same `Cargo.lock` file and output directory.
-
---------
 
 ## Creating a Test Crate
 
@@ -113,8 +109,6 @@ After importing from external crates, you will need to define any global variabl
     const DONATION_AMOUNT: &str = "donation_amount";
 
 ```
-
---------
 
 ## Creating a Test Function
 
@@ -302,8 +296,6 @@ Once we have the two values, we can then use `assert_eq!()` to compare them agai
         assert_eq!(U512::from(100_000u64), actual_funds_raised);
 
 ```
-
---------
 
 ## Next Steps and Further Testing
 
