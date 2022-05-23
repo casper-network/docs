@@ -60,7 +60,7 @@ As such, you should see the following directories within the workspace:
 
 ### Defining Dependencies
 
-Prior to creating the code for your test, you will want to outline the dependencies within *Cargo.toml*
+Prior to creating the code for your test, you will want to outline the dependencies within *Cargo.toml*:
 
 ```rust
 
@@ -138,7 +138,7 @@ As part of this process, we will also use the `DEFAULT_RUN_GENESIS_REQUEST` to i
 
 ### Building an Execution Request to Install the Contract
 
-The function then uses `ExecuteRequestBuilder` to install the contract to be tested. For this example, we use standard dependencies. Within the execution request, we specify the use of the `DEFAULT_ACCOUNT_ADDR` established by our genesis builder as the account sending the Deploy, and the `contract` that specifices *contract.wasm*. This Deploy refers to our donation contract as specified in the constants above.
+The function then uses `ExecuteRequestBuilder` to install the contract to be tested. For this example, we use standard dependencies. Within the execution request, we specify the use of the `DEFAULT_ACCOUNT_ADDR` established by our genesis builder as the account sending the Deploy and the `CONTRACT` that refers to the Wasm. This Deploy refers to our donation contract as specified in the constants above.
 
 After we have built our `ExecuteRequestBuilder`, in this example titled 'contract_creation_request', we will execute the request through `builder.exec` and proceed to adding any addition execution requests as necessary.
 
@@ -187,7 +187,7 @@ The following code retrieves the contract hash from within the named keys of the
 
 The session code will use the acquired contract hash to identify the correct contract when calling it. Once again, we will use the `ExecuteRequestBuilder`, this time to simulate the execution of session code calling the `Donation` entry point.
 
-Our session code identifies the account to use for sending the deploy (`DEFAULT_ACCOUNT_ADDR`), the deploy to be sent (`DONATION`) and the runtime arguments required. Namely, the contract will require the contract has, the donating account key and the donation amount. In this instance, the session code will be donating 100,000 motes.
+Our session code identifies the account to use for sending the deploy (`DEFAULT_ACCOUNT_ADDR`), the deploy to be sent (`DONATION`) and the runtime arguments required. Namely, the contract will require the contract hash, the donating account key, and the donation amount. In this instance, the session code will be donating 100,000 motes.
 
 The `builder` request follows these details to execute the session code.
 
@@ -220,7 +220,7 @@ The `builder` request follows these details to execute the session code.
 
 ### Additional ExecutionRequestBuilder Examples
 
-The above example only describe the session code to call *donate.wasm*, and the contract installed includes several other entry points. You can find the code for other entry points below.
+The above example only describes the session code to call *donate.wasm*, and the contract installed includes several other entry points. You can find the code for other entry points below.
 
 <details>
 
@@ -265,7 +265,7 @@ The above example only describe the session code to call *donate.wasm*, and the 
 
 ### Evaluating and Comparing Results to Expected Values
 
-After installing the contract and running session code to call the contract and donate to the returned purse, we can test that the contract operated as intended. We will compare two values within the context of this test: the number of times that the account donated, and the total funds raised.
+After installing the contract and running session code to call it and donate to the returned purse, we can test that the contract operated as intended. We will compare two values within the context of this test: the number of times the account donated and the total funds raised.
 
 As we ran *donate.wasm* once, the donation count should be 1. During that donation, the `DEFAULT_ACCOUNT_ADDR` donated 100,000 motes, which we will also verify. However, the first step is retrieving the stored value for each and converting it to a `u64` and `U512` value, respectively.
 
