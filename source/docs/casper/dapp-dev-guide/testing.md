@@ -30,7 +30,17 @@ The Casper test crate must be included within a [Rust workspace](https://doc.rus
 
 ## Creating a Test Crate
 
-You can create a test crate with the following command:
+### Using `cargo-casper` to create a project
+ 
+When using the [`cargo-casper`](https://crates.io/crates/cargo-casper) crate, you can use the following command to generate a project containing both an example contract and a separate test crate:
+
+```
+cargo casper my_project
+```
+
+### Manually creating a test crate in your Rust workspace
+
+You can manually create a test crate with the following command:
 
 ```
 
