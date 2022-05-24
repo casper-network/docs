@@ -1,8 +1,8 @@
 # Understanding Dictionaries
 
-In a Caper network [`Keys`](../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) are a type under which possible sets of data are stored. Traditionally, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within the context of an `Account` or `Contract`. In the case of `Contract`s, sustained and continuous use of the the URef structure would result in expansion of associated URef size of `NamedKeys` structures.
+In a Caper network, you can now store sets of data under [`Keys`](../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). Previously, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within an `Account` or `Contract` context. In the case of Contracts, sustained and continuous use of URefs would result in the expansion of the associated `NamedKeys` structures.
 
-Individual changes to data stored within the `NamedKeys` would require deserialization of the entire `NamedKey` structures, which would have a negative impact by increasing the gas costs over time. Additionally, users storing large subsets of mapped data structures would face the same deep copy problem where minor or single updates required the complete deserialization of the map structure, leading to increased gas costs.
+Individual value changes to data stored within the NamedKeys would require deserializing the entire NamedKeys data structure, increasing gas costs over time and thus having a negative impact. Additionally, users storing large subsets of mapped data structures would face the same deep copy problem where minor or single updates required the complete deserialization of the map structure, also leading to increased gas costs.
 
 As a solution to this problem, the Casper platform provides the `Dictionary` feature, which allows users a more efficient and scalable means to aggregate data over time.
 
