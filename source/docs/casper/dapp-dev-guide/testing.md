@@ -1,286 +1,304 @@
-# Unit Testing Contracts
-import useBaseUrl from '@docusaurus/useBaseUrl';
+# Testing Contracts
 
-As part of the Casper local Rust contract development environment, we provide an in-memory virtual machine and a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support) against which you can run your contract. You do not need to set up a full node for testing. We provide a testing framework that simulates deploy execution, enables monitoring global state changes using assertions, and confirms a successful deploy of the smart contract.
+## Introduction
 
-Here is the main testing flow:
+As part of the Casper local Rust contract development environment, we provide a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/). This framework allows testing of new contracts without running a full node. Instead, it creates an instance of the Casper execution engine, which allows for monitoring of changes to global state using assertions and confirms the successful sending of a Deploy containing the smart contract.
 
-1.  Initialize the system and create a deploy
-2.  Execute the deploy, which will call the smart contract
-3.  Query the context for changes and verify that the result matches the expected values
+Our provided test support crate is only one option for testing your Deploys prior to sending them to global state. It provides a degree of assistance, but you are free to create your own testing framework if you prefer.
 
-It is also possible to build scripts with this environment and set up continuous integration for contract code. This environment enables the testing of blockchain-enabled systems from end to end.
+### Testing Procedure
 
-## Initialize the System and Create a Deploy
+Testing within the Casper ecosystem involves the following steps:
 
-The following steps guide you through the initialization of the system and deploy creation.
+1) [Writing a Smart Contract](writing-contracts/rust.md)
 
-1. [Define global variables and constants](#define-global-variables-and-constants)
-2. [Import builders and constants](#import-builders-and-constants)
-3. [Create a deploy item](#create-a-deploy-item)
+2) [Creating a Test Crate](#creating-a-test-crate)
 
-### Define Global Variables and Constants
+3) [Local Network Testing](setup-nctl.md)
 
-You can use global variables and constants in later steps to derive values and create components.
+4) Sending the Deploy to [Testnet](https://testnet.cspr.live/)
 
-**Global Variables and Constants**
+5) [Sending the Tested Deploy](sending-deploys.md) to a Casper Network
 
-The framework uses global variables and constants to find the compiled Wasm file and to create the deploy.
+### Initial Setup
 
-```rust
-use std::path::PathBuf;
-const MY_ACCOUNT: [u8; 32] = [7u8; 32];
-const KEY: &str = "my-key-name";
-const VALUE: &str = "hello world";
-const RUNTIME_ARG_NAME: &str = "message";
-const CONTRACT_WASM: &str = "contract.wasm";
+The Casper test crate must be included within a [Rust workspace](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) alongside the Wasm producing crate to be tested. A workspace consists of a set of packages that share the same `Cargo.lock` file and output directory.
+
+## Creating a Test Crate
+
+### Using `cargo-casper` to create a project
+ 
+When using the [`cargo-casper`](https://crates.io/crates/cargo-casper) crate, you can use the following command to generate a project containing both an example contract and a separate test crate:
+
+```
+cargo casper my_project
 ```
 
-- *`KEY`* and *`VALUE`* : These constants are the global states we are using to test whether the deploy has been executed correctly. KEY acts as the input to the assertion and VALUE acts as the output from the assertion
-- *`PathBuff`* : The contract uses this variable to find the compiled Wasm file 
-- *`RUNTIME_ARG_NAME`* and *`CONTRACT_WASM`* : Variables used to build the deploy
+### Manually creating a test crate in your Rust workspace
+
+You can manually create a test crate with the following command:
+
+```
+
+cargo new tests
+
+```
+
+This will create a Rust Cargo package, including the */src/main.rs* and *Cargo.toml* files. As stated above, you should create the test crate within the same workspace as your Wasm producing crates.  For this example, we will be using the donation contract outlined in our [Writing a Basic Smart Contract in Rust](writing-contracts/rust.md) tutorial.
+
+As such, you should see the following directories within the workspace:
+
+* `contract`
+* `donate`
+* `donation_count`
+* `funds_raised`
+* `tests`
+
+### Defining Dependencies
+
+Prior to creating the code for your test, you will want to outline the dependencies within *Cargo.toml*:
+
+```rust
+
+[package]
+name = "tests"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+casper-engine-test-support = { version = "2.0.3", features = ["test-support"] }
+casper-execution-engine = "1.4.3"
+casper-types = "1.4.5"
+
+```
 
 ### Import Builders and Constants
 
-We derive imports from the dependencies in the Cargo.toml file. If you see problems while importing, fix the dependency settings in the Cargo.toml file.
+Coding for your test crate should take place within the `tests` directory, using the *main.rs* file. To begin, you must import external test support. This includes a variety of default values and helper methods that we will use throughout our test. Additionally, you will need to import any [CLTypes](sdkspec/types_cl.md) that you've used within the contract code to be tested.
 
 ```rust
-use casper_engine_test_support::{
-    DeployItemBuilder, ExecuteRequestBuilder, InMemoryWasmTestBuilder,
-    ARG_AMOUNT, DEFAULT_ACCOUNT_ADDR, DEFAULT_ACCOUNT_INITIAL_BALANCE, DEFAULT_GENESIS_CONFIG, DEFAULT_PAYMENT,  DEFAULT_RUN_GENESIS_REQUEST,
-};
 
-use casper_types::{
-    account::AccountHash, runtime_args, Key, PublicKey, RuntimeArgs, SecretKey, U512,
-};
-```
-
-### Create a Deploy Item
-
-The testing framework uses the `DeployItem` to derive the `ExecuteRequest` to send to the test contract.
-
-**Declaring Local Variables**
-
-These are the variables used to construct the *deploy_item*.
-
-```rust
-let secret_key = SecretKey::ed25519_from_bytes(MY_ACCOUNT).unwrap();
-let public_key = PublicKey::from(&secret_key);
-let account_addr = AccountHash::from(&public_key);
-let session_code = PathBuf::from(CONTRACT_WASM);
-let session_args = runtime_args! {
-            RUNTIME_ARG_NAME => VALUE,
-};
-```
-***Variable details***
-
--   *`secret_key`* and *`public_key`* : Derives the account address
--   *`account address`* : Gets authorization key and location
--   *`session_code`* : Gets the path to your actual contract Wasm file on your system
--   *`session_args`* : Gets the values of runtime arguments
-
-**Create Deploy Item**
-
-Before deploying the contract in the framework, you need to have a `Deploy Item` to send to the request. `DeployItemBuilder` will directly instantiate the deploy item using associate builder methods.
-
-```rust
-let deploy_item = DeployItemBuilder::new()
-    .with_empty_payment_bytes(runtime_args! {ARG_AMOUNT => *DEFAULT_PAYMENT})
-    .with_session_code(session_code, session_args)
-    .with_authorization_keys(&[account_addr])
-    .with_address(account_addr)
-    .build();
-```
-***Constructor methods***
-
-The deploy item contains the following elements:
-
--   _`payment details`_ : This can be standard payments or custom payments. Standard payment is the bare payment amount a user wishes to pay for the deploy. Custom payment comes with payment codes or functions that indicate payments by module bytes 
-
-    ***empty_payment_bytes*** implies the module bytes inside the deploy item's payment part are empty. It directs the framework to use the standard payment contract that is the original amount (DEFAULT_PAYMENT)
-
-<p align="center"><img src={useBaseUrl("/image/EmptyModuleBytes.png")} width="300"/></p>
-
--   *`session_code`* : Sets the session code for the deploy using session_code and session_args
-
-    -   *PathBuff* : Helps to find the compiled Wasm file in your Wasm directory. This is a mutable path with some extended functionalities
--   *`authorization_keys`* : Sets authorization keys to authorize the deploy. To check the list of keys that authorize the call. See: [Permissions model](/design/accounts#accounts-permissions).
--   *`address`* : Sets the address of the deploy
-
-## Deploy the Smart Contract
-
-Follow these steps to deploy the smart contract:
-
-1. [Create the builder](#create-the-builder)
-2. [Create the execute request](#create-an-execute-request)
-3. [Deploy the contract](#deploy-the-contract)
-
-### Create the Builder
-
-`InMemoryWasmTestBuilder` is the builder for a simple Wasm test that uses the state held entirely in memory. It provides methods to simulate deploys to the blockchain array and make queries to whatever state you find in the global state.
-
-```rust
-let mut builder = InMemoryWasmTestBuilder::default();
-        builder.run_genesis(&DEFAULT_RUN_GENESIS_REQUEST).commit();
-```
-
-`Genesis` : *run_genesis* call will initialize the blockchain network to get your first block. When you initialize a blockchain network, there needs to be a genesis block as a starting point to the incoming blocks. The subsequent set of deploys will execute after the execution of the genesis block.
-
-### Create an Execute Request
-
-After creating the `deploy_item`, wrap it in an `ExecuteRequest` created by the `ExecuteRequestBuilder`; then, the builder instance will construct the deploy item and return the execute_request.
-
-```rust
-let execute_request = ExecuteRequestBuilder::from_deploy_item(deploy_item).build();
-```
-
-### Deploy the Contract
-
-InMemoryWasmTestBuilder instance will execute the _execute_request_, which carries the deploy details.
-
-```rust
-builder.exec(execute_request).expect_success().commit();
-```
-
-***Builder methods***
-
--   *`commit()`* - This will process the execution result of the previous *execute_request* on the latest post-state hash, which is the hash function's output
--   *`expect_success()`* - This will assert  the deploy as a successful execution. If it is not successful, it will crash the test
-
-## Query and Assert
-
-This is the final step of the test contract execution. In this step, you will create a query result to send to post-assertion, and execute the deploy using the previously created components and finally perform the post-assertion to confirm the expected change on the test contract. 
-
-Query and assertion steps are as below:
-
-1. [Pre-assert the state](#pre-assert-the-status)
-2. [Deploy the contract](#deploy-the-contract-1)
-3. [Post-assertion to confirm deploy](#post-assertion-to-confirm-deploy)
-
-The smart contract creates a new value _hello world_ under the KEY, _my-key-name_. You can extract this value from the global state of the blockchain using the `query_result`.
-
-### Pre-Assert the Status
-
-Pre-assertions are helpful to confirm the existing state has not changed before the test execution. To accomplish this, create a query result using the builder and assert that the result of the query should not be equal to the value of KEY.
-
-```rust
-  let result_of_query = builder.query(None, Key::Account(account_addr), &[KEY.to_string()]);
-  assert!(result_of_query.is_err());
-```
-
-Method `query()` is to query the state for a stored value, KEY in this sample.
-
-**Parameters**
-
-- *`maybe_post_state`* : Not defined in this case
-- *`base_key`* : Contact where you find the named-key - here default address
-- *`path`* : Global KEY constant
-
-### Deploy the Contract
-
-Deploy is done by executing the previously created `execute_request` instance.
-
-```rust
-builder.exec(execute_request).expect_success().commit();
-```
-### Post-Assertion to Confirm Deploy
-
-This will query the post-deploy value and assert for its change.
-
-```rust
-  let result_of_query = builder
-            .query(None, Key::Account(account_addr), &[KEY.to_string()])
-            .expect("should be stored value.")
-            .as_cl_value()
-            .expect("should be cl value.")
-            .clone()
-            .into_t::<String>()
-            .expect("should be string.");
-```
-
-***Builder methods***
-
--   *`query()`* : Queries the state for a given value
--   *`expect()`* : Validates the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash
--   *`as_cl_value()`* : Returns a wrapped [CLValue](design/serialization-standard#serialization-standard-values) if this is a CLValue variant
-
--   *`clone()`* : Breaks the reference to the CLValue so that it will provide brand new CLValue
--   *`Into_t()`* : Converts the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type
-
-**Assertion**
-
-Assert that the query's result matches the expected value; here, the expected value is "hello world".
-
-```rust
-assert_eq!(result_of_query, VALUE);
-```
-
-## Final Test Sample
-
-The code below is the simple test generated by [cargo-casper](https://crates.io/crates/cargo-casper) (found in `tests/src/integration_tests.rs` of a project created by the tool).
-
-```rust
 #[cfg(test)]
 mod tests {
-   use casper_engine_test_support::{
-        DeployItemBuilder, ExecuteRequestBuilder, InMemoryWasmTestBuilder, ARG_AMOUNT,
-        DEFAULT_ACCOUNT_ADDR, DEFAULT_ACCOUNT_INITIAL_BALANCE, DEFAULT_GENESIS_CONFIG,
-        DEFAULT_PAYMENT, DEFAULT_RUN_GENESIS_REQUEST,
-    };
-    use casper_types::{
-        account::AccountHash, runtime_args, Key, PublicKey, RuntimeArgs, SecretKey, U512,
-    };
-    use std::path::PathBuf;
-const MY_ACCOUNT: [u8; 32] = [7u8; 32];
-    // Define `KEY` constant to match that in the contract.
-    const KEY: &str = "my-key-name";
-    const VALUE: &str = "hello world";
-    const RUNTIME_ARG_NAME: &str = "message";
-    const CONTRACT_WASM: &str = "contract.wasm";
-#[test]
-    fn should_store_hello_world() {
-        let secret_key = SecretKey::ed25519_from_bytes(MY_ACCOUNT).unwrap();
-        let public_key = PublicKey::from(&secret_key);
-        let account_addr = AccountHash::from(&public_key);
-        let session_code = PathBuf::from(CONTRACT_WASM);
-        let session_args = runtime_args! {
-            RUNTIME_ARG_NAME => VALUE,
-        };
-let deploy_item = DeployItemBuilder::new()
-            // .with_payment_bytes(module_bytes, args)
-            .with_empty_payment_bytes(runtime_args! {
-                ARG_AMOUNT => *DEFAULT_PAYMENT
-            })
-            .with_session_code(session_code, session_args)
-            .with_authorization_keys(&[account_addr])
-            .with_address(account_addr)
-            .build();
-let execute_request = ExecuteRequestBuilder::from_deploy_item(deploy_item).build();
-let mut builder = InMemoryWasmTestBuilder::default();
-        builder.run_genesis(&DEFAULT_RUN_GENESIS_REQUEST).commit();
-// prepare assertions.
-        let result_of_query = builder.query(None, Key::Account(account_addr), &[KEY.to_string()]);
-        assert!(result_of_query.is_err());
-// deploy the contract.
-        builder.exec(execute_request).expect_success().commit();
-// make assertions
-        let result_of_query = builder
-            .query(None, Key::Account(account_addr), &[KEY.to_string()])
-            .expect("should be stored value.")
-            .as_cl_value()
-            .expect("should be cl value.")
-            .clone()
-            .into_t::<String>()
-            .expect("should be string.");
-assert_eq!(result_of_query, VALUE);
-    }
-}
+    // Outlining aspects of the Casper test support crate to include.
+    use casper_engine_test_support::{DEFAULT_ACCOUNT_ADDR, DEFAULT_ACCOUNT_PUBLIC_KEY, DEFAULT_RUN_GENESIS_REQUEST, ExecuteRequestBuilder, InMemoryWasmTestBuilder};
+    // Custom Casper types that will be used within this test.
+    use casper_types::{RuntimeArgs, runtime_args, ContractHash, SecretKey, PublicKey, U512, Key};
 
-fn main() {
-    panic!("Execute "cargo test" to test the contract, not "cargo run".");
-}
 ```
 
-You can see the result of the above test in this screen capture:
+After importing from external crates, you will need to define any global variables or constants used within the test. 
 
-<p align="center"><img src={useBaseUrl("/image/test-compile-result.png")} width="700"/></p>
+```rust
+
+    // Calling the contract deploy.
+    const CONTRACT: &str = "contract.wasm";
+    // Calling the session code for a `donate` call.
+    const DONATION: &str = "donate.wasm";
+    // Calling the session code for a `donation_count` call.
+    const DONATION_COUNT: &str = "donation_count.wasm";
+    // Calling the session code for a `funds_raised` call.
+    const FUNDS_RAISED: &str = "funds_raised.wasm";
+
+    // Establishing constants for use during the test.
+    const FUNDRAISER_CONTRACT_HASH: &str = "fundraiser_contract_hash";
+    const ENTRY_POINT_DONATE: &str = "donate";
+    const DONATING_ACCOUNT_KEY: &str = "donating_account_key";
+    const DONATION_AMOUNT: &str = "donation_amount";
+
+```
+
+## Creating a Test Function
+
+The test function serves to install the contract and run potential entry points to assert that 
+the contract's behavior matches expectations. To accomplish this, the test will use `InMemoryWasmTestBuilder` to invoke an instance of the execution engine, effectively simulating the process of installing the contract on chain.
+
+As part of this process, we will also use the `DEFAULT_RUN_GENESIS_REQUEST` to install system contracts necessary for our tests. This includes the `Mint`, `Auction` and `HandlePayment`contracts, as well as establishing a default address and funding the associated purse.
+
+```rust
+
+#[test]
+    // Creating a test function that will install the contract and then run potential entry points.
+    fn should_be_able_to_install_and_donate() {
+        // Invoke an instance of the execution engine, including helper methods and assistance.
+        let mut builder = InMemoryWasmTestBuilder::default();
+        // Runs genesis to establish genesis accounts and write balances, as well as installing necessary
+        // system contracts - Mint, Auction and HandlePayment.
+        builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
+
+```
+
+### Building an Execution Request to Install the Contract
+
+The function then uses `ExecuteRequestBuilder` to install the contract to be tested. For this example, we use standard dependencies. Within the execution request, we specify the use of the `DEFAULT_ACCOUNT_ADDR` established by our genesis builder as the account sending the Deploy and the `CONTRACT` that refers to the Wasm. This Deploy refers to our donation contract as specified in the constants above.
+
+After we have built our `ExecuteRequestBuilder`, in this example titled 'contract_creation_request', we will execute the request through `builder.exec` and proceed to adding any addition execution requests as necessary.
+
+```rust
+
+        // Installing the contract through an execution request with standard dependencies.
+        let contract_creation_request = ExecuteRequestBuilder::standard(
+            // Use the default account hash included in genesis. Additional accounts can be created for
+            // testing purposes by funding them from this account.
+            *DEFAULT_ACCOUNT_ADDR,
+                // Telling the execution request builder to load up an instance of a deploy with the
+                // module_bytes associated with the contract.wasm.
+                CONTRACT,
+            // Any runtime arguments associated with the creation request, none for this example.
+            runtime_args! {}
+        ).build();
+
+        // Execute this request.
+        builder.exec(contract_creation_request)
+            // Expects the deploy to succeed or crashes the test.
+            .expect_success()
+            // Process the execution result of the previous execute request.
+            .commit();
+
+```
+
+### Building an Execution Request to Run Session Code
+
+To unit test the installed contract, we will need an entity to call the contract. In this instance, we will use session code included within *donate.wasm*. Further, we will need the contract hash of the newly installed donation contract.
+
+The following code retrieves the contract hash from within the named keys of the `DEFAULT_ACCOUNT_ADDR` that sent the Deploy containing the contract.
+
+```rust
+
+        // Extracts the contract hash from the named keys of the account in question, the default genesis address.
+        let contract_hash = builder
+            .get_expected_account(*DEFAULT_ACCOUNT_ADDR)
+            .named_keys()
+            .get("fundraiser_contract_hash")
+            .expect("must have contract hash key as part of contract creation")
+            .into_hash()
+            .map(|hash| ContractHash::new(hash))
+            .expect("must get contract hash");
+
+```
+
+The session code will use the acquired contract hash to identify the correct contract when calling it. Once again, we will use the `ExecuteRequestBuilder`, this time to simulate the execution of session code calling the `Donation` entry point.
+
+Our session code identifies the account to use for sending the deploy (`DEFAULT_ACCOUNT_ADDR`), the deploy to be sent (`DONATION`) and the runtime arguments required. Namely, the contract will require the contract hash, the donating account key, and the donation amount. In this instance, the session code will be donating 100,000 motes.
+
+The `builder` request follows these details to execute the session code.
+
+```rust
+
+        // Creating an execution request for the session code that calls the `donation` contract.
+        let session_code_request = ExecuteRequestBuilder::standard(
+            // Again, using the default account hash included with genesis.
+            *DEFAULT_ACCOUNT_ADDR,
+            // Telling the execution request builder to load up an instance of a deploy built from donate.wasm.
+            DONATION,
+            // Including the necessary runtime arguments.
+            runtime_args! {
+                // The fundraiser contract hash as established above, allowing the session code to call the fundraiser contract.
+                FUNDRAISER_CONTRACT_HASH => contract_hash,
+                // The donating account key, established as they key of the default test support genesis account address.
+                DONATING_ACCOUNT_KEY => Key::Account(*DEFAULT_ACCOUNT_ADDR),
+                // The amount to be donated.
+                DONATION_AMOUNT => U512::from(100_000u64)
+            }
+        ).build();
+
+        // Execute this request.
+        builder
+            .exec(session_code_request)
+            .expect_success()
+            .commit();
+
+```
+
+### Additional ExecutionRequestBuilder Examples
+
+The above example only describes the session code to call *donate.wasm*, and the contract installed includes several other entry points. You can find the code for other entry points below.
+
+<details>
+
+<summary><b>Additional Code Examples</b></summary>
+
+```rust
+
+        // Creating an execution request for the session code that calls the `donation_count` contract.
+        let donation_count_request =  ExecuteRequestBuilder::standard(
+            *DEFAULT_ACCOUNT_ADDR,
+            DONATION_COUNT,
+            runtime_args! {
+                FUNDRAISER_CONTRACT_HASH => contract_hash,
+                DONATING_ACCOUNT_KEY => Key::Account(*DEFAULT_ACCOUNT_ADDR),
+            }
+        ).build();
+
+        // Execute this request.
+        builder
+            .exec(donation_count_request)
+            .expect_success()
+            .commit();
+
+        // Creating an execution request for the session code that calls the `funds_raised_ contract.
+        let funds_raised_request =  ExecuteRequestBuilder::standard(
+            *DEFAULT_ACCOUNT_ADDR,
+            FUNDS_RAISED,
+            runtime_args! {
+                FUNDRAISER_CONTRACT_HASH => contract_hash
+            }
+        ).build();
+
+        // Execute this request.
+        builder
+            .exec(funds_raised_request)
+            .expect_success()
+            .commit();
+
+```
+
+</details>
+
+### Evaluating and Comparing Results to Expected Values
+
+After installing the contract and running session code to call it and donate to the returned purse, we can test that the contract operated as intended. We will compare two values within the context of this test: the number of times the account donated and the total funds raised.
+
+As we ran *donate.wasm* once, the donation count should be 1. During that donation, the `DEFAULT_ACCOUNT_ADDR` donated 100,000 motes, which we will also verify. However, the first step is retrieving the stored value for each and converting it to a `u64` and `U512` value, respectively.
+
+To do this, we use the `builder` method to retrieve the associated information from the `DEFAULT_ACCOUNT_ADDR`. We then pass this value through `into_t` to convert it to the value type requried.
+
+Once we have the two values, we can then use `assert_eq!()` to compare them against the values we expect.
+
+```rust
+
+        // Retrieving the donation count and then converting it to a u64 value.
+        let actual_donation_count = builder
+            .query(None, Key::Account(*DEFAULT_ACCOUNT_ADDR), &vec!["donation_count".to_string()])
+            .expect("must get stored value"
+            ).as_cl_value()
+            .expect("must get cl_value")
+            .to_owned()
+            .into_t::<u64>()
+            .unwrap();
+
+        // Comparing the retrieved donation count against the expected value.
+        assert_eq!(actual_donation_count, 1u64);
+
+        // Retrieving the funds raised amount and then converting it to a U512 value.
+        let actual_funds_raised = builder
+            .query(None, Key::Account(*DEFAULT_ACCOUNT_ADDR), &vec!["funds_raised".to_string()])
+            .expect("must get stored value"
+            ).as_cl_value()
+            .expect("must get cl_value")
+            .to_owned()
+            .into_t::<U512>()
+            .unwrap();
+
+        // Comparing the retrieved donation count against the expected value.
+        assert_eq!(U512::from(100_000u64), actual_funds_raised);
+
+```
+
+## Next Steps and Further Testing
+
+Unit testing is only one way to test potential Deploys prior to sending them to a Casper network. After unit testing your contract, you may wish to perform [local network testing](../../dapp-dev-guide/setup-nctl) using NCTL. This allows you to set up and control multiple local Casper nodes to perform testing in further simulated network environment.
+
+You may also wish to test your Deploys on the Casper [Testnet](https://testnet.cspr.live/).
