@@ -2,19 +2,17 @@
 
 NCTL effectively simulates a live Casper network. The process for sending a `Deploy` to an NCTL-based network is therefore similar to doing so on a live network.
 
-Testing `Deploy`s prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](/dapp-dev-guide/writing-contracts/rust.md) and testing it [using the provided framework](/dapp-dev-guide/testing.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
+Testing `Deploys` prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](/dapp-dev-guide/writing-contracts/rust.md) and testing it [using the provided framework](/dapp-dev-guide/testing.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
 
 ## Getting Started with NCTL
 
 Prior to testing a `Deploy` through NCTL, you should have the following steps accomplished:
 
-1) [Installed the Casper client](../workflow/setup.md)
+1) [Completed writing a Deploy](../dapp-dev-guide/writing-contracts/rust.md)
 
-2) [Completed writing a Deploy](../dapp-dev-guide/writing-contracts/rust.md)
+2) [Tested the Deploy](../dapp-dev-guide/testing.md) using the Casper testing framework
 
-3) [Tested the Deploy](../dapp-dev-guide/testing.md) using the Casper testing framework
-
-4) [Setup NCTL](../dapp-dev-guide/setup-nctl.md) on your system
+3) [Setup NCTL](../dapp-dev-guide/setup-nctl.md) on your system
 
 ## NCTL Verification Prior to Testing
 
@@ -34,7 +32,7 @@ You will need the following information to use the `put-deploy` command:
 
 * The **chain name**, in this case `casper-net-1`. This will appear in our example put-deploy as `--chain-name "casper-net-1"`
 
-* The **secret key** of the account sending the `Deploy`. For this example, we are using node-1 as the sender. The secret key file can be found at *casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem*. In our example put-deploy, this will appear as `--secret-key ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem`. If your Deploy is more complex and requires multiple accounts, NCTL also establishes multiple users for testing.
+* The **secret key** of the account sending the `Deploy`. For this example, we are using node-1 as the sender. The secret key file can be found at *casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem*. In our example put-deploy, this will appear as `--secret-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem`. If your Deploy is more complex and requires multiple accounts, NCTL also establishes multiple users for testing.
 
 * The **payment amount** in motes, which should be sufficient to avoid an 'Out of Gas' error. The payment amount will appear in our example put-deploy as `--payment-amount 2500000000`. **NCTL tests are not an accurate representation of potential gas costs on a live network. Please see our [note about gas prices](/dapp-dev-guide/sending-deploys/#a-note-about-gas-price).**
 
@@ -47,7 +45,7 @@ The command to send your `Deploy` should look similar to the following:
 ```
 casper-client put-deploy \
 --chain-name "casper-net-1" \
---secret-key ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem \
+--secret-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem \
 --payment-amount 2500000000 \
 --session-path <PATH> \
 --node-address http://localhost:11101/rpc
@@ -83,7 +81,7 @@ Once your NCTL network executes your `Deploy`, you can test the functionality of
 ```
 casper-client get-account-info \
 --node-address http://localhost:11101/rpc \
---public-key ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/public_key.pem
+--public-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/public_key.pem
 ```
 
 This command will return information pertaining to the account, including the `NamedKeys`. The `ContractHash` of the contract to be tested will appear here. The process of calling the contract is similar to that of installing it, as they are both accomplished through sending a `Deploy`. In this instance, you will need the following information:
@@ -118,9 +116,3 @@ After calling your installed contract, you can verify that the contract behaved 
 3) Interact with the installed contract using an additional `Deploy` that calls one or several of the entry points. For example, calling the `donate` entry point to donate an amount to the fundraising purse.
 
 4) Verify the associated change in global state. Namely, an increase in the balance of the fundraising purse.
-
-## Testing Contracts on the Casper Testnet
-
-The process for testing on the Casper [Testnet](https://testnet.cspr.live/) follows this same overall testing procedure, with slight changes to some aspects. Where NCTL tests target network assets established by NCTL, Testnet testing requires targeted nodes, chain names, keys and ports to be adjusted to match Testnet values.
-
-Once you are certain that your contract functions as intended, you can [install it on a Casper network](/dapp-dev-guide/calling-contracts/).
