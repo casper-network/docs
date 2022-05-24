@@ -40,10 +40,16 @@ You will need the following information to use the `put-deploy` command:
 
 * The **node address** for a node on your NCTL network. In this example, we are using the node at `http://localhost:11101/rpc`. On the Casper Mainnet or Testnet, nodes will use port `7777`. This will appear in our example put-deploy as `--node-address http://localhost:11101/rpc`.
 
-The command to send your `Deploy` should look similar to the following:
+The command to send your `Deploy` should look similar to the following code snippet:
+
+:::note
+
+Use of the `$(get_path_to_client)` command assumes that you are operating in an activated NCTL envrionment.
+
+:::
 
 ```
-casper-client put-deploy \
+$(get_path_to_client) put-deploy \
 --chain-name "casper-net-1" \
 --secret-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem \
 --payment-amount 2500000000 \
@@ -70,7 +76,7 @@ The previous command sent the `Deploy` to the NCTL network, but we recommend ver
 
 To query the `Deploy`'s status, you will pass both the `deploy_hash` and the same `node-address` from above using the following command. This will return either an error message in the event of failure or the `Deploy` details if it succeeds.
 ```
-casper-client get-deploy 8e6309cc37bc58d8fedc1094ee1bd264a636d39fc0e05b5e1d72d98f7b6faf13 -n http://localhost:11101/rpc
+$(get_path_to_client) get-deploy 8e6309cc37bc58d8fedc1094ee1bd264a636d39fc0e05b5e1d72d98f7b6faf13 -n http://localhost:11101/rpc
 ```
 
 ## Interacting with the Installed Contract
@@ -79,7 +85,7 @@ Once your NCTL network executes your `Deploy`, you can test the functionality of
 
 
 ```
-casper-client get-account-info \
+$(get_path_to_client) get-account-info \
 --node-address http://localhost:11101/rpc \
 --public-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/public_key.pem
 ```
@@ -97,7 +103,7 @@ This command will return information pertaining to the account, including the `N
 * Any **session arguments** specific to the contract that you are testing. Multiple instances of `--session-arg` may be used as necessary to provide values to the contract, including the `ContractHash` you acquired above. In the example below, you will see a demonstration of the `ContractHash` as a session argument as `--session-arg "contract_key:key='hash-8c13aaeef50ae7f447ee21276965c31cfa45c4ea3abb03d35d078cdd6a40e4a'"`
 
 ```
-casper-client put-deploy \
+$(get_path_to_client) put-deploy \
 --node-address http://localhost:11101/rpc \
 --chain-name "casper-net-1" \
 --payment-amount 500000000 \
