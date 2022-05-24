@@ -10,7 +10,7 @@ As a solution to this problem, the Casper platform provides the `Dictionary` fea
 
 Items within a dictionary exist as individual records stored underneath their unique [dictionary address](../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations), or seed URef, in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](../../design/uref) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
 
-As each dictionary item exists as a stand-alone entity on global state, regularly used dictionary keys may be used directly without referencing their seed URef.
+As each dictionary item exists as a stand-alone entity in global state, regularly used dictionary keys may be used directly without referencing their seed URef.
 
 ## Creating Dictionaries
 
@@ -58,11 +58,11 @@ storage::dictionary_put(dictionary_uref, key, value);
 
 ```
 
-The `dictionary_uref` refers to the seed URef established during the creation process, the `key` is the unique identifier for this dictionary item and the `value` is the data to be stored within the dictionary item.
+The `dictionary_uref` refers to the seed URef established during the dictionary creation process. The `key` is the unique identifier for this dictionary item, and the `value` is the data to be stored within the dictionary item.
 
-As stated above, these dictionary items do not require the seed URef to reference and exist as individual keys on global state. If you know the dictionary key's address, you do not need to go through the process of identifying the seed URef first.
+As stated above, these dictionary items do not require the seed URef, and they exist as individual keys in global state. If you know an individual key's address, you do not need to go through the process of identifying the seed URef first.
 
-The following function serves to add an entry to the dictionary. If the item already exists, it will update the value stored within the item key. In this case, it is storing the number of donations made.
+The following function serves to add an entry to the dictionary. If the item already exists, the function will update the value stored and referenced by that key. In this case, the code is storing the number of donations made.
 
 
 ```rust
@@ -90,12 +90,9 @@ fn update_ledger_record(dictionary_item_key: String) {
 
 ## Accessing a Dictionary Item
 
-The Casper platform allows for four means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](../../dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. In brief, they consist of:
+The Casper platform provides four means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](../../dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. In brief, they consist of:
 
-* `AccountNamedKey` Lookup via an Account's named keys.
-
-* `ContractNamedKey` Lookup via a Contract's named keys.
-
-* `URef` Lookup via the dictionary's seed URef.
-
-* `Dictionary` Lookup via the unique dictionary item key.
+* `AccountNamedKey` lookup via an Account's named keys.
+* `ContractNamedKey` lookup via a Contract's named keys.
+* `URef` lookup via the dictionary's seed URef.
+* `Dictionary` lookup via the unique dictionary item key.
