@@ -19,7 +19,9 @@ Dictionaries are ideal for storing larger volumes of data that `NamedKeys` would
 Creating a new dictionary is fairly simple and done within the context of a `Deploy` sent to a Casper network. The associated code is included within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/) crate. Creating a dictionary also stores the associated seed URef within the named keys of the current context.
 
 :::note
+
 Developers should consider context when creating dictionaries. While you can create a dictionary in the context of an Account and then pass associated access rights to a Contract, it can create potential security issues. If the Contract is intended for third-party use, the initiating Account that has access rights to the dictionary may be viewed as undesirable. You may send an additional `Deploy` removing those access rights, but it is better to simply create the dictionary within the context of the Contract.
+
 :::
 
 The following code snippet shows the most basic example of creating a dictionary. 
