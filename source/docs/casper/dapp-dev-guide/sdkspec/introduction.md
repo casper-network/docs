@@ -10,7 +10,7 @@ For examples of such SDKs, please refer to our [SDK Client Libraries](dapp-dev-g
 
 ### Serialization
 
-The Casper platform uses a custom serialization format. Tto this end, we've established a [serialization standard](../../../design/serialization-standard/) that describes the format, which SDK developers must implement in their language of choice.
+The Casper platform uses a custom serialization format. Tto this end, we've established a [serialization standard](/design/serialization-standard/) that describes the format, which SDK developers must implement in their language of choice.
 
 -------
 
@@ -18,10 +18,10 @@ The Casper platform uses a custom serialization format. Tto this end, we've esta
 
 |Page|Description|
 |----|-----------|
-|[Guidance for JSON-RPC SDK Compliance](../sdkspec/guidance.md)|Guide on the requirements for a compliant Casper SDK.|
-|[Required JSON-RPC Methods for Minimal Compliance](../sdkspec/json-rpc-minimal.md)|Methods required for a minimally compliant Casper SDK.|
-|[Transactional JSON-RPC Method](../sdkspec/json-rpc-transactional.md)|Description of `account_put_deploy`, the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network.|
-|[Informational JSON-RPC Methods](../sdkspec/json-rpc-informational.md)|Descriptions of methods that return information from a network or node within a network.|
-|[Proof-of-Stake JSON-RPC Methods](../sdkspec/json-rpc-pos.md)|Descriptions of methods that pertain to Proof-of-Stake functionality on a Casper network.|
-|[Types](../sdkspec/types_chain.md)|Information on types used within JSON-RPC methods.|
-|[CL Types](../sdkspec/types_cl.md)|Information specifically relating to CL Types.|
+|[Guidance for JSON-RPC SDK Compliance](dapp-dev-guide/sdkspec/guidance.md)|Guide on the requirements for a compliant Casper SDK.|
+|[Required JSON-RPC Methods for Minimal Compliance](dapp-dev-guide/sdkspec/json-rpc-minimal.md)|Methods required for a minimally compliant Casper SDK.|
+|[Transactional JSON-RPC Method](dapp-dev-guide/sdkspec/json-rpc-transactional.md)|Description of `account_put_deploy`, the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network.|
+|[Informational JSON-RPC Methods](dapp-dev-guide/sdkspec/json-rpc-informational.md)|Descriptions of methods that return information from a network or node within a network.|
+|[Proof-of-Stake JSON-RPC Methods](dapp-dev-guide/sdkspec/json-rpc-pos.md)|Descriptions of methods that pertain to Proof-of-Stake functionality on a Casper network.|
+|[Types](dapp-dev-guide/sdkspec/types_chain.md)|Information on types used within JSON-RPC methods.|
+|[CL Types](dapp-dev-guide/sdkspec/types_cl.md)|Information specifically relating to CL Types.|

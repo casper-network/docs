@@ -34,7 +34,7 @@ You will need the following information to use the `put-deploy` command:
 
 * The **secret key** of the account sending the `Deploy`. For this example, we are using node-1 as the sender. The secret key file can be found at *casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem*. In our example put-deploy, this will appear as `--secret-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem`. If your Deploy is more complex and requires multiple accounts, NCTL also establishes multiple users for testing.
 
-* The **payment amount** in motes, which should be sufficient to avoid an 'Out of Gas' error. The payment amount will appear in our example put-deploy as `--payment-amount 2500000000`. **NCTL tests are not an accurate representation of potential gas costs on a live network. Please see our [note about gas prices](dapp-dev-guide/sending-deploys/#a-note-about-gas-price).**
+* The **payment amount** in motes, which should be sufficient to avoid an 'Out of Gas' error. The payment amount will appear in our example put-deploy as `--payment-amount 2500000000`. **NCTL tests are not an accurate representation of potential gas costs on a live network. Please see our [note about gas prices](dapp-dev-guide/building-dapps/sending-deploys/#a-note-about-gas-price).**
 
 * The **path** to your `Deploy` that you wish to send to the NCTL network. This will appear in our example put-deploy as `--session-path <PATH>` and will require you to define the path to your specific `Deploy` Wasm.
 
@@ -113,7 +113,7 @@ $(get_path_to_client) put-deploy \
 
 ## Verifying Correct Contract Behavior
 
-After calling your installed contract, you can verify that the contract behaved as expected by observing the associated change in [global state](dapp-dev-guide/installing-contracts/#querying-global-state). Depending on how your contract functions, this can have different meanings and results. If we use our donation contract from the [basic smart contract tutorial](dapp-dev-guide/writing-contracts/rust), the NCTL process would have the following flow:
+After calling your installed contract, you can verify that the contract behaved as expected by observing the associated change in [global state](dapp-dev-guide/writing-contracts/installing-contracts/#querying-global-state). Depending on how your contract functions, this can have different meanings and results. If we use our donation contract from the [basic smart contract tutorial](dapp-dev-guide/writing-contracts/rust), the NCTL process would have the following flow:
 
 1) Send a `Deploy` to install the "Donation" smart contract.
 
