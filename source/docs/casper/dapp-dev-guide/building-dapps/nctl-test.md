@@ -2,7 +2,7 @@
 
 NCTL effectively simulates a live Casper network. The process for sending a `Deploy` to an NCTL-based network is therefore similar to doing so on a live network.
 
-Testing `Deploys` prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](dapp-dev-guide/writing-contracts/rust.md) and testing it [using the provided framework](dapp-dev-guide/testing.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
+Testing `Deploys` prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](dapp-dev-guide/writing-contracts/rust.md) and testing it [using the provided framework](dapp-dev-guide/writing-contracts/testing.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
 
 ## Getting Started with NCTL
 
@@ -10,9 +10,9 @@ Prior to testing a `Deploy` through NCTL, you should have the following steps ac
 
 1) [Completed writing a Deploy](dapp-dev-guide/writing-contracts/rust.md)
 
-2) [Tested the Deploy](dapp-dev-guide/testing.md) using the Casper testing framework
+2) [Tested the Deploy](dapp-dev-guide/writing-contracts/testing.md) using the Casper testing framework
 
-3) [Setup NCTL](dapp-dev-guide/setup-nctl.md) on your system
+3) [Setup NCTL](dapp-dev-guide/building-dapps/setup-nctl.md) on your system
 
 ## NCTL Verification Prior to Testing
 
