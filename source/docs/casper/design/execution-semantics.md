@@ -16,7 +16,7 @@ Although computation is measured in `Gas`, we still take payment for computation
 
 Please note that Casper will not refund any amount of unused gas.
 
-This decision is taken to incentivizing the [Casper Runtime Economics](../economics/runtime.md#runtime-economics) by efficiently allocating the computational resources. The [consensus-before-execution model](../economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage the optimized gas consumption from the user-side and to prevent the overuse of block space by poorly handled deploys.
+This decision is taken to incentivizing the [Casper Runtime Economics](/economics/runtime.md#runtime-economics) by efficiently allocating the computational resources. The [consensus-before-execution model](/economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage the optimized gas consumption from the user-side and to prevent the overuse of block space by poorly handled deploys.
 
 :::
 

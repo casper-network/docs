@@ -3,7 +3,7 @@
 Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](/design/execution-semantics#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
 - You will need a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
-- Ensure you have an [Account](/workflow/setup#setting-up-an-account) and its associated [keys](keys.md) This account will pay for the deploy, and its secret key will sign the deploy
+- Ensure you have an [Account](/workflow/setup#setting-up-an-account) and its associated [keys](dapp-dev-guide/keys.md) This account will pay for the deploy, and its secret key will sign the deploy
 - Ensure this account has enough CSPR tokens to pay for the deploy
 
 ## Paying for Deploys {#paying-for-deploys}
@@ -17,7 +17,7 @@ CSPR tokens are used to pay for transactions on the Casper Network. There are se
 
 ## Monitoring the Event Stream for Deploys
 
-If you want to follow the [lifecycle](../design/execution-semantics.md/#execution-semantics-phases) of the deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](monitoring-events.md). You need the following information to proceed:
+If you want to follow the [lifecycle](/design/execution-semantics.md/#execution-semantics-phases) of the deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](dapp-dev-guide/building-dapps/monitoring-events). You need the following information to proceed:
 
 - The IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network
 - The port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default 9999 on Mainnet and Testnet
@@ -353,7 +353,7 @@ casper-client put-deploy --show-arg-examples
 
 ## Advanced Features {#advanced-features}
 
-The Casper Network supports complex deploys using multiple signatures. [Casper Accounts](../design/accounts.md) use a powerful permissions model that enables a multi-signature scheme for deploys.
+The Casper Network supports complex deploys using multiple signatures. [Casper Accounts](/design/accounts.md) use a powerful permissions model that enables a multi-signature scheme for deploys.
 
 The `put-deploy` command performs multiple actions under the hood, optimizing the typical use case. It creates a deploy, signs it, and deploys to the network without allowing multiple signatures. However, it is possible to call the following three commands and separate key management from account creation:
 
@@ -371,4 +371,4 @@ A common question frequently arises: "How do I know what the payment amount (gas
 
 We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper Network to which you want to send the deploy. If you plan on sending a deploy to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the deploy.
 
-If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
+If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
