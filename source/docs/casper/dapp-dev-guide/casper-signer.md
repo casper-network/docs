@@ -2,7 +2,7 @@
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This tutorial shows you how to connect the [Casper Signer](https://chrome.google.com/webstore/detail/casperlabs-signer/djhndpllfiibmcdbnmaaahkhchcoijce) wallet to your website, show the balance of the account and send a transaction.
+This tutorial shows you how to connect the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) wallet to your website, show the balance of the account and send a transaction.
 
 ## Step 1. Run a Mini Webserver
 
