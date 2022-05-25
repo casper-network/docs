@@ -83,6 +83,7 @@ module.exports = {
                 "dapp-dev-guide/installing-contracts",
                 "dapp-dev-guide/calling-contracts",
                 "dapp-dev-guide/testing",
+                "dapp-dev-guide/nctl-test",
                 "dapp-dev-guide/testing-session-code",
                 "dapp-dev-guide/upgrading-contracts",
                 "dapp-dev-guide/execution-error-codes",
