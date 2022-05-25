@@ -8,7 +8,7 @@ This tutorial examines how to upgrade an existing contract, a process similar to
 
 ## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
-- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/sending-deploys/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network
+- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/sending-deploys/), and [calling contracts](/dapp-dev-guide/writing-contracts/calling-contracts) on the Casper Network
 
 
 ## Contract Versioning Flow {#contract-versioning-flow}

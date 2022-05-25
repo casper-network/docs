@@ -16,7 +16,7 @@ Follow the instructions in the [Basic Node Setup](setup.md) section to configure
 ```bash
 git clone https://github.com/casper-network/casper-node
 ```
-2. To build contracts, set up Rust and install all dependencies, see [Installing Rust](../dapp-dev-guide/getting-started.md#installing-rust) in the Developer Guide.
+2. To build contracts, set up Rust and install all dependencies, see [Installing Rust](../dapp-dev-guide/writing-contracts/getting-started.md#installing-rust) in the Developer Guide.
 
 3. Use the following commands to build the contracts in release mode:
 

@@ -12,7 +12,7 @@ Before writing smart contracts on a Casper Network, developers should be familia
 
 Smart contracts exist as stored on-chain logic, thereby allowing disparate users to call the included entry points. These contracts can, in turn, call one another to perform interconnected operations and create more complex programs. The decentralized nature of blockchain technology means that these smart contracts do not suffer from any single point of failure. Even if a Casper node leaves the network, other nodes will continue to allow the contract to operate as intended.
 
-Further, the Casper platform allows for [upgradable contracts](../../../dapp-dev-guide/upgrading-contracts/) and implementation through a variety of developer-friendly programming languages. 
+Further, the Casper platform allows for [upgradable contracts](../../../dapp-dev-guide/writing-contracts/upgrading-contracts/) and implementation through a variety of developer-friendly programming languages. 
 
 ## Smart Contracts on Casper
 
@@ -333,4 +333,4 @@ You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/co
 
 ## What's Next? {#whats-next}
 
-- Learn to [install a contract and query global state](/dapp-dev-guide/installing-contracts.md) with the Casper command-line client
+- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md) with the Casper command-line client

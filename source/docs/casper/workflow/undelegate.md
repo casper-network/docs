@@ -15,7 +15,7 @@ This workflow assumes:
 
 Obtain the `undelegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository and building the contracts.
 
-To build contracts, set up Rust, and install all dependencies. Visit [Setting up Rust](../dapp-dev-guide/getting-started.md) in the Developer Guide for step-by-step instructions.
+To build contracts, set up Rust, and install all dependencies. Visit [Setting up Rust](../dapp-dev-guide/writing-contracts/getting-started.md) in the Developer Guide for step-by-step instructions.
 
 Once you build the contracts, you can use the `undelegate.wasm` to create a deploy that will initiate the undelegation process. The Wasm can be found in:
 

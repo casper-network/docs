@@ -11,7 +11,12 @@ This section shows you how to write smart contracts in Rust and WebAssembly (Was
 | ------------------------------------------- | ------------------------------- |
 |[Getting Started with Rust](../getting-started.md)| An introduction to using Rust with the Casper Platform|
 |[Writing Session Code](session-code.md)      | An introduction to writing session code|
+|[Unit Testing Session Code](testing-session-code.md)      | Steps to test session code using the unit testing framework|
 |[A Basic Smart Contract in Rust](rust.md)   | An example of a smart contract built in Rust|
+|[Unit Testing Contract Code](testing.md)      | Steps to test contract code using the unit testing framework|
+|[Installing Contracts](installing-contracts.md)| A guide on installing contracts and querying global state        |
+|[Calling Contracts](calling-contracts.md)| Steps to call a contract with the Rust command-line client|
+|[Upgrading Contracts](upgrading-contracts.md)| An introduction to versioning contracts|
 |[A Basic Smart Contract in AssemblyScript](assembly-script.md) | An example of a smart contract built in AssemblyScript |
 
 Additionally, the following tutorials outline some aspects of writing smart contracts on the Casper Network.
