@@ -6,18 +6,18 @@ The following methods pertain to the Proof-of-Stake functionality of a Casper ne
 
 ## state_get_auction_info {#state-get-auction-info}
 
-This method returns the [bids](../../../economics/consensus#bids) and [validators](../../../glossary/V#validator) as of either a specific Block (by height or hash). If you do not provide a  `block_identifier`, `state_get_auction_info` will return information from the most recent Block.
+This method returns the [bids](economics/consensus#bids) and [validators](glossary/V#validator) as of either a specific Block (by height or hash). If you do not provide a  `block_identifier`, `state_get_auction_info` will return information from the most recent Block.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[block_identifier](../../sdkspec/types_chain#blockidentifier)|Object|The Block identifier.|
+|[block_identifier](dapp-dev-guide/sdkspec/types_chain#blockidentifier)|Object|The Block identifier.|
 
 ### `state_get_auction_info_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[auction_state](../../sdkspec/types_chain#auctionstate)|Object|The auction state.|
+|[auction_state](dapp-dev-guide/sdkspec/types_chain#auctionstate)|Object|The auction state.|
 
 <details>
 
@@ -96,7 +96,7 @@ If no changes occurred in the current era, `info_get_validator_changes` will ret
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[changes](../../sdkspec/types_chain#jsonvalidatorchanges)|Object|The validators' status changes.|
+|[changes](dapp-dev-guide/sdkspec/types_chain#jsonvalidatorchanges)|Object|The validators' status changes.|
 
 <details>
 
@@ -136,14 +136,14 @@ This method returns an EraInfo from the network. Only the last Block in an `era`
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
-|[block_identifier](../../sdkspec/types_chain#blockidentifier)|Object|The Block identifier. If you do not supply a `block_identifier`, the returned information will be the most recent Block. (Optional)|
+|[block_identifier](dapp-dev-guide/sdkspec/types_chain#blockidentifier)|Object|The Block identifier. If you do not supply a `block_identifier`, the returned information will be the most recent Block. (Optional)|
 
 ### `chain_get_era_info_by_switch_block_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[era_summary](../../sdkspec/types_chain#erasummary)|Object|The era summary (If found).|
+|[era_summary](dapp-dev-guide/sdkspec/types_chain#erasummary)|Object|The era summary (If found).|
 
 <details>
 

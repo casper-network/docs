@@ -6,20 +6,20 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Installing Contracts and Querying Global State
 
-This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust) guide, and covers the installation of Casper contracts using the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
+This tutorial is a continuation of the [Smart Contracts on Casper](dapp-dev-guide/writing-contracts/rust) guide, and covers the installation of Casper contracts using the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
 
 ## Prerequisites
 
-- You know how to [send and verify deploys](sending-deploys.md)
+- You know how to [send and verify deploys](dapp-dev-guide/building-dapps/sending-deploys.md)
    - Your environment meets these [prerequisites](/workflow/setup/) and you have a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
    - You have a [Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
    - You have enough CSPR tokens in your account to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](/workflow/token-transfer#2-the-faucet) to fund your testing account
-- You understand how to [write basic contract code](/dapp-dev-guide/writing-contracts/index.md) and session code
+- You understand how to [write basic contract code](dapp-dev-guide/writing-contracts/index.md) and session code
 - You have a contract Wasm to send to a Casper Network
 
 ## Installing a Contract in Global State {#installing-contract-code}
 
-To install a contract in [global state](/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](sending-deploys.md#sending-the-deploy).
+To install a contract in [global state](/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](dapp-dev-guide/building-dapps/sending-deploys.md#sending-the-deploy).
 
 ```bash
 casper-client put-deploy \
@@ -234,7 +234,7 @@ Here is how the sample contract would look and would contain details such as the
 
 **Example - Query a value using its key and the contract hash:**
 
-Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where a "count" variable is incremented and stored under a named key.
+Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](dapp-dev-guide/tutorials/counter/index.md), where a "count" variable is incremented and stored under a named key.
 
 ```bash
 casper-client query-global-state \

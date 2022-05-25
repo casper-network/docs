@@ -10,15 +10,15 @@ Our provided test support crate is only one option for testing your Deploys prio
 
 Testing within the Casper ecosystem involves the following steps:
 
-1) [Writing a Smart Contract](writing-contracts/rust.md)
+1) [Writing a Smart Contract](dapp-dev-guide/writing-contracts/rust.md)
 
 2) [Creating a Test Crate](#creating-a-test-crate)
 
-3) [Local Network Testing](setup-nctl.md)
+3) [Local Network Testing](dapp-dev-guide/building-dapps/setup-nctl.md)
 
 4) Sending the Deploy to [Testnet](https://testnet.cspr.live/)
 
-5) [Sending the Tested Deploy](sending-deploys.md) to a Casper Network
+5) [Sending the Tested Deploy](dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper Network
 
 ### Initial Setup
 
@@ -44,7 +44,7 @@ cargo new tests
 
 ```
 
-This will create a Rust Cargo package, including the */src/main.rs* and *Cargo.toml* files. As stated above, you should create the test crate within the same workspace as your Wasm producing crates.  For this example, we will be using the donation contract outlined in our [Writing a Basic Smart Contract in Rust](writing-contracts/rust.md) tutorial.
+This will create a Rust Cargo package, including the */src/main.rs* and *Cargo.toml* files. As stated above, you should create the test crate within the same workspace as your Wasm producing crates.  For this example, we will be using the donation contract outlined in our [Writing a Basic Smart Contract in Rust](dapp-dev-guide/writing-contracts/rust.md) tutorial.
 
 As such, you should see the following directories within the workspace:
 
@@ -76,7 +76,7 @@ casper-types = "1.4.5"
 
 ### Import Builders and Constants
 
-Coding for your test crate should take place within the `tests` directory, using the *main.rs* file. To begin, you must import external test support. This includes a variety of default values and helper methods that we will use throughout our test. Additionally, you will need to import any [CLTypes](sdkspec/types_cl.md) that you've used within the contract code to be tested.
+Coding for your test crate should take place within the `tests` directory, using the *main.rs* file. To begin, you must import external test support. This includes a variety of default values and helper methods that we will use throughout our test. Additionally, you will need to import any [CLTypes](dapp-dev-guide/sdkspec/types_cl.md) that you've used within the contract code to be tested.
 
 ```rust
 
@@ -299,6 +299,6 @@ Once we have the two values, we can then use `assert_eq!()` to compare them agai
 
 ## Next Steps and Further Testing
 
-Unit testing is only one way to test potential Deploys prior to sending them to a Casper network. After unit testing your contract, you may wish to perform [local network testing](dapp-dev-guide/setup-nctl) using NCTL. This allows you to set up and control multiple local Casper nodes to perform [testing in a further simulated network environment](dapp-dev-guide/nctl-test).
+Unit testing is only one way to test potential Deploys prior to sending them to a Casper network. After unit testing your contract, you may wish to perform [local network testing](dapp-dev-guide/building-dapps/setup-nctl) using NCTL. This allows you to set up and control multiple local Casper nodes to perform [testing in a further simulated network environment](dapp-dev-guide/building-dapps/nctl-test).
 
 You may also wish to test your Deploys on the Casper [Testnet](https://testnet.cspr.live/).

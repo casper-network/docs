@@ -8,14 +8,14 @@ This workflow assumes:
 2.  You are using the Casper command-line client
 3.  You have an undelegation contract or Wasm to execute on the network
 4.  You have a valid `node-address`
-5.  You have previously [deployed a smart contract](../dapp-dev-guide/sending-deploys.md) to a Casper Network
+5.  You have previously [deployed a smart contract](dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper Network
 6.  You have delegated tokens to a validator
 
 ## Building The Undelegation Wasm {#building-the-undelegation-wasm}
 
 Obtain the `undelegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository and building the contracts.
 
-To build contracts, set up Rust, and install all dependencies. Visit [Setting up Rust](../dapp-dev-guide/getting-started.md) in the Developer Guide for step-by-step instructions.
+To build contracts, set up Rust, and install all dependencies. Visit [Setting up Rust](dapp-dev-guide/writing-contracts/getting-started.md) in the Developer Guide for step-by-step instructions.
 
 Once you build the contracts, you can use the `undelegate.wasm` to create a deploy that will initiate the undelegation process. The Wasm can be found in:
 

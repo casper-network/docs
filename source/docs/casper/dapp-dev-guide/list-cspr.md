@@ -4,11 +4,11 @@ This document is tailored specifically for exchanges that wish to list the Caspe
 
 CSPR is listed on over 25 exchanges worldwide. As a token, CSPR is very straightforward to integrate. Developers can complete integration and testing in a matter of days.
 
-There are several well-maintained Software Development Kits (SDKs) available to use on the Casper Network, see [SDK Libraries](../dapp-dev-guide/sdk/index.md).
+There are several well-maintained Software Development Kits (SDKs) available to use on the Casper Network, see [SDK Libraries](dapp-dev-guide/building-dapps/sdk/index.md).
 
 ## Transaction Workflow
 
--   [Create an account](../dapp-dev-guide/keys.md)
+-   [Create an account](dapp-dev-guide/keys.md)
 -   [Create a transfer transaction](../workflow/transfer-workflow.md)
 -   [Query the transaction status](../workflow/querying.md)
 -   [Verify a transfer](../workflow/verify-transfer.md)
