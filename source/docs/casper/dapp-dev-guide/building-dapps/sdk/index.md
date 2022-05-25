@@ -11,10 +11,10 @@ The following table provides links to the SDK documentation, in addition to the 
 
 | SDK Documentation      | GitHub Location      | Maintainer |
 | ---------------------- | -------------------- | ---------- |
-|[TypeScript](./script-sdk.md) | [Casper-js-sdk](https://github.com/casper-ecosystem/casper-js-sdk/)| [Jan Hoffman](mailto:jan@hfmn.pl) |
+|[TypeScript](dapp-dev-guide/building-dapps/sdk/script-sdk) | [Casper-js-sdk](https://github.com/casper-ecosystem/casper-js-sdk/)| [Jan Hoffman](mailto:jan@hfmn.pl) |
 |Java SDK | [Casper-java-sdk](https://github.com/casper-network/casper-java-sdk/)| [Carl Norburn](mailto:carl.norburn@gmail.com)|
-|[C# SDK](/dapp-dev-guide/sdk/csharp-sdk)|[Casper-net-sdk](https://github.com/make-software/casper-net-sdk)|David Hernando, Ihor Burlachenko, Muhammet Kara, Michael Steuer|
-|[Golang SDK](/dapp-dev-guide/sdk/go-sdk) |[Casper-golang-sdk](https://github.com/casper-ecosystem/casper-golang-sdk/)|[Yaroslav Panasenko](mailto:yar.panasenko@gmail.com)|
-|[Python SDK](/dapp-dev-guide/sdk/python-sdk) |[Casper-python-sdk](https://github.com/casper-network/casper-python-sdk/)|[Mark A. Greenslade](mailto:mark@casper.network)|
+|[C# SDK](/dapp-dev-guide/building-dapps/sdk/csharp-sdk)|[Casper-net-sdk](https://github.com/make-software/casper-net-sdk)|David Hernando, Ihor Burlachenko, Muhammet Kara, Michael Steuer|
+|[Golang SDK](/dapp-dev-guide/building-dapps/sdk/go-sdk) |[Casper-golang-sdk](https://github.com/casper-ecosystem/casper-golang-sdk/)|[Yaroslav Panasenko](mailto:yar.panasenko@gmail.com)|
+|[Python SDK](/dapp-dev-guide/building-dapps/sdk/python-sdk) |[Casper-python-sdk](https://github.com/casper-network/casper-python-sdk/)|[Mark A. Greenslade](mailto:mark@casper.network)|
 |Java SDK by SyntiFi|[Casper-sdk](https://github.com/syntifi/casper-sdk)|[Remo Stieger](mailto:remo@syntifi.com)/[Andre Bertolace](mailto:andre@syntifi.com)|
 |PHP SDK|[Casper-php-sdk](https://github.com/make-software/casper-php-sdk)|Roman Bylbas, Ihor Burlachenko, Michael Steuer|

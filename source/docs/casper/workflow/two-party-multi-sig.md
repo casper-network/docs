@@ -1,6 +1,6 @@
 # Two-Party Multi-Signature Deploys
 
-[Accounts](../design/accounts.md) on a Casper Network can associate other accounts to allow or require a multiple signature scheme for deploys.
+[Accounts](/design/accounts.md) on a Casper Network can associate other accounts to allow or require a multiple signature scheme for deploys.
 
 This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper Network.
 
@@ -10,7 +10,7 @@ This workflow assumes:
 2.  You are using the Casper command-line client
 3.  You have a main `PublicKey` hex (**MA**) and a `PublicKey` hex to associate (**AA**)
 4.  You have a valid `node-address`
-5.  You have previously [deployed a smart contract](../dapp-dev-guide/sending-deploys.md) to a Casper Network
+5.  You have previously [deployed a smart contract](/dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper Network
 
 ## Configuring the Main Account {#configuring-the-main-account}
 
@@ -167,4 +167,4 @@ casper-client query-global-state \
 
 In the above example, you can see the account addresses listed within the `associated_keys` section. Each key has a weight of `1`, since the action threshold for `deployment` is set to `2`, neither account is able to sign and send a deploy individually. Thus to send the deploy from the Main account, the deploy needs to be signed by the secret keys of each account to reach the required threshold.
 
-Details about various scenarios in which multiple associated keys can be setup is discussed in [the examples section of the Multi-Signature Tutorial](../dapp-dev-guide/tutorials/multi-sig/additional.md).
+Details about various scenarios in which multiple associated keys can be setup is discussed in [the examples section of the Multi-Signature Tutorial](dapp-dev-guide/tutorials/multi-sig/additional.md).

@@ -10,7 +10,7 @@ This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-gui
 
 ## Prerequisites
 
-- You know how to [send and verify deploys](dapp-dev-guide/sending-deploys.md)
+- You know how to [send and verify deploys](dapp-dev-guide/building-dapps/sending-deploys.md)
    - Your environment meets these [prerequisites](/workflow/setup/) and you have a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
    - You have a [Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
    - You have enough CSPR tokens in your account to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](/workflow/token-transfer#2-the-faucet) to fund your testing account
@@ -19,7 +19,7 @@ This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-gui
 
 ## Installing a Contract in Global State {#installing-contract-code}
 
-To install a contract in [global state](/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](dapp-dev-guide/sending-deploys.md#sending-the-deploy).
+To install a contract in [global state](/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](dapp-dev-guide/building-dapps/sending-deploys.md#sending-the-deploy).
 
 ```bash
 casper-client put-deploy \

@@ -27,7 +27,7 @@ Additionally, the following tutorials outline some aspects of writing smart cont
 |[Counter Contract Tutorial](../tutorials/counter/index.md)                | A simple example contract that maintains a counter variable      |
 |[Fungible Tokens on Casper](https://github.com/casper-ecosystem/erc20/blob/master/docs/TUTORIAL.md)              | Implement the Casper Fungible Token standard                         |
 |[Key-Value Storage with Casper DSL](../tutorials/kv-storage-tutorial.md)  | Design a simple contract to store a value and use the Casper DSL |
-|[Multi-Signatures and Key Recovery](../tutorials/multi-sig/index.md)      | Learn to sign transactions with multiple keys                    |
+|[Multi-Signatures and Key Recovery](dapp-dev-guide/tutorials/multi-sig/index.md)      | Learn to sign transactions with multiple keys                    |
 |[Interacting with Runtime Return Values](../tutorials/return-values-tutorial.md)| Learning how to return a value using contract code         |
 |[Safely Transfer Tokens to a Contract](../tutorials/transfer-token-to-contract.md) | How to handle tokens via a contract                     |
 |[Smart Contract Upgrades](../tutorials/upgrade-contract.md)               | Learn how to upgrade smart contracts                             |

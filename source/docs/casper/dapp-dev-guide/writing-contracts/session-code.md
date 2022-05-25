@@ -183,7 +183,7 @@ cargo build --release --target wasm32-unknown-unknown
 Once the session code is compiled you can deploy it on a Casper Network.
 
 ## Deploying the Session Code
-Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using [NCTL](../setup-nctl.md).
+Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using [NCTL](/dapp-dev-guide/building-dapps/setup-nctl).
 
 You can deploy the session code on the Testnet using the following command:
 
