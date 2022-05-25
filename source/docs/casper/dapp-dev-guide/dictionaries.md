@@ -1,25 +1,29 @@
 # Understanding Dictionaries
 
-In a Caper network [`Keys`](dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) are a type under which possible sets of data are stored. Traditionally, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within the context of an `Account` or `Contract`. In the case of `Contract`s, sustained and continuous use of the the URef structure would result in expansion of associated URef size of `NamedKeys` structures.
+In a Casper network, you can now store sets of data under [`Keys`](../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). Previously, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within an `Account` or `Contract` context. In the case of Contracts, sustained and continuous use of URefs would result in the expansion of the associated `NamedKeys` structures.
 
-Individual changes to data stored within the `NamedKeys` would require deserialization of the entire `NamedKey` structures, which would have a negative impact by increasing the gas costs over time. Additionally, users storing large subsets of mapped data structures would face the same deep copy problem where minor or single updates required the complete deserialization of the map structure, leading to increased gas costs.
+Individual value changes to data stored within the NamedKeys would require deserializing the entire NamedKeys data structure, increasing gas costs over time and thus having a negative impact. Additionally, users storing large subsets of mapped data structures would face the same deep copy problem where minor or single updates required the complete deserialization of the map structure, also leading to increased gas costs.
 
 As a solution to this problem, the Casper platform provides the `Dictionary` feature, which allows users a more efficient and scalable means to aggregate data over time.
 
 ## Seed URefs
 
-Items within a dictionary exist as individual records stored underneath their unique [dictionary address](dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) in global state. Items associated with a specific dictionary share the same seed [`URef`](../../design/uref) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
+Items within a dictionary exist as individual records stored underneath their unique [dictionary address](../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations), or seed URef, in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](../../design/uref) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
 
-As each dictionary item exists as a stand-alone entity on global state, regularly used dictionary keys may be used directly without referencing their seed URef.
+As each dictionary item exists as a stand-alone entity in global state, regularly used dictionary keys may be used directly without referencing their seed URef.
 
 ## Creating Dictionaries
 
-Dictionaries are ideal for storing larger volumes of data that `NamedKeys` would be less suitable for.  
+Dictionaries are ideal for storing larger volumes of data for which `NamedKeys` would be less suitable.  
 
 Creating a new dictionary is fairly simple and done within the context of a `Deploy` sent to a Casper network. The associated code is included within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/) crate. Creating a dictionary also stores the associated seed URef within the named keys of the current context.
 
 :::note
-Developers should consider context when creating dictionaries. While you can create a dictionary in the context of an Account and then pass associated access rights to a Contract, it can create potential security issues. If the Contract is intended for third-party use, the initiating Account that has access rights to the dictionary may be viewed as undesirable. You may send an additional `Deploy` removing those access rights, but it is better to simply create the dictionary within the context of the Contract.
+
+Developers should always consider context when creating dictionaries. We recommend creating a dictionary within the context of a Contract.
+
+While you can create a dictionary in the context of an Account and then pass associated access rights to a Contract, this approach can create potential security issues. If a third party uses the Contract, the initiating Account with access rights to the dictionary may be undesirable. To rectify this, you may send an additional `Deploy` removing those access rights, but it is better to create the dictionary within the context of the Contract.
+
 :::
 
 The following code snippet shows the most basic example of creating a dictionary. 
@@ -54,11 +58,11 @@ storage::dictionary_put(dictionary_uref, key, value);
 
 ```
 
-The `dictionary_uref` refers to the seed URef established during the creation process, the `key` is the unique identifier for this dictionary item and the `value` is the data to be stored within the dictionary item.
+The `dictionary_uref` refers to the seed URef established during the dictionary creation process. The `key` is the unique identifier for this dictionary item, and the `value` is the data to be stored within the dictionary item.
 
-As stated above, these dictionary items do not require the seed URef to reference and exist as individual keys on global state. If you know the dictionary key's address, you do not need to go through the process of identifying the seed URef first.
+As stated above, these dictionary items do not require the seed URef, and they exist as individual keys in global state. If you know an individual key's address, you do not need to go through the process of identifying the seed URef first.
 
-The following function serves to add an entry to the dictionary. If the item already exists, it will update the value stored within the item key. In this case, it is storing the number of donations made.
+The following function serves to add an entry to the dictionary. If the item already exists, the function will update the value stored and referenced by that key. In this case, the code is storing the number of donations made.
 
 
 ```rust
@@ -86,12 +90,9 @@ fn update_ledger_record(dictionary_item_key: String) {
 
 ## Accessing a Dictionary Item
 
-The Casper platform allows for four means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. In brief, they consist of:
+The Casper platform provides four means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](../../dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. In brief, they consist of:
 
-* `AccountNamedKey` Lookup via an Account's named keys.
-
-* `ContractNamedKey` Lookup via a Contract's named keys.
-
-* `URef` Lookup via the dictionary's seed URef.
-
-* `Dictionary` Lookup via the unique dictionary item key.
+* `AccountNamedKey` lookup via an Account's named keys.
+* `ContractNamedKey` lookup via a Contract's named keys.
+* `URef` lookup via the dictionary's seed URef.
+* `Dictionary` lookup via the unique dictionary item key.
