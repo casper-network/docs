@@ -1,6 +1,6 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Prerequisites
+# Development Prerequisites
 
 This section explains how to fulfill the prerequisites needed to interact with a Casper Network.
 
