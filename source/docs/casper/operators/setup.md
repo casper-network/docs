@@ -121,7 +121,7 @@ It is recommended to save your keys in a secure location, preferably offline.
 
 :::
 
-More about keys and key generation can be found in `/etc/casper/validator_keys/README.md` if `casper-node-launcher` was installed from the Debian package. You can also find for more information on keys, in the [Accounts and Cryptographic Keys](/dapp-dev-guide/keys.md) section.
+More about keys and key generation can be found in `/etc/casper/validator_keys/README.md` if `casper-node-launcher` was installed from the Debian package. You can also find for more information on keys, in the [Accounts and Cryptographic Keys](dapp-dev-guide/keys.md) section.
 
 ## Config File {#config-file}
 

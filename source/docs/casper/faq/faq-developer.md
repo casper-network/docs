@@ -206,7 +206,7 @@ casper-client get-block-transfers --help
 <details>
  <summary><b>When is the balance updated after a deploy?</b></summary>
 
- Execution occurs after consensus. As outlined [in the dApp Developer Guide](/dapp-dev-guide/building-dapps/sending-deploys#monitoring-the-event-stream-for-deploys), deploys are queued in the system before being listed in a block for execution.
+ Execution occurs after consensus. As outlined [in the dApp Developer Guide](dapp-dev-guide/building-dapps/sending-deploys#monitoring-the-event-stream-for-deploys), deploys are queued in the system before being listed in a block for execution.
 
  Balance updates should occur after contract execution and block finalization.
 

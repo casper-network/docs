@@ -6,7 +6,7 @@ This document outlines the JSON-RPC API endpoints and types definitions for deve
 
 The Casper Association provides a JavaScript SDK that is compliant with this SDK Standard. However, those that prefer other languages may build an SDK using their language of choice.
 
-For examples of such SDKs, please refer to our [SDK Client Libraries](/dapp-dev-guide/building-dapps/sdk/) section.
+For examples of such SDKs, please refer to our [SDK Client Libraries](dapp-dev-guide/building-dapps/sdk/) section.
 
 ### Serialization
 

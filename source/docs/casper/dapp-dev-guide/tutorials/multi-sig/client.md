@@ -7,7 +7,7 @@ You will test the client example using [NCTL](https://github.com/casper-network/
 ## Prerequisites {#prerequisites}
 
 -   You have compiled the [example contract](https://github.com/casper-ecosystem/keys-manager) for key management
--   You have set up the [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) tool according to the [NCTL guide](/dapp-dev-guide/building-dapps/setup-nctl)
+-   You have set up the [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) tool according to the [NCTL guide](dapp-dev-guide/building-dapps/setup-nctl)
 
 ## Setting up a Local Casper Network {#setting-up-a-local-casper-network}
 

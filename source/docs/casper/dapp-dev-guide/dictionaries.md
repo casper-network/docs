@@ -1,6 +1,6 @@
 # Understanding Dictionaries
 
-In a Caper network [`Keys`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) are a type under which possible sets of data are stored. Traditionally, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within the context of an `Account` or `Contract`. In the case of `Contract`s, sustained and continuous use of the the URef structure would result in expansion of associated URef size of `NamedKeys` structures.
+In a Caper network [`Keys`](dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) are a type under which possible sets of data are stored. Traditionally, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within the context of an `Account` or `Contract`. In the case of `Contract`s, sustained and continuous use of the the URef structure would result in expansion of associated URef size of `NamedKeys` structures.
 
 Individual changes to data stored within the `NamedKeys` would require deserialization of the entire `NamedKey` structures, which would have a negative impact by increasing the gas costs over time. Additionally, users storing large subsets of mapped data structures would face the same deep copy problem where minor or single updates required the complete deserialization of the map structure, leading to increased gas costs.
 
@@ -8,7 +8,7 @@ As a solution to this problem, the Casper platform provides the `Dictionary` fea
 
 ## Seed URefs
 
-Items within a dictionary exist as individual records stored underneath their unique [dictionary address](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) in global state. Items associated with a specific dictionary share the same seed [`URef`](../../design/uref) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
+Items within a dictionary exist as individual records stored underneath their unique [dictionary address](dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) in global state. Items associated with a specific dictionary share the same seed [`URef`](../../design/uref) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
 
 As each dictionary item exists as a stand-alone entity on global state, regularly used dictionary keys may be used directly without referencing their seed URef.
 
@@ -86,7 +86,7 @@ fn update_ledger_record(dictionary_item_key: String) {
 
 ## Accessing a Dictionary Item
 
-The Casper platform allows for four means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](/dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. In brief, they consist of:
+The Casper platform allows for four means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. In brief, they consist of:
 
 * `AccountNamedKey` Lookup via an Account's named keys.
 
