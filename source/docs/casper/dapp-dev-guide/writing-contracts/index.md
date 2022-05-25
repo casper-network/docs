@@ -9,7 +9,7 @@ This section shows you how to write smart contracts in Rust and WebAssembly (Was
 
 | Title                                       | Description                     |
 | ------------------------------------------- | ------------------------------- |
-|[Getting Started with Rust](../getting-started.md)| An introduction to using Rust with the Casper Platform|
+|[Getting Started with Rust](dapp-dev-guide/writing-contracts/getting-started.md)| An introduction to using Rust with the Casper Platform|
 |[Writing Session Code](session-code.md)      | An introduction to writing session code|
 |[Unit Testing Session Code](testing-session-code.md)      | Steps to test session code using the unit testing framework|
 |[A Basic Smart Contract in Rust](rust.md)   | An example of a smart contract built in Rust|

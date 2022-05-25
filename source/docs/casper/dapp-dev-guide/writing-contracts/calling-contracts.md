@@ -10,7 +10,7 @@ Smart contracts exist as stored on-chain logic, allowing disparate users to call
 
 ## Prerequisites {#prerequisites}
 
-- You know how to [send and verify deploys](sending-deploys.md)
+- You know how to [send and verify deploys](dapp-dev-guide/sending-deploys.md)
 - You know how to [install contracts and query global state](installing-contracts.md) using the [default Casper client](/workflow/setup#the-casper-command-line-client)
 
 ## Calling Contracts by Contract Hash {#calling-contracts-by-hash}

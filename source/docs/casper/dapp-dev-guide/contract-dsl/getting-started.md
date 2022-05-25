@@ -14,7 +14,7 @@ Contract `casperlabs_contract` This macro generates the code for the headers for
 
 ## Prerequisites {#prerequisites}
 
-The DSL relies upon working in a Rust contract, which means you need to have your development environment up and running. In the [Getting Started section](../getting-started.md), we compiled and tested a sample contract to verify our setup was functional. If you have not completed that section, please complete it before continuing with this guide.
+The DSL relies upon working in a Rust contract, which means you need to have your development environment up and running. In the [Getting Started section](dapp-dev-guide/writing-contracts/getting-started.md), we compiled and tested a sample contract to verify our setup was functional. If you have not completed that section, please complete it before continuing with this guide.
 
 ## \[Recommended\] Getting the Macros {#recommended-getting-the-macros}
 
