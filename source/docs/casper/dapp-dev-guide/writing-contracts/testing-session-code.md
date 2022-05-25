@@ -339,3 +339,6 @@ assert_eq!(3, value);
 ```
 </details>
 
+## What's Next? {#whats-next}
+
+- Learn to [write a smart contract in Rust](/dapp-dev-guide/writing-contracts/rust)

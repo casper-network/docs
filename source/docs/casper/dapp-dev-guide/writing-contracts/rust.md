@@ -333,4 +333,5 @@ You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/co
 
 ## What's Next? {#whats-next}
 
+- Learn to [test your contract](/dapp-dev-guide/writing-contracts/testing)
 - Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md) with the Casper command-line client

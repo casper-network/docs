@@ -206,3 +206,6 @@ casper-client put-deploy \
 
 You can use this command `casper-client put-deploy --help` to view help information, which provides an updated list of supported arguments.
 
+## What's Next? {#whats-next}
+
+- Learn to [test your session code](/dapp-dev-guide/writing-contracts/testing-session-code)
