@@ -7,7 +7,7 @@ NCTL stands for network/node control. [NCTL](https://github.com/casper-network/c
 
 ## Prerequisites {#prerequisites}
 
-1.  You have completed the [Getting Started section](dapp-dev-guide/writing-contracts/getting-started.md), which shows you how to install your development environment, including tools like _CMake_ (version 3.1.4+), _Cargo_, and _Rust_.
+1.  You have completed the [Getting Started section](/dapp-dev-guide/writing-contracts/getting-started.md), which shows you how to install your development environment, including tools like _CMake_ (version 3.1.4+), _Cargo_, and _Rust_.
 2.  Make sure you have [Python 3 installed](https://www.python.org/downloads/) if your operating system does not include Python.
 3.  To run NCTL, you will also need [the bash shell](https://www.gnu.org/software/bash/).
 

@@ -10,7 +10,7 @@ Smart contracts exist as stored on-chain logic, allowing disparate users to call
 
 ## Prerequisites {#prerequisites}
 
-- You know how to [send and verify deploys](dapp-dev-guide/building-dapps/sending-deploys.md)
+- You know how to [send and verify deploys](/dapp-dev-guide/building-dapps/sending-deploys.md)
 - You know how to [install contracts and query global state](installing-contracts.md) using the [default Casper client](/workflow/setup#the-casper-command-line-client)
 
 ## Calling Contracts by Contract Hash {#calling-contracts-by-hash}
@@ -37,7 +37,7 @@ The arguments used above are:
 
 **Example - Call a contract by hash:**
 
-In this example from the [Counter Contract Tutorial](dapp-dev-guide/tutorials/counter/index.md), a hash identifies a stored contract called "counter" with an entry-point called "counter-inc".
+In this example from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), a hash identifies a stored contract called "counter" with an entry-point called "counter-inc".
 
 ```bash
 casper-client put-deploy \
@@ -51,7 +51,7 @@ casper-client put-deploy \
 
 :::note
 
-This `put-deploy` command is nearly identical to the command used to [install the contract](installing-contracts.md#installing-contract-code). Here, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed in this example, since the contract is already on the blockchain and the entry point doesn’t return a value. If an entry point returns a value, use code to [interact with runtime return values](dapp-dev-guide/tutorials/return-values-tutorial/).
+This `put-deploy` command is nearly identical to the command used to [install the contract](installing-contracts.md#installing-contract-code). Here, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated function to execute. No Wasm file is needed in this example, since the contract is already on the blockchain and the entry point doesn’t return a value. If an entry point returns a value, use code to [interact with runtime return values](/dapp-dev-guide/tutorials/return-values-tutorial/).
 
 :::
 
@@ -131,7 +131,7 @@ The arguments of interest are:
 
 **Example - Call a contract using the package hash and version:**
 
-In this example, we call a contract by its package hash and version number. The entry point invoked is "counter-inc", also from the [Counter Contract Tutorial](dapp-dev-guide/tutorials/counter/index.md).
+In this example, we call a contract by its package hash and version number. The entry point invoked is "counter-inc", also from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md).
 
 ```bash
 casper-client put-deploy \
@@ -280,13 +280,13 @@ The argument of interest is:
 
 :::note
 
-You will be charged [gas fees](/economics/gas-concepts/) for running session code or contract code on the network. However, you will not be charged for making [RPC calls](dapp-dev-guide/sdkspec/json-rpc-informational/).
+You will be charged [gas fees](/economics/gas-concepts/) for running session code or contract code on the network. However, you will not be charged for making [RPC calls](/dapp-dev-guide/sdkspec/json-rpc-informational/).
 
 :::
 
 **Example - Session code acting on a contract:**
 
-The [Counter Contract Tutorial](dapp-dev-guide/tutorials/counter/index.md) shows you how to change the state of a contract (counter-define.wasm) using session code (counter-call.wasm).
+The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) shows you how to change the state of a contract (counter-define.wasm) using session code (counter-call.wasm).
 
 ```bash
 
@@ -301,10 +301,10 @@ casper-client put-deploy \
 
 ## Calling Contracts that Return a Value
 
-Visit the [Interacting with Runtime Return Values](dapp-dev-guide/tutorials/return-values-tutorial/) tutorial to learn how to call a contract that returns a value using session code or contract code.
+Visit the [Interacting with Runtime Return Values](/dapp-dev-guide/tutorials/return-values-tutorial/) tutorial to learn how to call a contract that returns a value using session code or contract code.
 
 ## What's Next? {#whats-next}
 
-- The [Counter Contract Tutorial](dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
+- The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
 - Also, look into the [Tutorials for Smart Contract Authors](/tutorials/)
 - See the rest of the [Developer How To Guides](/workflow/#developer-guides)
