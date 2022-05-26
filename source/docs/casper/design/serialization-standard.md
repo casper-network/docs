@@ -533,6 +533,8 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 | `Withdraw`   |  8               |
 | `Dictionary` |  9               |
 | `SystemContractRegistry`| 10    |
+| `Unbond`     |  11              |
+| `ChainspecRegistry` | 12        |
 
 -   `Account` serializes as a 32 byte long buffer containing the byte representation of the underlying `AccountHash`
 -   `Hash` serializes as a 32 byte long buffer containing the byte representation of the underlying `Hash` itself.
@@ -544,6 +546,8 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 -   `Bid` and `Withdraw` both contain the `AccountHash` as their identifier; therefore, they serialize in the same manner as the `Account` variant.
 -   `Dictionary` as the 32 byte long buffer containing the byte representation of the seed URef hashed with the identifying name of the dictionary item.
 -   `SystemContractRegistry` as a 32 byte long buffer of zeros.
+-   `Unbond` contains the `AccountHash` as its identifier; therefore, it serialize in the same manner as the `Account` variant.
+-   `ChainspecRegistry` as a 32 byte long buffer of ones.
 
 ## Permissions {#serialization-standard-permissions}
 
@@ -561,7 +565,9 @@ There are three types of actions that can be done on a value: read, write, add. 
 | Bid      | System                  |
 | Withdraw | System                  |
 | Dictionary | Read (via API)        |
-| SystemContractRegistry | System     |
+| SystemContractRegistry | System    |
+| Unbond   | System                  |
+| ChainspecRegistry | System         |
 
 ---
 
