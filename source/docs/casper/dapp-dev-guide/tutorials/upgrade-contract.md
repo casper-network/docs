@@ -134,12 +134,32 @@ You could store the latest version of the contract package under a NamedKey, as 
 
 :::
 
-## Creating a Locked Contract Package {#locked-contract-package}
+## Preventing Further Upgrades
 
-You can create a [locked contract package](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) and forbid further upgrades by discarding the access key URef returned by the `create_contract_package_at_hash` function:
+If you already have a versioned contract package, but would like to prevent further upgrades, you can discard the access key URef.
 
 ```rust
-    // Create a locked contract package that prevents further upgrades 
-    let (contract_package_hash, _): (ContractPackageHash, URef) =
-    storage::create_contract_package_at_hash();
+    // ...
+    ...
 ```
+
+## Creating a Locked Contract Package {#locked-contract-package}
+
+You can create a locked contract package with the [new_locked_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) function. This contract can never be upgraded.
+
+```rust
+let (stored_contract_hash, _) = storage::new_locked_contract(
+    contract_entry_points, 
+    Some(contract_named_keys), 
+    Some("contract_package_name".to_string()),
+    Some("contract_access_uref".to_string()),
+);
+```
+
+Apply the contract entry points and named keys when you call the function. You can also specify a hash_name and uref_name that will be put in the context's named keys. You do not need to save the version number returned, since the version of this contract package would always be equal to 1.
+
+:::note
+
+Creating a locked contract package is an irreversible decision. For a contract that can be upgraded, use new_contract as explained above.
+
+:::
