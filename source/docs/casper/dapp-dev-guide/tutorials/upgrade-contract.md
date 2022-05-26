@@ -134,14 +134,9 @@ You could store the latest version of the contract package under a NamedKey, as 
 
 :::
 
-## Preventing Further Upgrades
+## Disabling a Contract Version
 
-If you already have a versioned contract package, but would like to prevent further upgrades, you can discard the access key URef.
-
-```rust
-    // ...
-    ...
-```
+You can disable the indicated contract version of the indicated contract package by using the [disable_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.disable_contract_version.html) function. Disabled contract versions can no longer be executed.
 
 ## Creating a Locked Contract Package {#locked-contract-package}
 
