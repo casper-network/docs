@@ -236,14 +236,14 @@ There are two types of action that an account can perform: a deploy and key mana
 You may also reference the following two documents for additional information:
 
 - [Accounts](https://docs.casperlabs.io/design/accounts)
-- [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig/)
+- [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig)
 
 </details>
 
 <details>
 <summary><b>How is 'Keys-manager.js' used in the Multi-Signature Tutorial?</b></summary>
 
-In the [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig/), `scenario-*.js` accesses functions from `key-manager.js` through `const keyManager = require('./key-manager');`.
+In the [Multi-Signature Tutorial](https://docs.casperlabs.io/multi-sig), `scenario-*.js` accesses functions from `key-manager.js` through `const keyManager = require('./key-manager');`.
 
 </details>
 

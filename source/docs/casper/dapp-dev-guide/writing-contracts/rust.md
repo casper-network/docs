@@ -330,7 +330,3 @@ pub fn new_locked_contract(
 5) Create the `NamedKeys`.
 
 You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) as the last step to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values.
-
-## What's Next? {#whats-next}
-
-- Learn to [install a contract and query global state](/dapp-dev-guide/installing-contracts.md) with the Casper command-line client

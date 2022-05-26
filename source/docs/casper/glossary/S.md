@@ -45,11 +45,3 @@ A person that deposits tokens in the [proof-of-stake](P.md#proof-of-stake) contr
 ## Staking {#staking}
 
 A feature of Proof-of-Stake protocols that allows token holders to actively participate in the protocol, thus securing the network. The [Staking Guide](../staking/index.md) highlights the steps required to stake the CSPR token on the Casper network.
-
-## Stateful {#stateful}
-
-Stateful execution depends on a previous state, which makes the output differ each time. Such executions are performed with the context of previous executions and the current execution may be affected by what happened during previous executions.
-
-## Stateless {#stateless}
-
-Stateless means that the execution doesn't depend on a previous state, so the output of the execution is the same each time. It does not save or reference information about previous executions. Each execution is from scratch as if for the first time.
