@@ -26,6 +26,7 @@ module.exports = {
         "dapp-dev-guide/index",
         "dapp-dev-guide/why-build-on-casper",
         "dapp-dev-guide/keys",
+        "dapp-dev-guide/list-auth-keys",
         "dapp-dev-guide/understanding-hash-types",
         "dapp-dev-guide/dictionaries",
         {
@@ -137,9 +138,10 @@ module.exports = {
         "operators/setup",
         "operators/create",
         "operators/joining",
+        "operators/fast-sync",
         "operators/upgrade",
         "operators/bonding",
-        "operators/unbonding",
+        "operators/unbonding"
     ],
     design: [
         "design/index",
