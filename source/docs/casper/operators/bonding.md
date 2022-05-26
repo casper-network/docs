@@ -16,7 +16,7 @@ The most secure way to send a bonding transaction is to compile the contract and
 
 ## Build the Contracts {#build-contracts}
 
-Because bonding transactions are generic transactions, it is necessary to build the contract that submits a bid. Clone the casper-node repository and build the contracts. To build contracts, set up Rust and install all dependencies. For detailed instructions, see [Installing Rust](dapp-dev-guide/writing-contracts/getting-started/#installing-rust).
+Because bonding transactions are generic transactions, it is necessary to build the contract that submits a bid. Clone the casper-node repository and build the contracts. To build contracts, set up Rust and install all dependencies. For detailed instructions, see [Installing Rust](/dapp-dev-guide/writing-contracts/getting-started/#installing-rust).
 
 Build the contracts in release mode.
 
