@@ -156,7 +156,7 @@ let (stored_contract_hash, _) = storage::new_locked_contract(
 );
 ```
 
-Apply the contract entry points and named keys when you call the function. You can also specify a hash_name and uref_name that will be put in the context's named keys. You do not need to save the version number returned, since the version of this contract package would always be equal to 1.
+Apply the contract entry points and named keys when you call the function. You can also specify a hash_name and uref_name that will be put in the context's named keys. You do not need to save the version number returned since the version of this contract package would always be equal to 1.
 
 :::note
 
