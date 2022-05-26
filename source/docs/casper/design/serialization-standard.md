@@ -485,6 +485,8 @@ A _key_ in the [Global State](./global-state.md#global-state-intro) is one of th
 -   32-byte Auction withdrawal identifier
 -   32-byte dictionary identifier
 -   32-byte System Contract Registry
+-   32-byte Auction unbond identifier
+-   32-byte Chainspec Registry
 
 The one exception to note here is the identifier for [`EraInfo`](#erainfo), which actually serializes as a [`u64`](#clvalue-numeric) value with an additional byte for the tag.
 
