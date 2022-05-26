@@ -81,7 +81,7 @@ To send a deploy to the network, create keys and obtain token. Token can be obta
 
 ### A Basic Deployment using the Command Line (Rust Client) {#a-basic-deployment-using-the-command-line-rust-client}
 
-As described above, a basic deployment must provide some essential information. Here is an example deployment using the Rust client that will work with the basic contract we created using the [Contracts SDK for Rust](dapp-dev-guide/writing-contracts/rust.md). The default port is 7777:
+As described above, a basic deployment must provide some essential information. Here is an example deployment using the Rust client that will work with the basic contract we created using the [Contracts SDK for Rust](/dapp-dev-guide/writing-contracts/rust.md). The default port is 7777:
 
 ```bash
 $ casper-client put-deploy --chain-name <NETWORK_NAME> --node-address http://<HOST:PORT> --secret-key /home/keys/secret_key.pem --session-path /home/casper-node/target/wasm32-unknown-unknown/release/do_nothing.wasm  --payment-amount 10000000
