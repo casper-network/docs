@@ -43,8 +43,8 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 - `Key::EraInfo` is the integer number of the associated era.
 - `Key::Balance` is the balance of a purse.
 - `Key::Bid` is used to keep track of bids for the auction contract. It is not generally used by users.
-- `Key::Withdraw` is used to keep track of withdraws for the auction contract. It is not generally used by users and exists in a historical context. The Unbond key serves as an updated version of the Withdraw key.
+- `Key::Withdraw` is used to keep track of withdraws for the auction contract. It is not generally used by users and exists in a historical context.
 - `Key::Dictionary` is the hash derived from a URef and a piece of arbitrary data and leads to a dictionary.
 - `Key::SystemContractRegistry` is a unique `Key` under which a mapping of the names and ContractHashes for system contracts, including `Mint`, `Auction`, `HandlePayment` and `StandardPayment`, is stored.
-- `Key::Unbond` is an updated version of the Withdraw key that allows for re-delegation in addition to keeping track of withdraws from the auction contract.
-- `Key::ChainspecRegistry` is a unique `Key` which contains the `blake2b` hash of the chainspec file in use by the current node.
+- `Key::Unbond` is a variant of the key type that tracks unbonding purses.
+- `Key::ChainspecRegistry` is a unique `Key` which contains a mapping of file names to the hash of the file itself. These files include *Chainspec.toml* and may also include *Accounts.toml* and *GlobalState.toml*.
