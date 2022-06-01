@@ -9,7 +9,9 @@ The Casper node streams deploy execution effects and finality signatures through
 - `/events/sigs`
     The FinalitySignature is emitted on `/events/sigs` endpoint, whenever a new finality signature is received.
 - `/events/main` 
-    -   The other events such as BlockAdded, DeployProcessed, DeployExpired, Fault and Step are emitted on the `/events/main` endpoint.
+
+    All other events are emitted on the `/events/main` endpoint as follows:
+
         -   BlockAdded - This event is emitted whenever a new block is added to the blockchain.
         -   DeployProcessed - This event is emitted when the given deploy has been executed, committed and forms part of the given block.
         -   DeployExpired - This event is emitted if a deploy is not added to a block for processing by a validator before the deploy's time to live (TTL) expires.
