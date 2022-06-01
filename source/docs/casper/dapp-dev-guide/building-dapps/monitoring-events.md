@@ -3,7 +3,9 @@
 The Casper node streams deploy execution effects and finality signatures through an SSE server. The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default `9999` on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). The URLs for different types of events are:
 
 - `/events/deploys`
-    The DeployAccepted events are emitted on `/events/deploys` endpoint. This means when a deploy is received by the node and it passes the first set of validity checks, it is stored locally, gossiped to peers and enqueued for inclusion in a block - at this point the DeployAccepted event is emitted.
+
+    `DeployAccepted` events are emitted on the `/events/deploys` endpoint. When a deploy is received by the node, if it passes the first set of validity checks, once it is stored locally the `DeployAccepted` event is emitted.
+
 - `/events/sigs`
     The FinalitySignature is emitted on `/events/sigs` endpoint, whenever a new finality signature is received.
 - `/events/main` 
