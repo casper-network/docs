@@ -1,6 +1,9 @@
-# Local Network Testing
 
-NCTL stands for network/node control. [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) is a CLI application you can use to set up and control multiple local Casper networks during development. Many developers wish to spin up relatively small test networks to localize their testing before deploying to the blockchain. Adopting a standardized approach in the community is also helpful for troubleshooting and reporting issues.
+# Setting up a Local Network with NCTL
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+NCTL stands for network/node control. [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl) is a CLI application you can use to set up and control multiple local Casper nodes during development. Many developers wish to spin up relatively small test networks to localize their testing before deploying to the blockchain. Adopting a standardized approach in the community is also helpful for troubleshooting and reporting issues.
 
 ## Prerequisites {#prerequisites}
 
@@ -136,6 +139,12 @@ Instructions for MacOS and Linux:
 (env) $ git clone https://github.com/casper-network/casper-node-launcher
 ```
 
+:::note
+
+Assuming you have set up a small local network, you can speed up the process of creating new blocks with NCTL by reducing the `deploy_delay` in your [local config.toml](https://github.com/casper-network/casper-node/blob/dev/resources/local/config.toml#L390) before running `nctl-assets-setup`.
+
+:::
+
 **Step 11.** Next, clone the _casper-node_ software, also in your working directory.
 
 Instructions for MacOS and Linux:
@@ -144,7 +153,16 @@ Instructions for MacOS and Linux:
 (env) $ git clone https://github.com/casper-network/casper-node
 ```
 
-**Step 12.** Activate the NCTL environment with the following command.
+**Step 12.** Finally, clone the _casper-client-rs_ software in your working directory.
+
+Instructions for MacOS and Linux:
+
+```bash
+(env) $ git clone https://github.com/casper-ecosystem/casper-client-rs
+```
+
+
+**Step 13.** Activate the NCTL environment with the following command.
 
 Instructions for MacOS and Linux:
 
@@ -152,7 +170,7 @@ Instructions for MacOS and Linux:
 (env) $ source casper-node/utils/nctl/activate
 ```
 
-**Step 13.** Compile the NCTL binary scripts. The following command compiles both the _casper-node_ and the _casper-client_ in release mode.
+**Step 14.** Compile the NCTL binary scripts. The following command compiles both the _casper-node_ and the _casper-client_ in release mode.
 
 Instructions for MacOS and Linux:
 
@@ -160,7 +178,13 @@ Instructions for MacOS and Linux:
 (env) $ nctl-compile
 ```
 
-**Step 14.** Set up all the assets required to run a local network, including binaries, chainspec, config, faucet, and keys. Also, spin up the network right after. The default network will have 10 nodes, with 5 active nodes and 5 inactive nodes.
+:::note
+
+The compilation takes some time, so it might be a perfect moment to get some coffee.
+
+:::
+
+**Step 15.** Set up all the assets required to run a local network, including binaries, chainspec, config, faucet, and keys. Also, spin up the network right after. The default network will have 10 nodes, with 5 active nodes and 5 inactive nodes.
 
 Instructions for MacOS and Linux:
 
@@ -174,11 +198,11 @@ Several other NCTL commands are available via aliases for execution from within 
 
 You should see the new directory _utils/nctl/assets_, with the following structure.
 
-<img src="/image/nctl/assets_setup.png"  alt="assets_setup" width="200"/>
+<img src={useBaseUrl("/image/nctl/assets_setup.png")} alt="assets_setup" width="200"/>
 
 Here is the command line output you would expect.
 
-<img src="/image/nctl/nctl_output.png"  alt="nctl_output"/>
+<img src={useBaseUrl("/image/nctl/nctl_output.png")} alt="nctl_output"/>
 
 ## Stopping the Network {#stopping-the-network}
 

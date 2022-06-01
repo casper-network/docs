@@ -37,7 +37,7 @@ In the next section, you will prepare and build the smart contract for deploymen
 
 ## Building the Smart Contract {#building-the-smart-contract}
 
-Before building the smart contract for this tutorial, you need to [install Rust](../../getting-started.md) and [set up the development environment](../../getting-started.md#development-environment-setup).
+Before building the smart contract for this tutorial, you need to [install Rust](/dapp-dev-guide/writing-contracts/getting-started.md) and [set up the development environment](/dapp-dev-guide/writing-contracts/getting-started.md#development-environment-setup).
 
 Navigate to the `keys-manager` folder and compile the smart contract to generate the corresponding Wasm file.
 

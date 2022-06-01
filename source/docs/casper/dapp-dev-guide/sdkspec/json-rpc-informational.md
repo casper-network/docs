@@ -457,7 +457,7 @@ This method allows for you to query for a value stored under certain keys in glo
 
 ## state_get_account_info {#state-get-account-info}
 
-This method returns a JSON representation of an [Account](../../../design/accounts) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
+This method returns a JSON representation of an [Account](/design/accounts) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
 
 |Parameter|Type|Description|
 |---------|----|-----------|

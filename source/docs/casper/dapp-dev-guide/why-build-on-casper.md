@@ -55,7 +55,7 @@ The Casper development process strives to be familiar to all developers. You can
 Casper also provides the instrumentation and tooling that seamlessly integrates existing Continuous Integration/Continuous Deployment pipelines. Build servers can run the Casper Virtual Machine without the overhead of a full node, tracking the blockchain internal state and running assertions, thus enabling a solid development pipeline.
 
 ### Local Network Testing {#local-network-testing}
-We also offer a tool to run a [local Casper Network](https://docs.casperlabs.io/dapp-dev-guide/setup-nctl). Even though you don't need a stand-alone node for smart contract development, you can configure your local network to test your deployments and estimate gas costs. A local network is helpful when integrating your dApp into a mobile or web interface.
+We also offer a tool to run a [local Casper Network](/dapp-dev-guide/building-dapps/setup-nctl). Even though you don't need a stand-alone node for smart contract development, you can configure your local network to test your deployments and estimate gas costs. A local network is helpful when integrating your dApp into a mobile or web interface.
 
 ### Public Mainnet and Testnet {#public-mainnet-and-testnet}
 The Casper [Mainnet](https://cspr.live) is a public, open-source, community-driven ecosystem. You can also explore the [Testnet](https://testnet.cspr.live) to test drive your applications and estimate gas costs.
