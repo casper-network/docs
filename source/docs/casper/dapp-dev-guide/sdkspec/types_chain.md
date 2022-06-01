@@ -936,7 +936,7 @@ Vesting schedule for a genesis validator.
 
 ## WithdrawPurse {#withdrawpurse}
 
-Withdraw purse, updated to unbonding purse in 1.5. Withdraw purses remain as historical data.
+Withdraw purse, previously known as unbonding purse prior to 1.5. Withdraw purses remain as historical data.
 
 Required Parameters:
 
