@@ -483,7 +483,7 @@ A _key_ in the [Global State](./global-state.md#global-state-intro) is one of th
 -   32-byte purse balance identifier
 -   32-byte Auction bid identifier
 -   32-byte Auction withdrawal identifier
--   32-byte dictionary identifier
+-   32-byte Dictionary identifier
 -   32-byte System Contract Registry
 -   32-byte Auction unbond identifier
 -   32-byte Chainspec Registry
@@ -567,7 +567,7 @@ There are three types of actions that can be done on a value: read, write, add. 
 | Bid      | System                  |
 | Withdraw | System                  |
 | Dictionary | Read (via API)        |
-| SystemContractRegistry | System    |
+| SystemContractRegistry | Read (via API)    |
 | Unbond   | System                  |
 | ChainspecRegistry | System         |
 
