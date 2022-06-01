@@ -14,13 +14,13 @@ The Casper node streams deploy execution effects and finality signatures through
 
     All other events are emitted on the `/events/main` endpoint as follows:
 
-        -   BlockAdded - This event is emitted whenever a new block is added to the blockchain.
-        -   DeployProcessed - This event is emitted when the given deploy has been executed, committed and forms part of the given block.
-        -   DeployExpired - This event is emitted if a deploy is not added to a block for processing by a validator before the deploy's time to live (TTL) expires.
-        -   Fault - This event is emitted if there is a validator error.
-        -   Step - This event is emitted when the execution effects produced by running the auction contract at the end of every era.
-        -   Shutdown - This event is emitted when the node is about to shut down, usually for an upgrade.
-        -   ApiVersion - This is always the first event emitted when a new client connects to the SSE server, specifying the API version of the server.
+    - `ApiVersion` is always the first event emitted when a new client connects to the SSE server, specifying the API version of the server
+    - `BlockAdded` events are emitted whenever a new block is added to the blockchain
+    - `DeployProcessed` events are emitted when the given deploy has been executed, committed and forms part of the given block
+    - `DeployExpired` events are emitted when deploys become no longer valid to be executed or added to a block due to their times to live (TTLs) expiring
+    - `Fault` events are emitted if there is a validator error
+    - `Step` events are emitted at the end of every era and contain the execution effects produced by running the auction contract's `step` function
+    - `Shutdown` events are emitted when the node is about to shut down, usually for an upgrade
 
 Each URL can have a query string added of the form `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events.
 
