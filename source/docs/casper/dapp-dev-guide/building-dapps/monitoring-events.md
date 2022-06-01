@@ -7,7 +7,9 @@ The Casper node streams deploy execution effects and finality signatures through
     `DeployAccepted` events are emitted on the `/events/deploys` endpoint. When a deploy is received by the node, if it passes the first set of validity checks, once it is stored locally the `DeployAccepted` event is emitted.
 
 - `/events/sigs`
-    The FinalitySignature is emitted on `/events/sigs` endpoint, whenever a new finality signature is received.
+
+    `FinalitySignature` events are emitted on the `/events/sigs` endpoint, whenever a new finality signature is received.
+
 - `/events/main` 
 
     All other events are emitted on the `/events/main` endpoint as follows:
