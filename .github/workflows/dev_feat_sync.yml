@@ -1,0 +1,68 @@
+name: dev to feature sync
+
+
+#Run workflow on successful merge to dev
+on:
+  push:
+    branches:
+      - dev
+
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.value }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get all the branches in the repository that begin with feat-* and save the results
+        run: |
+          git fetch --all && git branch --list "feat-*" | sed 's/^..//' > branches.txt
+
+      - name: Install Ruby
+        run: |
+          sudo apt-get update && sudo apt-get install -y ruby-full ruby-bundler build-essential
+
+      - name: Create a single-line array out of the branches.txt content and populate the branch matrix
+        run: |
+          echo "::set-output name=value::[$(ruby -ryaml -e 'puts ARGF.read.lines.map { |l| l.chomp.inspect }.join(", ")' branches.txt)]"
+
+        
+  create-pull-request:
+    needs: [ setup ]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        value: ${{fromJson(needs.setup.outputs.matrix)}}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: tibdex/github-app-token@586e1a624db6a5a4ac2c53daeeded60c5e3d50fe
+        id: generate-token
+        with:
+          app_id: ${{ secrets.PRBOT_APP_ID }}
+          private_key: ${{ secrets.PRBOT_APP_PRIVATE_KEY }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Opening pull request
+        id: pull
+        uses: tretuna/sync-branches@ea58ab6e406fd3ad016a064b31270bbb41127f41
+        with:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          FROM_BRANCH: "dev"
+          TO_BRANCH: "${{ matrix.value }}"
+          REVIEWERS: '["bradjohnl", "ipopescu", "ACStoneCL", "bdkpathi", "GloreenS"]'
+          CONTENT_COMPARISON: true
+          PULL_REQUEST_BODY: "This PR is created by the PR Bot to sync the dev branch to the ${{ matrix.value }} branch. To avoid conflicts, the feature branches should be kept in sync with the dev branch"
+          PULL_REQUEST_TITLE: "Sync dev to ${{ matrix.value }}"
+
+      #Display the pull request URL:
+      - name: Display the pull request URL
+        run: | 
+          echo "The pull request URL is: ${{ steps.pull.outputs.PULL_REQUEST_URL }}"
