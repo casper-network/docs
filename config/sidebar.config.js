@@ -26,6 +26,7 @@ module.exports = {
         "dapp-dev-guide/index",
         "dapp-dev-guide/why-build-on-casper",
         "dapp-dev-guide/keys",
+        "dapp-dev-guide/list-auth-keys",
         "dapp-dev-guide/understanding-hash-types",
         "dapp-dev-guide/dictionaries",
         {
@@ -74,6 +75,22 @@ module.exports = {
         {
             type: "category",
             label: "Writing Smart Contracts",
+            collapsible: true,
+            collapsed: true,
+            items: ["dapp-dev-guide/writing-contracts/index", "dapp-dev-guide/writing-contracts/rust", "dapp-dev-guide/writing-contracts/assembly-script"],
+        },
+        "dapp-dev-guide/testing",
+        "dapp-dev-guide/setup-nctl",
+        "dapp-dev-guide/upgrading-contracts",
+        "dapp-dev-guide/deploying-contracts",
+        "dapp-dev-guide/calling-contracts",
+        "dapp-dev-guide/execution-error-codes",
+        "dapp-dev-guide/keys",
+        "dapp-dev-guide/load-auth-keys",
+        "dapp-dev-guide/understanding-hash-types",
+        {
+            type: "category",
+            label: "SDK Client Libraries",
             collapsible: true,
             collapsed: true,
             items: [
@@ -137,9 +154,10 @@ module.exports = {
         "operators/setup",
         "operators/create",
         "operators/joining",
+        "operators/fast-sync",
         "operators/upgrade",
         "operators/bonding",
-        "operators/unbonding",
+        "operators/unbonding"
     ],
     design: [
         "design/index",
