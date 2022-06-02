@@ -569,7 +569,7 @@ There are three types of actions that can be done on a value: read, write, add. 
 | Dictionary | Read (via API)        |
 | SystemContractRegistry | Read (via API)    |
 | Unbond   | System                  |
-| ChainspecRegistry | System         |
+| ChainspecRegistry | Read (via API)       |
 
 ---
 
