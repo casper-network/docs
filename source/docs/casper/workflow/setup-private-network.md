@@ -1,6 +1,6 @@
 # Set Up a Private Casper Network
 
-Casper private networks operate in a similar way to the Casper public network. The major difference in private networks is having administrator account(s) which can control normal accounts. Hence, there are specific configuration options in the genesis block setup and administrator account setup. Besides the main configuration options provided by the Casper platform, each customer may have their own configurations when setting up their private network.
+Casper private networks operate in a similar way to the Casper public network. The major difference in private networks is having administrator account(s) which can control normal accounts. Hence, there are specific configuration options in the genesis setup and administrator account setup. Besides the main configuration options provided by the Casper platform, each customer may have their own configurations when setting up their private network.
 
 ## Prerequisites
 
