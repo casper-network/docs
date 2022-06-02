@@ -165,13 +165,13 @@ Identifier for possible ways to retrieve a Block. It can consist of any of the f
 
 ## ChainspecRegistry {#chainspecregistry}
 
-ChainspecRegistry is a unique key variant which contains a mapping of file names to the hash of the file itself. This map includes *Chainspec.toml* and may include *Accounts.toml* and *GlobalState.toml*. It is serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of names as strings and [digests](#digest) held within. The remainder consists of a repeating pattern of serialized strings and then digests of the length dictated by the first four bytes. Potential digests are as follows:
+ChainspecRegistry is a unique key variant which contains a mapping of file names to the hash of the file itself. This map includes *Chainspec.toml* and may include *Accounts.toml* and *GlobalState.toml*. It is serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of names as strings and [digests](#digest) held within. The remainder consists of a repeating pattern of serialized strings and then digests of the length dictated by the first four bytes.
 
--   `chainspec_raw_hash`
+-   `chainspec_raw_hash` will always be included.
 
--   `genesis_accounts_raw_hash`
+-   `genesis_accounts_raw_hash` may be included in specific circumstances.
 
--   `global_state_raw_hash`
+-   `global_state_raw_hash` may be included in specific circumstances.
 
 ## Contract {#contract}
 
