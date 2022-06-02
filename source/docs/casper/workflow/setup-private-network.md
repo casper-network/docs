@@ -177,7 +177,7 @@ In private network operating mode the new accounts are created with the followin
   "key_management": 255
 }
 ```
-There must be separate action thresholds for any newly created validator accounts. Action threshold means how many authorization keys you have to use in the deploy when you sign in to perform some auction in the system (Eg: key_management weight has to be at least 255). This option disallows users to manage their own keys which could potentially lead to users removing administrator accounts from associated keys. In public networks, the threshold is defaulted to 1, while in private networks it can be changed to control the client accounts. If users want to add new associated keys, they can have multiple accounts or multiple keys for the same keys.
+There must be separate action thresholds for any newly created validator accounts. Action threshold means how many the cumulative weight of authorization keys you need in the deploy when you sign in to perform some auction in the system (Eg: key_management weight has to be at least 255). This option disallows users to manage their own keys which could potentially lead to users removing administrator accounts from associated keys. In public networks, the threshold is defaulted to 1, while in private networks it can be changed to control the client accounts. If users want to add new associated keys, they can have multiple accounts or multiple keys for the same keys.
 
 :::note
 For operational purposes output of the `generate-admins` and output of `validator needs to be combined to create new administrators and also make them active validators.
