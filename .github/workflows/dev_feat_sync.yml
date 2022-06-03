@@ -12,29 +12,30 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.matrix.outputs.value }}
+      matrix: ${{ steps.setup-branch-matrix.outputs.value }}
     steps:
       - uses: actions/checkout@v3
 
       - name: Get all the branches in the repository that begin with feat-* and save the results
         run: |
           git fetch --all && git branch --list "feat-*" | sed 's/^..//' > branches.txt
+          echo "BRANCH_ARRAY=[$(ruby -ryaml -e 'puts ARGF.read.lines.map { |l| l.chomp.inspect }.join(", ")' branches.txt | tail -n 1)]" >> $GITHUB_ENV
 
       - name: Install Ruby
         run: |
           sudo apt-get update && sudo apt-get install -y ruby-full ruby-bundler build-essential
 
       - name: Create a single-line array out of the branches.txt content and populate the branch matrix
+        id: setup-branch-matrix
         run: |
-          echo "::set-output name=value::[$(ruby -ryaml -e 'puts ARGF.read.lines.map { |l| l.chomp.inspect }.join(", ")' branches.txt)]"
-
+          echo "::set-output name=value::[$BRANCH_ARRAY]"
         
   create-pull-request:
     needs: [ setup ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        value: ${{fromJson(needs.setup.outputs.matrix)}}
+        value: ${{needs.setup.outputs.matrix}}
 
     steps:
       - uses: actions/checkout@v3
