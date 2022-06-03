@@ -16,7 +16,7 @@ This workflow assumes:
 
 Obtain the `redelegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository.
 
-To build contracts, set up Rust, and install all dependencies. Visit [Setting up Rust](/dapp-dev-guide/writing-contracts/getting-started.md) in the Developer Guide for step-by-step instructions. After this, you can build the contract using the following command:
+To build contracts, [set up Rust](dapp-dev-guide/writing-contracts/getting-started.md), and install all dependencies. After this, you can build the contract using the following command:
 
 ```rust
 make build-contract-rs
@@ -61,7 +61,7 @@ casper-client put-deploy \
 
 **Request fields:**
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default: <http://localhost:7777>\]
 
 -   `secret-key` - Path to secret key file
 
@@ -89,11 +89,11 @@ Refer to the [Deploy Status](querying.md#deploy-status) section to learn how to 
 
 ### Observing and Confirming the Re-delegation {#confirming-the-delegation}
 
-Initial delegation occurs as soon as a Casper Network finalizes the associated deploy. In contrast, re-delegation requires that tokens wait through an unbonding delay prior to the new delegation.
+Initial delegation occurs as soon as a Casper Network finalizes the associated deploy. In contrast, re-delegation requires that tokens wait through an unbonding delay before the new delegation.
 
-Due to this delay, it is possible that the new validator may become *inactive* prior to the completion of the re-delegation. If the new validator's staked amount is zero, the tokens to be redelegated are returned to the delegator.
+Due to this delay, the new validator may become inactive before completing the re-delegation. If the new validator's staked amount is zero, the tokens to be redelegated are returned to the delegator.
 
-A Casper Network maintains an _auction_ where validators _bid_ on slots to become part of the active validator set. Delegation rewards are only earned for a validator who has won the auction and is part of the active set.
+A Casper Network maintains an auction where validators bid on slots to become part of the active validator set. Delegation rewards are only earned for a validator who has won the auction and is part of the active set.
 
 Once the deploy has been executed, we can query the auction for information to confirm our re-delegation. We can use the Casper command-line client to create an RPC request with the following query:
 
@@ -104,7 +104,7 @@ casper-client get-auction-info \
 
 **Request fields**:
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default: <http://localhost:7777>\]
 
 The `get-auction-info` call will return all the bids currently in the auction contract and the list of active validators for `4` future eras from the present era.
 
@@ -152,7 +152,7 @@ casper-client get-auction-info \
 
 **Request fields**:
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default: <http://localhost:7777>\]
 
 **Important Response fields**:
 
