@@ -26,7 +26,7 @@ jobs:
 
       - name: Create a single-line array out of the branches.txt content and populate the branch matrix
         run: |
-          echo "::set-output name=value::[$(ruby -ryaml -e 'puts ARGF.read.lines.map { |l| l.chomp.inspect }.join(", ")' branches.txt)]"
+          echo "::set-output matrix=value::[$(ruby -ryaml -e 'puts ARGF.read.lines.map { |l| l.chomp.inspect }.join(", ")' branches.txt)]"
 
         
   create-pull-request:
