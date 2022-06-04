@@ -12,30 +12,32 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.setup-branch-matrix.outputs.value }}
+      matrix: ${{ steps.setup-branch-matrix.outputs.branch_list }}
     steps:
       - uses: actions/checkout@v3
-
-      - name: Get all the branches in the repository that begin with feat-* and save the results
-        run: |
-          git fetch --all && git branch --list "feat-*" | sed 's/^..//' > branches.txt
-          echo "BRANCH_ARRAY=[$(ruby -ryaml -e 'puts ARGF.read.lines.map { |l| l.chomp.inspect }.join(", ")' branches.txt | tail -n 1)]" >> $GITHUB_ENV
+        with:
+          fetch-depth: 0
 
       - name: Install Ruby
         run: |
           sudo apt-get update && sudo apt-get install -y ruby-full ruby-bundler build-essential
 
+      - name: Get all the branches in the repository that begin with feat-* and save the results
+        run: |
+          echo "BRANCH_ARRAY=[$( git branch --list "feat-*" | sed 's/^..//' | ruby -ryaml -e 'puts ARGF.read.lines.map { |l| l.chomp.inspect }.join(", ")' | tail -n 1)]" >> $GITHUB_ENV
+
       - name: Create a single-line array out of the branches.txt content and populate the branch matrix
         id: setup-branch-matrix
         run: |
-          echo "::set-output name=value::[$BRANCH_ARRAY]"
+          echo "::set-output name=branch_list::$BRANCH_ARRAY"
         
   create-pull-request:
+    if: ${{ needs.setup.outputs.matrix != '[]' }} 
     needs: [ setup ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        value: ${{needs.setup.outputs.matrix}}
+        branch_list: ${{ fromJson(needs.setup.outputs.matrix) }}
 
     steps:
       - uses: actions/checkout@v3
@@ -57,11 +59,11 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           FROM_BRANCH: "dev"
-          TO_BRANCH: "${{ matrix.value }}"
+          TO_BRANCH: "${{ matrix.branch_list }}"
           REVIEWERS: '["bradjohnl", "ipopescu", "ACStoneCL", "bdkpathi", "GloreenS"]'
           CONTENT_COMPARISON: true
-          PULL_REQUEST_BODY: "This PR is created by the PR Bot to sync the dev branch to the ${{ matrix.value }} branch. To avoid conflicts, the feature branches should be kept in sync with the dev branch"
-          PULL_REQUEST_TITLE: "Sync dev to ${{ matrix.value }}"
+          PULL_REQUEST_BODY: "This PR is created by the PR Bot to sync the dev branch to the ${{ matrix.branch_list }} branch. To avoid conflicts, the feature branches should be kept in sync with the dev branch"
+          PULL_REQUEST_TITLE: "Sync dev to ${{ matrix.branch_list }}"
 
       #Display the pull request URL:
       - name: Display the pull request URL
