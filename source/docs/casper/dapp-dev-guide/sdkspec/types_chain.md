@@ -686,6 +686,10 @@ Required Parameters:
 
 * `protocol_version`
 
+## NewValidator {#newvalidator}
+
+The public key for the new validator in a re-delegation using [UnbondingPurse](#unbondingpurse).
+
 ## Operation {#operation}
 
 An operation performed while executing a Deploy.
@@ -896,7 +900,9 @@ Required Parameters:
 
 * [`unbonder_public_key`](#publickey) Unbonder's public key.
 
-* [`validator_public_key`](#publickey) Validator's public key.
+* [`validator_public_key`](#publickey) The original validator's public key.
+
+* [`new_validator`](#newvalidator) The re-delegated validator's public key.
 
 ## URef {#uref}
 
@@ -927,3 +933,19 @@ Required Parameters:
 ## VestingSchedule {#vestingschedule}
 
 Vesting schedule for a genesis validator.
+
+## WithdrawPurse {#withdrawpurse}
+
+Withdraw purse, previously known as unbonding purse prior to 1.5. Withdraw purses remain as historical data.
+
+Required Parameters:
+
+* [`amount`](#u512) Unbonding amount.
+
+* [`bonding_purse`](#uref) Bonding purse.
+
+* [`era_of_creation`](#eraid) Era in which the unbonding request was created.
+
+* [`unbonder_public_key`](#publickey) Unbonder's public key.
+
+* [`validator_public_key`](#publickey) The original validator's public key.
