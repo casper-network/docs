@@ -54,7 +54,8 @@ This option manages refund behavior at the finalization of a Deploy execution. I
 
 A `refund_ratio` is specified as a proper fraction (the numerator needs to be lower or equal to the denominator).  In the below example, the `refund ratio` is 1:1. If 2.5 CSPR is paid upfront and the gas fee is 1 CSPR, 1.5 CSPR will be distributed back to the user.
 
-```rust
+```toml
+[core]
 refund_handling = { type = "Refund", refund_ratio = [1, 1] } 
 ```
 
