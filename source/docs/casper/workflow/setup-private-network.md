@@ -63,7 +63,7 @@ The rest of the payment amount after deducing the gas fee is paid to the block�
 
 ```rust
 [core]
-fee_handling = { type = “Accumulate” }
+fee_handling = { type = "Accumulate" }
 ```
 The `accumulate mode` is very similar to the refund, but implies a refund ratio of 100%. The fund is transferred in an accumulation mode using a special rewards purse. The gas fees are paid to the purse owned by the mint contract, and no tokens are transferred to the proposer when this configuration is enabled.
 
