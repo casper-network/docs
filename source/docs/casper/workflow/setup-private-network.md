@@ -101,12 +101,9 @@ An administrator is mandatory for a private network since it manages all the oth
 
 Use the below configuration option in `chainspec.toml` to add administrator accounts to the private network. 
 
-```rust
-[[core.administrative_accounts]]
-public_key = 'NEW_PUBLIC_KEY'
-balance = 'NEW_BALANCE'
-weight = 255
-``` 
+```toml
+[core]
+administrators = ["NEW_ACCOUNT_HASH"] 
 
 **Generating new admin accounts**
 
