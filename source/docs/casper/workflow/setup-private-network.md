@@ -238,7 +238,7 @@ casper-client \
   --transfer-id=123
 ```
 Check the account information,
-```rust
+```sh
 casper-client get-account-info -n $NODE_ADDR 
   --public-key alice/public_key.pem
 ```
