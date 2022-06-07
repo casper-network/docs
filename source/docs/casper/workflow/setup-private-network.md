@@ -44,7 +44,7 @@ Casper private network doesn't support the minting process. Only admin accounts 
 ```rust
 - compute_reward=false
 - allow_auction_bids=false
-- fee_elimination = accumulate mode
+- fee_handling = { type = "Accumulate" }
 ```
 :::
 
