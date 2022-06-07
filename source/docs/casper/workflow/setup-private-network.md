@@ -71,7 +71,7 @@ The default config for a public chain and current behavior of Casper Network’s
 
 ```rust
 [core]
-refund_handling = { type = “Refund”, refund_ratio = [0, 100] }
+refund_handling = { type = "Refund", refund_ratio = [0, 100] }
 ```
 The refund variant with `refund_ratio` of [0, 100] means, that 0% is given back to the user after deducting gas fees. This effectively means that if a user paid 2.5 CSPR and the gas fees is 1 CSPR, the user will not get the remaining 1.5 CSPR in return.
 
