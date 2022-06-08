@@ -6,7 +6,7 @@
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
-The first command that we will cover as part of the _casper-client_ tool is the [_get-state-root-hash_ command. The state root hash is an identifier of the current network state. It is similar to a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. For this tutorial, it will be used to query the network state after sending deploys.
+The first command that we will cover as part of the _casper-client_ tool is the _get-state-root-hash_ command. The state root hash is an identifier of the current network state. It is similar to a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. For this tutorial, it will be used to query the network state after sending deploys.
 
 :::note
 
