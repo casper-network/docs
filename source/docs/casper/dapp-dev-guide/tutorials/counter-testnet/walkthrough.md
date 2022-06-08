@@ -38,7 +38,7 @@ Let's execute the commands in order. First, we need the account-hash:
 casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]
 ```
 
-You will need to specify the location of where your public-key files are located. If you used the block explorer to generate the keys, you will need to download them first.
+You will need to specify the location of your public-key files. If you used the block explorer to generate the keys, you will need to download them first.
 
 Next, get the state-root-hash:
 
