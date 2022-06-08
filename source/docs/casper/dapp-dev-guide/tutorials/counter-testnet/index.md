@@ -11,8 +11,13 @@ Before we go through the tutorial, we will give a high-level overview of this tu
 
 - [Tutorial Overview](overview.md)
 - [Important Commands](commands.md)
-- [Casper Client Setup](setup.md)
 - [Tutorial Walkthrough](walkthrough.md)
+
+## Prerequisites {#prerequisites}
+
+1.  You have completed the [Getting Started tutorial](/dapp-dev-guide/writing-contracts/getting-started.md) to set up your development environment, including tools like _cmake_ (version 3.1.4+), _cargo_, and _Rust_.
+2. Follow the installation instructions for the [Casper client](/workflow/setup/#the-casper-command-line-client). We will use the _casper-client_ to send deploys to the chain.
+
 
 ## Video Tutorial {#video-tutorial}
 
