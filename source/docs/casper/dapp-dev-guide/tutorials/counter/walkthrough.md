@@ -40,7 +40,7 @@ If it fails for any reason, please refer the [NCTL tutorial](/dapp-dev-guide/bui
 
 ## View the Network State {#view-the-network-state}
 
-With a network up and running, you can use the `casper-client query-global-state` command to check the status of the network. However, we first need an `account hash` and the `state-root-hash` so that we can get the current snapshot. Once we have that information, we can check how the network looks.
+With a network up and running, you can use the `casper-client query-global-state` command to check the status of the network. However, we first need an `account hash` and the `state-root-hash` so that we can get the current snapshot. Once we have that information, we can check the status of the network.
 
 As a summary, we need to use the following three commands:
 
