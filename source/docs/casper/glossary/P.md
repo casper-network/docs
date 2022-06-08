@@ -46,11 +46,12 @@ A mechanism used in Bitcoin and Etherium for incentivizing participation and sec
 
 The Proof-of-Stake (PoS) contract holds on to transaction fees for the time while the state transition is happening (contracts are being executed). The PoS contract remits the transaction fees to the block proposer.
 
+## Proposer {#proposer}
+The proposer is a selected validator by a Casper Network to propose the next block. A validator becomes a proposer by executing a Deploy for the block and receiving the appropriate reward for the execution. The proposing process assures that new blocks will be added to the blockchain.
+
 ## Proto block {#proto-block}
 
 The block proposed by the leader, which the consensus processes (in [highway](H.md#highway)). Only after consensus is complete, the proto block is executed, and the global state is updated.
 
 A leader is selected from the validator set of that era for each round. The chance of getting selected as a leader is in proportion to the stake one has in that era.
 
-## Proposer {#proposer}
-The proposer is a selected validator by the Casper network to propose the next block. A validator becomes a proposer by executing a Deploy for the block and receiving the appropriate reward for the execution. The proposing process offers and assures for new blocks to be added to the blockchain.
