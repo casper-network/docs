@@ -57,13 +57,13 @@ casper-client query-global-state \
     --key [ACCOUNT_HASH]
 ```
 
-Substitute the state root hash and account hash values you just retrieved into this command and execute it. Do not be surprised if you see nothing on the network. That is because we have not deployed anything to the network yet!
+Substitute the state root hash and account hash values you just retrieved into this command and execute it. Do not be surprised if you see nothing on the network. That is because we have not sent anything to the network yet!
 
 ## Deploy the Counter {#deploy-the-counter}
 
-Let us try deploying the _counter-define_ contract to the chain. First, we need to compile it.
+Let us try installing the _counter-define_ contract to the chain. First, we need to compile it.
 
-The makefile included in the repository makes compilation trivial. With these two commands, we can build (in release mode) and test the contract before deploying it. _make prepare_ sets the Wasm target and _make test_ builds the contracts and verifies them.
+The makefile included in the repository makes compilation trivial. With these two commands, we can build (in release mode) and test the contract before installing it. _make prepare_ sets the Wasm target and _make test_ builds the contracts and verifies them.
 
 ```bash
 cd counter
@@ -94,7 +94,7 @@ casper-client get-deploy \
 
 ## View the Updated Network State {#view-the-updated-network-state}
 
-Hopefully, the deployment was successful. Let us call the `casper-client query-global-state` command to check if the named key is visible on the chain now.
+Hopefully, the deploy was successful. Let us call the `casper-client query-global-state` command to check if the named key is visible on the chain now.
 
 :::note
 
@@ -148,7 +148,7 @@ The first two commands access the counter and count named keys, respectively, us
 
 ## Increment the Counter {#increment-the-counter}
 
-We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _counter-define_ contract. You can call an entry-point in a deployed contract by using the _put-deploy_ command as illustrated here:
+We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _counter-define_ contract. You can call an entry-point in an installed contract by using the _put-deploy_ command as illustrated here:
 
 ```bash
 casper-client put-deploy \
@@ -186,7 +186,7 @@ You should be able to see the counter variable and observe its value has increas
 
 If you recall, we had a second contract named _counter-call_ in the repository. This time around, we can see if we can increment the count using that second contract instead of the session entry-point we used above.
 
-Keep in mind, this is another _put-deploy_ call just like when we deployed the _counter_define_ contract to the blockchain. The session-path is once again going to be different for you depending on where you compiled the contract.
+Keep in mind, this is another _put-deploy_ call just like when we sent the _counter_define_ contract to the blockchain. The session-path is once again going to be different for you depending on where you compiled the contract.
 
 ```bash
 casper-client put-deploy \
@@ -215,4 +215,4 @@ casper-client query-global-state --node-address http://[NODE_IP]:7777 \
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
 
-If all went according to plan, your counter should have gone from 0 to 1 before and now from 1 to 2 as you incremented it throughout this tutorial. Congratulations on building, deploying, and using a smart contract on your local test network! Now you are ready to build your own dApps and launch them onto the Casper blockchain.
+If all went according to plan, your counter should have gone from 0 to 1 before and now from 1 to 2 as you incremented it throughout this tutorial. Congratulations on building, installing, and using a smart contract on your local test network! Now you are ready to build your own dApps and launch them onto the Casper blockchain.

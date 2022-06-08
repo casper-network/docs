@@ -6,11 +6,11 @@
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
-The first command that we will cover as part of the _casper-client_ tool is the [_get-state-root-hash_ command. The state root hash is an identifier of the current network state. It is similar to a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. For this tutorial, it will be used to query the network state after we take actions with deployments.
+The first command that we will cover as part of the _casper-client_ tool is the [_get-state-root-hash_ command. The state root hash is an identifier of the current network state. It is similar to a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. For this tutorial, it will be used to query the network state after sending deploys.
 
 :::note
 
-After any deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you will be looking at events in the past.
+After sending deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you will be looking at events in the past.
 
 :::
 
@@ -46,8 +46,8 @@ casper-client put-deploy \
 This command creates a deploy and sends it to the network for execution. In this first usage of the command,
 
 -   The _session-path_ points to a compiled Wasm contract.
--   This contract is then deployed to the network specified by _node-address_ and _chain-name_. The Testnet is "casper-test" but this is configurable.
--   The _payment-amount_ is in units of motes (1 nano-CSPR) and is required to pay the transaction fee for the deployment. If it is too small, the transaction will get denied due to insufficient funds.
+-   This contract is then installed on the network specified by the _chain-name_. The Testnet is "casper-test" but this is configurable.
+-   The _payment-amount_ is in units of motes (1 nano-CSPR) and is required to pay the transaction fee for the deploy. If it is too small, the transaction will get denied due to insufficient funds.
 
 ### Deploy via a named key already on the blockchain {#deploy-via-a-named-key-already-on-the-blockchain}
 
