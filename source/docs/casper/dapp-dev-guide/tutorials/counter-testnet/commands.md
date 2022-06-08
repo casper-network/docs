@@ -10,7 +10,7 @@ The first command that we will cover as part of the _casper-client_ tool is the 
 
 :::note
 
-After sending deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you will be looking at events in the past.
+After sending deploys to the network, you must get the new state root hash to see the changes reflected. Otherwise, you will be looking at events in the past.
 
 :::
 
