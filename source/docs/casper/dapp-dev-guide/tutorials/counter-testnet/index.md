@@ -1,11 +1,11 @@
 ---
 title: Introduction
-slug: /counter
+slug: /counter-testnet
 ---
 
-# A Counter Contract Tutorial
+# A Counter on the Testnet
 
-In this tutorial, we introduce an application on the chain -- the counter contract. This tutorial is a straightforward contract that maintains a counter variable. The goal is to introduce you to the process of deploying and using a contract on Testnet, the test network. Once you are familiar with this process, the next step will be to write your smart contracts.
+This tutorial installs a simple counter contract on the Casper Testnet. The contract is straightforward and simply maintains a counter variable. If you want to learn to send deploys to a local Casper Network, you can follow a [similar tutorial](/dapp-dev-guide/tutorials/counter/index.md) and work with NCTL. Once you are familiar with this process, the next step will be to write more practical smart contracts.
 
 - [Tutorial Overview](overview.md)
 - [Important Commands](commands.md)
