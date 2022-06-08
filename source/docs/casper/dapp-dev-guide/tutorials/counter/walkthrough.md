@@ -229,4 +229,4 @@ casper-client query-global-state --node-address http://localhost:11101 \
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
 
-If all went according to plan, your counter should have gone from 0 to 1 before and now from 1 to 2 as you incremented it throughout this tutorial. Congratulations on building, deploying, and using a smart contract on your local test network!. Now you are ready to build your own dApps and launch them onto the Casper blockchain.
+If all went according to plan, your counter should have gone from 0 to 1 before and now from 1 to 2 as you incremented it throughout this tutorial. Congratulations on building, deploying, and using a smart contract on your local test network! Now you are ready to build your own dApps and launch them onto the Casper blockchain.

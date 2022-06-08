@@ -10,5 +10,3 @@
 The [Prerequisites](/workflow/setup/#the-casper-command-line-client) page lists installation instructions for the Casper client.
 
 Once you have the _casper-client_ installed, we can proceed to walk through setting up NCTL, cloning the contract, and deploying it to the chain.
-
-Before we go through the tutorial, we will give a high-level overview of this tutorial's walkthrough and briefly summarize the relevant commands (and respective arguments).
