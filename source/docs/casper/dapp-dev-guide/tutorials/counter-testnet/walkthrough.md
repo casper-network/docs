@@ -22,51 +22,37 @@ If you explore the source code, you will see that there are two smart contracts:
 
     -   Retrieves the _counter-define_ contract, gets the current count value, increments it, and makes sure count was incremented by 1
 
-## Create a Local Network {#create-a-local-network}
-
-After you get familiar with the counter source code, we need to create a local blockchain network to deploy the contract. If you completed the NCTL tutorial, all you need to do is allocate the network assets and then start the network.
-
-If you run the following line in your terminal, you should be able to spin up a network effortlessly.
-
-```bash
-nctl-assets-setup && nctl-start
-```
-
-:::note
-
-If it fails for any reason, please refer the [NCTL tutorial](/dapp-dev-guide/building-dapps/setup-nctl) and make sure that all your packages are up to date).
-
-:::
-
 ## View the Network State {#view-the-network-state}
 
 With a network up and running, you can use the `casper-client query-global-state` command to check the status of the network. However, we first need an `account hash` and the `state-root-hash` so that we can get the current snapshot. Once we have that information, we can check the status of the network.
 
 As a summary, we need to use the following three commands:
 
-1.  `nctl-view-faucet-account`: get the account hash
-2.  `casper-client get-state-root-hash`: get the state root hash
-3.  `casper-client query-global-state`: get the network state
+1. Get the account-hash: `casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]`
+2. Get the state-root-hash: `casper-client get-state-root-hash`
+3. Query the network state: `casper-client query-state`
 
-Let's execute the commands in order. First, we need the faucet information:
-
-```bash
-nctl-view-faucet-account
-```
-
-If NCTL is correctly up and running, this command should return quite a bit of information about the faucet account. Feel free to look through the records and make a note of the _account-hash_ field and the _secret_key.pem_ path because we will often use both.
-
-Next, get the state root hash:
+Let's execute the commands in order. First, we need the account-hash:
 
 ```bash
-casper-client get-state-root-hash --node-address http://localhost:11101
+casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]
 ```
 
-We are using localhost as the node server since the network is running on our local machine. Make a note of the _state-root-hash_ that is returned, but keep in mind that this hash value will need to be updated every time we modify the network state. Finally, query the actual state:
+You will need to specify the location of your public-key files. If you used the block explorer to generate the keys, you will need to download them first.
+
+Next, get the state-root-hash:
+
+```bash
+casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
+```
+
+We need to use the IP address of one of the [connected peers](https://testnet.cspr.live/tools/peers) on the Testnet as the node server since the network is running in a decentralized fashion. Make a note of the returned state-root-hash, but keep in mind that this hash value will need to be updated every time we modify the network state.
+
+Finally, query the actual state:
 
 ```bash
 casper-client query-global-state \
-    --node-address http://localhost:11101 \
+    --node-address http://[NODE_IP]:7777 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH]
 ```
@@ -85,25 +71,25 @@ make prepare
 make test
 ```
 
-With the compiled contract, we can call the `casper-client put-deploy` command to put the contract on the chain.
+With the compiled contract, we can call the `casper-client put-deploy` command to install the contract on the chain.
 
 ```bash
 casper-client put-deploy \
-    --node-address http://localhost:11101 \
-    --chain-name casper-net-1 \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
     --payment-amount 5000000000000 \
     --session-path ./counter/target/wasm32-unknown-unknown/release/counter-define.wasm
 ```
 
--   Replace the `[PATH_TO_YOUR_KEY]` field with the actual path of where your secret key is stored. It is one of the fields that gets returned when you call _nctl-view-faucet-account_.
+-   Replace the `[PATH_TO_YOUR_KEY]` field with the actual path of where your secret key is stored.
 -   The _session-path_ argument should point to wherever you compiled counter-define.wasm on your computer. The code snippet shows you the default path if the counter folder is in the same directory.
 
 Once you call this command, it will return a deploy hash. You can use this hash to verify that the deploy successfully took place.
 
 ```rust
 casper-client get-deploy \
-    --node-address http://localhost:11101 [DEPLOY_HASH]
+    --node-address http://[NODE_IP]:7777 [DEPLOY_HASH]
 ```
 
 ## View the Updated Network State {#view-the-updated-network-state}
@@ -121,14 +107,14 @@ If you run these two commands, there will be a new counter named key on the chai
 Get the NEW state-root-hash:
 
 ```bash
-casper-client get-state-root-hash --node-address http://localhost:11101
+casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
 ```
 
 Get the network state:
 
 ```bash
 casper-client query-global-state \
-    --node-address http://localhost:11101 \
+    --node-address http://[NODE_IP]:7777 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH]
 ```
@@ -138,7 +124,7 @@ We can actually dive further into the data stored on the chain using the query p
 Retrieve the specific counter contract details:
 
 ```bash
-casper-client query-global-state --node-address http://localhost:11101 \
+casper-client query-global-state --node-address http://[NODE_IP]:7777 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter"
 ```
@@ -146,7 +132,7 @@ casper-client query-global-state --node-address http://localhost:11101 \
 Retrieve the specific counter variable details:
 
 ```bash
-casper-client query-global-state --node-address http://localhost:11101 \
+casper-client query-global-state --node-address http://[NODE_IP]:7777 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
@@ -154,7 +140,7 @@ casper-client query-global-state --node-address http://localhost:11101 \
 Retrieve the specific deploy details:
 
 ```bash
-casper-client query-global-state --node-address http://localhost:11101 \
+casper-client query-global-state --node-address http://[NODE_IP]:7777 \
     --state-root-hash [STATE_ROOT_HASH] --key deploy-[DEPLOY_HASH]
 ```
 
@@ -166,8 +152,8 @@ We now have a counter on the chain, and we verified everything is good. Now we w
 
 ```bash
 casper-client put-deploy \
-    --node-address http://localhost:11101 \
-    --chain-name casper-net-1 \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
     --payment-amount 5000000000000 \
     --session-name "counter" \
@@ -183,13 +169,13 @@ After calling the entry-point, theoretically, the counter value should increment
 Get the NEW state-root-hash:
 
 ```bash
-casper-client get-state-root-hash --node-address http://localhost:11101
+casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
 ```
 
 Get the network state, specifically for the count variable this time:
 
 ```bash
-casper-client query-global-state --node-address http://localhost:11101 \
+casper-client query-global-state --node-address http://[NODE_IP]:7777 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
@@ -204,8 +190,8 @@ Keep in mind, this is another _put-deploy_ call just like when we sent the _coun
 
 ```bash
 casper-client put-deploy \
-    --node-address http://localhost:11101 \
-    --chain-name casper-net-1 \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
     --payment-amount 5000000000000 \
     --session-path ./counter/target/wasm32-unknown-unknown/release/counter-call.wasm
@@ -218,13 +204,13 @@ Before we wrap up this guide, let us make sure that the second contract did upda
 Get the NEW state-root-hash:
 
 ```bash
-casper-client get-state-root-hash --node-address http://localhost:11101
+casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
 ```
 
 Get the network state, specifically for the count variable this time:
 
 ```bash
-casper-client query-global-state --node-address http://localhost:11101 \
+casper-client query-global-state --node-address http://[NODE_IP]:7777 \
     --state-root-hash [STATE_ROOT_HASH]
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
