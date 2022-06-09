@@ -99,15 +99,26 @@ module.exports = {
                 "dapp-dev-guide/tutorials/index",
                 {
                     type: "category",
-                    label: "A Counter Contract Tutorial",
+                    label: "A Counter on an NCTL Network",
                     collapsible: true,
                     collapsed: true,
                     items: [
                         "dapp-dev-guide/tutorials/counter/index",
                         "dapp-dev-guide/tutorials/counter/overview",
                         "dapp-dev-guide/tutorials/counter/commands",
-                        "dapp-dev-guide/tutorials/counter/setup",
                         "dapp-dev-guide/tutorials/counter/walkthrough",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "A Counter on the Testnet",
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        "dapp-dev-guide/tutorials/counter-testnet/index",
+                        "dapp-dev-guide/tutorials/counter-testnet/overview",
+                        "dapp-dev-guide/tutorials/counter-testnet/commands",
+                        "dapp-dev-guide/tutorials/counter-testnet/walkthrough",
                     ],
                 },
                 "dapp-dev-guide/tutorials/kv-storage-tutorial",
