@@ -204,7 +204,7 @@ To rotate the validators set we need to perform a network upgrade with a `global
 You can find more general details in [joining a running network](/operators/joining/) guide on how to enable new validators to join the network and provide additional security to the system. 
 
 ## Step 7. Testing the Private Network
-We will describe the testing flow using an example customer called BSN. All the configuration options are relative to that example customer.
+We will describe the testing flow using an example customer. All the configuration options are relative to that example customer.
 
 **Sample files**
 - [Chainspec template](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/resources/private/chainspec.toml.in
