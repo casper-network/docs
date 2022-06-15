@@ -99,7 +99,7 @@ allow_auction_bids = false
 Other related configurations,
 
 - If chainspec.toml `allow_auction_bids` option is set to *false* then `add_bid`, `delegate` is disabled and executing those entry points leads to `AuctionBidsDisabled` error. This will disable new validators in the system.
-- If chainspec.toml `highway.compute_rewards` option is set to *false* then all the rewards on a switch block will be set to 0. The auction contract wouldn't process rewards distribution that will increase validator bids.
+- If chainspec.toml `core.compute_rewards` option is set to *false* then all the rewards on a switch block will be set to 0. The auction contract wouldn't process rewards distribution that will increase validator bids.
 
 In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes. 
 
