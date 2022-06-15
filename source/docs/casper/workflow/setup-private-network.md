@@ -154,7 +154,7 @@ Only the administrator can use the related Wasm to send the Deploy to the networ
 
 - ***To disable a contract***: Execute `disable_contract.wasm` with `contract_hash`and `contract_package_hash` parameters.
 - ***To enable a contract***: Execute `enable_contract.wasm` with `contract_hash`and `contract_package_hash` parameters.
-- ***To disable an account***: Needs to execute `set_action_thresholds.wasm` with arruments `deploy_threshold` set to 255, and `key_management_threshold` set to 255.
+- ***To disable an account***: Needs to execute `set_action_thresholds.wasm` with argument `deploy_threshold:u8='255'` and `key_management_threshold:u8='0'`
 - ***To enable an account***: Needs to execute `set_action_thresholds.wasm` with `deploy_threshold` set to 1.
 
 Once the contract is deployed, the contract's hash will be saved under the `contract_hash` named key. This contract uses the new `casper_control_management` function which is only callable if the caller is in the set of administrator accounts specified in `accounts.toml`. You will use the public keys defined in the genesis configuration and this configuration will be restricted to only valid peers with known IP addresses. You can only use the public keys for the validators use in the genesis block.
