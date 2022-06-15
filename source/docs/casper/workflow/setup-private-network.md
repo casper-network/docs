@@ -367,7 +367,7 @@ This option set specifies the refund ratio for the Deploys. The current Casperâ€
 
 ```typescript
 [core]
-refund_handling = { type = "Refund", refund_ratio = [1, 1] }
+refund_handling = { type = "refund", refund_ratio = [1, 1] }
 ```
 
 #### Fee handling
