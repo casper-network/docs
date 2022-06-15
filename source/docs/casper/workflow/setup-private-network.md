@@ -200,7 +200,7 @@ We will describe the testing flow using an example customer. All the configurati
 
 **Sample files**
 - [Chainspec template](https://github.com/casper-network/casper-node/blob/0b4eead8ea1adffaea98260fe2e69dfc8b71c092/resources/private/chainspec.toml.in) that is specific to BSN private chain.
-- [Accounts template](https://github.com/casper-network/casper-node/blob/feat-private-chain/resources/private/accounts.toml.in) with one administrator in `administrators` settings.
+- [Accounts template](https://github.com/casper-network/casper-node/blob/0b4eead8ea1adffaea98260fe2e69dfc8b71c092/resources/private/accounts.toml.in) with one administrator in `administrators` settings.
 
 **IP Addresses**
 
