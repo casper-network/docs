@@ -48,7 +48,7 @@ Casper private network doesn't support the minting process. Only the admin accou
 ```typescript
 - core.compute_rewards = false
 - core.allow_auction_bids = false
-- fee_handling = { type = "Accumulate" }
+- fee_handling = { type = "accumulate" }
 ```
 :::
 
