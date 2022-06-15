@@ -223,9 +223,9 @@ The following command transfers token amount to Alice's account.
 casper-client \
   transfer \
   -n $NODE_ADDR \
-  --chain-name casper-net-1 \
-  --secret-key ~/Dev/casperlabs-node/utils/nctl/assets/net-1/faucet/secret_key.pem \
-  --session-account=$(<~/Dev/casperlabs-node/utils/nctl/assets/net-1/faucet/public_key_hex) \
+  --chain-name $CHAIN_NAME \
+  --secret-key admin/secret_key.pem \
+  --session-account=$(<admin/public_key_hex) \
   --target-account=$(<alice/public_key_hex) \
   --amount=100000000000 \
   --payment-amount=3000000000 \
