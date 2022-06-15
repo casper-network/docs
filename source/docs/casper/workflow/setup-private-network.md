@@ -112,7 +112,7 @@ Use the below configuration option in `chainspec.toml` to add administrator acco
 
 ```typescript
 [core]
-administrators = ["NEW_ACCOUNT_HASH"] 
+administrators = ["NEW_ACCOUNT_PUBLIC_KEY"] 
 ```
 In private network operating mode new accounts are created with the following action thresholds,
 
