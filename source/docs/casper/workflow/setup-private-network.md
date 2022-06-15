@@ -394,13 +394,7 @@ The `chainspec.toml` file should contain following entries that includes new adm
 
 ```typescript
 [core]
-
-#...
-
-[[core.administrative_accounts]]
-public_key = 'NEW_PUBLIC_KEY'
-balance = 'NEW_BALANCE'
-weight = 255
+administrators = ["NEW_PUBLIC_KEY"]
 ```
 
 
