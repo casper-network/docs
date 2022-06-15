@@ -199,8 +199,7 @@ You can find more general details in [joining a running network](/operators/join
 We will describe the testing flow using an example customer. All the configuration options are relative to that example customer.
 
 **Sample files**
-- [Chainspec template](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/resources/private/chainspec.toml.in
-) that is specific to BSN private chain.
+- [Chainspec template](https://github.com/casper-network/casper-node/blob/0b4eead8ea1adffaea98260fe2e69dfc8b71c092/resources/private/chainspec.toml.in) that is specific to BSN private chain.
 - [Accounts template](https://github.com/casper-network/casper-node/blob/feat-private-chain/resources/private/accounts.toml.in) with one administrator in `administrators` settings.
 
 **IP Addresses**
