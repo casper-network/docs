@@ -374,7 +374,7 @@ refund_handling = { type = "refund", refund_ratio = [1, 1] }
 This option accumulates the fees to a mint’s reward purse rather than block’s proposer.
 ```typescript
 [core]
-fee_handling = { type = “Accumulate” }
+fee_handling = { type = "accumulate" }
 ```
 
 Each deploy validator set should have the same balance and stake, and the rewards purse balance will beThis  increased.
