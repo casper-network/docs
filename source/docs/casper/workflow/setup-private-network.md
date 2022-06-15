@@ -339,7 +339,7 @@ casper-client \
 [Seigniorage](https://www.investopedia.com/terms/s/seigniorage.asp) allocations should be zero at each switch block.
 
 ```typescript
-[highway]
+[core]
 compute_rewards = false
 ```
 
