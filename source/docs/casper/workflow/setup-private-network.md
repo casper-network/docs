@@ -59,7 +59,7 @@ A `refund_ratio` is specified as a proper fraction (the numerator needs to be lo
 
 ```typescript
 [core]
-refund_handling = { type = "Refund", refund_ratio = [1, 1] } 
+refund_handling = { type = "refund", refund_ratio = [1, 1] } 
 ```
 The distribution of the remaining payment amount after deducing the gas fee is handled based on [fee_handling](/#fee-handling-config) configuration.
 
