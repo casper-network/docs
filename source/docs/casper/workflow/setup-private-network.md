@@ -130,7 +130,7 @@ Use the below command to generate new admin accounts in your private network. Th
 global-state-update-gen \
   generate-admins --data-dir $DATA_DIR/global_state \
   --state-hash $STATE_ROOT_HASH \
-  –admin $PUBLIC_KEY_HEX,$BALANCE
+  --admin $PUBLIC_KEY_HEX,$BALANCE
 ```
 - `NEW_PUBLIC_KEY` - Public key of the admin in a hex format.
 - `NEW_BALANCE` - Balance for admin’s main purse.
