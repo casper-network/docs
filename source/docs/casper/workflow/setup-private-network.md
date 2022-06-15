@@ -81,7 +81,7 @@ fee_handling = { type = "pay_to_proposer" }
 ```
 
 This configuration has 3 variations,
-- `PayToProposer`: The rest of the payment amount after deducing the gas fee from a refund is paid to the block’s [proposer](/glossary/P/#proposer).
+- `pay_to_proposer`: The rest of the payment amount after deducing the gas fee from a refund is paid to the block’s [proposer](/glossary/P/#proposer).
 - `Burn`: The tokens paid are burned and the total supply is reduced.
 - `Accumulate`: This isvery similar to the refund, but implies a refund ratio of 100%. The fund is transferred in an accumulation mode using a special rewards purse. The gas fees are paid to the purse owned by the mint contract, and no tokens are transferred to the proposer when this configuration is enabled. Here, the accumulation purse is owned by a handle payment system contract, and the amount is distributed among all the administrators defined at the end of a switch block.
 
