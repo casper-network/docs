@@ -77,7 +77,7 @@ This option defines how to distribute the fees after the refunds are handled. Wh
 Setup the options as below,
 ```typescript
 [core]
-fee_handling = { type = "PayToProposer" }
+fee_handling = { type = "pay_to_proposer" }
 ```
 
 This configuration has 3 variations,
