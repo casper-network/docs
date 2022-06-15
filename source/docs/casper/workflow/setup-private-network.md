@@ -245,7 +245,7 @@ The following command attempts to add an auction bid on the network. It should r
 casper-client \
   put-deploy \
   -n $NODE_ADDR \
-  --chain-name private-test \
+  --chain-name $CHAIN_NAME \
   --secret-key alice/secret_key.pem \
   --session-path add_bid.wasm \
   --payment-amount 5000000000 \
