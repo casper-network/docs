@@ -202,20 +202,6 @@ export CHAIN_NAME="private-test"
 ```
 `alice/secret_key.pem` is a secret key generated through the [keys generation process](/dapp-dev-guide/keys/#creating-accounts-and-keys).
 
-#### Deploy the control management smart contract
-The following command sends the deploy to the private network. This should return success on your private network.
-
-```bash
-casper-client \
-  put-deploy \
-  -n $NODE_ADDR \
-  --chain-name private-test \
-  --secret-key admin/secret_key.pem
-  --session-path control_management.wasm
-  --payment-amount 5000000000
-```
-Deploying this contract on a public chain should return an interpreter error `host module doesn't export function with name casper_control_management`.
-
 
 #### Funding Alice's account
 The following command transfers token amount to Alice's account.
