@@ -1,6 +1,6 @@
 # Set Up a Private Casper Network
 
-Casper private networks operate in a similar way to the Casper public network. The major difference in private networks is having administrator account(s) which can control normal accounts. Hence, there are specific configuration options when setting up the genesis block and administrator accounts. Besides the main configuration options provided by the Casper platform, each customer may have their own configurations when setting up their private network.
+Casper private networks operate in a similar way to the Casper public network. The major difference in private networks is having administrator account(s) which can control normal accounts. Hence, there are specific configurations when setting up the genesis block and administrator accounts. Besides the main configuration options provided by the Casper platform, each customer may have their own configuration options when setting up their private network.
 
 ## Prerequisites
 Follow these guides to set up the required environment and user accounts. 
@@ -30,12 +30,12 @@ Use the below guides to set up your private network directories. You will find s
 - Refer to the [Setting up a new network](/operators/create/) guide to identify the required configuration files to set up a genesis block.
 
 ## Step 3. Configuring the Genesis Block
-The [genesis block](https://en.bitcoin.it/wiki/Genesis_block) in a Casper private network contains a different set of configurations when compared to the public network. When setting up a private network, the `chainspec.toml` file will contain the required configurations for the genesis block with other network settings. 
+The [genesis block](https://en.bitcoin.it/wiki/Genesis_block) in a Casper private network contains a different set of configurations when compared to the public network. In a private network, the `chainspec.toml` file contains the required configurations for the genesis block with other network settings. 
 
-You should add the below configuration options to `chainspec.toml` file inside the [private network directory](/#step-2-setting-up-the-directory) to achieve the unique behavior of the private network.
+You should add the below configuration options to `chainspec.toml` file inside the [private network directory](/#step-2-setting-up-the-directory).
 
 ### Unrestricted transfers config
-This option disables unrestricted transfers between normal accounts. A normal account user can not do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators. 
+This option disables the unrestricted transfers between normal accounts. A normal account user can not do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators. 
 
 ```typescript
 [core]
@@ -44,7 +44,7 @@ allow_unrestricted_transfers = false
 In contrast, users in the public network can freely transfer funds to different accounts.
 
 :::note
-Casper private network doesn't support the minting process. Only the admin accounts can maintain funds that is achieved by configuring the below options,
+Casper private network doesn't support the minting process. Only the admin accounts can maintain the funds. This is enabled by configuring the below options,
 ```typescript
 - core.compute_rewards = false
 - core.allow_auction_bids = false
@@ -53,15 +53,15 @@ Casper private network doesn't support the minting process. Only the admin accou
 :::
 
 ### Refund handling config
-This option manages refund behavior at the finalization of a Deploy execution. It changes the way the Wasm execution fees are distributed. After each Deploy execution, the network calculates the amount of gas spent for the execution and manages to refund the remaining token amount to the user.
+This option manages the refund behavior at the finalization of a Deploy execution. It changes the way the Wasm execution fees are distributed. After each Deploy execution, the network calculates the amount of gas spent for the execution and manages to refund the remaining token amount to the user.
 
-A `refund_ratio` is specified as a proper fraction (the numerator needs to be lower or equal to the denominator).  In the below example, the `refund ratio` is 1:1. If 2.5 CSPR is paid upfront and the gas fee is 1 CSPR, 1.5 CSPR will be distributed back to the user.
+A `refund_ratio` is specified as a proper fraction (the numerator needs to be lower or equal to the denominator).  In the below example, the `refund_ratio` is 1:1. That is, if 2.5 CSPR is paid upfront and the gas fee is 1 CSPR, 1.5 CSPR will be distributed back to the user.
 
 ```typescript
 [core]
 refund_handling = { type = "refund", refund_ratio = [1, 1] } 
 ```
-The distribution of the remaining payment amount after deducing the gas fee is handled based on [fee_handling](/#fee-handling-config) configuration.
+The distribution of the remaining payment amount after deducing the gas fee is handled based on [fee_handling](/workflow/setup-private-network/#fee-handling-config) configuration.
 
 The default config for a public chain and current behavior of Casper Network’s Mainnet is as below,
 
@@ -72,7 +72,7 @@ refund_handling = { type = "refund", refund_ratio = [0, 100] }
 The refund variant with `refund_ratio` of [0, 100] means, that 0% is given back to the user after deducting gas fees. This effectively means that if a user paid 2.5 CSPR and the gas fees is 1 CSPR, the user will not get the remaining 1.5 CSPR in return.
 
 ### Fee handling config
-This option defines how to distribute the fees after the refunds are handled. While refund handling defines the amount we pay back after a transaction, fee handling defines the types of fees after a refund is peformed.
+This option defines how to distribute the fees after the refunds are handled. While refund handling defines the amount we pay back after a transaction, fee handling defines the methods of fee distribution after a refund is peformed.
 
 Setup the options as below,
 ```typescript
@@ -80,14 +80,14 @@ Setup the options as below,
 fee_handling = { type = "pay_to_proposer" }
 ```
 
-This configuration has 3 variations,
+The `fee_handling` configuration has 3 variations,
 - `pay_to_proposer`: The rest of the payment amount after deducing the gas fee from a refund is paid to the block’s [proposer](/glossary/P/#proposer).
 - `burn`: The tokens paid are burned and the total supply is reduced.
 - `accumulate`: The fund is transferred to a special accumulation purse. The fees are paid to the purse owned by the handle payment contract, and no tokens are transferred to the proposer when this configuration is enabled. Here, the accumulation purse is owned by a handle payment system contract, and the amount is distributed among all the administrators defined at the end of a switch block.
 
 ### Auction behavior config
 
-Another requirement of a private network is to have a fixed set of validators. You are not allowed to bid new entries into the validator set. This configuration restricts the addition of new validators to the private network.
+Another requirement of a private network is to have a fixed set of validators.  This configuration restricts the addition of new validators to the private network. Hence, you are not allowed to bid new entries into the validator set.
 
 Use the below configuration option to limit the auction validators,
 
@@ -98,29 +98,23 @@ allow_auction_bids = false
 
 Other related configurations,
 
-- If chainspec.toml `allow_auction_bids` option is set to *false* then `add_bid`, `delegate` is disabled and executing those entry points leads to `AuctionBidsDisabled` error. This will disable new validators in the system.
-- If chainspec.toml `core.compute_rewards` option is set to *false* then all the rewards on a switch block will be set to 0. The auction contract wouldn't process rewards distribution that will increase validator bids.
+- If `allow_auction_bids` option is set to *false* then `add_bid` and `delegate` options are disabled and disable the new validators in the system. Executing those entry points leads to `AuctionBidsDisabled` error.
+- If `core.compute_rewards` option is set to *false* then all the rewards on a switch block will be set to 0. The auction contract wouldn't process rewards distribution that will increase validator bids.
 
 In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes. 
 
 ## Step 4. Configuring the Administrator Accounts
-An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. You can create new admins and [rotate validator](#step-7-rotating-validator-accounts) set in a single update. The operator needs to make sure `global_state.toml` file contains new admins first, and the validator set after that if an admin is also a validator. Also, only the admin accounts can hold and distribute the token balances.
+An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one admin account configured within a network to operate it as a `private network`. You can create new admins and [rotate validator](#step-7-rotating-validator-accounts) set in a single update. The operator needs to make sure `global_state.toml` file contains new admins first, and the validator set after that if an admin is also a validator. Also, only the admin accounts can hold and distribute the token balances.
 
 **Configuring admin accounts**
 
-Use the below configuration option in `chainspec.toml` to add administrator accounts to the private network. 
+Use the below configuration option in `chainspec.toml` to add administrator accounts to the private network,
 
 ```typescript
 [core]
 administrators = ["NEW_ACCOUNT_PUBLIC_KEY"] 
 ```
 On a private network operating mode normal accounts are not allowed to manage their own associated keys.  
-
-Action threshold means how many the cumulative weight of authorization keys you need in the deploy when you sign in to perform some auction in the system (Eg: key_management weight has to be at least 255). This option disallows users to manage their own keys which could potentially lead to users removing administrator accounts from associated keys. In public networks, the threshold is defaulted to 1, while in private networks it can be changed to control the client accounts. If users want to add new associated keys, they can have multiple accounts or multiple keys for the same keys.
-
-:::note
-Make sure that the cumulative weight of authorization keys needs to be 255 at the minimum, and not 255 authorized keys. You can fulfill the threshold with only two keys, one of weight 254 and another with 1.
-:::
 
 **Generating new admin accounts**
 
@@ -130,16 +124,12 @@ Use the below command to generate new admin accounts in your private network. Th
 global-state-update-gen \
   generate-admins --data-dir $DATA_DIR/global_state \
   --state-hash $STATE_ROOT_HASH \
-  --admin $PUBLIC_KEY_HEX,$BALANCE
+  --admin $PUBLIC_KEY_HEX, $BALANCE
 ```
 - `NEW_PUBLIC_KEY` - Public key of the admin in a hex format.
 - `NEW_BALANCE` - Balance for admin’s main purse.
 - `DATA_DIR` - Path to the global state directory.
 - `STATE_ROOT_HASH` - State root hash, taken from the latest block before an upgrade.
-
-:::note
-There should be at least one admin account configured within a network to operate it as a `private network`.
-:::
 
 **Managing accounts and smart contracts**
 
@@ -156,18 +146,6 @@ Only the administrator can use the related Wasm to send the Deploy to the networ
 - ***To enable a contract***: Execute `enable_contract.wasm` with `contract_hash`and `contract_package_hash` parameters.
 - ***To disable an account***: Needs to execute `set_action_thresholds.wasm` with argument `deploy_threshold:u8='255'` and `key_management_threshold:u8='0'`
 - ***To enable an account***: Needs to execute `set_action_thresholds.wasm` with `deploy_threshold:u8='1'` set to 1 and `key_management_threshold:u8='0'`
-
-Once the contract is deployed, the contract's hash will be saved under the `contract_hash` named key. This contract uses the new `casper_control_management` function which is only callable if the caller is in the set of administrator accounts specified in `accounts.toml`. You will use the public keys defined in the genesis configuration and this configuration will be restricted to only valid peers with known IP addresses. You can only use the public keys for the validators use in the genesis block.
-
-Set of entry points to enable and disable accounts and smart contracts.
-
-|Entrypoint Name  | Arguments                        |Description                                                                 |
-| -----------     | ---------------------------------|--------------------------------------------------------------------------- |
-| disable_account | "account_hash" => ByteArray(32)  |Disables accounts deploy action                                             |
-| enable_account  | "account_hash" => ByteArray(32)  |Enables accounts deploy action                                              |
-| disable_contract| "contract_hash" => ByteArray(32) |Puts a contract hash in a set of disabled contracts in a contract package   |
-| enable_contract | "contract_hash" => ByteArray(32) |Removes contract hash from a set of disabled contracts in a contract package|
-
 
 ## Step 5. Starting the Casper Node
 After preparing the genesis block, admin accounts, and validator nodes, you should start and run the Casper node to see the changes. 
@@ -196,10 +174,10 @@ To rotate the validators set we need to perform a network upgrade with a `global
 You can find more general details in [joining a running network](/operators/joining/) guide on how to enable new validators to join the network and provide additional security to the system. 
 
 ## Step 7. Testing the Private Network
-We will describe the testing flow using an example customer. All the configuration options are relative to that example customer.
+We will describe the testing flow using an example customer and the below configuration options are relative to this example customer.
 
 **Sample files**
-- [Chainspec template](https://github.com/casper-network/casper-node/blob/0b4eead8ea1adffaea98260fe2e69dfc8b71c092/resources/private/chainspec.toml.in) that is specific to BSN private chain.
+- [Chainspec template](https://github.com/casper-network/casper-node/blob/0b4eead8ea1adffaea98260fe2e69dfc8b71c092/resources/private/chainspec.toml.in) that is specific to the customer's private chain.
 - [Accounts template](https://github.com/casper-network/casper-node/blob/0b4eead8ea1adffaea98260fe2e69dfc8b71c092/resources/private/accounts.toml.in) with one administrator in `administrators` settings.
 
 **IP Addresses**
