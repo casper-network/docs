@@ -247,7 +247,7 @@ casper-client \
   -n $NODE_ADDR \
   --chain-name private-test \
   --secret-key alice/secret_key.pem \
-  --session-path ~/Dev/casperlabs-node/target/wasm32-unknown-unknown/release/add_bid.wasm \
+  --session-path add_bid.wasm \
   --payment-amount 5000000000 \
   --session-arg "public_key:public_key='$(<alice/public_key_hex)'" \
   --session-arg "amount:u512='10000'" \
