@@ -199,7 +199,6 @@ Set up the node address, chain name and admin secret key.
 ```rust
 export NODE_ADDR=http://18.224.190.213:7777
 export CHAIN_NAME="private-test"
-export ADMIN_SECRET_KEY="$(pwd)/admin/secret_key.pem
 ```
 `alice/secret_key.pem` is a secret key generated through the [keys generation process](/dapp-dev-guide/keys/#creating-accounts-and-keys).
 
