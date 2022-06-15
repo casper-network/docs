@@ -17,14 +17,14 @@ Use the below guides to set up and manage validator nodes.
 
 - [Casper node setup - GitHub guide](https://github.com/casper-network/casper-node/tree/master/resources/production#casper-node-setup): A guide to configuring a system with the new Rust node to operate within a network.
 - [Basic node setup tutorial](/operators/setup/) : A guide on using `casper-node-launcher`, generation of directories and files needed for running casper-node versions and performing upgrades, generating keys, and setting up the config file for nodes.
-- [Set up Mainnet and Testnet validator nodes](https://docs.cspr.community/) : A set of guides for Main Net and Test Net node-operators on setting up setting up and configuring their Casper Network validator nodes.
+- [Set up Mainnet and Testnet validator nodes](https://docs.cspr.community/) : A set of guides for Main Net and Test Net node-operators on setting up and configuring their Casper Network validator nodes.
 
-Use these FAQ collection for tips and details for validators.
+Use these FAQ collections for tips and details for validators.
 - [FAQs for basic validator node ](https://docs.casperlabs.io/faq/faq-validator/)
 - [FAQs on Main Net and Test Net validator node setup](https://docs.cspr.community/docs/faq-validator.html)
 
 ## Step 2. Setting up the Directory
-Use the below guides to set up your private network directories. You will find several main directories are dedicated to different purposes.
+Use the below guides to set up your private network directories. You will find several main directories dedicated to different purposes.
 
 - Go through the [file location](/operators/setup/#file-locations) section to get an understanding of how the directories are created and managed in a Casper private network. 
 - Refer to the [Setting up a new network](/operators/create/) guide to identify the required configuration files to set up a genesis block.
@@ -35,7 +35,7 @@ The [genesis block](https://en.bitcoin.it/wiki/Genesis_block) in a Casper privat
 You should add the below configuration options to `chainspec.toml` file inside the [private network directory](/#step-2-setting-up-the-directory).
 
 ### Unrestricted transfers config
-This option disables the unrestricted transfers between normal accounts. A normal account user can not do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators. 
+This option disables unrestricted transfers between normal accounts. A normal account user can not do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators. 
 
 ```typescript
 [core]
@@ -61,7 +61,7 @@ A `refund_ratio` is specified as a proper fraction (the numerator needs to be lo
 [core]
 refund_handling = { type = "refund", refund_ratio = [1, 1] } 
 ```
-The distribution of the remaining payment amount after deducing the gas fee is handled based on [fee_handling](/workflow/setup-private-network/#fee-handling-config) configuration.
+The distribution of the remaining payment amount after deducing the gas fee is handled based on the [fee_handling](/workflow/setup-private-network/#fee-handling-config) configuration.
 
 The default config for a public chain and current behavior of Casper Network’s Mainnet is as below,
 
@@ -69,10 +69,10 @@ The default config for a public chain and current behavior of Casper Network’s
 [core]
 refund_handling = { type = "refund", refund_ratio = [0, 100] }
 ```
-The refund variant with `refund_ratio` of [0, 100] means, that 0% is given back to the user after deducting gas fees. This effectively means that if a user paid 2.5 CSPR and the gas fees is 1 CSPR, the user will not get the remaining 1.5 CSPR in return.
+The refund variant with `refund_ratio` of [0, 100] means, that 0% is given back to the user after deducting gas fees. This effectively means that if a user paid 2.5 CSPR and the gas fee is 1 CSPR, the user will not get the remaining 1.5 CSPR in return.
 
 ### Fee handling config
-This option defines how to distribute the fees after the refunds are handled. While refund handling defines the amount we pay back after a transaction, fee handling defines the methods of fee distribution after a refund is peformed.
+This option defines how to distribute the fees after the refunds are handled. While refund handling defines the amount we pay back after a transaction, fee handling defines the methods of fee distribution after a refund is performed.
 
 Setup the options as below,
 ```typescript
@@ -104,7 +104,7 @@ Other related configurations,
 In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes. 
 
 ## Step 4. Configuring the Administrator Accounts
-An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one admin account configured within a network to operate it as a `private network`. You can create new admins and [rotate validator](#step-7-rotating-validator-accounts) set in a single update. The operator needs to make sure `global_state.toml` file contains new admins first, and the validator set after that if an admin is also a validator. Also, only the admin accounts can hold and distribute the token balances.
+An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one admin account configured within a network to operate it as a `private network`. You can create new admins and [rotate validator](#step-7-rotating-validator-accounts) set in a single update. The operator needs to make sure the `global_state.toml` file contains new admins first, and the validator set after that if an admin is also a validator. Also, only the admin accounts can hold and distribute the token balances.
 
 **Configuring admin accounts**
 
@@ -133,7 +133,7 @@ global-state-update-gen \
 
 **Managing accounts and smart contracts**
 
-Only the administrators have the permission to control accounts and manage smart contracts in a private network. An example implementation can be found at [Casper node's private chain control management](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/smart_contracts/contracts/private_chain/control-management/src/main.rs) file. This is not an existing contract. You can use the existing client contracts as an administrator to perform actions as a user. You have to sign a Deploy with a normal user executing a Wasm but using administrator's secret key rather than user's secret key.  
+Only the administrators have the permission to control accounts and manage smart contracts in a private network. An example implementation can be found in [Casper node's private chain control management](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/smart_contracts/contracts/private_chain/control-management/src/main.rs) file. This is not an existing contract. You can use the existing client contracts as an administrator to perform actions as a user. You have to sign a Deploy with a normal user executing a Wasm but using the administrator's secret key rather than the user's secret key.  
 
 Use the below command to generate these contracts,
 
@@ -182,7 +182,7 @@ We will describe the testing flow using an example customer and the below config
 
 **IP Addresses**
 
-The set of IP addresses used for the example.
+The set of IP addresses in use.
 ```
 http://18.224.190.213:7777
 http://18.188.11.97:7777
@@ -211,7 +211,7 @@ casper-client \
   --session-path control_management.wasm
   --payment-amount 5000000000
 ```
-Deploying this contract on a public chain should return Interpreter error `host module doesn't export function with name casper_control_management`.
+Deploying this contract on a public chain should return an interpreter error `host module doesn't export function with name casper_control_management`.
 
 
 #### Funding Alice's account
@@ -326,7 +326,7 @@ Validator stakes should not increase on each switch block.
 casper-client get-era-info -n $NODE_ADDR -b 153
 ```
 
-The total supply shouldn’t increase. Validator’s stakes should remain. 
+The total supply shouldn’t increase and the validator’s stakes should remain. 
 
 #### Unrestricted transfers
 This option set the fund transferring from account A to account B should work if either A or B is an administrator account. 
@@ -346,7 +346,7 @@ This option accumulates the fees to a mint’s reward purse rather than block’
 fee_handling = { type = "accumulate" }
 ```
 
-Each deploy validator set should have the same balance and stake, and the rewards purse balance will beThis  increased.
+Each deploy validator set should have the same balance and stake, and the rewards purse balance will be increased.
 
 #### Rotate validators
 The following command sets the rotate validators set you need to perform network upgrade with a `global_state.toml` with new entries generated by `global-state-update-gen` command.
@@ -367,7 +367,7 @@ global-state-update-gen generate-admins --admin NEW_PUBLIC_KEY,NEW_BALANCE --dat
 ```
 New admins can be created, and the validator set can be rotated in a single update. 
 
-The `chainspec.toml` file should contain following entries that includes new administrators as well as existing ones for an upgrade,
+The `chainspec.toml` file should contain the following entries that include new administrators as well as existing ones for an upgrade,
 
 ```typescript
 [core]
