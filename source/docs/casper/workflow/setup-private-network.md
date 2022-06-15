@@ -312,11 +312,12 @@ casper-client \
   put-deploy \
   -n $NODE_ADDR \
   --chain-name $CHAIN_NAME \
-  --secret-key $ADMIN_SECRET_KEY \
-  --payment-amount=2500000000 \
-  --session-name contract_hash \
-  --session-entry-point disable_contract \
-  --session-arg "contract_hash:account_hash='CONTRACT_HASH'"
+  --secret-key admin/secret_key.pem \
+  --session-account=$(<alice/public_key_hex) \
+  --session-path disable_contract.wasm  \
+  --payment-amount 3000000000 \
+  --session-arg "contract_package_hash:account_hash='account-hash-$CONTRACT_PACKAGE_HASH'" \
+  --session-arg "contract_hash:account_hash='account-hash-$CONTRACT_HASH'"
 ```
 
 #### Verifying seigniorage allocations
