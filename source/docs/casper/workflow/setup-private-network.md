@@ -46,7 +46,7 @@ In contrast, users in the public network can freely transfer funds to different 
 :::note
 Casper private network doesn't support the minting process. Only the admin accounts can maintain funds that is achieved by configuring the below options,
 ```typescript
-- highway.compute_rewards = false
+- core.compute_rewards = false
 - core.allow_auction_bids = false
 - fee_handling = { type = "Accumulate" }
 ```
