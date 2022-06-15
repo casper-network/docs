@@ -264,11 +264,12 @@ casper-client \
   put-deploy \
   -n $NODE_ADDR \
   --chain-name $CHAIN_NAME \
-  --secret-key $ADMIN_SECRET_KEY \
+  --secret-key admin/secret_key.pem \
+  --session-account=alice/public_key_hex
+  --session-path set_action_thresholds.wasm \
   --payment-amount=2500000000 \
-  --session-name contract_hash \
-  --session-entry-point disable_account \
-  --session-arg "account_hash:account_hash='"$(casper-client account-address --public-key $(<alice/public_key_hex))"'"
+  --session-arg "key_management_threshold:u8='0'" \
+  --session-arg "deploy_threshold:u8='1'"
 ```
 
 #### Enabling Alice's account
