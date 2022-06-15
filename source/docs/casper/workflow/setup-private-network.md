@@ -114,15 +114,7 @@ Use the below configuration option in `chainspec.toml` to add administrator acco
 [core]
 administrators = ["NEW_ACCOUNT_PUBLIC_KEY"] 
 ```
-In private network operating mode new accounts are created with the following action thresholds,
-
-```typescript
-{
-  "deployment": 1,
-  "key_management": 255
-}
-```
-This disallows users to manage their own keys which could potentially lead to users removing administrator accounts from associated keys.
+On a private network operating mode normal accounts are not allowed to manage their own associated keys.  
 
 Action threshold means how many the cumulative weight of authorization keys you need in the deploy when you sign in to perform some auction in the system (Eg: key_management weight has to be at least 255). This option disallows users to manage their own keys which could potentially lead to users removing administrator accounts from associated keys. In public networks, the threshold is defaulted to 1, while in private networks it can be changed to control the client accounts. If users want to add new associated keys, they can have multiple accounts or multiple keys for the same keys.
 
