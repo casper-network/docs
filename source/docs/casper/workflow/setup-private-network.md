@@ -277,14 +277,15 @@ The following command enables the Alice's account. In this case, executing Deplo
 
 ```bash
 casper-client \
-put-deploy \
--n $NODE_ADDR \
---chain-name $CHAIN_NAME \
---secret-key $ADMIN_SECRET_KEY \
---payment-amount=2500000000 \
---session-name contract_hash \
---session-entry-point enable_account \
---session-arg "account_hash:account_hash='"$(casper-client account-address --public-key $(<alice/public_key_hex))"'"
+  put-deploy \
+  -n $NODE_ADDR \
+  --chain-name $CHAIN_NAME \
+  --secret-key admin/secret_key.pem \
+  --session-account=alice/public_key_hex
+  --session-path set_action_thresholds.wasm \
+  --payment-amount=2500000000 \
+  --session-arg "key_management_threshold:u8='255'" \
+  --session-arg "deploy_threshold:u8='255'"
 ```
 
 #### Enabling the contract
