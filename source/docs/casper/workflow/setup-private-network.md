@@ -305,6 +305,7 @@ casper-client \
   --session-arg "contract_package_hash:account_hash='account-hash-$CONTRACT_PACKAGE_HASH'" \
   --session-arg "contract_hash:account_hash='account-hash-$CONTRACT_HASH'"
 ```
+Alice needs to have a container access key for the contract package in her named keys.
 
 #### Verifying seigniorage allocations
 [Seigniorage](https://www.investopedia.com/terms/s/seigniorage.asp) allocations should be zero at each switch block.
