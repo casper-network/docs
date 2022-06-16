@@ -20,7 +20,6 @@ The Casper Ecosystem is growing every day through the addition of new dApps and 
 
 ### Block Explorers
 - [cspr.live](https://cspr.live)
-- [casperstats.io](https://casperstats.io)
 
 ### Developer Tools
 - [casperholders.io](https://casperholders.io)
