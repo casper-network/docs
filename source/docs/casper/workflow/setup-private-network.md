@@ -1,6 +1,6 @@
 # Set Up a Private Casper Network
 
-Casper private networks operate in a similar way to the Casper public network. The major difference in private networks is having administrator account(s) which can control normal accounts. Hence, there are specific configurations when setting up the genesis block and administrator accounts. Besides the main configuration options provided by the Casper platform, each customer may have their own configuration options when setting up their private network.
+Casper private networks operate in a similar way to the Casper public network. The major difference in private networks is a closed validator set and having administrator account(s) which can control normal accounts. Hence, there are specific configurations when setting up the genesis block and administrator accounts. Besides the main configuration options provided by the Casper platform, each customer may have their own configuration options when setting up their private network.
 
 ## Prerequisites
 Follow these guides to set up the required environment and user accounts. 
@@ -27,12 +27,12 @@ Use these FAQ collections for tips and details for validators.
 Use the below guides to set up your private network directories. You will find several main directories dedicated to different purposes.
 
 - Go through the [file location](/operators/setup/#file-locations) section to get an understanding of how the directories are created and managed in a Casper private network. 
-- Refer to the [Setting up a new network](/operators/create/) guide to identify the required configuration files to set up a genesis block.
+- Refer to the [setting up a new network](/operators/create/) guide to identify the required configuration files to set up a genesis block.
 
 ## Step 3. Configuring the Genesis Block
-The [genesis block](https://en.bitcoin.it/wiki/Genesis_block) in a Casper private network contains a different set of configurations when compared to the public network. In a private network, the `chainspec.toml` file contains the required configurations for the genesis block with other network settings. 
+A Casper private network contains a different set of configurations when compared to the public network. In a private network, the `chainspec.toml` file contains the required configurations for the genesis process. 
 
-You should add the below configuration options to `chainspec.toml` file inside the [private network directory](/#step-2-setting-up-the-directory).
+You should add the below configuration options to `chainspec.toml` file inside the [private network directory](/workflow/setup-private-network/#step-2-setting-up-the-directory).
 
 ### Unrestricted transfers config
 This option disables unrestricted transfers between normal accounts. A normal account user can not do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators. 
@@ -91,7 +91,7 @@ The `fee_handling` configuration has 3 variations,
 
 ### Auction behavior config
 
-Another requirement of a private network is to have a fixed set of validators.  This configuration restricts the addition of new validators to the private network. Hence, you are not allowed to bid new entries into the validator set.
+A requirement of a private network is to have a fixed set of validators.  This configuration restricts the addition of new validators to the private network. Hence, you are not allowed to bid new entries into the validator set.
 
 Use the below configuration option to limit the auction validators,
 
@@ -102,13 +102,13 @@ allow_auction_bids = false
 
 Other related configurations,
 
-- If `allow_auction_bids` option is set to *false* then `add_bid` and `delegate` options are disabled and disable the new validators in the system. Executing those entry points leads to `AuctionBidsDisabled` error.
+- If `allow_auction_bids` option is set to *false* then `add_bid` and `delegate` options are disabled and disable the new validators in the system. Invoking those entry points leads to `AuctionBidsDisabled` error.
 - If `core.compute_rewards` option is set to *false* then all the rewards on a switch block will be set to 0. The auction contract wouldn't process rewards distribution that will increase validator bids.
 
 In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes. 
 
 ## Step 4. Configuring the Administrator Accounts
-An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one admin account configured within a network to operate it as a `private network`. You can create new admins and [rotate validator](#step-7-rotating-validator-accounts) set in a single update. The operator needs to make sure the `global_state.toml` file contains new admins first, and the validator set after that if an admin is also a validator. Also, only the admin accounts can hold and distribute the token balances.
+An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one admin account configured within a network to operate it as a `private network`. You can create new admins and [rotate validator](/workflow/setup-private-network/#step-6-rotating-the-validator-accounts) set in a single update. The operator needs to make sure the `global_state.toml` file contains new admins first, and the validator set after that if an admin is also a validator. Also, only the admin accounts can hold and distribute the token balances.
 
 **Configuring admin accounts**
 
@@ -137,7 +137,7 @@ global-state-update-gen \
 
 **Managing accounts and smart contracts**
 
-Only the administrators have the permission to control accounts and manage smart contracts in a private network. An example implementation can be found in [Casper node's private chain control management](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/smart_contracts/contracts/private_chain/control-management/src/main.rs) file. This is not an existing contract. You can use the existing client contracts as an administrator to perform actions as a user. You have to sign a Deploy with a normal user executing a Wasm but using the administrator's secret key rather than the user's secret key.  
+Only the administrators have the permission to control accounts and manage smart contracts in a private network. An example implementation can be found in [Casper node's private chain control management](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/smart_contracts/contracts/private_chain/control-management/src/main.rs) file. This is not an existing contract. You can use the existing client contracts as an administrator to perform actions as a user. This is done by sending the Deploy under the normal user's public key, but signed using the administrator's secret key.   
 
 Use the below command to generate these contracts,
 
@@ -152,7 +152,7 @@ Only the administrator can use the related Wasm to send the Deploy to the networ
 - ***To enable an account***: Needs to execute `set_action_thresholds.wasm` with `deploy_threshold:u8='1'` set to 1 and `key_management_threshold:u8='0'`
 
 ## Step 5. Starting the Casper Node
-After preparing the genesis block, admin accounts, and validator nodes, you should start and run the Casper node to see the changes. 
+After preparing the admin accounts, and validator nodes, you should start and run the Casper node to see the changes. 
 
 Use the below command to start the node,
 ```bash
