@@ -91,7 +91,7 @@ The `fee_handling` configuration has 3 variations,
 
 ### Auction behavior config
 
-Another requirement of a private network is to have a fixed set of validators.  This configuration restricts the addition of new validators to the private network. Hence, you are not allowed to bid new entries into the validator set.
+A requirement of a private network is to have a fixed set of validators.  This configuration restricts the addition of new validators to the private network. Hence, you are not allowed to bid new entries into the validator set.
 
 Use the below configuration option to limit the auction validators,
 
