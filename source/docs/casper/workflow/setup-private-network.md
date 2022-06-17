@@ -152,7 +152,7 @@ Only the administrator can use the related Wasm to send the Deploy to the networ
 - ***To enable an account***: Needs to execute `set_action_thresholds.wasm` with `deploy_threshold:u8='1'` set to 1 and `key_management_threshold:u8='0'`
 
 ## Step 5. Starting the Casper Node
-After preparing the genesis block, admin accounts, and validator nodes, you should start and run the Casper node to see the changes. 
+After preparing the admin accounts, and validator nodes, you should start and run the Casper node to see the changes. 
 
 Use the below command to start the node,
 ```bash
