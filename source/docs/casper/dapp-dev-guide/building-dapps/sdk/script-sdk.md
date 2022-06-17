@@ -180,6 +180,3 @@ Then, you can reconstruct the deploy object using this function:
 const deployFromJson = DeployUtil.deployFromJson(jsonFromDeploy);
 ```
 
-## Additional Resources {#additional-resources}
-
-If you are looking for additional examples, another great resource is the [BitGo JS implementation](https://github.com/BitGo/BitGoJS/tree/master/modules/account-lib/src/coin/cspr).
