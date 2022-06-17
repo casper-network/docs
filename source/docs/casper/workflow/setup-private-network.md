@@ -102,7 +102,7 @@ allow_auction_bids = false
 
 Other related configurations,
 
-- If `allow_auction_bids` option is set to *false* then `add_bid` and `delegate` options are disabled and disable the new validators in the system. Executing those entry points leads to `AuctionBidsDisabled` error.
+- If `allow_auction_bids` option is set to *false* then `add_bid` and `delegate` options are disabled and disable the new validators in the system. Invoking those entry points leads to `AuctionBidsDisabled` error.
 - If `core.compute_rewards` option is set to *false* then all the rewards on a switch block will be set to 0. The auction contract wouldn't process rewards distribution that will increase validator bids.
 
 In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes. 
