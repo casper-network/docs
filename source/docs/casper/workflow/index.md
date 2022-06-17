@@ -16,6 +16,10 @@ These user guides contain step-by-step instructions for interacting with the Cas
 -   [Transferring Tokens using a Block Explorer](token-transfer.md): a guide to transferring your CSPR tokens 
 -   [Funding Testnet Accounts](testnet-faucet.md): a guide to funding your Testnet account
 
+## Operator Guides {#operator-guides}
+
+- [Set Up a Private Casper Network](setup-private-network.md): a step-by-step guide to establishing and configuring a private Casper network
+
 ## Developer Guides {#developer-guides}
 
 These developer guides highlight key features and capabilities of the Casper system.
