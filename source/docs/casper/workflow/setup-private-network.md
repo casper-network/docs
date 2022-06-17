@@ -30,7 +30,7 @@ Use the below guides to set up your private network directories. You will find s
 - Refer to the [Setting up a new network](/operators/create/) guide to identify the required configuration files to set up a genesis block.
 
 ## Step 3. Configuring the Genesis Block
-The [genesis block](https://en.bitcoin.it/wiki/Genesis_block) in a Casper private network contains a different set of configurations when compared to the public network. In a private network, the `chainspec.toml` file contains the required configurations for the genesis block with other network settings. 
+A Casper private network contains a different set of configurations when compared to the public network. In a private network, the `chainspec.toml` file contains the required configurations for the genesis process. 
 
 You should add the below configuration options to `chainspec.toml` file inside the [private network directory](/#step-2-setting-up-the-directory).
 
