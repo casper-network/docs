@@ -137,7 +137,7 @@ global-state-update-gen \
 
 **Managing accounts and smart contracts**
 
-Only the administrators have the permission to control accounts and manage smart contracts in a private network. An example implementation can be found in [Casper node's private chain control management](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/smart_contracts/contracts/private_chain/control-management/src/main.rs) file. This is not an existing contract. You can use the existing client contracts as an administrator to perform actions as a user. You have to sign a Deploy with a normal user executing a Wasm but using the administrator's secret key rather than the user's secret key.  
+Only the administrators have the permission to control accounts and manage smart contracts in a private network. An example implementation can be found in [Casper node's private chain control management](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/smart_contracts/contracts/private_chain/control-management/src/main.rs) file. This is not an existing contract. You can use the existing client contracts as an administrator to perform actions as a user. This is done by sending the Deploy under the normal user's public key, but signed using the administrator's secret key.   
 
 Use the below command to generate these contracts,
 
