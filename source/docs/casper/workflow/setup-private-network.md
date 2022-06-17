@@ -27,12 +27,12 @@ Use these FAQ collections for tips and details for validators.
 Use the below guides to set up your private network directories. You will find several main directories dedicated to different purposes.
 
 - Go through the [file location](/operators/setup/#file-locations) section to get an understanding of how the directories are created and managed in a Casper private network. 
-- Refer to the [Setting up a new network](/operators/create/) guide to identify the required configuration files to set up a genesis block.
+- Refer to the [setting up a new network](/operators/create/) guide to identify the required configuration files to set up a genesis block.
 
 ## Step 3. Configuring the Genesis Block
 A Casper private network contains a different set of configurations when compared to the public network. In a private network, the `chainspec.toml` file contains the required configurations for the genesis process. 
 
-You should add the below configuration options to `chainspec.toml` file inside the [private network directory](/#step-2-setting-up-the-directory).
+You should add the below configuration options to `chainspec.toml` file inside the [private network directory](/workflow/setup-private-network/#step-2-setting-up-the-directory).
 
 ### Unrestricted transfers config
 This option disables unrestricted transfers between normal accounts. A normal account user can not do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators. 
@@ -108,7 +108,7 @@ Other related configurations,
 In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes. 
 
 ## Step 4. Configuring the Administrator Accounts
-An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one admin account configured within a network to operate it as a `private network`. You can create new admins and [rotate validator](#step-7-rotating-validator-accounts) set in a single update. The operator needs to make sure the `global_state.toml` file contains new admins first, and the validator set after that if an admin is also a validator. Also, only the admin accounts can hold and distribute the token balances.
+An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one admin account configured within a network to operate it as a `private network`. You can create new admins and [rotate validator](/workflow/setup-private-network/#step-6-rotating-the-validator-accounts) set in a single update. The operator needs to make sure the `global_state.toml` file contains new admins first, and the validator set after that if an admin is also a validator. Also, only the admin accounts can hold and distribute the token balances.
 
 **Configuring admin accounts**
 
