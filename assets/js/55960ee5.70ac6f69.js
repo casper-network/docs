@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[4121],{8070:function(e){e.exports=JSON.parse('[{"name":"smart contract developers","permalink":"/tags/smart-contract-developers","count":2},{"name":"rust","permalink":"/tags/rust","count":2},{"name":"put-deploy","permalink":"/tags/put-deploy","count":2}]')}}]);
