@@ -39,7 +39,7 @@ You should add the configuration options below to the `chainspec.toml` file insi
 ### Unrestricted transfers configuration
 This option disables unrestricted transfers between regular accounts. A regular account user cannot do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators. 
 
-```typescript
+```toml
 [core]
 allow_unrestricted_transfers = false
 ```
@@ -48,7 +48,7 @@ In contrast, users in the public network can freely transfer funds to different 
 :::note
 A Casper private network doesn't support the minting process. Only admininstrator accounts can maintain funds. This is enabled by configuring these options:
 
-```typescript
+```toml
 [core]
 allow_unrestricted_transfers = false
 compute_rewards = false
@@ -65,7 +65,7 @@ This option manages the refund behavior at the finalization of a deploy executio
 A `refund_ratio` is specified as a proper fraction (the numerator must be lower or equal to the denominator). In the example below, the `refund_ratio` is 1:1. If 2.5 CSPR is paid upfront and the gas fee is 1 CSPR, 1.5 CSPR will be given back to the user.
 
 
-```typescript
+```toml
 [core]
 refund_handling = { type = "refund", refund_ratio = [1, 1] } 
 ```
@@ -73,7 +73,7 @@ After deducting the gas fee, the distribution of the remaining payment amount is
 
 The default configuration for a public chain, including the Casper Mainet,  looks like this:
 
-```typescript
+```toml
 [core]
 refund_handling = { type = "refund", refund_ratio = [0, 100] }
 ```
@@ -85,7 +85,7 @@ This option defines how to distribute the fees after refunds are handled. While 
 
 Set up the configuration as below:
 
-```typescript
+```toml
 [core]
 fee_handling = { type = "pay_to_proposer" }
 ```
@@ -103,7 +103,7 @@ A private network requires to have a fixed set of validators. This configuration
 Use the configuration below to limit the auction validators:
 
 
-```typescript
+```toml
 [core]
 allow_auction_bids = false
 ```
@@ -122,7 +122,7 @@ An administrator is mandatory for a private network since it manages all the oth
 
 Use this configuration option in the `chainspec.toml` to add administrator accounts to the private network:
 
-```typescript
+```toml
 [core]
 administrators = ["NEW_ACCOUNT_PUBLIC_KEY"] 
 ```
@@ -133,7 +133,7 @@ administrators = ["NEW_ACCOUNT_PUBLIC_KEY"]
 
 Use the command below to generate new administrator accounts in your private network. This generates the contents of a `global_state.toml` with the entries required to create new administrator accounts at the upgrade point.
 
-```typescript
+```sh
 global-state-update-gen \
   generate-admins --data-dir $DATA_DIR/global_state \
   --state-hash $STATE_ROOT_HASH \
@@ -151,7 +151,7 @@ Only administrators have permission to control accounts and manage smart contrac
 
 Use this command to generate these contracts:
 
-```bash
+```sh
 make build-contracts-rs
 ```
 
@@ -166,7 +166,7 @@ Only the administrator can use the related Wasm to send the deploy to the networ
 ## Step 5. Starting the Casper Node
 After preparing the administrator accounts and validator nodes, you should start and run the Casper node to see the changes. Use this command to start the node:
 
-```bash
+```sh
 sudo systemctl start casper-node-launcher
 ```
 Refer to the [Casper node setup GitHub](https://github.com/casper-network/casper-node/tree/master/resources/production#casper-node-setup) guide to know more details about configuring a new node to operate within a network.
@@ -178,7 +178,7 @@ You need to go through [setting up a validator node ](/#step-1-setting-up-the-va
 
 Use this command to create content in the `global_state.toml` file to rotate the validator set. Specify all the current validators, their stakes, and new accounts. 
 
-```rust
+```sh
 global-state-update-gen \
   validators --data-dir $DATA_DIR/global_state \
   --state-hash $STATE_ROOT_HASH \
@@ -214,7 +214,7 @@ http://18.116.201.114:7777
 
 Set up the node address, chain name, and the administrator's secret key. 
 
-```rust
+```sh
 export NODE_ADDR=http://18.224.190.213:7777
 export CHAIN_NAME="private-test"
 ```
@@ -225,7 +225,7 @@ This testing example will also use an `alice/secret_key.pem` file, a secret key 
 
 The following command transfers tokens to Alice's account.
 
-```bash
+```sh
 casper-client \
   transfer \
   -n $NODE_ADDR \
@@ -240,7 +240,7 @@ casper-client \
 
 To check the account information, use this command:
 
-```bash
+```sh
 casper-client get-account-info -n $NODE_ADDR 
   --public-key alice/public_key.pem
 ```
@@ -249,7 +249,7 @@ casper-client get-account-info -n $NODE_ADDR
 The following command attempts to add an auction bid on the network. It should return `ApiError::AuctionError(AuctionBidsDisabled) [64559]`.
 
 
-```bash
+```sh
 casper-client \
   put-deploy \
   -n $NODE_ADDR \
@@ -270,7 +270,7 @@ We should get a similar error for the delegate entry point.
 
 The following command disables Alice's account. In this case, executing deploys with Alice's account will not be successful.
 
-```bash
+```sh
 casper-client \
   put-deploy \
   -n $NODE_ADDR \
@@ -287,7 +287,7 @@ casper-client \
 ### Enabling Alice's account
 The following command enables Alice's account. In this case, executing deploys with Alice's account will be successful.
 
-```bash
+```sh
 casper-client \
   put-deploy \
   -n $NODE_ADDR \
@@ -305,7 +305,7 @@ casper-client \
 
 The following command enables a contract using its hash.
 
-```bash
+```sh
 casper-client \
   put-deploy \
   -n $NODE_ADDR \
@@ -323,7 +323,7 @@ casper-client \
 
 The following command disables a contract using its hash. Executing this contract using `CONTRACT_HASH` again should fail.
 
-```bash
+```sh
 casper-client \
   put-deploy \
   -n $NODE_ADDR \
@@ -341,14 +341,14 @@ Alice needs a container access key for the contract package in her named keys.
 
 [Seigniorage](https://www.investopedia.com/terms/s/seigniorage.asp) allocations should be zero at each switch block. This is the related configuration:
 
-```typescript
+```toml
 [core]
 compute_rewards = false
 ```
 
 Validator stakes should not increase on each switch block. Run this command to verify this:
 
-```bash
+```sh
 casper-client get-era-info -n $NODE_ADDR -b 153
 ```
 
@@ -359,7 +359,7 @@ The total supply shouldn't increase, and the validator's stakes should remain th
 
 The following command rotates the validator set. Perform a network upgrade with a `global_state.toml` with the new entries generated by the `global-state-update-gen` command.
 
-```bash
+```sh
 global-state-update-gen validators \
   --data-dir $DATA_DIR \
   --state-hash $STATE_ROOT_HASH \
@@ -370,7 +370,7 @@ global-state-update-gen validators \
 ### Adding new administrators
 The following command produces the administrator content in the `global_state.toml` file. 
 
-```bash
+```sh
 global-state-update-gen generate-admins --admin NEW_PUBLIC_KEY,NEW_BALANCE --data-dir $DATA_DIR --state-hash $STATE_ROOT_HASH
 ```
 Remember that new administrators can be created, and the validator set can also be rotated in a single update. 
@@ -378,7 +378,7 @@ Remember that new administrators can be created, and the validator set can also 
 The `chainspec.toml` file should contain the following entries that include new administrators as well as existing ones for an upgrade:
 
 
-```typescript
+```toml
 [core]
 administrators = ["NEW_PUBLIC_KEY"]
 ```
