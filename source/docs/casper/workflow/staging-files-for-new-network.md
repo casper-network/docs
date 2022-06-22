@@ -3,14 +3,15 @@
 THIS IS NOT NEEDED FOR RUNNING ESTABLISHED NETWORKS.  
 You should only use this if you are creating a new Caster network and hosting protocol files for this network.
 
-## Hosting server
+## Hosting Server
 
-Scripts included with `casper-node-launcher` have network configs for MainNet and TestNet.  
-These point to the server hosting files and network name.  Protocol files exist on a typical HTTP(S) 
-server and are hosted by CasperLabs for MainNet and Make Services for TestNet. 
+Files for staging protocol versions are hosted on a typical HTTP(S) server. 
+Scripts included with `casper-node-launcher` have network configs for MainNet and TestNet.  These point to the server hosting files and network name.
 
-Because multiple networks could be staged from a given server, the root directory is the network name.  
-This is a description of MainNet protocol version hosting.
+Since a given server can be used for multiple networks, a network named directory is used to
+hold files for that network.
+
+This is a description of MainNet (with network name: `casper`) protocol version hosting.
 
 `genesis.casperlab.io` is the web server url with the following directory structure:
 
@@ -27,8 +28,12 @@ This is a description of MainNet protocol version hosting.
       - `config.tar.gz`  (configuration files to be expanded into `/etc/casper/1_4_6`)
       - `bin.tar.gz`  (binary files to be expanded into `/var/lib/casper/bin/1_4_6`)
 
-When scripts look for protocol versions, they look at the `protocol_versions` file.  We can do that manually
-on MainNet using curl.  As of writing this, `1.4.6` is the latest version.  Contents of this file will change.
+## protocol_versions
+
+At the root of the hosting server directory for a given network, a `protocol_versions` file exists.  This holds the valid protocol versions for a network.
+
+We can look at this manually on MainNet using curl.  As of writing this, `1.4.6` is the latest version and 
+contents of this file will change.
 
 ```
 $ curl -s genesis.casperlabs.io/casper/protocol_versions
@@ -46,13 +51,13 @@ $ curl -s genesis.casperlabs.io/casper/protocol_versions
 1_4_6
 ```
 
-This shows that we would find `bin.tar.gz` and `config.tar.gz` at those directories under `casper`.
+We should find `bin.tar.gz` and `config.tar.gz` at those directories under `casper`.
 
 ## Protocol Version
 
 The protocol version of a network is not related to the `casper-node` version.  In MainNet, these have
 often been the same. However, with a new network, you would use the latest `casper-node` version for your 
-1.0.0 protocol.
+`1.0.0` protocol.
 
 ## Network Configuration File
 
