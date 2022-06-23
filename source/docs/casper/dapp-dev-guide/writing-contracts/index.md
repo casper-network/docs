@@ -3,9 +3,9 @@ title: Introduction
 slug: /writing-contracts
 ---
 
-# Writing Smart Contracts
+# On Chain Development
 
-This section shows you how to write smart contracts in Rust and WebAssembly (Wasm).
+This section shows you how to write smart contracts in Rust and WebAssembly (Wasm). When referring to session code, these documents outline ad hoc logic in the context of an account. In contrast, smart contracts consist of logic installed on chain, for use by your own deploys and potentially the deploys of others. There is a large overlap between the processes of writing session code versus contract code, with some semantic differences outlined in their respective documentation.
 
 | Title                                       | Description                     |
 | ------------------------------------------- | ------------------------------- |
@@ -13,10 +13,10 @@ This section shows you how to write smart contracts in Rust and WebAssembly (Was
 |[Writing Session Code](session-code.md)      | An introduction to writing session code|
 |[Unit Testing Session Code](testing-session-code.md)      | Steps to test session code using the unit testing framework|
 |[A Basic Smart Contract in Rust](rust.md)   | An example of a smart contract built in Rust|
-|[Unit Testing Contract Code](testing.md)      | Steps to test contract code using the unit testing framework|
-|[Installing Contracts](installing-contracts.md)| A guide on installing contracts and querying global state        |
-|[Calling Contracts](calling-contracts.md)| Steps to call a contract with the Rust command-line client|
-|[Upgrading Contracts](upgrading-contracts.md)| An introduction to versioning contracts|
+|[Unit Testing Smart Contracts](testing.md)      | Steps to test contract code using the unit testing framework|
+|[Installing Smart Contracts](installing-contracts.md)| A guide on installing smart contracts and querying global state        |
+|[Calling Smart Contracts](calling-contracts.md)| Steps to call a smart contract with the Rust command-line client|
+|[Upgrading Smart Contracts](upgrading-contracts.md)| An introduction to versioning smart contracts|
 |[Getting Started with AssemblyScript](assembly-script.md) | An introduction to using AssemblyScript with the Casper Platform |
 
 Additionally, the following tutorials outline some aspects of writing smart contracts on the Casper Network.

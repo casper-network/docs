@@ -1,4 +1,4 @@
-# Testing Contracts
+# Testing Smart Contracts
 
 ## Introduction
 
