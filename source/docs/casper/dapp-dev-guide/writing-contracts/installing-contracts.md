@@ -197,7 +197,7 @@ Here is how the sample contract would look and would contain details such as the
     "merkle_proof": "[21330 hex chars]",
     "stored_value": {
       "Contract": {
-        "contract_package_hash": "contract-package-wasm76a8c3daa6d6ac799ce9f46d82ac98efb271d2d64b517861ec89a06051ef019e",
+        "contract_package_hash": "contract-package-76a8c3daa6d6ac799ce9f46d82ac98efb271d2d64b517861ec89a06051ef019e",
         "contract_wasm_hash": "contract-wasm-576b1718711d524a79ab2f05ce801006a3fd32eb48b9f7dac69a9fa966d634e3",
         "entry_points": [
           {
