@@ -65,7 +65,7 @@ module.exports = {
             position: "left",
         },
         {
-            href: "https://discord.gg/casperblockchain",
+            href: "https://discord.com/invite/Q38s3Vh",
             label: "Chat",
         },
 
