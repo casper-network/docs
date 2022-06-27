@@ -80,6 +80,7 @@ module.exports = {
             items: [
                 "dapp-dev-guide/writing-contracts/index",
                 "dapp-dev-guide/writing-contracts/getting-started",
+                "dapp-dev-guide/writing-contracts/signing-a-deploy",
                 "dapp-dev-guide/writing-contracts/session-code",
                 "dapp-dev-guide/writing-contracts/testing-session-code",
                 "dapp-dev-guide/writing-contracts/rust",
