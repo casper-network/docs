@@ -96,3 +96,24 @@ The result contains the [deploy_hash](../../sdkspec/types_chain#deployhash), whi
 ```
 
 </details>
+
+## speculative_exec {#speculative_exec}
+
+The `speculative_exec` endpoint provides a method to test a `Deploy` without committing it to a Casper network. By default, `speculative_exec` is disabled on a node and must be intentionally enabled within the associated `rpc_server` section of the node's *cargo.toml*. Sending a `speculative_exec` request to a node with the endpoint disabled will result in an error message. It also runs on a separate port from the primary JSON-RPC, using 7778.
+
+`speculative_exec` executes a deploy at a specified block. In the case of this endpoint, the execution is not committed to global state. As such, it can be used for debugging and discovery purposes such as price estimation.
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|[block_identifier](../../sdkspec/types_chain#blockidentifier)|Object|The block hash or state root hash on top of which to execute the deploy. If not supplied,the most recent block will be used.|
+|[deploy](../../sdkspec/types_chain#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
+
+### `speculative_exec_result`
+
+The result contains the hash of the targeted block and the results of the execution.
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|api_version|String|The RPC API version.|
+|[block_hash](../../sdkspec/types_chain#blockhash)|Object|The Block hash on top of which the deploy was executed.|
+|[execution_results](../../sdkspec/types_chain#jsonexecutionresult)|Object|The map of Block hash to execution result.|
