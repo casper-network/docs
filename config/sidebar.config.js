@@ -74,7 +74,7 @@ module.exports = {
         },
         {
             type: "category",
-            label: "On Chain Development",
+            label: "Writing On-Chain Code",
             collapsible: true,
             collapsed: true,
             items: [
