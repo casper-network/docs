@@ -1,41 +1,48 @@
-# Staging files for a new network
+# Staging Files for a New Network
 
-THIS IS NOT NEEDED FOR RUNNING ESTABLISHED NETWORKS.  
-You should only use this if you are creating a new Caster network and hosting protocol files for this network.
+:::important
+
+Staging files is not needed for already established running networks.
+
+Only use these instructions if you are creating a new Casper network and hosting protocol files for this network.
+
+:::
+
 
 ## Hosting Server
 
-Files for staging protocol versions are hosted on a typical HTTP(S) server. 
-Scripts included with `casper-node-launcher` have network configs for MainNet and TestNet.  These point to the server hosting files and network name.
+Files for staging protocol versions are hosted on a typical HTTP(S) server.
+
+Scripts included with the `casper-node-launcher` have network configurations for Mainnet and Testnet.  These scripts point to the server hosting files and network name.
 
 Since a given server can be used for multiple networks, a network named directory is used to
 hold files for that network.
 
-This is a description of MainNet (with network name: `casper`) protocol version hosting.
+This is a description of Mainnet protocol version hosting (with network name: `casper`).
 
-`genesis.casperlab.io` is the web server url with the following directory structure:
+`genesis.casperlab.io` is the web server URL with the following directory structure:
 
  - `casper`
-    - `protocol_versions`  (file listing active protocol versions so scripts know what directories to use.)
-    - `1_0_0`  (genesis protocol version)
-      - `config.tar.gz`  (configuration files to be expanded into `/etc/casper/1_0_0`)
-      - `bin.tar.gz`  (binary files to be expanded into `/var/lib/casper/bin/1_0_0`)
-    - `1_1_0`  (first upgrade)
-      - `config.tar.gz`  (configuration files to be expanded into `/etc/casper/1_1_0`)
-      - `bin.tar.gz`  (binary files to be expanded into `/var/lib/casper/bin/1_1_0`)
-    - ...  (skipping many protocol versions)
-    - `1_4_6`  (later upgrade)
-      - `config.tar.gz`  (configuration files to be expanded into `/etc/casper/1_4_6`)
-      - `bin.tar.gz`  (binary files to be expanded into `/var/lib/casper/bin/1_4_6`)
+    - `protocol_versions` - File listing active protocol versions so scripts know what directories to use
+    - `1_0_0` - Genesis protocol version
+      - `config.tar.gz` - Configuration files to be expanded into `/etc/casper/1_0_0`
+      - `bin.tar.gz` - Binary files to be expanded into `/var/lib/casper/bin/1_0_0`
+    - `1_1_0` - First upgrade
+      - `config.tar.gz` - Configuration files to be expanded into `/etc/casper/1_1_0`
+      - `bin.tar.gz` - Binary files to be expanded into `/var/lib/casper/bin/1_1_0`
+    - ...  (skipping many other protocol versions)
+    - `1_4_6` - A later upgrade
+      - `config.tar.gz` - Configuration files to be expanded into `/etc/casper/1_4_6`
+      - `bin.tar.gz` - Binary files to be expanded into `/var/lib/casper/bin/1_4_6`
 
-## protocol_versions
+### More on `protocol_versions`
 
 At the root of the hosting server directory for a given network, a `protocol_versions` file exists.  This holds the valid protocol versions for a network.
 
-We can look at this manually on MainNet using curl.  As of writing this, `1.4.6` is the latest version and 
-contents of this file will change.
+We can look at this manually on Mainnet using *curl*.  As of writing this, `1.4.6` is the latest version and the contents of this file will change.
 
-```
+```bash
+
 $ curl -s genesis.casperlabs.io/casper/protocol_versions
 1_0_0
 1_1_0
@@ -49,47 +56,47 @@ $ curl -s genesis.casperlabs.io/casper/protocol_versions
 1_4_4
 1_4_5
 1_4_6
+
 ```
 
-We should find `bin.tar.gz` and `config.tar.gz` at those directories under `casper`.
+We should find `bin.tar.gz` and `config.tar.gz` in those directories under `casper`.
 
 ## Protocol Version
 
-The protocol version of a network is not related to the `casper-node` version.  In MainNet, these have
-often been the same. However, with a new network, you would use the latest `casper-node` version for your 
+The protocol version of a network is not related to the `casper-node` version.  In Mainnet, these have often been the same. However, with a new network, you would use the latest `casper-node` version for your 
 `1.0.0` protocol.
 
 ## Network Configuration File
 
-When `casper-node-launcher` package is installed, both `casper.conf` and `casper-test.conf` are installed
+When the `casper-node-launcher` package is installed, both `casper.conf` and `casper-test.conf` are installed
 in `/etc/casper/network_configs`.  Once a valid config file for a new network is copied to this location,
-all commands with node_util.py will work as they do on existing networks.
+all commands with *node_util.py* will work as they do on existing networks.
 
-By convention, we name the config file the same as the network.  So MainNet has a network name of `casper` and we use 
+By convention, we name the config file the same as the network.  So Mainnet has a network name of `casper` and we use 
 `casper.conf` for the config file.  
 
-For a new network using server: `casper.mydomain.com` to host files for `our-network` network, we would have a 
+For a new network using server `casper.mydomain.com` to host files for `our-network` network, we would have a 
 `our-network.conf` file that looks like this:
 
-```
+```bash
 SOURCE_URL=casper.mydomain.com
 NETWORK_NAME=our-network
 ```
 
 Host this `our-network.conf` in the root of `casper.mydomain.com/our-network` at the same level as `protocol_versions`.
 
-This allows any node which wants to use the new network to run the following to install this config:
+This allows any node which wants to use the new network to run the following to install this configuration:
 
 ```bash
 cd /etc/casper/network_configs
 sudo -u casper curl -JLO casper.mydomain.com/our-network/our-network.conf
 ```
 
-Now any command needing a network config from `node_util.py` can use `our-network.conf`. 
+Any command needing a network config from `node_util.py` can use `our-network.conf`. 
 
-Staging protocol versions for new node with this network or staging an upcoming upgrade would just need:
+Staging protocol versions for a new node with this network or staging an upcoming upgrade would just need this command:
 
-```
+```bash
 sudo -u casper /etc/casper/node_util.py stage_protocols our-network.conf
 ```
 
@@ -97,12 +104,11 @@ sudo -u casper /etc/casper/node_util.py stage_protocols our-network.conf
 
 For the initial genesis protocol version or future upgrade protocol versions, you will typically use
 prebuilt and tested `bin.tar.gz` that have been tested and staged for existing networks.  The `config.tar.gz`
-file must be customized for the specific network with at the very least a network name, protocol version and activation point.
+file must be customized for the specific network with a network name, protocol version and activation point at the very least.
 
-These archives should be created with no directory information stored.  This is done by using `tar` in the same
-directory as the files.  
+These archives should be created with no directory information stored.  This is done by using `tar` in the same directory as the files.  
 
-```
+```bash
 mkdir config
 cd config
 mv [source of chainspec.toml] ./chainspec.toml
@@ -112,7 +118,7 @@ tar -czvf ../config.tar.gz .
 
 You can test what was compressed with untar'ing the file.
 
-```
+```bash
 mkdir conftest
 cd conftest
 tar -xzvf ../config.tar.gz .
@@ -122,18 +128,21 @@ This will expand files for verification.
 
 For custom `casper-node` builds, the minimun contents of `bin.tar.gz` is the `casper-node` executable. 
 
-``` 
+```bash
 mkdir bin
 cd bin
 cp [source of casper-node] ./casper-node
 tar -czvf ../bin.tar.gz .
 ```
 
-A directory for the protocol_version will be created on the server.  For example: `1_1_0`
+A directory for the protocol_version will be created on the server.  For example: `1_1_0`.
 
 We will copy `bin.tar.gz` and `config.tar.gz` into `1_1_0`.  Once this is done, we are safe to update
-`protocol_versions` by appending `1_1_0` to the end of the file and uploading into the root of the network
-directory.
+`protocol_versions` by appending `1_1_0` to the end of the file and uploading it into the root of the network directory.
 
-Now any node that runs `sudo -u casper /etc/casper/node_util.py stage_protocols <network.conf>` will get this new upgrade.
+Any node that runs the following command will get this new upgrade:
+
+```bash
+sudo -u casper /etc/casper/node_util.py stage_protocols <network.conf>
+```
 
