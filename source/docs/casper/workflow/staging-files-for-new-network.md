@@ -126,7 +126,7 @@ tar -xzvf ../config.tar.gz .
 
 This will expand files for verification.
 
-For custom `casper-node` builds, the minimun contents of `bin.tar.gz` is the `casper-node` executable. 
+For custom `casper-node` builds, the minimum contents of `bin.tar.gz` is the `casper-node` executable. 
 
 ```bash
 mkdir bin
