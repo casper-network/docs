@@ -8,6 +8,7 @@ module.exports = {
         "workflow/token-transfer",
         "workflow/testnet-faucet",
         "workflow/setup-private-network",
+        "workflow/staging-files-for-new-network",
         "workflow/setup",
         "workflow/querying",
         "workflow/account-hash",
