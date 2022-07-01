@@ -74,7 +74,7 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Writing Smart Contracts",
+            label: "Writing On-Chain Code",
             collapsible: true,
             collapsed: true,
             items: [
