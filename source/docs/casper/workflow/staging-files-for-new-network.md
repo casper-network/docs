@@ -100,6 +100,40 @@ Staging protocol versions for a new node with this network or staging an upcomin
 sudo -u casper /etc/casper/node_util.py stage_protocols our-network.conf
 ```
 
+## Setup Configuration Files
+
+For a network to be started, we to build the configuration files for a certain genesis time and with nodes that will be running.  These files need to be configured in advanced, so a genesis time should be selected that allows packaging the files, loading onto nodes and starting nodes prior to the genesis time.
+
+### chainspec.toml
+
+The chainspec.toml file is configuration for the network and must be exactly the same on all nodes.  
+
+The name for a network is specified `network.name`.  
+
+Each protocol will have a `version` and `activation_point`.  At genesis this is a date and time in format shown below. For future upgrades it would be an integer of the `era_id` for activation of the upgrade.
+
+```
+[protocol]
+version = '1.0.0'
+activation_point = '2022-08-01T10:00:00Z'
+
+[network]
+name = 'mynetwork'
+```
+
+### config-example.toml
+
+The config-example.toml is used to generate config.toml for a protocol after the node's IP is inserted.  The `public_address` is auto-detected with `node_util.py stage_protocols`. If using a NAT environment, the public IP can be specified with the `--ip` argument.
+
+This file should have `known_addresses` added that are relevant to the network.   Nodes that will be genesis validators are added to this list in the form:
+
+```
+[network]
+known_addresses = ['<ip 1>:35000','<ip 2>:35000','<ip 3>:35000']
+```
+
+The `config.toml` can be setup to customized fields for a given node.  `config-example.toml` is a default configuration.
+
 ## Staging a Protocol Version
 
 For the initial genesis protocol version or future upgrade protocol versions, you will typically use
