@@ -215,12 +215,12 @@ prepare:
 	rustup target add wasm32-unknown-unknown
 
 build-contract:
-	cargo build --release -p contract --target wasm32-unknown-unknown
+	cd contract && cargo build --release -p contract --target wasm32-unknown-unknown
     wasm-strip contract/target/wasm32-unknown-unknown/release/contract.wasm 2>/dev/null | true
 
 test: build-contract 
     mkdir -p tests/wasm
-    cp contract/target/wasm32-unknown-unknown/release/contract.wasm/wasm
+    cp contract/target/wasm32-unknown-unknown/release/contract.wasm tests/wasm
     cd tests && cargo test
 ```
 
