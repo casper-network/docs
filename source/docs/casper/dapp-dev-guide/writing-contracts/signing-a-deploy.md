@@ -12,30 +12,8 @@ As the `DeployHash` contains a hash of the deploy's body within, any variation t
 
 Casper networks are compatible with both `Ed25519` and `secp256k1` public key cryptography. When [serialized](/design/serialization-standard/), public keys and signatures are prefixed with a single byte, used as a tag to denote the applicable algorithm. Ed25519 public keys and signatures are prefixed with `1`, whereas secp256k1 are prefixed with `2`.
 
-The signing process differs slightly between the two algorithms, as shown in the expandable code samples below. Ed25519 uses an exapnded version of the secret key alongside the public key to create the signature. In contrast, secp256k1 uses the secret key directly.
+Casper uses `blake2b` hashing within our [serialization](/design/serialization-standard/). However, these hashed values will be hashed once again when they are signed over. The type of hashing depends on the associated keypair algorithm as follows:
 
-<details>
-<summary><b>Ed25519 Code Example</b></summary>
+* Ed25519 signs over a SHA-512 digest.
 
-```
-(SecretKey::Ed25519(secret_key), PublicKey::Ed25519(public_key)) => {
-    let expanded_secret_key = ExpandedSecretKey::from(secret_key);
-    let signature = expanded_secret_key.sign(message.as_ref(), public_key);
-    Signature::Ed25519(signature)
-}
-```
-</details>
-
-<details>
-<summary><b>secp256k1 Code Example</b></summary>
-
-```
-(SecretKey::Secp256k1(secret_key), PublicKey::Secp256k1(_public_key)) => {
-    let signer = secret_key;
-    let signature: Secp256k1Signature = signer
-        .try_sign(message.as_ref())
-        .expect("should create signature");
-    Signature::Secp256k1(signature)
-}
-```
-</details>
+* secp256k1 signs over a SHA-256 digest.
