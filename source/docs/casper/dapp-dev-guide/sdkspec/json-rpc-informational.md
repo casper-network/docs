@@ -462,7 +462,7 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 |Parameter|Type|Description|
 |---------|----|-----------|
 |[purse_identifier](/dapp-dev-guide/sdkspec/types_chain#purseidentifier)|Object|The identifier to obtain the purse corresponding to balance query.|
-|[state_identifier](/dapp-dev-guide/sdkspec/types_chain#globalstateidentifier)|Object|The state identifier used for the query, if none is passed the tip of the chain will be used.|
+|[state_identifier](/dapp-dev-guide/sdkspec/types_chain#globalstateidentifier)|Object|The state identifier used for the query; if none is passed the tip of the chain will be used.|
     
 ### `query_balance_result`
 
