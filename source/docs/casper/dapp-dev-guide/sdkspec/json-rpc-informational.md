@@ -1,4 +1,4 @@
-# Network Informational JSON-RPC Methods {#network-informational}
+# Informational JSON-RPC Methods {#network-informational}
 
 The following methods return information from a node on a Casper network. The response should be identical, regardless of the node queried, as the information in question is objective and common to all nodes within a network.
 
