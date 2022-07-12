@@ -734,6 +734,16 @@ Casper Platform protocol version.
 
 Hex-encoded cryptographic public key, including the algorithm tag prefix.
 
+## PurseIdentifier {#purseidentifier}
+
+The identifier to obtain the purse corresponding to a balance query. Valid identifiers include:
+
+* `main_purse_under_public_key` The main purse under a provided [`PublicKey`](/dapp-dev-guide/sdkspec/types_chain#publickey).
+
+* `main_purse_under_account_hash` The main purse under a provided [`AccountHash`](/dapp-dev-guide/sdkspec/types_chain#accounthash).
+
+* `purse_uref` A specific purse identified by the associated [`URef`](/dapp-dev-guide/sdkspec/types_chain#uref).
+
 ## Reward {#reward}
 
 Required Parameters:
