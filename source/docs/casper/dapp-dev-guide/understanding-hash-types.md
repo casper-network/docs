@@ -9,7 +9,7 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 |PublicKey | | 018a88e3dd7409f195fd52db2d3cba5d72ca6709bf1d94121bf3748801b40f6f5c|
 |AccountHash | account-hash- | account-hash-ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70|
 |ContractHash | contract- | contract-0101010101010101010101010101010101010101010101010101010101010101|
-|ContractPackageHash | contract-package-wasm | contract-package-wasm0101010101010101010101010101010101010101010101010101010101010101|
+|ContractPackageHash | contract-package- | contract-package-0101010101010101010101010101010101010101010101010101010101010101|
 |Key::Account | account-hash-| account-hash-ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70|
 |Key::Hash | hash- | hash-0101010101010101010101010101010101010101010101010101010101010101|
 |Key::URef | uref- | uref-0101010101010101010101010101010101010101010101010101010101010101-001|
@@ -20,7 +20,9 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 |Key::Bid | bid- | bid-ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70|
 |Key::Withdraw | withdraw- | withdraw-ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70|
 |Key::Dictionary | dictionary- | dictionary-0101010101010101010101010101010101010101010101010101010101010101|
-|Key::SystemContractRegistry | system-contract-registry-00000000000000000000000000000000|
+|Key::SystemContractRegistry | system-contract-registry- |system-contract-registry-00000000000000000000000000000000|
+|Key::Unbond | unbond- | unbond-ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70|
+|Key::ChainspecRegistry | chainspec-registry- | chainspec-registry-11111111111111111111111111111111|
 
 ## Hash and Key Explanations {#hash-and-key-explanations}
 
@@ -41,6 +43,8 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 - `Key::EraInfo` is the integer number of the associated era.
 - `Key::Balance` is the balance of a purse.
 - `Key::Bid` is used to keep track of bids for the auction contract. It is not generally used by users.
-- `Key::Withdraw` is used to keep track of withdraws for the auction contract. It is not generally used by users.
+- `Key::Withdraw` is used to keep track of withdraws for the auction contract. It is not generally used by users and exists in a historical context.
 - `Key::Dictionary` is the hash derived from a URef and a piece of arbitrary data and leads to a dictionary.
 - `Key::SystemContractRegistry` is a unique `Key` under which a mapping of the names and ContractHashes for system contracts, including `Mint`, `Auction`, `HandlePayment` and `StandardPayment`, is stored.
+- `Key::Unbond` is a variant of the key type that tracks unbonding purses.
+- `Key::ChainspecRegistry` is a unique `Key` which contains a mapping of file names to the hash of the file itself. These files include *Chainspec.toml* and may also include *Accounts.toml* and *GlobalState.toml*.

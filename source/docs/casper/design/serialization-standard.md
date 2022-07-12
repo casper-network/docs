@@ -163,6 +163,16 @@ Identifier for possible ways to retrieve a Block. It can consist of any of the f
 
 -   `state_root_hash` Identify and retrieve the Block with its state root hash. It serializes to the byte representation of the `state root hash`. The serialized buffer of the `state_root_hash` is 32 bytes long.
 
+## ChainspecRegistry {#chainspecregistry}
+
+ChainspecRegistry is a unique key variant which contains a mapping of file names to the hash of the file itself. This map includes *Chainspec.toml* and may include *Accounts.toml* and *GlobalState.toml*. It is serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of names as strings and [digests](#digest) held within. The remainder consists of a repeating pattern of serialized strings and then digests of the length dictated by the first four bytes. Digests and their inclusion criteria are as follows:
+
+-   `chainspec_raw_hash` will always be included.
+
+-   `genesis_accounts_raw_hash` may be included in specific circumstances.
+
+-   `global_state_raw_hash` may be included in specific circumstances.
+
 ## Contract {#contract}
 
  A contract struct containing the following fields:
@@ -483,8 +493,10 @@ A _key_ in the [Global State](./global-state.md#global-state-intro) is one of th
 -   32-byte purse balance identifier
 -   32-byte Auction bid identifier
 -   32-byte Auction withdrawal identifier
--   32-byte dictionary identifier
+-   32-byte Dictionary identifier
 -   32-byte System Contract Registry
+-   32-byte Auction unbond identifier
+-   32-byte Chainspec Registry
 
 The one exception to note here is the identifier for [`EraInfo`](#erainfo), which actually serializes as a [`u64`](#clvalue-numeric) value with an additional byte for the tag.
 
@@ -533,6 +545,8 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 | `Withdraw`   |  8               |
 | `Dictionary` |  9               |
 | `SystemContractRegistry`| 10    |
+| `Unbond`     |  11              |
+| `ChainspecRegistry` | 12        |
 
 -   `Account` serializes as a 32 byte long buffer containing the byte representation of the underlying `AccountHash`
 -   `Hash` serializes as a 32 byte long buffer containing the byte representation of the underlying `Hash` itself.
@@ -544,6 +558,8 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 -   `Bid` and `Withdraw` both contain the `AccountHash` as their identifier; therefore, they serialize in the same manner as the `Account` variant.
 -   `Dictionary` as the 32 byte long buffer containing the byte representation of the seed URef hashed with the identifying name of the dictionary item.
 -   `SystemContractRegistry` as a 32 byte long buffer of zeros.
+-   `Unbond` contains the `AccountHash` as its identifier; therefore, it serialize in the same manner as the `Account` variant.
+-   `ChainspecRegistry` as a 32 byte long buffer of ones.
 
 ## Permissions {#serialization-standard-permissions}
 
@@ -561,7 +577,9 @@ There are three types of actions that can be done on a value: read, write, add. 
 | Bid      | System                  |
 | Withdraw | System                  |
 | Dictionary | Read (via API)        |
-| SystemContractRegistry | System     |
+| SystemContractRegistry | Read (via API)|
+| Unbond   | System                  |
+| ChainspecRegistry | Read (via API) |
 
 ---
 
@@ -624,6 +642,10 @@ If it is a delegator, it serializes as the delegator's [`PublicKey`](#clvalue-pu
 
 Hex-encoded cryptographic signature, which serializes as the byte representation of the `Signature`. The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
 
+## SystemContractRegistry {#systemcontractregistry}
+
+SystemContractRegistry is a unique `Key` under which a mapping of the names and `ContractHashes` for system contracts. This includes `Mint`, `Auction`, `HandlePayment` and `StandardPayment`. It is serialized as a `BTreeMap` where the first 4 bytes represent a `u32` value describing the number of names as strings and [ContractHashes](#contracthash) held within. The remainder consists of a repeating pattern of serialized strings and then ContractHashes of the length dictated by the first four bytes.
+
 ## TimeDiff {#timediff}
 
 A human-readable duration between two timestamps. It serializes as a single [`u64`](#clvalue-numeric) value.
@@ -667,7 +689,7 @@ A transformation performed while executing a deploy.
 
 ## UnbondingPurse {#unbondingpurse}
 
-A purse used for unbonding. The structure consists of the folloinwg:
+A purse used for unbonding. The structure consists of the following:
 
 -   `bonding_purse` The bonding purse, serialized as a [`URef`](#clvalue-uref).
 
@@ -678,6 +700,8 @@ A purse used for unbonding. The structure consists of the folloinwg:
 -   `era_of_creation` Era in which this unbonding request was created, as an [`EraId`](#eraid) newtype, which serializes as a [`u64`](#clvalue-numeric) value.
 
 -   `amount` The unbonding amount, serialized as a [`U512`](#clvalue-numeric) value.
+
+-   `new_validator` The validator public key to re-delegate to, serialized as an [`Option`](#clvalue-option) containing the public key.
 
 ## Values {#serialization-standard-values}
 
@@ -882,3 +906,17 @@ Note: though the `call` function signature has no arguments and no return value,
 The named keys are used to give human-readable names to keys in the global state, which are essential to the contract. For example, the hash key of another contract it frequently calls may be stored under a meaningful name. It is also used to store the `URef`s, which are known to the contract (see the section on Permissions for details).
 
 Each contract specifies the Casper protocol version that was active when the contract was written to the global state.
+
+## WithdrawPurse {#withdrawpurse}
+
+A purse used for unbonding, replaced in 1.5 by [UnbondingPurse](#unbondingpurse). WithdrawPurses prior to 1.5 were known as UnbondingPurses and now consist of historical data.
+
+-   `bonding_purse` The bonding purse, serialized as a [`URef`](#clvalue-uref).
+
+-   `validator_public_key` The public key of the validator, serialized as a [`PublicKey`](#clvalue-publickey).
+
+-   `unbonder_public_key` The public key of the unbonder, serialized as a [`PublicKey`](#clvalue-publickey).
+
+-   `era_of_creation` Era in which this unbonding request was created, as an [`EraId`](#eraid) newtype, which serializes as a [`u64`](#clvalue-numeric) value.
+
+-   `amount` The unbonding amount, serialized as a [`U512`](#clvalue-numeric) value.

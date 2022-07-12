@@ -8,6 +8,7 @@ module.exports = {
         "workflow/token-transfer",
         "workflow/testnet-faucet",
         "workflow/setup-private-network",
+        "workflow/staging-files-for-new-network",
         "workflow/setup",
         "workflow/querying",
         "workflow/account-hash",
@@ -209,5 +210,5 @@ module.exports = {
         "glossary/Y",
         "glossary/Z",
     ],
-    staking: ["staking/index", "workflow/staking-ledger", "workflow/staking", "workflow/delegate"],
+    staking: ["staking/index", "workflow/staking-ledger", "workflow/staking", "workflow/delegate", "workflow/redelegate"],
 };
