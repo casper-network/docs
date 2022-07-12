@@ -143,7 +143,7 @@ casper-client make-transfer --amount 2500000000 \
 --payment-amount 10000 > transfer.deploy
 ```
 
-### Signing the Deploy
+### Signing the Deploy using the Casper Client
 
 Once the deploy file is created, you can sign the deploy using the other designated accounts. For this example, we are signing the deploy with the secret_key.pem stored in keys2 folder and saving the output in a transfer2.deploy file.
 
