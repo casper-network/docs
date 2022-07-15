@@ -1,35 +1,30 @@
 # Listing CSPR on Your Exchange
 
-This topic describes how to add Casper token (CSPR) to your cryptocurrency exchange. 
+This topic describes how to list Casper token (CSPR) on a cryptocurrency exchange. 
 
-CSPR is listed on over 25 exchanges worldwide. As a token, CSPR is very straightforward to integrate. Developers can complete integration and testing in a matter of days.
+CSPR is listed on [many exchanges](https://tokenmarketcaps.com/coins/casper/market) worldwide. It usually takes 1 to 3 days to list CSPR on an exchange.
 
 ## Setting up a Node
 
-Running a full node requires considerable computational/bandwidth resources. We recommend setting up at least one node, upgrading to newer versions promptly, and keeping an eye on service operations with a bundled monitoring tool. For setup instructions, see [Basic Node Setup](../operators/setup.md).
+While it is not necessary for an exchange to operate their own node on the Casper Network, we recommend that exchanges handling moderate to high volume of transaction activity, do run their own node. A node operated by an exchange does not have to be a validating node, it can be a read-only node. For setup instructions, see [Basic Node Setup](../operators/setup.md).
 
-This setup enables you to:
+This setup enables you to have a self-administered gateway to the Casper Network to get data and submit transactions.
 
--   Have a self-administered gateway to the Casper Network to get data and submit transactions
--   Have full control over how much historical block data is retained
+## Casper Account
 
-Casper nodes demand relatively high computing power. For specific requirements, please see [Hardware Requirements](../operators/hardware.md).
+You will need a Casper Account to handle the transactions on an exchange. Casper has an [Account model](../design/accounts.md) and the instructions on how to [create an Account](../design/accounts.md/#accounts-creating). 
 
-## Setting up Accounts
-
-These are the steps to set up your account on the Casper Network:
-
-1.  Generate the cryptographic keys for your account. For more information, see [Creating Keys](../dapp-dev-guide/keys.md#creating-accounts-and-keys-creating-accounts-and-keys)
-2.  Upload your keys on the Mainnet or Testnet using a block explorer. For more information, see [Importing an Account](../workflow/signer-guide.md#3-importing-an-account).
-3.  Fund your account on the [Mainnet](../dapp-dev-guide/keys.md#funding-your-account) or [Testnet](../workflow/testnet-faucet.md)
+For your exchange, you would need at least one Account. Casper Network uses an Account model that holds on to general resources as well as token and provides an on-chain identity. As an exchange if you are dealing with high-volume of transaction activity, you might need a main account for the exchange platform and handle sub-accounts for other users. 
 
 ## Understanding Basic Transactions
 
-The following basic transactions are what users of your exchange would require to deposit CSPR and confirm a deposit is made on your exchange.
+We have a robust token and transaction model with different levels of support that ranges from convenience to robustness. Most of the time, when you are transferring Casper tokens between two parties, the native two-party transfer will suffice.
 
-### Transfer CSPR
+Casper supports native two-party transfers as well as bulk transfer using custom Wasm. The native transfer is ideal method of transfer when you need to do a one-to-one transfer between two accounts. Whereas, the custom Wasm transfer can be used when you are making bulk transfers. Custom Wasm transfer allows you to do multiple transfers in a single deploy, which makes it a cost effective method for multiple transfers. 
 
-When a user wants to deposit CSPR to your exchange, request them to send a transfer transaction to the appropriate deposit account. For details about the direct transfer command, see [Direct Token Transfer](../workflow/transfer-workflow.md). The following command transfers 10 CSPR from *account A* to *account B*.
+### Native transfer
+
+Native transfer can be used to transfer tokens between two accounts. For details about the native transfer command, see [Direct Token Transfer](../workflow/transfer-workflow.md). The following command transfers 10 CSPR from *account A* to *account B*.
 
 ```bash
 casper-client transfer \
@@ -43,40 +38,32 @@ casper-client transfer \
 --payment-amount 10000
 ```
 
-### Confirm a Transfer
+### Bulk or custom Wasm transfer
 
-You can confirm if a transfer was successful, by verifying the source and target account balance. For more detailed instructions, see [Verifying a Transfer](../workflow/verify-transfer.md).
+Bulk or custom Wasm transfers can be used when you need to apply some logic before or after the transfer or if the transfer is conditional, also if you are doing a series of transfers between multiple accounts. You can use the following five functions for transferring tokens in bulk using custom Wasm transfer:
 
+-   `transfer_to_account`: Transfers amount of motes from the default purse of the account to target account. If the target does not exist it is created. Can be called from session code only and not a contract as a contract doesn't have a main purse.
+-   `transfer_to_public_key`: Transfers amount of motes from the main purse of the caller’s account to the main purse of the target. If the account referenced by target does not exist, it is created. Can be called from session code only and not from a contract as a contract doesn't have a main purse.
+-   `transfer_from_purse_to_purse`: Transfers amount of motes from source purse to target purse. If the target does not exist the transfer fails.
+-   `transfer_from_purse_to_public_key`: Transfers amount of motes from source to the main purse of target. If the account referenced by target does not exist, it is created.
+-   `transfer_from_purse_to_account`: Transfers amount of motes from source purse to target account. If the target does not exist it is created.
 
-## Testing the integration
+## Integrating CSPR
 
+You can integrate with the [JSON-RPC API](https://docs.casperlabs.io/dapp-dev-guide/sdkspec/introduction/) of a node on the Casper Network. 
+You can programme directly against the RPC or if you prefer you can choose from the variety of SDK libraries that are available to use on the Casper Network see [SDK Libraries](../dapp-dev-guide/sdk/index.md). 
+Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node, you can use this, however, it is not required. You might want to use this feature as you will be notified of events instead of asking periodically. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/monitoring-events.md).
 
+## Testing the Integration
 
-## SDKs
+Our recommended testing mechanism is to have a test environment that points at the official Casper [Testnet](https://testnet.cspr.live/) and run production like operations of your test exchange against the test environment. However, if you are not doing this and you just want to integrate with the [Mainnet](https://cspr.live/), then you can do so with your own test accounts. 
 
-There are several well-maintained Software Development Kits (SDKs) available to use on the Casper Network, see [SDK Libraries](../dapp-dev-guide/sdk/index.md).
+If you are not going to do a Testnet integration, then we suggest you create some additional test accounts and test the transactions on the Mainnet through your software prior to moving to the general public.
 
+## The Casper Protocol
 
-## Finality Signatures
-
-Exchanges can check finality signatures from validators for additional security. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. The default configuration of the Casper node provides event streaming on the `/events` endpoint of port `9999`.
-    -   The FinalitySignature is emitted on `/events/sigs` endpoint, whenever a new finality signature is received.  
-
-
-
-## The Casper Protocol ( NOT WORKED ON YET! )
-
--   Casper supports two types of keys, `secp256k1` and `ed25519`. In the global state, public keys are hashed using a one-way `blake2b` hash. When creating keys, it is strongly recommended that the account hash be stored along with the public and private keys. Keys can be created offline, and do not exist on the blockchain until CSPR is sent to an address.
 -   Casper is integrated with BitGo for enterprise grade custody. If your exchange uses BitGo, support for Casper is available already.
--   Casper transactions are executed after they are finalized by the consensus. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it.
--   Exchanges can check finality signatures from validators for additional security. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. The default configuration of the Casper node provides event streaming on the `/events` endpoint of port `9999`.
-    -   The FinalitySignature is emitted on `/events/sigs` endpoint, whenever a new finality signature is received.  
-    -   The DeployAccepted events are emitted on `/events/deploys` endpoint. This means when a deploy is received by the node and it passes the first set of validity checks, it is stored locally, gossiped to peers and enqueued for inclusion in a block - at this point the DeployAccepted event is emitted. 
-    -   The other events such as BlockAdded, DeployProcessed, DeployExpired, Fault and Step are emitted on the `/events/main` endpoint.
-        -   BlockAdded - This event is emitted whenever a new block is added to the blockchain.
-        -   DeployProcessed - This event is emitted when the deploy processing is complete.
-        -   DeployExpired - This event is emitted if a deploy is not added to a block for processing by a validator before the deploy's time to live (TTL) expires. 
-        -   Fault - This event is emitted if there is a validator error.
-        -   Step - This event is emitted at the end of every era. 
+-   Casper has a execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../design/execution-semantics.md).
+-   Exchanges can check finality signatures. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/monitoring-events.md).
 
 
