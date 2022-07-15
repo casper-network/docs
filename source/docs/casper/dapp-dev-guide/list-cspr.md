@@ -53,7 +53,7 @@ Bulk or custom Wasm transfers can be used when you need to apply some logic befo
 
 You can integrate with the [JSON-RPC API](../dapp-dev-guide/sdkspec/introduction.md) of a node on the Casper Network. 
 You can programme directly against the RPC or if you prefer you can choose from the variety of SDK libraries that are available to use on the Casper Network see [SDK Libraries](../dapp-dev-guide/building-dapps/sdk/index.md). 
-Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node, you can use this, however, it is not required. You might want to use this feature as you will be notified of events instead of asking periodically. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/monitoring-events.md).
+Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node, you can use this, however, it is not required. You might want to use this feature as you will be notified of events instead of asking periodically. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 ## Testing the Integration
 
@@ -65,6 +65,6 @@ If you are not going to do a Testnet integration, then we suggest you create som
 
 -   Casper is integrated with BitGo for enterprise grade custody. If your exchange uses BitGo, support for Casper is available already.
 -   Casper has a execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../design/execution-semantics.md).
--   Exchanges can check finality signatures. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/monitoring-events.md).
+-   Exchanges can check finality signatures. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 
