@@ -622,7 +622,7 @@ If it is a delegator, it serializes as the delegator's [`PublicKey`](#clvalue-pu
 
 ## Signature {#signature}
 
-Hex-encoded cryptographic signature, which serializes as the byte representation of the `Signature`. The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
+The signature serializes the byte representation of the underlying cryptographic primitive signature. The first byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
 
 ## TimeDiff {#timediff}
 

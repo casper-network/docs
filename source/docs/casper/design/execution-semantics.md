@@ -16,7 +16,7 @@ Although computation is measured in `Gas`, we still take payment for computation
 
 Please note that Casper will not refund any amount of unused gas.
 
-This decision is taken to incentivizing the [Casper Runtime Economics](../economics/runtime.md#runtime-economics) by efficiently allocating the computational resources. The [consensus-before-execution model](../economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage the optimized gas consumption from the user-side and to prevent the overuse of block space by poorly handled deploys.
+This decision is taken to incentivize the [Casper Runtime Economics](/economics/runtime.md#runtime-economics) by efficiently allocating the computational resources. The [consensus-before-execution model](/economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage the optimized gas consumption from the user-side and to prevent the overuse of block space by poorly handled deploys.
 
 :::
 
@@ -47,11 +47,10 @@ A deploy goes through the following phases on Casper:
 6. Deploy Executed
 
 ### Deploy Received
-
-The client sending the deploy will send it to one or more nodes via their JSON RPC servers. The deploy acceptor, which is the component responsible for receiving the deploy from the JSON-RPC or another node, will run validity checks on the deploy and allow the lifecycle to continue or return an appropriate error. Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. 
+The client sending the deploy will send it to one or more nodes via their JSON RPC servers. The deploy acceptor, which is the component responsible for receiving the deploy from the JSON-RPC or another node, will run validity checks on the deploy and allow the lifecycle to continue or return an appropriate error. Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. The deploy could expire while waiting to be gossiped and whenever this happens a `DeployExpired` event is emitted by the event stream servers of all nodes which have expired the deploy.
 
 ### Deploy Gossiped
-After a node accepts a new deploy, it will gossip to all other nodes. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new block for the chain. This mechanism is efficient and ensures all nodes in the network eventually hold the given deploy.
+After a node accepts a new deploy, it will gossip to all other nodes. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new block for the chain. This mechanism is efficient and ensures all nodes in the network eventually hold the given deploy. Each node which accepts a gossiped deploy also emits a `DeployAccepted` event on its event stream server. The deploy may expire while waiting to be added to the block and whenever this happens a `DeployExpired` event is emitted.
 
 ### Block Proposed
 The validator leader for this round will propose a block that includes as many deploys from the block proposer buffer as can fit in a block.
@@ -60,12 +59,10 @@ The validator leader for this round will propose a block that includes as many d
 The proposed block is propagated to all other nodes.
 
 ### Consensus Reached
-Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed, and this block becomes the final block added to the chain.
+Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed, and this block becomes the final block added to the chain. Whenever consensus is reached, a `BlockAdded` event is emitted by the event stream server. `FinalitySignature` events are emitted shortly thereafter as finality signatures for the new block arrive from the validators.
 
 ### Deploy Executed 
-
-A deploy is executed in distinct phases to accommodate flexibly paying for computation. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, the session code is executed during the session phase. And, independently of session code execution, the finalization phase does some bookkeeping around payment.
-
+A deploy is executed in distinct phases to accommodate flexibly paying for computation. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, the session code is executed during the session phase. And, independently of session code execution, the finalization phase does some bookkeeping around payment. Once the deploy os executed, committed and forms part of the given block, a `DeployProcessed` event is emitted by the event stream server. 
 
 #### Payment code {#execution-semantics-payment}
 

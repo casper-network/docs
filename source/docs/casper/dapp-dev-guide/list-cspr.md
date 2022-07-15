@@ -4,6 +4,7 @@ This topic describes how to list Casper token (CSPR) on a cryptocurrency exchang
 
 CSPR is listed on [many exchanges](https://tokenmarketcaps.com/coins/casper/market) worldwide. It usually takes 1 to 3 days to list CSPR on an exchange.
 
+
 ## Setting up a Node
 
 While it is not necessary for an exchange to operate their own node on the Casper Network, we recommend that exchanges handling moderate to high volume of transaction activity, do run their own node. A node operated by an exchange does not have to be a validating node, it can be a read-only node. For setup instructions, see [Basic Node Setup](../operators/setup.md).

@@ -1,4 +1,4 @@
-# Network Informational JSON-RPC Methods {#network-informational}
+# Informational JSON-RPC Methods {#network-informational}
 
 The following methods return information from a node on a Casper network. The response should be identical, regardless of the node queried, as the information in question is objective and common to all nodes within a network.
 
@@ -457,7 +457,7 @@ This method allows for you to query for a value stored under certain keys in glo
 
 ## state_get_account_info {#state-get-account-info}
 
-This method returns a JSON representation of an [Account](../../../design/accounts) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
+This method returns a JSON representation of an [Account](/design/accounts) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
 
 |Parameter|Type|Description|
 |---------|----|-----------|

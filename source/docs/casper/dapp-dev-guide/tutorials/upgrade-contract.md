@@ -8,7 +8,7 @@ This tutorial examines how to upgrade an existing contract, a process similar to
 
 ## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
-- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/sending-deploys/), and [calling contracts](/dapp-dev-guide/calling-contracts) on the Casper Network
+- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/building-dapps/sending-deploys/), and [calling contracts](/dapp-dev-guide/writing-contracts/calling-contracts) on the Casper Network
 
 
 ## Contract Versioning Flow {#contract-versioning-flow}
@@ -99,11 +99,13 @@ make build-contract
 
 ### Step 4. Install the contract
 
-[Install the contract](/dapp-dev-guide/sending-deploys/#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](/dapp-dev-guide/sending-deploys/#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
+[Install the contract](/dapp-dev-guide/building-dapps/sending-deploys/#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](/dapp-dev-guide/building-dapps/sending-deploys/#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
 ### Step 5. Verify your changes 
 
-You can write unit tests to verify the behavior of the new contract version. For the simple example counter above, here are the [corresponding tests](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/test/contract-context/src/main.rs). Notice how the tests store and verify the [contract's version](https://github.com/casper-network/casper-node/blob/8356f393d361832b18fee7227b5dcd65e29db768/smart_contracts/contracts/test/contract-context/src/main.rs#L172-L173).
+You can write unit tests to verify the behavior of the new contract version with [call_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_contract.html) or [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html). When you add a new contract to the package (which increments the highest enabled version), you will obtain a new contract hash, the primary identifier of the contract. You can use the contract hash with call_contract. Alternatively, you can use call_versioned_contract and specify the contract_package_hash and the newly added version.
+
+For the simple example counter above, here are the [corresponding tests](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/test/contract-context/src/main.rs). Notice how the tests store and verify the [contract's version](https://github.com/casper-network/casper-node/blob/8356f393d361832b18fee7227b5dcd65e29db768/smart_contracts/contracts/test/contract-context/src/main.rs#L172-L173).
 
 :::note
 
@@ -134,12 +136,27 @@ You could store the latest version of the contract package under a NamedKey, as 
 
 :::
 
+## Disabling a Contract Version
+
+You can disable the indicated contract version of the indicated contract package by using the [disable_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.disable_contract_version.html) function. Disabled contract versions can no longer be executed.
+
 ## Creating a Locked Contract Package {#locked-contract-package}
 
-You can create a [locked contract package](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) and forbid further upgrades by discarding the access key URef returned by the `create_contract_package_at_hash` function:
+You can create a locked contract package with the [new_locked_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) function. This contract can never be upgraded.
 
 ```rust
-    // Create a locked contract package that prevents further upgrades 
-    let (contract_package_hash, _): (ContractPackageHash, URef) =
-    storage::create_contract_package_at_hash();
+let (stored_contract_hash, _) = storage::new_locked_contract(
+    contract_entry_points, 
+    Some(contract_named_keys), 
+    Some("contract_package_name".to_string()),
+    Some("contract_access_uref".to_string()),
+);
 ```
+
+Apply the contract entry points and named keys when you call the function. You can also specify a hash_name and uref_name that will be put in the context's named keys. You do not need to save the version number returned since the version of this contract package would always be equal to 1.
+
+:::note
+
+Creating a locked contract package is an irreversible decision. For a contract that can be upgraded, use new_contract as explained above.
+
+:::

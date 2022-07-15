@@ -8,7 +8,7 @@ A compliant Casper JSON-RPC SDK implementation must support all the endpoints an
 
 A Casper JSON-RPC SDK must be consistent in terminology, language, and functionality relative to the Casper platform's architecture and design. Use actual terms such as Account and Deploy, not similar terms such as wallet or transaction.
  
-Care should be taken to maintain a universal language and not obscure the domain concepts of the Casper platform, which could confuse users of the SDK. The goal is to not make it difficult for users of an SDK to understand the documentation of the Casper platform and be able to communicate effectively with technical support personnel that understand the terminology of the Casper platform and not the variant terminology of an SDK.
+Care should be taken to maintain a universal language and not obscure the domain concepts of the Casper platform, which could confuse users of the SDK. The goal is to not make it difficult for users of an SDK to understand the documentation of the Casper platform. Further, they should be able to communicate effectively with technical support personnel who understand the terminology of the Casper platform and not the variant terminology of an SDK.
 
 ## Advanced Functionality
 
