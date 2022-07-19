@@ -1,31 +1,54 @@
 # Monitoring and Consuming Events
 
-The Casper node streams deploy execution effects and finality signatures through an SSE server. The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default `9999` on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). 
+Casper platform uses event streaming to identify state changes in smart contracts and nodes. A node on a Casper network streams events through the SSE (Server Sent Event) server. Events are emitted by the event stream servers of the Casper network nodes. 
 
-**Useful References**
+## Event Types
 
-We recommend you to have a good understanding of the below concepts while observing the event streams.
-- The event stream is highly associated with a network Deploy on a node. Refer to the [Deploys](/design/execution-semantics/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
-- The event stream output contains the JSON representation with serialized object notation. Hence, referring the [serialization standard](/design/serialization-standard/) page will be a good practice.
-- You need be aware of the [block structure](/design/block-structure/) when reading the event streams.
+There are three types of events in our platform categorized based on the emitting endpoint. Those are:
 
-You can observe the expanded event stream details only through Curl calls. To proceed, you need to acquire an IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network and use the default `9999` port to observe the event stream.
+**Deploy events**
+
+These are associated with Deploys on a node. Currently, nodes event only `DeployAccepted` event on this type. Refer to the [Deploys](/design/execution-semantics/#execution-semantics-deploys) section to discover more about Deploys and their life cycles
+
+**Finality Signature event**
+
+This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](/design/execution-semantics/#consensus-reached) section and [block finality](/glossary/B/#block-finality) 
+section to learn more about finality signature.
+
+**Main events**
+
+All the events other than `DeployAccepted` and `FinalitySignature` fall under this type. Those are ApiVersion, BlockAdded, DeployProcessed, DeployExpired, Fault, Step, and Shutdown events.
+
+The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). You can watch the event stream details on the Casper platform using a simple Curl call.
+
+### How to monitor the event stream?
+You can start watching the event stream details using a simple Curl call as in the below format:
+
+```bash
+curl -s http://<HOST:PORT>/events/<ENDPOINT>
+```
+
+- `HOST` - The IP address of a peer on the network
+- `PORT` - The port 9999 (Since we are testing on Mainnet or Testnet)
+- `ENDPOINT` - The specific endpoint of the node which the event will be emitted
 
 ## Monitoring DeployAccepted event
 
-With the following command, you can start watching the event stream for `DeployAccepted` event. Replace the `HOST` field with the `peer IP address`.
+You can start watching the event stream for the `DeployAccepted` event or any other events being emitted on this endpoint using the following command. Replace the `HOST` field with the `peer IP address`.
 
 ```bash
 curl -s http://<HOST>:9999/events/deploys
 ```
 **DeployAccepted event details**
 
-If a Deploy has been received by the node and it has passed the first set of validity checks, it is stored locally and this event is emitted. The URL for this event is `/events/deploys`. 
+The URL to consume the Deploy-related events is `http://<HOST>:9999/events/deploys`.
 
-You can observe a sample JSON representation of a `DeployAccepted` event after executing the above Curl command.
+The event stream server of the node emits this event when a Deploy has been received by the node. At this point, it needs to pass a set of validity checks. It is handled in the [Deploy gossiped](/design/execution-semantics/#deploy-gossiped) step in the Deploy lifecycle.
+
+The following example contains the JSON representation of the `DeployAccepted` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of a DeployAccepted event :</summary>
+<summary>Expand the below section to view the DeployAccepted event details:</summary>
 
 ```bash
 data: {
@@ -58,31 +81,34 @@ data: {
       "approvals":
         [{"signer":"01e35e1904034db6c0bb48c6d88826a2bcf27f29f67a13d844b82aab04614f83f4","signature":"0105aa48ff49e0202d0b4c17ca449ccd6ba30ae80fed5e60503eb34eab7a8aab11893502b7856946cdafcc1966dcbe656b3cab06f0396829484edd14b6ffb94f08"}
         ]
-    }
+    } 
 }
 id:506
 
 ```
 </details>
 
-- [`deplyHash`](/design/serialization-standard/#deploy-hash) - The cryptographic hash of a Deploy.
-- Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
+You can find the definitions of the terms in the above `DeployAccepted` JSON representation by referring to the following links:
+- [serialization standard](/design/serialization-standard/) - Contains the details on required custom serializations.
+- [types](/dapp-dev-guide/sdkspec/types_chain/) - Contains the definitions of the terms in the event stream output.
 
 ## Monitoring FinalitySignature event
 
-Use the below command to monitor `FinalitySignature` event:
+You can start watching the event stream for the `FinalitySignature` event or any other events being emitted on this endpoint using the following command. Replace the `HOST` field with the `peer IP address`.
 
 ```bash
 curl -s http://<HOST>:9999/events/sigs
 ```
 **FinalitySignatures event details**
 
-The `FinalitySignature` event is emitted,  whenever a new [finality](/glossary/B/#block-finality) signature is received. The URL for this event is`/events/sigs`. 
+The URL to consume the `FinalitySignature` event is `http://<HOST>:9999/events/sigs`.
 
-You can observe a sample JSON representation of a `FinalitySignature` event after executing the executing the above Curl command.
+The `FinalitySignature` event is emitted,  whenever a new [finality](/glossary/B/#block-finality) signature is received.
+
+The following example contains the JSON representation of the `FinalitySignature` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of a FinalitySignature event :</summary>
+<summary>Expand the below section to view the FinalitySignature event details:</summary>
 
 ```bash
 data:
@@ -99,27 +125,29 @@ id:696
 ```
 </details>
 
-- `Box<FinalitySignature>` - A pointer type for heap allocation which allocates memory on the heap and then places an instance of a FinalitySignature object into it.
-- Refer to the [block_hash](/design/serialization-standard/#block-hash), [era_id](/design/serialization-standard/#eraid), [signature](/design/serialization-standard/#signature), and [public_key](/design/serialization-standard/#publickey) sections to get details on required custom serializations in above output.
+Refer to the following definitions of the JSON representation terms:
+- `[block_hash](/design/serialization-standard/#block-hash)` - A cryptographic hash that is used to identify a Block.
+- `[era_id](/design/serialization-standard/#eraid)` - The period of time used to specify when specific events in a blockchain network occur.
+- `[signature](/design/serialization-standard/#signature)` - A serialized bte representation of a cryptographic signature.
+- `[public_key](/design/serialization-standard/#publickey)` - A unique personal address that is shared in the network.
 
 ## Monitoring Other events
-
-Use the below command to monitor all the other event types. Those are ApiVersion, BlockAdded, DeployProcessed, DeployExpired, Fault, Step, and Shutdown.
+All the events apart from `DeployAccepted` and `FinalitySignature` are emitted on the endpoint `main` with the URL `http://<HOST>:9999/events/main`.
+Use the below command to monitor those event streams:
 
 ```bash
 curl -s http://<HOST>:9999/events/main
 ```
-
-Next, let's observe the output details from the above command. All the other events are emitted on the endpoint `main` with URL `/events/main`. Further details of each event are presented in the following sections.
+Further details of each event are presented in the following sections. 
 
 ### ApiVersion event
 
-`ApiVersion` is always the first event emitted when a new client connects to the SSE server. It specifies the API version of the server. The URL for this event is `/events/main`. It is a type of the Casper `ProtocolVersion` which is wrapping a `SemVer` which represents a Casper Platform protocol version.
+`ApiVersion` is always the first event emitted when a new client connects to the SSE server. It specifies the API version of the server. The ApiVersion is the protocol version of a node on the Casper platform.
 
-You can observe a sample JSON representation of a  `ApiVersion` event after executing the Curl call on the `main` path.
+The following example contains the JSON representation of the `ApiVersion` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of an ApiVersion event :</summary>
+<summary>Expand the below section to view the ApiVersion event details:</summary>
 
 ```bash
 data:{"ApiVersion":"1.0.0"}
@@ -127,12 +155,12 @@ data:{"ApiVersion":"1.0.0"}
 </details>
 
 ### BlockAdded
-`BlockAdded` event is emitted whenever a new block is added to the blockchain and stored locally in the node. The URL for this event is `/events/main`.
+`BlockAdded` event is emitted whenever a new block is added to the blockchain and stored locally in the node. 
 
-You can observe a sample JSON representation of a  `BlockAdded` event after executing the Curl call on the `main` path.
+The following example contains the JSON representation of the `BlockAdded` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of a BlockAdded event :</summary>
+<summary>Expand the below section to view the BlockAdded event details:</summary>
 
 ```bash
 data:
@@ -170,20 +198,19 @@ id:594
 ```
 </details>
 
-
-- `block_hash` - A cryptographic hash that is used to identify a Block.
-- `block` - A pointer type for heap allocation of Json type which is a JSON-friendly representation of the Block.
+- `[block_hash](/design/serialization-standard/#block-hash)` - A cryptographic hash that is used to identify a Block.
+- `[block](/design/serialization-standard/#serialization-standard-block)` - The JSON representation of the Block.
 - Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
 
 
 ### DeployProcessed
 
-`DeployProcessed` event is emitted when the given Deploy has been executed, committed, and forms part of the given block. The URL for this event is `/events/main`.
+`DeployProcessed` event is emitted when a given Deploy has been executed. 
 
-You can observe a sample JSON representation of a  `DeployProcessed` event after executing the Curl call on the `main` path.
+The following example contains the JSON representation of the `DeployProcessed` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of a DeployProcessed event :</summary>
+<summary>Expand the below section to view the DeployProcessed event details:</summary>
 
 ```bash
 data:
@@ -333,24 +360,23 @@ id:598
 ```
 </details>
 
-
-- `deploy_hash` - The cryptographic hash of a Deploy.
-- `account` - The identification of the account which is the public asymmetric key.
-- `timestamp` - A timestamp type, representing a concrete moment in time.
-- `ttl` - A time difference between two timestamps.
-- `dependencies` - A contiguous growable array type, written as `Vec<T>`, short for 'vector', with the cryptographic hash of a Deploy.
-- `block_hash` - A cryptographic hash identifying a Block.
-- `execution_result` - The result of executing a single deploy.
+- `[deploy_hash](/design/serialization-standard/#deploy-hash)` - The cryptographic hash of a Deploy.
+- `[account](/design/serialization-standard/#serialization-standard-account)` - A structure that represents a user on a Casper Network.
+- `[timestamp](/design/serialization-standard/#timestamp)` - A timestamp type, representing a concrete moment in time.
+- `[ttl](/design/serialization-standard/#timediff)` - A time difference between two timestamps.
+- `[dependencies](/design/serialization-standard/#deploy-header)` - A list of Deploy hashes. 
+- `[block_hash](/design/serialization-standard/#block-hash)` - A cryptographic hash that is used to identify a Block.
+- `[execution_result](/design/serialization-standard/#executionresult)` - The result of executing a single deploy.
 - Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
 
 ### DeployExpired
 
-`DeployExpired` event is emitted when a Deploy becomes no longer valid to be executed or added to a block due to their times to live (TTLs) expiring. The URL for this event is `/events/main`.
+`DeployExpired` event is emitted when a Deploy becomes no longer valid to be executed or added to a block due to their times to live (TTLs) expiring.
 
-You can observe a sample JSON representation of a  `DeployExpired` event after executing the Curl call on the `main` path.
+The following example contains the JSON representation of the `DeployExpired` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of a DeployExpired event :</summary>
+<summary>Expand the below section to view the DeployExpired event details:</summary>
 
 ```bash
 data:
@@ -365,16 +391,16 @@ id:887
 ```
 </details>
 
-- `deplyHash` - The cryptographic hash of a Deploy.
+- `[deploy_hash](/design/serialization-standard/#deploy-hash)` - The cryptographic hash of a Deploy.
 
 ### Fault
 
-`Fault` event is emitted if there is a validator error. The URL for this event is `/events/main`.
+The `Fault` event is emitted if there is a validator error. 
 
-You can observe a sample JSON representation of a `Fault` event after executing the Curl call on the `main` path.
+The following example contains the JSON representation of the `Fault` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of a Fault event :</summary>
+<summary>Expand the below section to view the Fault event details:</summary>
 
 ```bash
 data:
@@ -389,19 +415,18 @@ data:
 ```
 </details>
 
-- `era_id` - The period of time used to specify when specific events in a blockchain network occur.
-- `public_key` - A public asymmetric key.
-- `timestamp` - A timestamp type, representing a concrete moment in time.
-
+- `[era_id](/design/serialization-standard/#eraid)` - The period of time used to specify when specific events in a blockchain network occur.
+- `[public_key](/design/serialization-standard/#publickey)` - A unique personal address that is shared in the network.
+- `[timestamp](/design/serialization-standard/#timestamp)` - A timestamp type, representing a concrete moment in time.
 
 ### Step
 
 `Step` event is emitted at the end of every era and contains the execution effects produced by running the auction contract's `step` function. The URL for this event is `/events/main`.
 
-You can observe a sample JSON representation of a  `Step` event after executing the Curl call on the `main` path.
+The following example contains the JSON representation of the `Step` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of a sStep event :</summary>
+<summary>Expand the below section to view the Step event details:</summary>
 
 ```bash
 data:
@@ -599,18 +624,20 @@ data:
 ```
 </details>
 
-- `era_id` - The period of time is used to specify when specific events in a blockchain network will occur.
-- `execution_effect` - The journal of execution transforms from a single Deploy.
+- `[era_id](/design/serialization-standard/#eraid)` - The period of time is used to specify when specific events in a blockchain network will occur.
+- `[execution_effect](/design/serialization-standard/#executioneffect)` - The journal of execution transforms from a single Deploy.
+- `[operations](/design/serialization-standard/#executioneffect)` - Operations performed while executing a deploy.
+- `[transform](http://localhost:3000/design/serialization-standard/#transform)` - The actual transformation performed while executing a deploy.
 - Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
 
 ### Shutdown
 
-`Shutdown` event is emitted when the node is about to shut down, usually for an upgrade. This causes a termination of the event stream since the sever is shutting down. The URL for this event is `/events/main`.
+The `Shutdown` event is emitted when the node is about to shut down, usually for an upgrade. This causes a termination of the event stream since the server is shutting down. 
 
-You can observe a sample JSON representation of a `Shutdown` event after executing the Curl call on the `main` path.
+The following example contains the JSON representation of the `Shutdown` event structure.
 
 <details>
-<summary>Expand the below section to view a sample output of a Shutdown event :</summary>
+<summary>Expand the below section to view the Shutdown event details:</summary>
 
 ```bash
 data:"Shutdown"
@@ -631,7 +658,7 @@ curl -s http://<HOST>:9999/events/<EVENT_TYPE>?start_from=<ID>
 curl -s http://65.21.235.219:9999/events/main?start_from=29267508
 ```
 
-Each URL can have a query string added of the form `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events.
+Each URL can have a query string added to the form `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events.
 
 :::note
 
