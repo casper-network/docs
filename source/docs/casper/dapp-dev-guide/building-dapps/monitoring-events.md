@@ -4,11 +4,11 @@ Casper platform uses event streaming to identify state changes in smart contract
 
 ## Event Types
 
-There are three types of events in our platform categorized based on the emitting endpoint. Those are:
+There are three types of events in our platform categorized based on the emitting endpoint of the nodes. Those are:
 
 **Deploy events**
 
-These are associated with Deploys on a node. Currently, nodes event only `DeployAccepted` event on this type. Refer to the [Deploys](/design/execution-semantics/#execution-semantics-deploys) section to discover more about Deploys and their life cycles
+These are associated with Deploys on a node. Currently, we are handling only `DeployAccepted` event. Refer to the [Deploys](/design/execution-semantics/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
 
 **Finality Signature event**
 
@@ -18,8 +18,6 @@ section to learn more about finality signature.
 **Main events**
 
 All the events other than `DeployAccepted` and `FinalitySignature` fall under this type. Those are ApiVersion, BlockAdded, DeployProcessed, DeployExpired, Fault, Step, and Shutdown events.
-
-The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). You can watch the event stream details on the Casper platform using a simple Curl call.
 
 ### How to monitor the event stream?
 You can start watching the event stream details using a simple Curl call as in the below format:
@@ -32,7 +30,9 @@ curl -s http://<HOST:PORT>/events/<ENDPOINT>
 - `PORT` - The port 9999 (Since we are testing on Mainnet or Testnet)
 - `ENDPOINT` - The specific endpoint of the node which the event will be emitted
 
-## Monitoring DeployAccepted event
+The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). 
+
+## Monitoring DeployAccepted Event
 
 You can start watching the event stream for the `DeployAccepted` event or any other events being emitted on this endpoint using the following command. Replace the `HOST` field with the `peer IP address`.
 
@@ -43,7 +43,7 @@ curl -s http://<HOST>:9999/events/deploys
 
 The URL to consume the Deploy-related events is `http://<HOST>:9999/events/deploys`.
 
-The event stream server of the node emits this event when a Deploy has been received by the node. At this point, it needs to pass a set of validity checks. It is handled in the [Deploy gossiped](/design/execution-semantics/#deploy-gossiped) step in the Deploy lifecycle.
+The event stream server of the node emits this event when a Deploy has been received by the node. At this point, it needs to pass a set of validity checks. Refer to the [Deploy gossiped](/design/execution-semantics/#deploy-gossiped) step in the Deploy lifecycle to learn more about this event.
 
 The following example contains the JSON representation of the `DeployAccepted` event structure.
 
@@ -92,7 +92,7 @@ You can find the definitions of the terms in the above `DeployAccepted` JSON rep
 - [serialization standard](/design/serialization-standard/) - Contains the details on required custom serializations.
 - [types](/dapp-dev-guide/sdkspec/types_chain/) - Contains the definitions of the terms in the event stream output.
 
-## Monitoring FinalitySignature event
+## Monitoring FinalitySignature Event
 
 You can start watching the event stream for the `FinalitySignature` event or any other events being emitted on this endpoint using the following command. Replace the `HOST` field with the `peer IP address`.
 
@@ -126,12 +126,12 @@ id:696
 </details>
 
 Refer to the following definitions of the JSON representation terms:
-- `[block_hash](/design/serialization-standard/#block-hash)` - A cryptographic hash that is used to identify a Block.
-- `[era_id](/design/serialization-standard/#eraid)` - The period of time used to specify when specific events in a blockchain network occur.
-- `[signature](/design/serialization-standard/#signature)` - A serialized bte representation of a cryptographic signature.
-- `[public_key](/design/serialization-standard/#publickey)` - A unique personal address that is shared in the network.
+- [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
+- [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
+- [signature](/design/serialization-standard/#signature) - A serialized bte representation of a cryptographic signature.
+- [public_key](/design/serialization-standard/#publickey) - A unique personal address that is shared in the network.
 
-## Monitoring Other events
+## Monitoring Other Events
 All the events apart from `DeployAccepted` and `FinalitySignature` are emitted on the endpoint `main` with the URL `http://<HOST>:9999/events/main`.
 Use the below command to monitor those event streams:
 
@@ -142,7 +142,7 @@ Further details of each event are presented in the following sections.
 
 ### ApiVersion event
 
-`ApiVersion` is always the first event emitted when a new client connects to the SSE server. It specifies the API version of the server. The ApiVersion is the protocol version of a node on the Casper platform.
+`ApiVersion` is always the first event emitted when a new client connects to the SSE server. It specifies the API version of the server. The ApiVersion is the protocol version of a node on the Casper platform. 
 
 The following example contains the JSON representation of the `ApiVersion` event structure.
 
@@ -154,7 +154,7 @@ data:{"ApiVersion":"1.0.0"}
 ```
 </details>
 
-### BlockAdded
+### BlockAdded event
 `BlockAdded` event is emitted whenever a new block is added to the blockchain and stored locally in the node. 
 
 The following example contains the JSON representation of the `BlockAdded` event structure.
@@ -198,12 +198,12 @@ id:594
 ```
 </details>
 
-- `[block_hash](/design/serialization-standard/#block-hash)` - A cryptographic hash that is used to identify a Block.
-- `[block](/design/serialization-standard/#serialization-standard-block)` - The JSON representation of the Block.
+- [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
+- [block](/design/serialization-standard/#serialization-standard-block) - The JSON representation of the Block.
 - Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
 
 
-### DeployProcessed
+### DeployProcessed event
 
 `DeployProcessed` event is emitted when a given Deploy has been executed. 
 
@@ -360,16 +360,16 @@ id:598
 ```
 </details>
 
-- `[deploy_hash](/design/serialization-standard/#deploy-hash)` - The cryptographic hash of a Deploy.
-- `[account](/design/serialization-standard/#serialization-standard-account)` - A structure that represents a user on a Casper Network.
-- `[timestamp](/design/serialization-standard/#timestamp)` - A timestamp type, representing a concrete moment in time.
-- `[ttl](/design/serialization-standard/#timediff)` - A time difference between two timestamps.
-- `[dependencies](/design/serialization-standard/#deploy-header)` - A list of Deploy hashes. 
-- `[block_hash](/design/serialization-standard/#block-hash)` - A cryptographic hash that is used to identify a Block.
-- `[execution_result](/design/serialization-standard/#executionresult)` - The result of executing a single deploy.
+- [deploy_hash](/design/serialization-standard/#deploy-hash) - The cryptographic hash of a Deploy.
+- [account](/design/serialization-standard/#serialization-standard-account) - A structure that represents a user on a Casper Network.
+- [timestamp](/design/serialization-standard/#timestamp) - A timestamp type, representing a concrete moment in time.
+- [ttl](/design/serialization-standard/#timediff) - A time difference between two timestamps.
+- [dependencies](/design/serialization-standard/#deploy-header) - A list of Deploy hashes. 
+- [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
+- [execution_result](/design/serialization-standard/#executionresult) - The result of executing a single deploy.
 - Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
 
-### DeployExpired
+### DeployExpired event
 
 `DeployExpired` event is emitted when a Deploy becomes no longer valid to be executed or added to a block due to their times to live (TTLs) expiring.
 
@@ -391,9 +391,9 @@ id:887
 ```
 </details>
 
-- `[deploy_hash](/design/serialization-standard/#deploy-hash)` - The cryptographic hash of a Deploy.
+- [deploy_hash](/design/serialization-standard/#deploy-hash) - The cryptographic hash of a Deploy.
 
-### Fault
+### Fault event
 
 The `Fault` event is emitted if there is a validator error. 
 
@@ -415,13 +415,13 @@ data:
 ```
 </details>
 
-- `[era_id](/design/serialization-standard/#eraid)` - The period of time used to specify when specific events in a blockchain network occur.
-- `[public_key](/design/serialization-standard/#publickey)` - A unique personal address that is shared in the network.
-- `[timestamp](/design/serialization-standard/#timestamp)` - A timestamp type, representing a concrete moment in time.
+- [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
+- [public_key](/design/serialization-standard/#publickey) - A unique personal address that is shared in the network.
+- [timestamp](/design/serialization-standard/#timestamp) - A timestamp type, representing a concrete moment in time.
 
-### Step
+### Step event
 
-`Step` event is emitted at the end of every era and contains the execution effects produced by running the auction contract's `step` function. The URL for this event is `/events/main`.
+`Step` event is emitted at the end of every era and contains the execution effects produced by running the auction contract's `step` function. 
 
 The following example contains the JSON representation of the `Step` event structure.
 
@@ -624,13 +624,13 @@ data:
 ```
 </details>
 
-- `[era_id](/design/serialization-standard/#eraid)` - The period of time is used to specify when specific events in a blockchain network will occur.
-- `[execution_effect](/design/serialization-standard/#executioneffect)` - The journal of execution transforms from a single Deploy.
-- `[operations](/design/serialization-standard/#executioneffect)` - Operations performed while executing a deploy.
-- `[transform](http://localhost:3000/design/serialization-standard/#transform)` - The actual transformation performed while executing a deploy.
+- [era_id](/design/serialization-standard/#eraid) - The period of time is used to specify when specific events in a blockchain network will occur.
+- [execution_effect](/design/serialization-standard/#executioneffect) - The journal of execution transforms from a single Deploy.
+- [operations](/design/serialization-standard/#operation) - Operations performed while executing a deploy.
+- [transform](/design/serialization-standard/#transform) - The actual transformation performed while executing a deploy.
 - Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
 
-### Shutdown
+### Shutdown event
 
 The `Shutdown` event is emitted when the node is about to shut down, usually for an upgrade. This causes a termination of the event stream since the server is shutting down. 
 
