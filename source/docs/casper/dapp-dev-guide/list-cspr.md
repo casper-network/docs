@@ -57,7 +57,7 @@ Casper also provides a stream server that gives you real-time information about 
 
 ## Testing the Integration
 
-Our recommended testing mechanism is to have a test environment that points at the official Casper [Testnet](https://testnet.cspr.live/) and run production like operations of your test exchange against the test environment. However, if you are not doing this and you just want to integrate with the [Mainnet](https://cspr.live/), then you can do so with your own test accounts. 
+Our recommended testing mechanism is to have a test environment that points at the official Casper [Testnet](https://testnet.cspr.live/). Through this, you may run production like operations of your test exchange against the test environment. However, if you are not doing this and you just want to integrate with the [Mainnet](https://cspr.live/), then you can do so with your own test accounts. 
 
 If you are not going to do a Testnet integration, then we suggest you create some additional test accounts and test the transactions on the Mainnet through your software prior to moving to the general public.
 
