@@ -127,7 +127,7 @@ const sendTransfer = async ({ from, to, amount }) => {
     }
 
     // For native-transfers the payment price is fixed
-    const paymentAmount = 10000000000;
+    const paymentAmount = 100000000;
 
     // transfer_id field in the request to tag the transaction and to correlate it to your back-end storage
     const id = 187821;
