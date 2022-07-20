@@ -125,7 +125,7 @@ The Casper command-line client provides an example of how this works.
 
 **Example**:
 
-The following transaction sends 100 CSPR.
+The following transaction sends 10 CSPR.
 
 ```bash
 casper-client transfer \
@@ -135,7 +135,7 @@ casper-client transfer \
 --target-account 020470fecd1f7ae5c1cd53a52c4ca88cd5b76c2926d7e1d831addaa2a64bea9cc3ede6a8e9981c609ee7ab7e3fa37ba914f2fc52f6eea9b746b6fe663afa96750d66 \
 --amount 10000000000 \
 --secret-key <path-to-secret_key.pem> \
---payment-amount 10000
+--payment-amount 100000000
 ```
 
 The Casper command-line client requires the secret key in *PEM* format to send a transaction from this account. If you want to use existing Ethereum keys with the command-line client, a conversion to *PEM* format is needed.
