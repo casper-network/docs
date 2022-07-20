@@ -13,7 +13,7 @@ This setup enables you to have a self-administered gateway to the Casper Network
 
 ## Casper Account
 
-You will need a Casper Account to handle the transactions on an exchange. Casper has an [Account model](../design/accounts.md) and the instructions on how to [create an Account](../design/accounts.md/#accounts-creating). 
+You will need a Casper Account to handle the transactions on an exchange. Casper has an [Account model](../design/accounts.md) and instructions on how to [create an Account](../design/accounts.md/#accounts-creating). 
 
 For your exchange, you would need at least one Account. Casper Network uses an Account model that holds on to general resources as well as token and provides an on-chain identity. As an exchange if you are dealing with high-volume of transaction activity, you might need a main account for the exchange platform and handle sub-accounts for other users. 
 
