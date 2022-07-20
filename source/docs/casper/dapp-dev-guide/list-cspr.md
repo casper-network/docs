@@ -53,7 +53,7 @@ Bulk or custom Wasm transfers can be used when you need to apply some logic befo
 
 You can integrate with the [JSON-RPC API](../dapp-dev-guide/sdkspec/introduction.md) of a node on the Casper Network. 
 You can program directly against the RPC or if you prefer you can choose from the variety of SDK libraries that are available to use on the Casper Network see [SDK Libraries](../dapp-dev-guide/building-dapps/sdk/index.md). 
-Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node, you can use this, however, it is not required. You might want to use this feature as you will be notified of events instead of asking periodically. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
+Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node. Use of the stream is optional. You might want to use this feature as you will be notified of events instead of asking periodically. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 ## Testing the Integration
 
