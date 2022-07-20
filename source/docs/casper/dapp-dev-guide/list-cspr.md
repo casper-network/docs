@@ -19,7 +19,7 @@ For your exchange, you would need at least one Account. Casper Network uses an A
 
 ## Understanding Basic Transactions
 
-We have a robust token and transaction model with different levels of support that ranges from convenience to robustness. Most of the time, when you are transferring Casper tokens between two parties, the native two-party transfer will suffice.
+We have a token and transaction model with different levels of support that ranges from convenience to robustness. Usually, when you are transferring Casper tokens between two parties, the native two-party transfer will suffice.
 
 Casper supports native two-party transfers as well as bulk transfer using custom Wasm. The native transfer is ideal method of transfer when you need to do a one-to-one transfer between two accounts. Whereas, the custom Wasm transfer can be used when you are making bulk transfers. Custom Wasm transfer allows you to do multiple transfers in a single deploy, which makes it a cost effective method for multiple transfers. 
 
