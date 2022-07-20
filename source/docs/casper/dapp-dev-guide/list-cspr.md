@@ -64,7 +64,7 @@ If you are not going to do a Testnet integration, then we suggest you create som
 ## The Casper Protocol
 
 -   Casper is integrated with BitGo for enterprise grade custody. If your exchange uses BitGo, support for Casper is available already.
--   Casper has a execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../design/execution-semantics.md).
+-   Casper has an execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../design/execution-semantics.md).
 -   Exchanges can check finality signatures. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 
