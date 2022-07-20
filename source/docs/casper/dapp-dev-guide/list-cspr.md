@@ -7,7 +7,7 @@ CSPR is listed on [many exchanges](https://tokenmarketcaps.com/coins/casper/mark
 
 ## Setting up a Node
 
-While it is not necessary for an exchange to operate their own node on the Casper Network, we recommend that exchanges handling moderate to high volume of transaction activity, do run their own node. A node operated by an exchange does not have to be a validating node, it can be a read-only node. For setup instructions, see [Basic Node Setup](../operators/setup.md).
+While it is not necessary for an exchange to operate their own node on the Casper Network, we recommend that they do so if they expect to handle moderate to high volumes of transaction activity. A node operated by an exchange does not have to be a validating node, it can be read-only. For setup instructions, see [Basic Node Setup](../operators/setup.md).
 
 This setup enables you to have a self-administered gateway to the Casper Network to get data and submit transactions.
 
