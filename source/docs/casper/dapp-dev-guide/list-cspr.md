@@ -21,7 +21,7 @@ For your exchange, you would need at least one Account. The Casper Network uses 
 
 We have a token and transaction model with different levels of support that ranges from convenience to robustness. Usually, when you are transferring Casper tokens between two parties, the native two-party transfer will suffice.
 
-Casper supports native two-party transfers as well as bulk transfer using custom Wasm. The native transfer is ideal when you need to perform a one-to-one transfer between two accounts. Whereas, the custom Wasm transfer can be used when you are making bulk transfers. A custom Wasm transfer allows you to do multiple transfers in a single deploy, which makes it a more cost effective method. 
+Casper supports native two-party transfers as well as bulk transfer using custom Wasm. The native transfer is ideal when you need to perform a one-to-one transfer between two accounts. Whereas, the batched Wasm transfer can be used when you are making bulk transfers. A batched Wasm transfer allows you to do multiple transfers in a single deploy, which makes it a more cost effective method. 
 
 ### Native transfer
 
@@ -39,9 +39,9 @@ casper-client transfer \
 --payment-amount 10000
 ```
 
-### Bulk or custom Wasm transfer
+### Bulk or batched Wasm transfer
 
-Bulk or custom Wasm transfers can be used when you need to apply some logic before or after the transfer or if the transfer is conditional. You may also use them if you are doing a series of transfers between multiple accounts. You can use the following five functions for transferring tokens in bulk using custom Wasm transfer:
+Bulk or batched Wasm transfers can be used when you need to apply some logic before or after the transfer or if the transfer is conditional. You may also use them if you are doing a series of transfers between multiple accounts. You can use the following five functions for transferring tokens in bulk using batched Wasm transfer:
 
 -   `transfer_to_account`: Transfers amount of motes from the default purse of the account to target account. If the target does not exist it is created. Can be called from session code only and not a contract as a contract doesn't have a main purse.
 -   `transfer_to_public_key`: Transfers amount of motes from the main purse of the caller’s account to the main purse of the target. If the account referenced by target does not exist, it is created. Can be called from session code only and not from a contract as a contract doesn't have a main purse.
