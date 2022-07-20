@@ -15,6 +15,8 @@ This method returns the JSON representation of a [Block](/design/block-structure
 
 ### `chain_get_block_result`
 
+The result from `chain_get_block` depends on block availability from a given node. If `chain_get_block` returns an error message that the node does not have information on the given block, you may attempt to get the information from a different node.
+
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
