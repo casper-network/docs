@@ -41,7 +41,7 @@ casper-client transfer \
 
 ### Bulk or custom Wasm transfer
 
-Bulk or custom Wasm transfers can be used when you need to apply some logic before or after the transfer or if the transfer is conditional, also if you are doing a series of transfers between multiple accounts. You can use the following five functions for transferring tokens in bulk using custom Wasm transfer:
+Bulk or custom Wasm transfers can be used when you need to apply some logic before or after the transfer or if the transfer is conditional. You may also use them if you are doing a series of transfers between multiple accounts. You can use the following five functions for transferring tokens in bulk using custom Wasm transfer:
 
 -   `transfer_to_account`: Transfers amount of motes from the default purse of the account to target account. If the target does not exist it is created. Can be called from session code only and not a contract as a contract doesn't have a main purse.
 -   `transfer_to_public_key`: Transfers amount of motes from the main purse of the caller’s account to the main purse of the target. If the account referenced by target does not exist, it is created. Can be called from session code only and not from a contract as a contract doesn't have a main purse.
