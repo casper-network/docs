@@ -128,7 +128,7 @@ id:696
 Refer to the following definitions of the JSON representation terms:
 - [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
 - [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
-- [signature](/design/serialization-standard/#signature) - A serialized bte representation of a cryptographic signature.
+- [signature](/design/serialization-standard/#signature) - A serialized byte representation of a cryptographic signature.
 - [public_key](/design/serialization-standard/#publickey) - A unique personal address that is shared in the network.
 
 ## Monitoring Other Events
