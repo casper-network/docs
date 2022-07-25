@@ -13,7 +13,7 @@ These are associated with Deploys on a node. Currently, only `DeployAccepted` ev
 **Finality Signature event**
 
 This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](/design/execution-semantics/#consensus-reached) section and [block finality](/glossary/B/#block-finality) 
-section to learn more about finality signature.
+section to learn more about finality signatures.
 
 **Main events**
 
