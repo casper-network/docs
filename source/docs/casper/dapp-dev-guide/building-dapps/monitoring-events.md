@@ -1,6 +1,7 @@
 # Monitoring and Consuming Events
 
-Casper platform uses event streaming to notify state changes in smart contracts and nodes. A node on a Casper network streams events through the SSE (Server Sent Event) server. Events are emitted by the event stream servers of the Casper network nodes. 
+Casper platform uses event streaming to notify state changes in smart contracts and nodes. A node on a Casper network streams events through the SSE (Server Sent Event) server. The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). 
+
 
 ## Event Types
 
@@ -30,7 +31,7 @@ curl -s http://<HOST:PORT>/events/<ENDPOINT>
 - `PORT` - The port 9999 (The default port number for nodes on Mainnet or Testnet)
 - `ENDPOINT` - The specific endpoint of the node which the event will be emitted
 
-The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). 
+Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and the [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms used in the event stream output.
 
 ## Monitoring DeployAccepted Event
 
@@ -90,7 +91,6 @@ id:506
 
 You can find the definitions of the terms in the above `DeployAccepted` JSON representation by referring to the following links:
 - [Deploy](/design/serialization-standard/#serialization-standard-deploy) - Contains the serialization details of a Deploy with other related details like Deploy- Hash, Deploy-Header, Payment and Session, Approval.
-- [Serialization Standard](/design/serialization-standard/) - Contains the details on required custom serializations.
 - [Types](/dapp-dev-guide/sdkspec/types_chain/) - Contains the definitions of the terms in the event stream output.
 
 ## Monitoring FinalitySignature Event
@@ -200,8 +200,6 @@ id:594
 
 - [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
 - [block](/design/serialization-standard/#serialization-standard-block) - The JSON representation of the Block.
-- Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and the [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms used in the event stream output.
-
 
 ### DeployProcessed event
 
@@ -367,7 +365,6 @@ id:598
 - [dependencies](/design/serialization-standard/#deploy-header) - A list of Deploy hashes. 
 - [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
 - [execution_result](/design/serialization-standard/#executionresult) - The result of executing a single deploy.
-- Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and the [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms used in the event stream output.
 
 ### DeployExpired event
 
@@ -628,7 +625,6 @@ data:
 - [execution_effect](/design/serialization-standard/#executioneffect) - The journal of execution transforms from a single Deploy.
 - [operations](/design/serialization-standard/#operation) - Operations performed while executing a deploy.
 - [transform](/design/serialization-standard/#transform) - The actual transformation performed while executing a deploy.
-- Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and the [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms used in the event stream output.
 
 ### Shutdown event
 
