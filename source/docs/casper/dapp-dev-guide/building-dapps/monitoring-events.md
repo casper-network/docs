@@ -8,7 +8,7 @@ There are three types of event streams in our platform categorized based on the 
 
 **Deploy events**
 
-These are associated with Deploys on a node. Currently, we are handling only `DeployAccepted` event. Refer to the [Deploys](/design/execution-semantics/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
+These are associated with Deploys on a node. Currently, only `DeployAccepted` event is emitted . Refer to the [Deploys](/design/execution-semantics/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
 
 **Finality Signature event**
 
