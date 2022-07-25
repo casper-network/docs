@@ -1,6 +1,6 @@
 # Monitoring and Consuming Events
 
-Casper platform uses event streaming to identify state changes in smart contracts and nodes. A node on a Casper network streams events through the SSE (Server Sent Event) server. Events are emitted by the event stream servers of the Casper network nodes. 
+Casper platform uses event streaming to notify state changes in smart contracts and nodes. A node on a Casper network streams events through the SSE (Server Sent Event) server. Events are emitted by the event stream servers of the Casper network nodes. 
 
 ## Event Types
 
