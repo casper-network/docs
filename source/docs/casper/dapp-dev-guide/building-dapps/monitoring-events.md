@@ -103,7 +103,7 @@ curl -s http://<HOST>:9999/events/sigs
 
 The URL to consume the `FinalitySignature` event is `http://<HOST>:9999/events/sigs`.
 
-The `FinalitySignature` event is emitted,  whenever a new [finality](/glossary/B/#block-finality) signature is received.
+The `FinalitySignature` event is emitted whenever a new [finality](/glossary/B/#block-finality) signature is received.
 
 The following example contains the JSON representation of the `FinalitySignature` event structure.
 
