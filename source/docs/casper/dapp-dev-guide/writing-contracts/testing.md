@@ -1,4 +1,4 @@
-# Testing Contracts
+# Testing Smart Contracts
 
 ## Introduction
 
@@ -211,6 +211,24 @@ The `builder` request follows these details to execute the session code.
             .commit();
 
 ```
+
+### Testing Contracts that Call Contracts {#testing-contracts-that-call-contracts}
+
+If your system involves multiple contracts, they will all need to be [installed](#building-an-execution-request-to-install-the-contract) within your test. The testing framework exists independently of any Casper Networks, so you will need to either write the code yourself or have access to the original installation code of a contract you wish to include. The exceptions to this are system contracts installed as part of the DEFAULT_RUN_GENESIS_REQUEST. These include `Mint`, `Auction`, `HandlePayment` and `StandardPayment`.
+
+Each contract installation will require an additional Wasm file installed through a `Deploy` using `ExecuteRequestBuilder`. Depending on your requirements as a smart contract author, you may need the use of [return values](dapp-dev-guide/tutorials/return-values-tutorial) to interact with stacks of contracts. Interaction between contracts will still require the use of session code to initiate the process, as contracts will not execute actions autonomously.
+
+The major difference between calling a contract from session code versus contract code is the ability to use non-standard dependencies for the `ExecuteRequestBuilder`. Where session code must designate a Wasm file within the standard dependencies, contract code can use one of the four available options for calling other contracts, namely:
+
+- `contract_call_by_hash` Calling a contract by the its `ContractHash`
+
+- `contract_call_by_name` Calling a contract referenced by a named key in the signer's Account context
+
+- `versioned_contract_call_by_hash` Calling a specific version of a contract using its `ContractHash`
+
+- `versioned_contract_call_by_name` Calling a specific version of a contract referenced by a named key in the signer's Account context
+
+In all cases, the calling contract must also provide an entry point and any necessary runtime arguments.
 
 ### Additional ExecutionRequestBuilder Examples
 

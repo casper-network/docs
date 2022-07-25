@@ -40,7 +40,7 @@ This section includes some examples of how to use Golang SDK:
             GasPrice:  1,
             ChainName: "casper-test",
         }
-        payment := sdk.StandardPayment(big.NewInt(10000000000))
+        payment := sdk.StandardPayment(big.NewInt(100000000))
         session := sdk.NewTransfer(big.NewInt(25000000000), target, uint64(5589324))
 
         deploy, _ := sdk.MakeDeploy(deployParams, payment, session)
@@ -85,7 +85,7 @@ This section includes some examples of how to use Golang SDK:
             GasPrice:  1,
             ChainName: "casper-test",
         }
-        payment := sdk.StandardPayment(big.NewInt(10000000000))
+        payment := sdk.StandardPayment(big.NewInt(100000000))
         session := sdk.NewModuleBytes(module, nil)
 
         deploy, _ := sdk.MakeDeploy(deployParams, payment, session)

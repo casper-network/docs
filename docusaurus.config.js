@@ -36,6 +36,11 @@ module.exports = {
         // metadatas: metadatasConfig,
         navbar: navbarConfig,
         prism: prismConfig,
+        algolia: {
+            appId: "KQNX60E7J5",
+            apiKey: "42e859bcdaa94a6c412d933cbaabe2e2",
+            indexName: "casperlabs",
+        },
     },
     presets: [
         [
@@ -88,6 +93,5 @@ module.exports = {
                 silent: false,
             },
         ],
-        [require.resolve("@cmfcmf/docusaurus-search-local"), algoliaOfflineConfig],
     ],
 };
