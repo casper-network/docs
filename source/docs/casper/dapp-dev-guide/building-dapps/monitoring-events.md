@@ -4,7 +4,7 @@ Casper platform uses event streaming to notify state changes in smart contracts 
 
 ## Event Types
 
-There are three types of events in our platform categorized based on the emitting endpoint of the nodes. Those are:
+There are three types of event streams in our platform categorized based on the emitting endpoint of the nodes. Those are:
 
 **Deploy events**
 
