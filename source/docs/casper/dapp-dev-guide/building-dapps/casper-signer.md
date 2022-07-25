@@ -161,7 +161,7 @@ With the connected Signer wallet on your website, it is possible to sign a trans
 	// get amount to send from input.
 	const amount = document.getElementById("Amount").value
 	// For native-transfers the payment price is fixed.
-	const paymentAmount = 10000000000;
+	const paymentAmount = 100000000;
 
 	// transfer_id field in the request to tag the transaction and to correlate it to your back-end storage.
 	const id = 287821;

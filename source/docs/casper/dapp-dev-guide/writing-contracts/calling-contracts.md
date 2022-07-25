@@ -4,7 +4,7 @@ tags: ["smart contract developers","rust","put-deploy"]
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Calling Contracts with the Rust Client
+# Calling Smart Contracts with the Rust Client
 
 Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
 
@@ -102,7 +102,7 @@ casper-client put-deploy
     --node-address http://3.143.158.19:7777 \
     --chain-name integration-test \
     --secret-key ~/casper/demo/user_b/secret_key.pem \
-    --payment-amount "10000000000" \
+    --payment-amount "100000000" \
     --session-hash hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180 \
     --session-entry-point "transfer" \
     --session-arg "recipient:key='account-hash-89422a0f291a83496e644cf02d2e3f9d6cbc5f7c877b6ba9f4ddfab8a84c2670'" \
