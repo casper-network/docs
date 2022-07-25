@@ -200,7 +200,7 @@ id:594
 
 - [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
 - [block](/design/serialization-standard/#serialization-standard-block) - The JSON representation of the Block.
-- Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
+- Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and the [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms used in the event stream output.
 
 
 ### DeployProcessed event
