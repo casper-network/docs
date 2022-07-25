@@ -628,7 +628,7 @@ data:
 - [execution_effect](/design/serialization-standard/#executioneffect) - The journal of execution transforms from a single Deploy.
 - [operations](/design/serialization-standard/#operation) - Operations performed while executing a deploy.
 - [transform](/design/serialization-standard/#transform) - The actual transformation performed while executing a deploy.
-- Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms in of the event stream output.
+- Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and the [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms used in the event stream output.
 
 ### Shutdown event
 
