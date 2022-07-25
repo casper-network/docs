@@ -89,8 +89,9 @@ id:506
 </details>
 
 You can find the definitions of the terms in the above `DeployAccepted` JSON representation by referring to the following links:
-- [serialization standard](/design/serialization-standard/) - Contains the details on required custom serializations.
-- [types](/dapp-dev-guide/sdkspec/types_chain/) - Contains the definitions of the terms in the event stream output.
+- [Deploy](/design/serialization-standard/#serialization-standard-deploy) - Contains the serialization details of a Deploy with other related details like Deploy- Hash, Deploy-Header, Payment and Session, Approval.
+- [Serialization Standard](/design/serialization-standard/) - Contains the details on required custom serializations.
+- [Types](/dapp-dev-guide/sdkspec/types_chain/) - Contains the definitions of the terms in the event stream output.
 
 ## Monitoring FinalitySignature Event
 
@@ -125,7 +126,6 @@ id:696
 ```
 </details>
 
-Refer to the following definitions of the JSON representation terms:
 - [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
 - [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
 - [signature](/design/serialization-standard/#signature) - A serialized byte representation of a cryptographic signature.
