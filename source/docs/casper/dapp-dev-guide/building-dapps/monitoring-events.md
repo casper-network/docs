@@ -27,7 +27,7 @@ curl -s http://<HOST:PORT>/events/<ENDPOINT>
 ```
 
 - `HOST` - The IP address of a peer on the network
-- `PORT` - The port 9999 (Since we are testing on Mainnet or Testnet)
+- `PORT` - The port 9999 (The default port number for nodes on Mainnet or Testnet)
 - `ENDPOINT` - The specific endpoint of the node which the event will be emitted
 
 The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers). 
