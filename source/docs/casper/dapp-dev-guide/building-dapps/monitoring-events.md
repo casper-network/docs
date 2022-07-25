@@ -43,7 +43,7 @@ curl -s http://<HOST>:9999/events/deploys
 
 The URL to consume the Deploy-related events is `http://<HOST>:9999/events/deploys`.
 
-The event stream server of the node emits this event when a Deploy has been received by the node. At this point, it needs to pass a set of validity checks. Refer to the [Deploy gossiped](/design/execution-semantics/#deploy-gossiped) step in the Deploy lifecycle to learn more about this event.
+The event stream server of the node emits this event when a Deploy has been received by the node. 
 
 The following example contains the JSON representation of the `DeployAccepted` event structure.
 
