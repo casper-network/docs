@@ -101,6 +101,7 @@ We will repeat the previous step to query information about the _Target_ account
 ```bash
 casper-client query-global-state \
 --id 5 \
+--node-address http://<node-ip-address>:7777 \
 --state-root-hash <state-root-hash> \
 --key <hex-encoded-target-account-public-key>
 ```
@@ -108,6 +109,7 @@ casper-client query-global-state \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
+-   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
 -   `state-root-hash` - Hex-encoded hash of the state root
 -   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash, or deploy-info hash.
 
