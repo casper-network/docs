@@ -159,7 +159,7 @@ Only the administrator can use the related Wasm to send the deploy to the networ
 
 - **To disable a contract**: Execute the `disable_contract.wasm` with `contract_hash`and `contract_package_hash` as parameters.
 - **To enable a contract**: Execute the `enable_contract.wasm` with `contract_hash`and `contract_package_hash` as parameters.
-- **To disable an account**: Execute `set_action_thresholds.wasm` with argument `deploy_threshold:u8='255'` and `key_management_threshold:u8='0'`.
+- **To disable an account**: Execute `set_action_thresholds.wasm` with argument `deploy_threshold:u8='255'` and `key_management_threshold:u8='255'`.
 - **To enable an account**: Execute `set_action_thresholds.wasm` with `deploy_threshold:u8='1'` set to 1 and `key_management_threshold:u8='0'`.
 
 
@@ -279,8 +279,8 @@ casper-client \
   --session-account=alice/public_key_hex
   --session-path set_action_thresholds.wasm \
   --payment-amount=2500000000 \
-  --session-arg "key_management_threshold:u8='0'" \
-  --session-arg "deploy_threshold:u8='1'"
+  --session-arg "key_management_threshold:u8='255'" \
+  --session-arg "deploy_threshold:u8='255'"
 ```
 
 
@@ -296,8 +296,8 @@ casper-client \
   --session-account=alice/public_key_hex
   --session-path set_action_thresholds.wasm \
   --payment-amount=2500000000 \
-  --session-arg "key_management_threshold:u8='255'" \
-  --session-arg "deploy_threshold:u8='255'"
+  --session-arg "key_management_threshold:u8='0'" \
+  --session-arg "deploy_threshold:u8='1'"
 ```
 
 
