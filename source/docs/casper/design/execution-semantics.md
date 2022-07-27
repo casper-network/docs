@@ -62,6 +62,7 @@ The proposed block is propagated to all other nodes.
 Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed, and this block becomes the final block added to the chain. Whenever consensus is reached, a `BlockAdded` event is emitted by the event stream server. `FinalitySignature` events are emitted shortly thereafter as finality signatures for the new block arrive from the validators.
 
 ### Deploy Executed 
+
 A deploy is executed in distinct phases to accommodate flexibly paying for computation. The phases of a deploy are payment, session, and finalization. During the payment phase, the payment code is executed. If it is successful, the session code is executed during the session phase. And, independently of session code execution, the finalization phase does some bookkeeping around payment. Once the deploy is executed, committed and forms part of the given block, a `DeployProcessed` event is emitted by the event stream server. 
 
 #### Payment code {#execution-semantics-payment}

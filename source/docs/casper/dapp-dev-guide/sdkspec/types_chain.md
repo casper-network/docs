@@ -686,6 +686,10 @@ Required Parameters:
 
 * `protocol_version`
 
+## NewValidator {#newvalidator}
+
+The public key for the new validator in a re-delegation using [UnbondingPurse](#unbondingpurse).
+
 ## Operation {#operation}
 
 An operation performed while executing a Deploy.
@@ -729,6 +733,16 @@ Casper Platform protocol version.
 ## PublicKey {#publickey}
 
 Hex-encoded cryptographic public key, including the algorithm tag prefix.
+
+## PurseIdentifier {#purseidentifier}
+
+The identifier to obtain the purse corresponding to a balance query. Valid identifiers include:
+
+* `main_purse_under_public_key` The main purse under a provided [`PublicKey`](/dapp-dev-guide/sdkspec/types_chain#publickey).
+
+* `main_purse_under_account_hash` The main purse under a provided [`AccountHash`](/dapp-dev-guide/sdkspec/types_chain#accounthash).
+
+* `purse_uref` A specific purse identified by the associated [`URef`](/dapp-dev-guide/sdkspec/types_chain#uref).
 
 ## Reward {#reward}
 
@@ -896,7 +910,9 @@ Required Parameters:
 
 * [`unbonder_public_key`](#publickey) Unbonder's public key.
 
-* [`validator_public_key`](#publickey) Validator's public key.
+* [`validator_public_key`](#publickey) The original validator's public key.
+
+* [`new_validator`](#newvalidator) The re-delegated validator's public key.
 
 ## URef {#uref}
 
@@ -927,3 +943,19 @@ Required Parameters:
 ## VestingSchedule {#vestingschedule}
 
 Vesting schedule for a genesis validator.
+
+## WithdrawPurse {#withdrawpurse}
+
+Withdraw purse, previously known as unbonding purse prior to 1.5. Withdraw purses remain as historical data.
+
+Required Parameters:
+
+* [`amount`](#u512) Unbonding amount.
+
+* [`bonding_purse`](#uref) Bonding purse.
+
+* [`era_of_creation`](#eraid) Era in which the unbonding request was created.
+
+* [`unbonder_public_key`](#publickey) Unbonder's public key.
+
+* [`validator_public_key`](#publickey) The original validator's public key.
