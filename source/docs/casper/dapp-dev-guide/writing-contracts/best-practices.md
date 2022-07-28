@@ -6,7 +6,29 @@ At its core, the Casper platform is software, and best practices for general sof
 
 When developing on Casper, a policy of efficient data usage will ensure the lowest possible cost for on-chain computation. To this end, minimizing the number of necessary [Deploys](/dapp-dev-guide/building-dapps/sending-deploys/) will drastically decrease the overall cost.
 
-When creating smart contracts, including an explicit initialization entry point allows the contract to self-initialize without a subsequent Deploy of session code. This entry point creates the internal structure of the contract and cannot be called after the initial deploy. Bear in mind, the host node will not enforce this. The smart contract author must create the entry point and ensure it cannot be called after initial deployment.
+When creating smart contracts, including an explicit initialization entry point allows the contract to self-initialize without a subsequent Deploy of session code. This entry point creates the internal structure of the contract and cannot be called after the initial deploy. Below is an example of a self-initalizing entry point that can be used within the `call` function.
+
+<details>
+<summary><b>Example Self-initialization Entry Point</b></summary>
+
+```rust
+
+// This entry point initializes the donation system, setting up the fundraising purse
+// and creating a dictionary to track the account hashes and the number of donations
+// made.
+#[no_mangle]
+pub extern "C" fn init() {
+    let fundraising_purse = system::create_purse();
+    runtime::put_key(FUNDRAISING_PURSE, fundraising_purse.into());
+    // Create a dictionary to track the mapping of account hashes to number of donations made.
+    storage::new_dictionary(LEDGER).unwrap_or_revert();
+}
+
+```
+
+</details>
+
+Bear in mind, the host node will not enforce this. The smart contract author must create the entry point and ensure it cannot be called after initial deployment.
 
 ## Costs
 
