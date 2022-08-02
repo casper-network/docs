@@ -5,7 +5,7 @@ Casper private networks operate in a similar way to the Casper public network. T
 
 
 ## Prerequisites
-Follow these guides to set up the required environment and user accounts. 
+Follow these guides to set up the required environment and user accounts.
 - [Setting up the Casper client](/workflow/setup/#the-casper-command-line-client)
 - [Setting up the client for interacting with the network](https://github.com/casper-network/casper-node/blob/master/client/README.md#casper-client)
 - [Setting up an account](/workflow/setup/#setting-up-an-account)
@@ -28,16 +28,16 @@ Use these FAQ collections for tips and details for validators.
 ## Step 2. Setting up the Directory
 Use these guides to set up your private network directories. You will find several main directories dedicated to different purposes.
 
-- Go through the [file location](/operators/setup/#file-locations) section to understand how directories are created and managed in a Casper private network. 
+- Go through the [file location](/operators/setup/#file-locations) section to understand how directories are created and managed in a Casper private network.
 - Refer to the [setting up a new network](/operators/create/) guide to identify the required configuration files to set up a genesis block.
 
 ## Step 3. Configuring the Genesis Block
-A Casper private network contains a different set of configurations when compared to the public network. The `chainspec.toml` file contains the required configurations for the genesis process in a private network. 
+A Casper private network contains a different set of configurations when compared to the public network. The `chainspec.toml` file contains the required configurations for the genesis process in a private network.
 
 You should add the configuration options below to the `chainspec.toml` file inside the [private network directory](/workflow/setup-private-network/#step-2-setting-up-the-directory).
 
 ### Unrestricted transfers configuration
-This option disables unrestricted transfers between regular accounts. A regular account user cannot do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators. 
+This option disables unrestricted transfers between regular accounts. A regular account user cannot do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators.
 
 ```toml
 [core]
@@ -67,7 +67,7 @@ A `refund_ratio` is specified as a proper fraction (the numerator must be lower 
 
 ```toml
 [core]
-refund_handling = { type = "refund", refund_ratio = [1, 1] } 
+refund_handling = { type = "refund", refund_ratio = [1, 1] }
 ```
 After deducting the gas fee, the distribution of the remaining payment amount is handled based on the [fee_handling](/workflow/setup-private-network/#fee-handling-config) configuration.
 
@@ -113,7 +113,7 @@ Other configurations related to the auction:
 - `allow_auction_bids` - if this option is set to *false* then `add_bid` and `delegate` options are disabled. It also disables adding new validators to the system. Invoking those entry points leads to an `AuctionBidsDisabled` error.
 - `core.compute_rewards` - if this option is set to *false*, then all the rewards on a switch block will be set to 0. The auction contract wouldn't process rewards distribution that would increase validator bids.
 
-In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes. 
+In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes.
 
 ## Step 4. Configuring the Administrator Accounts
 An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one administrator account configured within a network to operate it as a `private network`. You can create new administrators and [rotate the validator set](/workflow/setup-private-network/#step-6-rotating-the-validator-accounts) in a single configuration update. The operator must first ensure the `global_state.toml` file contains new administrators. The validator set is updated after if an administrator is also a validator. Also, only the administrator accounts can hold and distribute token balances.
@@ -124,10 +124,10 @@ Use this configuration option in the `chainspec.toml` to add administrator accou
 
 ```toml
 [core]
-administrators = ["NEW_ACCOUNT_PUBLIC_KEY"] 
+administrators = ["NEW_ACCOUNT_PUBLIC_KEY"]
 ```
 
-**Note**: Regular accounts are not allowed to manage their associated keys on a private network. 
+**Note**: Regular accounts are not allowed to manage their associated keys on a private network.
 
 ### Generating new administrator accounts
 
@@ -147,7 +147,7 @@ global-state-update-gen \
 
 ### Managing accounts and smart contracts
 
-Only administrators have permission to control accounts and manage smart contracts in a private network. An example implementation can be found in [Casper node's private chain control management](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/smart_contracts/contracts/private_chain/control-management/src/main.rs) file. This is not an existing contract. You can use the existing client contracts as an administrator to perform actions as a user. This is done by sending a deploy under a regular user's public key but signed using the administrator's secret key. 
+Only administrators have permission to control accounts and manage smart contracts in a private network. An example implementation can be found in [Casper node's private chain control management](https://github.com/casper-network/casper-node/blob/c8023736786b2c2b0fd17250fcfd50502ff4151f/smart_contracts/contracts/private_chain/control-management/src/main.rs) file. This is not an existing contract. You can use the existing client contracts as an administrator to perform actions as a user. This is done by sending a deploy under a regular user's public key but signed using the administrator's secret key.
 
 Use this command to generate these contracts:
 
@@ -176,18 +176,18 @@ Additionally, refer to the [casper-node-launcher](https://github.com/casper-netw
 ## Step 6. Rotating the Validator Accounts
 You need to go through [setting up a validator node ](/#step-1-setting-up-the-validator-nodes) guide before starting this section.
 
-Use this command to create content in the `global_state.toml` file to rotate the validator set. Specify all the current validators, their stakes, and new accounts. 
+Use this command to create content in the `global_state.toml` file to rotate the validator set. Specify all the current validators, their stakes, and new accounts.
 
 ```sh
 global-state-update-gen \
   validators --data-dir $DATA_DIR/global_state \
   --state-hash $STATE_ROOT_HASH \
   –validator $PUBLIC_KEY_HEX,$STAKE,$OPTIONAL_DELEGATION_RATE
-``` 
+```
 
 To rotate the validators set, perform a network upgrade with a `global_state.toml` with new entries generated by the `global-state-update-gen` command.
 
-You can find more details on enabling new validators in the [joining a running network](/operators/joining/) guide. The guide explains how to join the network and provide additional security to the system. 
+You can find more details on enabling new validators in the [joining a running network](/operators/joining/) guide. The guide explains how to join the network and provide additional security to the system.
 
 
 ## Step 7. Testing the Private Network
@@ -212,7 +212,7 @@ http://18.116.201.114:7777
 
 ### Setting up the node
 
-Set up the node address, chain name, and the administrator's secret key. 
+Set up the node address, chain name, and the administrator's secret key.
 
 ```sh
 export NODE_ADDR=http://18.224.190.213:7777
@@ -241,7 +241,7 @@ casper-client \
 To check the account information, use this command:
 
 ```sh
-casper-client get-account-info -n $NODE_ADDR 
+casper-client get-account-info -n $NODE_ADDR
   --public-key alice/public_key.pem
 ```
 
@@ -355,6 +355,69 @@ casper-client get-era-info -n $NODE_ADDR -b 153
 The total supply shouldn't increase, and the validator's stakes should remain the same.
 
 
+### Operating guide
+
+Some configuration options such as `allow_auction_bids` require a private chain operator to perform specific tasks manually through a network upgrade with chainspec and contents of `global_state.toml` file generated by a provided tool `global-state-update-gen`.
+
+You can find this tool by either downloading a package or by installing it manually from the sources:
+
+```sh
+$ cargo install --git https://github.com/casper-network/casper-node/ --tag private-1.4.6 global-state-update-gen
+$ global-state-update-gen --help
+Global State Update Generator 0.2.0
+Generates a global state update file based on the supplied parameters
+
+USAGE:
+    global-state-update-gen [SUBCOMMAND]
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+SUBCOMMANDS:
+    balances                    Generates an update changing account balances
+    generate-admins             Generates entries to create new admin accounts on a private chain
+    help                        Prints this message or the help of the given subcommand(s)
+    system-contract-registry    Generates an update creating the system contract registry
+    validators                  Generates an update changing the validators set
+```
+
+The standard output of running commands listed above is the content of a `global_state.toml` file, which contains a list of direct global state modifications.
+
+Example output of running a `generate-admins` subcommand:
+
+```toml
+[[entries]]
+key = "balance-97bbcc2425b3eda5149a893c6180b62f1472d5143bb1450d01c8e1e96be09f13"
+value = "AAIAAAABCgg="
+
+[[entries]]
+key = "uref-97bbcc2425b3eda5149a893c6180b62f1472d5143bb1450d01c8e1e96be09f13-007"
+value = "AAAAAAAJ"
+
+[[entries]]
+key = "account-hash-ac2f4caa3e3ce1cd1dfb3d089854020b18a50cac49977d0a4c873c4d3d5a2409"
+value = "AawvTKo+POHNHfs9CJhUAgsYpQysSZd9CkyHPE09WiQJAAAAAJe7zCQls+2lFJqJPGGAti8UctUUO7FFDQHI4elr4J8TBwEAAACsL0yqPjzhzR37PQiYVAILGKUMrEmXfQpMhzxNPVokCQEBAQ=="
+
+# total supply increases from 200000000000000000 to 200000000000000010
+[[entries]]
+key = "uref-f8475fd4125484be39a0793530f09a29d220ffda8e48387b3d2194ddfc22894e-007"
+value = "AAkAAAAICgAUu/CKxgII"
+```
+
+Currently, this tool outputs contents into standard output. You should redirect standard output to a file named `global_state.toml` and place this file in the same directory as `chainspec.toml` before performing a network upgrade.
+
+```sh
+$ global-state-update-gen generate-admins --data-dir $DATA_DIR --state-hash $STATE_HASH --admin NEW_PUBLIC_KEY,BALANCE >> global_state.toml
+```
+
+By using `>>` shell redirection you will always append contents to existing file without overwriting it. This is helpful when you need to chain multiple operations in a single upgrade.
+
+Common options:
+
+- `--data-dir` path to a global state directory where `data.lmdb` can be found
+- `--state-hash` is the state root hash at the latest block. You should use the client to obtain the most recent state root hash to generate the `global_state.toml`.
+
 ### Rotating validators
 
 The following command rotates the validator set. Perform a network upgrade with a `global_state.toml` with the new entries generated by the `global-state-update-gen` command.
@@ -368,12 +431,12 @@ global-state-update-gen validators \
 ```
 
 ### Adding new administrators
-The following command produces the administrator content in the `global_state.toml` file. 
+The following command produces the administrator content in the `global_state.toml` file.
 
 ```sh
 global-state-update-gen generate-admins --admin NEW_PUBLIC_KEY,NEW_BALANCE --data-dir $DATA_DIR --state-hash $STATE_ROOT_HASH
 ```
-Remember that new administrators can be created, and the validator set can also be rotated in a single update. 
+Remember that new administrators can be created, and the validator set can also be rotated in a single update.
 
 The `chainspec.toml` file should contain the following entries that include new administrators as well as existing ones for an upgrade:
 
@@ -384,4 +447,3 @@ administrators = ["NEW_PUBLIC_KEY"]
 ```
 
 After this step, the private network would be ready for use.
-
