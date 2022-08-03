@@ -8,7 +8,7 @@ As a solution to this problem, the Casper platform provides the `Dictionary` fea
 
 ## Seed URefs
 
-Items within a dictionary exist as individual records stored underneath their unique [dictionary address](../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations), or seed URef, in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](../../design/uref) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
+Items within a dictionary exist as individual records stored underneath their unique [dictionary address](../../dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](../../design/uref) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
 
 As each dictionary item exists as a stand-alone entity in global state, regularly used dictionary keys may be used directly without referencing their seed URef.
 
