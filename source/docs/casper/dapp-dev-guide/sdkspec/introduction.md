@@ -20,7 +20,7 @@ The Casper platform uses a custom serialization format. Tto this end, we've esta
 |----|-----------|
 |[Guidance for JSON-RPC SDK Compliance](/dapp-dev-guide/sdkspec/guidance.md)|Guide on the requirements for a compliant Casper SDK.|
 |[Required JSON-RPC Methods for Minimal Compliance](/dapp-dev-guide/sdkspec/json-rpc-minimal.md)|Methods required for a minimally compliant Casper SDK.|
-|[Transactional JSON-RPC Method](/dapp-dev-guide/sdkspec/json-rpc-transactional.md)|Description of `account_put_deploy`, the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network.|
+|[Transactional JSON-RPC Method](/dapp-dev-guide/sdkspec/json-rpc-transactional.md)|Description of `account_put_deploy`, the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network. Also includes the `speculative_exec` method.|
 |[Informational JSON-RPC Methods](/dapp-dev-guide/sdkspec/json-rpc-informational.md)|Descriptions of methods that return information from a network or node within a network.|
 |[Proof-of-Stake JSON-RPC Methods](/dapp-dev-guide/sdkspec/json-rpc-pos.md)|Descriptions of methods that pertain to Proof-of-Stake functionality on a Casper network.|
 |[Types](/dapp-dev-guide/sdkspec/types_chain.md)|Information on types used within JSON-RPC methods.|
