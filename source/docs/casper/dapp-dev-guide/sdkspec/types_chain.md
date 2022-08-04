@@ -280,7 +280,7 @@ Required Parameters:
 
 ## EntryPoint {#entrypoint}
 
-Type signature of a method. Order of arguments matter since this can be referenced by index as well as name.
+Metadata describing a callable entry point and its return value, if any. All required parameters should be declared, whereas all non-required parameters should not be declared. Non-required parameters should not be confused with optional parameters.
 
 Required Parameters:
 
@@ -296,19 +296,19 @@ Required Parameters:
 
 ## EntryPointAccess {#entrypointaccess}
 
-Enum describing the possible access control options for a contract entry point (method).
+Enum describing the possible access control options for a contract entry point.
 
-* `Public`
+* `Public` A public entry point is callable by any caller.
 
-* [`Groups`](#group) Only users from the listed groups may call this method. Note: If this list is empty then this method is not callable from outside the contract.
+* [`Groups`](#group) Only callers from the authorized, listed groups may call this entry point. Note: If this list is empty then this entry point is not callable from outside the contract.
 
 ## EntryPointType {#entrypointype}
 
-Context of a method execution.
+Context of an entry point execution.
 
-* `session`
+* `session` Executes in the caller's context.
 
-* `contract`
+* `contract` Executes in the callee's context.
 
 ## EraID {#eraid}
 
@@ -460,7 +460,7 @@ Identifier for possible ways to query global state.
 
 ## Group {#group}
 
-A (labelled) "user group". Each method of a versioned contract may be associated with one or more user groups which are allowed to call it.
+A (labelled) "user group". Each entry point of a versioned contract may be associated with one or more user groups which are allowed to call it.
 
 ### Groups {#groups}
 
@@ -706,7 +706,7 @@ The type of operation performed while executing a Deploy.
 
 ## Parameter {#parameter}
 
-Parameter to a method.
+Parameter to an entry point.
 
 Required Parameters:
 
@@ -792,7 +792,7 @@ Representation of a value stored in global state. `Account`, `Contract` and `Con
 
 * `ContractWasm` A contract's Wasm.
 
-* [`Contract`](#contract) Methods and type signatures supported by a contract`
+* [`Contract`](#contract) Entry points supported by a contract.
 
 * [`ContractPackage`](#contractpackage) A contract definition, metadata, and security container.
 
