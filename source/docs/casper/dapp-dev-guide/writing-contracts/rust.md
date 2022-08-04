@@ -120,9 +120,15 @@ const FUNDRAISING_PURSE: &str = "fundraising_purse";
 
 ### Step 4. Defining the Contract Entry Points
 
-Entry points serve as a means to access contract code installed on global state. These functions may be called by either session code or another instance of contract code. When creating contract code, you should clearly define entry point functions by using meaningful names that describe the actions that they perform.
+Entry points serve as a means to access contract code installed on global state. These entry points may be called by either session code or another smart contract. When writing the Wasm producing code for a smart contract, you must define entry points by using meaningful names that describe the actions that they perform.
 
-When defining entry points, begin with a `#[no_mangle]` line to ensure that the system does not change critical syntax within the method names. Each entry point should contain the contract code that drives the action you wish the function to accomplish. Finally, include any storage or return values needed as applicable.
+A smart contract is Wasm binary produced from Wasm-producing logic. The Wasm-producing code has one or more entry points that can be called by external logic. When writing your own smart contract, you must have at least one entry point and you may have more than one entry point. Entry points are defined by their name and those names should be clear and self-describing. Each entry point is effectively equivalent to a static main entry point in a traditional program.
+
+Entry points are not functions or methods, they have no arguments. They are a static entry point into the logic. Yet, parameters are available in the body of the logic. Parameters that were passed along with the Deploy are accessible by name to the smart contract logic. The smart contract may access any of these entry points, or none of them as required.
+
+If your entry point has one or more parameters that will cause the logic to revert if they are not included, you should declare them within that entry point. Any other parameters that are conditionally looked for, but are not critical for execution, should not be included.
+
+When defining entry points, begin with a `#[no_mangle]` line to ensure that the system does not change critical syntax within the method names. Each entry point should contain the contract code that drives the action you wish it to accomplish. Finally, include any storage or return values needed as applicable.
 
 ```rust
 
@@ -205,7 +211,7 @@ At the time of contract installation, pass in parameters as runtime arguments. U
 
 In the donation contract example, the only variable parameter is the `DONATING_ACCOUNT_KEY`.
 
-2) Insert the function entry points into the `call` function.
+2) Insert the entry points into the `call` function.
 
 The `call` function replaces a traditional `main` function and executes automatically when a caller interacts with the contract code. Within the `call` function, we define entry points that the caller can access using another instance of code. The calling code may be an instance of session or contract code. When writing code that will call an entry point, there must be a one-to-one mapping of the entry point name. Otherwise, the execution engine will return an error that the entry point does not exist.
 
