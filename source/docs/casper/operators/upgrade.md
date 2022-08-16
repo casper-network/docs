@@ -20,7 +20,7 @@ Do not restart the node, only run the commands provided. The upgrade will automa
 
 ### Upgrade to Casper Node v1.4.6
 
-This includes Scratch Trie optimization, which should drastically reduce database (DB) space increase.
+This includes Scratch Trie optimization, which should drastically reduce database (DB) size increases.
 
 For this upgrade to protocol version 1.4.6, the activation point is `Era 4968`, which will be approximately around:
 
