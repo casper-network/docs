@@ -118,7 +118,7 @@ If your `casper-node-launcher status` is not shown as active (running) with an i
 
 ### Monitor your node once it is up
 
-Get a monitoring tool in place. The community has created a few tools such as:
+The community has created a few tools to monitor your node once it is running, such as:
 
 - Status.py: https://github.com/RapidMark/casper-tools
 - Grafana: https://github.com/matsuro-hadouken/casper-tools
