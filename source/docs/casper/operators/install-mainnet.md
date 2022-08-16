@@ -114,7 +114,7 @@ RPC: Ready
            └─16842 /var/lib/casper/bin/1_4_5/casper-node validator /etc/casper/1_4_5/config.toml
 ```
 
-If your `casper-node-launcher status` is not show active (running) with an increasing time, you are either not running or restarting. 
+If your `casper-node-launcher status` is not shown as active (running) with an increasing time, you are either not running or in the process of restarting. 
 
 ### Monitor your node once it is up
 
