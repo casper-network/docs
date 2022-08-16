@@ -23,7 +23,7 @@ Please read through [this page on nofiles configuration](https://github.com/casp
 
 ## Clean up Required
 
-If you were running previous node on this box, this will clean up state. If packages are not installed, the `apt remove` may give errors, this is not a problem.
+If you were running a previous node on this box, this will clean up state. If packages are not installed, the `apt remove` may give errors, but this is not a problem.
 
 ```bash
 sudo systemctl stop casper-node-launcher.service
