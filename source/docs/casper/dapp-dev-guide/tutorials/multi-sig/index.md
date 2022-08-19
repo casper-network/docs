@@ -5,7 +5,7 @@ slug: /multi-sig
 
 # Multi-Signature Tutorial
 
-Coming soon!
+See the [Two-Party Multi-sig workflow](/workflow/two-party-multi-sig/).
 
 <!-- TODO The videos and the tutorial need to be updated. Keeping the content in the repository for now and commenting it out so that it doesn't show up in search results.
 
