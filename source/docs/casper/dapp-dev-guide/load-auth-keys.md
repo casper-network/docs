@@ -3,7 +3,7 @@
 This topic explains the difference between associated keys and authorization keys and the benefits of the list authorization keys feature.
 
 ## Associated Keys and Authorization Keys
-Lets understand the relation between associated keys and authorization keys. To understand more about associated keys and how they are linked to an account, see [Multisig Tutorial](tutorials/multi-sig/example.md).
+Lets understand the relation between associated keys and authorization keys. To understand more about associated keys and how they are linked to an account, see the [Two-Party Multi-Signature workflow](/workflow/two-party-multi-sig/).
 
 - Associated keys are public keys which are associated with a given account.
 - Authorization keys are public keys which are used to sign a given deploy and are used by the node to check that the deploy has permission to be executed.
