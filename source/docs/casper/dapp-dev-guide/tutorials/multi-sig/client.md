@@ -1,5 +1,7 @@
 # Client Example
 
+<!-- TODO refresh the tutorial, but keep the content for now. Commenting it out so it doesn't show up in the search.
+
 This section covers an example client that invokes a smart contract for key management. In addition to the main account, the client code will add two additional associated accounts to perform deployments. These associated accounts will perform deployments but will not be able to add another account.
 
 You will test the client example using [NCTL](https://github.com/casper-network/casper-node/tree/master/utils/nctl), and interact with your local network.
@@ -253,3 +255,4 @@ After the transfer of funds, the client code removes both deployment accounts in
 You can now employ a similar strategy to set up your account using multiple keys, see [Setting up a Multi-sig Account](example.md).  
 
 
+-->

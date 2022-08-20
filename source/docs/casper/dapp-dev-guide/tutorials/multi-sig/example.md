@@ -1,5 +1,7 @@
 # Setting up a Multi-sig Account
 
+<!-- TODO refresh the tutorial, but keep the content in the repository. Commenting it out so it doesn't show up in the search results.
+
 In this section, we will explore the commands to setup an account with associated keys and restrict access for deployment and key management to specific keys within the account. 
 
 In this example, we will set up an account with the following weights and thresholds:
@@ -746,3 +748,5 @@ To make a transfer using your multisig account, see [Transferring Tokens using a
 
 :::
 
+
+-->
