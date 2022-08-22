@@ -6,6 +6,10 @@ Storage on global state can be accomplished with [`NamedKeys`](/dapp-dev-guide/s
 
 Due to the nature of Casper's serialization standard, `NamedKeys` should be used sparingly for smaller subsets of data. Developers should use dictionaries for larger subsets of mapped structures.
 
+## Casper JSON-RPC
+
+The [`query_global_state`](/dapp-dev-guide/sdkspec/json-rpc-informational/#query-global-state) method available through the JSON-RPC allows users to read data from global state without performing on-chain actions.
+
 ## Casper API
 
 The Casper API includes the following for reading and writing to global state:
