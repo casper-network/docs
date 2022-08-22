@@ -161,6 +161,7 @@ module.exports = {
         "design/index",
         "design/p2p",
         "design/global-state",
+        "design/reading-and-writing-to-the-blockchain",
         "design/execution-semantics",
         "design/accounts",
         "design/block-structure",
