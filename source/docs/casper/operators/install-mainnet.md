@@ -7,7 +7,7 @@ Ensure the requirements listed in the following sections are met before you star
 The following ports are used by the node:
 
 - 35000 (required to be externally visible)
-- 7777 RPC endpoint for interaction with casper-client
+- 7777 RPC endpoint for interaction with JSON-RPC API
 - 8888 REST endpoint for status and metrics (having this accessible allows your node to be part of network status)
 - 9999 SSE endpoint for event stream
 
