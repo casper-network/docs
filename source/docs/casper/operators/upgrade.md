@@ -18,18 +18,6 @@ All Casper Mainnet participants are requested to stage the upgrade of their node
 
 Do not restart the node, only run the commands provided. The upgrade will automatically occur at the activation point.
 
-### Upgrade to Casper Node v1.4.6
-
-This includes Scratch Trie optimization, which should drastically reduce database (DB) size increases.
-
-For this upgrade to protocol version 1.4.6, the activation point is `Era 4968`, which will be approximately around:
-
-- 2022-05-20 13:08 UTC
-- 2022-05-20 06:08 PST
-- 2022-05-20 09:08 EST
-- 2022-05-20 15:08 CET
-- 2022-05-20 21:08 HKT
-
 ### Upgrade Staging Instructions
 
 The process to upgrade your node is very straightforward. Log in to your node, and execute the following two commands.
