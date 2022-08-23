@@ -15,7 +15,7 @@ Of these `35000` is the only port required to be open for your node to function,
 
 ## OS Requirements
 
-The recommended OS versions are Ubuntu 18.04 or 20.04.
+The recommended OS version is Ubuntu 20.04.
 
 ## Number of Open Files
 
