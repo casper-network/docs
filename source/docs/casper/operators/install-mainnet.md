@@ -66,6 +66,8 @@ If you do not have keys, you can create them using the following command:
 sudo -u casper casper-client keygen /etc/casper/validator_keys
 ```
 
+>**Note**: To avoid losing your keys if you lose machine data, save them offline.
+
 ## Get a Trusted Hash
 
 To get a trusted hash, use this command:

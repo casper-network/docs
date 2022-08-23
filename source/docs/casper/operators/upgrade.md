@@ -20,19 +20,13 @@ Do not restart the node, only run the commands provided. The upgrade will automa
 
 ### Upgrade Staging Instructions
 
-The process to upgrade your node is very straightforward. Log in to your node, and execute the following two commands.
+The process to upgrade your node is very straightforward. Log in to your node, and execute the following command:
 
-1. Before running the upgrade, view the script with this command (optional):
+```bash
+sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf
+```
 
-    ```bash
-    curl -s genesis.casperlabs.io/casper/1_4_6/stage_upgrade.sh
-    ```
-
-2.  Download and execute the upgrade:
-
-    ```bash
-    cd ~; curl -sSf genesis.casperlabs.io/casper/1_4_6/stage_upgrade.sh | sudo bash -
-    ```
+>**Note**: To only view the list of staged and unstaged protocols, use this command: `sudo -u casper /etc/casper/node_util.py check_protocols casper.conf`
 
 ### Verifying Successful Staging
 
