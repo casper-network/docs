@@ -76,6 +76,8 @@ To get a trusted hash, use this command:
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
 ```
 
+>**Note**: If the IP address in the above command is not responding, you can find active peers at https://cspr.live/tools/peers for the Mainnet. For the Testnet, you can find active peers at https://testnet.cspr.live/tools/peers.
+
 ## Start the Node
 
 Start the node using the following commands:

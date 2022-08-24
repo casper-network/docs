@@ -46,6 +46,8 @@ $ curl -s localhost:8888/status | jq .next_upgrade
 }
 ```
 
+>**Note**: The protocol version in the above output will change as per the next upgrade available.
+
 If you see null after waiting for a few minutes, then your upgrade staging was not executed successfully.
 
 
