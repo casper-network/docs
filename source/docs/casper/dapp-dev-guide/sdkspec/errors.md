@@ -1,6 +1,6 @@
 # Casper JSON-RPC Error Codes
 
-The following document expands on custom error codes available on the `casper-json-rpc` implementation.
+The following document expands on custom error codes provided by `casper-json-rpc` crate.
 
 ## Error Codes {#codes}
 
