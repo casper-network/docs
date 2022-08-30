@@ -27,9 +27,9 @@ A collection of configuration settings describing the state of the system at gen
 
 ## Consensus {#consensus}
 
-An algorithm used to mandate agreement on the [blockchain](B.md#blockchain) between all nodes. The blockchain, although being built in a decentralized way, eventually converges so that all nodes eventually agree on whether a given block is part of the chain or not.
+A consensus is a (mathematical) mechanism deployed on blockchain for nodes to reach common a agreement on the current state of the distributed ledger. This mechanism typically entails the process to validate, verify and confirm transactions proposed by a validator, followed by recording in the ledger, by the addition of blocks. This is an algorithm used to mandate agreement on the [blockchain](B.md#blockchain) between all nodes. The blockchain, although being built in a decentralized way, eventually converges so that all nodes eventually agree on whether a given block is part of the chain or not. In order to guarantee that all participants (‘nodes’) in a blockchain network agree on a single version of history, blockchain networks like Bitcoin and Ethereum implement what’s known as consensus mechanisms (also known as consensus protocols or consensus algorithms). 
 
-Casper uses the Highway algorithm in the _CBC Casper_ family of consensus algorithms. The algorithm for securing an agreement is what is known as _consensus_. The consensus layer contains the algorithm, but the algorithm should not be confused with the consensus layer.
+Casper uses the Highway algorithm in the [CBC Casper](https://github.com/ethereum/cbc-casper/wiki/FAQ)_ family of consensus algorithms. The algorithm for securing an agreement is what is known as _consensus_. The consensus layer contains the algorithm, but the algorithm should not be confused with the consensus layer.
 
 ## Contract runtime {#contract-runtime}
 

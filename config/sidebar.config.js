@@ -161,6 +161,7 @@ module.exports = {
         "design/global-state",
         "design/execution-semantics",
         "design/accounts",
+        "design/consensus",
         "design/block-structure",
         "design/uref",
         "design/serialization-standard",

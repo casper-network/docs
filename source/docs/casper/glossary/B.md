@@ -29,7 +29,7 @@ Note that only validators can create valid blocks.
 
 ## Block finality {#block-finality}
 
-A block is "finalized" if the validators agree on adding it to the blockchain.
+A block is "finalized" if the validators agree on adding it to the blockchain. There is a period where a transaction might be vulnerable to attacks from bad actors trying to take advantage of blockchains with weak finality. A transaction should be certain blocks deep to be considered to be finalized.
 
 There are different levels of _finality_ in the [Highway](H.md#highway) protocol. A finalized block has a fault-tolerance _F_, expressed as a fraction of the total stake. For an observer to see a conflicting block as finalized, several validators whose total stake exceeds _F_ would have to collude and show different information in a way that would ultimately be detected and punished (see [slashing](S.md#slashing)).
 
@@ -72,3 +72,8 @@ Depositing money in the [auction contract](A.md#auction-contract) and try to bec
 ## Booking block {#booking-block}
 
 The booking block for an era is the block that determines the era's validator set. In it, the [auction contract](A.md#auction-contract) selects the highest bidders to be the future era's validators. There is a configurable delay, the _auction_delay_, which is the number of eras between the booking block and the era to which it applies. The booking block is always a switch block, so the booking block for era _N + auction_delay + 1_ is the last block of era _N_.
+
+## Byzantine Fault {#byzantine-fault}
+In the blockchain system, Byzantine Fault is a state of a system where a computing device (node) connected to a network may fail and imperfect information exists on its status of failure. This may be a result of a software bug or a malicious attack. A misbehaving node in a decentralized network (such as in a blockchain) is known as a byzantine node. A byzantine node can compromise the functioning (liveness and safety) of a blockchain network. This is derived from [Byzantine Generals Problem](https://river.com/learn/what-is-the-byzantine-generals-problem/). 
+
+[Byzantine Fault Tolerance](https://academy.binance.com/en/articles/byzantine-fault-tolerance-explained) is the feature of a distributed network to reach consensus even when some of the nodes in the network fail to respond or respond with incorrect information. It ensures the capability of blockchain networks to survive byzantine attacks and maintain the liveness.
