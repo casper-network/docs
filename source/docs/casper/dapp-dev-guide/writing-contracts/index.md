@@ -23,7 +23,7 @@ Additionally, the following tutorials outline some aspects of writing smart cont
 
 | Title                                                       | Description                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |
-|[NFTs on Casper](https://github.com/casper-ecosystem/casper-nft-cep47/blob/master/README.md)                            | Implementing the Casper NFT standard                      |
+|[NFTs on Casper with the CEP-78 NFT Standard](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/README.md) | Implementing the Casper CEP-78 NFT standard     |
 |[A Counter on an NCTL Network](/dapp-dev-guide/tutorials/counter/index.md)             | An example contract that maintains a counter variable on a local Casper Network with NCTL     |
 |[A Counter on the Testnet](/dapp-dev-guide/tutorials/counter-testnet/index.md)         | An example contract that maintains a counter variable on the Casper Testnet                   |
 |[Fungible Tokens on Casper](https://github.com/casper-ecosystem/erc20/blob/master/docs/TUTORIAL.md)              | Implement the Casper Fungible Token standard                         |
