@@ -90,6 +90,7 @@ module.exports = {
                 "dapp-dev-guide/writing-contracts/installing-contracts",
                 "dapp-dev-guide/writing-contracts/calling-contracts",
                 "dapp-dev-guide/writing-contracts/upgrading-contracts",
+                "dapp-dev-guide/writing-contracts/session-contract-diff",
                 "dapp-dev-guide/writing-contracts/execution-error-codes",
                 "dapp-dev-guide/writing-contracts/assembly-script",
             ],
