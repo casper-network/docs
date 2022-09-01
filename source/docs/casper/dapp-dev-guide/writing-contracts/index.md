@@ -10,14 +10,17 @@ This section shows you how to write session code and smart contracts in Rust and
 | Title                                       | Description                     |
 | ------------------------------------------- | ------------------------------- |
 |[Getting Started with Rust](/dapp-dev-guide/writing-contracts/getting-started.md)| An introduction to using Rust with the Casper Platform|
-|[Writing Session Code](session-code.md)      | An introduction to writing session code|
-|[Unit Testing Session Code](testing-session-code.md)      | Steps to test session code using the unit testing framework|
-|[A Basic Smart Contract in Rust](rust.md)   | An example of a smart contract built in Rust|
-|[Unit Testing Smart Contracts](testing.md)      | Steps to test contract code using the unit testing framework|
-|[Installing Smart Contracts](installing-contracts.md)| A guide on installing smart contracts and querying global state        |
-|[Calling Smart Contracts](calling-contracts.md)| Steps to call a smart contract with the Rust command-line client|
-|[Upgrading Smart Contracts](upgrading-contracts.md)| An introduction to versioning smart contracts|
-|[Getting Started with AssemblyScript](assembly-script.md) | An introduction to using AssemblyScript with the Casper Platform |
+|[Best Practices for Casper Smart Contract Authors](/dapp-dev-guide/writing-contracts/best-practices.md)| An outline of best practices when developing smart contracts on a Casper Network|
+|[Signing a Deploy](/dapp-dev-guide/writing-contracts/signing-a-deploy.md)|Details on the process of signing a deploy|
+|[Writing Session Code](/dapp-dev-guide/writing-contracts/session-code.md)      | An introduction to writing session code|
+|[Unit Testing Session Code](/dapp-dev-guide/writing-contracts/testing-session-code.md)      | Steps to test session code using the unit testing framework|
+|[Writing a Basic Smart Contract in Rust](/dapp-dev-guide/writing-contracts/rust.md)   | An example of a smart contract built in Rust|
+|[Unit Testing Smart Contracts](/dapp-dev-guide/writing-contracts/testing.md)      | Steps to test contract code using the unit testing framework|
+|[Installing Smart Contracts and Querying Global State](/dapp-dev-guide/writing-contracts/installing-contracts.md)| A guide on installing smart contracts and querying global state        |
+|[Calling Smart Contracts with the Rust Client](/dapp-dev-guide/writing-contracts/calling-contracts.md)| Steps to call a smart contract with the Rust command-line client|
+|[Upgrading and Maintaining Smart Contracts](/dapp-dev-guide/writing-contracts/upgrading-contracts.md)| An introduction to versioning smart contracts|
+|[Execution Error Codes](/dapp-dev-guide/writing-contracts/execution-error-codes.md)|Possible error codes when writing smart contracts.|
+|[Getting Started with AssemblyScript](/dapp-dev-guide/writing-contracts/assembly-script.md) | An introduction to using AssemblyScript with the Casper Platform |
 
 Additionally, the following tutorials outline some aspects of writing smart contracts on the Casper Network.
 
