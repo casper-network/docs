@@ -24,7 +24,7 @@ All the events other than `DeployAccepted` and `FinalitySignature` fall under th
 You can start watching the event stream details using a simple Curl call as in the below format:
 
 ```bash
-curl -s http://<HOST:PORT>/events/<ENDPOINT>
+curl -sN http://<HOST:PORT>/events/<ENDPOINT>
 ```
 
 - `HOST` - The IP address of a peer on the network
@@ -38,7 +38,7 @@ Refer to the [serialization standard](/design/serialization-standard/) page to g
 You can start watching the event stream for the `DeployAccepted` event or any other events being emitted on this endpoint using the following command. Replace the `HOST` field with the `peer IP address`.
 
 ```bash
-curl -s http://<HOST>:9999/events/deploys
+curl -sN http://<HOST>:9999/events/deploys
 ```
 **DeployAccepted event details**
 
@@ -98,7 +98,7 @@ You can find the definitions of the terms in the above `DeployAccepted` JSON rep
 You can start watching the event stream for the `FinalitySignature` event or any other events being emitted on this endpoint using the following command. Replace the `HOST` field with the `peer IP address`.
 
 ```bash
-curl -s http://<HOST>:9999/events/sigs
+curl -sN http://<HOST>:9999/events/sigs
 ```
 **FinalitySignatures event details**
 
@@ -136,7 +136,7 @@ All the events apart from `DeployAccepted` and `FinalitySignature` are emitted o
 Use the below command to monitor those event streams:
 
 ```bash
-curl -s http://<HOST>:9999/events/main
+curl -sN http://<HOST>:9999/events/main
 ```
 Further details of each event are presented in the following sections. 
 
@@ -646,12 +646,12 @@ id:1107
 This command will replay the event stream from an old event onwards. Replace HOST, EVENT_TYPE, and ID fields with the values of your scenario.
 
 ```bash
-curl -s http://<HOST>:9999/events/<EVENT_TYPE>?start_from=<ID>
+curl -sN http://<HOST>:9999/events/<EVENT_TYPE>?start_from=<ID>
 ```
 *Example:*
 
 ```bash
-curl -s http://65.21.235.219:9999/events/main?start_from=29267508
+curl -sN http://65.21.235.219:9999/events/main?start_from=29267508
 ```
 
 Each URL can have a query string added to the form `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events.
