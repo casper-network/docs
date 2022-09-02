@@ -51,7 +51,7 @@ Highway operates on a time-slot basis. There is one Highway instance available f
 
 The lead validator proposes the block to be added to the network. Then a portion of validators (usually 66% majority) from the validator set approve the transactions of the selected block using a collaboration mechanism called [Summit](./#summit-the-highway-protocols-way-to-finality). The selected block is finalized via the summit and appended to the network. Usually, in Casper Mainnet, an era spans two hours. During each era, the validator set is constant and running on the Highway instance with a grid of messages creating the Summit.
 
-When an era completes, the last block of the previous era is taken as the initial state of the next era and a new highway instance is initialized potentially with a different set of validators. The validator set is selected using a [bidding](/economics/consensus/#bids) mechanism. Refer to the [consensus economics](/economics/consensus/) section to learn about the factors related to the auction process, bidding, delegation, and incentive details.
+When an era completes, the last block of the previous era is taken as the initial state of the next era and a new Highway instance is initialized potentially with a different set of validators. The validator set is selected using a [bidding](/economics/consensus/#bids) mechanism. Refer to the [consensus economics](/economics/consensus/) section to learn about the factors related to the auction process, bidding, delegation, and incentive details.
 
 ## Key Improvements
 Casper Highway protocol implements three critical properties over CBC Casper. These are `Finality`, `Flexibility`, and `Liveness`. CasperLabs has proposed specific implementations to achieve these key features.
