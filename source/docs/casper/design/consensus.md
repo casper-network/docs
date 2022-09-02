@@ -29,7 +29,7 @@ Casper Highway emphasizes three key improvements over CBC Casper:
 - [***Flexibility***](./#flexibility) - Ability to configure nodes on different levels allowing more flexibility on the consensus mechanism.
 - [***Liveness***](./#liveness) - Ability to keep running the network through conflicting situations without abruptly shutting down.
 
-Casper highway provides provably implemented solutions to achieve the above features with the accompanied PoS protocol, partially synchronized BFT model, and combined finality approaches. 
+Casper Highway provides provably implemented solutions to achieve the above features with the accompanied PoS protocol, partially synchronized BFT model, and combined finality approaches. 
 
 ## Why Highway?
 
