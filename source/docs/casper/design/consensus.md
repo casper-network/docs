@@ -69,7 +69,7 @@ There are two factors when reaching the finality:
 1. A sufficient portion of validators agrees on the proposed block. 
 2. Every validator should be mutually acknowledged by other validators.
 
-Generally, the consensus is reached when all the validators are in agreement. However, in Casper we don't need all validators to be in agreement - a majority is enough. Generally, 2/3 portion of the validators should be honest to accept a final network state. In Casper, the underlying mechanism to reach this finality is called [`Summit`](./#summit-the-highway-protocols-way-to-finality). `Summit` makes our highway protocol unique in several aspects compared to the equivalent [`Clique`](https://en.wikipedia.org/wiki/Clique_(graph_theory)) based mechanism in CBC Casper.  
+Generally, consensus is reached when all the validators are in agreement. However, in Casper we don't need all validators to be in agreement - a majority is enough. Generally, 2/3 portion of the validators should be honest to accept a final network state. In Casper, the underlying mechanism to reach this finality is called [`Summit`](./#summit-the-highway-protocols-way-to-finality). `Summit` makes our highway protocol unique in several aspects compared to the equivalent [`Clique`](https://en.wikipedia.org/wiki/Clique_(graph_theory)) based mechanism in CBC Casper.  
 
 #### Summit: The Highway Protocol’s way to Finality
 
