@@ -17,7 +17,7 @@ Casper Highway addresses all the above characteristics along with a set of other
 You can study deep on the consensus-related algorithms and mathematical theorems in the [Casper Highway Whitepaper](https://arxiv.org/pdf/2101.02159.pdf). 
 
 
-    We will be using the terms 'node' and 'validator` to describe the same component in this document.
+    We will be using the terms 'node' and 'validator' to describe the same component in this document.
 
 ## What is Highway?
 
