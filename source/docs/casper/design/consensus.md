@@ -1,6 +1,6 @@
 # Casper Highway Protocol
 
-Distributed networks need a mechanism to reach an agreement on the present state of the network. In Blockchain, these agreements are achieved through [consensus](/glossary/C/#consensus) protocols. These protocols determine the validity of transactions, address conflicts, and finalize the blocks to be added to the network. The ultimate motive of the consensus is to reach an irreversible state of the network. Many blockchain platforms share similar components and characteristics to implement the consensus mechanism whereas the underlying algorithms and decision strategies are unique to each platform.
+Distributed networks need a mechanism to reach an agreement on the present state of the network. In Blockchain, these agreements are achieved through [consensus](/glossary/C/#consensus) protocols. These protocols determine the validity of transactions, address conflicts, and finalize the blocks to be added to the network. The ultimate motive of consensus is to reach an irreversible state of the network. Many blockchain platforms share similar components and characteristics to implement the consensus mechanism whereas the underlying algorithms and decision strategies are unique to each platform.
 
 There are two basic *components* of a consensus:
 1. *Validators*: Network node contributing to the consensus.
