@@ -12,7 +12,7 @@ In general, a consensus mechanism addresses the following three main *characteri
 - *Liveness*: The system keeps running despite any blockages and new blocks continue to be added to the network indefinitely.
 - *Fault-tolerance*: The system can survive the failure of a certain portion of nodes at any point. In theory, an attacker can compromise consensus by controlling 51% of the network. Consensus mechanisms are designed to make this `51% attack` unfeasible by introducing different methodologies.
 
-Casper highway addresses all the above characteristics along with a set of other [improved implementations](/design/consensus/#key-improvements) to serve the practical use cases with wide scalability and efficiency. Highway is operational in the Casper production environment since March 2021 with publicly traded CSPR tokens and has passed the necessary security audits.
+Casper Highway addresses all the above characteristics along with a set of other [improved implementations](/design/consensus/#key-improvements) to serve the practical use cases with wide scalability and efficiency. Highway is operational in the Casper production environment since March 2021 with publicly traded CSPR tokens and has passed the necessary security audits.
 
 You can study deep on the consensus-related algorithms and mathematical theorems in the [Casper Highway Whitepaper](https://arxiv.org/pdf/2101.02159.pdf). 
 
