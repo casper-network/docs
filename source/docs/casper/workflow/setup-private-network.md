@@ -270,7 +270,7 @@ Every node in the private chain network has to be configured with the same CA ce
 2022-09-01T12:08:53.031417Z DEBUG init:incoming{; peer_addr=127.0.0.1:50998}: [casper_node::components::small_network small_network.rs:501] incoming connection failed early; err=TLS validation error of peer certificate: the certificate is not signed by provided certificate authority
 ```
 
-Keep in mind that for security reasons `ca_key.pem` should not be stored securely and never present on each of participating machines.
+Keep in mind that for security reasons `ca_key.pem` should be stored securely and never present on each of participating machines.
 
 ### Funding Alice's account
 
