@@ -211,5 +211,5 @@ The resulting UI elements will look like this:
 ## External links
 
 * The [Vita JavaScript guide](https://vitejs.dev/guide/)
-* The [Casper JavaScript SDK source code](https://github.com/casper-ecosystem/casper-js-sdk)
+* The [Casper Java SDK source code](https://github.com/casper-ecosystem/casper-js-sdk)
 * The [Casper Signer guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
