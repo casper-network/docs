@@ -221,6 +221,57 @@ export CHAIN_NAME="private-test"
 
 This testing example will also use an `alice/secret_key.pem` file, a secret key generated through the [keys generation process](/dapp-dev-guide/keys/#creating-accounts-and-keys). Alice is a regular user in this testing example.
 
+### Network access control
+
+With a default configuration each node generates a self-signed certificate to encrypt peer-to-peer communication. This means any person can join an existing network, and sync with the network, which in private chains may not be allowed.
+
+To restrict access for new nodes joining an existing private chain network, the node software supports loading signed client certificates by a certificate authority (CA).
+
+```toml
+[network.identity]
+tls_certificate = "local_node_cert.pem"
+secret_key = "local_node.pem"
+ca_certificate = "ca_cert.pem"
+```
+
+- `tls_certificate` is the certificate signed by a `ca_cert.pem`.
+- `secret_key` refers to a secret key that should be unique to a specific node in the network. All peer-to-peer communication coming from this node will be signed by this key.
+- `ca_certificate` is the network CA that should be the same on each of the nodes.
+
+To set up CA and sign client certificates for a network here are the steps to follow using an openssl command line:
+
+```sh
+# Recommended EC curve algorithm to use
+export CURVE="secp521r1"
+
+# Generate secret key for CA and save it to ca_key.pem
+openssl ecparam -out ca_key.pem -name $CURVE -genkey
+# Create ca_cert.pem signed by ca_key.pem
+openssl req -new -x509 -days 3650 -extensions v3_ca -key ca_key.pem -out ca_cert.pem
+
+# Generate secret key for a node and a certificate signed by the CA
+openssl ecparam -out node_1.pem -name $CURVE -genkey
+openssl req -new -key node_1.pem -out node_1.csr -sha256
+openssl x509 -req -CA ca_cert.pem -CAkey ca_key.pem -CAcreateserial -in node_1.csr -out node_1_cert.pem
+```
+
+And then configure the node with the following settings:
+
+```toml
+[network.identity]
+tls_certificate = "node_1_cert.pem"
+secret_key = "node_1.pem"
+ca_certificate = "ca_cert.pem"
+```
+
+Every node in the private chain network has to be configured with the same CA certificate, and each `tls_certificate` and `secret_key` pair has to be signed by it. Any node trying to join with a certificate signed by an incorrect CA ends up with the following log message:
+
+```
+2022-09-01T12:08:53.031417Z DEBUG init:incoming{; peer_addr=127.0.0.1:50998}: [casper_node::components::small_network small_network.rs:501] incoming connection failed early; err=TLS validation error of peer certificate: the certificate is not signed by provided certificate authority
+```
+
+Keep in mind that for security reasons `ca_key.pem` should be stored securely and never present on each of participating machines.
+
 ### Funding Alice's account
 
 The following command transfers tokens to Alice's account.
