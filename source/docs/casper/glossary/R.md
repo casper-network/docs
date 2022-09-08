@@ -12,7 +12,7 @@ Validators receive rewards for participating in consensus and finalizing blocks.
 
 ## Root hash {#root-hash}
 
-The root node of the hash tree (or [Merkle tree](M.md#merkle-tree)) of all the transactions in a block.
+The root hash, or Merkle Root, is a representation of all the data in a given hash tree. Refer to [Merkle tree](M.md#merkle-tree) if you wish to learn more.
 
 ## Rust {#rust}
 

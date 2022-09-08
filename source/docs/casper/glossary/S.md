@@ -46,6 +46,10 @@ A person that deposits tokens in the [proof-of-stake](P.md#proof-of-stake) contr
 
 A feature of Proof-of-Stake protocols that allows token holders to actively participate in the protocol, thus securing the network. The [Staking Guide](../staking/index.md) highlights the steps required to stake the CSPR token on the Casper network.
 
+## State root hash {#state-root-hash}
+
+The state root hash is an identifier of the network's [global state](G.md#global-state) at a moment in time. The state root hash changes with each block executed, containing deploys. Normally, empty blocks do not modify global state. But, if the empty block is the last one in an era, it will also change the state root hash due to changes introduced by the auction contract calculating the validators for future eras.
+
 ## Stateful {#stateful}
 
 Stateful execution depends on a previous state, which makes the output differ each time. Such executions are performed with the context of previous executions and the current execution may be affected by what happened during previous executions.
