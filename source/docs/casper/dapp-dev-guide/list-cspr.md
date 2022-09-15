@@ -20,11 +20,11 @@ For your exchange, you would need at least one Account. The Casper Network uses 
 
 We have a token and transaction model that features different levels of support that range from convenient to robust. Usually, when you are transferring Casper tokens between two parties, the native two-party transfer will suffice.
 
-Casper supports native two-party transfers as well as bulk transfers using custom Wasm. The native transfer is ideal when you need to perform a one-to-one transfer between two accounts. Whereas, the batched Wasm transfer can be used when you are making bulk transfers. A batched Wasm transfer allows you to do multiple transfers in a single deploy, which makes it a more cost effective method when sending tokens from one account to several others.
+Casper supports native two-party transfers as well as bulk transfers using custom Wasm. The native transfer is ideal when you need to perform a one-to-one transfer between two accounts. Whereas the batched Wasm transfer is better suited for making bulk transfers. A batched Wasm transfer allows you to do multiple transfers in a single deploy, making it more cost-effective when sending tokens from one account to several others.
 
 ### Native transfer
 
-Native transfers can be accomplished by sending a native transfer deploy, without any Wasm. Included below is an example of this type of deploy. The included `payment` field describes how we are paying for the deploy, in this case a native transfer, while the `session` field describes the actual transfer.
+You can accomplish a native transfer by sending a native transfer deploy, without any Wasm. Included below is an example of this type of deploy. The included `payment` field describes how we are paying for the deploy, in this case a native transfer, while the `session` field describes the actual transfer.
 
 <details>
 <summary><b>Native Transfer Deploy</b></summary>
@@ -110,7 +110,7 @@ Native transfers can be accomplished by sending a native transfer deploy, withou
 </details>
 
 
-Native transfer can be used to transfer tokens between two accounts. For details about the native transfer command, see [Direct Token Transfer](../workflow/transfer-workflow.md). The following command transfers 10 CSPR from *account A* to *account B*.
+Native transfers are the simplest method to transfer tokens between two accounts. For details about the native transfer command, see [Direct Token Transfer](../workflow/transfer-workflow.md). The following command transfers 10 CSPR from *account A* to *account B*.
 
 ```bash
 casper-client transfer \
@@ -126,13 +126,13 @@ casper-client transfer \
 
 ### Bulk or batched Wasm transfer
 
-Bulk or batched Wasm transfers can be used when you need to apply some logic before or after the transfer or if the transfer is conditional. You may also use them if you are doing a series of transfers between multiple accounts. Listed below are five methods for the [Rust contract API](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/system/index.html), which can be used in session code to achieve batched Wasm transfer:
+Bulk or batched Wasm transfers allow you to apply some logic before or after the transfer. They also allow for conditional transfers. You may also use them if you are doing a series of transfers between multiple accounts. Listed below are five methods for the [Rust contract API](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/system/index.html), which can be used in session code to achieve batched Wasm transfer:
 
--   `transfer_to_account`: Transfers amount of motes from the default purse of the account to target account. If the target does not exist, it is created. Can be called from session code only and not a contract as a contract doesn't have a main purse.
--   `transfer_to_public_key`: Transfers amount of motes from the main purse of the caller’s account to the main purse of the target. If the account referenced by target does not exist, it is created. Can be called from session code only and not from a contract as a contract doesn't have a main purse.
+-   `transfer_to_account`: Transfers amount of motes from the default purse of the account to target account. If the target purse does not exist, the transfer process will create one. Can be called from session code only and not a contract as a contract doesn't have a main purse.
+-   `transfer_to_public_key`: Transfers amount of motes from the main purse of the caller’s account to the main purse of the target. If the account referenced by the target does not exist, the transfer will create a new account. Can be called from session code only and not from a contract as a contract doesn't have a main purse.
 -   `transfer_from_purse_to_purse`: Transfers amount of motes from source purse to target purse. If the target does not exist, the transfer fails.
--   `transfer_from_purse_to_public_key`: Transfers amount of motes from source to the main purse of target. If the account referenced by target does not exist, it is created.
--   `transfer_from_purse_to_account`: Transfers amount of motes from source purse to target account. If the target does not exist, it is created.
+-   `transfer_from_purse_to_public_key`: Transfers amount of motes from source to the main purse of target. If the account referenced by the target does not exist, the transfer will create it.
+-   `transfer_from_purse_to_account`: Transfers amount of motes from source purse to target account. If the target account does not exist, the transfer creates a new account.
 
 For more information on how to write session code, see [Writing Session Code](../dapp-dev-guide/writing-contracts/session-code.md). There are equivalent [assembly script](https://github.com/casper-network/casper-node/blob/e01b528db64f96fc1d3eac8b3b8e58e1337b398d/smart_contracts/contract_as/assembly/purse.ts#L135-L305) methods available. Alternatively, you can program directly against the [ext-FFI](https://github.com/casper-network/casper-node/blob/e01b528db64f96fc1d3eac8b3b8e58e1337b398d/smart_contracts/contract/src/ext_ffi.rs#L283-L370) methods. 
 
@@ -140,7 +140,7 @@ For more information on how to write session code, see [Writing Session Code](..
 
 You can integrate with the [JSON-RPC API](../dapp-dev-guide/sdkspec/introduction.md) of a node on the Casper Network. 
 You can program directly against the RPC or if you prefer you can choose from the variety of SDK libraries that are available to use on the Casper Network see [SDK Libraries](../dapp-dev-guide/building-dapps/sdk/index.md). 
-Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node. Use of the stream is optional. You might want to use this feature as you will be notified of events instead of asking periodically. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
+Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node. Use of the stream is optional. You might want to use this feature as it notifies you of events instead of requiring you to ask periodically. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 ## Testing the Integration
 
@@ -152,7 +152,7 @@ If you are not going to do a Testnet integration, then we suggest you create som
 
 -   Casper is integrated with BitGo for enterprise grade custody. If your exchange uses BitGo, support for Casper is available already.
 -   Casper has an execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../design/execution-semantics.md).
--   Exchanges can check finality signatures. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
+-   Exchanges can check finality signatures. Validators send finality signatures after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 
 ## Staking Integration for Exchanges
@@ -163,11 +163,11 @@ Exchanges seeking to integrate CSPR staking mechanisms will need to understand t
 
 Staking operations consists of two parts:
 
-1) [Creating a deploy object](/dapp-dev-guide/writing-contracts/session-code/)
+1) [Creating a deploy object](/dapp-dev-guide/building-dapps/sending-deploys/)
     
 2) [Signing the deploy](/dapp-dev-guide/writing-contracts/signing-a-deploy/)
 
-The following information is required within the staking deploy:
+The staking deploy requires the following information:
 - The delegator's public key
 - The validator's public key
 - The new validator's public key (For re-delegation only)
@@ -176,7 +176,7 @@ The following information is required within the staking deploy:
 - The auction manager contract's hash
 - The appropriate entry point
 
-Casper provides a series of prebuilt Wasm files for use in these operations. These are provided for convenience and you are free to create your own custom deploys. They can be found in our [casper-node](https://github.com/casper-network/casper-node) repository, in the following locations:
+Casper provides a series of prebuilt Wasm files for use in these operations. They are provided for convenience, and you are free to create your own custom deploys. You can find them in our [casper-node](https://github.com/casper-network/casper-node) repository, in the following locations:
 
 - [Delegate](https://github.com/casper-network/casper-node/tree/dev/smart_contracts/contracts/client/delegate)
 - [Undelegate](https://github.com/casper-network/casper-node/tree/dev/smart_contracts/contracts/client/undelegate)
@@ -203,7 +203,7 @@ For creating a `session` object, which is `DeployUtil.ExecutableDeployItem`, we 
 - The **delegator** and **validator's public keys**
 - The **amount** of tokens to delegate/undelegate/redelgate
 - The **auction manager contract's hash**
-- The **entry point**.
+- The **entry point**
 
 First, create a variable `RuntimeArgs` from the public keys and the amount. We will need to use it below in `session`:
 
@@ -219,7 +219,7 @@ const args = RuntimeArgs.fromMap({
 
 Second, create a `session` parameter. It is a `Uint8Array` consisting of the `auction manager contract's hash`, the `entry points` and `runtime arguments`, which we previously created.
 
-The `auction manager contract's hash` will depend on the network you are using. For Casper's mainnet and testnet, the hashes are as follows:
+The `auction manager contract's hash` will depend on the network you are using. For Casper's Mainnet and Testnet, the hashes are as follows:
 
 - Mainnet
 
@@ -231,9 +231,9 @@ The `auction manager contract's hash` will depend on the network you are using. 
 
 Your `entry point` will depend on which action you are performing, with the following three available:
 
-- `delegate` - Initial delegation to a validator.
-- `undelegate` - Undelegating tokens from a validator back to the delegator.
-- `redelegate` - Redelegating tokens to a new validator.
+- `delegate` - Initial delegation to a validator
+- `undelegate` - Undelegating tokens from a validator back to the delegator
+- `redelegate` - Redelegating tokens to a new validator
 
 ```
 import { decodeBase16, DeployUtil } from 'casper-js-sdk';
@@ -245,7 +245,7 @@ const session = DeployUtil.ExecutableDeployItem.newStoredContractByHash(
 );
 ```
 
-To create the `payment` parameter for the deploy, we need a deploy cost. The actual costs can be pulled from the network [`chainspec`](https://github.com/casper-network/casper-node/blob/release-1.4.8/resources/production/chainspec.toml).
+To create the `payment` parameter for the deploy, we need a deploy cost. The actual costs can be pulled from the network chainspec. Here is the [`chainspec for version 1.4.8`](https://github.com/casper-network/casper-node/blob/release-1.4.8/resources/production/chainspec.toml). You will need the chainspec for the network version you are using.
 
 Use the `DeployUtil.standardPayment` method for creating `payment`.
 
@@ -301,7 +301,7 @@ Signer.sign(
 
 #### 2b. Sign the deploy (Ledger)
 
-You will need to connect with your`Ledger` first to get the signature. 
+You will need to connect with your `Ledger` first to get the signature. 
 
 ```
 import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
@@ -344,7 +344,7 @@ casperService.deploy(signedDeploy)
 
 ### Costs and Minimums
 
-The following are current costs and minimum amounts, but up-to-date values can be pulled from the network `chainspec`.
+The following are costs and minimum amounts for version 1.4.8, but up-to-date values should be pulled from the network `chainspec`.
 
 Transfer Cost: 100,000,000 motes or 0.1 **CSPR**
 
@@ -356,8 +356,8 @@ Minimum amount required for delegation: 500,000,000,000 motes, or 500 **CSPR**.
 
 ### The Delegation Cap
 
-Casper includes a delegator limit rule, which sets a cap on the number of delegators that a single validator may have at `953`. This is a temporary solution to prevent complications with Casper’s fast sync mechanism - in which high bond counts could break fast sync.
+Casper includes a delegator limit rule, which limits the number of delegators that a single validator may have at `953`. This is a temporary solution to prevent complications with Casper’s fast sync mechanism - in which high bond counts could break fast sync.
 
-Validators with a delegator count at or above `953` at the time of the **1.4.5** upgrade will be grandfathered in, however new delegators will not be able to delegate to any validator until the delegator count for that validator falls below `953`. 
+Validators with a delegator count at or above `953` at the time of the **1.4.5** upgrade were grandfathered in, however new delegators will not be able to delegate to any validator until the delegator count for that validator falls below `953`. 
 
 Existing delegators may continue to delegate additional CSPR, regardless of the current number of delegators staking their **CSPR** to that validator. However, no new delegators may join the validator until it drops below the `953` limit.
