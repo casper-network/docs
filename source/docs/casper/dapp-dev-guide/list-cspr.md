@@ -18,11 +18,97 @@ For your exchange, you would need at least one Account. The Casper Network uses 
 
 ## Understanding Basic Transactions
 
-We have a token and transaction model with different levels of support that ranges from convenience to robustness. Usually, when you are transferring Casper tokens between two parties, the native two-party transfer will suffice.
+We have a token and transaction model that features different levels of support that range from convenient to robust. Usually, when you are transferring Casper tokens between two parties, the native two-party transfer will suffice.
 
-Casper supports native two-party transfers as well as bulk transfers using custom Wasm. The native transfer is ideal when you need to perform a one-to-one transfer between two accounts. Whereas, the batched Wasm transfer can be used when you are making bulk transfers. A batched Wasm transfer allows you to do multiple transfers in a single deploy, which makes it a more cost effective method. 
+Casper supports native two-party transfers as well as bulk transfers using custom Wasm. The native transfer is ideal when you need to perform a one-to-one transfer between two accounts. Whereas, the batched Wasm transfer can be used when you are making bulk transfers. A batched Wasm transfer allows you to do multiple transfers in a single deploy, which makes it a more cost effective method when sending tokens from one account to several others.
 
 ### Native transfer
+
+Native transfers can be accomplished by sending a native transfer deploy, without any Wasm. Included below is an example of this type of deploy. The included `payment` field describes how we are paying for the deploy, in this case a native transfer, while the `session` field describes the actual transfer.
+
+<details>
+<summary><b>Native Transfer Deploy</b></summary>
+
+```json
+
+"id": 1,
+    "jsonrpc": "2.0",
+    "method": "account_put_deploy",
+    "params": {
+        "deploy": {
+            "approvals": [
+                {
+                    "signature": "130 chars",
+                    "signer": "010f50b0116f213ef65b99d1bd54483f92bf6131de2f8aceb7e3f825a838292150"
+                }
+            ],
+            "hash": "ec2d477a532e00b08cfa9447b7841a645a27d34ee12ec55318263617e5740713",
+            "header": {
+                "account": "010f50b0116f213ef65b99d1bd54483f92bf6131de2f8aceb7e3f825a838292150",
+                "body_hash": "da35b095640a403324306c59ac6f18a446dfcc28faf753ce58b96b635587dd8e",
+                "chain_name": "casper-net-1",
+                "dependencies": [],
+                "gas_price": 1,
+                "timestamp": "2021-04-20T18:04:40.333Z",
+                "ttl": "1h"
+            },
+            "payment": {
+                "ModuleBytes": {
+                    "args": [
+                        [
+                            "amount",
+                            {
+                                "bytes": "021027",
+                                "cl_type": "U512",
+                                "parsed": "10000"
+                            }
+                        ]
+                    ],
+                    "module_bytes": ""
+                }
+            },
+            "session": {
+                "Transfer": {
+                    "args": [
+                        [
+                            "amount",
+                            {
+                                "bytes": "0400f90295",
+                                "cl_type": "U512",
+                                "parsed": "2500000000"
+                            }
+                        ],
+                        [
+                            "target",
+                            {
+                                "bytes": "8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668",
+                                "cl_type": {
+                                    "ByteArray": 32
+                                },
+                                "parsed": "8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668"
+                            }
+                        ],
+                        [
+                            "id",
+                            {
+                                "bytes": "00",
+                                "cl_type": {
+                                    "Option": "U64"
+                                },
+                                "parsed": null
+                            }
+                        ]
+                    ]
+                }
+            }
+        }
+    }
+}
+
+```
+
+</details>
+
 
 Native transfer can be used to transfer tokens between two accounts. For details about the native transfer command, see [Direct Token Transfer](../workflow/transfer-workflow.md). The following command transfers 10 CSPR from *account A* to *account B*.
 
@@ -69,3 +155,209 @@ If you are not going to do a Testnet integration, then we suggest you create som
 -   Exchanges can check finality signatures. Finality signatures are sent by validators after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 
+## Staking Integration for Exchanges
+
+Exchanges seeking to integrate CSPR staking mechanisms will need to understand the processes of delegation, undelegation and redelegation through deploys on a Casper network. The following outlines the use of the [JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk/) to perform these actions, as well as parameters relating to staking. Further information about staking on a Casper network can be found [here](/staking/).
+
+### Deploy Structures and Parameters
+
+Staking operations consists of two parts:
+
+1) [Creating a deploy object](/dapp-dev-guide/writing-contracts/session-code/)
+    
+2) [Signing the deploy](/dapp-dev-guide/writing-contracts/signing-a-deploy/)
+
+The following information is required within the staking deploy:
+- The delegator's public key
+- The validator's public key
+- The new validator's public key (For re-delegation only)
+- The amount to be delegated
+- The gas cost
+- The auction manager contract's hash
+- The appropriate entry point
+
+Casper provides a series of prebuilt Wasm files for use in these operations. These are provided for convenience and you are free to create your own custom deploys. They can be found in our [casper-node](https://github.com/casper-network/casper-node) repository, in the following locations:
+
+- [Delegate](https://github.com/casper-network/casper-node/tree/dev/smart_contracts/contracts/client/delegate)
+- [Undelegate](https://github.com/casper-network/casper-node/tree/dev/smart_contracts/contracts/client/undelegate)
+- [Redelegate](https://github.com/casper-network/casper-node/tree/dev/smart_contracts/contracts/client/redelegate)
+
+
+#### 1. Creating a deploy object
+
+To create a deploy using the JavaScript SDK, we will need `deployParams`, `session` and a `payment`.
+
+Deploy params is a `DeployUtil.DeployParams` object created from the delegator's `publicKey` and the network name as shown in the following:
+
+```
+import { DeployUtil, CLPublicKey } from 'casper-js-sdk';
+
+const deployParams = new DeployUtil.DeployParams(
+  CLPublicKey.fromHex(publicKeyHex),
+  network_name // 'testnet' | 'mainnet'
+);
+```
+
+For creating a `session` object, which is `DeployUtil.ExecutableDeployItem`, we need
+
+- The **delegator** and **validator's public keys**
+- The **amount** of tokens to delegate/undelegate/redelgate
+- The **auction manager contract's hash**
+- The **entry point**.
+
+First, create a variable `RuntimeArgs` from the public keys and the amount. We will need to use it below in `session`:
+
+```
+import { RuntimeArgs, CLValueBuilder, CLPublicKey } from 'casper-js-sdk';
+
+const args = RuntimeArgs.fromMap({
+  delegator: CLPublicKey.fromHex(delegatorPublicKeyHex),
+  validator: CLPublicKey.fromHex(validatorPublicKeyHex),
+  amount: CLValueBuilder.u512(amountMotes) // in motes
+});
+```
+
+Second, create a `session` parameter. It is a `Uint8Array` consisting of the `auction manager contract's hash`, the `entry points` and `runtime arguments`, which we previously created.
+
+The `auction manager contract's hash` will depend on the network you are using. For Casper's mainnet and testnet, the hashes are as follows:
+
+- Mainnet
+
+    `ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea`
+
+- Testnet
+
+    `93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`
+
+Your `entry point` will depend on which action you are performing, with the following three available:
+
+- `delegate` - Initial delegation to a validator.
+- `undelegate` - Undelegating tokens from a validator back to the delegator.
+- `redelegate` - Redelegating tokens to a new validator.
+
+```
+import { decodeBase16, DeployUtil } from 'casper-js-sdk';
+
+const session = DeployUtil.ExecutableDeployItem.newStoredContractByHash(
+  decodeBase16(auction_manager_contract_hash), // auction manager contract hash
+  contractEntryPoint, // auction manager entry point
+  args
+);
+```
+
+To create the `payment` parameter for the deploy, we need a deploy cost. The actual costs can be pulled from the network [`chainspec`](https://github.com/casper-network/casper-node/blob/release-1.4.8/resources/production/chainspec.toml).
+
+Use the `DeployUtil.standardPayment` method for creating `payment`.
+
+```
+import { DeployUtil } from 'casper-js-sdk';
+
+const payment = DeployUtil.standardPayment(deployCost);
+```
+
+The last operation is creating the deploy:
+
+```
+import { DeployUtil } from 'casper-js-sdk';
+
+DeployUtil.makeDeploy(deployParams, session, payment);
+```
+
+**Redelegation**, occurs the same way as delegation, but with the introduction of a third public_key.
+
+```
+import { RuntimeArgs, CLPublicKey, CLValueBuilder } from 'casper-js-sdk';
+
+const args = RuntimeArgs.fromMap({
+    delegator: CLPublicKey.fromHex(delegatorPublicKeyHex),
+    validator: CLPublicKey.fromHex(validatorPublicKeyHex),
+    new_validator: CLPublicKey.fromHex(redelegateValidatorPublicKeyHex),
+    amount: CLValueBuilder.u512(amountMotes)
+})
+```
+  
+#### 2a. Sign the deploy (Casper Signer)
+
+To get the signature, you will need to use `Signer.sign` from the [JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk/). It will return `Promise<{ deploy }>`, which is the signed object.
+
+Use `DeployUtil.deployFromJson` to convert the result and sent it to network with:
+
+```
+import { Signer, CasperServiceByJsonRPC, DeployUtil } from 'casper-js-sdk';
+
+const casperService = new CasperServiceByJsonRPC(GRPC_URL);
+const deployJson = DeployUtil.deployToJson(deploy);
+Signer.sign(
+    deployJson,
+    accountPublicKey,
+    recipientPublicKey
+).then((signedDeployJson) => {
+    const signedDeploy = DeployUtil.deployFromJson(signedDeployJson);
+    if (signedDeploy.ok) {
+      casperService.deploy(signedDeploy.val! as DeployUtil.Deploy); // sent deploy
+    }
+}
+```
+
+#### 2b. Sign the deploy (Ledger)
+
+You will need to connect with your`Ledger` first to get the signature. 
+
+```
+import TransportWebUSB from '@ledgerhq/hw-transport-webusb';
+import LedgerApp, { ResponseBase } from '@zondax/ledger-casper';
+import { DeployUtil } from 'casper-js-sdk';
+
+const getBipPath = (index: number) => {
+  const idx = index.toString();
+  return `m/44'/506'/0'/0/${idx}`;
+};
+
+const deployBytes = DeployUtil.deployToBytes(deploy) as Buffer;
+const transport = await TransportWebUSB.create();
+const ledgerApp = new LedgerApp(transport);
+const res = await ledgerApp.sign(
+    getBipPath(selectedAccountIndex),
+    deployBytes
+);
+```
+
+The Signature will be in a property called `res.signatureRS`.
+
+After that, we can create a signed deploy, 
+
+```
+import { DeployUtil, CLPublicKey } from 'casper-js-sdk';
+
+const signedDeploy = DeployUtil.setSignature(
+  deploy,
+  signatureRS,
+  CLPublicKey.fromHex(accountPublicKey)
+);
+```
+
+We can then send it to a network.
+
+```
+casperService.deploy(signedDeploy)
+```
+
+### Costs and Minimums
+
+The following are current costs and minimum amounts, but up-to-date values can be pulled from the network `chainspec`.
+
+Transfer Cost: 100,000,000 motes or 0.1 **CSPR**
+
+Delegation Cost: 2,500,000,000 motes or 2.5 **CSPR**
+
+Minimum transfer amount: 2,500,000,000 motes, or 2.5 **CSPR**
+
+Minimum amount required for delegation: 500,000,000,000 motes, or 500 **CSPR**.
+
+### The Delegation Cap
+
+Casper includes a delegator limit rule, which sets a cap on the number of delegators that a single validator may have at `953`. This is a temporary solution to prevent complications with Casper’s fast sync mechanism - in which high bond counts could break fast sync.
+
+Validators with a delegator count at or above `953` at the time of the **1.4.5** upgrade will be grandfathered in, however new delegators will not be able to delegate to any validator until the delegator count for that validator falls below `953`. 
+
+Existing delegators may continue to delegate additional CSPR, regardless of the current number of delegators staking their **CSPR** to that validator. However, no new delegators may join the validator until it drops below the `953` limit.
