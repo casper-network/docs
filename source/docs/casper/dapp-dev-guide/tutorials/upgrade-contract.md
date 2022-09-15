@@ -6,10 +6,15 @@ This tutorial examines how to upgrade an existing contract, a process similar to
 
 **Note:** you can also create a [locked contract package](#locked-contract-package) that cannot be versioned and is therefore not upgradable.
 
+## Video Tutorial {#video-tutorial}
+
+Here is a video walkthrough of this tutorial.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed?v=XvV02iBoctc&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&index=4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
 - You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/building-dapps/sending-deploys/), and [calling contracts](/dapp-dev-guide/writing-contracts/calling-contracts) on the Casper Network
-
 
 ## Contract Versioning Flow {#contract-versioning-flow}
 
