@@ -85,7 +85,6 @@ module.exports = {
                 "dapp-dev-guide/writing-contracts/signing-a-deploy",
                 "dapp-dev-guide/writing-contracts/session-code",
                 "dapp-dev-guide/writing-contracts/testing-session-code",
-                "dapp-dev-guide/writing-contracts/session-contract-diff",
                 "dapp-dev-guide/writing-contracts/rust",
                 "dapp-dev-guide/writing-contracts/testing",
                 "dapp-dev-guide/writing-contracts/installing-contracts",
