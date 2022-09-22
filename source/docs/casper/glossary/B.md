@@ -29,7 +29,7 @@ Note that only validators can create valid blocks.
 
 ## Block finality {#block-finality}
 
-A block is "finalized" if the validators agree on adding it to the blockchain. There is a period where a transaction might be vulnerable to attacks from bad actors trying to take advantage of blockchains with weak finality. A transaction should be certain blocks deep to be considered to be finalized.
+A block is "finalized" if the validators agree on adding it to the blockchain.
 
 There are different levels of _finality_ in the [Highway](H.md#highway) protocol. A finalized block has a fault-tolerance _F_, expressed as a fraction of the total stake. For an observer to see a conflicting block as finalized, several validators whose total stake exceeds _F_ would have to collude and show different information in a way that would ultimately be detected and punished (see [slashing](S.md#slashing)).
 
