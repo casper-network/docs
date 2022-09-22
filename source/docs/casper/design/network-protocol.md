@@ -1,10 +1,10 @@
-# Casper node networking protocol (version 1.5)
+# Casper Node Networking Protocol (Mainnet Protocol Version 1.5.0)
 
 This is a description of the `casper-node`'s networking protocol. This document follows the conventions laid out in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
 ## Connection level
 
-Any `casper-node` taking part in the casper network SHOULD open connections to every other casper-nodes as it is aware of and has not blocked. These connections are established using TLS, presenting a client certificate.
+Any `casper-node` taking part in the casper network SHOULD open connections to every other casper-node it is aware of and has not blocked. These connections are established using TLS, presenting a client certificate.
 
 ### Reciprocity, retries and data direction
 
@@ -16,7 +16,7 @@ A node that receives an incoming connection MUST eventually establish an outgoin
 
 A node SHOULD retry any failed outgoing connection periodically with exponential backoff. A node MUST NOT attempt to reconnect more than once per second.
 
-Nodes MUST NOT send data through incoming connection, other than handshakes. Nodes MUST NOT accept any data coming through outgoing connections, other than handshakes.
+Nodes MUST NOT send data through incoming connections, other than handshakes. Nodes MUST NOT accept any data coming through outgoing connections, other than handshakes.
 
 ### TLS parameters
 
@@ -43,7 +43,7 @@ Every node SHOULD have one or more so-called _known node addresses_ of other nod
 
 On start-up, a node SHOULD attempt to connect to all known nodes. A node SHOULD never forget a known node address.
 
-Every node MUST periodically gossip its own node address.
+Every node MUST periodically gossip its own node address to the network (see gossiping below).
 
 A node _learns_ new node addresses through receiving a gossiped node address, or being told of an address through the handshake.
 
@@ -52,8 +52,6 @@ Upon learning of a previously unknown node address, a node SHOULD attempt to con
 After failing to connect to a node address, a node MAY forget it after a certain amount of retries, this process is called _forgetting_ a node. An address that has been forgotten will be considered new the next time it is learned.
 
 A node MUST NOT forget the known addresses it was configured with initially.
-
-Every node MUST periodically gossip its own node address to the network (see gossiping below).
 
 ## Framing
 
@@ -114,7 +112,7 @@ struct ConsensusCertificate {
 struct Digest([u8; 32]);
 ```
 
-For [`String`](https://doc.rust-lang.org/std/string/struct.String.html), [`SocketAddr`](https://doc.rust-lang.org/std/net/enum.SocketAddr.html), [`ProtocolVersion`](https://docs.rs/casper-types/1.5.0/casper_types/struct.ProtocolVersion.html), [`Option`](https://doc.rust-lang.org/std/option/enum.Option.html), [`PublicKey`](https://docs.rs/casper-types/1.5.0/casper_types/crypto/enum.PublicKey.html), [`Signature`](https://docs.rs/casper-types/1.5.0/casper_types/crypto/enum.Signature.html) see the respective docs.
+For [`String`](https://doc.rust-lang.org/std/string/struct.String.html), [`SocketAddr`](https://doc.rust-lang.org/std/net/enum.SocketAddr.html), [`ProtocolVersion`](https://docs.rs/casper-types/1.5.0/casper_types/struct.ProtocolVersion.html), [`Option`](https://doc.rust-lang.org/std/option/enum.Option.html), [`PublicKey`](https://docs.rs/casper-types/1.5.0/casper_types/crypto/enum.PublicKey.html), [`Signature`](https://docs.rs/casper-types/1.5.0/casper_types/crypto/enum.Signature.html) see the respective docs and details below.
 
 ## Handshake behavior
 
@@ -146,7 +144,7 @@ The `Payload` (found in the node sources as `Message` in `payload.rs`) contains 
 enum Payload {
     Consensus(ConsensusMessage),
     DeployGossiper(DeployGossiperMessage),
-    AddressGossiper(GossiperMessage<GossipedAddress>),
+    AddressGossiper(AddressGossiperMessage),
     GetRequest {
         tag: Tag,
         serialized_id: Vec<u8>,
@@ -180,7 +178,7 @@ struct GossipedAddress(SocketAddr);
 
 ### Consensus
 
-A consensus message is send exclusively between instances of the consensus component, from one peer to another. A precise description of the highway consensus protocol is out of scope of this document, see the `consensus::Message` type or an appropriate description of the underlying protocol for details.
+A consensus message is sent exclusively between instances of the consensus component, from one peer to another. A precise description of the highway consensus protocol is out of scope of this document, see the `consensus::Message` type or an appropriate description of the underlying protocol for details.
 
 ### Gossiping
 
@@ -194,7 +192,7 @@ A node SHOULD begin a gossiping process for all deploys previously unknown to it
 
 A node that is syncing MUST indicate this by setting `is_syncing` to `true`.
 
-A node MAY implement a scheme for request throttling/backpressure for GetRequests (see below) of `TrieNode`s that can cause issues with peers that are also asking performing GetRequests.
+A node MAY implement a scheme for request throttling/backpressure for GetRequests (see below) of `TrieNode`s that can cause issues with peers that are also sending GetRequests.
 
 A node that succeeds in a handshake with a peer that has set `is_syncing` MUST make note of this flag. If the node itself is implementing the feature described above, it MUST NOT make any GetRequests directed at this peer for `TrieNode`s.
 
@@ -202,7 +200,7 @@ A node that succeeds in a handshake with a peer that has set `is_syncing` MUST m
 
 Gossiping is distributing items across the network by sending it to a subset of known peers that do not have the item already, and having them repeat this process until a certain degree of saturation is observed.
 
-Any item has an associated ID type which denotes what is used to unique identify it when gossiping. If an item is small enough, the ID may just be the item itself.
+Any item has an associated ID type which denotes what is used to uniquely identify it when gossiping. If an item is small enough, the ID may just be the item itself.
 
 Gossiper messages have the following structure:
 
@@ -216,13 +214,13 @@ enum GossiperMessage {
 }
 ```
 
-To gossip, a node MAY send a  `GossiperMessage::Gossip` message to a random subset of configurable size of peers announce that it has received and validated a new item. Any peer receiving such a message SHOULD answer with a `GossiperMessage:GossipResponse`, citing the given id and using `is_already_held` to indicate whether it already possessed the given item.
+To gossip, a node MAY send a `GossiperMessage::Gossip` message to a random subset of configurable size of peers to announce that it has received and validated a new item. Any peer receiving such a message SHOULD answer with a `GossiperMessage:GossipResponse`, citing the given id and using `is_already_held` to indicate whether it already possessed the given item.
 
 The node SHOULD attempt to continue to find peers with a negative response, up to a configurable limit of attempts and/or success rate, or until running out of valid peers.
 
 The node that initiated the gossip MUST keep track of which peer replied with a positive (`is_already_held`  being `true`) response and MUST NOT send another `Gossip` message for same ID to any of these peers during this gossip process. However, it MAY restart gossiping the same item at a later time, considering these peers again.
 
-If a node receives a `GossiperMessage::Gossip` for an item it did not receive yet, it MAY request it from the sending peer if interested in that item using `GetRequest` (see GetRequests section below). Should the item's ID be the item itself, this step is omitted, as the node is already aware of the entire item.
+If a node receives a negative `GossiperMessage::GossipResponse` (i.e. `is_already_held`  being `false`), and the item's ID is not the item itself, it MUST handle that repsponse as if the peer had sent a `GetRequest` for the item (see GetRequests section below).
 
 ## GetRequests
 
@@ -263,24 +261,190 @@ If the item was not found, `serialized_item` MUST contain a `FetchedOrNotFound::
 
 A node MUST not send any items to a peer that it itself has not verified.
 
-The following table shows which tag corresponds to which ID and item type. Type definitions for `DeployHash`,  `BlockHash`, `GossippedAddress` can be found earlier in this document, other types are described following this section.
+The following table shows which tag corresponds to which ID and item type. Type definitions for `DeployHash` and `GossippedAddress` can be found earlier in this document, other types are described following this section.  Further details of many of these types can be found in the [Serialization Standard](https://docs.casperlabs.io/design/serialization-standard/), but be aware that those docs describe serializing using bytesrepr rather than bincode.
 
-| Tag                                      | ID type             | Payload (item) type     |
-| ---------------------------------------- | ------------------- | ----------------------- |
-| Deploy                                   | `DeployHash`         | `Deploy`                 |
-| FinalizedApprovals                       | `DeployHash`         | `FinalizedApprovalsWithId` |
-| Block                                    | `BlockHash`          | `Block`                  |
-| GossipedAddress                          | `GossipedAddress`     | `GossipedAddress`         | 
-| BlockAndMetadataByHeight                 | `u64`               | `BlockWithMetadata`        |
-| BlockHeaderByHash                        | `BlockHash`          | `BlockHeader`             |
-| BlockHeaderAndFinalitySignaturesByHeight | `u64`               | `BlockHeaderWithMetadata`  |
-| TrieOrChunk                              | `TrieOrChunkId`      | `TrieOrChunk`             |
-| BlockAndDeploysByHash                    | `BlockHash`          | `BlockAndDeploys`         |
-| BlockHeaderBatch                         | `BlockHeadersBatchId` | `BlockHeadersBatch` |
-| FinalitySignaturesByHash                 | `BlockHash`          | `BlockSignatures` |
+| Tag                                      | ID type               | Payload (item) type        |
+| ---------------------------------------- | --------------------- | -------------------------- |
+| Deploy                                   | `DeployHash`          | `Deploy`                   |
+| FinalizedApprovals                       | `DeployHash`          | `FinalizedApprovalsWithId` |
+| Block                                    | `BlockHash`           | `Block`                    |
+| GossipedAddress                          | `GossipedAddress`     | `GossipedAddress`          | 
+| BlockAndMetadataByHeight                 | `u64`                 | `BlockWithMetadata`        |
+| BlockHeaderByHash                        | `BlockHash`           | `BlockHeader`              |
+| BlockHeaderAndFinalitySignaturesByHeight | `u64`                 | `BlockHeaderWithMetadata`  |
+| TrieOrChunk                              | `TrieOrChunkId`       | `TrieOrChunk`              |
+| BlockAndDeploysByHash                    | `BlockHash`           | `BlockAndDeploys`          |
+| BlockHeaderBatch                         | `BlockHeadersBatchId` | `BlockHeadersBatch`        |
+| FinalitySignaturesByHash                 | `BlockHash`           | `BlockSignatures`          |
 
 ```rust
-struct TrieOrChunkId(pub u64, pub Digest);
+pub struct Deploy {
+    hash: DeployHash,
+    header: DeployHeader,
+    payment: ExecutableDeployItem,
+    session: ExecutableDeployItem,
+    approvals: BTreeSet<Approval>,
+}
+
+struct DeployHeader {
+    account: PublicKey,
+    timestamp: u64,
+    ttl: u64,
+    gas_price: u64,
+    body_hash: Digest,
+    dependencies: Vec<DeployHash>,
+    chain_name: String,
+}
+
+enum PublicKey {
+    System,
+    Ed25519(Vec<u8>),
+    Secp256k1(Vec<u8>),
+}
+
+enum ExecutableDeployItem {
+    ModuleBytes {
+        module_bytes: Vec<u8>,
+        args: RuntimeArgs,
+    },
+    StoredContractByHash {
+        hash: [u8; 32],
+        entry_point: String,
+        args: RuntimeArgs,
+    },
+    StoredContractByName {
+        name: String,
+        entry_point: String,
+        args: RuntimeArgs,
+    },
+    StoredVersionedContractByHash {
+        hash: [u8; 32],
+        version: Option<u32>,
+        entry_point: String,
+        args: RuntimeArgs,
+    },
+    StoredVersionedContractByName {
+        name: String,
+        version: Option<u32>,
+        entry_point: String,
+        args: RuntimeArgs,
+    },
+    Transfer { args: RuntimeArgs },
+}
+
+struct RuntimeArgs(Vec<NamedArg>);
+
+struct NamedArg(String, CLValue);
+
+struct CLValue(CLType, Vec<u8>);
+
+enum CLType {
+    Bool,
+    I32,
+    I64,
+    U8,
+    U32,
+    U64,
+    U128,
+    U256,
+    U512,
+    Unit,
+    String,
+    Key,
+    URef,
+    PublicKey,
+    Option(Box<CLType>),
+    List(Box<CLType>),
+    ByteArray(u32),
+    Result { ok: Box<CLType>, err: Box<CLType> },
+    Map { key: Box<CLType>, value: Box<CLType> },
+    Tuple1([Box<CLType>; 1]),
+    Tuple2([Box<CLType>; 2]),
+    Tuple3([Box<CLType>; 3]),
+    Any,
+}
+
+struct Approval {
+    signer: PublicKey,
+    signature: Signature,
+}
+
+enum Signature {
+    System,
+    Ed25519(Vec<u8>),
+    Secp256k1(Vec<u8>),
+}
+
+struct FinalizedApprovalsWithId {
+    id: DeployHash,
+    approvals: FinalizedApprovals,
+}
+
+struct FinalizedApprovals(BTreeSet<Approval>);
+
+struct Block {
+    hash: BlockHash,
+    header: BlockHeader,
+    body: BlockBody,
+}
+
+struct BlockHash(Digest);
+
+struct BlockHeader {
+    parent_hash: BlockHash,
+    state_root_hash: Digest,
+    body_hash: Digest,
+    random_bit: bool,
+    accumulated_seed: Digest,
+    era_end: Option<EraEnd>,
+    timestamp: u64,
+    era_id: u64,
+    height: u64,
+    protocol_version: ProtocolVersion,
+}
+
+struct EraEnd {
+    era_report: EraReport,
+    next_era_validator_weights: BTreeMap<PublicKey, U512>,
+}
+
+struct EraReport<VID> {
+    equivocators: Vec<PublicKey>,
+    rewards: BTreeMap<PublicKey, u64>,
+    inactive_validators: Vec<PublicKey>,
+}
+
+struct ProtocolVersion {
+    major: u32,
+    minor: u32,
+    patch: u32,
+}
+
+struct BlockBody {
+    proposer: PublicKey,
+    deploy_hashes: Vec<DeployHash>,
+    transfer_hashes: Vec<DeployHash>,
+}
+```
+
+Custom variable length encoding is used when serializing `U512`, `U256` and `U128` types.  They are encoded in a way equivalent to encoding the following pseudo struct:
+
+```rust
+struct Bigint {
+    serialized_length: u8,
+    little_endian_unpadded_bytes: [u8, serialized_length - 1],
+}
+```
+
+In other words, the following steps are taken:
+* convert the bigint to an array of bytes in little-endian form
+* strip the contiguous range of irrelevant padding `0` bytes from the right hand end, if any
+* prefix this remaining array with a byte holding the number of remaining bytes + 1, to indicate the length of the final byte array including the length byte itself
+
+For a description explaining the use of `TrieOrChunk` and related types, see the "Trie chunking" section.  The relevant types are:
+
+```rust
+struct TrieOrChunkId(u64, Digest);
 
 enum TrieOrChunk {
     Trie(Bytes),
@@ -292,37 +456,19 @@ struct ChunkWithProof {
     chunk: Bytes,
 }
 
-pub struct IndexedMerkleProof {
+struct IndexedMerkleProof {
     index: u64,
     count: u64,
     merkle_proof: Vec<Digest>,
 }
 ```
 
-For a description explaining the use of `TrieOrChunk` and related types, see the "Trie chunking" section.
-
-```rust
-struct FinalizedApprovalsWithId {
-    id: DeployHash,
-    approvals: FinalizedApprovals,
-}
-
-struct FinalizedApprovals(BTreeSet<Approval>);
-
-struct Approval {
-    signer: PublicKey,
-    signature: Signature,
-}
-```
-
-The `Deploy` and `Block` and `BlockHeader` types are out of scope for this networking protocol documentation.
-
 `BlockHeadersBatchId` is used to request multiple `BlockHeader`s with a single request.
 
 ```rust
 struct BlockHeadersBatchId {
-    pub highest: u64,
-    pub lowest: u64,
+    highest: u64,
+    lowest: u64,
 }
 
 struct BlockWithMetadata {
@@ -337,7 +483,7 @@ struct BlockHeaderWithMetadata {
 
 struct BlockSignatures {
     block_hash: BlockHash,
-    era_id: EraId,
+    era_id: u64,
     proofs: BTreeMap<PublicKey, Signature>,
 }
 
