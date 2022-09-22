@@ -10,7 +10,7 @@ Gas fees are consumed on the network irrespective of whether your transaction wa
 
 ## How is gas cost determined?
 
-The amount of gas required for a transaction is determined by how much code is executed on the blockchain. Usually, the platform defines the required gas limit for a Deploy, inside a block through a configuration in the [chainspec](https://github.com/casper-network/casper-node/blob/release-1.4.8/resources/production/chainspec.toml) file. Currently, gas is priced at a fixed price of 1 mote (defined as 1x10^9 CSPR tokens) per 1 unit of gas. The gas charged for a transaction on the blockchain is paid to the validators who are operating the network.
+The amount of gas required for a transaction is determined by how much code is executed on the blockchain. Currently, gas is priced at a fixed price of 1 mote (1 CSPR is 10^9 motes) per 1 unit of gas. The gas charged for a transaction on the blockchain is paid to the network's validators.
 
 ## Why do we need gas cost?
 
