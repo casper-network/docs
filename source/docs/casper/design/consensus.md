@@ -16,9 +16,6 @@ Casper Highway addresses all the above characteristics along with a set of other
 
 You can study deep on the consensus-related algorithms and mathematical theorems in the [Casper Highway Whitepaper](https://arxiv.org/pdf/2101.02159.pdf). 
 
-
-    We will be using the terms 'node' and 'validator' to describe the same component in this document.
-
 ## What is Highway?
 
 Highway is the CasperLabs invented [Proof-of-Stake](/glossary/P/#proof-of-stake) (PoS) model consensus protocol that is based on the [CBC (Correctness-by-Construction) Casper](https://docs.casperlabs.io/glossary/C/#cbc) approach. This protocol fulfills the key gaps in CBC Casper by practically implementing the finality, flexibility, and liveness features of the network. Casper Highway is designed based on partially synchronized [Byzantine Fault](/glossary/B/#byzantine-fault) Tolerant protocol which asserts that communication between nodes becomes eventually synchronous and that no more than a given fraction of nodes (presumably 1/3rd) are dishonest and may arbitrarily violate the protocol.
