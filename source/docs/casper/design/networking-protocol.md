@@ -4,7 +4,7 @@ This is a description of the `casper-node`'s networking protocol. This document 
 
 ## Connection level
 
-Any `casper-node` taking part in the casper network SHOULD open connections to every other casper-node it is aware of and has not blocked. These connections are established using TLS, presenting a client certificate.
+Any `casper-node` taking part in the Casper network SHOULD open connections to every other casper-node it is aware of and has not blocked. These connections are established using TLS, presenting a client certificate.
 
 ### Reciprocity, retries and data direction
 
@@ -31,9 +31,9 @@ Any node creating a connection to a node MUST present a client certificate with 
 
 The SHA512 fingerprint of the _public key_ is considered the **NodeID** of the node.
 
-Any node MUST immediately terminate a connection if it does not match the given parameters. The same certificate MUST be used to as a server certificate for other clients connecting to this node.
+Any node MUST immediately terminate a connection if it does not match the given parameters. The same certificate MUST be used as a server certificate for other clients connecting to this node.
 
-An incoming connection with a valid TLS certificate SHOULD be accepted, as all certificates are self-signed, no further checking is done.
+An incoming connection with a valid TLS certificate SHOULD be accepted. As all certificates are self-signed, no further checking is done.
 
 ### Discovery
 
@@ -122,7 +122,7 @@ A handshake MUST be encoded using the `Message::Handshake` structure. A node run
 
 After receiving a handshake, a node MUST compare the `network_name`, `protocol_version` and `chainspec_hash` fields against its own configuration: If any of these do not match, it MUST disconnect from the node and SHOULD block it.
 
-A node MUST mark any peer that connects to it (thus is an incoming connection from the perspective of the node) with a value of `is_syncing` set to `true`   as "syncing" and MUST NOT allow any of its own messages that are marked unsafe-for-syncing to be sent to that node, by silently dropping them instead.
+A node MUST mark any peer that connects to it (thus is an incoming connection from the perspective of the node) with a value of `is_syncing` set to `true` as "syncing" and MUST NOT allow any of its own messages that are marked unsafe-for-syncing to be sent to that node, by silently dropping them instead.
 
 A node MAY compare peers that provide a `consensus_certificate` to the currently active set of validators and mark it as an active validator to give it preferential treatment when outgoing bandwidth is limited.
 
@@ -178,7 +178,7 @@ struct GossipedAddress(SocketAddr);
 
 ### Consensus
 
-A consensus message is sent exclusively between instances of the consensus component, from one peer to another. A precise description of the highway consensus protocol is out of scope of this document, see the `consensus::Message` type or an appropriate description of the underlying protocol for details.
+A consensus message is sent exclusively between instances of the consensus component, from one peer to another. A precise description of the Highway consensus protocol is out of scope of this document, see the `consensus::Message` type or an appropriate description of the underlying protocol for details.
 
 ### Gossiping
 
