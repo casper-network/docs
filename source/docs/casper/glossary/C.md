@@ -27,7 +27,7 @@ A collection of configuration settings describing the state of the system at gen
 
 ## Consensus {#consensus}
 
-A consensus is a (mathematical) mechanism deployed on blockchain for nodes to reach common a agreement on the current state of the distributed ledger. This mechanism typically entails the process to validate, verify and confirm transactions proposed by a validator, followed by recording in the ledger, by the addition of blocks. This is an algorithm used to mandate agreement on the [blockchain](B.md#blockchain) between all nodes. The blockchain, although being built in a decentralized way, eventually converges so that all nodes eventually agree on whether a given block is part of the chain or not. In order to guarantee that all participants (‘nodes’) in a blockchain network agree on a single version of history, blockchain networks like Bitcoin and Ethereum implement what’s known as consensus mechanisms (also known as consensus protocols or consensus algorithms). 
+A consensus protocol is a mechanism for nodes in a distributed network to agree on a value. It comprises a definition of message types sent over the network and a set of rules for when to send and how to process those messages. In [blockchain](B.md#blockchain) systems it is used to decide which blocks are added to the chain, and in what order. That way, it determines the state of the distributed ledger, and ensures that all nodes agree on that state.
 
 Casper uses the Highway algorithm in the [CBC Casper](https://github.com/ethereum/cbc-casper/wiki/FAQ)_ family of consensus algorithms. The algorithm for securing an agreement is what is known as _consensus_. The consensus layer contains the algorithm, but the algorithm should not be confused with the consensus layer.
 
