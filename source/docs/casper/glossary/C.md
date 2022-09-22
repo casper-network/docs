@@ -29,7 +29,7 @@ A collection of configuration settings describing the state of the system at gen
 
 A consensus protocol is a mechanism for nodes in a distributed network to agree on a value. It comprises a definition of message types sent over the network and a set of rules for when to send and how to process those messages. In [blockchain](B.md#blockchain) systems it is used to decide which blocks are added to the chain, and in what order. That way, it determines the state of the distributed ledger, and ensures that all nodes agree on that state.
 
-Casper uses the Highway algorithm in the [CBC Casper](https://github.com/ethereum/cbc-casper/wiki/FAQ)_ family of consensus algorithms. The algorithm for securing an agreement is what is known as _consensus_. The consensus layer contains the algorithm, but the algorithm should not be confused with the consensus layer.
+Casper uses the Highway algorithm in the [CBC Casper](https://github.com/ethereum/cbc-casper/wiki/FAQ)_ family of consensus algorithms.
 
 ## Contract runtime {#contract-runtime}
 
