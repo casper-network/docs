@@ -54,6 +54,7 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/building-dapps/sending-deploys",
+                "dapp-dev-guide/building-dapps/calling-contracts",
                 {
                     type: "category",
                     label: "SDK Client Libraries",
