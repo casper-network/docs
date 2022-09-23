@@ -1,4 +1,6 @@
-# Casper Node Networking Protocol (Mainnet Protocol Version 1.5.0)
+# Casper Node Networking Protocol
+
+## Casper Node Networking Protocol (Mainnet Protocol Version 1.5.0)
 
 This is a description of the `casper-node`'s networking protocol. This document follows the conventions laid out in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
