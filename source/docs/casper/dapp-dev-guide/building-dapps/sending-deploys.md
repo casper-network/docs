@@ -371,6 +371,6 @@ A common question frequently arises: "How do I know what the payment amount (gas
 
 We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper Network to which you want to send the deploy. If you plan on sending a deploy to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the deploy.
 
-If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
+If your test configuration matches your production [chainspec](/glossary/C/#chainspec), you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
 
 Please be aware that sending a deploy always requires payment. This is true regardless of the validity of included Wasm.
