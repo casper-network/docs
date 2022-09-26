@@ -36,7 +36,7 @@ Thus, CasperLabs has innovated the Highway protocol as the next-generation impro
 - Reduced impact of execution on throughput because blocks are only executed after consensus has been reached.
 - A block's fault tolerance increases beyond 1/3 as the protocol continues. If all validators are honest, it approaches 100%.
 
-## How does Highway works?
+## How does Highway work?
 
 Highway operates on a time-slot basis. There is one Highway instance available for a defined period, which is called an [era](/glossary/E/#era). In Casper, anyone running a node is an [operator](/glossary/O/#operator). An operator whose [bid](/economics/consensus/#bids) has won a validator slot in the [auction](/glossary/A/#auction) for a specific era is a [validator](/glossary/V/#validator) in that era. Node validators are the main characters who perform the consensus mechanism. The Casper platform appoints a lead validator and a fixed set of other validators to run the consensus protocol.  
 
