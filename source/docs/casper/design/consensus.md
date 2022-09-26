@@ -62,9 +62,3 @@ There are two factors when reaching the finality:
 2. Every validator should be mutually acknowledged by other validators.
 
 Highway's criterion for detecting finality is the presence of a pattern of messages called a [`Summit`](./#summit-the-highway-protocols-way-to-finality). It is an improvement over previous CBC Casper finality criteria which were more difficult to attain, and computationally more expensive to detect.
-
-### Liveness
-
-In blockchain-based distributed systems, liveness is the guarantee that the network will not halt or fall under infinite loops and eventually every node can complete the consensus successfully. Liveness acts as a reassurance that all network validators will reach a consensus regarding the proposed block and produce effective blocks continuously. Casper Highway added the provable improvement to this liveness where it is a limitation on CBC Casper.
-
-Casper Highway protocol achieves this by adding a schedule for sending messages among nodes. It subdivides time into rounds of a specific length and allows nodes to perform at their optimal speed. After the lead validator proposes a new block, other validators assess the validity and select the block based on the summit passing several rounds to reach an agreement. Even though 100% of nodes don't receive and send messages, consensus will finalize the proposed block. Since everyone is agreed on one block, it is guaranteed to append to the network ensuring the selected blocks will not be abandoned or orphaned in the middle of the process. This is due to the compromised liveness proof in the Highway protocol. This approach assures a minimal impact on throughput as the execution engine runs in parallel increasing the network efficiency.
