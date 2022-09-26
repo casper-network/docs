@@ -2,9 +2,9 @@
 
 Distributed networks need a mechanism to reach an agreement on the present state of the network. In Blockchain, these agreements are achieved through [consensus](/glossary/C/#consensus) protocols. These protocols determine the validity of transactions, address conflicts, and finalize the blocks to be added to the network. The ultimate motive of consensus is to reach an irreversible state of the network. Many blockchain platforms share similar components and characteristics to implement the consensus mechanism whereas the underlying algorithms and decision strategies are unique to each platform.
 
-There are two basic *components* of a consensus:
-1. *Validators*: Network node contributing to the consensus.
-2. *Messages*: The communication medium among the validators.
+A consensus protocol consists of a set of message types, communication and processing rules, and a criterion for detecting that agreement has been reached. We call nodes that actively participate in the protocol *validator nodes*.
+
+Byzantine fault tolerant (BFT) protocols function even if some nodes (including possibly validator nodes) are faulty in any way, e.g. if they crash or are taken over by an adversary. Nodes that are not faulty are called *honest*.
 
 In general, a consensus mechanism addresses the following three main *characteristics*:
 
