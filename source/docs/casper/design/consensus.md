@@ -63,14 +63,6 @@ There are two factors when reaching the finality:
 
 Highway's criterion for detecting finality is the presence of a pattern of messages called a [`Summit`](./#summit-the-highway-protocols-way-to-finality). It is an improvement over previous CBC Casper finality criteria which were more difficult to attain, and computationally more expensive to detect.
 
-#### Summit: The Highway Protocol’s way to Finality
-
-Summit is considered the key mechanism of the Casper Highway protocol. It is implemented using the [three-way handshake](https://www.techopedia.com/definition/10339/three-way-handshake) (exchange of messages) as in TCP/IP mechanisms. Summit ensures that not only is a message sent from one party, but also that message is well-received and acknowledged by the other party. To achieve a summit in a particular [era](/glossary/E/#era), each message sent by a selected validator(s) is not required to reach every other validator. That is, not every validator is required to get every message from other validators, just enough is required as specified by the threshold. 
-
-Summit is beneficial over clique due to several reasons. It is efficient since it takes [Polynomial](https://en.wikipedia.org/wiki/Polynomial)-time to detect the finality. Consequently, the summit is supposed to happen earlier than the clique, with lesser required acknowledgments among validators. When more validators participate in the consensus, new layers are added to the summit ensuring higher certainty as well as higher fault tolerance. In this case, nearly all validators will have to collude to reverse the finality, resulting in heavy financial penalties for malicious actions. Additional hand-shakes make the finality more certain in addition to the already existing 66% of the weight.
-
-All the above factors in Summit ensure that the network will continue to operate satisfactorily in the presence of faults, ensuring high performance and stability to reach finality quickly. 
-
 ### Flexibility
 Casper Highway protocol enables flexible node configuration. Highway does not require all nodes to agree upon a common threshold; instead validator nodes are allowed to configure different thresholds, or even several different confidence thresholds to convince themselves that a given block is 'finalized'. Despite these differences in configurations, all the nodes run a single version of the protocol and perform the same actions, only the finality decisions they make depend on the chosen parameters. As a result, nodes with lower security thresholds might reach finality much faster than nodes with higher thresholds. However, as long as both these types of nodes’ assumptions are satisfied they finalize the same blocks and stay in the agreement.
 
