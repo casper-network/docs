@@ -63,13 +63,6 @@ There are two factors when reaching the finality:
 
 Highway's criterion for detecting finality is the presence of a pattern of messages called a [`Summit`](./#summit-the-highway-protocols-way-to-finality). It is an improvement over previous CBC Casper finality criteria which were more difficult to attain, and computationally more expensive to detect.
 
-### Flexibility
-Casper Highway protocol enables flexible node configuration. Highway does not require all nodes to agree upon a common threshold; instead validator nodes are allowed to configure different thresholds, or even several different confidence thresholds to convince themselves that a given block is 'finalized'. Despite these differences in configurations, all the nodes run a single version of the protocol and perform the same actions, only the finality decisions they make depend on the chosen parameters. As a result, nodes with lower security thresholds might reach finality much faster than nodes with higher thresholds. However, as long as both these types of nodes’ assumptions are satisfied they finalize the same blocks and stay in the agreement.
-
-This flexibility in setting up thresholds allows validators to play slightly different roles in the ecosystem – for example, some validators may deal mainly with finalizing relatively small transactions. The nodes that deal with small or unimportant transactions may elect for lower thresholds of finality, while the nodes dealing with larger transactions may elect for higher thresholds. 
-
-Overall, this flexibility feature eliminates the need to make an additional consensus on this particular hyperparameter and results in a more expressive blockchain network.
-
 ### Liveness
 
 In blockchain-based distributed systems, liveness is the guarantee that the network will not halt or fall under infinite loops and eventually every node can complete the consensus successfully. Liveness acts as a reassurance that all network validators will reach a consensus regarding the proposed block and produce effective blocks continuously. Casper Highway added the provable improvement to this liveness where it is a limitation on CBC Casper.
