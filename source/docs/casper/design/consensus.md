@@ -45,6 +45,7 @@ The lead validator proposes the block to be added to the network. All validators
 When an era completes, the last block of the previous era is taken as the initial state of the next era and a new Highway instance is initialized potentially with a different set of validators. The validator set is selected using a [bidding](/economics/consensus/#bids) mechanism. Refer to the [consensus economics](/economics/consensus/) section to learn about the factors related to the auction process, bidding, delegation, and incentive details.
 
 ## Key Improvements
+
 Casper Highway protocol implements three critical properties over CBC Casper. These are `Finality`, `Flexibility`, and `Liveness`. CasperLabs has proposed specific implementations to achieve these key features.
 
 ### Finality
