@@ -6,11 +6,10 @@ A consensus protocol consists of a set of message types, communication and proce
 
 Byzantine fault tolerant (BFT) protocols function even if some nodes (including possibly validator nodes) are faulty in any way, e.g. if they crash or are taken over by an adversary. Nodes that are not faulty are called *honest*.
 
-In general, a consensus mechanism addresses the following three main *characteristics*:
+In general, a consensus mechanism addresses the following two main *characteristics*:
 
-- *Safety*: Validators will not make conflicting decisions leading to any error states.
-- *Liveness*: The system keeps running despite any blockages and new blocks continue to be added to the network indefinitely.
-- *Fault-tolerance*: The system can survive the failure of a certain portion of nodes at any point. In theory, an attacker can compromise consensus by controlling 51% of the network. Consensus mechanisms are designed to make this `51% attack` unfeasible by introducing different methodologies.
+- *Safety*: All honest nodes eventually agree on the value, i.e. no two honest nodes will report two different blocks at the same height of the blockchain.
+- *Liveness*: The system keeps running and new blocks continue to be added to the chain indefinitely.
 
 Casper Highway addresses all the above characteristics along with a set of other [improved implementations](/design/consensus/#key-improvements) to serve the practical use cases with wide scalability and efficiency. Highway is operational in the Casper production environment since March 2021 with publicly traded CSPR tokens and has passed the necessary security audits.
 
