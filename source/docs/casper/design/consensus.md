@@ -33,8 +33,7 @@ Highway addresses several pain points that most blockchain platforms encounter w
 
 Thus, CasperLabs has innovated the Highway protocol as the next-generation improved Proof-of-Stake algorithm to overcome the limitations of primary CBC Casper and classic Byzantine fault tolerance protocols. Highway's key improvements tractable finality, liveness proof, and flexibility offer the following main benefits over other protocols.
 
-- Guaranteed network liveness through consensus before execution practice.
-- Reduced impact on throughput due to parallel functioning of the execution engine. 
+- Reduced impact of execution on throughput because blocks are only executed after consensus has been reached.
 - Enhance efficiency through maximized throughput with faster block times.
 - Loosely coupled and independent consensus mechanism which increases the network efficiency compared to other PoS-based protocols.
 - Reduced computations when compared to PoW and classic PoS protocols.
