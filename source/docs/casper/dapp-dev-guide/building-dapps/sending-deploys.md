@@ -327,6 +327,14 @@ Run the help command for `query-global-state` to see its usage.
 casper-client query-global-state --help
 ```
 
+### Time-to-live {#ttl}
+
+Time-to-live is the parameter that determines how long a deploy will wait for execution. The acceptable maximum `ttl` is configurable by chain, with the Casper Mainnet maximum set to `1day`. If you are deploying to a different network, you will need to check `chainspec.toml` for that network to determine the acceptable maximum.
+
+In the event of a network outage or other event that prevents execution within the `ttl`, the solution is to resend the deploy in question.
+
+Should the deploy's `ttl` exceed the allowable limit, or if the deploy expires, the network's deploy acceptor will find the deploy invalid and return a warning.
+
 ### Deploy Payments {#deploy-payments}
 
 Dependent upon the complexity and needs of the deployment in question, several options exist to allow users to pay for smart contract execution.
