@@ -7,7 +7,7 @@ The following hardware specifications are recommended for the **MainNet** and **
 -   4 Cores
 -   32 GB Ram
 -   2 TB SSD or network SSD backed disk
--   Linux machine running Ubuntu 18.04 or 20.04 (preferred)
+-   Linux machine running Ubuntu 20.04
 
 :::note Notes
 
