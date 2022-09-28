@@ -2,15 +2,21 @@
 
 ## Introduction {#tokens-intro}
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 The Casper Network is a decentralized blockchain platform based on a Proof-of-Stake consensus algorithm called [Highway](https://github.com/casper-network/highway). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../staking/index.md) to bond. In the blockchain space, this unit of value is a _token_.
 
 This chapter describes how we define tokens and how one can use them on the Casper platform.
+
+<p align="center"><img src={useBaseUrl("/image/design/tokens/cspr-token-supply.png")} alt="package-representation" width="600"/></p>
 
 ## Token Generation and Distribution {#token-generation-and-distribution}
 
 A blockchain system generally needs to have a supply of tokens available to pay for computation and reward validators for processing transactions on the network. The initial supply at the launch of Mainnet was 10 billion CSPR. The current supply is available [here](https://api.cspr.live/supply). In addition to the initial supply, the system will have a low rate of inflation, the results of which will be paid out to validators in the form of seigniorage.
 
 The number of tokens used as a basis for calculating seigniorage is 10 billion.
+
+<p align="center"><img src={useBaseUrl("/image/design/tokens/token-generation-to-transfer.png")} alt="package-representation" width="800"/></p>
 
 ## Divisibility of Tokens {#tokens-divisibility}
 
@@ -49,6 +55,8 @@ A valid mint contract exposes the following methods (recall that many mint imple
     -   `purse` must have at least `Read` access rights
     -   `BalanceResult` either returns the number of motes held by the `purse`, or nothing if the `URef` is not valid
 
+<p align="center"><img src={useBaseUrl("/image/design/tokens/token-contract-interfaces.png")} alt="package-representation" width="800"/></p>
+
 ## Using purse `URef`s {#tokens-using-purses}
 
 It is dangerous to pass a purse's `URef` with `Write` permissions to a contract. A malicious contract may use that access to take more tokens than were intended or share that `URef` with another contract that was not meant to have that access. Therefore, if a contract requires a purse with `Write` permissions, it is always recommended to use a "payment purse" \-- a purse used for that single transaction and nothing else. This ensures that even if the `URef` becomes compromised, it does not contain any more funds than the user intended on giving.
@@ -68,3 +76,5 @@ To avoid this inconvenience, it is a better practice for application developers 
 ## Purses and Accounts {#tokens-purses-and-accounts}
 
 All [accounts-head](./accounts.md#accounts-head) on the Casper system have a purse associated with the Casper system mint, which we call the _main purse_. However, for security reasons, the `URef` of the main purse is only available to code running in the context of that account (i.e. only in payment or session code). Therefore, the mint's `transfer` method which accepts `URef`s is not the most convenient to use when transferring between account main purses. For this reason, Casper supplies a [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html) function which takes the public key used to derive the identity key of the account. This function uses the mint transfer function with the current account's main purse as the `source` and the main purse of the account at the provided key as the `target`.
+
+<p align="center"><img src={useBaseUrl("/image/design/tokens/token-wallet-mapping.png")} alt="package-representation" width="800"/></p>
