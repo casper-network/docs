@@ -16,8 +16,7 @@ Refer to the [Casper Highway Whitepaper](https://arxiv.org/pdf/2101.02159.pdf) t
 
 ## What is Highway?
 
-Highway is the CasperLabs invented [Proof-of-Stake](/glossary/P/#proof-of-stake) (PoS) modeled consensus protocol that is based on the [CBC (Correctness-by-Construction) Casper](/glossary/C/#cbc) approach. This protocol fulfills the key gaps in CBC Casper by practically implementing the finality, flexibility, and liveness features of the network. Casper Highway is designed based on partially synchronized [Byzantine Fault](/glossary/B/#byzantine-fault) Tolerant protocol which asserts that communication between nodes becomes eventually synchronous and that no more than a given fraction of nodes (presumably 1/3rd) are dishonest and may arbitrarily violate the protocol. 
-Byzantine fault tolerant (BFT) protocols function even if some nodes (including possibly validator nodes) are faulty in any way, e.g. if they crash or are taken over by an adversary. Nodes that are not faulty are called *honest* nodes.
+Highway is the CasperLabs invented [Proof-of-Stake](/glossary/P/#proof-of-stake) (PoS) modeled consensus protocol that is based on the [CBC (Correctness-by-Construction) Casper](/glossary/C/#cbc) approach. This protocol fulfills the key gaps in CBC Casper by practically implementing the finality, flexibility, and liveness features of the network. Casper Highway is designed based on partially synchronized [Byzantine Fault](/glossary/B/#byzantine-fault) Tolerant protocol which asserts that communication between nodes becomes eventually synchronous and that no more than a given fraction of nodes (presumably 1/3rd) are dishonest and may arbitrarily violate the protocol. This states that the protocol will function even if some nodes (including possibly validator nodes) are faulty in any way. Nodes that are not faulty are called *honest* nodes.
 
 ## Why Highway?
 
