@@ -1,12 +1,12 @@
 # Ecosystem Open-Source Software
 
-This page lists down Casper's thriving ecosystem of Open-Source Softwares that can be utilized by the developers and the community to develop solutions and projects built upon them.
+This page lists Open-Source Software available within the Casper ecosystem. Developers and the community may use the listed software as a basis for new projects and solutions.
 
 Name | Description | Author | Language | License | Last Update Date | Type
 -- | -- | -- | -- | -- | -- | --
 [Basic Yield Farm](https://github.com/Rengo-Labs/CasperLabs-StakingRewards) | Staking Rewards | David Tai | Rust | Apache-2.0 license | 2022-06-24 | Staking
 [Blockcerts on Casper](https://github.com/amazanzan/casper-cert-issuer) | Issues Blockcerts using the Bitcoin, Ethereum, or Casper blockchain | amazanzan | Python | MIT license | 2022-07-22 | Tokens
-[BlockMatcher](https://blockmatcher.ledgerleap.com/)[Frontend](https://github.com/ledgerleapllc/blockmatcher-frontend) [Backend](https://github.com/ledgerleapllc/blockmatcher-backend) | Private Trade (OTC) Platform for Compliant Brokers.This system allows the creation of OTC token deals, matching buyers and sellers together. The admin, or broker, can then clear them in batches. | LedgerLeap | JavaScript-PHP | MIT license | 2022-01-15 | Exchange
+[BlockMatcher](https://blockmatcher.ledgerleap.com/)<br>[Frontend](https://github.com/ledgerleapllc/blockmatcher-frontend)<br>[Backend](https://github.com/ledgerleapllc/blockmatcher-backend) | Private Trade (OTC) Platform for Compliant Brokers. This system allows the creation of OTC token deals, matching buyers and sellers together. The admin, or broker, can then clear them in batches. | LedgerLeap | JavaScript-PHP | MIT license | 2022-01-15 | Exchange
 [Camel Casper](https://github.com/caspercommunityio/camel-casper) | Apache Camel connector for the Casper's Blockchain | caspercommunity.io | Java | MIT license | 2022-03-26 | Tools
 [Casper .NET SDK](https://github.com/make-software/casper-net-sdk) | Casper .NET Client SDK to interact with the Casper Network nodes via RPC. | MAKE Software | .NET | Apache-2.0 license | 2022-04-19 | Client SDK
 [Casper Analytics App](https://github.com/caspercommunityio/casper-analytics-app) | Casper Analytics App. Built with Ionic. Easily exportable as iOS and Andriod App | caspercommunity.io | PHP | MIT license | 2022-01-20 | Tools
@@ -14,11 +14,10 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [Casper Calculator](https://github.com/nad128668/casper-calculator) | Casper Earnings Calculator and Node Monitor | Charles Nguyen | JavaScript | MIT license | 2021-09-26 | Tools
 [Casper Contract Upgrade](https://github.com/casper-ecosystem/contract-upgrade-example) | Example contract to demonstrate the general way of upgrading a contract and the necessary steps | CasperLabs | Rust | Apache License 2.0 | 2022-06-21 | Example Contracts
 [Casper Dart SDK](https://github.com/cdolaz/casper_dart_sdk) | Casper Dart SDK is for interacting with the Casper Blockchain using RPC. | Temiltas | Dart | Apache License 2.0 | 2022-06-26 | Client SDK
-[Casper ERC20](https://github.com/FriendlyMarket/casper-erc20) | Implementation of the ERC20 standard on the Casper Network | Friendly Market | Rust | Apache-2.0 license | 2022-08-10 | Tokens
+[Friendly Market's Casper variant of ERC20](https://github.com/FriendlyMarket/casper-erc20) | Implementation of the ERC20 standard on the Casper Network | Friendly Market | Rust | Apache-2.0 license | 2022-08-10 | Tokens
 [Casper Go SDK](https://github.com/casper-ecosystem/casper-golang-sdk) | Casper Go SDK | Yaroslav Panasenko | Go | Apache-2.0 license | 2022-01-31 | Client SDK
 [Casper Hello World Contract](https://github.com/casper-ecosystem/hello-world) | This example demonstrates the session code that accepts a message string and stores it in the calling account under the special_value NamedKey | CasperLabs | Rust | NA | 2022-07-13 | Example Contrats
 [Casper JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) | Casper Client JavaScript SDK | CasperLabs | TypeScript-JavaScript | Apache License 2.0 | 2022-09-13 | Client SDK
-[Casper Key-Value Store Contract](https://github.com/casper-ecosystem/kv-storage-contract) | This example demonstrates how Key-Value contract works | CasperLabs | Rust | NA | 2021-10-05 | Example Contrats
 [Casper Kotlin SDK](https://github.com/tqhuy2018/Casper-Kotlin-sdk) | Casper Kotlin Client SDK to interact with the Casper network. | tqhuy2018 | Kotlin | MIT license | 2022-07-21 | Client SDK
 [Casper Metrics](https://github.com/a3mc/Casper-Metrics) | Casper Metrics - fast blockchain crawler, API and analysis tool | A3MC | TypeScript | MIT license | 2022-09-09 | Tools
 [Casper NCTL Docket](https://github.com/make-software/casper-nctl-docker) | A Docker container that runs Casper NCTL as a service | MAKE Software | Shell | Apache License 2.0 | 2022-03-17 | Tools
@@ -44,9 +43,9 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [DLN DAO](https://github.com/dlndao/start/) | DLN DAO | AlphaFin | TypeScript | MIT license | 2022-09-10 | DAO
 [DotOracle](https://github.com/dotoracle/bridge-ui) | Realtime decentralized Oracle and Cross-chain liquidity network for EVM, non EVM Casper and L2 blockchains. | DotOracle Network | TypeScript | NA | 2022-09-26 | Bridge
 [Dragon’s Lair Style Staking](https://github.com/Rengo-Labs/CasperLabs-Dragonlair) | Lair Style Staking | David Tai | Rust | Apache-2.0 license | 2022-06-24 | Staking
-[ERC1337 Subscription Billing](https://github.com/Rengo-Labs/CasperLabs-EIP1337) | ERC1337 subscription billing | David Tai | Rust | MIT license | 2022-04-07 | Tokens
-[ERC20](https://github.com/casper-ecosystem/erc20) | Implementation of ERC20 token for the CasperLabs platform | CasperLabs | Rust | Apache License 2.0 | 2022-09-01 | Tokens
-[ERC777 Advanced Fungible Token](https://github.com/Rengo-Labs/CasperLabs-ERC777) | ERC777 + 1820 Advanced Fungible Token with Callbacks & Self Identification | David Tai | Rust | Apache-2.0 license | 2022-08-16 | Tokens
+[Subscription Billing](https://github.com/Rengo-Labs/CasperLabs-EIP1337) | ERC-1337 subscription billing | David Tai | Rust | MIT license | 2022-04-07 | Tokens
+[Casper Fungible Token](https://github.com/casper-ecosystem/erc20) | Implementation of Casper Fungible Token(Capser variant of ERC20) for the CasperLabs platform | CasperLabs | Rust | Apache License 2.0 | 2022-09-01 | Tokens
+[Advanced Fungible Token](https://github.com/Rengo-Labs/CasperLabs-ERC777) | ERC-777 + 1820 Advanced Fungible Token with Callbacks & Self Identification | David Tai | Rust | Apache-2.0 license | 2022-08-16 | Tokens
 [Helper Bot](https://github.com/a3mc/helperbot) | Helper bot for improving DevDao VAs productivity | A3MC | TypeScript | MIT license | 2022-08-19 | Tools
 [Java SDK](https://github.com/syntifi/casper-sdk) | Casper Client Java SDK | SyntiFi | Java | Apache License 2.0 | 2021-04-20 | Client SDK
 [KYC Proxy Contact](https://github.com/casper-ecosystem/kyc-proxy-contract) | This is a proxy contract to check if an account is KYC proved through registered providers (KYC Contracts). | CasperLabs | Rust | NA | 2022-07-01 | Example Contrats
