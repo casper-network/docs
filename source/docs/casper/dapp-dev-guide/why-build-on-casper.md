@@ -25,6 +25,9 @@ The Casper Ecosystem is growing every day through the addition of new dApps and 
 ### Developer Tools
 - [casperholders.io](https://casperholders.io)
 
+### Open Source Software
+- [Casper Ecosystem Open Source Software List](https://docs.google.com/spreadsheets/d/e/2PACX-1vSFkh5olr4FH_F3m9MWf3eKpqOwaCSZj5VvtwOBxLuuuxdrDuaf6OnE9j0IezfovfFHoKjvGZq1sTOT/pubhtml?gid=736629465&single=true)
+
 
 ## Developer-Friendly Language {#developer-friendly-language}
 Casper Network's development ecosystem supports WebAssembly by design, rather than requiring proprietary languages like Solidity. Casper contracts function just like regular software. This feature simplifies the development path for enterprises and development teams that want to build on the Casper Network.
