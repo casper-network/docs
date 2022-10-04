@@ -1,6 +1,7 @@
 # The Highway Consensus Protocol
 
 ## What is Consensus?
+
 Consensus is the backbone of any distributed network. The decentralized nature of a blockchain requires a method through which disparate entities can come to an agreement on one immutable truth. This involves determining validity of transactions, resolving address conflicts, and finalizing blocks to be added to the network. A consensus protocol is a set of mechanisms and rules within the distributed network with which all actors must comply.
 These rules outline the type of messages sent over the network, when they are sent and how to process them. Within the context of a blockchain, the consensus protocol decides which blocks are added to the chain, and the order by which they are added. This determines the state of the distributed ledger and ensures that all nodes agree on that state.
 The consensus mechanism will determine how a blockchain addresses the following two main characteristics:
