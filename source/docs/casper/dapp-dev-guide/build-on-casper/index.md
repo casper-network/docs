@@ -1,6 +1,6 @@
 ---
 title: Introduction
-slug: build-on-casper
+slug: introduction
 ---
 
 # Introduction
