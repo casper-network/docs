@@ -26,7 +26,13 @@ module.exports = {
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
-        "dapp-dev-guide/why-build-on-casper",
+        {
+            type: "category",
+            label: "Why Build on Casper",
+            collapsible: true,
+            collapsed: true,
+            items: ["dapp-dev-guide/build-on-casper/index", "dapp-dev-guide/build-on-casper/casper-open-source-software"],
+        },
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
         "dapp-dev-guide/dictionaries",
