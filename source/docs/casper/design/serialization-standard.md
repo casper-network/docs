@@ -249,51 +249,7 @@ The deploy hash is a digest over the contents of the deploy header. The deploy h
 
 ### Payment & Session {#payment--session}
 
-Payment and Session are both defined as `ExecutableDeployItems`. `ExecutableDeployItems` is an enum described as follows:
-
-```rust
-pub enum ExecutableDeployItem {
-    ModuleBytes {
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        module_bytes: Vec<u8>,
-        // assumes implicit `call` noarg entrypoint
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    StoredContractByHash {
-        #[serde(with = "HexForm::<[u8; KEY_HASH_LENGTH]>")]
-        hash: ContractHash,
-        entry_point: String,
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    StoredContractByName {
-        name: String,
-        entry_point: String,
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    StoredVersionedContractByHash {
-        #[serde(with = "HexForm::<[u8; KEY_HASH_LENGTH]>")]
-        hash: ContractPackageHash,
-        version: Option<ContractVersion>, // defaults to highest enabled version
-        entry_point: String,
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    StoredVersionedContractByName {
-        name: String,
-        version: Option<ContractVersion>, // defaults to highest enabled version
-        entry_point: String,
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    Transfer {
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-}
-```
+Payment and Session are both defined as `ExecutableDeployItems`. More information on `ExecutableDeployItems` can be found [here](/dapp-dev-guide/building-dapps/calling-contracts/)
 
 -   Module Bytes are serialized such that the first byte within the serialized buffer is `0` with the rest of the buffer containing the bytes present.
 
@@ -310,12 +266,12 @@ pub enum ExecutableDeployItem {
     -   `StoredContractByName { name: "U5A74bSZH8abT8HqVaK9", entry_point: "gIetSxltnRDvMhWdxTqQ", args: 07beadc3da884faa17454a }`
     -   `0x0214000000553541373462535a483861625438487156614b39140000006749657453786c746e5244764d685764785471510b00000007beadc3da884faa17454a`
 
--   StoredVersionedContractByHash serializes such that the first byte within the serialized buffer is 3u8. However, the field version within the enum serializes as an Option CLValue, i.e., if the value is None as shown in the example, it serializes to 0, else it serializes the inner u32 value, which is described below.
+-   StoredVersionedContractByHash serializes such that the first byte within the serialized buffer is 3u8. However, the field version within the enum serializes as an [Option](#option-clvalue-option) CLValue.
 
     -   `StoredVersionedContractByHash { hash: b348fdd0d0b3f66468687df93141b5924f6bb957d5893c08b60d5a78d0b9a423, version: None, entry_point: "PsLz5c7JsqT8BK8ll0kF", args: 3d0d7f193f70740386cb78b383e2e30c4f976cf3fa834bafbda4ed9dbfeb52ce1777817e8ed8868cfac6462b7cd31028aa5a7a60066db35371a2f8 }`
     -   `0x03b348fdd0d0b3f66468687df93141b5924f6bb957d5893c08b60d5a78d0b9a423001400000050734c7a3563374a73715438424b386c6c306b463b0000003d0d7f193f70740386cb78b383e2e30c4f976cf3fa834bafbda4ed9dbfeb52ce1777817e8ed8868cfac6462b7cd31028aa5a7a60066db35371a2f8`
 
--   StoredVersionedContractByName serializes such that the first byte within the serialized buffer is 4u8. The name and entry_point are serialized as a String CLValue, with the Option version field serializing to 0 if the value is None; else, it serializes the inner u32 value as described below.
+-   StoredVersionedContractByName serializes such that the first byte within the serialized buffer is 4u8. The name and entry_point are serialized as a [String](#string-clvalue-string) CLValue, with the version field serializing as an [Option](#option-clvalue-option).
 
     -   `StoredVersionedContractByName { name: "lWJWKdZUEudSakJzw1tn", version: Some(1632552656), entry_point: "S1cXRT3E1jyFlWBAIVQ8", args: 9975e6957ea6b07176c7d8471478fb28df9f02a61689ef58234b1a3cffaebf9f303e3ef60ae0d8 }`
     -   `0x04140000006c574a574b645a5545756453616b4a7a7731746e01d0c64e61140000005331635852543345316a79466c57424149565138270000009975e6957ea6b07176c7d8471478fb28df9f02a61689ef58234b1a3cffaebf9f303e3ef60ae0d8`
@@ -328,65 +284,6 @@ Approval contains two fields:
 
 -   `signer`: The public key of the approvals signer. It serializes to the byte representation of the `PublicKey`. If the `PublicKey` is an `Ed25519` key, then the first byte within the serialized buffer is 1 followed by the bytes of the key itself; else, in the case of `Secp256k1`, the first byte is 2.
 -   `signature`: The approval signature, which serializes as the byte representation of the `Signature`. The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
-
-### Deploy Serialization at High Level {#deploy-serialization-at-high-level}
-
-Consider the following deploy:
-
-```json
-{
-    "hash": "01da3c604f71e0e7df83ff1ab4ef15bb04de64ca02e3d2b78de6950e8b5ee187",
-    "header": {
-        "account": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-        "timestamp": "2020-11-17T00:39:24.072Z",
-        "ttl": "1h",
-        "gas_price": 1,
-        "body_hash": "4811966d37fe5674a8af4001884ea0d9042d1c06668da0c963769c3a01ebd08f",
-        "dependencies": ["0101010101010101010101010101010101010101010101010101010101010101"],
-        "chain_name": "casper-example"
-    },
-    "payment": {
-        "StoredContractByName": {
-            "name": "casper-example",
-            "entry_point": "example-entry-point",
-            "args": [
-                [
-                    "quantity",
-                    {
-                        "cl_type": "I32",
-                        "bytes": "e8030000",
-                        "parsed": 1000
-                    }
-                ]
-            ]
-        }
-    },
-    "session": {
-        "Transfer": {
-            "args": [
-                [
-                    "amount",
-                    {
-                        "cl_type": "I32",
-                        "bytes": "e8030000",
-                        "parsed": 1000
-                    }
-                ]
-            ]
-        }
-    },
-    "approvals": [
-        {
-            "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-            "signature": "012dbf03817a51794a8e19e0724884075e6d1fbec326b766ecfa6658b41f81290da85e23b24e88b1c8d9761185c961daee1adab0649912a6477bcd2e69bd91bd08"
-        }
-    ]
-}
-```
-
-The above deploy will serialize to:
-
-`01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900ca856a4d37501000080ee36000000000001000000000000004811966d37fe5674a8af4001884ea0d9042d1c06668da0c963769c3a01ebd08f0100000001010101010101010101010101010101010101010101010101010101010101010e0000006361737065722d6578616d706c6501da3c604f71e0e7df83ff1ab4ef15bb04de64ca02e3d2b78de6950e8b5ee187020e0000006361737065722d6578616d706c65130000006578616d706c652d656e7472792d706f696e7401000000080000007175616e7469747904000000e803000001050100000006000000616d6f756e7404000000e8030000010100000001d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c012dbf03817a51794a8e19e0724884075e6d1fbec326b766ecfa6658b41f81290da85e23b24e88b1c8d9761185c961daee1adab0649912a6477bcd2e69bd91bd08`
 
 ## DeployInfo {#deployinfo}
 
