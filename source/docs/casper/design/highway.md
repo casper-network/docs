@@ -10,7 +10,7 @@ The consensus mechanism will determine how a blockchain meets the following requ
 
 *   **Safety** - All honest nodes eventually agree on the final value. The system is setup in a way where no two honest nodes will report two different blocks at the same height of the blockchain.
 
-*   **Liveness** - The system continues running and adds new block to the chain indefinitely.
+*   **Liveness** - The system continues running and adds new blocks to the chain indefinitely.
 
 Casper networks use a consensus protocol known as *Highway*.
 
