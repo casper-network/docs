@@ -14,15 +14,11 @@ The consensus mechanism will determine how a blockchain meets the following requ
 
 Casper networks use a consensus protocol known as *Highway*.
 
-## What is Highway?
+## How does the Casper Network use Highway?
 
-Highway is a [Proof-of-Stake](/glossary/P/#proof-of-stake) network. The protocol uses a decentralized network of [nodes](/glossary/N/#node), either bonded or unbonded. Nodes that actively participate in the process of consensus must stake CSPR tokens and are known as [Validator Nodes](/glossary/V/#validator). The top 100 bidders are selected through the auction contract every era, to act as validators in the era after the next (Current Era + 2). Nodes with a greater stake in the success of the network have a greater weight in reaching consensus.
+The Casper Network is a [Proof-of-Stake](/glossary/P/#proof-of-stake) network, in which the on-chain auction contract determines validators that participate in Highway. The protocol uses a decentralized network of [nodes](/glossary/N/#node), either bonded or unbonded. Nodes that actively participate in the process of consensus must stake CSPR tokens and are known as [Validator Nodes](/glossary/V/#validator). The top 100 bidders are selected through the auction contract every era, to act as validators in the era after the next (Current Era + 2). Nodes with a greater stake in the success of the network have a greater weight in reaching consensus. Highway does not necessitate a Proof-of-Stake method of choosing validators and could theoretically be used alongside a private network with a different model.
 
-These validators run a partial Byzantine Fault Tolerant protocol, currently Highway, which asserts that communication between nodes becomes eventually synchronous. Traditional consensus protocols operate on a binary block finality system. Highway instead presumes that a given fraction of nodes must be dishonest to result in block reversion.
-
-The system will continue to function, so long as the amount of faulty or dishonest nodes does not exceed one-third of the total number of nodes in the network. Nodes that are not faulty are *honest* nodes. Further, the tolerance of a given node is configurable by the node's operator, allowing some nodes to reach finality faster, while others may require a higher level of confidence. This adds flexibility to the system when compared against prior implementations.
-
-In most cases, the system can assume that more than 2/3 of nodes will actively collaborate to achieve consensus. Therefore, stronger-than-average finality guarantees occur during periods where all nodes are acting honestly. A block's fault tolerance increases beyond one-third as the protocol continues. If all validators are honest, it approaches 100%.
+These validators run a Byzantine Fault Tolerant protocol, currently Highway, which requires a partially synchronous network. The system will continue to function, so long as the amount of faulty or dishonest nodes does not exceed one-third of the total number of nodes in the network. Nodes that are not faulty are *honest* nodes. In most cases, the system can assume that more than two-thirds of all nodes will actively collaborate to achieve consensus. Therefore, stronger-than-average finality guarantees occur during periods where all nodes are acting honestly. A block's fault tolerance increases beyond one-third as the protocol continues. If all validators are honest, it approaches 100%.
 
 ## Dynamic Round Length
 
@@ -44,8 +40,8 @@ The final block of an era is a *switch block* and forms the initial state of the
 
 ## Finality
 
-Finality occurs when the network can be sure that a block will not be altered, reversed, or cancelled after addition to the chain. This occurs via consensus, and as all transactions happen within a block, it allows for confirmation that a transaction cannot be changed. After finality, it would require greater than 1/2 of all validators to double-sign in order to cause block reversion.
+Finality occurs when the network can be sure that a block will not be altered, reversed, or cancelled after addition to the chain. This occurs via consensus, and as all transactions happen within a block, it allows for confirmation that a transaction cannot be changed. After finality, it would require greater than 1/3 of all validators to double-sign in order to cause disparity between nodes. In this event, the network would shut down and require a manual restart.
 
-On a Casper network, a transaction finalizes immediately upon addition to a block. This type of finality is beneficial, as it results in faster block times and increased certainty of finality. Validators that equivocate risk their entire stake being [slashed](/staking/#slashing/). Therefore, honest nodes receive rewards for their participation, while equivocating nodes risk considerable loss for acting maliciously.
+On a Casper network, a transaction finalizes alongside the finalizing of the block in which it is included. Validators that equivocate risk eviction, in which the network removes them from the validator set. Therefore, honest nodes receive rewards for their participation, while equivocating nodes risk loss of revenue for acting maliciously.
 
 Highway's criterion for detecting finality is the presence of a pattern of messages called a `Summit`. It is an improvement over previous CBC Casper finality criteria which were more difficult to attain, and computationally more expensive to detect.
