@@ -119,7 +119,7 @@ Let's write the function to get basic account information, like the account's pu
 			textAddress.textContent += publicKey;
 
 			const latestBlock = await casperService.getLatestBlockInfo();
-			const root = await casperService.getStateRootHash(latestBlock.block.hash);
+			const root = await casperService.getStateRootHash({ Hash: latestBlock.block.hash });
 
 			const balanceUref = await casperService.getAccountBalanceUrefByPublicKey(
 				root, 
