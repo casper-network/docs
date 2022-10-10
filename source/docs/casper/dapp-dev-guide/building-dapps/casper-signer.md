@@ -116,10 +116,9 @@ Let's write the function to get basic account information, like the account's pu
 		const isConnected = await window.casperlabsHelper.isConnected()
 		if(isConnected){
 			const publicKey = await window.casperlabsHelper.getActivePublicKey();
-			textAddress.textContent += publicKey;
+			textAddress.textContent = `PublicKeyHex ${publicKey}`;
 
-			const latestBlock = await casperService.getLatestBlockInfo();
-			const root = await casperService.getStateRootHash({ Hash: latestBlock.block.hash });
+			const root = await casperService.getStateRootHash();
 
 			const balanceUref = await casperService.getAccountBalanceUrefByPublicKey(
 				root, 
@@ -128,10 +127,10 @@ Let's write the function to get basic account information, like the account's pu
 
 			//account balance from the last block
 			const balance = await casperService.getAccountBalance(
-				latestBlock.block.header.state_root_hash,
+				root,
 				balanceUref
 			);
-			textBalance.textContent = `PublicKeyHex ${balance.toString()}`;
+			textBalance.textContent = `Balance ${balance.toString()}`;
 		}
 	}
 ```
