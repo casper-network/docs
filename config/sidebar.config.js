@@ -168,6 +168,7 @@ module.exports = {
     design: [
         "design/index",
         "design/p2p",
+        "design/highway",
         "design/global-state",
         "design/reading-and-writing-to-the-blockchain",
         "design/execution-semantics",
