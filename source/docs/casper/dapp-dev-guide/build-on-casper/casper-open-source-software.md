@@ -4,7 +4,7 @@ This page lists Open-Source Software available within the Casper ecosystem. Deve
 
 Name | Description | Author | Language | License | Last Update Date | Type
 -- | -- | -- | -- | -- | -- | --
-[Basic Yield Farm](https://github.com/Rengo-Labs/CasperLabs-StakingRewards) | Staking Rewards | David Tai | Rust | Apache-2.0 license | 2022-06-24 | Staking
+[Basic Yield Farm](https://github.com/Rengo-Labs/CasperLabs-StakingRewards) | Staking Rewards | Rengo Labs | Rust | Apache-2.0 license | 2022-06-24 | Staking
 [Blockcerts on Casper](https://github.com/amazanzan/casper-cert-issuer) | Issues Blockcerts using the Bitcoin, Ethereum, or Casper blockchain | amazanzan | Python | MIT license | 2022-07-22 | Tokens
 [BlockMatcher](https://blockmatcher.ledgerleap.com/) [Frontend](https://github.com/ledgerleapllc/blockmatcher-frontend) [Backend](https://github.com/ledgerleapllc/blockmatcher-backend) | Private Trade (OTC) Platform for Compliant Brokers. This system allows the creation of OTC token deals, matching buyers and sellers together. The admin, or broker, can then clear them in batches. | LedgerLeap | JavaScript-PHP | MIT license | 2022-01-15 | Exchange
 [Camel Casper](https://github.com/caspercommunityio/camel-casper) | Apache Camel connector for the Casper's Blockchain | caspercommunity.io | Java | MIT license | 2022-03-26 | Tools
@@ -20,7 +20,7 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [Casper JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) | Casper Client JavaScript SDK | CasperLabs | TypeScript-JavaScript | Apache License 2.0 | 2022-09-13 | Client SDK
 [Casper Kotlin SDK](https://github.com/tqhuy2018/Casper-Kotlin-sdk) | Casper Kotlin Client SDK to interact with the Casper network. | tqhuy2018 | Kotlin | MIT license | 2022-07-21 | Client SDK
 [Casper Metrics](https://github.com/a3mc/Casper-Metrics) | Casper Metrics - fast blockchain crawler, API and analysis tool | A3MC | TypeScript | MIT license | 2022-09-09 | Tools
-[Casper NCTL Docket](https://github.com/make-software/casper-nctl-docker) | A Docker container that runs Casper NCTL as a service | MAKE Software | Shell | Apache License 2.0 | 2022-03-17 | Tools
+[Casper NCTL Docker](https://github.com/make-software/casper-nctl-docker) | A Docker container that runs Casper NCTL as a service | MAKE Software | Shell | Apache License 2.0 | 2022-03-17 | Tools
 [Casper Node-RED](https://github.com/caspercommunityio/node-red-contrib-casper) | Nodes to communicate with the Casper's Blockchain using node-red | caspercommunity.io | JavaScript | MIT license | 2022-02-08 | Tools
 [Casper Objective-C SDK](https://github.com/tqhuy2018/Casper-ObjectiveC-sdk) | Casper Objective-C SDK is for interacting with the Casper Blockchain using RPC. | hienbui9999 | Objective-C | MIT license | 2022-06-18 | Client SDK
 [Casper PHP SDK](https://github.com/make-software/casper-php-sdk) | PHP SDK to interact with the Casper Network nodes via RPC. The PHP SDK allows developers to interact with the Casper Network using PHP. | MAKE Software | PHP | Apache License 2.0 | 2022-06-29 | Client SDK
@@ -42,15 +42,15 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [DHF PAY](https://github.com/DHFinance/dhf-pay-front) | The crypto currency payment gateway on the CSPR blockchain | DHFinance | TypeScript | Apache-2.0 license | 2022-08-28 | Payments
 [DLN DAO](https://github.com/dlndao/start/) | DLN DAO | AlphaFin | TypeScript | MIT license | 2022-09-10 | DAO
 [DotOracle](https://github.com/dotoracle/bridge-ui) | Realtime decentralized Oracle and Cross-chain liquidity network for EVM, non EVM Casper and L2 blockchains. | DotOracle Network | TypeScript | NA | 2022-09-26 | Bridge
-[Dragon’s Lair Style Staking](https://github.com/Rengo-Labs/CasperLabs-Dragonlair) | Lair Style Staking | David Tai | Rust | Apache-2.0 license | 2022-06-24 | Staking
-[Subscription Billing](https://github.com/Rengo-Labs/CasperLabs-EIP1337) | ERC-1337 subscription billing | David Tai | Rust | MIT license | 2022-04-07 | Tokens
+[Dragon’s Lair Style Staking](https://github.com/Rengo-Labs/CasperLabs-Dragonlair) | Lair Style Staking | Rengo Labs | Rust | Apache-2.0 license | 2022-06-24 | Staking
+[Subscription Billing](https://github.com/Rengo-Labs/CasperLabs-EIP1337) | ERC-1337 subscription billing | Rengo Labs | Rust | MIT license | 2022-04-07 | Tokens
 [Casper Fungible Token](https://github.com/casper-ecosystem/erc20) | Implementation of Casper Fungible Token(Capser variant of ERC20) for the CasperLabs platform | CasperLabs | Rust | Apache License 2.0 | 2022-09-01 | Tokens
-[Advanced Fungible Token](https://github.com/Rengo-Labs/CasperLabs-ERC777) | ERC-777 + 1820 Advanced Fungible Token with Callbacks & Self Identification | David Tai | Rust | Apache-2.0 license | 2022-08-16 | Tokens
+[Advanced Fungible Token](https://github.com/Rengo-Labs/CasperLabs-ERC777) | ERC-777 + 1820 Advanced Fungible Token with Callbacks & Self Identification | Rengo Labs | Rust | Apache-2.0 license | 2022-08-16 | Tokens
 [Helper Bot](https://github.com/a3mc/helperbot) | Helper bot for improving DevDao VAs productivity | A3MC | TypeScript | MIT license | 2022-08-19 | Tools
 [Java SDK](https://github.com/syntifi/casper-sdk) | Casper Client Java SDK | SyntiFi | Java | Apache License 2.0 | 2021-04-20 | Client SDK
 [KYC Proxy Contact](https://github.com/casper-ecosystem/kyc-proxy-contract) | This is a proxy contract to check if an account is KYC proved through registered providers (KYC Contracts). | CasperLabs | Rust | NA | 2022-07-01 | Example Contrats
-[LiquidNFT](https://github.com/Rengo-Labs/CasperLabs-LiquidNFT) | NFT Collateralized Loans | David Tai | JavaScript | GNU General Public License v3.0 | 2022-09-15 | NFT
+[LiquidNFT](https://github.com/Rengo-Labs/CasperLabs-LiquidNFT) | NFT Collateralized Loans | Rengo Labs | JavaScript | GNU General Public License v3.0 | 2022-09-15 | NFT
 [Payment Example Contract](https://github.com/casper-ecosystem/payment-example) | This example demonstrates the usage of purses to transfer motes inside a contract | CasperLabs | Rust | NA | 2022-06-22 | Example Contrats
 [ServicesDAO](https://github.com/EKON-YAZILIM/ServicesDAO) | The ServicesDAO portal provides a platform for the service DAOs which provide services in a decentralized manner through a modular implementation of MVPR. | Ekon Yazilim | HTML-CSS-C# | MIT license | 2022-09-13 | DAO
-[Uniswap DemoApp](https://github.com/Rengo-Labs/CasperLabs-Uniswap-DemoApp) | Uniswap UI + Contracts | David Tai | JavaScript | GPL-3.0 license | 2022-09-15 | DeFi
+[Uniswap DemoApp](https://github.com/Rengo-Labs/CasperLabs-Uniswap-DemoApp) | Uniswap UI + Contracts | Rengo Labs | JavaScript | GPL-3.0 license | 2022-09-15 | DeFi
 [Verified Impact NFT](https://github.com/AdelElMessiry/Verified-Impact-NFTs) | An NFTs platform dedicated to impact causes with verification of the benificiaries. | AlphaFin | JavaScript-Rust | MIT license | 2022-07-08 | NFT
