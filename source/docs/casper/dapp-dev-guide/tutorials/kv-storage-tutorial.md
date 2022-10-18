@@ -255,8 +255,8 @@ The kv-client has four distinct commands to set key-values for U64, string, U512
 casper-client put-deploy \
     --session-name kvstorage_contract \
     --session-entry-point store_string \
-    --session-arg=name:"string='test'" \
-    --session-arg=value:"string='your test string here'" \
+    --session-arg "name:string='test'" \
+    --session-arg "value:string='your test string here'" \
     --payment-amount 100000000000 \
     --chain-name <CHAIN-NAME> \
     --node-address http://<HOST>:<PORT> \
