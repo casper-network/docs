@@ -85,7 +85,7 @@ A [Deploy](/design/serialization-standard/#serialization-standard-deploy) is a d
     -   A time to live, after which the deploy is expired and cannot be included in a block
     -   the `blake2b256` hash of the body
 -   Deploy hash: the `blake2b` hash of the Header
--   Approvals: the set of signatures which have signed the deploy hash, these are used in the [account permissions model](./accounts.md#accounts-associated-keys-weights)
+-   Approvals: the set of signatures which have signed the deploy hash, these are used in the [account permissions model](#accounts-associated-keys-weights)
 
 ### Deploy Lifecycle {#execution-semantics-phases}
 
@@ -121,7 +121,7 @@ In the event of execution failure, the sender will be charged the minimum penalt
 
 **Payment code**
 
-_Payment code_ determines the payment amount for the computation requested and how much you, as the sender, are willing to pay. Payment code is allowed to include arbitrary logic, providing flexibility in how a deploy can be paid for (e.g., the simplest payment code could use the account's [main purse](./tokens.md#tokens-purses-and-accounts), while an enterprise application may require deploys to pay via a multi-sig application accessing a corporate purse). We restrict the gas limit of the payment code execution, based on the current conversion rate between gas and motes, such that no more than `MAX_PAYMENT_COST` motes (a constant of the system) are spent. To ensure payment code will pay for its own computation, we only allow accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST`, to execute deploys.
+_Payment code_ determines the payment amount for the computation requested and how much you, as the sender, are willing to pay. Payment code is allowed to include arbitrary logic, providing flexibility in how a deploy can be paid for (e.g., the simplest payment code could use the account's [main purse](#tokens-purses-and-accounts), while an enterprise application may require deploys to pay via a multi-sig application accessing a corporate purse). We restrict the gas limit of the payment code execution, based on the current conversion rate between gas and motes, such that no more than `MAX_PAYMENT_COST` motes (a constant of the system) are spent. To ensure payment code will pay for its own computation, we only allow accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST`, to execute deploys.
 
 If payment is not given or not enough is transferred, then payment execution is not considered successful. In this case the effects of the payment code on the global state are reverted and the cost of the computation is covered by motes taken from the offending account's main purse.
 
@@ -200,7 +200,7 @@ that it is extremely important to ensure there will always be access to a suffic
 
 ### The Account Context {#accounts-context}
 
-A deploy is a user request to perform some execution on the blockchain (see [Execution Semantics](./execution-semantics.md#execution-semantics-deploys-as-functions) for more information). It contains "payment code" and "session code" which are references to stored on-chain contracts or Wasm to be executed. In the case of executable Wasm, the execution of hte Wasm and the logic therein occurs within the context of the account signing the deploy. This means that the executing Wasm has access to the named keys and main purse of the account's context.
+A deploy is a user request to perform some execution on the blockchain (see [Execution Semantics](#execution-semantics-head) for more information). It contains "payment code" and "session code" which are references to stored on-chain contracts or Wasm to be executed. In the case of executable Wasm, the execution of hte Wasm and the logic therein occurs within the context of the account signing the deploy. This means that the executing Wasm has access to the named keys and main purse of the account's context.
 
 :::note
 
@@ -297,4 +297,4 @@ The concept of `CSPR` is human-readable convenience and does not exist within th
 
 ### Purses and Accounts {#tokens-purses-and-accounts}
 
-All [accounts](./accounts.md#accounts-head) on the Casper system have a purse associated with the Casper system mint, which we call the _main purse_. However, for security reasons, the `URef` of the main purse is only available to code running in the context of that account (i.e. only in payment or session code). Therefore, the mint's `transfer` method which accepts `URef`s is not the most convenient to use when transferring between account main purses. For this reason, Casper supplies a [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html) function which takes the public key used to derive the identity key of the account. This function uses the mint transfer function with the current account's main purse as the `source` and the main purse of the account at the provided key as the `target`.
+All [accounts](#accounts-head) on the Casper system have a purse associated with the Casper system mint, which we call the _main purse_. However, for security reasons, the `URef` of the main purse is only available to code running in the context of that account (i.e. only in payment or session code). Therefore, the mint's `transfer` method which accepts `URef`s is not the most convenient to use when transferring between account main purses. For this reason, Casper supplies a [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html) function which takes the public key used to derive the identity key of the account. This function uses the mint transfer function with the current account's main purse as the `source` and the main purse of the account at the provided key as the `target`.
