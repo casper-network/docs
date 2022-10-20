@@ -17,7 +17,7 @@ CSPR tokens are used to pay for transactions on the Casper Network. There are se
 
 ## Monitoring the Event Stream for Deploys
 
-If you want to follow the [lifecycle](/design/execution-semantics.md/#execution-semantics-phases) of the deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](/dapp-dev-guide/building-dapps/monitoring-events). You need the following information to proceed:
+If you want to follow the [lifecycle](/design/casper-design.md/#execution-semantics-phases) of the deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](/dapp-dev-guide/building-dapps/monitoring-events). You need the following information to proceed:
 
 - The IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network
 - The port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default 9999 on Mainnet and Testnet

@@ -151,7 +151,7 @@ All these features are accessible via functions in the [Casper External FFI](htt
 
 ## Accounts {#accounts-head}
 
-The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`. By default, a transactional interaction with the blockchain takes the form of a Deploy cryptographically signed by the key-pair corresponding to the PublicKey used to create the account. All user activity on the Casper blockchain (i.e., "deploys") must originate from an account. Each account has its own context where it can locally store information (e.g., references to useful contracts, metrics, aggregated data from other parts of the blockchain). Each account also has a "main purse" where it can hold Casper tokens (see [Tokens](./tokens.md#tokens-purses-and-accounts) for more information).
+The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`. By default, a transactional interaction with the blockchain takes the form of a Deploy cryptographically signed by the key-pair corresponding to the PublicKey used to create the account. All user activity on the Casper blockchain (i.e., "deploys") must originate from an account. Each account has its own context where it can locally store information (e.g., references to useful contracts, metrics, aggregated data from other parts of the blockchain). Each account also has a "main purse" where it can hold Casper tokens (see [Tokens](#tokens-purses-and-accounts) for more information).
 
 In this chapter we describe the permission model for accounts, their local storage capabilities, and briefly mention some runtime functions for interacting with accounts.
 
@@ -258,7 +258,7 @@ The [block header](/design/serialization-standard/#serialization-standard-block)
 -   justifications
     -   a list of `block_hash`es giving the justifications of the block (see consensus description in part A for more details)
 -   a summary of the global state, including
-    -   the [root hash of the global state trie](./global-state.md#global-state-trie) before executing the deploys in this block (`pre_state_hash`)
+    -   the [root hash of the global state trie](#global-state-trie) before executing the deploys in this block (`pre_state_hash`)
     -   the root hash of the global state trie after executing the deploys in this block (`post_state_hash`)
     -   the list of currently bonded validators, and their stakes
 -   the `blake2b256` hash of the body of the block
@@ -271,7 +271,7 @@ The [block header](/design/serialization-standard/#serialization-standard-block)
 
 #### Body {#body}
 
-The block body contains an **ordered** list of `DeployHashes` which refer to deploys, and an **ordered** list of `DeployHashes` for native transfers (which are specialized deploys that only transfer token between accounts). All deploys, including a specialization such as native transfer, can be broadly categorized as some unit of work that, when executed and committed, affect change to global state [Global State](./global-state.md#global-state-intro). It should be noted that a valid block may contain no deploys and / or native transfers.
+The block body contains an **ordered** list of `DeployHashes` which refer to deploys, and an **ordered** list of `DeployHashes` for native transfers (which are specialized deploys that only transfer token between accounts). All deploys, including a specialization such as native transfer, can be broadly categorized as some unit of work that, when executed and committed, affect change to global state [Global State](#global-state-intro). It should be noted that a valid block may contain no deploys and / or native transfers.
 
 The block body also contains the public key of the validator that proposed the block.
 
