@@ -344,7 +344,7 @@ If the `execution_results` field is empty, it means that the network processed t
 
 ## query_global_state {#query-global-state}
 
-This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](/design/casper-design.mod/#block_hash) or state root hash.
+This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](/design/casper-design.md/#block_hash) or state root hash.
 
 * Note: Querying a purse's balance requires the use of `state_get_balance` rather than any iteration of `query_global_state`.
 

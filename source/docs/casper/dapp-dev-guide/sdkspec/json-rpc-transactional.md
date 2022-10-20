@@ -14,12 +14,12 @@ This is the only means by which users can send their compiled Wasm (as part of a
 
 ### `account_put_deploy_result`
 
-The result contains the [deploy_hash](/sdkspec/types_chain/#deployhash), which is the primary identifier of a Deploy within a Casper network.
+The result contains the [deploy_hash](/sdkspec/types_chain#deployhash), which is the primary identifier of a Deploy within a Casper network.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[deploy_hash](/sdkspec/types_chain/#deployhash)|String| A hex-encoded hash of the Deploy as sent.|
+|[deploy_hash](/sdkspec/types_chain#deployhash)|String| A hex-encoded hash of the Deploy as sent.|
 
 <details>
 
@@ -106,7 +106,7 @@ The `speculative_exec` endpoint provides a method to execute a `Deploy` without 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |[block_identifier](../../sdkspec/types_chain/#blockidentifier)|Object|The block hash or height on top of which to execute the deploy. If not supplied,the most recent block will be used.|
-|[deploy](../../sdkspec/types_chain/#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
+|[deploy](../../sdkspec/types_chain#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
 
 ### `speculative_exec_result`
 
