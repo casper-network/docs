@@ -483,7 +483,7 @@ They are serialized as a `BTreeMap` where the first 4 bytes represent a `u32` va
 
 In this chapter, we describe what constitutes a "key", the permissions model for the keys, and how they are serialized.
 
-A _key_ in the [Global State](./global-state.md#global-state-intro) is one of the following data types:
+A _key_ in the [Global State](./casper-design.md##global-state-head) is one of the following data types:
 
 -   32-byte account identifier (called an "account identity key")
 -   32-byte immutable contract identifier (called a "hash key")
@@ -502,15 +502,15 @@ The one exception to note here is the identifier for [`EraInfo`](#erainfo), whic
 
 ### Account identity key {#global-state-account-key}
 
-This key type is used specifically for accounts in the global state. All accounts in the system must be stored under an account identity key, and no other types. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./accounts.md#accounts-associated-keys-weights) for more information).
+This key type is used specifically for accounts in the global state. All accounts in the system must be stored under an account identity key, and no other types. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./casper-design.md#accounts-associated-keys-weights) for more information).
 
 ### Hash key {#serialization-standard-hash-key}
 
-This key type is used for storing contracts immutably. Once a contract is written under a hash key, that contract can never change. The 32-byte identifier representing this key is derived from the `blake2b256` hash of the deploy hash (see [block-structure-head](./block-structure.md#block-structure-head) for more information) concatenated with a 4-byte sequential ID. The ID begins at zero for each deploy and increments by one each time a contract is stored. The purpose of this ID is to allow each contract stored in the same deploy to have a unique key.
+This key type is used for storing contracts immutably. Once a contract is written under a hash key, that contract can never change. The 32-byte identifier representing this key is derived from the `blake2b256` hash of the deploy hash (see [block-structure-head](./casper-design.md#block-structure-head) for more information) concatenated with a 4-byte sequential ID. The ID begins at zero for each deploy and increments by one each time a contract is stored. The purpose of this ID is to allow each contract stored in the same deploy to have a unique key.
 
 ### Unforgeable Reference (`URef`) {#serialization-standard-uref}
 
-`URef` broadly speaking can be used to store values and manage permissions to interact with the value stored under the `URef`. `URef` is a tuple which contains the address under which the values are stored and the Access rights to the `URef`. Refer to the [Unforgeable Reference](./uref.md#uref-head) section for details on how `URefs` are managed.
+`URef` broadly speaking can be used to store values and manage permissions to interact with the value stored under the `URef`. `URef` is a tuple which contains the address under which the values are stored and the Access rights to the `URef`. Refer to the [Unforgeable Reference](./casper-design.md#uref-head) section for details on how `URefs` are managed.
 
 ### Transfer Key {#serialization-standard-transfer-key}
 
@@ -524,9 +524,9 @@ This key type is used specifically for storing information related to deploys in
 
 This key type is used specifically for storing information related to the `Auction` metadata for a particular era. The underlying data type stored under this is a vector of the allocation of seigniorage for that given era. The identifier for this key is a new type that wraps around the primitive `u64` data type and co-relates to the era number when the auction information was stored.
 
-This key type is used specifically for storing information related to auction bids in the global state. Information for the bids is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./accounts.md#accounts-associated-keys-weights) for more information).
+This key type is used specifically for storing information related to auction bids in the global state. Information for the bids is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./casper-design.md#accounts-associated-keys-weights) for more information).
 
-This key type is used specifically for storing information related to auction withdraws in the global state. Information for the withdrawals is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./accounts.md#accounts-associated-keys-weights) for more information).
+This key type is used specifically for storing information related to auction withdraws in the global state. Information for the withdrawals is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./casper-design.md#accounts-associated-keys-weights) for more information).
 
 ### Serialization for `Key` {#serialization-standard-serialization-key}
 
@@ -583,7 +583,7 @@ There are three types of actions that can be done on a value: read, write, add. 
 
 ---
 
-Refer to [URef permissions](uref.md) on how permissions are handled in the case of `URef`s.
+Refer to [URef permissions](/design/casper-design.md/#uref-permissions) on how permissions are handled in the case of `URef`s.
 
 ## NamedArg {#namedarg}
 
@@ -711,7 +711,7 @@ A value stored in the global state is a `StoredValue`. A `StoredValue` is one of
 -   A contract
 -   An account
 
-We discuss `CLValue` and contract in more detail below. Details about accounts can be found in [accounts-head](./accounts.md#accounts-head).
+We discuss `CLValue` and contract in more detail below. Details about accounts can be found in [accounts-head](./casper-design.md#accounts-head).
 
 Each `StoredValue` is serialized when written to the global state. The serialization format consists of a single byte tag, indicating which variant of `StoredValue` it is, followed by the serialization of that variant. The tag for each variant is as follows:
 
@@ -725,8 +725,6 @@ The details of `CLType` serialization are in the following section. Using the se
 -   accounts serialize in the same way as data with `CLType` equal to `Tuple5(ByteArray(U8, 32), Map(String, Key), URef, Map(ByteArray(U8, 32), U8), Tuple2(U8, U8))`.
 
 Note: `Tuple5` is not a presently supported `CLType`. However, it is clear how to generalize the rules for `Tuple1`, `Tuple2`, `Tuple3` to any size tuple.
-
-Note: links to further serialization examples and a reference implementation are found in [Appendix B](./appendix.md#appendix-b).
 
 ### `CLValue` {#clvalue}
 
@@ -899,7 +897,7 @@ Contracts are a special value type because they contain the on-chain logic of th
 -   a collection of named keys
 -   a protocol version
 
-The wasm module must contain a function named `call`, which takes no arguments and returns no values. This is the main entry point into the contract. Moreover, the module may import any of the functions supported by the Casper runtime; a list of all supported functions can be found in [Appendix A](./appendix.md#appendix-a).
+The wasm module must contain a function named `call`, which takes no arguments and returns no values. This is the main entry point into the contract. Moreover, the module may import any of the functions supported by the [Casper runtime](/design/casper-design.md/#execution-semantics-runtime).
 
 Note: though the `call` function signature has no arguments and no return value, within the `call` function body, the `get_named_arg` runtime function can be used to accept arguments (by ordinal), and the `ret` runtime function can be used to return a single `CLValue` to the caller.
 

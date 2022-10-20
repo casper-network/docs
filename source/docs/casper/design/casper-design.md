@@ -64,7 +64,7 @@ Costs for opcode instructions on the Casper Mainnet network can be found [here](
 
 All executions are finite because each has a finite _gas limit_ that specifies the maximum amount of gas that can be spent before the computation is terminated by the runtime. The payment executable session determines how to pay for the Deploy. The gas limit is set by executing the payment code specified within the Deploy. How this limit is determined is discussed in more detail below.
 
-Although computation is measured in `Gas`, we still take payment for computation in [motes](./tokens.md#tokens-divisibility). Therefore, there is a conversion rate between `Gas` and motes. How this conversion rate is determined is discussed elsewhere.
+Although computation is measured in `Gas`, we still take payment for computation in [motes](#tokens-divisibility). Therefore, there is a conversion rate between `Gas` and motes. How this conversion rate is determined is discussed elsewhere.
 
 :::note
 
