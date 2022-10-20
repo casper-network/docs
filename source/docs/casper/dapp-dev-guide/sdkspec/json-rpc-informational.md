@@ -7,7 +7,7 @@ The following methods return information from a node on a Casper network. The re
 
 ## chain_get_block {#chain-get-block}
 
-This method returns the JSON representation of a [Block](/design/block-structure/) from the network.
+This method returns the JSON representation of a Block from the network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
@@ -344,7 +344,7 @@ If the `execution_results` field is empty, it means that the network processed t
 
 ## query_global_state {#query-global-state}
 
-This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](/design/block-structure#block_hash) or state root hash.
+This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](/design/casper-design.mod/#block_hash) or state root hash.
 
 * Note: Querying a purse's balance requires the use of `state_get_balance` rather than any iteration of `query_global_state`.
 
