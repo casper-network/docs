@@ -28,6 +28,8 @@ Changes to global state occur through the execution of deploys contained within 
 
 ### Merkle Trie Structure {#global-state-trie}
 
+![Global State](/image/design/global-state.png)
+
 At a high level, a Merkle trie is a key-value store data structure that can be shared piece-wise in a verifiable way (via a construction called a Merkle proof). Each node is labeled by the hash of its data. Leaf nodes are labeled with the hash of their data. Non-leaf nodes are labeled with the hash of the labels of their child nodes.
 
 Our implementation of the trie has radix of 256, meaning each branch node can have up to 256 children. A path through the tree can be an array of bytes, and serialization directly links a key with a path through the tree as its associated value.
@@ -78,6 +80,8 @@ This decision is taken to incentivize the [Casper Runtime Economics](/economics/
 
 A [Deploy](/design/serialization-standard/#serialization-standard-deploy) is a data structure containing a smart contract and the requester's signature(s). Additionally, the deploy header contains additional metadata about the deploy itself. A deploy is structurally defined as follows:
 
+![Deploy Structure](/image/design/deploy-structure.png)
+
 -   Body: Containing payment code and session code (more details on these below)
 -   Header: containing
     -   The [Public Key](/design/serialization-standard/#publickey) of the account the deploy will run in the context of
@@ -97,6 +101,8 @@ A deploy goes through the following phases on Casper:
 4. Block Gossiped
 5. Consensus Reached
 6. Deploy Executed
+
+![Deploy Lifecycle](/image/design/deploy-lifecycle.png)
 
 #### Deploy Received
 The client sending the deploy will send it to one or more nodes via their JSON RPC servers. The node will ensure that a given deploy matches configuration settings as set forth in the network's chainspec. Deploy configuration for the Casper Mainnet can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L79). Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. The deploy could expire while waiting to be gossiped and whenever this happens a `DeployExpired` event is emitted by the event stream servers of all nodes which have expired the deploy.
@@ -143,9 +149,13 @@ Each of payment and session code are independently specified, so different metho
 
 A Wasm module is not natively able to create any effects outside of reading / writing from its own linear memory. To enable other effects (e.g. reading / writing to the Casper global state), Wasm modules must import functions from the host environment they are running in.
 
+![Casper Network Runtime](/image/design/casper-runtime.png)
+
 All these features are accessible via functions in the [Casper External FFI](https://docs.rs/casper-contract/1.4.4/casper_contract/ext_ffi/index.html).
 
 #### Generating `URef`s {#execution-semantics-urefs}
+
+![Generating URefs](/image/design/generating-urefs.png)
 
 `URef`s are generated using a [cryptographically secure random number generator](https://rust-random.github.io/rand/rand_chacha/struct.ChaCha20Rng.html) using the [ChaCha algorithm](https://cr.yp.to/chacha.html). The random number generator is seeded by taking the `blake2b256` hash of the deploy hash concatenated with an index representing the current phase of execution (to prevent collisions between `URef`s generated in different phases of the same deploy).
 
@@ -158,6 +168,8 @@ In this chapter we describe the permission model for accounts, their local stora
 ### Creating an account {#accounts-creating}
 
 Account creation happens automatically when there is a token transfer to a yet unused `PublicKey`. When an account is first created, the balance of its main purse is equal to the number of tokens transferred during the creation process. Its action thresholds are equal to 1 and there is one associated key. The associated key is the `PublicKey` used to create the account. In this way, an account is essentially a context object encapsulating the main purse, which is used to pay for transactions. However, an account may have additional purse beyond the main purse.
+
+![Account Data Structure](/image/design/account-structure.png)
 
 An `Account` contains the following data:
 
@@ -285,9 +297,13 @@ This chapter describes how we define tokens and how one can use them on the Casp
 
 ### Token Generation and Distribution {#token-generation-and-distribution}
 
+![CSPR Token](/image/design/cspr-token.png)
+
 A blockchain system generally needs to have a supply of tokens available to pay for computation and reward validators for processing transactions on the network. The initial supply at the launch of Mainnet was 10 billion CSPR. The current supply is available [here](https://api.cspr.live/supply). In addition to the initial supply, the system will have a low rate of inflation, the results of which will be paid out to validators in the form of seigniorage.
 
 The number of tokens used as a basis for calculating seigniorage is the initial supply of tokens at genesis.
+
+![Token Lifecycle](/image/design/token-lifecycle.png)
 
 ### Divisibility of Tokens {#tokens-divisibility}
 
