@@ -265,21 +265,47 @@ The `block_hash` is the `blake2b256` hash of the block header.
 
 The [block header](/design/serialization-standard/#serialization-standard-block) contains the following fields:
 
--   `parent_hash`
-    -   a list of `block_hash`es giving the parents of the block
--   justifications
-    -   a list of `block_hash`es giving the justifications of the block (see consensus description in part A for more details)
--   a summary of the global state, including
-    -   the [root hash of the global state trie](#global-state-trie) before executing the deploys in this block (`pre_state_hash`)
-    -   the root hash of the global state trie after executing the deploys in this block (`post_state_hash`)
-    -   the list of currently bonded validators, and their stakes
--   the `blake2b256` hash of the body of the block
--   the time the block was created
--   the protocol version the block was executed with
--   the number of deploys in the block
--   the human-readable name corresponding to this instance of a Casper Network (`chain_id`)
--   an indicator for whether this message is intended as a valid block or merely a _ballot_ (see consensus description in part A for more details)
+* `parent_hash`
 
+  A list of `block_hash`es giving the parents of the block.
+
+* `state_root_hash`
+
+  The global state root hash produced by executing this block's body.
+
+
+* `body_hash`
+
+  The hash of the block body.
+
+
+* `random_bit` 
+
+  A boolean needed for initializing a future era.
+
+* `accumulated_seed`
+
+  A seed needed for initializing a future era.
+
+* `era_end`
+
+  Contains equivocation and reward information to be included in the terminal finalized block. It is an optional field.
+
+* `timestamp`
+
+  The timestamp from when the block was proposed.
+
+* `era_id` 
+
+  Era ID in which this block was created.
+
+* `height`
+
+  The height of this block, i.e., the number of ancestors.
+
+* `protocol_version` 
+
+  The version of the Casper network when this block was proposed.
 
 #### Body {#body}
 
@@ -287,7 +313,7 @@ The block body contains an **ordered** list of `DeployHashes` which refer to dep
 
 The block body also contains the public key of the validator that proposed the block.
 
-Refer to the [Deploy Serialization Standard](serialization-standard.md) for additional information on deploys and how they are serialized. Refer to [Deploy Serialization Standard](serialization-standard.md) for how blocks are serialized.
+Refer to the [Serialization Standard](serialization-standard.md) for additional information on how blocks and deploy are serialized.
 
 ## Tokens {#tokens-head}
 
