@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: SDK Client Libraries
 slug: /sdk
 ---
 
@@ -11,7 +11,7 @@ The following table provides links to the SDK documentation, in addition to the 
 
 | SDK Documentation      | GitHub Location      | Maintainer |
 | ---------------------- | -------------------- | ---------- |
-|[TypeScript](/dapp-dev-guide/building-dapps/sdk/script-sdk) | [Casper-js-sdk](https://github.com/casper-ecosystem/casper-js-sdk/)| [Jan Hoffman](mailto:jan@hfmn.pl) |
+|[JavaScript/TypeScript](/dapp-dev-guide/building-dapps/sdk/script-sdk) | [Casper-js-sdk](https://github.com/casper-ecosystem/casper-js-sdk/)| [Jan Hoffman](mailto:jan@hfmn.pl) |
 |Java SDK | [Casper-java-sdk](https://github.com/casper-network/casper-java-sdk/)| [Carl Norburn](mailto:carl.norburn@gmail.com)|
 |[C# SDK](/dapp-dev-guide/building-dapps/sdk/csharp-sdk)|[Casper-net-sdk](https://github.com/make-software/casper-net-sdk)|David Hernando, Ihor Burlachenko, Muhammet Kara, Michael Steuer|
 |[Golang SDK](/dapp-dev-guide/building-dapps/sdk/go-sdk) |[Casper-golang-sdk](https://github.com/casper-ecosystem/casper-golang-sdk/)|[Yaroslav Panasenko](mailto:yar.panasenko@gmail.com)|
