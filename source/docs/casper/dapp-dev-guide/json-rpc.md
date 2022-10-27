@@ -4,7 +4,7 @@ Users looking to interact with the JSON-RPC API of a Casper network have several
 
 ## Using a Casper SDK
 
-The [Casper Association](https://casper.network/en-us/) provides a [JavaScript SDK](/dapp-dev-guide/building-dapps/sdk/script-sdk/) for use with Casper networks. A list of additional SDKs maintained by third parties can be found [here](/building-dapps/sdk/).
+The [Casper Association](https://casper.network/en-us/) provides a [JavaScript SDK](/dapp-dev-guide/building-dapps/sdk/script-sdk/) for use with Casper networks. A list of additional SDKs maintained by third parties can be found [here](dapp-dev-guide/building-dapps/sdk/).
 
 These SDKs offer a means to build decentralized applications by interacting with the JSON-RPC API through your programming language of choice.
 
