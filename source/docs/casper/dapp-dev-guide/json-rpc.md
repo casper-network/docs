@@ -4,7 +4,7 @@ Users looking to interact with the JSON-RPC API of a Casper network have several
 
 ## Using a Casper SDK
 
-The [Casper Association](https://casper.network/en-us/) provides a [JavaScript SDK](/dapp-dev-guide/building-dapps/sdk/script-sdk/) for use with Casper networks. A list of additional SDKs maintained by third parties can be found [here](dapp-dev-guide/building-dapps/sdk/).
+The [Casper Association](https://casper.network/en-us/) provides a [JavaScript SDK](/dapp-dev-guide/building-dapps/sdk/script-sdk/) for use with Casper networks. A list of additional SDKs maintained by third parties can be found [here](/dapp-dev-guide/building-dapps/sdk/).
 
 These SDKs offer a means to build decentralized applications by interacting with the JSON-RPC API through your programming language of choice.
 
@@ -19,3 +19,17 @@ The standard outlines necessary available endpoints and their included types, bo
 For advanced users that wish to interact directly with the JSON-RPC API, they are free to do so using various tools like [Postman](https://www.postman.com/).
 
 The Casper JSON-RPC API is fully compatible with the [JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification).
+
+Casper nodes provide the RPC schema on port `8888`, followed by `rpc-schema`:  
+
+```sh
+<HOST:8888>/rpc-schema 
+```
+
+To see an example, navigate to http://65.21.235.219:8888/rpc-schema in your browser.
+
+The Casper client subcommand `list-rpcs` provides all currently supported RPCs. Here is an example of running the Casper client to list RPCs:
+
+```sh
+casper-client list-rpcs -n http://65.21.235.219:7777
+```
