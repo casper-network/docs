@@ -187,7 +187,7 @@ After acquiring the state root hash from the switch block, you must stop the net
 global-state-update-gen validators \
   --data-dir $DATA_DIR/global_state \
   --state-hash $STATE_ROOT_HASH \
-  –-validator $PUBLIC_KEY_HEX,$STAKE
+  –-validator $PUBLIC_KEY_HEX,$STAKE \
   –-validator $PUBLIC_KEY_HEX,$STAKE
 
 ```
