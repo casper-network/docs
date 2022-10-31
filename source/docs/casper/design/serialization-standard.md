@@ -817,3 +817,4 @@ A purse used for unbonding, replaced in 1.5 by [UnbondingPurse](#unbondingpurse)
 -   `era_of_creation` Era in which this unbonding request was created, as an [`EraId`](#eraid) newtype, which serializes as a [`u64`](#clvalue-numeric) value.
 
 -   `amount` The unbonding amount, serialized as a [`U512`](#clvalue-numeric) value.
+
