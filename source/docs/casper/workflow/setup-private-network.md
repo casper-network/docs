@@ -192,9 +192,11 @@ global-state-update-gen validators \
 
 ```
 
-Each use of the `--validator` command designates a validator for the next era. Only validators added using this command will be included in the new era, hence removing a validator only requires you to not add them with this command.
+Each use of the `--validator` parameter designates a validator for the next era. Only validators added using this parameter will be included in the new era, hence removing a validator only requires you to not add them with this parameter.
 
 After designating the next era's validators, you must set the chainspec activation point and `last_emergency_restart` to `X`, where `X` is equal to the new era after the switch block from above. Finally, set `hard_reset = true`. This makes the network revert to the end of the previous era when restarted with the upgrade.
+
+For example, to rotate the validators in era 10, one would need to wait for the end of era 9. After acquiring the state root hash from the final block of era 9, you would stop the network, run `global-state-update-gen`, set the activaction point and `last_emergency_restart` to 10 and `hard_reset` to `true`.
 
 You can now stage the upgrade by copying the chainspecs, configs and binaries where they should be while the network is still down. Once these are in place, you can restart the network with rotated validators.
 
