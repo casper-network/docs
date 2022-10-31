@@ -1,4 +1,4 @@
-# TypeScript/JavaScript SDK
+# JavaScript/TypeScript SDK
 
 This page contains details related to a few JavaScript (JS) clients and the Casper JS SDK.
 
