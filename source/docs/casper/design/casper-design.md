@@ -2,6 +2,10 @@
 
 ## Introduction
 
+Casper is a Proof-of-Stake blockchain platform that performs execution after consensus. Data associated with a Casper blockchain is stored on [Global State](#global-state-head). Users interact with global state through the use of session code sent in a [Deploy](#execution-semantics-deploys). Deploys are sent in the form of [Wasm](https://webassembly.org/), thus allowing developers to use their preferred programming language rather than a proprietary language.
+
+A Deploy executes in the context of the user's [Account](#accounts-head), but can call stored Wasm that will execute in its own context. Information other than an account, on global state, is stored in the form of an [Unforgeable Reference](#uref-head) or `URef`. Each deploy sent to global state, upon acceptance as valid, is placed in a [Block](#block-structure-head) and gossiped between nodes until the network reaches consensus. At this point, the Wasm included within the Deploy will be executed.
+
 1. [Global State](#global-state-head)
 
 2. [Execution Semantics](#execution-semantics-head)
@@ -101,8 +105,6 @@ A deploy goes through the following phases on Casper:
 4. Block Gossiped
 5. Consensus Reached
 6. Deploy Executed
-
-![Deploy Lifecycle](/image/design/deploy-lifecycle.png)
 
 #### Deploy Received
 The client sending the deploy will send it to one or more nodes via their JSON RPC servers. The node will ensure that a given deploy matches configuration settings as set forth in the network's chainspec. Deploy configuration for the Casper Mainnet can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L79). Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. The deploy could expire while waiting to be gossiped and whenever this happens a `DeployExpired` event is emitted by the event stream servers of all nodes which have expired the deploy.
@@ -323,8 +325,6 @@ This chapter describes how we define tokens and how one can use them on the Casp
 
 ### Token Generation and Distribution {#token-generation-and-distribution}
 
-![CSPR Token](/image/design/cspr-token.png)
-
 A blockchain system generally needs to have a supply of tokens available to pay for computation and reward validators for processing transactions on the network. The initial supply at the launch of Mainnet was 10 billion CSPR. The current supply is available [here](https://api.cspr.live/supply). In addition to the initial supply, the system will have a low rate of inflation, the results of which will be paid out to validators in the form of seigniorage.
 
 The number of tokens used as a basis for calculating seigniorage is the initial supply of tokens at genesis.
@@ -340,3 +340,34 @@ The concept of `CSPR` is human-readable convenience and does not exist within th
 ### Purses and Accounts {#tokens-purses-and-accounts}
 
 All [accounts](#accounts-head) on the Casper system have a purse associated with the Casper system mint, which we call the _main purse_. However, for security reasons, the `URef` of the main purse is only available to code running in the context of that account (i.e. only in payment or session code). Therefore, the mint's `transfer` method which accepts `URef`s is not the most convenient to use when transferring between account main purses. For this reason, Casper supplies a [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html) function which takes the public key used to derive the identity key of the account. This function uses the mint transfer function with the current account's main purse as the `source` and the main purse of the account at the provided key as the `target`.
+
+### The Casper Mint Contract {#mint-contract}
+
+The Casper *mint* is a system contract that manages the balance of *motes* within a Casper network. These motes are used to pay for computation and bonding on the network. The mint system contract holds all motes on a Casper network, but maintains an internal ledger of the balances for each Account's _main purse_. Each balance is associated with a `URef`, which acts as a key to instruct the mint to perform actions on that balance (e.g., transfer motes). Informally, we will refer to these balances as _purses_ and conceptually represent a container for motes. The `URef` is how a purse is referenced externally, outside the mint.
+
+The `AccessRights` of the [URefs](./uref.md#global-state-urefs-permissions) permissions model determine what actions are allowed to be performed when using a `URef` associated with a purse.
+
+As all `URef`s are unforgeable, so the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be given to the current context in a valid way (see [URefs](./uref.md#global-state-urefs-permissions) permissions for details).
+
+The basic global state options map onto more standard monetary operations according to the table below:
+
+| Global State | Action Monetary Action                           |
+| ------------ | ------------------------------------------------ |
+| Add          | Deposit (i.e. transfer to)                       |
+| Write        | Withdraw (i.e. transfer from) Read Balance check |
+
+## The mint Contract Interface {#tokens-mint-interface}
+
+The mint system contract exposes the following methods:
+
+-   `transfer(source: URef, target: URef, amount: Motes) -> TransferResult`
+    -   `source` must have at least `Write` access rights, `target` must have at least `Add` access rights
+    -   `TransferResult` may be a success acknowledgment or an error in the case of invalid `source` or `target` or insufficient balance in the `source` purse
+-   `mint(amount: Motes) -> MintResult`
+    -   `MintResult` either gives the created `URef` (with full access rights), which now has a balance equal to the given `amount`; or an error due to the minting of new motes not being allowed
+    -   In the Casper mint, only the system account can call `mint`, and it has no private key to produce valid cryptographic signatures, which means only the software itself can execute contracts in the context of the system account
+-   `create() -> URef`
+    -   a convenience function for `mint(0)` which cannot fail because it is always allowed to create an empty purse
+-   `balance(purse: URef) -> Option<Motes>`
+    -   `purse` must have at least `Read` access rights
+    -   `BalanceResult` either returns the number of motes held by the `purse`, or nothing if the `URef` is not valid
