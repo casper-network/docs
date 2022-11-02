@@ -345,9 +345,9 @@ All [accounts](#accounts-head) on the Casper system have a purse associated with
 
 The Casper *mint* is a system contract that manages the balance of *motes* within a Casper network. These motes are used to pay for computation and bonding on the network. The mint system contract holds all motes on a Casper network, but maintains an internal ledger of the balances for each Account's _main purse_. Each balance is associated with a `URef`, which acts as a key to instruct the mint to perform actions on that balance (e.g., transfer motes). Informally, we will refer to these balances as _purses_ and conceptually represent a container for motes. The `URef` is how a purse is referenced externally, outside the mint.
 
-The `AccessRights` of the [URefs](./uref.md#global-state-urefs-permissions) permissions model determine what actions are allowed to be performed when using a `URef` associated with a purse.
+The `AccessRights` of the URefs permissions model determine what actions are allowed to be performed when using a `URef` associated with a purse.
 
-As all `URef`s are unforgeable, so the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be given to the current context in a valid way (see [URefs](./uref.md#global-state-urefs-permissions) permissions for details).
+As all `URef`s are unforgeable, so the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be given to the current context in a valid way.
 
 The basic global state options map onto more standard monetary operations according to the table below:
 
