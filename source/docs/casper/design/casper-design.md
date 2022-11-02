@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Casper is a Proof-of-Stake blockchain platform that performs execution after consensus. Data associated with a Casper blockchain is stored on [Global State](#global-state-head). Users interact with global state through the use of session code sent in a [Deploy](#execution-semantics-deploys). Deploys are sent in the form of [Wasm](https://webassembly.org/), thus allowing developers to use their preferred programming language rather than a proprietary language.
+Casper is a Proof-of-Stake blockchain platform that performs execution after consensus. A Casper network stores data on a structure known as [Global State](#global-state-head). Users interact with global state through session code sent in a [Deploy](#execution-semantics-deploys). Deploys contain [Wasm](https://webassembly.org/) to be executed by the network, thus allowing developers to use their preferred programming language rather than a proprietary language.
 
-A Deploy executes in the context of the user's [Account](#accounts-head), but can call stored Wasm that will execute in its own context. Information other than an account, on global state, is stored in the form of an [Unforgeable Reference](#uref-head) or `URef`. Each deploy sent to global state, upon acceptance as valid, is placed in a [Block](#block-structure-head) and gossiped between nodes until the network reaches consensus. At this point, the Wasm included within the Deploy will be executed.
+A deploy executes in the context of the user's [Account](#accounts-head) but can call stored Wasm that will execute in its own context. Information other than an account, on global state, is stored in the form of an [Unforgeable Reference](#uref-head) or `URef`. After a node accepts a deploy as valid, it places the deploy in a proposed [Block](#block-structure-head) and gossips it between nodes until the network reaches consensus. At this point, the Wasm included within the deploy will be executed.
 
 1. [Global State](#global-state-head)
 
@@ -68,7 +68,7 @@ Computation is done in a [WebAssembly (Wasm)](https://webassembly.org/) interpre
 
 Costs for opcode instructions on the Casper Mainnet network can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L115).
 
-All executions are finite because each has a finite _gas limit_ that specifies the maximum amount of gas that can be spent before the computation is terminated by the runtime. The payment executable session determines how to pay for the Deploy. The gas limit is set by executing the payment code specified within the Deploy. How this limit is determined is discussed in more detail below.
+All executions are finite because each has a finite _gas limit_ that specifies the maximum amount of gas that can be spent before the computation is terminated by the runtime. The payment executable session determines how to pay for the deploy. The gas limit is set by executing the payment code specified within the deploy. How this limit is determined is discussed in more detail below.
 
 Although computation is measured in `Gas`, we still take payment for computation in [motes](#tokens-divisibility). Therefore, there is a conversion rate between `Gas` and motes. How this conversion rate is determined is discussed elsewhere.
 
