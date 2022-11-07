@@ -42,7 +42,7 @@ Top-Level Directory
 In the above directory structure, the `contract` folder contains the session code in the `main.rs` file and the needed dependencies in the `Cargo.toml` file. 
 The `tests` folder contains the code required to test the session code before it is deployed on a Casper Network.
 
-## Process of Writing Session Code
+## Writing Session Code
 The following steps illustrate the process of writing session code and the important components to include:
 
 1. Create a new top-level directory containing the session code and would also include another folder for tests, which will help us test the functionality of our session code. 
@@ -182,10 +182,10 @@ cargo build --release --target wasm32-unknown-unknown
 ```
 Once the session code is compiled you can deploy it on a Casper Network.
 
-## Deploying the Session Code
-Before you deploy the session code to the Mainnet or Testnet, you can do a trial run on the a local network using [NCTL](/dapp-dev-guide/building-dapps/setup-nctl).
+## Installing Session Code
+Before you install the session code on the Mainnet or Testnet, you can do a trial run on the a local network using [NCTL](/dapp-dev-guide/building-dapps/setup-nctl).
 
-You can deploy the session code on the Testnet using the following command:
+You can install the session code on the Testnet using the following command:
 
 ```bash
 casper-client put-deploy \
@@ -205,6 +205,14 @@ casper-client put-deploy \
 -   `session-arg` - A named and typed argument, which is passed to the Wasm code.
 
 You can use this command `casper-client put-deploy --help` to view help information, which provides an updated list of supported arguments.
+
+## Video Walkthrough
+
+The following brief video describes [sample session code](https://github.com/casper-ecosystem/two-party-multi-sig/) for configuring an account. 
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=4" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
 
 ## What's Next? {#whats-next}
 
