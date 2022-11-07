@@ -4,7 +4,7 @@
 
 Casper is a Proof-of-Stake blockchain platform that performs execution after consensus. A Casper network stores data on a structure known as [Global State](#global-state-head). Users interact with global state through session code sent in a [Deploy](#execution-semantics-deploys). Deploys contain [Wasm](https://webassembly.org/) to be executed by the network, thus allowing developers to use their preferred programming language rather than a proprietary language.
 
-A deploy executes in the context of the user's [Account](#accounts-head) but can call stored Wasm that will execute in its own context. Information other than an account, on global state, is stored in the form of an [Unforgeable Reference](#uref-head) or `URef`. After a node accepts a deploy as valid, it places the deploy in a proposed [Block](#block-structure-head) and gossips it between nodes until the network reaches consensus. At this point, the Wasm included within the deploy will be executed.
+A deploy executes in the context of the user's [Account](#accounts-head) but can call stored Wasm that will execute in its own context. Userland information other than an account, on global state, is stored in the form of an [Unforgeable Reference](#uref-head) or `URef`. After a node accepts a deploy as valid, it places the deploy in a proposed [Block](#block-structure-head) and gossips it between nodes until the network reaches consensus. At this point, the Wasm included within the deploy will be executed.
 
 1. [Global State](#global-state-head)
 
@@ -20,7 +20,7 @@ A deploy executes in the context of the user's [Account](#accounts-head) but can
 
 ## Global State {#global-state-head}
 
-"Global state" is the storage layer for the Casper blockchain. All accounts, contracts, and any associated data are stored in global state. Our global state follows the semantics of a key-value store (with additional permissions logic, as not all users can access all values in the same way).
+"Global state" is the storage layer for the Casper blockchain. All accounts, contracts, and any associated data are stored in global state. Global state follows the semantics of a key-value store (with additional permissions logic, as not all users can access all values in the same way).
 
 :::note
 
@@ -60,11 +60,11 @@ Conceptually, each block has its trie because the state changes based on the dep
 
 ## Execution Semantics {#execution-semantics-head}
 
-The Casper Network is a decentralized computation platform. In this chapter we describe aspects of the computational model we use.
+The Casper Network is a decentralized computation platform. In this section we describe aspects of the computational model we use.
 
 ### Measuring Computational Work {#execution-semantics-gas}
 
-Computation is done in a [WebAssembly (Wasm)](https://webassembly.org/) interpreter, allowing any programming language which compiles to Wasm to become a smart contract language for the Casper blockchain. Similar to Ethereum, we use [`Gas`](/economics/gas-concepts/) to measure computational work in a way which is consistent from node to node in a Casper Network. Each Wasm opcode is assigned a `Gas` value, and the amount of gas spent is tracked by the runtime with each opcode executed by the interpreter.
+Computation is done in a [WebAssembly (Wasm)](https://webassembly.org/) interpreter, allowing any programming language which compiles to Wasm to become a smart contract language for the Casper blockchain. Similar to Ethereum, we use [`Gas`](/economics/gas-concepts/) to measure computational work in a way which is consistent from node to node in a Casper Network. Each Wasm opcode is assigned a `Gas` cost, and the amount of gas spent is tracked by the runtime with each opcode executed by the interpreter.
 
 Costs for opcode instructions on the Casper Mainnet network can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L115).
 
@@ -107,7 +107,7 @@ A deploy goes through the following phases on Casper:
 6. Deploy Executed
 
 #### Deploy Received
-The client sending the deploy will send it to one or more nodes via their JSON RPC servers. The node will ensure that a given deploy matches configuration settings as set forth in the network's chainspec. Deploy configuration for the Casper Mainnet can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L79). Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. The deploy could expire while waiting to be gossiped and whenever this happens a `DeployExpired` event is emitted by the event stream servers of all nodes which have expired the deploy.
+A client sending the deploy will send it to one or more nodes via their JSON RPC servers. The node will ensure that a given deploy matches configuration settings as set forth in the network's chainspec. Deploy configuration for the Casper Mainnet can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L79). Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. The deploy could expire while waiting to be gossiped and whenever this happens a `DeployExpired` event is emitted by the event stream servers of all nodes which have expired the deploy.
 
 #### Deploy Gossiped
 After a node accepts a new deploy, it will gossip to all other nodes. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new proposed block for the chain. This mechanism is efficient and ensures all nodes in the network eventually hold the given deploy. Each node which accepts a gossiped deploy also emits a `DeployAccepted` event on its event stream server. The deploy may expire while waiting to be added to the block and whenever this happens a `DeployExpired` event is emitted.
