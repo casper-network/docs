@@ -72,6 +72,12 @@ The [Account](/design/accounts.md) creation process consists of two steps:
 1. Creating the account
 2. Funding the account
 
+The following video complements the instructions below, showing you the expected output.
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/watch?v=sA1HTPjV_bc&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 ## Creating an Account {#creating-an-account}
 
 The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
