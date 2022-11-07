@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Calling Smart Contracts with the Rust Client
 
-Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
+Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command. Each section below includes a short video demonstrating some example output.
 
 ## Prerequisites {#prerequisites}
 
@@ -73,6 +73,13 @@ The sample response will contain a `deploy_hash`, which you need to use as descr
 </details>
 <br></br>
 
+**Video - Call a contract by hash:**
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=11" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
+
 ## Calling Contracts with Session Arguments {#calling-contracts-with-session-args}
 
 You may need to pass in information using session arguments when calling contract entry points. The `put-deploy` allows you to do this with the `--session-arg` option:
@@ -108,6 +115,13 @@ casper-client put-deploy
     --session-arg "recipient:key='account-hash-89422a0f291a83496e644cf02d2e3f9d6cbc5f7c877b6ba9f4ddfab8a84c2670'" \
     --session-arg "amount:u256='20'" 
 ```
+
+**Video - Call a contract with session arguments:**
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=14" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 
 ## Calling Contracts by Package Hash {#calling-contracts-by-package-hash}
 
@@ -153,6 +167,12 @@ To find the contract package hash, look at the named keys associated with your c
 }
 ```
 
+**Video - Call a contract using the package hash:**
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=15" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 ## Calling Contracts by Contract Name {#calling-contracts-by-name}
 
 We can also reference a contract using a key as the contract name. When you write the contract, use the `put_key` function to add the ContractHash under the contract's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#). The key you specify will enable you to reference the contract when calling it using `put-deploy`.
@@ -194,6 +214,13 @@ casper-client put-deploy \
 ```
 
 The sample response will contain a `deploy_hash`, which you need to use as described [here](installing-contracts.md#querying-global-state), to verify the changes in global state.
+
+**Video - Call a contract using a named key:**
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=12" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 
 ## Calling Contracts by Package Name {#calling-contracts-by-package-name}
 
@@ -261,6 +288,11 @@ This example demonstrates how to call a contract that is part of the `erc20_test
     --session-arg "address:key='account-hash-303c0f8208220fe9a4de40e1ada1d35fdd6c678877908f01fddb2a56502d67fd'" 
 ```
 
+**Video - Call a contract using the package name:**
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=16" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
 
 ## Calling a Contract using Wasm {#calling-a-contract-using-wasm}
 
@@ -298,6 +330,13 @@ casper-client put-deploy \
     --session-path [PATH_TO_YOUR_COMPILED_WASM]/counter-call.wasm
 
 ```
+
+**Video - Call a contract using Wasm:**
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=13" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 
 ## Calling Contracts that Return a Value
 
