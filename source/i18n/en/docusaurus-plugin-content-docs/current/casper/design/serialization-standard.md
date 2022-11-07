@@ -93,7 +93,7 @@ The deploy hash is a digest over the contents of the deploy header. The deploy h
 -   `timestamp`: A timestamp is a struct that is a unary tuple containing a `u64` value. This value is a count of the milliseconds since the UNIX epoch. Thus the value `1603994401469` serializes as `0xbd3a847575010000`
 -   `ttl`: The **Time to live** is defined as the amount of time for which deploy is considered valid. The `ttl` serializes in the same manner as the timestamp.
 -   `gas_price`: The gas is `u64` value which is serialized as `u64` CLValue discussed below.
--   `body_hash`: Body hash is a hash over the contents of the deploy body, which includes the payment, session, and approval fields. Its serialization is the byte representation of the hash itself.
+-   `body_hash`: Body hash is a hash over the contents of the deploy body, which includes the payment and session fields. Its serialization is the byte representation of the hash itself.
 -   `dependencies`: Dependencies is a vector of deploy hashes referencing deploys that must execute before the current deploy can be executed. It serializes as a buffer containing the individual serialization of each DeployHash within the Vector.
 -   `chain_name`: Chain name is a human-readable string describing the name of the chain as detailed in the chainspec. It is serialized as a String CLValue described below.
 

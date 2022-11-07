@@ -69,7 +69,7 @@ This is the default location for configuration files. It can be overwritten with
 This is the location for larger and variable data for the `casper-node`, organized in the following folders and files:
 - `bin/` - The parent folder for storing the versions of `casper-node` executables. This location can be overwritten with the `CASPER_BIN_DIR` environment variable. The paths in this document assume the default of `/var/lib/casper/bin/`.
     - `1_0_0/` - Folder for genesis binary files, containing:
-        - `casper-node` - The node executable - defaults to the Ubuntu 18.04 compatible binary
+        - `casper-node` - The node executable - defaults to the Ubuntu 20.04 compatible binary
         - `README.md` - Information about the repository location and the Git hash used for compilation to allow a rebuild on other platforms
     - `m_n_p/` - Folder for each installed upgrade package, containing:
         - `casper-node` - As per `1_0_0/casper-node`, but the `m.n.p` version of the node

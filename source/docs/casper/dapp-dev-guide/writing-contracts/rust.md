@@ -26,6 +26,16 @@ The `new_contract` and `new_locked_contract` methods are a convenience that auto
 
 The contract contains required metadata and it is primarily identified by its hash, known as the contract hash. The [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) identifies a specific [version of a contract](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) and the `contractPackageHash` serves as a more stable identifier for the most recent version.
 
+## Difference Between Session Code and Smart Contract
+
+| Session Code | Smart Contract |
+| --- | --- |
+| Session code always executes in the context of the account that signed the deploy that contains the session code. | A smart contract  which is stored on chain logic, executes within its own separate context. |
+| When a `put_key` call is made within the body of the session code, the key is added to the account's named keys. | When a `put_key` call is made within the smart contract's context, the contract's record is modified to have a new named_key entry. |
+| Session code has only one entry point `call`, which can be used to interact with the session code. | A smart contract can have multiple entry points that will help you interact with the contract code.|  
+| Any action taken by the session code is initiated by the `call` entry point within the session code. | Any action undertaken by a contract must initiate through an outside call, usually via session code.|
+| For more information on how to write session code, see [Writing Session Code](../writing-contracts/session-code.md) | For more information on writing contracts, see [Writing a Basic Smart Contract in Rust](#writing-a-basic-smart-contract)
+
 ## Writing a Basic Smart Contract
 
 As stated, this tutorial covers the process of writing a smart contract in the Rust programming language. Casper provides a [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html) within our [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/index.html) crate.
@@ -39,7 +49,7 @@ This tutorial creates a simple smart contract that allows callers to donate fund
 First, create the directory for the new contract. This folder should have two sub-directories named `contract` and `test`.
 
 - `contract` -  This directory contains the code that becomes the Wasm, which is eventually sent to the network.    
-- `test` -  This is an optionial directory that will contain tests for unit testing and asserting that the behavior of the contract matches expectations. As users must pay for execution, these tests should be considered a best practice. However, they are not required.
+- `test` -  This is an optional directory that will contain tests for unit testing and asserting that the behavior of the contract matches expectations. As users must pay for execution, these tests should be considered a best practice. However, they are not required.
 
 Use the below command to create a new contract folder. This creates the `contract` folder with */src/main.rs* file and *cargo.toml* file
 
