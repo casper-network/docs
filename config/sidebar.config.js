@@ -53,6 +53,7 @@ module.exports = {
             collapsible: true,
             collapsed: true,
             items: [
+                "dapp-dev-guide/building-dapps/signing-a-deploy",
                 "dapp-dev-guide/building-dapps/sending-deploys",
                 {
                     type: "category",
@@ -82,7 +83,6 @@ module.exports = {
                 "dapp-dev-guide/writing-contracts/index",
                 "dapp-dev-guide/writing-contracts/getting-started",
                 "dapp-dev-guide/writing-contracts/best-practices",
-                "dapp-dev-guide/writing-contracts/signing-a-deploy",
                 "dapp-dev-guide/writing-contracts/session-code",
                 "dapp-dev-guide/writing-contracts/testing-session-code",
                 "dapp-dev-guide/writing-contracts/rust",

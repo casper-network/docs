@@ -165,7 +165,7 @@ Staking operations consists of two parts:
 
 1) [Creating a deploy object](/dapp-dev-guide/building-dapps/sending-deploys/)
     
-2) [Signing the deploy](/dapp-dev-guide/writing-contracts/signing-a-deploy/)
+2) [Signing the deploy](/dapp-dev-guide/building-dapps/signing-a-deploy/)
 
 The staking deploy requires the following information:
 - The delegator's public key
