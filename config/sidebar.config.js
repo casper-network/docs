@@ -101,6 +101,7 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/tutorials/index",
+                "dapp-dev-guide/tutorials/getting-started-tutorial",
                 {
                     type: "category",
                     label: "A Counter on an NCTL Network",
