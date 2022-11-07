@@ -230,8 +230,17 @@ Use the command `cargo install cargo casper`, if you want to set up the whole di
 
 :::
 
-## Complete Code Samples
-Expand the below sections to view the complete code samples of the original contract and the session code unit test.
+## Video Walkthrough
+
+The following brief video describes testing the [sample session code](https://github.com/casper-ecosystem/two-party-multi-sig/) for configuring an account. 
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=5" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
+## Other Code Samples
+
+Expand the sections below to view the complete code samples and unit tests.
 
 #### Sample contract used to build the session code
 <details>
