@@ -28,7 +28,7 @@ Refer to [Keys and Permissions](./serialization-standard.md#serialization-standa
 
 :::
 
-Changes to global state occur through the execution of deploys contained within finalized blocks. For validators to efficiently judge the correctness of these changes, information about the new state needs to be communicated succinctly. Further, we must communicate portions of global state to users, while allowing them to verify the correctness of the parts they receive. For these reasons, the key-value store is implemented as a [Merkle trie](#global-state-trie).
+Changes to global state occur through the execution of deploys contained within finalized blocks. For validators to efficiently judge the correctness of these changes, information about the new state needs to be communicated succinctly. Further, the network must communicate portions of global state to users, while allowing them to verify the correctness of the parts they receive. For these reasons, the key-value store is implemented as a [Merkle trie](#global-state-trie).
 
 ### Merkle Trie Structure {#global-state-trie}
 
@@ -36,7 +36,7 @@ Changes to global state occur through the execution of deploys contained within 
 
 At a high level, a Merkle trie is a key-value store data structure that can be shared piece-wise in a verifiable way (via a construction called a Merkle proof). Each node is labeled by the hash of its data. Leaf nodes are labeled with the hash of their data. Non-leaf nodes are labeled with the hash of the labels of their child nodes.
 
-Our implementation of the trie has radix of 256, meaning each branch node can have up to 256 children. A path through the tree can be an array of bytes, and serialization directly links a key with a path through the tree as its associated value.
+Casper's implementation of the trie has radix of 256, meaning each branch node can have up to 256 children. A path through the tree can be an array of bytes, and serialization directly links a key with a path through the tree as its associated value.
 
 Formally, a trie node is one of the following:
 
@@ -46,7 +46,7 @@ Formally, a trie node is one of the following:
 
 The purpose of the extension node is to allow path compression. Consider an example where all keys use the same first four bytes for values in the trie. In this case, it would be inefficient to traverse through four branch nodes where there is only one choice; instead, the root node of the trie could be an extension node with affix equal to those first four bytes and pointer to the first non-trivial branch node.
 
-The Rust implementation of our trie can be found on GitHub:
+The Rust implementation of Casper's trie can be found on GitHub:
 
 -   [Definition of the trie data structure](https://github.com/casper-network/casper-node/blob/dev/execution_engine/src/storage/trie/mod.rs#L475)
 -   [Reading from the trie](https://github.com/casper-network/casper-node/blob/dev/execution_engine/src/storage/trie_store/operations/mod.rs#L45)
@@ -54,23 +54,23 @@ The Rust implementation of our trie can be found on GitHub:
 
 :::note
 
-Conceptually, each block has its trie because the state changes based on the deploys it contains. For this reason, our implementation has a notion of a `TrieStore`, which allows us to look up the root node for each trie.
+Conceptually, each block has its trie because the state changes based on the deploys it contains. For this reason, Casper's implementation has a notion of a `TrieStore`, which allows us to look up the root node for each trie.
 
 :::
 
 ## Execution Semantics {#execution-semantics-head}
 
-The Casper Network is a decentralized computation platform. In this section we describe aspects of the computational model we use.
+The Casper Network is a decentralized computation platform. This section describes aspects of the Casper computational model.
 
 ### Measuring Computational Work {#execution-semantics-gas}
 
-Computation is done in a [WebAssembly (Wasm)](https://webassembly.org/) interpreter, allowing any programming language which compiles to Wasm to become a smart contract language for the Casper blockchain. Similar to Ethereum, we use [`Gas`](/economics/gas-concepts/) to measure computational work in a way which is consistent from node to node in a Casper Network. Each Wasm opcode is assigned a `Gas` cost, and the amount of gas spent is tracked by the runtime with each opcode executed by the interpreter.
+Computation is done in a [WebAssembly (Wasm)](https://webassembly.org/) interpreter, allowing any programming language which compiles to Wasm to become a smart contract language for the Casper blockchain. Similar to Ethereum, Casper uses [`Gas`](/economics/gas-concepts/) to measure computational work in a way which is consistent from node to node in a Casper Network. Each Wasm opcode is assigned a `Gas` cost, and the amount of gas spent is tracked by the runtime with each opcode executed by the interpreter.
 
 Costs for opcode instructions on the Casper Mainnet network can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L115).
 
 All executions are finite because each has a finite _gas limit_ that specifies the maximum amount of gas that can be spent before the computation is terminated by the runtime. The payment executable session determines how to pay for the deploy. The gas limit is set by executing the payment code specified within the deploy. How this limit is determined is discussed in more detail below.
 
-Although computation is measured in `Gas`, we still take payment for computation in [motes](#tokens-divisibility). Therefore, there is a conversion rate between `Gas` and motes. How this conversion rate is determined is discussed elsewhere.
+Although computation is measured in `Gas`, payment for computation occurs in [motes](#tokens-divisibility). Therefore, there is a conversion rate between `Gas` and motes. How this conversion rate is determined is discussed elsewhere.
 
 :::note
 
@@ -129,7 +129,7 @@ In the event of execution failure, the sender will be charged the minimum penalt
 
 **Payment code**
 
-_Payment code_ determines the payment amount for the computation requested and how much you, as the sender, are willing to pay. Payment code is allowed to include arbitrary logic, providing flexibility in how a deploy can be paid for (e.g., the simplest payment code could use the account's [main purse](#tokens-purses-and-accounts), while an enterprise application may require deploys to pay via a multi-sig application accessing a corporate purse). We restrict the gas limit of the payment code execution, based on the current conversion rate between gas and motes, such that no more than `MAX_PAYMENT_COST` motes (a constant of the system) are spent. To ensure payment code will pay for its own computation, we only allow accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST`, to execute deploys.
+_Payment code_ determines the payment amount for the computation requested and how much the sender is willing to pay. Payment code is allowed to include arbitrary logic, providing flexibility in how a deploy can be paid for (e.g., the simplest payment code could use the account's [main purse](#tokens-purses-and-accounts), while an enterprise application may require deploys to pay via a multi-sig application accessing a corporate purse). We restrict the gas limit of the payment code execution, based on the current conversion rate between gas and motes, such that no more than `MAX_PAYMENT_COST` motes (a constant of the system) are spent. To ensure payment code will pay for its own computation, only accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST` may execute deploys.
 
 If payment is not given or not enough is transferred, then payment execution is not considered successful. In this case the effects of the payment code on the global state are reverted and the cost of the computation is covered by motes taken from the offending account's main purse.
 
@@ -165,7 +165,7 @@ All these features are accessible via functions in the [Casper External FFI](htt
 
 The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`. By default, a transactional interaction with the blockchain takes the form of a Deploy cryptographically signed by the key-pair corresponding to the PublicKey used to create the account. All user activity on the Casper blockchain (i.e., "deploys") must originate from an account. Each account has its own context where it can locally store information (e.g., references to useful contracts, metrics, aggregated data from other parts of the blockchain). Each account also has a "main purse" where it can hold Casper tokens (see [Tokens](#tokens-purses-and-accounts) for more information).
 
-In this chapter we describe the permission model for accounts, their local storage capabilities, and briefly mention some runtime functions for interacting with accounts.
+This chapter describes the permission model for accounts, their local storage capabilities, and briefly mention some runtime functions for interacting with accounts.
 
 ### Creating an account {#accounts-creating}
 
@@ -208,7 +208,7 @@ The purpose of this permissions model is to enable keeping accounts safe from lo
 
 :::note
 
-that it is extremely important to ensure there will always be access to a sufficient number of keys to perform the key management action, otherwise future recovery will be impossible (we currently do not support "inactive recovery").
+It is extremely important to ensure there will always be access to a sufficient number of keys to perform the key management action, otherwise future recovery will be impossible (Casper currently does not support "inactive recovery").
 
 :::
 
@@ -224,7 +224,7 @@ In the case where there is a reference to stored on-chain Wasm (smart contracts)
 
 ## Unforgeable Reference (URef) {#uref-head}
 
-This key type is used for storing any type of value except `Account`. Additionally, `URef`s used in Wasm carry permission information to prevent unauthorized usage of the value stored under the key. This permission information is tracked by the runtime, meaning that if malicious Wasm attempts to produce a `URef` with permissions that the Wasm does not have, we say the Wasm has attempted to "forge" the unforgeable reference, and the runtime will raise a forged `URef` error. Permissions for a `URef` can be given across contract calls, allowing data stored under a `URef` to be shared in a controlled way. The 32-byte identifier representing the key is generated randomly by the runtime (see [Execution Semantics](#execution-semantics-head) for more information). The serialization for `Access Rights` that define the permissions for `URefs` is detailed in the [CLValues](serialization-standard.md) section.
+This key type is used for storing any type of value except `Account`. Additionally, `URef`s used in Wasm carry permission information to prevent unauthorized usage of the value stored under the key. This permission information is tracked by the runtime. This means that if malicious Wasm attempts to produce a `URef` with permissions that the Wasm does not have, the Wasm has attempted to "forge" the unforgeable reference, and the runtime will raise a forged `URef` error. Permissions for a `URef` can be given across contract calls, allowing data stored under a `URef` to be shared in a controlled way. The 32-byte identifier representing the key is generated randomly by the runtime (see [Execution Semantics](#execution-semantics-head) for more information). The serialization for `Access Rights` that define the permissions for `URefs` is detailed in the [CLValues](serialization-standard.md) section.
 
 ### Permissions for `URef`s {#uref-permissions}
 
@@ -321,7 +321,7 @@ Refer to the [Serialization Standard](serialization-standard.md) for additional 
 
 The Casper Network is a decentralized blockchain platform based on a Proof-of-Stake consensus algorithm called [Highway](/design/highway/). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../staking/index.md) to bond. In the blockchain space, this unit of value is a _token_.
 
-This chapter describes how we define tokens and how one can use them on the Casper platform.
+This chapter describes tokens and how one can use them on the Casper platform.
 
 ### Token Generation and Distribution {#token-generation-and-distribution}
 
@@ -339,11 +339,11 @@ The concept of `CSPR` is human-readable convenience and does not exist within th
 
 ### Purses and Accounts {#tokens-purses-and-accounts}
 
-All [accounts](#accounts-head) on the Casper system have a purse associated with the Casper system mint, which we call the _main purse_. However, for security reasons, the `URef` of the main purse is only available to code running in the context of that account (i.e. only in payment or session code). Therefore, the mint's `transfer` method which accepts `URef`s is not the most convenient to use when transferring between account main purses. For this reason, Casper supplies a [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html) function which takes the public key used to derive the identity key of the account. This function uses the mint transfer function with the current account's main purse as the `source` and the main purse of the account at the provided key as the `target`.
+All [accounts](#accounts-head) on the Casper system have a purse associated with the Casper system mint, called the _main purse_. However, for security reasons, the `URef` of the main purse is only available to code running in the context of that account (i.e. only in payment or session code). Therefore, the mint's `transfer` method which accepts `URef`s is not the most convenient to use when transferring between account main purses. For this reason, Casper supplies a [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html) function which takes the public key used to derive the identity key of the account. This function uses the mint transfer function with the current account's main purse as the `source` and the main purse of the account at the provided key as the `target`.
 
 ### The Casper Mint Contract {#mint-contract}
 
-The Casper *mint* is a system contract that manages the balance of *motes* within a Casper network. These motes are used to pay for computation and bonding on the network. The mint system contract holds all motes on a Casper network, but maintains an internal ledger of the balances for each Account's _main purse_. Each balance is associated with a `URef`, which acts as a key to instruct the mint to perform actions on that balance (e.g., transfer motes). Informally, we will refer to these balances as _purses_ and conceptually represent a container for motes. The `URef` is how a purse is referenced externally, outside the mint.
+The Casper *mint* is a system contract that manages the balance of *motes* within a Casper network. These motes are used to pay for computation and bonding on the network. The mint system contract holds all motes on a Casper network, but maintains an internal ledger of the balances for each Account's _main purse_. Each balance is associated with a `URef`, which acts as a key to instruct the mint to perform actions on that balance (e.g., transfer motes). Informally, these balances are referred to as _purses_ and conceptually represent a container for motes. The `URef` is how a purse is referenced externally, outside the mint.
 
 The `AccessRights` of the URefs permissions model determine what actions are allowed to be performed when using a `URef` associated with a purse.
 
