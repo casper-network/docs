@@ -146,6 +146,13 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 As a brief example, open up _my-project/contract/src/main.rs_ in your editor, modify the _KEY_NAME_ value in the contract, and then rerun the `make test` command. You should observe that the smart contract recompiles and the test fails now.
 
+### Installing the Casper Client
+
+We also provide a [Casper command-line client](/workflow/setup/#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain. 
+
+### Creating an Account
+
+To interact with a Casper network and install code on-chain, you will need to [create a Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair.
 
 ## Rust Resources {#rust-resources}
 
