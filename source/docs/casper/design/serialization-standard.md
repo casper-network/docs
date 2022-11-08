@@ -483,7 +483,7 @@ They are serialized as a `BTreeMap` where the first 4 bytes represent a `u32` va
 
 In this chapter, we describe what constitutes a "key", the permissions model for the keys, and how they are serialized.
 
-A _key_ in the [Global State](./casper-design.md##global-state-head) is one of the following data types:
+A _key_ in [Global State](./casper-design.md#global-state-head) is one of the following data types:
 
 -   32-byte account identifier (called an "account identity key")
 -   32-byte immutable contract identifier (called a "hash key")
