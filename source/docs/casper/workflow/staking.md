@@ -42,18 +42,18 @@ Validators receive rewards, proportional to their stake, for participating in th
 
 As a prospective delegator, you need to select a validating node that you can trust. Please do your due diligence before you stake your tokens with a validator.
 
-## 3. Creating your Wallet with the CasperLabs Signer {#3-creating-your-wallet-with-the-casperlabs-signer}
+## 3. Creating your Wallet with the Casper Signer {#3-creating-your-wallet-with-the-casperlabs-signer}
 
-To stake tokens, you need access to a wallet with CSPR tokens. At the moment, you can use the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) tool. The Signer acts as your CSPR wallet, keeping your accounts secure and helping you perform actions like staking, un-staking, or sending tokens to another account. Please follow the [Signer Guide](signer-guide.md) for additional details on how to set up this tool.
+To stake tokens, you need access to a wallet with CSPR tokens. At the moment, you can use the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) tool. The Signer acts as your CSPR wallet, keeping your accounts secure and helping you perform actions like staking, un-staking, or sending tokens to another account. Please follow the [Signer Guide](signer-guide.md) for additional details on how to set up this tool.
 
 You can create, store, and use one or more CSPR accounts with your Signer wallet. A password protects all accounts in what we call a **vault**.
 
-### 3.1 Signing in to the CasperLabs Signer {#31-signing-in-to-the-casperlabs-signer}
+### 3.1 Signing in to the Casper Signer {#31-signing-in-to-the-casperlabs-signer}
 
 If you are new or have logged out of the Signer, you can log in with these steps:
 
 1.  Using Chrome or a Chromium-based browser like Brave, navigate to a block explorer on the Mainnet, (for this example we are using [cspr.live](https://cspr.live/)), and click on the **Sign-in** menu.
-2.  Download the [CasperLabs Signer extension](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce).
+2.  Download the [Casper Signer extension](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce).
 3.  You will need to create a vault that will safeguard your accounts with a password. In this step, we assume that you have not used the Signer before, so click **Reset Vault**.
 4.  Create a password for your new vault. Confirm the password, and then click **Create Vault**.
 5.  Write down and store your password in a secure location. **If you lose it, you will lose access to this wallet!**
@@ -65,7 +65,7 @@ If you are new or have logged out of the Signer, you can log in with these steps
 
 ### 3.2 Creating a New Account {#32-creating-a-new-account}
 
-If you are using the CasperLabs Signer for the first time, follow these steps to create an account and **download the account's secret key**:
+If you are using the Casper Signer for the first time, follow these steps to create an account and **download the account's secret key**:
 
 1.  Click **CREATE ACCOUNT** in the Signer.
 2.  Give your account a name. In this tutorial, we will use the name _My-CSPR_.
@@ -96,7 +96,7 @@ If you already have your secret key and would like to set up and use your wallet
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/3.3.4.1.png" )}alt="3.3.4.1" width="200" />
 
-Now that you have your CasperLabs Signer wallet, you can continue to connect to the Mainnet blockchain.
+Now that you have your Casper Signer wallet, you can continue to connect to the Mainnet blockchain.
 
 ## 4. Connecting to a Block Explorer {#4-connecting-to-blockexplorer}
 
@@ -208,7 +208,7 @@ Then follow these instructions to delegate your tokens:
 
 **Step 3 - Sign the Transaction**
 
-1.  Click **Sign** with the CasperLabs Signer.
+1.  Click **Sign** with the Casper Signer.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/6.5.png")} alt="6.5" width="400"/>
 
@@ -270,7 +270,7 @@ Then follow these instructions to undelegate your tokens:
 
 **Step 3 - Sign the Transaction**
 
-1.  Click **Sign** with the CasperLabs Signer.
+1.  Click **Sign** with the Casper Signer.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/8.7.png")} alt="8.7" width="400"/>
 

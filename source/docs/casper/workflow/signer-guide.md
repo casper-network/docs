@@ -4,30 +4,30 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## 1. Introduction
 
-The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. The CSPR wallet can be used to transfer CSPR tokens to another user, delegate stake, or ungelegate stake. The Casper Signer can be used for more than one CSPR account and all the accounts are securely stored in a vault, which is a mechanism to protect online information with a password. You set a password for the vault while creating a Casper Signer account. To login using Casper Signer, you must download and install the CasperLabs Signer extension for your browser. The following sections take you through the process of downloading and signing in to the Casper Signer.
+The Casper Signer allows you to safely access your Casper Token (CSPR) wallet. The CSPR wallet can be used to transfer CSPR tokens to another user, delegate stake, or ungelegate stake. The Casper Signer can be used for more than one CSPR account and all the accounts are securely stored in a vault, which is a mechanism to protect online information with a password. You set a password for the vault while creating a Casper Signer account. To login using Casper Signer, you must download and install the Casper Signer extension for your browser. The following sections take you through the process of downloading and signing in to the Casper Signer.
 
 > **Note**: These steps use the [cspr.live](https://cspr.live/) as an example, you can install and setup your Signer account on any Casper Network [block explorer](../block-explorer/). 
 
-### 1.1 Installing the CasperLabs Signer Extension
+### 1.1 Installing the Casper Signer Extension
 
 To install the CaperLabs Signer extension, follow these steps:
 
 :::note
 
-Alternatively, you can use this link to download the [CasperLabs Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to _Step 4_.
+Alternatively, you can use this link to download the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) extension and skip to _Step 4_.
 
 :::
 
 1. Navigate to [cspr.live](https://cspr.live/), using Chrome or a Chromium-based browser like Brave.
 2. Click the **Sign in** option on the top-right corner of the screen. The Casper Signer is displayed.
 3. In the Casper Signer, click the **Download Signer** button. A new window with the Chrome extension is displayed.
-4. On the CasperLabs Signer extension page, click the **Add to Chrome** button. A pop-up will let you know the permissions required. To approve the extension access, click **Add extension**. The CasperLabs Signer extension is now added to your browser.
+4. On the Casper Signer extension page, click the **Add to Chrome** button. A pop-up will let you know the permissions required. To approve the extension access, click **Add extension**. The Casper Signer extension is now added to your browser.
 
 ### 1.2 Logging in to the Casper Signer
 
 To log in to the Casper Signer, you must create a vault and import or create accounts. To create a vault, follow these steps:
 
-1. Next to the address bar of your browser, you will find the extensions icon. Click the extensions icon <img src={useBaseUrl("/image/tutorials/signer/ext-icon.png")} class="inline-img" width="25"/> and select CasperLabs Signer from the list.
+1. Next to the address bar of your browser, you will find the extensions icon. Click the extensions icon <img src={useBaseUrl("/image/tutorials/signer/ext-icon.png")} class="inline-img" width="25"/> and select Casper Signer from the list.
 
     1. If you are logging in for the first time, a pop-up window to create a new vault will appear.
     2. On the New Vault pop-up window, enter a password for your vault, confirm the password, and click **CREATE VAULT**. This vault safeguards your Casper accounts, so make sure you use a strong password and keep the password safe.
