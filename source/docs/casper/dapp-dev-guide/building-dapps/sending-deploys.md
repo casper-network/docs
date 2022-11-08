@@ -327,6 +327,14 @@ Run the help command for `query-global-state` to see its usage.
 casper-client query-global-state --help
 ```
 
+### Time-to-live {#ttl}
+
+Time-to-live is the parameter that determines how long a deploy will wait for execution. The acceptable maximum `ttl` is configurable by chain, with the Casper Mainnet maximum set to `1day`. If you are deploying to a different network, you will need to check `chainspec.toml` for that network to determine the acceptable maximum. The minimum is theoretically zero, but this will result in an immediate expiration and an invalid deploy.
+
+In the event of a network outage or other event that prevents execution within the `ttl`, the solution is to resend the deploy in question.
+
+Should the deploy's `ttl` exceed the allowable limit, or if the deploy expires, the network's deploy acceptor will find the deploy invalid and return a warning.
+
 ### Deploy Payments {#deploy-payments}
 
 Dependent upon the complexity and needs of the deployment in question, several options exist to allow users to pay for smart contract execution.
@@ -371,6 +379,6 @@ A common question frequently arises: "How do I know what the payment amount (gas
 
 We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper Network to which you want to send the deploy. If you plan on sending a deploy to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the deploy.
 
-If your test configuration matches your production chainspec, you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
+If your test configuration matches your production [chainspec](/glossary/C/#chainspec), you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
 
 Please be aware that sending a deploy always requires payment. This is true regardless of the validity of included Wasm.

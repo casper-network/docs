@@ -98,7 +98,7 @@ casper-client put-deploy \
 The arguments of interest are:
 -   `session-hash` - Hex-encoded hash of the stored contract to be called as the session
 -   `session-entry-point` - Name of the method that will be used when calling the session contract
--   `session-arg` - For simple CLTypes, a named and typed arg is passed to the Wasm code. To see an example for each type, run the casper-client with '--show-arg-examples'
+-   `session-arg` - For simple CLTypes, a named and typed arg is passed to the Wasm code. To see an example for each type, run: 'casper-client put-deploy --show-arg-examples'
 
 **Example - Use session arguments:**
 

@@ -26,10 +26,17 @@ module.exports = {
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
-        "dapp-dev-guide/why-build-on-casper",
+        {
+            type: "category",
+            label: "Why Build on Casper",
+            collapsible: true,
+            collapsed: true,
+            items: ["dapp-dev-guide/build-on-casper/index", "dapp-dev-guide/build-on-casper/casper-open-source-software"],
+        },
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
         "dapp-dev-guide/dictionaries",
+        "dapp-dev-guide/json-rpc",
         {
             type: "category",
             label: "Casper SDK Standard",
@@ -55,6 +62,7 @@ module.exports = {
             items: [
                 "dapp-dev-guide/building-dapps/signing-a-deploy",
                 "dapp-dev-guide/building-dapps/sending-deploys",
+                "dapp-dev-guide/building-dapps/calling-contracts",
                 {
                     type: "category",
                     label: "SDK Client Libraries",
@@ -162,6 +170,7 @@ module.exports = {
     design: [
         "design/index",
         "design/p2p",
+        "design/highway",
         "design/global-state",
         "design/reading-and-writing-to-the-blockchain",
         "design/execution-semantics",

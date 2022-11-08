@@ -30,14 +30,9 @@ Once you finish installing Rust, check your version:
 rustup --version
 ```
 
-Your terminal output should resemble something like the following (note: at the time of the writing of this tutorial, the latest version of Rust was 1.57.0 and may differ for you):
+You will need the latest nightly toolchain to develop smart contracts in Rust. Please refer to the [Rust Documentation on Channels](https://rust-lang.github.io/rustup/concepts/channels.html) and the [Rust Documentation on Toolchains](https://rust-lang.github.io/rustup/concepts/toolchains.html) for further information.
 
-```bash
-$ rustup --version
-rustup 1.24.3 (ce5817a94 2021-05-31)
-info: This is the version for the rustup toolchain manager, not the rustc compiler.
-info: The currently active `rustc` version is `rustc 1.57.0 (f1edd0429 2021-11-29)`.
-```
+We recommend setting up the rust-toolchain in the top level directory of your project.
 
 **Casper Rust Packages**
 

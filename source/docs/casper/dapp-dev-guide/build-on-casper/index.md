@@ -1,4 +1,9 @@
-# Why Build on Casper
+---
+title: Introduction
+slug: introduction
+---
+
+# Introduction
 
 This guide intends to briefly show you the current features and advantages of building on the Casper Network.
 
@@ -24,6 +29,9 @@ The Casper Ecosystem is growing every day through the addition of new dApps and 
 
 ### Developer Tools
 - [casperholders.io](https://casperholders.io)
+
+### Open Source Software
+- [Ecosystem Open Source Software](/dapp-dev-guide/build-on-casper/casper-open-source-software.md)
 
 
 ## Developer-Friendly Language {#developer-friendly-language}
