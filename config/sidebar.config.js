@@ -36,6 +36,7 @@ module.exports = {
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
         "dapp-dev-guide/dictionaries",
+        "dapp-dev-guide/json-rpc",
         {
             type: "category",
             label: "Casper SDK Standard",
