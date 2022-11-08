@@ -4,12 +4,6 @@ This guide covers the basic tools you will need to set up your first Casper smar
 
 Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. The Rust contract SDK is the easiest way to get started with smart contract development. This guide will walk you through the steps to set up your development environment and build your first contract. 
 
-The following video tutorial complements this guide. You can also consult the [FAQ page](faq/faq-developer.md) for more details.
-
-<p align="center">
-<iframe width="400" height="225" src="https://www.youtube.com/embed?v=TRmmiFBwPr0&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=2" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
-
 ## Prerequisites {#prerequisites}
 
 ### Installing Rust {#installing-rust}
@@ -148,6 +142,14 @@ We also provide a [Casper command-line client](/workflow/setup/#the-casper-comma
 ### Creating an Account
 
 To interact with a Casper network and install code on-chain, you will need to [create a Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair.
+
+## Video Walkthrough
+
+The following video tutorial complements this guide. You can also consult the [FAQ page](faq/faq-developer.md) for more details.
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=TRmmiFBwPr0&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=2" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
 
 ## Rust Resources {#rust-resources}
 

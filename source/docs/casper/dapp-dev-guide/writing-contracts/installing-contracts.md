@@ -6,11 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Installing Smart Contracts and Querying Global State
 
-This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust) guide, and covers the installation of Casper contracts using the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command. This video demonstrates the process and works with the detailed documentation on this page.
-
-<p align="center">
-<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=8" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust) guide, and covers the installation of Casper contracts using the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
 
 ## Prerequisites
 
@@ -64,14 +60,17 @@ casper-client get-deploy \
     --node-address http://localhost:11101 [DEPLOY_HASH]
 ```
 
-## Querying Global State {#querying-global-state} 
+**Video - Contract Installation Walkthrough**
 
-Here we look at how to query global state to see details about a successfully installed contract. The following documentation dives into the details, while this brief video shows you what to expect when querying the network.
+This video demonstrates the commands described above for installing a contract on-chain.
 
 <p align="center">
-<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=9" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=8" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
+## Querying Global State {#querying-global-state} 
+
+Here we look at how to query global state to see details about a successfully installed contract.
 
 ### Get the state root hash {#get-state-root-hash}
 
@@ -334,6 +333,15 @@ Here is how the contract package details would look. The response would contain 
 ```
 </details>
 <br></br>
+
+**Video - Querying Walkthrough**
+
+This video shows you what to expect when querying the network.
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=9" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 
 ## What's Next? {#whats-next}
 
