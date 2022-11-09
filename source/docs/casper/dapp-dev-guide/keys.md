@@ -1,6 +1,6 @@
 # Accounts and Cryptographic Keys
 
-The Casper blockchain uses an on-chain [account-based model](/design/accounts.md), uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
+The Casper blockchain uses an on-chain [account-based model](/design/casper-design.md/#accounts-head), uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
 
 By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 

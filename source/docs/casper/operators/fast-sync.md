@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The Casper Network is a smart contract platform. It requires new nodes to download and execute each and every block to join the network. Starting from genesis (start of the Mainnet), the node executes each deploy in every block. This process continues until the node has arrived at the current state of the blockchain. This process to sync a node with the blockchain can take a very long time.
 
-To provide an alternative and faster approach to joining the Casper Network, we have introduced fast‑sync. Fast-sync does not start syncing at the genesis block; instead, the user verifies a recent block, e.g. using block explorers, and provides its hash to the node software. The network [global state](../design/global-state.md) — smart contract data, account balances and all other on-chain information — is the storage layer of the blockchain and is massive in size, so fast-sync downloads the global state of only the most recent block. The following section briefly describes the fast-sync process.
+To provide an alternative and faster approach to joining the Casper Network, we have introduced fast‑sync. Fast-sync does not start syncing at the genesis block; instead, the user verifies a recent block, e.g. using block explorers, and provides its hash to the node software. The network [global state](/design/casper-design.md/#global-state-head) — smart contract data, account balances and all other on-chain information — is the storage layer of the blockchain and is massive in size, so fast-sync downloads the global state of only the most recent block. The following section briefly describes the fast-sync process.
 
 ## How Fast-sync Works
 

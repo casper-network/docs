@@ -51,7 +51,7 @@ For security purposes, whenever a token is un-staked or un-delegated, the protoc
 -   [How to Stake your CSPR](../workflow/staking.md)
     -   [1. Introduction](../workflow/staking.md#1-introduction)
     -   [2. Staking Overview](../workflow/staking.md#1-staking-overview)
-    -   [3. Creating your Wallet with the CasperLabs Signer](../workflow/staking.md#3-creating-your-wallet-with-the-casperlabs-signer)
+    -   [3. Creating your Wallet with the Casper Signer](../workflow/staking.md#3-creating-your-wallet-with-the-casperlabs-signer)
     -   [4. Connecting to a Block Explorer](../workflow/staking.md#4-connecting-to-blockexplorer)
     -   [5. Funding your Account](../workflow/staking.md#5-funding-your-account)
     -   [6. Delegating Tokens](../workflow/staking.md#6-delegating-tokens)

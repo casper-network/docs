@@ -10,7 +10,7 @@ A block explorer is a search engine for the blockchain. It allows you to find in
 
 You can use a block explorer on the Casper Network to view the blockchain statistics, list of validators, list of blocks executed on the blockchain, list of deploys/transactions, and list of nodes operating on the blockchain.
 
-You can also transfer CSPR tokens, delegate stake or undelegate stake using a block explorer. To perform these actions, you must sign in to your CSPR wallet using the CasperLabs Signer. The following topics link you to detailed instructions on using a block explorer to access and work with your CSPR tokens:
+You can also transfer CSPR tokens, delegate stake or undelegate stake using a block explorer. To perform these actions, you must sign in to your CSPR wallet using the Casper Signer. The following topics link you to detailed instructions on using a block explorer to access and work with your CSPR tokens:
 
 - Learn how to access your CSPR wallet using the [Signer guide](signer-guide.md)
 - Understand the process of transferring CSPR tokens from [Transferring Tokens using a Block Explorer](token-transfer.md)

@@ -151,7 +151,7 @@ Verbs have singular and plural forms. Use the verb form that agrees with the sub
 ```
 :::note 
 
-Alternatively, you can use this link to download the CasperLabs Signer.  
+Alternatively, you can use this link to download the Casper Signer.  
 
 :::
 ```

@@ -9,11 +9,11 @@ There are three types of event streams in our platform categorized based on the 
 
 **Deploy events**
 
-These are associated with Deploys on a node. Currently, only `DeployAccepted` event is emitted . Refer to the [Deploys](/design/execution-semantics/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
+These are associated with Deploys on a node. Currently, only `DeployAccepted` event is emitted . Refer to the [Deploys](/design/casper-design.md/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
 
 **Finality Signature event**
 
-This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](/design/execution-semantics/#consensus-reached) section and [block finality](/glossary/B/#block-finality) 
+This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](/design/casper-design.md/#consensus-reached) section and [block finality](/glossary/B/#block-finality) 
 section to learn more about finality signatures.
 
 **Main events**

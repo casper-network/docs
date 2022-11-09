@@ -12,7 +12,7 @@ This setup enables you to have a self-administered gateway to the Casper Network
 
 ## Casper Account
 
-You will need a Casper Account to handle the transactions on an exchange. Casper has an [Account model](../design/accounts.md) and instructions on how to [create an Account](../design/accounts.md/#accounts-creating). 
+You will need a Casper Account to handle the transactions on an exchange. Casper has an [Account model](../design/casper-design.md/#accounts-head) and instructions on how to [create an Account](../design/casper-design.md/#accounts-creating). 
 
 For your exchange, you would need at least one Account. The Casper Network uses an Account model that holds on to general resources as well as tokens and provides an on-chain identity. As an exchange if you are dealing with high-volumes of transaction activity, you might need a main account for the exchange platform and sub-accounts for other users. 
 
@@ -151,7 +151,7 @@ If you are not going to do a Testnet integration, then we suggest you create som
 ## The Casper Protocol
 
 -   Casper is integrated with BitGo for enterprise grade custody. If your exchange uses BitGo, support for Casper is available already.
--   Casper has an execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../design/execution-semantics.md).
+-   Casper has an execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../design/casper-design.md/#execution-semantics-head).
 -   Exchanges can check finality signatures. Validators send finality signatures after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 
