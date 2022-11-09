@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Casper is a Proof-of-Stake blockchain platform that performs execution after consensus. A Casper network stores data on a structure known as [Global State](#global-state-head). Users interact with global state through session code sent in a [Deploy](#execution-semantics-deploys). Deploys contain [Wasm](https://webassembly.org/) to be executed by the network, thus allowing developers to use their preferred programming language rather than a proprietary language.
+Casper is a Proof-of-Stake blockchain platform, with an account-based model, that performs execution after consensus. A Casper network stores data on a structure known as [Global State](#global-state-head). Users interact with global state through session code sent in a [Deploy](#execution-semantics-deploys). Deploys contain [Wasm](https://webassembly.org/) to be executed by the network, thus allowing developers to use their preferred programming language rather than a proprietary language.
 
-A deploy executes in the context of the user's [Account](#accounts-head) but can call stored Wasm that will execute in its own context. User-related information other than an account is stored in global state as an [Unforgeable Reference](#uref-head) or `URef`. After a node accepts a deploy as valid, it places the deploy in a proposed [Block](#block-structure-head) and gossips it among nodes until the network reaches consensus. At this point, the Wasm included within the deploy will be executed.
+A deploy executes in the context of the user's [Account](#accounts-head) but can call stored Wasm that will execute in its own context. User-related information other than an account is stored in global state as an [Unforgeable Reference](#uref-head) or `URef`. After a node accepts a deploy as valid, it places the deploy in a proposed [Block](#block-structure-head) and gossips it among nodes until the network reaches consensus. At this point, the network executes the Wasm included within the deploy.
 
 1. [Global State](#global-state-head)
 
@@ -28,13 +28,13 @@ Refer to [Keys and Permissions](./serialization-standard.md#serialization-standa
 
 :::
 
-Changes to global state occur through executing deploys contained within finalized blocks. For validators to efficiently judge the correctness of these changes, information about the new state needs to be communicated succinctly. Further, the network must communicate portions of global state to users while allowing them to verify the correctness of the parts they receive. The key-value store is implemented as a [Merkle trie](#global-state-trie) for these reasons.
+Changes to global state occur through executing deploys contained within finalized blocks. For validators to efficiently judge the correctness of these changes, they need information about the new state communicated succinctly. Further, the network must communicate portions of global state to users while allowing them to verify the correctness of the parts they receive. The key-value store is implemented as a [Merkle trie](#global-state-trie) for these reasons.
 
 ### Merkle Trie Structure {#global-state-trie}
 
 ![Global State](/image/design/global-state.png)
 
-At a high level, a Merkle trie is a key-value store data structure that can be shared piece-wise in a verifiable way (via a construction called a Merkle proof). Each node is labeled by the hash of its data. Leaf nodes are labeled with the hash of their data. Non-leaf nodes are labeled with the hash of the labels of their child nodes.
+At a high level, a Merkle trie is a key-value store data structure that can be shared piecewise in a verifiable way (via a construction called a Merkle proof). Each node is labeled by the hash of its data. Leaf nodes are labeled with the hash of their data. Non-leaf nodes are labeled with the hash of the labels of their child nodes.
 
 Casper's implementation of the trie has radix of 256, meaning each branch node can have up to 256 children. A path through the tree can be an array of bytes, and serialization directly links a key with a path through the tree as its associated value.
 
@@ -68,9 +68,9 @@ Computation is done in a [WebAssembly (Wasm)](https://webassembly.org/) interpre
 
 Costs for opcode instructions on the Casper Mainnet network can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L115).
 
-All executions are finite because each has a finite _gas limit_ that specifies the maximum amount of gas that can be spent before the computation is terminated by the runtime. The payment executable session determines how to pay for the deploy. The gas limit is set by executing the payment code specified within the deploy. How this limit is determined is discussed in more detail below.
+All executions are finite because each has a finite _gas limit_ that specifies the maximum amount of gas available to spend before the runtime terminates the computation. The payment executable session determines how to pay for the deploy. The gas limit is set by executing the payment code specified within the deploy.
 
-Although computation is measured in `Gas`, payment for computation occurs in [motes](#tokens-divisibility). Therefore, there is a conversion rate between `Gas` and motes. How this conversion rate is determined is discussed elsewhere.
+Although the network measures costs in `Gas`, payment for computation occurs in [motes](#tokens-divisibility). Therefore, there is a conversion rate between `Gas` and motes.
 
 :::note
 
@@ -82,7 +82,7 @@ This decision is taken to incentivize the [Casper Runtime Economics](/economics/
 
 ### Deploys {#execution-semantics-deploys}
 
-A [Deploy](/design/serialization-standard/#serialization-standard-deploy) is a data structure containing a smart contract and the requester's signature(s). Additionally, the deploy header contains additional metadata about the deploy itself. A deploy is structurally defined as follows:
+A [Deploy](/design/serialization-standard/#serialization-standard-deploy) is a data structure containing Wasm and the requester's signature(s). Additionally, the deploy header contains additional metadata about the deploy itself. A deploy’s structure is as follows:
 
 <p align="center">
 <img src={"/image/design/deploy-structure.png"} alt="Image showing the deploy data structure" width="500"/> 
@@ -91,7 +91,7 @@ A [Deploy](/design/serialization-standard/#serialization-standard-deploy) is a d
 -   Body: Containing payment code and session code (more details on these below)
 -   Header: containing
     -   The [Public Key](/design/serialization-standard/#publickey) of the account in whose context the deploy will run
-    -   The timestamp when the deploy was created
+    -   The timestamp of the deploy’s creation
     -   A time-to-live, after which the deploy expires and cannot be included in a block
     -   the `blake2b256` hash of the body
 -   Deploy hash: the `blake2b` hash of the Header
@@ -109,41 +109,40 @@ A deploy goes through the following phases on Casper:
 6. Deploy Executed
 
 #### Deploy Received
-A client sending the deploy will send it to one or more nodes via their JSON RPC servers. The node will ensure that a given deploy matches configuration settings outlined in the network's chainspec. Deploy configuration for the Casper Mainnet can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L79). Once accepted, the deploy hash is returned to the client to indicate it has been enqueued for execution. The deploy could expire while waiting to be gossiped; whenever this happens, a `DeployExpired` event is emitted by the event stream servers of all nodes which have the expired deploy.
+A client sending the deploy will send it to one or more nodes via their JSON RPC servers. The node will ensure that a given deploy matches configuration settings outlined in the network's chainspec. Deploy configuration for the Casper Mainnet can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L79). Once accepted, the system returns the deploy hash to the client to indicate it has been enqueued for execution. The deploy could expire while waiting to be gossiped; whenever this happens, a `DeployExpired` event is emitted by the event stream servers of all nodes which have the expired deploy.
 
 #### Deploy Gossiped
-After a node accepts a new deploy, it will gossip to all other nodes. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new proposed block for the chain. This mechanism is efficient and ensures all nodes in the network eventually hold the given deploy. Each node that accepts a gossiped deploy also emits a `DeployAccepted` event on its event stream server. The deploy may expire while waiting to be added to the block, and whenever this happens, a `DeployExpired` event is emitted.
+After a node accepts a new deploy, it will gossip to all other nodes. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new proposed block for the chain. This mechanism is efficient and ensures all nodes in the network eventually hold the given deploy. Each node that accepts a gossiped deploy also emits a `DeployAccepted` event on its event stream server. The deploy may expire while waiting for a node to add it to the block. Whenever this happens, the node emits a `DeployExpired` event.
 
 #### Block Proposed
 The validator leader for this round will propose a block that includes as many deploys from the block proposer buffer as can fit in a block.
 
 #### Block Gossiped
-The proposed block is propagated to all other nodes.
+The proposed block propagates to all other nodes.
 
 #### Consensus Reached
-Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed, and this block becomes the final block added to the chain. Whenever consensus is reached, a `BlockAdded` event is emitted by the event stream server. `FinalitySignature` events are emitted shortly after that. Finality signatures for the new block arrive from the validators.
+Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed, and this block becomes the final block added to the chain. Whenever reaching consensus, the event stream server emits a `BlockAdded`. `FinalitySignature` events emit shortly after that. Finality signatures for the new block arrive from the validators.
 
 #### Deploy Executed 
 
-A deploy is executed in distinct phases to accommodate flexibly paying for computation. The phases of a deploy are *payment*, *session*, and *finalization*. During the payment phase, the payment code is executed. If it is successful, the session code is executed during the session phase. And, independently of session code execution, the finalization phase does some bookkeeping around the payment. Once the deploy is executed, a `DeployProcessed` event is emitted by the event stream server.
+A deploy executes in distinct phases to accommodate flexibly paying for computation. The phases of a deploy are *payment*, *session*, and *finalization*. Payment code executes during the payment phase. If it is successful, the session code executes during the session phase. And, independently of session code execution, the finalization phase does some bookkeeping around the payment. Once the deploy is executed, a `DeployProcessed` event is emitted by the event stream server.
 
 In the event of execution failure, the sender will be charged the minimum penalty payment - 2.5 CSPR on the Casper Mainnet. This prevents malicious spamming of faulty deploys.
 
 **Payment code**
 
-_Payment code_ determines the payment amount for the computation requested and how much the sender is willing to pay. Payment code is allowed to include arbitrary logic, providing flexibility in paying for a deploy. For example, the simplest payment code could use the account's [main purse](#tokens-purses-and-accounts). In contrast, an enterprise application may require a multi-signature scheme that accesses a corporate purse. To ensure the payment code will pay for its own computation, only accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST` may execute deploys. Based on the current conversion rate between gas and motes, we restrict the gas limit of the payment code execution so that no more than `MAX_PAYMENT_COST` motes (a constant of the system) are spent.
-
-If the payment is not given or not enough, then payment execution is not considered successful. In this case, the effects of the payment code on global state are reverted, and the cost of the computation is covered by motes taken from the offending account's main purse.
+_Payment code_ determines the payment amount for the computation requested and how much the sender is willing to pay. Payment code may include arbitrary logic, providing flexibility in paying for a deploy. For example, the simplest payment code could use the account's [main purse](#tokens-purses-and-accounts). In contrast, an enterprise application may require a multi-signature scheme that accesses a corporate purse. To ensure the payment code will pay for its own computation, only accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST` may execute deploys. Based on the current conversion rate between gas and motes, we restrict the gas limit of the payment code execution so that the process spends no more than `MAX_PAYMENT_COST` motes (a constant of the system.)
+If the payment is absent or not enough, then payment execution is not successful. In this case, the effects of the payment code on global state are reverted, and the system covers the cost of the computation with motes taken from the offending account's main purse.
 
 **Session code**
 
-_Session code_ provides the main logic for the deploy. It is only executed if the payment code is successful. The gas limit for this computation is determined based on the amount of payment given (after subtracting the cost of the payment code itself).
+_Session code_ provides the main logic for the deploy. It only executes if the payment code is successful. The gas limit for this computation is determined based on the amount of payment given (after subtracting the cost of the payment code itself).
 
 **Specifying payment code and session code**
 
 The user-defined logic of a deploy can be specified in a number of ways:
 
--   a Wasm module in binary format representing valid session code, including logic to be executed in the context of an account or to store Wasm in the form of a contract to be executed later. (Note: the named keys do not need to be specified because they come from the context of the account the deploy is running in)
+-   a Wasm module in binary format representing valid session code, including logic to be executed in the context of an account or to store Wasm in the form of a contract to be executed later. (Note that the named keys from the context of the account the deploy is running in.)
 -   a 32-byte identifier representing the [hash](./serialization-standard.md#serialization-standard-hash-key) where a contract is already stored in the global state
 -   a name corresponding to a named key in the account, where a contract is stored under the key
 
@@ -171,7 +170,7 @@ This chapter describes the permission model for accounts and their local storage
 
 ### Creating an account {#accounts-creating}
 
-Account creation automatically happens when a token is transferred to a yet unused `PublicKey`. When an account is first created, the balance of its main purse is equal to the number of tokens transferred during the creation process. Its action thresholds are equal to 1, and there is one associated key. The associated key is the `PublicKey` used to create the account. In this way, an account is essentially a context object encapsulating the main purse, used to pay for transactions. However, an account may have an additional purse beyond the main purse.
+Account creation automatically happens upon transferring tokens to a yet unused `PublicKey`. On account creation, the balance of its main purse is equal to the number of tokens transferred during the creation process. Its action thresholds are equal to 1, and there is one associated key. The associated key is the `PublicKey` used to create the account. In this way, an account is essentially a context object encapsulating the main purse, used to pay for transactions. However, an account may have an additional purse beyond the main purse.
 
 
 <p align="center">
@@ -191,15 +190,15 @@ An `Account` contains the following data:
 
 An account can perform two types of actions: sending deploys and managing keys. A deploy is simply executing some code on the blockchain, while key management involves changing the associated keys (which will be described in more detail later). Key management cannot be performed independently, as all effects on the blockchain must come via a deploy; therefore, a key management action implies that a deploy action is also taking place. 
 
-The `ActionThresholds` contained in the `Account` data structure set a `Weight`, which must be met to perform that action. The next section describes how these weight thresholds can be met. Since a key management action requires a deploy action, the key management threshold should always be greater than or equal to the deploy threshold.
+The `ActionThresholds` contained in the `Account` data structure set a `Weight`, which must be met to perform that action. The next section describes these weight thresholds. Since a key management action requires a deploy action, the key management threshold should always be greater than or equal to the deploy threshold.
 
 #### Associated Keys and Weights {#accounts-associated-keys-weights}
 
-Accounts on a Casper network can associate other key pairs through a multiple signature scheme for sending transactions. An account's _associated keys_ are the set of public keys allowed to provide signatures on deploys for that account. Each associated key has a weight; these weights are used to meet the action thresholds provided in the previous section. Each deploy must be signed by one or more keys associated with the account that deploy is for, and the sum of the weights of those keys must be greater than or equal to the deployment threshold weight for that account. We call the keys that have signed a deploy the "authorizing keys". Similarly, if a deploy contains key management actions (detailed below), the sum of the weights of the authorizing keys must be greater than or equal to the key management action threshold of the account.
+Accounts on a Casper network can associate other key pairs through a multiple signature scheme for sending transactions. An account's _associated keys_ are the set of public keys allowed to provide signatures on deploys for that account. Each associated key has a weight; these weights combine to meet the action thresholds provided in the previous section. Each deploy must be signed by one or more keys associated with the account that deploy is for, and the sum of the weights of those keys must be greater than or equal to the deployment threshold weight for that account. We call the keys that have signed a deploy the "authorizing keys". Similarly, if a deploy contains key management actions (detailed below), the sum of the weights of the authorizing keys must be greater than or equal to the key management action threshold of the account.
 
 :::note
 
-Any key may be used to help authorize any action; there are no "special keys". All keys contribute their weight in exactly the same way.
+Any key may help authorize any action; there are no "special keys". All keys contribute their weight in exactly the same way.
 
 :::
 
@@ -239,7 +238,7 @@ This key type is used for storing any value except `Account`. Additionally, `URe
 
 ### Permissions for `URef`s {#uref-permissions}
 
-In the runtime, a `URef` carries its permissions called `AccessRights`. Additionally, the runtime tracks what `AccessRights` would be valid for each `URef` in each context. The system assumes that a sent `URef` is invalid, regardless of declared `AccessRights`, and will check it against the executing context to determine validity on each usage. A `URef` can only be added to a context by the host logic in the following ways:
+In the runtime, a `URef` carries its permissions called `AccessRights`. Additionally, the runtime tracks what `AccessRights` would be valid for each `URef` in each context. The system assumes that a sent `URef` is invalid, regardless of declared `AccessRights`, and will check it against the executing context to determine validity on each usage. Only the host logic can add a `URef`, in the following ways:
 
 -   It can exist in a set of "known" `URef`s
 -   It can be freshly created by the runtime via the `new_uref` function
@@ -318,11 +317,11 @@ The [block header](/design/serialization-standard/#serialization-standard-block)
 
 * `protocol_version` 
 
-  The version of the Casper network when this block was proposed.
+  The version of the Casper network when this block was proposed. 
 
 #### Body {#body}
 
-The block body contains an **ordered** list of `DeployHashes` which refer to deploys, and an **ordered** list of `DeployHashes` for native transfers (which are specialized deploys that only transfer tokens between accounts). All deploys, including a specialization such as native transfer, can be broadly categorized as some unit of work that, when executed and committed, affect change to [Global State](#global-state-intro). It should be noted that a valid block may contain no deploys and / or native transfers.
+The block body contains an **ordered** list of `DeployHashes` which refer to deploys, and an **ordered** list of `DeployHashes` for native transfers (which are specialized deploys that only transfer tokens between accounts). All deploys, including a specialization such as native transfer, can be broadly categorized as some unit of work that, when executed and committed, affect change to [Global State](#global-state-intro). A valid block may contain no deploys and / or native transfers.
 
 The block body also contains the public key of the validator that proposed the block.
 
@@ -330,7 +329,7 @@ Refer to the [Serialization Standard](serialization-standard.md) for additional 
 
 ## Tokens {#tokens-head}
 
-The Casper Network is a decentralized blockchain platform based on a Proof-of-Stake consensus algorithm called [Highway](/design/highway/). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../staking/index.md) to bond. In the blockchain space, this unit of value is a _token_.
+The Casper Network is a decentralized Proof-of-Stake blockchain platform that uses a consensus algorithm called [Highway](/design/highway/). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../staking/index.md) to bond. In the blockchain space, this unit of value is a _token_.
 
 This chapter describes tokens and how one can use them on the Casper platform.
 
