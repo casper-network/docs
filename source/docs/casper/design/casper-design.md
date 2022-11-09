@@ -329,7 +329,7 @@ Refer to the [Serialization Standard](serialization-standard.md) for additional 
 
 ## Tokens {#tokens-head}
 
-The Casper Network is a decentralized Proof-of-Stake blockchain platform that uses a consensus algorithm called [Highway](/design/highway/). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../staking/index.md) to bond. In the blockchain space, this unit of value is a _token_.
+Casper is a decentralized Proof-of-Stake blockchain platform that uses a consensus algorithm called [Highway](/design/highway/). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../staking/index.md) to bond. In the blockchain space, this unit of value is a _token_.
 
 This chapter describes tokens and how one can use them on the Casper platform.
 
