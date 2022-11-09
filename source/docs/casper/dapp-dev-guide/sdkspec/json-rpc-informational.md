@@ -7,7 +7,7 @@ The following methods return information from a node on a Casper network. The re
 
 ## chain_get_block {#chain-get-block}
 
-This method returns the JSON representation of a Block from the network.
+This method returns the JSON representation of a [Block](/design/casper-design/#block-structure-head) from the network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
