@@ -91,7 +91,7 @@ const createAccountKeys = () => {
 const newAccountAddress = createAccountKeys();
 ```
 
-After generating the keys with this code, you can add them to the [CasperLabs Signer Chrome extension](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce?hl=en-US) and use them to sign your transactions.
+After generating the keys with this code, you can add them to the [Casper Signer Chrome extension](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce?hl=en-US) and use them to sign your transactions.
 
 ### Sending a Transfer {#sending-a-transfer}
 

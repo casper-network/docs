@@ -67,7 +67,7 @@ sudo dnf install casper-client-x-x-x*.rpm
 
 ## Setting up an Account {#setting-up-an-account}
 
-The [Account](/design/accounts.md) creation process consists of two steps:
+The [Account](/design/casper-design.md/#accounts-head) creation process consists of two steps:
 
 1. Creating the account
 2. Funding the account

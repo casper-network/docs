@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## What is a Smart Contract?
 
-A smart contract is a self-contained program installed on a blockchain. In the context of a Casper Network, a smart contract consists of contract code installed on chain using a [deploy](../../../design/execution-semantics/#execution-semantics-deploys).
+A smart contract is a self-contained program installed on a blockchain. In the context of a Casper Network, a smart contract consists of contract code installed on chain using a [deploy](/design/casper-design.md/#execution-semantics-deploys).
 
 Before writing smart contracts on a Casper Network, developers should be familiar with the difference between contract code and session code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
@@ -18,7 +18,7 @@ Further, the Casper platform allows for [upgradable contracts](/dapp-dev-guide/w
 
 Casper smart contracts are programs that run on a Casper Network. They interact with accounts and other contracts through entry points and allow for various triggers, conditions and logic.
 
-On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. In this tutorial, we will focus specifically on writing a smart contract in the Rust language. The Rust compiler will compile the contract code into Wasm binary. After that, we will send the Wasm binary to a node on a Casper Network using a `put_deploy`. Nodes within the network then [gossip deploys](../../../design/p2p/#communications-gossiping), include them within a block and finalize them. After finalizing, deploys within the block are executed by the network.
+On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. In this tutorial, we will focus specifically on writing a smart contract in the Rust language. The Rust compiler will compile the contract code into Wasm binary. After that, we will send the Wasm binary to a node on a Casper Network using a `put_deploy`. Nodes within the network then [gossip deploys](/design/p2p/#communications-gossiping), include them within a block and finalize them. After finalizing, deploys within the block are executed by the network.
 
 A ContractPackage is created through the `new_contract` or `new_locked_contract` methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). The new contract is added to this contract package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package, alongside any previously installed versions of the contract, if applicable.
 
@@ -297,7 +297,18 @@ This step adds the individual entry points using the `add_entry_point` method to
 
 ```
 
-4) Create the contract.
+4) Create the `NamedKeys`.
+
+[NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html)
+are a collection of String-Key pairs used to easily identify some data on the network.
+
+- The [String](https://doc.rust-lang.org/nightly/alloc/string/struct.String.html) is the name given to identify the data
+- The [Key](https://docs.rs/casper-types/latest/casper_types/enum.Key.html) is the data to be referenced
+
+You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values. You can reference other accounts, smart contracts, URefs, transfers, deploy information, purse balances etc. The entire list of possible Key variants, can be found [here](https://docs.rs/casper-types/latest/casper_types/enum.Key.html).
+
+
+5) Create the contract.
 
 Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) method to create the contract, with its [named keys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) and entry points. This method creates the contract object and saves the access URef and the contract package hash in the context of the caller. The execution engine automatically creates a contract package and assigns it a `contractPackageHash`. Then, it adds the contract to the package with a [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html).
 
@@ -305,7 +316,7 @@ Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/co
 
 let (contract_hash, _contract_version) = storage::new_contract(
         entry_points,
-        None,
+        Some(named_keys),
         Some("fundraiser_package_hash".to_string()),
         Some("fundraiser_access_uref".to_string()),
     );
@@ -342,18 +353,6 @@ pub fn new_locked_contract(
 - `uref_name` - Access URef value. Puts access_uref in the current context's named keys under `uref_name`.
 
 **Note**: The current context is the context of the person who initiated the `call` function, usually an account.
-
-5) Create the `NamedKeys`.
-
-You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) as the last step to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values.
-
-## Video Walkthrough
-
-The following brief video describes the structure of [sample contract code](https://github.com/casper-ecosystem/counter/). 
-
-<p align="center">
-<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=6" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
 
 ## What's Next? {#whats-next}
 
