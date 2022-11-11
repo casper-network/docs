@@ -2,7 +2,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Development Prerequisites
 
-This section explains how to fulfill the prerequisites needed to interact with a Casper Network.
+This section explains how to fulfill the prerequisites needed to interact with a Casper network.
 
 This section covers:
 
@@ -12,7 +12,7 @@ This section covers:
 
 ## Casper Command-line Client {#the-casper-command-line-client}
 
-You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deployments.
+You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deploys.
 
 Run the commands below to install the Casper client on most flavors of Linux and macOS. You should have [Rust](https://www.rust-lang.org/tools/install) installed, otherwise check the [alternative installation methods](#alternative-installation) below.
 
@@ -72,21 +72,19 @@ The [Account](/design/casper-design.md/#accounts-head) creation process consists
 1. Creating the account
 2. Funding the account
 
+The following video complements the instructions below, showing you the expected output.
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/watch?v=sA1HTPjV_bc&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 ## Creating an Account {#creating-an-account}
 
 The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
 
 By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
-Users can create an account through the Casper command-line client. Alternatively, some Casper networks such as the official Testnet and Mainnet provide a browser-based block explorer that allows account creation.
-
-Using the Casper command-line client or a block explorer to create an account on the blockchain will also create a cryptographic key-pair. This process generates three files for each account:
-
-* A PEM encoded secret key
-* A PEM encoded public key
-* A hexadecimal-encoded string representation of the public key
-
-We recommend saving these files securely.
+Users can create an account through the Casper command-line client. Alternatively, some Casper networks such as the official Testnet and Mainnet provide a browser-based block explorer that allows account creation. Using the Casper command-line client or a block explorer will also create a cryptographic key-pair.
 
 ### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
 

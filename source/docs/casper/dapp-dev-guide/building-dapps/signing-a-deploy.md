@@ -1,4 +1,4 @@
-# Signing a Deploy
+# Signing Deploys
 
 When creating a [`Deploy`](/design/serialization-standard/#serialization-standard-deploy) to be executed on a Casper network, the account owner, or more accurately, enough authorized signers must sign the deploy using their account's cryptographic key-pair. This key-pair is a combination of the account's secret and public keys. The signatures attached to the Deploy allow the network to verify that it should be executed.
 

@@ -15,11 +15,12 @@ This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-gui
    - You have a [Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
    - You have enough CSPR tokens in your account to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](/workflow/token-transfer#2-the-faucet) to fund your testing account
 - You understand how to [write basic contract code](/dapp-dev-guide/writing-contracts/index.md) and session code
-- You have a contract Wasm to send to a Casper Network
+- You have a contract Wasm to send to a Casper network
+
 
 ## Installing a Contract in Global State {#installing-contract-code}
 
-To install a contract in [global state](/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](/dapp-dev-guide/building-dapps/sending-deploys.md#sending-the-deploy).
+To install a contract in [global state](/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](/dapp-dev-guide/building-dapps/sending-deploys.md#sending-the-deploy) after sending it to the network.
 
 ```bash
 casper-client put-deploy \
@@ -59,9 +60,17 @@ casper-client get-deploy \
     --node-address http://localhost:11101 [DEPLOY_HASH]
 ```
 
+**Video - Contract Installation Walkthrough**
+
+This video demonstrates the commands described above for installing a contract on-chain.
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=8" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 ## Querying Global State {#querying-global-state} 
 
-Here we look at how to query the global state to see when the network has successfully installed the contract.
+Here we look at how to query global state to see details about a successfully installed contract.
 
 ### Get the state root hash {#get-state-root-hash}
 
@@ -81,7 +90,7 @@ casper-client get-state-root-hash --node-address http://localhost:11101
 
 ### Query global state {#query-global-state}
 
-Next, query the state of a Casper Network at a given time, specified by the `state-root-hash` described above. You can dive into the data stored in global state using the query path argument `q`.
+Next, query the state of a Casper network at a given time, specified by the `state-root-hash` described above. You can dive into the data stored in global state using the query path argument `q`.
 
 ```bash
 casper-client query-global-state \
@@ -324,6 +333,15 @@ Here is how the contract package details would look. The response would contain 
 ```
 </details>
 <br></br>
+
+**Video - Querying Walkthrough**
+
+This video shows you what to expect when querying the network.
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=9" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 
 ## What's Next? {#whats-next}
 
