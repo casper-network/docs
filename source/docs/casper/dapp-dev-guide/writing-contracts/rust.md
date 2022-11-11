@@ -297,7 +297,18 @@ This step adds the individual entry points using the `add_entry_point` method to
 
 ```
 
-4) Create the contract.
+4) Create the `NamedKeys`.
+
+[NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html)
+are a collection of String-Key pairs used to easily identify some data on the network.
+
+- The [String](https://doc.rust-lang.org/nightly/alloc/string/struct.String.html) is the name given to identify the data
+- The [Key](https://docs.rs/casper-types/latest/casper_types/enum.Key.html) is the data to be referenced
+
+You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values. You can reference other accounts, smart contracts, URefs, transfers, deploy information, purse balances etc. The entire list of possible Key variants, can be found [here](https://docs.rs/casper-types/latest/casper_types/enum.Key.html).
+
+
+5) Create the contract.
 
 Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) method to create the contract, with its [named keys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) and entry points. This method creates the contract object and saves the access URef and the contract package hash in the context of the caller. The execution engine automatically creates a contract package and assigns it a `contractPackageHash`. Then, it adds the contract to the package with a [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html).
 
@@ -305,7 +316,7 @@ Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/co
 
 let (contract_hash, _contract_version) = storage::new_contract(
         entry_points,
-        None,
+        Some(named_keys),
         Some("fundraiser_package_hash".to_string()),
         Some("fundraiser_access_uref".to_string()),
     );
@@ -342,10 +353,6 @@ pub fn new_locked_contract(
 - `uref_name` - Access URef value. Puts access_uref in the current context's named keys under `uref_name`.
 
 **Note**: The current context is the context of the person who initiated the `call` function, usually an account.
-
-5) Create the `NamedKeys`.
-
-You can create [`NamedKeys`](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) as the last step to store any record or value as needed. Generally, `Contract_Hash` and `Contract_Version` are saved as `NamedKeys`, but you are not limited to these values.
 
 ## What's Next? {#whats-next}
 
