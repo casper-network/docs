@@ -2,15 +2,7 @@
 
 This guide covers the basic tools you will need to set up your first Casper smart contract. You will also be able to build a sample smart contract and run a few basic tests on it on your local machine.
 
-Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. The Rust contract SDK is the easiest way to get started with smart contract development. This guide will walk you through the steps to set up your development environment and build your first contract.
-
-Refer to our [FAQ guide](faq/faq-developer.md) if you have questions or need help.
-
-## Video Tutorial {#video-tutorial}
-
-For a video walkthrough of this guide, feel free to check out this quick-start video.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed?v=XvV02iBoctc&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&index=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. This guide will walk you through the steps to set up your development environment and build your first contract. 
 
 ## Prerequisites {#prerequisites}
 
@@ -143,6 +135,21 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 As a brief example, open up _my-project/contract/src/main.rs_ in your editor, modify the _KEY_NAME_ value in the contract, and then rerun the `make test` command. You should observe that the smart contract recompiles and the test fails now.
 
+### Installing the Casper Client
+
+We also provide a [Casper command-line client](/workflow/setup/#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain. 
+
+### Creating an Account
+
+To interact with a Casper network and install code on-chain, you will need to [create a Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair.
+
+## Video Walkthrough
+
+The following video tutorial complements this guide. You can also consult the [FAQ page](faq/faq-developer.md) for more details.
+
+<p align="center">
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=TRmmiFBwPr0&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=2" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
 
 ## Rust Resources {#rust-resources}
 

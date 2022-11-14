@@ -9,6 +9,7 @@ The following tutorials present several Casper features in depth:
 
 | Title                                                       | Description                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |
+|[Getting Started Video](getting-started-tutorial.md) | Step-by-step video tutorial for setting up the Casper development environment |
 |[NFTs on Casper with the CEP-78 NFT Standard](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/README.md) | Implementing the Casper CEP-78 NFT standard |
 |[A Counter on an NCTL Network](counter/index.md) | An example contract that maintains a counter variable on a local Casper Network with NCTL |
 |[A Counter on the Testnet](counter-testnet/index.md) | An example contract that maintains a counter variable on the Casper Testnet |
