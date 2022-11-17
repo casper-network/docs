@@ -1,4 +1,4 @@
-# Understanding Dictionaries
+# Reading and Writing to Dictionaries
 
 In a Casper network, you can now store sets of data under [`Keys`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). Previously, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within an `Account` or `Contract` context. In the case of Contracts, sustained and continuous use of URefs would result in the expansion of the associated `NamedKeys` structures.
 
@@ -12,19 +12,19 @@ Items within a dictionary exist as individual records stored underneath their un
 
 As each dictionary item exists as a stand-alone entity in global state, regularly used dictionary keys may be used directly without referencing their seed URef.
 
-## Creating Dictionaries
+## Understanding Dictionaries
 
 Dictionaries are ideal for storing larger volumes of data for which `NamedKeys` would be less suitable.  
 
 Creating a new dictionary is fairly simple and done within the context of a `Deploy` sent to a Casper network. The associated code is included within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/) crate. Creating a dictionary also stores the associated seed URef within the named keys of the current context.
 
-:::note
-
 Developers should always consider context when creating dictionaries. We recommend creating a dictionary within the context of a Contract.
 
 While you can create a dictionary in the context of an Account and then pass associated access rights to a Contract, this approach can create potential security issues. If a third party uses the Contract, the initiating Account with access rights to the dictionary may be undesirable. To rectify this, you may send an additional `Deploy` removing those access rights, but it is better to create the dictionary within the context of the Contract.
 
-:::
+Dictionaries allow a contract to store additional data without drastically expanding the size of the `NamedKeys` within their context. If a contract's `NamedKeys` expand too far, they may run into system limitations that would unintentionally disable the contract's functionality.
+
+## Creating Dictionaries in a Contract's Context
 
 The following code snippet shows the most basic example of creating a dictionary. 
 
@@ -34,7 +34,7 @@ casper_contract::contract_api::storage::new_dictionary(dict_name)
 
 ```
 
-The following example includes the creation of a dictionary known as `LEDGER` within a contract's function. In this instance, the dictionary will be used to track donations made to a fundraising purse also created by the `init` function.
+The following example includes the creation of a dictionary `LEDGER` within a contract's context. In this instance, the dictionary will be used to track donations made to a fundraising purse also created by the `init` entry point. In any case where you want to use a dictionary within your contract, it should be set up within the initializing entry point.
 
 ```rust
 
@@ -42,7 +42,7 @@ The following example includes the creation of a dictionary known as `LEDGER` wi
 pub extern "C" fn init() {
     let fundraising_purse = system::create_purse();
     runtime::put_key(FUNDRAISING_PURSE, fundraising_purse.into());
-    // Create a dictionary track the mapping of account hashes to number of donations made.
+    // Create a dictionary to track the mapping of account hashes to number of donations made.
     storage::new_dictionary(LEDGER).unwrap_or_revert();
 }
 
@@ -54,16 +54,17 @@ After the creation of a dictionary, you may then add entries through the use of 
 
 ```rust
 
-storage::dictionary_put(dictionary_uref, key, value);
+storage::dictionary_put(dictionary_uref, &dictionary_item_key, value);
 
 ```
 
-The `dictionary_uref` refers to the seed URef established during the dictionary creation process. The `key` is the unique identifier for this dictionary item, and the `value` is the data to be stored within the dictionary item.
+The `dictionary_uref` refers to the seed URef established during the dictionary creation process. The `key` is the unique identifier for this dictionary item, and the `value` is the data to be stored within the dictionary.
 
 As stated above, these dictionary items do not require the seed URef, and they exist as individual keys in global state. If you know an individual key's address, you do not need to go through the process of identifying the seed URef first.
 
-The following function serves to add an entry to the dictionary. If the item already exists, the function will update the value stored and referenced by that key. In this case, the code is storing the number of donations made.
+The following function serves to add an entry to the dictionary. If the item already exists, the entry point will update the value stored and referenced by that key. In this case, the code is storing the number of donations made. Any Rust structure may be stored under a dictionary item, but when updating a value within a larger structure (i.e., a list), the entire structure will be overwritten as part of the update. Updating a larger structure will incur the full cost of writing the structure to a dictionary item.
 
+The first section acquiring the `LEDGER` seed URef to assign the new dictionary item to the proper dictionary.
 
 ```rust
 
@@ -73,6 +74,12 @@ fn update_ledger_record(dictionary_item_key: String) {
         .unwrap_or_revert_with(FundRaisingError::MissingLedgerSeedURef)
         .as_uref()
         .unwrap_or_revert();
+
+```
+
+The second section uses [`dictionary_get`](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/storage/fn.dictionary_get.html) to read an entry within the `LEDGER` dictionary. If the entry does not exist on global state, it will create the entry. If it already exists, the entry is updated with the current value using a [`dictionary_put`](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/storage/fn.dictionary_put.html) operation. As stated above, regardless of the size of the change within the entry, the entire dictionary entry will need to be overwritten and will incur the associated cost.
+
+```rust
 
     // This identifies an item within the dictionary and either creates or updates the associated value.
     match storage::dictionary_get::<u64>(ledger_seed_uref, &dictionary_item_key).unwrap_or_revert()
@@ -88,7 +95,7 @@ fn update_ledger_record(dictionary_item_key: String) {
 
 ```
 
-## Accessing a Dictionary Item
+## Reading Items from a Dictionary
 
 The Casper platform provides four means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](/dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. In brief, they consist of:
 
