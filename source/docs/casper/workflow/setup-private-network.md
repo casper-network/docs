@@ -270,7 +270,7 @@ openssl req -new -x509 -days 3650 -extensions v3_ca -key ca_key.pem -out ca_cert
 # Generate secret key for a node and a certificate signed by the CA
 openssl ecparam -out node_1.pem -name $CURVE -genkey
 openssl req -new -key node_1.pem -out node_1.csr -sha256
-openssl x509 -req -days 3650 -CA ca_cert.pem -CAkey ca_key.pem -CAcreateserial -in node_1.csr -out node_1_cert.pem
+openssl x509 -req -CA ca_cert.pem -CAkey ca_key.pem -CAcreateserial -in node_1.csr -out node_1_cert.pem
 ```
 
 And then configure the node with the following settings:
