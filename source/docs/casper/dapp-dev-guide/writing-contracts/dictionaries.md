@@ -97,9 +97,58 @@ The second section uses [`dictionary_get`](https://docs.rs/casper-contract/1.4.4
 
 ## Reading Items from a Dictionary
 
-The Casper platform provides four means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](/dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. In brief, they consist of:
+The Casper platform provides several means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](/dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. The following explains how to query the dictionary items using the [Casper client](https://crates.io/crates/casper-client).
 
-* `AccountNamedKey` lookup via an Account's named keys.
-* `ContractNamedKey` lookup via a Contract's named keys.
-* `URef` lookup via the dictionary's seed URef.
-* `Dictionary` lookup via the unique dictionary item key.
+### `ContractNamedKey` lookup via a Contract's named keys.
+
+Reading a dictionary item using the Contract's `NamedKeys` requires the following parameters:
+
+* `Node Address` - The IP and port of a node on a Casper network. In the example below, the node address is pointing to a local NCTL network.
+
+* `State Root Hash` - The current state root hash of the Casper network hosting the dictionary item you are attempting to read.
+
+* `Contract Hash` - The hash of the contract that references the dictionary in its `NamedKeys`.
+
+* `Dictionary Name` - The name of the dictionary as a `String` stored in the Contract's `NamedKeys`.
+
+* `Dictionary Item Key` - The specific dictionary item key to be read, as a `String`.
+
+```
+
+casper-client get-dictionary-item \
+    --node-address http://localhost:11101 \
+    --state-root-hash 50c34ccbe1315d58ce22bf7518071164d16acd20a1becb0b423293418297416d \
+    --contract-hash hash-09c8fa7c1441ae7c1cbe27ae3a722fd4ffc5290315f8546454454c1b9f85c842 \
+    --dictionary-name <String> \
+    --dictionary-item-key <String>
+
+```
+
+### `URef` lookup via the dictionary's seed URef.
+
+Reading a dictionary item using the dictionary's seed URef requires the `Node Address`, `State Root Hash` and `Dictionary Item Key` as above. However, it does not require the `Contract Hash` or `Dictionary Name`. Instead, it requires:
+
+* `Seed URef` - The [Seed URef](#seed-urefs) of the dictionary to reference.
+
+```
+
+casper-client get-dictionary-item \
+    --node-address http://localhost:11101 \
+    --state-root-hash 50c34ccbe1315d58ce22bf7518071164d16acd20a1becb0b423293418297416d \
+    --dictionary-item-key <String> \
+    --seed-uref uref-90b4a8d936b881d3b45b73a102adb2b652181d75c76b7547ae9d1bb213f8db6b-007
+
+```
+
+### `Dictionary` lookup via the unique dictionary item key.
+
+In the event that you know the `dictionary address` of the dictionary item key you need to read, you can read it directly using the following Casper client command.
+
+```
+
+casper-client get-dictionary-item \
+    --node-address http://localhost:11101 \
+    --state-root-hash 50c34ccbe1315d58ce22bf7518071164d16acd20a1becb0b423293418297416d \
+    --dictionary-address dictionary-<string>
+
+```
