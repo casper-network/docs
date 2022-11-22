@@ -2,7 +2,7 @@
 
 ## Identity {#identity}
 
-Each node has an identity on the network (which is not the same as its identity in the consensus process). The network identity (ID) is based on the fingerprint of the public key of a self-signed TLS certificate. A node generates a new private key each time it starts, ensuring a unique ID.
+Each node has an identity on the network (which is not the same as its identity in the consensus process). The network identity (ID) is based on the fingerprint of the public key of a TLS certificate. A node generates a new private key each time it starts, ensuring a unique ID.
 
 Each identity is linked with an address, which is an IP and port pair where the node is reachable. This address is also called an endpoint.
 
