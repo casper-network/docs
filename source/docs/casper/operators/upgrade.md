@@ -26,13 +26,13 @@ The process to upgrade your node is very straightforward. Log in to your node, a
 sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf
 ```
 
->**Note**: To only view the list of staged and unstaged protocols, use this command: `sudo -u casper /etc/casper/node_util.py check_protocols casper.conf`
-
 On Testnet, use `casper-test.conf`:
 
 ```bash
 sudo -u casper /etc/casper/node_util.py stage_protocols casper-test.conf
 ```
+
+**Note**: To only view the list of staged and unstaged protocols, use this command: `sudo -u casper /etc/casper/node_util.py check_protocols casper.conf`
 
 ### Verifying Successful Staging
 
@@ -52,8 +52,8 @@ $ curl -s localhost:8888/status | jq .next_upgrade
 }
 ```
 
->**Note**: The protocol version will change as per the next upgrade available.
-
 If you see `null` after waiting for a few minutes, then your upgrade staging was not executed successfully.
+
+**Note**: The protocol version will change as per the next upgrade available.
 
 

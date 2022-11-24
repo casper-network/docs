@@ -2,7 +2,7 @@
 
 This page outlines the processes and files involved in setting up a Casper node. For step-by-step node installation instructions, follow the [Mainnet](/operators/install-mainnet/) or [Testnet](/operators/install-testnet/) installation pages. 
 
-## Casper Node Launcher {#casper-node-launcher}
+## The Casper Node Launcher {#casper-node-launcher}
 
 A node is usually run by executing the `casper-node-launcher`, which executes the `casper-node` as a child process and also handles upgrades to bring the node to the latest version released. 
 
@@ -86,7 +86,7 @@ This is the location for larger and variable data for the `casper-node`, organiz
 
 ## Node Version Installation {#node-version-installation}
 
-Included with `casper-node-launcher` is `node_util.py` for installing `casper-node` versions. To stage all current `casper-node` versions we would run:
+Included with the `casper-node-launcher` is `node_util.py` for installing `casper-node` versions. This command will stage all current `casper-node` versions:
 
 ```bash
 sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>
@@ -94,24 +94,24 @@ sudo -u casper /etc/casper/node_util.py stage_protocols <NETWORK_CONFIG>
 
 For `<NETWORK_CONFIG>`, we use `casper.conf` for Mainnet and `casper-test.conf` for Testnet.  This will install all currently released protocols in one step.
 
-This is invoked with the release version in underscore format, such as:
-
-```bash
-sudo -u casper /etc/casper/pull_casper_node_version.sh 1_0_2
-```
-
 This command will do the following:
 - Create `/var/lib/casper/bin/1_0_2/` and expand the `bin.tar.gz` containing at a minimum `casper-node`
 - Create `/etc/casper/1_0_2/` and expand the `config.tar.gz` containing `chainspec.toml`, `config-example.toml`, and possibly `accounts.csv` and other files
 - Remove the archive files and run `/etc/casper/config_from_example.sh 1_0_2` to create a `config.toml` from the `config-example.toml`
 
-## Configuration File {#config-file}
+Release versions are invoked using the underscore format, such as:
+
+```bash
+sudo -u casper /etc/casper/pull_casper_node_version.sh 1_0_2
+```
+
+## The Node Configuration File {#config-file}
 
 One `config.toml` file exists for each `casper-node` version installed. It is located in the `/etc/casper/[m_n_p]/` directory, where `m_n_p` is the current semantic version. This can be created from the `config-example.toml` by using `/etc/casper/config_from_example.sh [m_n_p]` where `[m_n_p]` is replaced with the current version, using underscores.
 
 Below are some fields in the `config.toml` that you may need to adjust.
 
-### Trusted Hash for Synchronizing {#trusted-hash-for-synchronizing}
+### The Trusted Hash for Synchronizing {#trusted-hash-for-synchronizing}
 
 Each Casper network is a permissionless, Proof-of-Stake network, implying that nodes can join and leave the network. As a result, some nodes may not be synchronized or as secure as bonded validators. Ideally, all nodes will join the network using a trusted source, such as a bonded validator. 
 
@@ -178,12 +178,12 @@ To learn about other options for generating keys, see [Accounts and Cryptographi
 sudo -u casper casper-client keygen --help
 ```
 
+More about keys and key generation can also be found in `/etc/casper/validator_keys/README.md` if the `casper-node-launcher` was installed from the Debian package.
+
+To submit a bonding request, you will need to [fund your account](/workflow/setup/#fund-your-account) as well.
+
 :::note
 
 Save your keys in a secure location, preferably offline.
 
 :::
-
-More about keys and key generation can also be found in `/etc/casper/validator_keys/README.md` if the `casper-node-launcher` was installed from the Debian package.
-
-To submit a bonding request, you will need to [fund your account](/workflow/setup/#fund-your-account) as well.

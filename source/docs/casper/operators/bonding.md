@@ -4,7 +4,7 @@ It is recommended that a bonding request be sent once the node has completed the
 
 In the Testnet, era durations are approximately two hours. The entire process takes approximately 3 eras. Therefore, the time for bid submission to inclusion in the validator set is a minimum of six hours. Bonding requests (bids) are transactions like any other. Because they are generic transactions, they are more resistant to censorship.
 
-## Bonding Process {#bonding-process}
+## The Bonding Process {#bonding-process}
 
 The most secure way to send a bonding transaction is to compile the contract and send the request to the network. Because the transaction authorizes the token to be locked into the auction contract, it is essential to compile the contract yourself. Here are the steps to take:
 

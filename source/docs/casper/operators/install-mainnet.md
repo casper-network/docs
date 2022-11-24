@@ -1,8 +1,8 @@
-# Installing a Mainnet Node
+# Installing a Node on Mainnet
 
 Ensure the requirements listed in the following sections are met before you start setting up the Mainnet node.
 
-## Networking Requirements
+## Network Requirements
 
 The following ports are used by the node:
 
@@ -13,15 +13,15 @@ The following ports are used by the node:
 
 Of these `35000` is the only port required to be open for your node to function, however, opening `8888` will allow others to know general network health.
 
-## OS Requirements
+## Operating System Requirements
 
 The recommended OS version is Ubuntu 20.04.
 
-## Number of Open Files
+## Specifying the Number of Open Files
 
 Please read through [this page on nofiles configuration](https://github.com/casper-network/casper-node/wiki/Increasing-default-nofile-HARD-limit-for-a-node) to put settings in `/etc/security/limits.conf` for your node to ensure proper operation.
 
-## Clean up Required
+## Required Clean Up
 
 If you were running a previous node on this box, this will clean up state. If packages are not installed, the `apt remove` may give errors, but this is not a problem.
 
@@ -35,7 +35,7 @@ sudo rm -rf /etc/casper/1_*
 sudo rm -rf /var/lib/casper/*
 ```
 
-## Setup CasperLabs Repo for Packages
+## Required Packages
 
 The following commands will set up the CasperLabs repository for packages:
 
@@ -46,13 +46,13 @@ sudo apt-key add casper-repo-pubkey.asc
 sudo apt update
 ```
 
-## Install casper-node-launcher, casper-client, and jq
+## Required Tools
 
 ```bash
 sudo apt install -y casper-client casper-node-launcher jq
 ```
 
-## Install all Protocols
+## Installing All Protocols
 
 ```bash
 sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf
@@ -60,25 +60,25 @@ sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf
 
 ## Validator Keys
 
-If you do not have keys, you can create them using the following command:
+If you do not have keys yet, you can create them using the following command:
 
 ```bash
 sudo -u casper casper-client keygen /etc/casper/validator_keys
 ```
 
-For more details, see the [Setup](/operators/setup#create-fund-keys) page.
+For more details, see the [Node Setup](/operators/setup#create-fund-keys) page.
 
-## Get a Trusted Hash
+## Getting a Trusted Hash
 
-To get a trusted hash, use this command. Replace the node address with an updated address from a node on the Mainnet.
+To get a trusted hash, use the command below. Replace the node address with an updated address from a Mainnet node.
 
 ```bash
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
 ```
 
-You can also find active peers at https://cspr.live/tools/peers.
+You can find active peers at https://cspr.live/tools/peers.
 
-## Start the Node
+## Starting the Node
 
 Start the node using the following commands:
 
@@ -87,15 +87,15 @@ sudo /etc/casper/node_util.py rotate_logs
 sudo /etc/casper/node_util.py start
 ```
 
-### Monitor the node syncing
+### Monitoring the Synchronization Process
 
-The following command will display the node syncing details:
+The following command will display the node synchronization details:
 
 ```bash
 /etc/casper/node_util.py watch
 ```
 
-When you run the watch command, expect to see something like this:
+When you first run the watch command, you may see the message `RPC: Not Ready`. Once the node is synchronized, the status will change to `RPC: Ready` and a similar output:
 
 ```bash
 Last Block: 630151 (Era: 4153)
@@ -118,9 +118,9 @@ RPC: Ready
            └─16842 /var/lib/casper/bin/1_4_5/casper-node validator /etc/casper/1_4_5/config.toml
 ```
 
-If your `casper-node-launcher status` is not shown as active (running) with an increasing time, you are either not running or in the process of restarting. 
+If the node is not showing active (running) status, it is either stopped or in the process of restarting.
 
-### Monitor your node once it is up
+### Monitoring the Running Node
 
 The community has created a few tools to monitor your node once it is running, such as:
 
