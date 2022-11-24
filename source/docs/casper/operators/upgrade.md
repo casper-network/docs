@@ -20,7 +20,7 @@ Do not restart the node, only run the commands provided. The upgrade will automa
 
 ### Upgrade Staging Instructions
 
-The process to upgrade your node is very straightforward. Log in to your node, and execute the following command:
+The process to upgrade your node is very straightforward. Log in to your node, and execute the following command on Mainnet:
 
 ```bash
 sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf
@@ -28,9 +28,15 @@ sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf
 
 >**Note**: To only view the list of staged and unstaged protocols, use this command: `sudo -u casper /etc/casper/node_util.py check_protocols casper.conf`
 
+On Testnet, use `casper-test.conf`:
+
+```bash
+sudo -u casper /etc/casper/node_util.py stage_protocols casper-test.conf
+```
+
 ### Verifying Successful Staging
 
-After you have successfully executed the above commands, wait a few minutes for a new block to be issued before checking that your node is correctly staged with the upgrade. After a few minutes, take a look at your status end-point, as follows:
+After you have successfully executed the staging commands, wait a few minutes for a new block to be issued before checking that your node is correctly staged with the upgrade. After a few minutes, take a look at your status end-point, as follows:
 
 ```bash
 curl -s http://127.0.0.1:8888/status | jq .next_upgrade
@@ -46,8 +52,8 @@ $ curl -s localhost:8888/status | jq .next_upgrade
 }
 ```
 
->**Note**: The protocol version in the above output will change as per the next upgrade available.
+>**Note**: The protocol version will change as per the next upgrade available.
 
-If you see null after waiting for a few minutes, then your upgrade staging was not executed successfully.
+If you see `null` after waiting for a few minutes, then your upgrade staging was not executed successfully.
 
 
