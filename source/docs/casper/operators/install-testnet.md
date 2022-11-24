@@ -1,6 +1,6 @@
 # Installing a Testnet Node
 
-Ensure the requirements listed in the following sections are met before you start setting up the Mainnet node.
+Ensure the requirements listed in the following sections are met before you start setting up the Testnet node.
 
 ## Networking Requirements
 
@@ -66,17 +66,17 @@ If you do not have keys, you can create them using the following command:
 sudo -u casper casper-client keygen /etc/casper/validator_keys
 ```
 
->**Note**: To avoid losing your keys if you lose machine data, save them offline.
+For more details, see the [Setup](/operators/setup#create-fund-keys) page.
 
 ## Get a Trusted Hash
 
-To get a trusted hash, use this command:
+To get a trusted hash, use this command. Replace the node address with an updated address from a node on the Testnet.
 
 ```bash
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
 ```
 
->**Note**: If the IP address in the above command is not responding, you can find active peers at https://cspr.live/tools/peers for the Mainnet. For the Testnet, you can find active peers at https://testnet.cspr.live/tools/peers.
+You can also find active peers at https://testnet.cspr.live/tools/peers.
 
 ## Start the Node
 

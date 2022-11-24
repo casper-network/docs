@@ -1,6 +1,6 @@
 # Joining a Running Network
 
-The Casper network is permissionless, enabling new validators to join the network and provide additional security to the system. This page outlines the sequence of recommended steps to spin up a validating node and join an existing network.
+Each Casper network is permissionless, enabling new validators to join the network and provide additional security to the system. This page outlines the sequence of recommended steps to spin up a validating node and join an existing network.
 
 ## Step 1: Provision Hardware {#step-1-provision-hardware}
 
@@ -8,15 +8,18 @@ Visit the [Hardware Specifications](hardware.md) section and provision your node
 
 ## Step 2: Set Up the Node and Build Contracts {#step-2-build-contracts--set-up-the-node}
 
-Follow the instructions in the [Basic Node Setup](setup.md) section to configure the software on your node. Build all necessary contracts for bonding, retrieving rewards and unbonding.
+Follow the instructions on the [Mainnet](/operators/install-mainnet/) or [Testnet](/operators/install-testnet/) installation pages. 
+
+Next, use the commands below to build all the necessary contracts for bonding, retrieving rewards, and unbonding.
 
 ### Building Contracts {#building-contracts}
+
 1. Clone the casper-node repository. 
 
 ```bash
 git clone https://github.com/casper-network/casper-node
 ```
-2. To build contracts, set up Rust and install all dependencies, see [Installing Rust](/dapp-dev-guide/writing-contracts/getting-started.md#installing-rust) in the Developer Guide.
+2. To build the contracts, make sure you have [installed Rust](/dapp-dev-guide/writing-contracts/getting-started.md#installing-rust).
 
 3. Use the following commands to build the contracts in release mode:
 
@@ -26,7 +29,7 @@ make setup-rs
 make build-client-contracts
 ```
 
-These commands will build all the necessary Wasm files. You can use these contracts for bonding, retrieving rewards and unbonding:
+These commands will build all the necessary Wasm contracts for operating as a validator:
 - activate_bid.wasm - reactivates an ejected validator
 - add_bid.wasm - enables bonding for validator stake
 - delegate.wasm - delegates stake
@@ -35,59 +38,25 @@ These commands will build all the necessary Wasm files. You can use these contra
 
 ## Step 3: Create and Fund Keys for Bonding {#step-3-create--fund-keys-for-bonding}
 
-To create keys and fund your account, you must setup the casper command line client. For instructions on setting up the command line client, creating keys and funding your accounts, see [Prerequisites](../workflow/setup.md). The tokens acquired from funding your account are needed to bond your node on to the network and to pay for the bonding transaction.
-
-Generate the keys in the `/etc/casper/validator_keys` folder using the following command:
-
-```bash
-sudo casper-client keygen /etc/casper/validator_keys
-```
+See the [Setup](/operators/setup#create-fund-keys) instructions if you have not generated and funded your validator keys.
 
 ## Step 4: Update the Trusted Hash {#step-4-update-the-trusted-hash}
 
 The node's `config.toml` needs to be updated with a recent trusted hash. 
 
-### Retrieving a Trusted Hash {#retrieving-trusted-hash}
-
-Visit a `/status` endpoint of a validating node to obtain a fresh trusted block hash. The default port is usually `8888`. Retrieve the `last_added_block_info:` hash. 
-
-```bash
-# This will return JSON and we want result.block.hash
-casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20
-
-# If jq is installed we can pull it from the JSON return directly with
-casper-client get-block --node-address http://<NODE_IP_ADDRESS>:7777 -b 20 | jq -r .result.block.hash
-```
-
-For more information on trusted hash, see [Trusted Hash for Synchronizing](../setup/#trusted-hash-for-synchronizing).
-
-### Known Addresses {#known-addresses}
-
-For the node to connect to a network, the node needs a set of trusted peers for that network. For [Mainnet](https://cspr.live/), these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least two trusted IP addresses for peers in that network. Here is an [example configuration](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml). The [casper-protocol-release](https://github.com/casper-network/casper-protocol-release) repository stores configurations for various environments, which you can also use as examples.
-
-### Updating `config.toml` file {#updating-config-file}
-
-At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. For more information and the path to the `config.toml` file, see [Config File](../setup/#config-file).
-
-```
-# ================================
-# Configuration options for a node
-# ================================
-[node]
-
-# If set, use this hash as a trust anchor when joining an existing network.
-#trusted_hash = 'HEX-FORMATTED BLOCK HASH'
-```
+See the [Trusted Hash for Synchronizing](/operators/setup/#trusted-hash-for-synchronizing) instructions if you have not set up a trusted hash during node installation.
 
 ## Step 5: Start the Node {#step-5-start-the-node}
 
-The Debian package installs a casper-node service for systemd. Start the node with:
+Start the node with:
 
 ```bash
 sudo systemctl start casper-node-launcher
 ```
 
-For more information, visit [GitHub](https://github.com/casper-network/casper-node/tree/master/resources/production).
+The above Debian package installs a casper-node service for systemd. 
+
+For more information, visit [GitHub](https://github.com/casper-network/casper-node/wiki#node-operators).
 
 ## Step 6: Confirm the Node is Synchronized {#step-6-confirm-the-node-is-synchronized}
 
@@ -135,8 +104,8 @@ Towards the end of the following output, notice the `era_id` and `height` that y
 
 ## Step 7: Send the Bonding Request {#step-7-send-the-bonding-request}
 
-To avoid being ejected for liveness failures, it is critical that the bonding request be sent to the local node only after it has synchronized the protocol state and linear blockchain.
+You can submit a [bonding request](bonding.md) to change your synchronized node to a validating node.
 
-For this reason, it is recommended that you use `casper-client` with the default `--node-address` which will talk to localhost.
+The bonding request must be sent after the node has synchronized the protocol state and linear blockchain to avoid being ejected for liveness failures.
 
-You can submit a bonding request to change your synchronized node to a validating node, see [Bonding](bonding.md) for detailed instructions.
+

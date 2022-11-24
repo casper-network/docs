@@ -122,10 +122,28 @@ When joining the network, the system will start from the hash of a recent block 
 - Obtain the hash of a block from the status endpoint
 - Update the `config.toml` for the node to include the trusted hash. There is a field dedicated to this near the top of the file
 
-Here is an example command for obtaining a trusted hash:
+Here is an example command for obtaining a trusted hash. Replace the node address with an updated address from a node on the network.
 
 ```bash
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
+```
+
+### Known Addresses {#known-addresses}
+
+For the node to connect to a network, the node needs a set of trusted peers for that network. For [Mainnet](https://cspr.live/), these are listed in the `config.toml` as `known_addresses`. For other networks, locate and update the list to include at least two trusted IP addresses for peers in that network. Here is an [example configuration](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml). The [casper-protocol-release](https://github.com/casper-network/casper-protocol-release) repository stores configurations for various environments, which you can also use as examples.
+
+### Updating the `config.toml` file {#updating-config-file}
+
+At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. See the [Configuration File](/operators/setup/#config-file) for more details.
+
+```
+# ================================
+# Configuration options for a node
+# ================================
+[node]
+
+# If set, use this hash as a trust anchor when joining an existing network.
+#trusted_hash = 'HEX-FORMATTED BLOCK HASH'
 ```
 
 ### Secret Keys {#secret-keys}
