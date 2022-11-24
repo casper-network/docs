@@ -148,6 +148,12 @@ When joining the network, the system will start from the hash of a recent block 
 - Obtain the hash of a block from the status endpoint
 - Update the `config.toml` for the node to include the trusted hash. There is a field dedicated to this near the top of the file
 
+Here is an example command for obtaining a trusted hash:
+
+```bash
+sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
+```
+
 ### Secret Keys {#secret-keys}
 
 Provide the path to the secret keys for the node. This is set to `etc/casper/validator_keys/` by default.
