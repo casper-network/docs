@@ -1,4 +1,4 @@
-# Installing a Mainnet Node
+# Installing a Testnet Node
 
 Ensure the requirements listed in the following sections are met before you start setting up the Mainnet node.
 

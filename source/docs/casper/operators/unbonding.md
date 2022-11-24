@@ -1,4 +1,4 @@
-# Unbonding
+# Unbonding as a Validator
 
 Once a bid is placed, it will remain in the state of the auction contract. Even if the bid does not win a slot right away. The reason for this is that new slots may become available if bonded validators leave the network, or reduce their bond amounts. Therefore, a bid must be explicitly withdrawn in order to remove the bid from the auction. Bonded validators also have a bid in the auction, to unbond stake, this bid must be reduced. Since tokens will be transferred out of the bid purse, it's important to compile the contract to withdraw the bid yourself, so there is confidence in the correctness of the contract. The process is essentially the same as bonding, but uses a different contract, `withdraw_bid.wasm`.
 
