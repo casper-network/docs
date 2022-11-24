@@ -2,7 +2,7 @@
 
 ## System Requirements {#system-requirements}
 
-The following hardware specifications are recommended for the **MainNet** and **TestNet**:
+The following hardware specifications are recommended for the Casper **Mainnet** and **Testnet**:
 
 -   4 Cores
 -   32 GB Ram
