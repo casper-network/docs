@@ -18,7 +18,7 @@ sudo casper-client put-deploy \
 --session-arg="unbond_purse:opt_uref=null"
 ```
 
-Note the following command options: 
+Note the following command options above: 
 - The chain name for Mainnet is `casper` and for Testnet is `casper-test`
 - The default port for node address is 7777
 - The path to the contract and keys
@@ -49,6 +49,18 @@ sudo -u casper casper-client put-deploy \
  --session-arg="unbond_purse:opt_uref=null"
 ```
 
+### Example Response
+
+```bash
+{
+  "id": 250941394679501522,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.8",
+    "deploy_hash": "8fca736d6beb59e225da6cf7b553031a28b3f100997c84058cab6d09c58d7188"
+  }
+}
+```
 
 ## Check the Auction Contract {#check-the-auction-contract}
 
