@@ -1,12 +1,14 @@
-# Basic Node Setup
+# Basic Node Configuration
 
-A node is usually run by executing the `casper-node-launcher`. This app executes the `casper-node` as a child process and also handles upgrades to bring the node to the latest version released.
+This page outlines the processes and files involved in setting up a Casper node. For step-by-step node installation instructions, follow the [Mainnet](/operators/install-mainnet/) or [Testnet](/operators/install-testnet/) installation pages. 
 
 ## Casper Node Launcher {#casper-node-launcher}
 
+A node is usually run by executing the `casper-node-launcher`, which executes the `casper-node` as a child process and also handles upgrades to bring the node to the latest version released. 
+
 The `casper-node-launcher` can be installed via a Debian package, which also creates the `casper` user and directory structures and sets up a `systemd` unit and logging.
 
-The casper-node-launcher Debian package can be obtained from <https://repo.casperlabs.io>. You only need to run the steps detailed there once.
+The `casper-node-launcher` Debian package can be obtained from <https://repo.casperlabs.io>. You only need to run the steps detailed there once.
 
 Then, proceed to install the `casper-node-launcher` by running these commands:
 
@@ -103,9 +105,46 @@ This command will do the following:
 - Create `/etc/casper/1_0_2/` and expand the `config.tar.gz` containing `chainspec.toml`, `config-example.toml`, and possibly `accounts.csv` and other files
 - Remove the archive files and run `/etc/casper/config_from_example.sh 1_0_2` to create a `config.toml` from the `config-example.toml`
 
-## Client Installation {#client-installation}
+## Configuration File {#config-file}
 
-The [Prerequisites](/workflow/setup/#the-casper-command-line-client) page lists installation instructions for the Casper client.
+One `config.toml` file exists for each `casper-node` version installed. It is located in the `/etc/casper/[m_n_p]/` directory, where `m_n_p` is the current semantic version. This can be created from the `config-example.toml` by using `/etc/casper/config_from_example.sh [m_n_p]` where `[m_n_p]` is replaced with the current version, using underscores.
+
+Below are some fields in the `config.toml` that you may need to adjust.
+
+### Trusted Hash for Synchronizing {#trusted-hash-for-synchronizing}
+
+Each Casper network is a permissionless, Proof-of-Stake network, implying that nodes can join and leave the network. As a result, some nodes may not be synchronized or as secure as bonded validators. Ideally, all nodes will join the network using a trusted source, such as a bonded validator. 
+
+When joining the network, the system will start from the hash of a recent block and then work backward to obtain the finalized blocks from the linear block store. Here is the process to get the trusted hash of a bonded validator:
+
+- Find a list of trusted validators
+- Query the status endpoint of a trusted validator (`http://<NODE_IP_ADDRESS>:8888/status`)
+- Obtain the hash of a block from the status endpoint
+- Update the `config.toml` for the node to include the trusted hash. There is a field dedicated to this near the top of the file
+
+Here is an example command for obtaining a trusted hash:
+
+```bash
+sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
+```
+
+### Secret Keys {#secret-keys}
+
+Provide the path to the secret keys for the node. This path is set to `etc/casper/validator_keys/` by default. See [Creating Keys and Funding Accounts](#create-fund-keys) for more details.
+
+### Networking and Gossiping {#networking--gossiping}
+
+The node requires a publicly accessible IP address. The `config_from_example.sh` and `node_util.py` both allow IP for network address translation (NAT) setup. Specify the public IP address of the node. If you use the `config_from_example.sh` external services are called to find your IP and this is inserted into the `config.toml` created.
+
+The following default values are specified in the file if you want to change them:
+
+- The port that will be used for status and deploys
+- The port used for networking
+- Known_addresses - these are the bootstrap nodes (there is no need to change these)
+
+## Rust Client Installation {#client-installation}
+
+The [Prerequisites](/workflow/setup/#the-casper-command-line-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
 
 ## Creating Keys and Funding Accounts {#create-fund-keys}
 
@@ -130,40 +169,3 @@ Save your keys in a secure location, preferably offline.
 More about keys and key generation can also be found in `/etc/casper/validator_keys/README.md` if the `casper-node-launcher` was installed from the Debian package.
 
 To submit a bonding request, you will need to [fund your account](/workflow/setup/#fund-your-account) as well.
-
-## Config File {#config-file}
-
-One `config.toml` file exists for each `casper-node` version installed. It is located in the `/etc/casper/[m_n_p]/` directory, where `m_n_p` is the current semantic version. This can be created from `config-example.toml` by using `/etc/casper/config_from_example.sh [m_n_p]` where `[m_n_p]` is replaced current version with underscores.
-
-Below are some fields in the `config.toml` that you may need to adjust.
-
-### Trusted Hash for Synchronizing {#trusted-hash-for-synchronizing}
-
-Each Casper network is a permissionless, Proof-of-Stake network, implying that nodes can join and leave the network. As a result, some nodes may not be synchronized or as secure as bonded validators. Ideally, all nodes will join the network using a trusted source, such as a bonded validator. 
-
-When joining the network, the system will start from the hash of a recent block and then work backward to obtain the finalized blocks from the linear block store. Here is the process to get the trusted hash of a bonded validator:
-
-- Find a list of trusted validators
-- Query the status endpoint of a trusted validator (`http://<NODE_IP_ADDRESS>:8888/status`)
-- Obtain the hash of a block from the status endpoint
-- Update the `config.toml` for the node to include the trusted hash. There is a field dedicated to this near the top of the file
-
-Here is an example command for obtaining a trusted hash:
-
-```bash
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
-```
-
-### Secret Keys {#secret-keys}
-
-Provide the path to the secret keys for the node. This is set to `etc/casper/validator_keys/` by default.
-
-### Networking and Gossiping {#networking--gossiping}
-
-The node requires a publicly accessible IP address. The `config_from_example.sh` and `node_util.py` both allow IP for network address translation (NAT) setup. Specify the public IP address of the node. If you use the `config_from_example.sh` external services are called to find your IP and this is inserted into the `config.toml` created.
-
-The following default values are specified in the file if you want to change them:
-
-- The port that will be used for status and deploys
-- The port used for networking
-- Known_addresses - these are the bootstrap nodes (there is no need to change these)
