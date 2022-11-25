@@ -220,5 +220,5 @@ module.exports = {
         "glossary/Y",
         "glossary/Z",
     ],
-    staking: ["staking/index", "workflow/delegate-ui", "workflow/undelegate-ui", "workflow/staking-ledger", "workflow/delegate", "workflow/redelegate"],
+    staking: ["staking/index", "workflow/delegate-ui", "workflow/undelegate-ui", "workflow/delegate", "workflow/redelegate", "workflow/staking-ledger"],
 };

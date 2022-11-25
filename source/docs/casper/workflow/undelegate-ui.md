@@ -1,6 +1,6 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Undelegating CSPR from a Validator
+# Undelegating with the Block Explorer
 
 If you want to undelegate tokens from a validator, you can do so at any time. Note that undelegation costs approximately 0.5 CSPR when writing this article. 
 
