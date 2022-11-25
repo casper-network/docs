@@ -36,7 +36,7 @@ You can access the delegation functionality in two ways.
 
 **Option 1:** Click **Wallet** from the top navigation menu and then click **Delegate**. In the next screen, you will need to specify the validator's public key or search for a validator.
 
-<img class="align-center" src={useBaseUrl("/image/tutorials/staking/4.wallet-delegate.png")} alt="Delegate from the Wallet" width="200"/>
+<img class="align-center" src={useBaseUrl("/image/tutorials/staking/4.wallet-delegate.png")} alt="Delegate from the Wallet" width="150"/>
 
 **Option 2:** Click **Validators** from the top navigation menu. From the validators table, click on any validator to access their details. Once you find the validator to whom you want to delegate tokens, click the **Delegate** button. The next screen will have the validator's public key pre-populated.
 
@@ -46,28 +46,28 @@ You can access the delegation functionality in two ways.
 
 The following instructions will take you through the delegation process, starting with the "Delegation details" screen.
 
-**Step 1 - Delegation Details**
+**Step 1 - Delegation details**
 
-1. Specify the validator's public key if you have navigated to this screen using the Wallet functionality. Otherwise, verify the pre-populated key in the Validator field.
+1. Specify the validator's public key if you have reached this screen using the Wallet functionality. Otherwise, verify the pre-populated key in the Validator field.
 2. Enter the amount of CSPR you wish to delegate. Remember to account for the transaction fee.
 3. Click **Next**.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/6.delegation-details.png")} alt="Delegation details" width="400"/>
 
-**Step 2 - Confirm the Transaction**
+**Step 2 - Confirm the delegation**
 
 1. Review the details of the transaction.
 2. If everything is correct, click **Confirm and delegate stake**. If you wish to make changes, return to the previous screen.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/7.confirm-delegation.png")} alt="Confirm delegation details" width="400"/>
 
-**Step 3 - Sign the Transaction**
+**Step 3 - Sign the delegation**
 
 1.  Sign the transaction by clicking **Sign with Casper Signer**.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/8.sign-delegation.png")} alt="Sign delegation" width="400"/>
 
-2.  Once the Signer app window opens, **make sure that the Deploy hash in the Signer window matches the Deploy hash in the block explorer before continuing.**
+2.  Once the Signer app window opens, **make sure that the deploy hash in the "Signer window" matches the deploy hash in the "Sign delegation" window before continuing**.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/9.signer-window.png")} alt="Signer window"/>
 
