@@ -1,40 +1,43 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Funding Accounts from an Exchange
+# Funding Mainnet Accounts from an Exchange
 
-**IMPORTANT NOTE:** If you want to send your CSPR coins from an exchange to this account, you need to copy the **Public Key** value. Use the quick copy button to the right of the public key address to copy it. Then set up a withdrawal request from the exchange using the public key.
+To send CSPR tokens from an exchange to a Mainnet account, you need the **Mainnet account's public key**. Then, you can set up a withdrawal request from the exchange using this public key. The transfer will take a few minutes. 
 
-The transfer from an exchange takes a few minutes. After your tokens arrive in your account, you can delegate them. This section demonstrates a withdrawal from the Coinlist exchange <http://coinlist.co/> to the [Casper Mainnet on cspr.live](https://cspr.live/).
+This guide demonstrates a withdrawal from [Coinlist](https://coinlist.co/) to the Casper Mainnet using the [cspr.live](https://cspr.live/) block explorer. You need to contact the exchange for instructions if you are working with a different exchange.
 
-### 5.1 Transfer CSPR from an Exchange {#51-transfer-cspr-from-an-exchange}
+## Prerequisites
 
-If you need to transfer your CSPR tokens from an exchange, you will need your **public key** from the account page.
+Before starting, copy the public key where you wish to transfer funds. The screenshot below shows the account page on <https://cspr.live/> and the field you need to specify in the withdrawal request from Coinlist.
 
-If you already have funds in your Signer wallet, you can skip this section. If you are working with a different exchange, you need to contact that exchange directly.
+<img class="align-center" src={useBaseUrl("/image/tutorials/exchanges/1.account-public-key.png")} alt="Account public key from CSPR.live"/>
 
-1.  Log into your <https://coinlist.co/> account.
-2.  Go to the **Wallet** tab.
+## Transfers from Coinlist to Casper Mainnet
 
-<img class="align-center" src={useBaseUrl("/image/tutorials/staking/5.1.2.1.png")} alt="5.1.2.1" width="200" />
+Try these steps with a small amount of CSPR first. After one successful transfer, you will be more comfortable transferring larger amounts.
 
-3.  Click on the **CSPR** section.
+1. Log into your <https://coinlist.co/> account.
+2. Go to the "Wallet" tab.
 
-<img class="align-center" src={useBaseUrl("/image/tutorials/staking/5.1.3.1.png")} alt="5.1.3.1" width="200" />
+<img class="align-center" src={useBaseUrl("/image/tutorials/exchanges/2.coinlist-wallet.png")} alt="Coinlist Wallet tab" width="200" />
 
-4.  Click on the **Withdraw** button.
+3. Click on the "CSPR" section.
 
-<img class="align-center" src={useBaseUrl("/image/tutorials/staking/5.1.4.1.png")} alt="5.1.4.1"/>
+<img class="align-center" src={useBaseUrl("/image/tutorials/exchanges/3.cspr-section-coinlist.png")} alt="CSPR on Coinlist" width="200" />
 
-5.  Copy the **Public Key**. The screenshot below shows the account page on <https://cspr.live/> and the field that you need to copy from that page.
+4. Click on the "Withdraw" button.
 
-<img class="align-center" src={useBaseUrl("/image/tutorials/staking/5.1.5.1.png")} alt="5.1.5.1"/>
+<img class="align-center" src={useBaseUrl("/image/tutorials/exchanges/4.withdraw-coinlist.png")} alt="Withdraw on Coinlist"/>
 
-6.  Enter the **Public Key** in the **Recipient Address** field in the withdrawal request.
+5. Enter the public key of the Mainnet account in the "Recipient Address" field of the withdrawal request.
 
-<img class="align-center" src={useBaseUrl("/image/tutorials/staking/5.1.6.1.png")} alt="5.1.6.1" width="400"/>
+<img class="align-center" src={useBaseUrl("/image/tutorials/exchanges/5.withdraw-fields-coinlist.png")} alt="Withdrawal fields on Coinlist" width="400"/>
 
-7.  Enter 0 in the **Transfer ID** field or another value that is meaningful to you. **You MUST enter a value or the transfer will fail!**
-8.  Enter the CSPR amount you wish to transfer. **We recommend that you try these steps with a small amount of CSPR to verify you followed the steps correctly**. After one successful transfer, you will be more comfortable transferring larger amounts.
-9.  Click **Review**.
-10. Submit your transfer request. Wait approximately 5 minutes, and then go to the <https://cspr.live/> site to verify your transfer. On your account page, you should see that the **Liquid Account Balance** reflects the amount you have transferred.
+6. Enter 0 in the "Transfer ID" field or another value that is meaningful to you. **You MUST enter a value, or the transfer will fail!**
+
+7. Enter the CSPR amount you wish to transfer.
+
+8. Click "Review".
+
+9. Submit the transfer request. Wait approximately 5 minutes, and then go to the <https://cspr.live/> site to verify your account details. On the account page, you should see that the "Liquid Account Balance" reflects the amount you have transferred.
 
