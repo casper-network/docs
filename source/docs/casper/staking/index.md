@@ -4,61 +4,58 @@ slug: /staking
 tags: ["finance", "staking", "governance"]
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Staking
 
-A feature of Proof-of-Stake protocols is that token holders can actively participate in the protocol through a mechanism known as **staking**.
+This page describes key concepts regarding the staking process.
 
-Persons that hold their private keys can choose to stake their tokens with any validator in the Casper Network. Alternatively, it is possible to stake tokens via an exchange or custody provider as well.
+A feature of Proof-of-Stake protocols is that token holders can actively participate in the protocol through a mechanism known as **staking** or **delegation**. They can stake their tokens with any validator on a Casper network. Alternatively, it is possible to stake tokens via an exchange or custody provider.
 
-This guide will outline the steps required to stake the CSPR token on the Casper Network.
+## Key Concepts {#key-concepts}
 
-## What you need to know before staking {#what-you-need-to-know-before-staking}
+Please read the following sections carefully before staking tokens on a Casper network.
 
-Please read the following sections carefully before staking tokens on the Casper Network.
+### Slashing {#slashing}
 
-## Slashing {#slashing}
-
-Presently Casper does not slash for equivocations. If a node equivocates, its' messages are ignored by the rest of the validators for the balance of the era and made inactive. A node running the software provided by the Casper Association will terminate once it detects that it has equivocated. Future work includes locking an equivocating validator's stake for an extended duration of time, effectively penalizing the validator.
+Presently Casper does not slash for equivocations. If a node equivocates, its' messages are ignored by the rest of the validators for the balance of the era and made inactive. A node running the software provided by the Casper Association will terminate once it detects that it has equivocated. Future work includes locking an equivocating validator's stake for an extended time, effectively penalizing the validator.
 
 Casper does not treat validator stake differently than delegator stake for security reasons.
 
-## Delegation Rate {#delegation-rate}
+### Delegation Rate {#delegation-rate}
 
-Node operators (Validators) define a commission that they take in exchange for providing staking services. This commission is represented as a percentage of the rewards that the node operator retains for their services.
+Validators define a commission that they take in exchange for providing staking services. This commission is represented as a percentage of the rewards that the validator retains for their services.
 
-## Rewards {#rewards}
+### Rewards {#rewards}
 
-Validators receive rewards for participating in consensus by voting on blocks sending finality signatures (finalizing blocks). There is no precise _per-block_ reward. Rewards are split proportionally among stakes within an era. If a validator is offline or cannot vote on many blocks, the rewards earned are also reduced. Delegators can only receive a proportional amount of the validator's rewards minus the validator's commission (Delegation Rate).
+Validators receive rewards for participating in consensus by voting on blocks and finalizing blocks (by sending finality signatures). There is no precise reward per block. Rewards are split proportionally among stakes within an era. 
 
-Rewards are distributed at the end of each era.
+The rewards earned are also reduced if a validator is offline or cannot vote on many blocks. Delegators can only receive a proportional amount of the validator's rewards minus the validator's commission (called Delegation Rate). Rewards are distributed at the end of each era.
 
-## Selecting a node for Staking {#selecting-a-node-for-staking}
+### Selecting a Node for Delegating {#selecting-a-node-for-delegating}
 
-As a prospective delegator, it is important to select a validating node that you can trust. Please do your due diligence before you stake your tokens with a validator.
+Selecting a validating node you can trust as a prospective delegator is essential. Block explorers such as [cspr.live](https://cspr.live) provide [validator performance statistics](https://cspr.live/validators), including a performance score, total stake, number of delegators, and fees. Please do your due diligence before staking tokens with a validator.
 
-## Check in on your Stake {#check-in-on-your-stake}
+<img class="align-center" src={useBaseUrl("/image/tutorials/staking/1.validators.png")} alt="4.3" width="500" />
 
-It's recommended that you check in on how your stake is performing from time to time. If the validator you staked with decides to unbond, your stake will also be unbonded. Make sure that the validator you have selected is performing as per your expectations.
+### Monitoring Rewards {#monitoring-rewards}
 
-Validators have to win a staking auction by competing with prospective and current validators for a slot. This process is permissionless, meaning validators can join and leave the auction without restrictions, except the unbonding wait period.
+It's recommended that you check in on how your stake is performing from time to time. If the validator you staked with decides to unbond, your stake will also be unbonded and you will not earn rewards. Ensure that the validator you selected performs as per your expectations.
 
-## Unbonding Period {#unbonding-period}
+Validators have to win a staking auction by competing with prospective and current validators for a slot. This process is permissionless, meaning validators can join and leave the auction without restrictions, except for the unbonding wait period.
 
-For security purposes, whenever a token is un-staked or un-delegated, the protocol will continue to keep the token locked for 14 hours.
+### Unbonding Period {#unbonding-period}
 
-# Next Steps
+For security purposes, whenever tokens are un-delegated, the protocol will continue to keep the token locked for 14 hours.
 
--   [How to Stake your CSPR](../workflow/staking.md)
-    -   [1. Introduction](../workflow/staking.md#1-introduction)
-    -   [2. Staking Overview](../workflow/staking.md#1-staking-overview)
-    -   [3. Creating your Wallet with the Casper Signer](../workflow/staking.md#3-creating-your-wallet-with-the-casperlabs-signer)
-    -   [4. Connecting to a Block Explorer](../workflow/staking.md#4-connecting-to-blockexplorer)
-    -   [5. Funding your Account](../workflow/staking.md#5-funding-your-account)
-    -   [6. Delegating Tokens](../workflow/staking.md#6-delegating-tokens)
-    -   [7. Monitoring](../workflow/staking.md#7-monitoring)
-    -   [8. Undelegating Tokens](../workflow/staking.md#8-undelegating-tokens)
-    -   [ Conclusion](../workflow/staking.md#conclusion)
--   [Delegating with the Command-line](../workflow/delegate.md)
-    -   [Building The Delegation Wasm](../workflow/delegate.md#building-the-delegation-wasm)
-    -   [Acquiring a Validator’s Public Key](../workflow/delegate.md#acquiring-a-validators-public-key)
-    -   [Executing the Delegation Request](../workflow/delegate.md#executing-the-delegation-request)
+## Tutorials
+
+Navigate to these pages for step-by-step tutorials on how to delegate tokens:
+
+- [Creating a wallet with the Casper Signer](/workflow/staking.md#3-creating-your-wallet-with-the-casperlabs-signer)
+- [Delegating CSPR to a validator](/workflow/staking.md)
+- [Staking with Ledger devices](/workflow/staking-ledger/)
+- [Delegating with the command-line](/workflow/delegate.md)
+- [Re-delegating with the command-line to a new validator](/workflow/redelegate.md)
+
+

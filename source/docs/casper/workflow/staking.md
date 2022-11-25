@@ -1,6 +1,6 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# How to Stake your CSPR
+# Delegating CSPR to a Validator
 
 ## 1. Introduction {#1-introduction}
 
