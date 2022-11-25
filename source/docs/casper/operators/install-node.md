@@ -1,6 +1,6 @@
-# Installing a Node on Testnet
+# Installing a Node 
 
-Ensure the requirements listed in the following sections are met before you start setting up the Testnet node.
+Ensure the requirements listed in the following sections are met before you start setting up the node on the network, either on Mainnet or Testnet.
 
 ## Network Requirements
 
@@ -54,6 +54,14 @@ sudo apt install -y casper-client casper-node-launcher jq
 
 ## Installing All Protocols
 
+On **Mainnet**, run:
+
+```bash
+sudo -u casper /etc/casper/node_util.py stage_protocols casper.conf
+```
+
+On **Testnet**, run:
+
 ```bash
 sudo -u casper /etc/casper/node_util.py stage_protocols casper-test.conf
 ```
@@ -70,13 +78,13 @@ For more details, see the [Node Setup](/operators/setup#create-fund-keys) page.
 
 ## Getting a Trusted Hash
 
-To get a trusted hash, use the command below. Replace the node address with an updated address from a Testnet node.
+To get a trusted hash, use the command below. Replace the node address with an address from a node on the network of your choice.
 
 ```bash
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
 ```
 
-You can find active peers at https://testnet.cspr.live/tools/peers.
+You can find active peers at https://cspr.live/tools/peers.
 
 ## Starting the Node
 
@@ -98,34 +106,31 @@ The following command will display the node synchronization details:
 When you first run the watch command, you may see the message `RPC: Not Ready`. Once the node is synchronized, the status will change to `RPC: Ready` and a similar output:
 
 ```bash
-Last Block: 1275281 (Era: 7098)
-Peer Count: 268
-Uptime: 43s 246ms
-Build: 1.4.8-b94c4f79a-casper-mainnet
-Key: 01da0e438afc74181beb2afae798e9e6851bdf897117a306eb32caafe46c1c0bc8
+Last Block: 630151 (Era: 4153)
+Peer Count: 297
+Uptime: 4days 6h 40m 18s 553ms
+Build: 1.4.5-a7f6a648d-casper-mainnet
+Key: 0147b4cae09d64ab6acd02dd0868722be9a9bcc355c2fdff7c2c244cbfcd30f158
 Next Upgrade: None
 
 RPC: Ready
 
 ● casper-node-launcher.service - Casper Node Launcher
-     Loaded: loaded (/lib/systemd/system/casper-node-launcher.service; enabled;
-vendor preset: enabled)
-     Active: active (running) since Thu 2022-11-24 11:20:28 UTC; 1min 55s ago
-       Docs: https://docs.casperlabs.io
-   Main PID: 107917 (casper-node-lau)
-      Tasks: 5 (limit: 9401)
-     Memory: 1.0G
-     CGroup: /system.slice/casper-node-launcher.service
-             ├─107917 /usr/bin/casper-node-launcher
-             └─107919 /var/lib/casper/bin/1_4_8/casper-node validator /etc/caspe
-r/1_4_8/config.toml
+   Loaded: loaded (/lib/systemd/system/casper-node-launcher.service; enabled; vendor preset: enabled)
+   Active: active (running) since Wed 2022-03-16 21:08:50 UTC; 4 days ago
+     Docs: https://docs.casperlabs.io
+ Main PID: 2934 (casper-node-lau)
+    Tasks: 12 (limit: 4915)
+   CGroup: /system.slice/casper-node-launcher.service
+           ├─ 2934 /usr/bin/casper-node-launcher
+           └─16842 /var/lib/casper/bin/1_4_5/casper-node validator /etc/casper/1_4_5/config.toml
 ```
 
 If the node is not showing active (running) status, it is either stopped or in the process of restarting.
 
 ### Monitoring the Running Node
 
-The community has created a few tools to monitor the node once it is running, such as:
+The community has created a few tools to monitor your node once it is running, such as:
 
 - Status.py: https://github.com/RapidMark/casper-tools
 - Grafana: https://github.com/matsuro-hadouken/casper-tools

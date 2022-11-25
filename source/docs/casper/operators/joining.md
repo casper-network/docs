@@ -8,7 +8,7 @@ Visit the [Hardware Specifications](hardware.md) section and provision your node
 
 ## Step 2: Set Up the Node {#step-2-set-up-the-node}
 
-Follow the instructions on the [Mainnet](/operators/install-mainnet/) or [Testnet](/operators/install-testnet/) installation pages. 
+Follow the instructions on the [Node Setup](/operators/install-node/) page. 
 
 ## Step 3: Build the Required Contracts {#step-3-build-contracts}
 

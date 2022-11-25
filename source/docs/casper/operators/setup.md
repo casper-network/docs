@@ -1,6 +1,6 @@
 # Basic Node Configuration
 
-This page outlines the processes and files involved in setting up a Casper node. For step-by-step node installation instructions, follow the [Mainnet](/operators/install-mainnet/) or [Testnet](/operators/install-testnet/) installation pages. 
+This page outlines the processes and files involved in setting up a Casper node. For step-by-step node installation instructions, follow the [Node Setup](/operators/install-node/) guide. 
 
 ## The Casper Node Launcher {#casper-node-launcher}
 
