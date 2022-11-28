@@ -43,7 +43,7 @@ pub extern "C" fn init() {
     let fundraising_purse = system::create_purse();
     runtime::put_key("fundraising_purse", fundraising_purse.into());
     // Create a dictionary to track the mapping of account hashes to number of donations made.
-    storage::new_dictionary(LEDGER).unwrap_or_revert();
+    storage::new_dictionary("ledger").unwrap_or_revert();
 }
 
 ```
