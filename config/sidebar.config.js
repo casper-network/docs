@@ -35,7 +35,6 @@ module.exports = {
         },
         "dapp-dev-guide/keys",
         "dapp-dev-guide/understanding-hash-types",
-        "dapp-dev-guide/dictionaries",
         "dapp-dev-guide/json-rpc",
         {
             type: "category",
@@ -98,6 +97,7 @@ module.exports = {
                 "dapp-dev-guide/writing-contracts/installing-contracts",
                 "dapp-dev-guide/writing-contracts/calling-contracts",
                 "dapp-dev-guide/writing-contracts/upgrading-contracts",
+                "dapp-dev-guide/writing-contracts/dictionaries",
                 "dapp-dev-guide/writing-contracts/execution-error-codes",
                 "dapp-dev-guide/writing-contracts/assembly-script",
             ],
