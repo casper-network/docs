@@ -42,7 +42,7 @@ There is no precise reward per block. Rewards are split proportionally among sta
 
 ## Selecting a Node for Delegating {#selecting-a-node-for-delegating}
 
-Selecting a validating node you can trust as a prospective delegator is essential. Block explorers such as [cspr.live](https://cspr.live) provide [validator performance statistics](https://cspr.live/validators), including a performance score, total stake, number of delegators, and fees. Please do your due diligence before staking tokens with a validator.
+As a prospective delegator, it is essential to select a validating node that you can trust. Block explorers such as [cspr.live](https://cspr.live) provide [validator performance statistics](https://cspr.live/validators), including a performance score, total stake, number of delegators, and fees. Please do your due diligence before staking tokens with a validator.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/1.validators.png")} alt="4.3" width="500" />
 
