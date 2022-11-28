@@ -70,7 +70,7 @@ The first section acquiring the `LEDGER` seed URef to assign the new dictionary 
 
 fn update_ledger_record(dictionary_item_key: String) {
     // Acquiring the LEDGER seed URef to properly assign the dictionary item.
-    let ledger_seed_uref = *runtime::get_key(LEDGER)
+    let ledger_seed_uref = *runtime::get_key("ledger")
         .unwrap_or_revert_with(FundRaisingError::MissingLedgerSeedURef)
         .as_uref()
         .unwrap_or_revert();
