@@ -95,7 +95,7 @@ The second section uses [`dictionary_get`](https://docs.rs/casper-contract/1.4.4
 
 ```
 
-## Reading Items from a Dictionary
+## Reading Items from a Dictionary using the JSON-RPC
 
 The Casper platform provides several means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](/dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. The following explains how to query the dictionary items using the [Casper client](https://crates.io/crates/casper-client).
 
