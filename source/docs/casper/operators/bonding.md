@@ -32,7 +32,7 @@ make setup-rs
 make build-client-contracts
 ```
 
-These commands build all the necessary contracts, including `add-bid.wasm` for placing a bid. 
+These commands build all the necessary contracts, including `add_bid.wasm` for placing a bid. 
 
 ## Example Bonding Request {#example-bonding-transaction}
 
