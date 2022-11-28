@@ -34,7 +34,7 @@ casper_contract::contract_api::storage::new_dictionary(dict_name)
 
 ```
 
-The following example includes the creation of a dictionary `LEDGER` within a contract's context. In this instance, the dictionary will be used to track donations made to a fundraising purse also created by the `init` entry point. In any case where you want to use a dictionary within your contract, it should be set up within the initializing entry point.
+The following example includes the creation of a dictionary `"ledger"` within a contract's context. In this instance, the dictionary will be used to track donations made to a fundraising purse also created by the `init` entry point. In any case where you want to use a dictionary within your contract, it should be set up within the initializing entry point.
 
 ```rust
 
