@@ -14,7 +14,7 @@ You can also transfer CSPR tokens, delegate stake or undelegate stake using a bl
 
 - Learn how to access your CSPR wallet using the [Signer guide](signer-guide.md)
 - Understand the process of transferring CSPR tokens from [Transferring Tokens using a Block Explorer](token-transfer.md)
-- Explore the concepts and the process of staking, delegating and undelegating CSPR tokens using the [Staking guide](staking.md)
+- Explore the concepts and the process of staking, delegating and undelegating CSPR tokens using the [Delegation](delegate-ui.md) and [Undelegation](undelegate-ui.md) pages
 
 :::note
 

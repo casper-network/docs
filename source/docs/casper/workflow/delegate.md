@@ -1,4 +1,4 @@
-# Delegating with the Command-line
+# Delegating with the Casper Client
 
 This document details a workflow where an account holder on the Casper Network can delegate their tokens to a validator on a Casper Network.
 
