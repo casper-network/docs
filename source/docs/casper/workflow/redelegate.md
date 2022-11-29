@@ -1,4 +1,4 @@
-# Re-delegating with the Command-line
+# Re-delegating with the Casper Client
 
 This document details a workflow where an account holder on the Casper Network can re-delegate their tokens to a new validator on a Casper Network.
 

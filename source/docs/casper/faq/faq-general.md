@@ -60,14 +60,14 @@ Active engagement in the community is another important aspect.
 <details>
 <summary><b>How do I stake tokens via the command line?</b></summary>
 
-Follow [the delegation workflow](https://docs.casperlabs.io/workflow/delegate/) to learn how to stake your tokens via the command line.
+Follow [the delegation workflow](/workflow/delegate/) to learn how to stake your tokens via the command line.
 
 </details>
 
 <details>
 <summary><b>How do I stake tokens using cspr.live?</b></summary>
 
-See the article on [How to Stake your CSPR](https://docs.casperlabs.io/workflow/staking/).
+See [this article](/workflow/delegate-ui/).
 
 </details>
 

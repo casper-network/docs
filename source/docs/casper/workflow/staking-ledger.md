@@ -1,6 +1,6 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Staking with Ledger Devices
+# Delegating with Ledger Devices
 
 ## Ledger Initialization {#1-initialization}
 
