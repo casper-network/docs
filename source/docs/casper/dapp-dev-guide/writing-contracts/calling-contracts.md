@@ -310,12 +310,6 @@ casper-client put-deploy \
 The argument of interest is:
 -   `session-path` - The path to the compiled Wasm on your computer
 
-:::note
-
-You will be charged [gas fees](/economics/gas-concepts/) for running session code or contract code on the network. However, you will not be charged for making [RPC calls](/dapp-dev-guide/sdkspec/json-rpc-informational/).
-
-:::
-
 **Example - Session code acting on a contract:**
 
 The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) shows you how to change the state of a contract (counter-define.wasm) using session code (counter-call.wasm).
