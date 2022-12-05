@@ -145,7 +145,7 @@ Add the `AccountInformation` function inside the `btnConnect` to display the inf
 	})
 ``` 
 
-The result should be like this:
+Using the Signer window, select the account you wish to display in the web app. Once selected, the account public key hex and balance should be displayed like this:
 
 <img src={useBaseUrl("/image/tutorials/signer/casper-signer-balance.png")} alt="Image showing account balance" width="800"/>
 
