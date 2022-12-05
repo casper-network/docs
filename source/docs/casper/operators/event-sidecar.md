@@ -12,7 +12,7 @@ An alternate name for this application is the SSE Sidecar because it uses the no
 
 <!-- Add links to each bullet point above once PR 50 merges. -->
 
-## Installing the Casper Event Sidecar
+## Installing the Sidecar {#installing-the-sidecar}
 
 The following command will install the Debian package for the Casper Event Sidecar service on various flavors of Linux. 
 
@@ -50,7 +50,13 @@ Created symlink /etc/systemd/system/multi-user.target.wants/casper-event-sidecar
 
 </details>
 
-### Monitoring the Installation
+### Monitoring the Sidecar {#monitoring-the-sidecar}
+
+Check the service status:
+
+```bash
+systemctl status casper-event-sidecar
+```
 
 Check the logs and make sure the service is running as expected.
 
@@ -71,19 +77,19 @@ Dec 05 17:24:53 user systemd[1]: Started Casper Event Sidecar.
 
 If you see any errors, you may need to [update the configuration](#configuring-the-service) and re-start the service with the commands below.
 
-**Starting the service:**
+**Stopping the service:**
 
 ```
 sudo systemctl stop casper-event-sidecar.service
 ```
 
-**Stopping the service:**
+**Starting the service:**
 
 ```
 sudo systemctl start casper-event-sidecar.service
 ```
 
-## Configuring the Sidecar Service {#configuring-the-service}
+## Configuring the Sidecar {#configuring-the-sidecar}
 
 If the service was installed on a Casper node, this file holds a default configuration: `/etc/casper-event-sidecar/config.toml`. Operators will need to update this file according to their needs. GitHub has further details regarding each configuration option.
 <!-- Add a proper link to resources/ETC_README.md above. -->
