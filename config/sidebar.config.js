@@ -168,6 +168,7 @@ module.exports = {
         "operators/joining",
         "operators/bonding",
         "operators/unbonding",
+        "operators/event-sidecar",
     ],
     design: [
         "design/index",
