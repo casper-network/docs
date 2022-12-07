@@ -12,8 +12,7 @@ An alternate name for this application is the SSE Sidecar because it uses the no
 
 <img class="align-center" src={useBaseUrl("/image/dApp/sidecar-diagram.png")} alt="Sidecar components and architecture diagram" width="800"/>
 
-Visit GitHub for the latest information on [system architecture](https://github.com/CasperLabs/event-sidecar/#system-components--architecture) and to view the [source code](https://github.com/CasperLabs/event-sidecar).
+Visit [GitHub](https://github.com/CasperLabs/event-sidecar/) for the latest source code and information on [system architecture](https://github.com/CasperLabs/event-sidecar/#system-components--architecture).
 
-The [Node's Event Stream](/operators/node-events) page explains the various event types emitted by the node and available through the Sidecar service. 
+The [Node's Event Stream](/operators/node-events) page explains the various event types emitted by the node and available through the Sidecar service. Also, the section on [Monitoring the Event Stream](/operators/event-sidecar/#monitoring-the-event-stream) gives a brief example on how to monitor Sidecar events.
 
-[Monitoring the Event Stream](/operators/event-sidecar/#monitoring-the-event-stream) section also gives a brief example on how to monitor Sidecar events.
