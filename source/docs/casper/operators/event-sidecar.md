@@ -6,17 +6,16 @@ An alternate name for this application is the SSE Sidecar because it uses the no
 
 - [Source code](https://github.com/CasperLabs/event-sidecar) 
 - [System components and architecture](https://github.com/CasperLabs/event-sidecar/#system-components--architecture) 
-- Sample configuration  														<!-- resources/default_config.toml -->
-- Service information														<!-- resources/maintainer_scripts/casper_event_sidecar/casper-event-sidecar.service -->
-- Maintenance scripts 								<!-- resources/maintainer_scripts/debian/postinst -->
+- [Node configuration instructions](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/ETC_README.md#configuration) 
+   - [Default configuration file](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/default_config.toml)
+- [Maintenance scripts](https://github.com/CasperLabs/event-sidecar/tree/dev/resources/maintainer_scripts)
 
-<!-- Add links to each bullet point above once PR 50 merges. -->
 
 ## Installing the Sidecar {#installing-the-sidecar}
 
 The following command will install the Debian package for the Casper Event Sidecar service on various flavors of Linux. 
 
-<!-- Once the package is published and PR https://github.com/CasperLabs/event-sidecar/pull/50 is merged, update the command below with the new link to the casper-event-sidecar*.deb package. The link below assumes a package available locally. -->
+<!-- TODO Once the package is published and PR https://github.com/CasperLabs/event-sidecar/pull/50 is merged, update the command below with the new link to the casper-event-sidecar*.deb package. The link below assumes a package available locally. -->
 
 ```bash
 sudo apt install ./casper-event-sidecar_0.1.0-0_amd64.deb
@@ -50,6 +49,8 @@ Created symlink /etc/systemd/system/multi-user.target.wants/casper-event-sidecar
 
 </details>
 
+<br></br>
+
 ### Monitoring the Sidecar {#monitoring-the-sidecar}
 
 Check the service status:
@@ -58,6 +59,27 @@ Check the service status:
 systemctl status casper-event-sidecar
 ```
 
+<details>
+<summary><b>Sample output</b></summary>
+
+```bash
+casper-event-sidecar.service - Casper Event Sidecar
+     Loaded: loaded (/lib/systemd/system/casper-event-sidecar.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2022-12-07 20:33:29 UTC; 1min 3s ago
+       Docs: https://docs.casperlabs.io
+   Main PID: 16707 (casper-event-si)
+      Tasks: 5 (limit: 9401)
+     Memory: 7.1M
+     CGroup: /system.slice/casper-event-sidecar.service
+             └─16707 /usr/bin/casper-event-sidecar /etc/casper-event-sidecar/config.toml
+
+Dec 07 20:33:29 user systemd[1]: Started Casper Event Sidecar.
+```
+
+</details>
+
+<br></br>
+
 Check the logs and make sure the service is running as expected.
 
 ```bash
@@ -65,7 +87,7 @@ journalctl --no-pager -u casper-event-sidecar
 ```
 
 <details>
-<summary><b>Successful sample output</b></summary>
+<summary><b>Sample output</b></summary>
 
 
 ```
@@ -74,6 +96,7 @@ Dec 05 17:24:53 user systemd[1]: Started Casper Event Sidecar.
 
 </details>
 
+<br></br>
 
 If you see any errors, you may need to [update the configuration](#configuring-the-service) and re-start the service with the commands below.
 
@@ -91,5 +114,9 @@ sudo systemctl start casper-event-sidecar.service
 
 ## Configuring the Sidecar {#configuring-the-sidecar}
 
-If the service was installed on a Casper node, this file holds a default configuration: `/etc/casper-event-sidecar/config.toml`. Operators will need to update this file according to their needs. GitHub has further details regarding each configuration option.
-<!-- Add a proper link to resources/ETC_README.md above. -->
+Detailed node configuration instructions are available in [GitHub](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/ETC_README.md#configuration).
+
+If the service was installed on a Casper node, this file holds a default configuration: `/etc/casper-event-sidecar/config.toml`. The file is also available in [GitHub](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/default_config.toml).
+
+Operators will need to update this file according to their needs. GitHub has further details regarding each configuration option.
+
