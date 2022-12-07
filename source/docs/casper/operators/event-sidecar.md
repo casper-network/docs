@@ -11,7 +11,7 @@ An alternate name for this application is the SSE Sidecar because it uses the no
 - [Maintenance scripts](https://github.com/CasperLabs/event-sidecar/tree/dev/resources/maintainer_scripts)
 
 
-## Installing the Sidecar {#installing-the-sidecar}
+## Installing the Sidecar Service {#installing-the-sidecar}
 
 The following command will install the Debian package for the Casper Event Sidecar service on various flavors of Linux. 
 
@@ -51,7 +51,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/casper-event-sidecar
 
 <br></br>
 
-### Monitoring the Sidecar {#monitoring-the-sidecar}
+### Monitoring the Sidecar Service {#monitoring-the-sidecar}
 
 Check the service status:
 
@@ -90,7 +90,7 @@ journalctl --no-pager -u casper-event-sidecar
 <summary><b>Sample output</b></summary>
 
 
-```
+```bash
 Dec 05 17:24:53 user systemd[1]: Started Casper Event Sidecar.
 ```
 
@@ -102,17 +102,17 @@ If you see any errors, you may need to [update the configuration](#configuring-t
 
 **Stopping the service:**
 
-```
+```bash
 sudo systemctl stop casper-event-sidecar.service
 ```
 
 **Starting the service:**
 
-```
+```bash
 sudo systemctl start casper-event-sidecar.service
 ```
 
-## Configuring the Sidecar {#configuring-the-sidecar}
+## Configuring the Sidecar Service {#configuring-the-sidecar}
 
 Detailed node configuration instructions are available in [GitHub](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/ETC_README.md#configuration).
 
@@ -120,3 +120,22 @@ If the service was installed on a Casper node, this file holds a default configu
 
 Operators will need to update this file according to their needs. GitHub has further details regarding each configuration option.
 
+## Monitoring the Event Stream
+
+It is possible to monitor the Sidecar's event stream using *cURL*, depending on how the HOST and PORT are configured.
+
+```bash
+curl -sN http://<HOST:PORT>/events/<TYPE>
+```
+
+- `HOST` - The IP address where the Sidecar is running
+- `PORT` - The port number where the Sidecar emits events
+- `TYPE` - The type of emitted event
+
+Given the [default configuration](https://github.com/CasperLabs/event-sidecar/blob/b2ed0d1183aa7e5f6613fbeae80c6a06f437f0a9/resources/default_config.toml#L27-L29), the command would look like this:
+
+```bash
+curl -sN http://127.0.0.1:19999/events/deploys
+```
+
+For more information on various event types, visit the [Monitoring and Consuming Events](/dapp-dev-guide/building-dapps/monitoring-events/) page.
