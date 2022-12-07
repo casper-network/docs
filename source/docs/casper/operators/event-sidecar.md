@@ -138,4 +138,4 @@ Given the [default configuration](https://github.com/CasperLabs/event-sidecar/bl
 curl -sN http://127.0.0.1:19999/events/deploys
 ```
 
-For more information on various event types, visit the [Monitoring Node Events](node-events) page.
+For more information on various event types, visit the [Monitoring Node Events](/operators/node-events) page.
