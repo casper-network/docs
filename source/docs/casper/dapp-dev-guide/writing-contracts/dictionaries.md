@@ -24,7 +24,7 @@ While you can create a dictionary in the context of an Account and then pass ass
 
 Dictionaries allow a contract to store additional data without drastically expanding the size of the `NamedKeys` within their context. If a contract's `NamedKeys` expand too far, they may run into system limitations that would unintentionally disable the contract's functionality.
 
-A dictionary item key can be no longer than 64 bytes in length. Smart contract authors are free to use custom encoding for dictionary item keys within their contract, so long as they are no longer than the 64 byte maximum size.
+A dictionary item key can be no longer than 64 bytes in length. 
 
 ## Creating Dictionaries in a Contract's Context
 
