@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Understanding Call Stacks
 
 Users wishing to interact with a Casper network must do so through [sending a Deploy](/dapp-dev-guide/building-dapps/sending-deploys/). All Deploys consist of [session code](/dapp-dev-guide/writing-contracts/session-code/) run in the context of the user account that sent the Deploy. The session code may [install contract code to global state](/dapp-dev-guide/writing-contracts/installing-contracts/), or interact with previously [installed contract code](/dapp-dev-guide/building-dapps/calling-contracts/).
@@ -16,7 +18,7 @@ If session code calls a contract, which in turn calls another contract, then the
 
 In this example, the first contract would be the `immediate caller` of the second contract. The session code would remain the `caller`.
 
-![Call Stack](/image/callstack.png)
+<img class="align-center" src={useBaseUrl("/image/callstack.png")} width="450" alt="Call Stack" />
 
 ## Limitations
 
