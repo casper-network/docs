@@ -2,11 +2,11 @@
 
 Users wishing to interact with a Casper network must do so through [sending a Deploy](/dapp-dev-guide/building-dapps/sending-deploys/). All Deploys consist of [session code](/dapp-dev-guide/writing-contracts/session-code/) run in the context of the user account that sent the Deploy. The session code may [install contract code to global state](/dapp-dev-guide/writing-contracts/installing-contracts/), or interact with previously [installed contract code](/dapp-dev-guide/building-dapps/calling-contracts/).
 
-When the session code within a Deploy interacts with one or more contracts, this is the beginning of a [`Call Stack`](https://docs.rs/casper-types/1.5.0/casper_types/system/enum.CallStackElement.html). A call stack is the chronological order in which contracts call other contracts, initiated by an instance of session code.
+When the session code within a Deploy interacts with one or more contracts, this is the beginning of a [`Call Stack`](https://docs.rs/casper-types/latest/casper_types/system/enum.CallStackElement.html). A call stack is the chronological order in which contracts call other contracts, initiated by an instance of session code.
 
 ## The Caller
 
-In every instance of a call stack, the originating [caller](https://docs.rs/casper-types/1.5.0/casper_types/system/mint/trait.RuntimeProvider.html#tymethod.get_caller) is the session code within the account's context that began the interaction. Contract code cannot spontaneously act without session code to activate it. As such, the session code represents the *zeroth* entity in each call stack.
+In every instance of a call stack, the originating [caller](https://docs.rs/casper-types/latest/casper_types/system/mint/trait.RuntimeProvider.html#tymethod.get_caller) is the session code within the account's context that began the interaction. Contract code cannot spontaneously act without session code to activate it. As such, the session code represents the *zeroth* entity in each call stack.
 
 ## The Immediate Caller
 
