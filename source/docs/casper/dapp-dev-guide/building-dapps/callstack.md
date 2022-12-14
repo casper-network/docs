@@ -16,6 +16,8 @@ If session code calls a contract, which in turn calls another contract, then the
 
 In this example, the first contract would be the `immediate caller` of the second contract. The session code would remain the `caller`.
 
+![Call Stack](/image/callstack.png)
+
 ## Limitations
 
 Casper networks place a limitation on the maximum height of a call stack at `10` contracts. This does not include the initiating session code, which would still count as the *zeroth* instance within the stack.
