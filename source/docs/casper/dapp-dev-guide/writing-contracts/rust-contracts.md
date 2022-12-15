@@ -26,16 +26,6 @@ The `new_contract` and `new_locked_contract` methods are a convenience that auto
 
 The contract contains required metadata and it is primarily identified by its hash, known as the contract hash. The [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) identifies a specific [version of a contract](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) and the `contractPackageHash` serves as a more stable identifier for the most recent version.
 
-## Difference Between Session Code and Smart Contract
-
-| Session Code | Smart Contract |
-| --- | --- |
-| Session code always executes in the context of the account that signed the deploy that contains the session code. | A smart contract  which is stored on chain logic, executes within its own separate context. |
-| When a `put_key` call is made within the body of the session code, the key is added to the account's named keys. | When a `put_key` call is made within the smart contract's context, the contract's record is modified to have a new named_key entry. |
-| Session code has only one entry point `call`, which can be used to interact with the session code. | A smart contract can have multiple entry points that will help you interact with the contract code.|  
-| Any action taken by the session code is initiated by the `call` entry point within the session code. | Any action undertaken by a contract must initiate through an outside call, usually via session code.|
-| For more information on how to write session code, see [Writing Session Code](../writing-contracts/session-code.md) | For more information on writing contracts, see [Writing a Basic Smart Contract in Rust](#writing-a-basic-smart-contract)
-
 ## Writing a Basic Smart Contract
 
 As stated, this tutorial covers the process of writing a smart contract in the Rust programming language. Casper provides a [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html) within our [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/index.html) crate.
@@ -130,7 +120,7 @@ const FUNDRAISING_PURSE: &str = "fundraising_purse";
 
 ### Step 4. Defining the Contract Entry Points
 
-Entry points serve as a means to access contract code installed on global state. These entry points may be called by either session code or another smart contract. When writing the Wasm producing code for a smart contract, you must define entry points by using meaningful names that describe the actions that they perform.
+Entry points serve as a means to access contract code installed on global state. These entry points may be called by either [session code](contract-vs-session/#what-is-session-code) or another smart contract. When writing the Wasm producing code for a smart contract, you must define entry points by using meaningful names that describe the actions that they perform.
 
 A smart contract is Wasm binary produced from Wasm-producing logic. The Wasm-producing code has one or more entry points that can be called by external logic. When writing your own smart contract, you must have at least one entry point and you may have more than one entry point. Entry points are defined by their name and those names should be clear and self-describing. Each entry point is effectively equivalent to a static main entry point in a traditional program.
 
