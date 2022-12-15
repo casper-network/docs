@@ -2,7 +2,7 @@
 
 This section explains how to write session code by exploring the required project structure and a simple example. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](/dapp-dev-guide/writing-contracts/contract-vs-session.md).
 
-## Project Structure {#project-structure}
+## Creating the Directory Structure {#directory-structure}
 In this guide, we create the project structure manually. However, the `cargo casper` command can set up the structure automatically, as shown [here](/dapp-dev-guide/writing-contracts/getting-started#creating-a-project).
 
 ```bash
@@ -17,7 +17,7 @@ project-directory/
     └── Cargo.toml
 ```
 
-### Creating the project manually
+### Creating the Project Manually
 
 1. Create a top-level project directory for the session code and its corresponding tests.
 
@@ -31,7 +31,7 @@ project-directory/
    - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
    - In the `src` folder, add a Rust file with the tests that verify the session code. In this example, the `integration-tests.rs` file contains the tests.
 
-### Creating the project automatically
+### Creating the Project Automatically
 
 1. Create a top-level project directory for the session code and its corresponding tests.
 
@@ -77,7 +77,7 @@ The `Cargo.toml` file includes the dependencies and versions the session code re
    - `casper-contract = "1.4.4"` - Provides the SDK for the execution engine (EE). The latest version of the crate is published [here](https://crates.io/crates/casper-contract).
    - `casper-types = "1.5.0"` - Includes types shared by many Casper crates for use on a Casper network. This crate is necessary for the EE to understand and interpret the session code. The latest version of the crate is published [here](https://crates.io/crates/casper-types).
     
-### The Rust file with session code
+### The Rust File with Session Code
 
 At the top of the Rust file, include the following directives:
    - `#![no_std]` - Specifies not to import the standard library.
@@ -91,7 +91,7 @@ use casper_contract::contract_api::{account, runtime, storage, system};
 
 Next, write the code relevant to your use case. The sample code below serves as an example.
 
-### Session code example 1
+### Session Code Example 1
 
 The following repository contains sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to an account and updates the action thresholds. Remember that [accounts](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
 
@@ -129,7 +129,7 @@ pub extern "C" fn call() {
 
 When compiled, the `call` function could be used from another library. For example, a C library could link to the resulting Wasm.
 
-### Session code example 2
+### Session Code Example 2
 
 The second example of session code is the [counter-call/src/main.rs](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file, in the [counter](https://github.com/casper-ecosystem/counter) repository. This example shows how we commonly use session code to invoke logic stored within a smart contract. To follow along, clone the repository.
 

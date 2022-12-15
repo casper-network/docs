@@ -38,7 +38,7 @@ mod tests {
 }
 ```
 
-### Importing required packages
+### Importing Required Packages
 
 The subsequent code modules use these packages to prepare and run the session code. These packages were defined above in the `Config.toml` file.
 
@@ -51,7 +51,7 @@ The subsequent code modules use these packages to prepare and run the session co
     use casper_types::{runtime_args, RuntimeArgs};
 ```
 
-### Defining the constants 
+### Defining The Constants 
 
 The names of the runtime arguments are defined as constants. It is mandatory to use the exact names as in the original contract class to define these constants. These are dictated by the arguments specified by the session code. If your session code takes in different arguments, you should define them as constants at this point.
  
@@ -61,7 +61,7 @@ const ASSOCIATED_ACCOUNT: &str = "deployment-account"; // the associated account
 const CONTRACT_WASM: &str = "contract.wasm"; // file to pass to the instance of the EE
 ```
 
-### Creating a test function
+### Creating a Test Function
 
 In this step, we create a program to test the contract. 
 
@@ -110,7 +110,7 @@ This [unit test](https://github.com/casper-ecosystem/two-party-multi-sig/blob/23
     assert!(associated_keys.contains_key(&ASSOCIATED_ACCOUNT_HASH));
 ```
 
-### Running the test
+### Running the Test
 
 To run the tests, this example use a `Makefile`.
 
@@ -126,7 +126,7 @@ cp contract/target/wasm32-unknown-unknown/release/contract.wasm tests/wasm
 cd tests && cargo test
 ```
 
-### Other examples
+### Other Examples
 
 In the [counter unit tests](https://github.com/casper-ecosystem/counter/blob/master/tests/src/integration_tests.rs), we use session code to call the contract. The code loads the account that pays for the session code, the session code Wasm, and the runtime arguments. Then, the code invokes the execution engine to process the session code.
 
