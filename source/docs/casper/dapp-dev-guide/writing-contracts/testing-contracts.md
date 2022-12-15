@@ -10,7 +10,7 @@ Our provided test support crate is only one option for testing your Deploys prio
 
 Testing within the Casper ecosystem involves the following steps:
 
-1) [Writing a Smart Contract](/dapp-dev-guide/writing-contracts/rust.md)
+1) [Writing a Smart Contract](/dapp-dev-guide/writing-contracts/rust-contracts.md)
 
 2) [Creating a Test Crate](#creating-a-test-crate)
 
@@ -44,7 +44,7 @@ cargo new tests
 
 ```
 
-This will create a Rust Cargo package, including the */src/main.rs* and *Cargo.toml* files. As stated above, you should create the test crate within the same workspace as your Wasm producing crates.  For this example, we will be using the donation contract outlined in our [Writing a Basic Smart Contract in Rust](/dapp-dev-guide/writing-contracts/rust.md) tutorial.
+This will create a Rust Cargo package, including the */src/main.rs* and *Cargo.toml* files. As stated above, you should create the test crate within the same workspace as your Wasm producing crates.  For this example, we will be using the donation contract outlined in our [Writing a Basic Smart Contract in Rust](/dapp-dev-guide/writing-contracts/rust-contracts.md) tutorial.
 
 As such, you should see the following directories within the workspace:
 

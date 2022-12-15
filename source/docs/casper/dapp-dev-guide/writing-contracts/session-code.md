@@ -14,7 +14,7 @@ Session code is the simplest piece of logic you can execute on a Casper Network.
 
 **Note**: Before you sign and execute the session code, ensure that you know exactly what the session code is doing. If you don't know exactly what it is meant for, then it could be doing something malicious.
 
-To understand the difference between session code and contract code, see [Difference Between Session Code and Smart Contract](../writing-contracts/rust.md/#difference-between-session-code-and-smart-contract).
+To understand the difference between session code and contract code, see [Difference Between Session Code and Smart Contract](../writing-contracts/rust-contracts.md/#difference-between-session-code-and-smart-contract).
 
 ## Project Structure
 For this guide, we are creating the project structure manually, however, you can use `cargo casper` to set up this directory structure automatically.

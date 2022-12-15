@@ -162,7 +162,7 @@ assert_eq!(3, value);
 }
 ```
 
-The above code snippet starts by initializing the test builder and the genesis request. Then, the contract Wasm is loaded to the session code object.  After that, the deploy object is created using the details like payment method, contract Wasm, and account address. Then, the deploy object is passed to the created execute request. Finally, the execution engine is invoked to process the execute request. Refer to [creating a test function](/dapp-dev-guide/writing-contracts/testing/#deploy-the-smart-contract) for more details about each function. 
+The above code snippet starts by initializing the test builder and the genesis request. Then, the contract Wasm is loaded to the session code object.  After that, the deploy object is created using the details like payment method, contract Wasm, and account address. Then, the deploy object is passed to the created execute request. Finally, the execution engine is invoked to process the execute request. Refer to [creating a test function](/dapp-dev-guide/writing-contracts/testing-contracts/#deploy-the-smart-contract) for more details about each function. 
 
 ### Step 7. Verifying the test results
 In the above section, the session code is sent to the network. Now it's time to verify the results of that deployment. Once the session code has been executed successfully, we must verify that the results of the execution match our expectations. 
@@ -352,4 +352,4 @@ assert_eq!(3, value);
 
 ## What's Next? {#whats-next}
 
-- Learn to [write a smart contract in Rust](/dapp-dev-guide/writing-contracts/rust)
+- Learn to [write a smart contract in Rust](/dapp-dev-guide/writing-contracts/rust-contracts)
