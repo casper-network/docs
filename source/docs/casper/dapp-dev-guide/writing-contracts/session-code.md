@@ -74,7 +74,7 @@ use casper_contract::contract_api::{account, runtime, storage, system};
 
 Next, write the code relevant to your use case. The sample code below serves as an example.
 
-### Session code example
+### Session code example 1
 
 The following repository contains sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to an account and updates the action thresholds. Remember that [accounts](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
 
@@ -111,6 +111,30 @@ pub extern "C" fn call() {
 ```
 
 When compiled, the `call` function could be used from another library. For example, a C library could link to the resulting Wasm.
+
+### Session code example 2
+
+The second example of session code is the [counter-call/src/main.rs](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file, in the [counter](https://github.com/casper-ecosystem/counter) repository. This example shows how we commonly use session code to invoke logic stored within a smart contract. To follow along, clone the repository.
+
+```bash
+git clone https://github.com/casper-ecosystem/counter/
+```
+
+Observe how the project is set up and review the dependencies in the `counter/counter-call/Cargo.toml` file. Then, open the `counter/counter-call/src/main.rs` file containing the session code. You will notice the directives at the top of the file, the required dependencies, and the declared constants.
+
+The `call` function interacts with the contract's `counter_inc` and `counter_get` entry points. This is how the session's `call` entry point triggers the logic stored inside the counter contract.
+
+```rust
+    // Call Counter to get the current value.
+    let current_counter_value: u32 =
+        runtime::call_contract(contract_hash, COUNTER_GET, RuntimeArgs::new());
+
+    // Call Counter to increment the value.
+    let _: () = runtime::call_contract(contract_hash, COUNTER_INC, RuntimeArgs::new());
+```
+
+
+
 
 ## Compiling Session Code {#compiling-session-code}
 

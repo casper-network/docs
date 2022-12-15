@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Session code is the simplest logic one can execute on a Casper network. It is essential because it is often used to trigger contract logic stored on the chain. Session code requires only one entry point, the `call` function, and it runs within the context of the account executing the session code. As a result, the session code runs with the account's permissions, such as having access to the account's main purse. For example, the session code could transfer tokens from the account's main purse. 
 
-Session code is required when interacting and accepting values returned across the Wasm boundary. The best use of session code is when the situation calls for [stateless](/glossary/S.md/#stateless) execution, and very little or no internal data needs to be tracked.
+The best use of session code is when the situation calls for [stateless](/glossary/S.md/#stateless) execution, and very little or no internal data needs to be tracked. Session code is required when interacting and accepting values returned across the Wasm boundary.
 
 ## Comparing Session and Contract Code {#comparing-session-and-contract}
 
