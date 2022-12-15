@@ -64,6 +64,7 @@ module.exports = {
                 "dapp-dev-guide/building-dapps/signing-a-deploy",
                 "dapp-dev-guide/building-dapps/sending-deploys",
                 "dapp-dev-guide/building-dapps/calling-contracts",
+                "dapp-dev-guide/building-dapps/callstack",
                 {
                     type: "category",
                     label: "SDK Client Libraries",

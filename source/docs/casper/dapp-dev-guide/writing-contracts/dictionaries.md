@@ -24,6 +24,8 @@ While you can create a dictionary in the context of an Account and then pass ass
 
 Dictionaries allow a contract to store additional data without drastically expanding the size of the `NamedKeys` within their context. If a contract's `NamedKeys` expand too far, they may run into system limitations that would unintentionally disable the contract's functionality.
 
+A dictionary item key can be no longer than 64 bytes in length. 
+
 ## Creating Dictionaries in a Contract's Context
 
 The following code snippet shows the most basic example of creating a dictionary. 

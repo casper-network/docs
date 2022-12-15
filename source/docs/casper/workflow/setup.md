@@ -128,19 +128,13 @@ The Signer does not allow you to download the corresponding public key and hexad
 
 For [ed25519](/dapp-dev-guide/keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
 
-## Fund your Account {#fund-your-account}
+## Funding Accounts {#fund-your-account}
 
-After generating the cryptographic key-pair for the account, you must then fund the account to create it on chain.
+After generating the cryptographic key-pair for an account, you must fund the account to create it on-chain.
 
-In Testnet, you can fund the account by using the **Request tokens** button on the [Faucet Page](https://testnet.cspr.live/tools/faucet) to receive tokens. 
+On Testnet, you can fund an account by requesting test tokens according to [this guide](/workflow/testnet-faucet/). You can request test tokens **only once** for each account.
 
-:::note
-
-You can request tokens **only once** from the faucet. If you need more tokens, you will need to use another account.
-
-:::
-
-In Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the process of setting up an account. The _Source_ account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the _Target_ account. This transfer will automatically create the _Target_ account if it does not exist. Currently, this is the only way to create an account on Mainnet.
+On Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the setup of the new account. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 
 ## Acquiring a Node Address from the Network {#acquire-node-address-from-network-peers}
 
