@@ -1,190 +1,137 @@
 # Writing Session Code
-This section explains the concept of session code, why we need it, and how to write it. The best use of session code is when the situation calls for a [stateless](../../glossary/S.md/#stateless) execution. You can use session code when the logic requires very little or no internal data to be tracked. Session code is required when interacting and accepting values being returned across the Wasm boundary.
+
+This section explains how to write session code by exploring the required project structure and a simple example. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](/dapp-dev-guide/writing-contracts/contract-vs-session.md).
+
+## Project Structure {#project-structure}
+In this guide, we create the project structure manually. However, you can use the `cargo casper` command to set up the structure automatically, as shown [here](/dapp-dev-guide/writing-contracts/getting-started#creating-a-project).
+
+```bash
+project-directory/
+└── code/
+    ├── src/
+        └── main.rs
+    └── Cargo.toml
+└── tests/
+    ├── src/
+        └── integration-tests.rs
+    └── Cargo.toml
+```
+
+### Creating the project manually
+
+1. Create a top-level project directory for the session code and its corresponding tests.
+
+2. Inside the project directory, create a folder for the session code. In this example, we named the folder `code`. This folder contains the logic that will be compiled to Wasm and will be executed on a Casper node.
+
+   - In the `code` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies for the session code.
+   - Add a Rust file with the session code in the `src` folder. In this example, the `main.rs` contains the session code.
+
+3. Inside the project directory, create a folder for the corresponding tests, which help test the functionality of the session code. In this example, we named the folder `tests`.
+
+   - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
+   - In the `src` folder, add a Rust file with the tests you wish to run. In this example, the `integration-tets.rs` file contains the tests.
+
+### Creating the project automatically
+
+1. Create a top-level project directory for the session code and its corresponding tests.
+
+2. Inside the project directory, run the following command to create a new binary package called `code`. In the `code/src` folder, you will find the auto-generated `main.rs` file where you will write your session code. 
+
+```bash
+cargo new code
+```
+
+## Writing Session Code {#writing-session-code}
+
+The following steps illustrate the process of writing session code and the essential components to include, whether the project was created manually or with `cargo`.
 
 :::note
 
-Session code can be written in any programming language that compiles to WebAssembly (Wasm). However, the examples in this topic use Rust.
+Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
+
+Before executing session code, ensure that you know exactly what the session code is doing. If you don't know what it is meant for, it could be doing something malicious.
 
 :::
 
-In the following sections we will explore the concept of session code, the project structure that is required for the session code to be tested and executed correctly, and a simple session code example.  
+### Dependencies in Cargo.toml
 
-## What is Session Code?
-Session code is the simplest piece of logic you can execute on a Casper Network. It requires only one entry point, which is the `call` function and it runs within the context of the account executing the session code. This means that the session code will run with the permissions of the account, such as having access to the main purse (the session code could transfer tokens out of the account's main purse). 
+The `Cargo.toml` file includes the dependencies and versions the session code requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your session code requirements.
 
-**Note**: Before you sign and execute the session code, ensure that you know exactly what the session code is doing. If you don't know exactly what it is meant for, then it could be doing something malicious.
-
-To understand the difference between session code and contract code, see [Difference Between Session Code and Smart Contract](../writing-contracts/rust-contracts.md/#difference-between-session-code-and-smart-contract).
-
-## Project Structure
-For this guide, we are creating the project structure manually, however, you can use `cargo casper` to set up this directory structure automatically.
-
-Top-Level Directory
-|_ contract
-    |_ src
-        |_ main.rs
-    |_ gitignore
-    |_ Cargo.lock
-    |_ Cargo.toml
-|_ tests
-    |_ src
-        |_ main.rs
-    |_ gitignore
-    |_ Cargo.lock
-    |_ Cargo.toml
-
-In the above directory structure, the `contract` folder contains the session code in the `main.rs` file and the needed dependencies in the `Cargo.toml` file. 
-The `tests` folder contains the code required to test the session code before it is deployed on a Casper Network.
-
-## Writing Session Code
-The following steps illustrate the process of writing session code and the important components to include:
-
-1. Create a new top-level directory containing the session code and would also include another folder for tests, which will help us test the functionality of our session code. 
-
-2. Inside the new folder run the following command to create a new binary package called *contract*:
-
-    ```bash
-    cargo new contract
-    ```
+   - `casper-contract = "1.4.4"` - Provides the SDK for the execution engine (EE). The latest version of the crate is published [here](https://crates.io/crates/casper-contract).
+   - `casper-types = "1.5.0"` - Includes types shared by many Casper crates for use on a Casper network. This crate is necessary for the EE to understand and interpret the session code. The latest version of the crate is published [here](https://crates.io/crates/casper-types).
     
-    This folder will contain the logic that will be compiled to Wasm and will be executed on a node within a Casper Network.
+### The Rust file with session code
 
-3. Within the contract package, you can find the `main.rs` file inside the `src` folder. You will write your session code in the `main.rs` file. 
+At the top of the Rust file, include the following directives:
+   - `#![no_std]` - Specifies not to import the standard library.
+   - `#![no_main]` - Indicates the `main` function is not required since the session code has only one entry point as the `call` function.
 
-4.  In the `cargo.toml` file include the following dependencies:
+Import the Casper contract API and the crates relevant to your session code. In this example, we have the `account`, `runtime`, `storage`, and `system` crates:
+        
+```
+use casper_contract::contract_api::{account, runtime, storage, system};
+```
 
-    :::note
+Next, write the code relevant to your use case. The sample code below serves as an example.
 
-    For the purposes of this guide, we are using only two dependencies; however, you can use more depending on the requirement of your session code.
+### Session code example
 
-    :::
+The following repository contains sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to an account and updates the action thresholds. Remember that [accounts](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
 
-    -   `casper-contract = "1.4.4"` - You need to import the [casper-contract](https://crates.io/crates/casper-contract) as it provides the SDK for the execution engine (EE). You can read more about it [here](https://docs.rs/casper-contract/latest/casper_contract/).
-    -   `casper-types = "1.5.0"` - You need to import the [casper-types](https://crates.io/crates/casper-types) crate as this crate includes the types that the node uses. This is necessary for the execution engine (EE) to understand and interpret the session code.  You can read more about it [here](https://docs.rs/casper-types/latest/casper_types/).
+```bash
+git clone https://github.com/casper-ecosystem/two-party-multi-sig/
+```
 
-    You can find the latest versions of the dependencies at https://crates.io/.
-    
-5. A few things to note while writing session code:
-    -   Include the following:
-        -   `#![no_std]` - This indicates not to import the standard library.
-        -   `#![no_main]` - This indicates that the `main` function is not required, since the session code has only one entry point as the `call` function.
-    -   Import the casper contract API:
-        `use casper_contract::contract_api::{account, runtime, storage, system};` this example uses account, runtime, storage, and system crates. However, you might need to import the crates relevant to your session code.
+Open the project and review its structure. Look at the dependencies listed in the `contract/Cargo.toml` file. 
 
-## Sample Session Code
-This sample code demonstrates a simple session code passing arguments, processing the arguments, and storing the result. In general, you will use session code for such operations. In this example, we call a contract that gets returns a value and we store the result in a URef, within the account's named keys.
+Open the `contract/src/main.rs` file that contains the sample session code. Notice the directives at the top of the file and the imported crates. This example uses the `account` and `runtime` crates.
 
 ```rust
 #![no_std]
 #![no_main]
 
-use casper_contract::contract_api::{account, runtime, storage, system};
+use casper_contract::contract_api::{account, runtime};
 use casper_contract::unwrap_or_revert::UnwrapOrRevert;
-use casper_types::{runtime_args, ContractHash, Key, PublicKey, RuntimeArgs, URef, U512};
+use casper_types::account::{AccountHash, ActionType, Weight};
+```
 
-const FUNDRAISER_CONTRACT_HASH: &str = "fundraiser_contract_hash";
-const ENTRY_POINT_GET_DONATION_COUNT: &str = "get_donation_count";
-const DONATING_ACCOUNT_KEY: &str = "donating_account_key";
+At the top of the file, we usually find the constants defined. 
 
+```rust
+const ASSOCIATED_ACCOUNT: &str = "deployment-account";
+```
+
+Next, we see the `call` function, the only entry point in this example session code. The `#[no_mangle]` flag ensures that the function name is retained as a string in the Wasm binary. For session code, this flag retains the `call` string and marks the entry point for the execution engine. Explore the call function details by opening the cloned project.
+
+```rust
 #[no_mangle]
 pub extern "C" fn call() {
-    let fundraiser_contract_hash: ContractHash = runtime::get_named_arg(FUNDRAISER_CONTRACT_HASH);
-    let donating_account_key: Key = runtime::get_named_arg(DONATING_ACCOUNT_KEY);
-
-    let donation_count: u64 = runtime::call_contract(
-        fundraiser_contract_hash,
-        ENTRY_POINT_GET_DONATION_COUNT,
-        runtime_args! {
-            DONATING_ACCOUNT_KEY => donating_account_key
-        },
-    );
-
-    let donation_count_uref = storage::new_uref(donation_count);
-    runtime::put_key("donation_count", donation_count_uref.into())
+    // Open the repository for details.
 }
 ```
 
-### Understanding the sample code
-Let's try to understand what each line of code in the above sample is trying to achieve.
+When compiled, the `call` function could be used from another library. For example, a C library could link to the resulting Wasm.
 
-```rust
-#![no_std]
-#![no_main]
-```
-This indicates not to import the standard library and that the main function is not required, since the session code has only one entry point as the `call` function.
+## Compiling Session Code {#compiling-session-code}
 
-```rust
-use casper_contract::contract_api::{account, runtime, storage, system};
-use casper_contract::unwrap_or_revert::UnwrapOrRevert;
-use casper_types::{runtime_args, ContractHash, Key, PublicKey, RuntimeArgs, URef, U512};
-```
-Imports the casper contract API. This example uses account, runtime, storage, and system crates. However, you might need to import the crates relevant to your session code.
-
-```rust
-const FUNDRAISER_CONTRACT_HASH: &str = "fundraiser_contract_hash";
-const ENTRY_POINT_GET_DONATION_COUNT: &str = "get_donation_count";
-const DONATING_ACCOUNT_KEY: &str = "donating_account_key";
-```
-It is a good habit to define constants, because if you use the same argument in multiple places and you want to change the argument, you can do that where you just defined the constant. This change will reflect everywhere the argument is used.
-
-```rust
-#[no_mangle]
-```
-When the EE (that lives on each node of a Casper network), receives Wasm to execute, the `#[no_mangle]` flag ensures that the function name following it is retained as a string in the Wasm binary. For session code, this retains the `call` string and marks the entry point for the execution engine.
-
-```rust
-pub extern "C" fn call()
-```
-This initiates the `call` function, which when compiled could be used from another library. For example, a C library could link to the resulting Wasm.
-
-```rust
-let fundraiser_contract_hash: ContractHash = runtime::get_named_arg(FUNDRAISER_CONTRACT_HASH);
-    let donating_account_key: Key = runtime::get_named_arg(DONATING_ACCOUNT_KEY);
-
-    let donation_count: u64 = runtime::call_contract(
-        fundraiser_contract_hash,
-        ENTRY_POINT_GET_DONATION_COUNT,
-        runtime_args! {
-            DONATING_ACCOUNT_KEY => donating_account_key
-        },
-    );
-```
-This code demonstrates how to get the contract hash and donating account key as arguments. It then performs a simple operation with them, such as getting the final donation count. The `runtime::get_named_arg()` takes a string as an argument and returns the named argument to the host in the current runtime.
-
-```rust
-let donation_count_uref = storage::new_uref(donation_count);
-```
-Once you have the result, you might want to save it at a location that can be accessed later. This code puts the URef in the current context's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html), which is the context of the account calling this piece of session code.
-
-```rust    
-runtime::put_key("donation_count", donation_count_uref.into())
-```
-The `put_key` function stores the URef of the result in the current context's NamedKeys, which is the context of the account calling this piece of session code. Once this session code is executed, the account that called the session code will have a new named key `donation_count` added to the account.
-
-## Compiling the Session Code
-Before you deploy the session code on a Casper Network, you need to compile it to Wasm. 
-
-Use the following command to move to the *contract* directory:
-
-```bash
-cd contract
-```
-Inside the *contract* directory execute the following command to compile the session code.
+Before running session code to interact with a contract or other entities on the network, you must compile it to Wasm. Run the following command in the directory hosting the `Cargo.toml` file and `src` folder. 
 
 ```bash
 cargo build --release --target wasm32-unknown-unknown
 ```
-Once the session code is compiled you can deploy it on a Casper Network.
 
-## Installing Session Code
-Before you install the session code on the Mainnet or Testnet, you can do a trial run on the a local network using [NCTL](/dapp-dev-guide/building-dapps/setup-nctl).
+## Executing Session Code {#executing-session-code}
 
-You can install the session code on the Testnet using the following command:
+Before running session code on a live Casper network, test it as described [here](/dapp-dev-guide/writing-contracts/testing-session-code). You can also set up a local network using [NCTL](/dapp-dev-guide/building-dapps/setup-nctl) for additional tests.
+
+Session code can execute on a Casper network via a [Deploy](/glossary/D.md#deploy). All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the network's global state.
+
+The [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and its `put-deploy` command provide one way to execute session code.
 
 ```bash
 casper-client put-deploy \
     --node-address <HOST:PORT> \
-    --chain-name casper-test \
+    --chain-name <NETWORK-NAME> \
     --secret-key <PATH> \
     --payment-amount <PAYMENT-AMOUNT> \
     --session-path <SESSION-PATH> \
@@ -194,11 +141,15 @@ casper-client put-deploy \
 -   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777.
 -   `secret-key` - The file name containing the secret key of the account paying for the deploy.
 -   `chain-name` - The chain-name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*. 
--   `payment-amount` - The payment for the deploy in motes.  
--   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer.
--   `session-arg` - A named and typed argument, which is passed to the Wasm code.
+-   `payment-amount` - Payment for the deploy in motes.  
+-   `session-path` - Path to the contract Wasm, pointing to the compiled contract.
+-   `session-arg` - A named and typed argument passed to the Wasm code.
 
-You can use this command `casper-client put-deploy --help` to view help information, which provides an updated list of supported arguments.
+You can use the `--help` option to view an updated list of supported arguments.
+
+```bash
+casper-client put-deploy --help
+```
 
 ## Video Walkthrough
 
