@@ -41,6 +41,23 @@ project-directory/
 cargo new code
 ```
 
+3. Inside the project directory, run the command to auto-generate the folder structure for the test project.
+
+```bash
+cargo new tests
+```
+
+The command creates the `tests` folder with the `/src/main.rs` file and the `Cargo.toml` file.
+
+- `main.rs` - This file contains the unit test code required to test the contract. You can rename the file to `integration-tests.rs` if you wish.
+- `Cargo.toml` - This is the file with project configurations.
+
+:::note
+
+Alternatively, use the command `cargo casper <project-name>`, to set up the directory structure. Refer to the [Getting Started](/dapp-dev-guide/writing-contracts/getting-started/#installing-the-casper-crates) guide for more details.
+
+:::
+
 ## Writing Session Code {#writing-session-code}
 
 The following steps illustrate the process of writing session code and the essential components to include, whether the project was created manually or with `cargo`.
@@ -106,7 +123,7 @@ Next, we see the `call` function, the only entry point in this example session c
 ```rust
 #[no_mangle]
 pub extern "C" fn call() {
-    // Open the repository for details.
+    // Open the repository for details
 }
 ```
 
@@ -133,7 +150,12 @@ The `call` function interacts with the contract's `counter_inc` and `counter_get
     let _: () = runtime::call_contract(contract_hash, COUNTER_INC, RuntimeArgs::new());
 ```
 
+<!-- TODO Add a third example for Wasm-based transfers.
 
+### Session code example 3
+
+Session code is also useful when we perform Wasm-based transfers. 
+-->
 
 
 ## Compiling Session Code {#compiling-session-code}
