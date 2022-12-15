@@ -347,4 +347,5 @@ pub fn new_locked_contract(
 ## What's Next? {#whats-next}
 
 - Learn to [test your contract](/dapp-dev-guide/writing-contracts/testing-contracts)
+- Understand [session code](/dapp-dev-guide/writing-contracts/contract-vs-session) and how it triggers a smart contract
 - Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md) with the Casper command-line client

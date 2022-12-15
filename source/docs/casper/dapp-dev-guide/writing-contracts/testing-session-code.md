@@ -352,4 +352,4 @@ assert_eq!(3, value);
 
 ## What's Next? {#whats-next}
 
-- Learn to [write a smart contract in Rust](/dapp-dev-guide/writing-contracts/rust-contracts)
+- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md)

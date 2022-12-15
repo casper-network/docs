@@ -323,8 +323,13 @@ The following brief video describes testing [sample contract code](https://githu
 <iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=7" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-## Next Steps and Further Testing
+## Further Testing {#further-testing}
 
 Unit testing is only one way to test potential Deploys prior to sending them to a Casper network. After unit testing your contract, you may wish to perform [local network testing](/dapp-dev-guide/building-dapps/setup-nctl) using NCTL. This allows you to set up and control multiple local Casper nodes to perform [testing in a further simulated network environment](/dapp-dev-guide/building-dapps/nctl-test).
 
 You may also wish to test your Deploys on the Casper [Testnet](https://testnet.cspr.live/).
+
+## What's Next? {#whats-next}
+
+- Understand [session code](/dapp-dev-guide/writing-contracts/contract-vs-session) and how it triggers a smart contract
+- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md) with the Casper command-line client
