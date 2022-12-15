@@ -3,7 +3,7 @@
 This section explains how to write session code by exploring the required project structure and a simple example. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](/dapp-dev-guide/writing-contracts/contract-vs-session.md).
 
 ## Project Structure {#project-structure}
-In this guide, we create the project structure manually. However, you can use the `cargo casper` command to set up the structure automatically, as shown [here](/dapp-dev-guide/writing-contracts/getting-started#creating-a-project).
+In this guide, we create the project structure manually. However, the `cargo casper` command can set up the structure automatically, as shown [here](/dapp-dev-guide/writing-contracts/getting-started#creating-a-project).
 
 ```bash
 project-directory/
@@ -29,13 +29,13 @@ project-directory/
 3. Inside the project directory, create a folder for the corresponding tests, which help test the functionality of the session code. In this example, we named the folder `tests`.
 
    - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
-   - In the `src` folder, add a Rust file with the tests you wish to run. In this example, the `integration-tets.rs` file contains the tests.
+   - In the `src` folder, add a Rust file with the tests that verify the session code. In this example, the `integration-tests.rs` file contains the tests.
 
 ### Creating the project automatically
 
 1. Create a top-level project directory for the session code and its corresponding tests.
 
-2. Inside the project directory, run the following command to create a new binary package called `code`. In the `code/src` folder, you will find the auto-generated `main.rs` file where you will write your session code. 
+2. Inside the project directory, run the following command to create a new binary package called `code`. In the `code/src` folder, the auto-generated `main.rs` file would contain the session code. 
 
 ```bash
 cargo new code
@@ -55,7 +55,7 @@ Before executing session code, ensure that you know exactly what the session cod
 
 ### Dependencies in Cargo.toml
 
-The `Cargo.toml` file includes the dependencies and versions the session code requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your session code requirements.
+The `Cargo.toml` file includes the dependencies and versions the session code requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
 
    - `casper-contract = "1.4.4"` - Provides the SDK for the execution engine (EE). The latest version of the crate is published [here](https://crates.io/crates/casper-contract).
    - `casper-types = "1.5.0"` - Includes types shared by many Casper crates for use on a Casper network. This crate is necessary for the EE to understand and interpret the session code. The latest version of the crate is published [here](https://crates.io/crates/casper-types).
@@ -66,7 +66,7 @@ At the top of the Rust file, include the following directives:
    - `#![no_std]` - Specifies not to import the standard library.
    - `#![no_main]` - Indicates the `main` function is not required since the session code has only one entry point as the `call` function.
 
-Import the Casper contract API and the crates relevant to your session code. In this example, we have the `account`, `runtime`, `storage`, and `system` crates:
+Import the Casper contract API and the crates relevant to your code. In this example, we have the `account`, `runtime`, `storage`, and `system` crates:
         
 ```
 use casper_contract::contract_api::{account, runtime, storage, system};
@@ -140,12 +140,12 @@ casper-client put-deploy \
 
 -   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777.
 -   `secret-key` - The file name containing the secret key of the account paying for the deploy.
--   `chain-name` - The chain-name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*. 
+-   `chain-name` - The network where the deploy should be sent. For Mainnet, use *casper*. For Testnet, use *casper-test*. 
 -   `payment-amount` - Payment for the deploy in motes.  
 -   `session-path` - Path to the contract Wasm, pointing to the compiled contract.
 -   `session-arg` - A named and typed argument passed to the Wasm code.
 
-You can use the `--help` option to view an updated list of supported arguments.
+Use the `--help` option to view an updated list of supported arguments.
 
 ```bash
 casper-client put-deploy --help
@@ -161,4 +161,4 @@ The following brief video describes [sample session code](https://github.com/cas
 
 ## What's Next? {#whats-next}
 
-- Learn to [test your session code](/dapp-dev-guide/writing-contracts/testing-session-code)
+- Learn to [test session code](/dapp-dev-guide/writing-contracts/testing-session-code) using the Casper testing framework
