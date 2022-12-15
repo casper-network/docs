@@ -95,6 +95,7 @@ module.exports = {
                 "dapp-dev-guide/writing-contracts/best-practices",
                 "dapp-dev-guide/writing-contracts/rust-contracts",
                 "dapp-dev-guide/writing-contracts/testing-contracts",
+                "dapp-dev-guide/writing-contracts/contract-vs-session",
                 "dapp-dev-guide/writing-contracts/session-code",
                 "dapp-dev-guide/writing-contracts/testing-session-code",
                 "dapp-dev-guide/writing-contracts/installing-contracts",
