@@ -2,27 +2,15 @@
 
 ## Introduction
 
-As part of the Casper local Rust contract development environment, we provide a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/). This framework allows testing of new contracts without running a full node. Instead, it creates an instance of the Casper execution engine, which allows for monitoring of changes to global state using assertions and confirms the successful sending of a Deploy containing the smart contract.
+As part of the Casper local Rust contract development environment, we provide a [testing framework](https://docs.rs/casper-engine-test-support/latest/casper_engine_test_support/). This framework allows the testing of new contracts without running a full node. Instead, it creates an instance of the Casper execution engine, which allows for monitoring changes to global state using assertions and confirms the successful sending of a Deploy containing the smart contract.
 
-Our provided test support crate is only one option for testing your Deploys prior to sending them to global state. It provides a degree of assistance, but you are free to create your own testing framework if you prefer.
+The Casper test crate must be included within a [Rust workspace](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) alongside the Wasm-producing crate to be tested. A workspace consists of a set of packages that share the same `Cargo.lock` file and output directory.
 
-### Testing Procedure
+:::note
 
-Testing within the Casper ecosystem involves the following steps:
+The Casper test support crate is only one option for testing your Deploys before sending them to global state. It provides a degree of assistance, but you can create your own testing framework if you prefer.
 
-1) [Writing a Smart Contract](/dapp-dev-guide/writing-contracts/rust-contracts.md)
-
-2) [Creating a Test Crate](#creating-a-test-crate)
-
-3) [Local Network Testing](/dapp-dev-guide/building-dapps/setup-nctl.md)
-
-4) Sending the Deploy to [Testnet](https://testnet.cspr.live/)
-
-5) [Sending the Tested Deploy](/dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper Network
-
-### Initial Setup
-
-The Casper test crate must be included within a [Rust workspace](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html) alongside the Wasm producing crate to be tested. A workspace consists of a set of packages that share the same `Cargo.lock` file and output directory.
+:::
 
 ## Creating a Test Crate
 
