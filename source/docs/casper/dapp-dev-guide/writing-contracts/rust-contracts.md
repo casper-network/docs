@@ -115,7 +115,7 @@ const COUNT_KEY: &str = "count";
 
 ### Step 4. Defining the Contract Entry Points
 
-Entry points provide access to contract code installed on global state. These entry points may be called by either [session code](contract-vs-session/#what-is-session-code) or another smart contract. When writing the Wasm-producing code for a smart contract, you must define entry points by using meaningful names that describe the actions that they perform.
+Entry points provide access to contract code installed on global state. These entry points may be called by either [session code](/dapp-dev-guide/writing-contracts/rust-contracts/contract-vs-session/#what-is-session-code) or another smart contract. When writing the Wasm-producing code for a smart contract, you must define entry points by using meaningful names that describe the actions that they perform.
 
 A smart contract is Wasm binary produced from Wasm-producing logic. The Wasm-producing code has one or more entry points that can be called by external logic. When writing your own smart contract, you must have at least one entry point, and you may have more than one entry point. Entry points are defined by their name, and those names should be clear and self-describing. Each entry point is effectively equivalent to a static main entry point in a traditional program.
 
