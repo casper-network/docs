@@ -242,7 +242,7 @@ let (stored_contract_hash, _) =
 
 ## Contracts and Session Code
 
-Developers should also be familiar with the [difference between contract code and session code](/dapp-dev-guide/writing-contracts/contract-vs-session). Session code executes entirely within the context of the initiating account, while contract code executes within its context. Any action undertaken by a contract must initiate through an outside call, usually via session code.
+Developers should also be familiar with the [difference between contract code and session code](/dapp-dev-guide/writing-contracts/contract-vs-session/). Session code executes entirely within the context of the initiating account, while contract code executes within its context. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
 ## What's Next? {#whats-next}
 
