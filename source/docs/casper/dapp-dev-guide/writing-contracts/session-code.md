@@ -3,60 +3,8 @@
 This section explains how to write session code by exploring the required project structure and a simple example. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](/dapp-dev-guide/writing-contracts/contract-vs-session.md).
 
 ## Creating the Directory Structure {#directory-structure}
-In this guide, we create the project structure manually. However, the `cargo casper` command can set up the structure automatically, as shown [here](/dapp-dev-guide/writing-contracts/getting-started#creating-a-project).
 
-```bash
-project-directory/
-└── code/
-    ├── src/
-        └── main.rs
-    └── Cargo.toml
-└── tests/
-    ├── src/
-        └── integration-tests.rs
-    └── Cargo.toml
-```
-
-### Creating the Project Manually
-
-1. Create a top-level project directory for the session code and its corresponding tests.
-
-2. Inside the project directory, create a folder for the session code. In this example, we named the folder `code`. This folder contains the logic that will be compiled to Wasm and will be executed on a Casper node.
-
-   - In the `code` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies for the session code.
-   - Add a Rust file with the session code in the `src` folder. In this example, the `main.rs` contains the session code.
-
-3. Inside the project directory, create a folder for the corresponding tests, which help test the functionality of the session code. In this example, we named the folder `tests`.
-
-   - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
-   - In the `src` folder, add a Rust file with the tests that verify the session code. In this example, the `integration-tests.rs` file contains the tests.
-
-### Creating the Project Automatically
-
-1. Create a top-level project directory for the session code and its corresponding tests.
-
-2. Inside the project directory, run the following command to create a new binary package called `code`. In the `code/src` folder, the auto-generated `main.rs` file would contain the session code. 
-
-```bash
-cargo new code
-```
-
-3. Inside the project directory, run the command to auto-generate the folder structure for the test project.
-
-```bash
-cargo new tests
-```
-
-The command creates the `tests` folder with the `/src/main.rs` file and the `Cargo.toml` file.
-
-- `main.rs` - This file contains the unit test code required to test the contract. You can rename the file to `integration-tests.rs` if you wish.
-- `Cargo.toml` - This is the file with project configurations.
-
-:::note
-
-Alternatively, use the command `cargo casper <project-name>`, to set up the directory structure. Refer to the [Getting Started](/dapp-dev-guide/writing-contracts/getting-started/#installing-the-casper-crates) guide for more details.
-
-:::
+For writing session code, we use the same directory structure used for writing contracts, described [here](/dapp-dev-guide/writing-contracts/rust-contracts.md#directory-structure).
 
 ## Writing Session Code {#writing-session-code}
 
