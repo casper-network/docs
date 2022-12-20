@@ -6,7 +6,7 @@ This section explains how to write session code. To review the definition of ses
 
 For writing session code, we use the same project structure used for writing contracts, described [here](/dapp-dev-guide/writing-contracts/rust-contracts.md#directory-structure).
 
-## Writing Session Code {#writing-session-code}
+## Example 1: Writing Session Code {#writing-session-code}
 
 The following steps illustrate the process of writing session code using an example repository containing sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to an account and updates the action thresholds. Remember that [accounts](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
 
@@ -62,9 +62,9 @@ pub extern "C" fn call() {
 
 When compiled, the `call` function could be used from another library. For example, a C library could link to the resulting Wasm.
 
-### Another Session Code Example
+## Example 2: Calling a Contract with Session Code {#calling-contracts-with-session-code}
 
-The second example of session code is the [counter-call/src/main.rs](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file, in the [counter](https://github.com/casper-ecosystem/counter) repository. This example shows how we commonly use session code to invoke logic stored within a smart contract. To follow along, clone the repository.
+Another example of session code is the [counter-call/src/main.rs](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file, in the [counter](https://github.com/casper-ecosystem/counter) repository. This example shows how we commonly use session code to invoke logic stored within a smart contract. To follow along, clone the repository.
 
 ```bash
 git clone https://github.com/casper-ecosystem/counter/
@@ -83,13 +83,24 @@ The `call` function interacts with the contract's `counter_inc` and `counter_get
     let _: () = runtime::call_contract(contract_hash, COUNTER_INC, RuntimeArgs::new());
 ```
 
-<!-- TODO Add a third example for Wasm-based transfers.
+## Example 3: Transfers using Session Code {#transfers-using-session-code}
 
-### Session code example 3
+In this example, we use session code to perform a transfer using the [transfer_from_purse_to_purse](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_purse.html) system function. This function calls the system `Mint` contract under the hood. Because the `Mint` Wasm is available for use, we sometimes call such transfers "Wasm-based transfers".
 
-Session code is also useful when we perform Wasm-based transfers. 
--->
+The entire session code is available in [GitHub](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/bench/transfer-to-purse/src/main.rs), but this is its `call` function:
 
+```rust
+#[no_mangle]
+pub extern "C" fn call() {
+    let target_purse: URef = runtime::get_named_arg(ARG_TARGET_PURSE);
+    let amount: U512 = runtime::get_named_arg(ARG_AMOUNT);
+
+    let source_purse = account::get_main_purse();
+
+    system::transfer_from_purse_to_purse(source_purse, target_purse, amount, None)
+        .unwrap_or_revert();
+}
+```
 
 ## Compiling Session Code {#compiling-session-code}
 
