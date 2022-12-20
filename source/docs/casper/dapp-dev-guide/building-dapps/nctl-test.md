@@ -22,7 +22,11 @@ Prior to attempting an NCTL test, you must verify that your local NCTL instance 
 nctl-status
 ```
 
-You should see five nodes `RUNNING` and five `STOPPED`. Further, verify that the node and user information propagated within the *casper-node/utils/assets* directory. Each node and user should have the associated `Keys` necessary to interact with the network.
+You should see five nodes `RUNNING` and five `STOPPED`. Further, verify that the node and user information propagated within the *casper-node/utils/assets* directory. Each node and user should have the associated `Keys` necessary to interact with the network. Run the following command to view first user details:
+
+```
+nctl-view-user-account user=1
+```
 
 ## Installing the Smart Contract
 
