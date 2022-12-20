@@ -132,7 +132,7 @@ To test the installed contract, we need an entity to call its entry points using
 
 #### Calling the Contract using Session Code 
 
-In the counter example, we use the session code included in the [counter-call.wasm](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file. For more details on what session code is and how it differs from contract code, see the [next section](/dapp-developer-guide/writing-contracts/contract-vs-session).
+In the counter example, we use the session code included in the [counter-call.wasm](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file. For more details on what session code is and how it differs from contract code, see the [next section](/dapp-dev-guide/writing-contracts/contract-vs-session).
 
 Session code needs the contract hash to invoke the contract. The following code retrieves the contract hash from the named keys of the `DEFAULT_ACCOUNT_ADDR` that sent the installation Deploy.
 
