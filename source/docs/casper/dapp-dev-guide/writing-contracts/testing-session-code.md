@@ -74,21 +74,23 @@ fn <unit-test-name>{
 
 This [unit test](https://github.com/casper-ecosystem/two-party-multi-sig/blob/236bb18b9e98da7f9d8706f5e4825494845cfec2/tests/src/integration_tests.rs#L15-L55) is a good example of testing session code. At a high level, the test follows this process:
 
-- Initialize an instance of the execution engine and the `InMemoryWasmTestBuilder`.
+1) Initialize an instance of the execution engine and the `InMemoryWasmTestBuilder`.
 
 ```rust
     let mut builder = InMemoryWasmTestBuilder::default();
 ```
 
-- Execute the genesis process.
+2) Execute the genesis process.
 
 ```rust
     builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
 ```
 
-- Execute the test-specific logic. In this example, retrieve information about the account running the session code and its associated keys. For full details, visit [GitHub](https://github.com/casper-ecosystem/two-party-multi-sig/blob/236bb18b9e98da7f9d8706f5e4825494845cfec2/tests/src/integration_tests.rs#L15-L55).
-- Retrieve runtime arguments, which should be the same as defined in the contract.
-- Create the execution request that sets up the session code to be processed. In this example, the `CONTRACT_WASM` is the session code.
+3) Execute the test-specific logic. In this example, retrieve information about the account running the session code and its associated keys. For full details, visit [GitHub](https://github.com/casper-ecosystem/two-party-multi-sig/blob/236bb18b9e98da7f9d8706f5e4825494845cfec2/tests/src/integration_tests.rs#L15-L55).
+
+4) Retrieve runtime arguments, which should be the same as defined in the contract.
+
+5) Create the execution request that sets up the session code to be processed. In this example, the `CONTRACT_WASM` is the session code.
 
 ```rust
     let execute_request =
@@ -96,13 +98,13 @@ This [unit test](https://github.com/casper-ecosystem/two-party-multi-sig/blob/23
             .build();
 ```
 
-- Invoke the execution engine to process the session code. 
+6) Invoke the execution engine to process the session code. 
 
 ```rust
     builder.exec(execute_request).expect_success().commit();
 ```
 
-- Verify that the results match the expected output. This example checks the associated keys.
+7) Verify that the results match the expected output. This example checks the associated keys.
 
 ```rust
     assert!(associated_keys.contains_key(&ASSOCIATED_ACCOUNT_HASH));
