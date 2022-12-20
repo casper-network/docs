@@ -20,7 +20,7 @@ Before executing session code, ensure that you know exactly what the session cod
 
 :::
 
-### Dependencies in Cargo.toml
+### Dependencies in `Cargo.toml`
 
 The `Cargo.toml` file includes the dependencies and versions the session code requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
 
@@ -99,7 +99,7 @@ Before running session code to interact with a contract or other entities on the
 cargo build --release --target wasm32-unknown-unknown
 ```
 
-For the examples above, you may use the Makefile command:
+For the examples above, you may use the Makefiles provided:
 
 ```bash
 make build-contract
