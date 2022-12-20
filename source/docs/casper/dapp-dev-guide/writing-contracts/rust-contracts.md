@@ -158,11 +158,11 @@ const COUNT_KEY: &str = "count";
 
 #### Defining the Contract Entry Points
 
-Entry points provide access to contract code installed in global state. Either [session code](/dapp-dev-guide/writing-contracts/contract-vs-session) or another smart contract may call these entry points. When writing your contract, you must have at least one entry point, and you may have more than one entry point. Entry points are defined by their name, and those names should be clear and self-describing. Each entry point is equivalent to a static main entry point in a traditional program.
+Entry points provide access to contract code installed in global state. Either [session code](/dapp-dev-guide/writing-contracts/contract-vs-session) or another smart contract may call these entry points. A contract must have at least one entry point and may have more than one entry point. Entry points are defined by their name, and those names should be clear and self-describing. Each entry point is equivalent to a static main entry point in a traditional program.
 
 Entry points are not functions or methods, and they have no arguments. They are static entry points into the contract's logic. Yet, the contract logic can access parameters by name, passed along with the Deploy. Note that another smart contract may access any of these entry points.
 
-If your entry point has one or more mandatory parameters that will cause the logic to revert if they are not included, you should declare them within that entry point. Optional and non-critical parameters should be excluded.
+If an entry point has one or more mandatory parameters that will cause the logic to revert if they are not included, declare them within that entry point. Optional and non-critical parameters should be excluded.
 
 When defining entry points, begin with a `#[no_mangle]` line to ensure that the system does not change critical syntax within the method names. Each entry point should contain the contract code that drives the action you wish it to accomplish. Finally, include any storage or return values needed, as applicable.
 
@@ -231,7 +231,7 @@ This step adds the individual entry points to a `counter_entry_points` object us
 - The [String](https://doc.rust-lang.org/nightly/alloc/string/struct.String.html) is the name given to identify the data
 - The [Key](https://docs.rs/casper-types/latest/casper_types/enum.Key.html) is the data to be referenced
 
-You can create named keys to store any record or value as needed. You can reference other accounts, smart contracts, URefs, transfers, deploy information, purse balances etc. The entire list of possible Key variants can be found [here](https://docs.rs/casper-types/latest/casper_types/enum.Key.html).
+You can create named keys to store any record or value as needed, such as other accounts, smart contracts, URefs, transfers, deploy information, purse balances, etc. The entire list of possible Key variants can be found [here](https://docs.rs/casper-types/latest/casper_types/enum.Key.html).
 
 For the counter, we store the integer that we increment into a named key.
 
@@ -273,7 +273,7 @@ Generally, the `Contract_Hash` and `Contract_Version` are saved as `NamedKeys` i
 
 ## Locked Contracts {#locked-contracts}
 
-Locked contracts cannot contain other contract [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) in the same contract package; thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and prevent any further upgrades to the contract. Use locked contracts when you need to ensure high security and will not require updates to your contract. 
+Locked contracts cannot contain other contract [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) in the same contract package; thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and prevent any further upgrades to the contract. Use locked contracts when you need to ensure high security and will not require updates to the contract. 
 
 ```rust
 pub fn new_locked_contract(
@@ -329,6 +329,6 @@ The following brief video accompanies this guide.
 
 ## What's Next? {#whats-next}
 
-- Learn to [test your contract](/dapp-dev-guide/writing-contracts/testing-contracts)
-- Understand [session code](/dapp-dev-guide/writing-contracts/contract-vs-session) and how it triggers a smart contract
-- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md) with the Casper command-line client
+- Learn to [test your contract](/dapp-dev-guide/writing-contracts/testing-contracts).
+- Understand [session code](/dapp-dev-guide/writing-contracts/contract-vs-session) and how it triggers a smart contract.
+- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md) with the Casper command-line client.

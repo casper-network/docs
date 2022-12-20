@@ -172,4 +172,4 @@ The following brief video describes testing the [sample session code](https://gi
 
 ## What's Next? {#whats-next}
 
-- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md)
+- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md).

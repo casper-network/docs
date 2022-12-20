@@ -70,7 +70,7 @@ The second example of session code is the [counter-call/src/main.rs](https://git
 git clone https://github.com/casper-ecosystem/counter/
 ```
 
-Observe how the project is set up and review the dependencies in the `counter/counter-call/Cargo.toml` file. Then, open the `counter/counter-call/src/main.rs` file containing the session code. You will notice the directives at the top of the file, the required dependencies, and the declared constants.
+Observe how the project is set up and review the dependencies in the `counter/counter-call/Cargo.toml` file. Then, open the `counter/counter-call/src/main.rs` file containing the session code. Notice the directives at the top of the file, the required dependencies, and the declared constants.
 
 The `call` function interacts with the contract's `counter_inc` and `counter_get` entry points. This is how the session's `call` entry point triggers the logic stored inside the counter contract.
 
@@ -146,4 +146,4 @@ The following brief video describes [sample session code](https://github.com/cas
 
 ## What's Next? {#whats-next}
 
-- Learn to [test session code](/dapp-dev-guide/writing-contracts/testing-session-code) using the Casper testing framework
+- Learn to [test session code](/dapp-dev-guide/writing-contracts/testing-session-code) using the Casper testing framework.
