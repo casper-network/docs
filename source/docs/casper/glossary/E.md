@@ -12,7 +12,7 @@ The ecosystem layer in Casper encompasses dApp design and operation.
 
 ## Entry point {#entry-point}
 
-See [EntryPoint](/dapp-dev-guide/sdkspec/types_chain/#entrypoint) and [Defining the Contract Entry Points](/dapp-dev-guide/writing-contracts/rust/#step-4-defining-the-contract-entry-points).
+See [EntryPoint](/dapp-dev-guide/sdkspec/types_chain/#entrypoint) and [Defining the Contract Entry Points](/dapp-dev-guide/writing-contracts/rust-contracts/#step-4-defining-the-contract-entry-points).
 
 ## Era {#era}
 
