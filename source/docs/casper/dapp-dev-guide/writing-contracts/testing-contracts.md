@@ -15,7 +15,7 @@ The Casper test support crate is one of many options for testing contracts befor
 
 This guide uses the project structure, and example contract outlined [here](/dapp-dev-guide/writing-contracts/rust-contracts.md#directory-structure) for creating tests.
 
-To begin, outline the required test dependencies in the `/tests/Cargo.toml` file. For the counter tests, we have the following dependencies:
+To begin, outline the required test dependencies in the `/tests/Cargo.toml` file. Specify the dependencies for your tests similarly and update the crate versions. Dependencies may vary with each project. For the counter tests, we have the following dependencies:
 
 ```rust
 [dependencies]
@@ -201,6 +201,23 @@ The major difference between calling a contract from session code versus contrac
 - `versioned_contract_call_by_name` - Calling a specific version of a contract referenced by a named key in the signer's Account context.
 
 The calling contract must also provide an entry point and any necessary runtime arguments in all cases.
+
+## Running the Tests
+
+To run the tests, the counter example uses a `Makefile`.
+
+```bash
+make test
+```
+
+Under the hood, the `Makefile` generates a `tests/wasm` folder, copies the Wasm files to the folder, and runs the tests using `cargo test`. 
+
+```bash
+mkdir -p tests/wasm
+cp contract/target/wasm32-unknown-unknown/release/counter-define.wasm tests/wasm
+cp counter-call/target/wasm32-unknown-unknown/release/counter-call.wasm tests/wasm
+cd tests && cargo test
+```
 
 ## Video Walkthrough
 
