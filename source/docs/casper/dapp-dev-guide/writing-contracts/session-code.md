@@ -1,18 +1,20 @@
 # Writing Session Code
 
-This section explains how to write session code by exploring the required project structure and a simple example. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](/dapp-dev-guide/writing-contracts/contract-vs-session.md).
+This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](/dapp-dev-guide/writing-contracts/contract-vs-session.md). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
 
 ## Creating the Directory Structure {#directory-structure}
 
-For writing session code, we use the same directory structure used for writing contracts, described [here](/dapp-dev-guide/writing-contracts/rust-contracts.md#directory-structure).
+For writing session code, we use the same project structure used for writing contracts, described [here](/dapp-dev-guide/writing-contracts/rust-contracts.md#directory-structure).
 
 ## Writing Session Code {#writing-session-code}
 
-The following steps illustrate the process of writing session code and the essential components to include, whether the project was created manually or with `cargo`.
+The following steps illustrate the process of writing session code using an example repository containing sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to an account and updates the action thresholds. Remember that [accounts](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
+
+```bash
+git clone https://github.com/casper-ecosystem/two-party-multi-sig/
+```
 
 :::note
-
-Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
 
 Before executing session code, ensure that you know exactly what the session code is doing. If you don't know what it is meant for, it could be doing something malicious.
 
@@ -25,31 +27,14 @@ The `Cargo.toml` file includes the dependencies and versions the session code re
    - `casper-contract = "1.4.4"` - Provides the SDK for the execution engine (EE). The latest version of the crate is published [here](https://crates.io/crates/casper-contract).
    - `casper-types = "1.5.0"` - Includes types shared by many Casper crates for use on a Casper network. This crate is necessary for the EE to understand and interpret the session code. The latest version of the crate is published [here](https://crates.io/crates/casper-types).
     
-### The Rust File with Session Code
+### Updating the `main.rs` File
 
-At the top of the Rust file, include the following directives:
-   - `#![no_std]` - Specifies not to import the standard library.
-   - `#![no_main]` - Indicates the `main` function is not required since the session code has only one entry point as the `call` function.
+Open the `contract/src/main.rs` file that contains the sample session code. Notice these directives at the top of the file:
 
-Import the Casper contract API and the crates relevant to your code. In this example, we have the `account`, `runtime`, `storage`, and `system` crates:
-        
-```
-use casper_contract::contract_api::{account, runtime, storage, system};
-```
+- `#![no_std]` - Specifies not to import the standard library.
+- `#![no_main]` - Indicates the `main` function is not required since the session code has only one entry point as the `call` function.
 
-Next, write the code relevant to your use case. The sample code below serves as an example.
-
-### Session Code Example 1
-
-The following repository contains sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to an account and updates the action thresholds. Remember that [accounts](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
-
-```bash
-git clone https://github.com/casper-ecosystem/two-party-multi-sig/
-```
-
-Open the project and review its structure. Look at the dependencies listed in the `contract/Cargo.toml` file. 
-
-Open the `contract/src/main.rs` file that contains the sample session code. Notice the directives at the top of the file and the imported crates. This example uses the `account` and `runtime` crates.
+Next, review the imported crates and other required libraries.
 
 ```rust
 #![no_std]
@@ -60,7 +45,7 @@ use casper_contract::unwrap_or_revert::UnwrapOrRevert;
 use casper_types::account::{AccountHash, ActionType, Weight};
 ```
 
-At the top of the file, we usually find the constants defined. 
+After the imported libraries, we usually find the constants. 
 
 ```rust
 const ASSOCIATED_ACCOUNT: &str = "deployment-account";
@@ -77,7 +62,7 @@ pub extern "C" fn call() {
 
 When compiled, the `call` function could be used from another library. For example, a C library could link to the resulting Wasm.
 
-### Session Code Example 2
+### Another Session Code Example
 
 The second example of session code is the [counter-call/src/main.rs](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file, in the [counter](https://github.com/casper-ecosystem/counter) repository. This example shows how we commonly use session code to invoke logic stored within a smart contract. To follow along, clone the repository.
 
@@ -90,11 +75,11 @@ Observe how the project is set up and review the dependencies in the `counter/co
 The `call` function interacts with the contract's `counter_inc` and `counter_get` entry points. This is how the session's `call` entry point triggers the logic stored inside the counter contract.
 
 ```rust
-    // Call Counter to get the current value.
+    // Call the counter to get the current value.
     let current_counter_value: u32 =
         runtime::call_contract(contract_hash, COUNTER_GET, RuntimeArgs::new());
 
-    // Call Counter to increment the value.
+    // Call the counter to increment the value.
     let _: () = runtime::call_contract(contract_hash, COUNTER_INC, RuntimeArgs::new());
 ```
 
@@ -112,6 +97,12 @@ Before running session code to interact with a contract or other entities on the
 
 ```bash
 cargo build --release --target wasm32-unknown-unknown
+```
+
+For the examples above, you may use the Makefile command:
+
+```bash
+make build-contract
 ```
 
 ## Executing Session Code {#executing-session-code}
@@ -145,7 +136,7 @@ Use the `--help` option to view an updated list of supported arguments.
 casper-client put-deploy --help
 ```
 
-## Video Walkthrough
+## Video Walkthrough {#video-walkthrough}
 
 The following brief video describes [sample session code](https://github.com/casper-ecosystem/two-party-multi-sig/) for configuring an account. 
 
