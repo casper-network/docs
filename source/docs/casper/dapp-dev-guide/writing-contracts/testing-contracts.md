@@ -19,7 +19,7 @@ To begin, outline the required test dependencies in the `/tests/Cargo.toml` file
 
 ```rust
 [dependencies]
-casper-execution-engine = "2.0.0"
+casper-execution-engine = "2.0.1"
 casper-engine-test-support = { version = "2.2.0", features = ["test-support"] }
 casper-types = "1.5.0"
 ```
