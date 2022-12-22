@@ -166,7 +166,7 @@ If an entry point has one or more mandatory parameters that will cause the logic
 
 When defining entry points, begin with a `#[no_mangle]` line to ensure that the system does not change critical syntax within the method names. Each entry point should contain the contract code that drives the action you wish it to accomplish. Finally, include any storage or return values needed, as applicable.
 
-The following entry point is an example from the counter contract. To see all the available entry points, review the contract in [GitHub](https://github.com/casper-ecosystem/counter/).
+The following entry point is an example from the counter contract. To see all the available entry points, review the contract in [GitHub](https://github.com/casper-ecosystem/counter/blob/master/contract-v1/src/main.rs).
 
 ```rust
 #[no_mangle]
@@ -181,7 +181,7 @@ pub extern "C" fn counter_inc() {
 
 #### Defining the `call` Function
 
-The `call` function starts the code execution and is responsible for installing the contract on-chain. In some cases, it also initializes some constructs, such as a Dictionary for record-keeping or a purse. The following steps describe how to structure the `call` function. Review the [call function](https://github.com/casper-ecosystem/counter/blob/b37f1ff5f269648ed2bbc5e182128f17e65fe710/contract/src/main.rs#L52) in the counter contract.
+The `call` function starts the code execution and is responsible for installing the contract on-chain. In some cases, it also initializes some constructs, such as a Dictionary for record-keeping or a purse. The following steps describe how to structure the `call` function. Review the [call function](https://github.com/casper-ecosystem/counter/blob/8a622cd92d768893b9ef9fc2b150c674415be87e/contract-v1/src/main.rs#L55) in the counter contract.
 
 1) Define the runtime arguments.
 
@@ -236,7 +236,7 @@ You can create named keys to store any record or value as needed, such as other 
 For the counter, we store the integer that we increment into a named key.
 
 ```rust
-    // In the named keys of the counter contract, add a key for the count
+    // In the named keys of the counter contract, add a key for the count.
     let mut counter_named_keys = NamedKeys::new();
     let key_name = String::from(COUNT_KEY);
     counter_named_keys.insert(key_name, count_start.into());

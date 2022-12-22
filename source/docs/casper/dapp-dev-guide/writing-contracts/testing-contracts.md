@@ -30,7 +30,7 @@ casper-types = "1.5.0"
 
 ## Writing the Tests {#writing-the-tests}
 
-The tests for the contract usually reside in the `tests` directory. Tests for the counter contract reside in the [tests/src/integration-tests.rs](https://github.com/casper-ecosystem/counter/blob/master/tests/src/integration_tests.rs) file. Notice that this file contains an empty `main` method to initialize the test program. Alternatively, we could use the `#![no_main]` annotation at the top of the file, as we did [here](https://github.com/casper-ecosystem/counter/blob/b37f1ff5f269648ed2bbc5e182128f17e65fe710/contract/src/main.rs#L1-L2).
+The tests for the contract usually reside in the `tests` directory. Tests for the counter contract reside in the [tests/src/integration-tests.rs](https://github.com/casper-ecosystem/counter/blob/master/tests/src/integration_tests.rs) file. Notice that this file contains an empty `main` method to initialize the test program. Alternatively, we could use the `#![no_main]` annotation at the top of the file, as we did [here](https://github.com/casper-ecosystem/counter/blob/8a622cd92d768893b9ef9fc2b150c674415be87e/contract-v1/src/main.rs#L1-L2).
 
 ```rust
 fn main() {
@@ -64,12 +64,16 @@ Import external test support, which includes a variety of default values and hel
 Next, you need to define any global variables or constants for the test. 
 
 ```rust
-    const COUNTER_DEFINE_WASM: &str = "counter-define.wasm"; // The main example contract
-    const COUNTER_CALL_WASM: &str = "counter-call.wasm"; // The session code that calls the contract
+    const COUNTER_V1_WASM: &str = "counter-v1.wasm"; // The first version of the contract
+    const COUNTER_V2_WASM: &str = "counter-v2.wasm"; // The second version of the contract
+    const COUNTER_CALL_WASM: &str = "counter-call.wasm"; // Session code that calls the contract
 
     const CONTRACT_KEY: &str = "counter"; // Named key referencing this contract
-    const COUNT_KEY: &str = "count"; // Named key referencing the count value
-    const CONTRACT_VERSION_KEY: &str = "version"; // Automatically incremented version in a contract package
+    const COUNT_KEY: &str = "count"; // Named key referencing the value to increment/decrement
+    const CONTRACT_VERSION_KEY: &str = "version"; // Key maintaining the version of a contract package
+
+    const ENTRY_POINT_COUNTER_DECREMENT: &str = "counter_decrement"; // Entry point to decrement the count value
+    const ENTRY_POINT_COUNTER_INC: &str = "counter_inc"; // Entry point to increment the count value
 ```
 
 ### Creating a Test Function
@@ -81,7 +85,7 @@ As part of this process, we use the `DEFAULT_RUN_GENESIS_REQUEST` to install the
 ```rust
     #[test]
     /// Install version 1 of the counter contract and check its available entry points. ...
-    fn should_be_able_to_install_and_increment() {
+    fn install_version1_and_check_entry_points() {
         let mut builder = InMemoryWasmTestBuilder::default();
         builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
         
@@ -97,48 +101,26 @@ After building the `ExecuteRequestBuilder` (in this example, `contract_installat
 
 ```rust
     // Install the contract.
-    let contract_installation_request = ExecuteRequestBuilder::standard(
+    let contract_v1_installation_request = ExecuteRequestBuilder::standard(
         *DEFAULT_ACCOUNT_ADDR,
-        COUNTER_DEFINE_WASM,
+        COUNTER_V1_WASM,
         runtime_args! {},
     )
     .build();
 
     builder
-        .exec(contract_installation_request)
+        .exec(contract_v1_installation_request)
         .expect_success()
         .commit();
 ```
 
 #### Calling the Contract by Hash
 
-To test the installed contract, we need an entity to call its entry points using the `contract_call_by_hash` function.
-
-```rust
-    // Call the increment entry point to increment the value stored under "count".
-    let contract_increment_request = ExecuteRequestBuilder::contract_call_by_hash(
-        *DEFAULT_ACCOUNT_ADDR,
-        contract_hash,
-        ENTRY_POINT_COUNTER_INC,
-        runtime_args! {},
-    )
-    .build();
-
-    builder
-        .exec(contract_increment_request)
-        .expect_success()
-        .commit();
-```
-
-#### Calling the Contract using Session Code 
-
-In the counter example, we use the session code included in the [counter-call.wasm](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file. For more details on what session code is and how it differs from contract code, see the [next section](/dapp-dev-guide/writing-contracts/contract-vs-session).
-
-Session code needs the contract hash to invoke the contract. The following code retrieves the contract hash from the named keys of the `DEFAULT_ACCOUNT_ADDR` that sent the installation Deploy.
+To verify the installed contract, we need its contract hash. The test will then call its entry points using the `contract_call_by_hash` function. The following code retrieves the contract hash from the named keys of the `DEFAULT_ACCOUNT_ADDR` that sent the installation Deploy.
 
 ```rust
     // Check the contract hash.
-    let contract_hash = builder
+    let contract_v1_hash = builder
         .get_expected_account(*DEFAULT_ACCOUNT_ADDR)
         .named_keys()
         .get(CONTRACT_KEY)
@@ -148,6 +130,29 @@ Session code needs the contract hash to invoke the contract. The following code 
         .expect("must get contract hash");
 ```
 
+Next, we test an entry point that should not exist in the first version of the contract.
+
+```rust
+    // Call the decrement entry point, which should not be in version 1 before the upgrade.
+    let contract_decrement_request = ExecuteRequestBuilder::contract_call_by_hash(
+        *DEFAULT_ACCOUNT_ADDR,
+        contract_v1_hash,
+        ENTRY_POINT_COUNTER_DECREMENT,
+        runtime_args! {},
+    )
+    .build();
+
+    // Try executing the decrement entry point and expect an error.
+    builder
+        .exec(contract_decrement_request)
+        .expect_failure()
+        .commit();
+```
+
+#### Calling the Contract using Session Code 
+
+In the counter example, we use the session code included in the [counter-call.wasm](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file. For more details on what session code is and how it differs from contract code, see the [next section](/dapp-dev-guide/writing-contracts/contract-vs-session).
+
 The following session code uses the contract hash to identify the contract, the account for sending the deploy (`DEFAULT_ACCOUNT_ADDR`), the deploy to be sent (`COUNTER_CALL_WASM`), and the runtime arguments required. Once again, the `ExecuteRequestBuilder` simulates the execution of session code and calls the `counter-inc` entry point.
 
 ```rust
@@ -156,15 +161,14 @@ The following session code uses the contract hash to identify the contract, the 
         *DEFAULT_ACCOUNT_ADDR,
         COUNTER_CALL_WASM,
         runtime_args! {
-            CONTRACT_KEY => contract_hash
+            CONTRACT_KEY => contract_v1_hash
         },
     )
     .build();
 
-    builder
-    .exec(session_code_request)
-    .expect_success()
-    .commit();
+    builder.exec(session_code_request)
+        .expect_success()
+        .commit();
 ```
 
 #### Evaluating and Comparing Results
@@ -213,10 +217,12 @@ make test
 Under the hood, the `Makefile` generates a `tests/wasm` folder, copies the Wasm files to the folder, and runs the tests using `cargo test`. 
 
 ```bash
-mkdir -p tests/wasm
-cp contract/target/wasm32-unknown-unknown/release/counter-define.wasm tests/wasm
-cp counter-call/target/wasm32-unknown-unknown/release/counter-call.wasm tests/wasm
-cd tests && cargo test
+test: build-contract
+	mkdir -p tests/wasm
+	cp contract-v1/target/wasm32-unknown-unknown/release/counter-v1.wasm tests/wasm
+	cp contract-v2/target/wasm32-unknown-unknown/release/counter-v2.wasm tests/wasm
+	cp counter-call/target/wasm32-unknown-unknown/release/counter-call.wasm tests/wasm
+	cd tests && cargo test
 ```
 
 ## Video Walkthrough

@@ -131,17 +131,19 @@ cd tests && cargo test
 In the [counter unit tests](https://github.com/casper-ecosystem/counter/blob/master/tests/src/integration_tests.rs), we use session code to call the contract. The code loads the account that pays for the session code, the session code Wasm, and the runtime arguments. Then, the code invokes the execution engine to process the session code.
 
 ```rust
-    // Use session code to increment the counter
+    // Use session code to increment the counter.
     let session_code_request = ExecuteRequestBuilder::standard(
         *DEFAULT_ACCOUNT_ADDR,
         COUNTER_CALL_WASM,
         runtime_args! {
-            CONTRACT_KEY => contract_hash
+            CONTRACT_KEY => contract_v1_hash
         },
     )
     .build();
 
-    builder.exec(session_code_request).expect_success().commit();
+    builder.exec(session_code_request)
+        .expect_success()
+        .commit();
 ```
 
 The verification step looks like this:
