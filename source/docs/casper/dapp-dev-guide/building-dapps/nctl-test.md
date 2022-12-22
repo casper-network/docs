@@ -2,15 +2,15 @@
 
 NCTL effectively simulates a live Casper network. The process for sending a `Deploy` to an NCTL-based network is therefore similar to doing so on a live network.
 
-Testing `Deploys` prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](/dapp-dev-guide/writing-contracts/rust.md) and testing it [using the provided framework](/dapp-dev-guide/writing-contracts/testing.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
+Testing `Deploys` prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](/dapp-dev-guide/writing-contracts/rust-contracts.md) and testing it [using the provided framework](/dapp-dev-guide/writing-contracts/testing-contracts.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
 
 ## Getting Started with NCTL
 
 Prior to testing a `Deploy` through NCTL, you should have the following steps accomplished:
 
-1) [Completed writing a Deploy](/dapp-dev-guide/writing-contracts/rust.md)
+1) [Completed writing a Deploy](/dapp-dev-guide/writing-contracts/rust-contracts.md)
 
-2) [Tested the Deploy](/dapp-dev-guide/writing-contracts/testing.md) using the Casper testing framework
+2) [Tested the Deploy](/dapp-dev-guide/writing-contracts/testing-contracts.md) using the Casper testing framework
 
 3) [Setup NCTL](/dapp-dev-guide/building-dapps/setup-nctl.md) on your system
 
@@ -22,7 +22,11 @@ Prior to attempting an NCTL test, you must verify that your local NCTL instance 
 nctl-status
 ```
 
-You should see five nodes `RUNNING` and five `STOPPED`. Further, verify that the node and user information propagated within the *casper-node/utils/assets* directory. Each node and user should have the associated `Keys` necessary to interact with the network.
+You should see five nodes `RUNNING` and five `STOPPED`. Further, verify that the node and user information propagated within the *casper-node/utils/assets* directory. Each node and user should have the associated `Keys` necessary to interact with the network. Run the following command to view first user details:
+
+```
+nctl-view-user-account user=1
+```
 
 ## Installing the Smart Contract
 
@@ -113,7 +117,7 @@ $(get_path_to_client) put-deploy \
 
 ## Verifying Correct Contract Behavior
 
-After calling your installed contract, you can verify that the contract behaved as expected by observing the associated change in [global state](/dapp-dev-guide/writing-contracts/installing-contracts/#querying-global-state). Depending on how your contract functions, this can have different meanings and results. If we use our donation contract from the [basic smart contract tutorial](/dapp-dev-guide/writing-contracts/rust), the NCTL process would have the following flow:
+After calling your installed contract, you can verify that the contract behaved as expected by observing the associated change in [global state](/dapp-dev-guide/writing-contracts/installing-contracts/#querying-global-state). Depending on how your contract functions, this can have different meanings and results. If we use our donation contract from the [basic smart contract tutorial](/dapp-dev-guide/writing-contracts/rust-contracts), the NCTL process would have the following flow:
 
 1) Send a `Deploy` to install the "Donation" smart contract.
 
