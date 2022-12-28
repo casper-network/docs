@@ -63,7 +63,7 @@ In this example, we use the Casper client to send a deploy containing the `deleg
 
 ```rust
 casper-client put-deploy \
---node-address http://<peer-ip-address>:7777/rpc \
+--node-address http://<peer-ip-address>:7777 \
 --chain-name casper \
 --session-path <path-to-wasm>/delegate.wasm \
 --payment-amount 5000000000 \
@@ -113,7 +113,7 @@ Once the deploy has been executed, we can query the auction for information to c
 
 ```bash
 casper-client get-auction-info \
---node-address http://<peer-ip-address>:7777/rpc
+--node-address http://<peer-ip-address>:7777
 ```
 
 **Request fields**:
@@ -161,7 +161,7 @@ If a validator is part of the set, its public key will be in the `era_validators
 
 ```bash
 casper-client get-auction-info \
---node-address http://<peer-ip-address>:7777/rpc
+--node-address http://<peer-ip-address>:7777
 ```
 
 **Request fields**:

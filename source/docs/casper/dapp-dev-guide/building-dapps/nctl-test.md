@@ -42,7 +42,7 @@ You will need the following information to use the `put-deploy` command:
 
 * The **path** to your `Deploy` that you wish to send to the NCTL network. This will appear in our example put-deploy as `--session-path <PATH>` and will require you to define the path to your specific `Deploy` Wasm.
 
-* The **node address** for a node on your NCTL network. In this example, we are using the node at `http://localhost:11101/rpc`. On the Casper Mainnet or Testnet, nodes will use port `7777`. This will appear in our example put-deploy as `--node-address http://localhost:11101/rpc`.
+* The **node address** for a node on your NCTL network. In this example, we are using the node at `http://localhost:11101`. On the Casper Mainnet or Testnet, nodes will use port `7777`. This will appear in our example put-deploy as `--node-address http://<HOST>:7777`.
 
 The command to send your `Deploy` should look similar to the following code snippet:
 
@@ -58,7 +58,7 @@ $(get_path_to_client) put-deploy \
 --secret-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem \
 --payment-amount 2500000000 \
 --session-path <PATH> \
---node-address http://localhost:11101/rpc
+--node-address http://localhost:11101
 ```
 
 The response will return something similar to the following information. Note the `deploy_hash`:
@@ -80,7 +80,7 @@ The previous command sent the `Deploy` to the NCTL network, but we recommend ver
 
 To query the `Deploy`'s status, you will pass both the `deploy_hash` and the same `node-address` from above using the following command. This will return either an error message in the event of failure or the `Deploy` details if it succeeds.
 ```
-$(get_path_to_client) get-deploy 8e6309cc37bc58d8fedc1094ee1bd264a636d39fc0e05b5e1d72d98f7b6faf13 -n http://localhost:11101/rpc
+$(get_path_to_client) get-deploy 8e6309cc37bc58d8fedc1094ee1bd264a636d39fc0e05b5e1d72d98f7b6faf13 -n http://localhost:11101
 ```
 
 ## Interacting with the Installed Contract
@@ -90,13 +90,13 @@ Once your NCTL network executes your `Deploy`, you can test the functionality of
 
 ```
 $(get_path_to_client) get-account-info \
---node-address http://localhost:11101/rpc \
+--node-address http://localhost:11101 \
 --public-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/public_key.pem
 ```
 
 This command will return information pertaining to the account, including the `NamedKeys`. The `ContractHash` of the contract to be tested will appear here. The process of calling the contract is similar to that of installing it, as they are both accomplished through sending a `Deploy`. In this instance, you will need the following information:
 
-* The **node address**, entered in this instance using `--node-address http://localhost:11101/rpc`
+* The **node address**, entered in this instance using `--node-address http://localhost:11101`
 
 * The **chain name**, entered in this instance using `--chain-name "casper-net-1"`
 
@@ -108,7 +108,7 @@ This command will return information pertaining to the account, including the `N
 
 ```
 $(get_path_to_client) put-deploy \
---node-address http://localhost:11101/rpc \
+--node-address http://localhost:11101 \
 --chain-name "casper-net-1" \
 --payment-amount 500000000 \
 --session-path <PATH> \

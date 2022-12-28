@@ -92,7 +92,7 @@ The Casper command-line client can be used to send the compiled Wasm to the netw
 
 ```bash
 casper-client put-deploy \
---node-address http://<peer-ip-address>:7777/rpc \
+--node-address http://<peer-ip-address>:7777 \
 --secret-key <secret-key-MA>.pem \
 --chain-name casper-test \
 --payment-amount 2500000000 \
@@ -126,7 +126,7 @@ Use the `state_root_hash` and the `hex-encoded-public-key` of the main account t
 
 ```bash
 casper-client query-global-state \
---node-address http://<peer-ip-address>:7777/rpc \
+--node-address http://<peer-ip-address>:7777 \
 --state-root-hash <state-root-hash-from-block> \
 --key <hex-encoded-public-key-MA>
 ```

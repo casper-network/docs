@@ -29,7 +29,7 @@ Below is an example of an undelegation request using the Casper command-line cli
 
 ```bash
 casper-client put-deploy \
---node-address http://<peer-ip-addres>:7777/rpc \
+--node-address http://<peer-ip-addres>:7777 \
 --chain-name casper \
 --session-path <path-to-wasm>/undelegate.wasm \
 --payment-amount 2500000000 \
@@ -45,7 +45,7 @@ casper-client put-deploy \
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
 
--   `node-address` -<HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
 -   `secret-key` - Path to secret key file
 
@@ -70,12 +70,12 @@ Here is how you can check the status of the auction to confirm that your bid was
 
 ```bash
 casper-client get-auction-info \
---node-address http://<peer-ip-address>:7777/rpc
+--node-address http://<peer-ip-address>:7777
 ```
 
 **Request fields**:
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
 If the public key and the amount are absent from the `bids` structure, we can safely assert that we have indeed undelegated from the validator.
 
