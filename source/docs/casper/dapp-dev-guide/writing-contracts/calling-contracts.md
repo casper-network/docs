@@ -110,19 +110,29 @@ The arguments of interest are:
 
 **Example - Use session arguments:**
 
-This example demonstrates how to call a contract entry point "transfer" with two arguments; one argument specifies the recipient, and the other specifies the amount to be transferred.
+This example demonstrates how to call the Auction contract's entry point `delegate` with three arguments:
 
-```bash
-casper-client put-deploy 
-    --node-address http://3.143.158.19:7777 \
-    --chain-name integration-test \
-    --secret-key ~/casper/demo/user_b/secret_key.pem \
-    --payment-amount "100000000" \
-    --session-hash hash-b568f50a64acc8bbe43462ffe243849a88111060b228dacb8f08d42e26985180 \
-    --session-entry-point "transfer" \
-    --session-arg "recipient:key='account-hash-89422a0f291a83496e644cf02d2e3f9d6cbc5f7c877b6ba9f4ddfab8a84c2670'" \
-    --session-arg "amount:u256='20'" 
+-   The argument `validator` is the public key of the validator to whom the tokens will be delegated
+-   The argument `amount` is the number of tokens to be delegated
+-   The argument `delegator` is the public key of the account delegating tokens to a validator
+
+To make the call, we use the contract hash of the latest Auction contract, `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`, using the `--session-hash` option, as described above.
+
+```rust
+casper-client put-deploy \
+    --node-address http://65.21.235.219:7777 \
+    --chain-name casper-test \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount 2500000000 \
+    --session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
+    --session-entry-point "delegate" \
+    --session-arg "validator:public_key='0145fb72c75e1b459839555d70356a5e6172e706efa204d86c86050e2f7878960f'" \
+    --session-arg "amount:u512='500000000000'" \
+    --session-arg "delegator:public_key='0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf'"
 ```
+
+The details for this example deploy can be found [here](https://testnet.cspr.live/deploy/3220ed73b8b1871112f7b8c7fc5ec4669e9dadb1a1396a9049d60f3e8b9fa903).
+
 
 **Video - Call a contract with session arguments:**
 
