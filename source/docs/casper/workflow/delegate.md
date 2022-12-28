@@ -13,9 +13,11 @@ This workflow assumes:
 
 ## Building The Delegation Wasm {#building-the-delegation-wasm}
 
-Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository and building the contracts.
+Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository.
 
-To build contracts, set up Rust, and install all dependencies. Visit [Setting up Rust](/dapp-dev-guide/writing-contracts/getting-started.md) in the Developer Guide for step-by-step instructions.
+```bash
+git clone https://github.com/casper-network/casper-node
+```
 
 Once you build the contracts, you can use the `delegate.wasm` to create a deploy that will initiate the delegation process. The Wasm can be found in:
 
