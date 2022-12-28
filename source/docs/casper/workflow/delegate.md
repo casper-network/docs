@@ -19,9 +19,19 @@ Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/caspe
 git clone https://github.com/casper-network/casper-node
 ```
 
-Once you build the contracts, you can use the `delegate.wasm` to create a deploy that will initiate the delegation process. The Wasm can be found in:
+Prepare the Rust environment and then build the contracts using the [Makefile](https://github.com/casper-network/casper-node/blob/dev/Makefile) provided in the repository.
 
-    target/wasm32-unknown-unknown/release
+```bash
+cd casper-node
+make setup-rs
+make build-contracts-rs
+```
+
+Once you build the contracts, you can use the `delegate.wasm` to create a deploy that will initiate the delegation process. The Wasm can be found in this directory: `target/wasm32-unknown-unknown/release/`.
+
+```bash
+ls target/wasm32-unknown-unknown/release/delegate.wasm
+```
 
 ## Acquiring a Validator's Public Key {#acquiring-a-validators-public-key}
 
