@@ -64,7 +64,7 @@ In this example, we use the Casper client to send a deploy containing the `deleg
 ```rust
 casper-client put-deploy \
 --node-address http://<peer-ip-address>:7777 \
---chain-name casper \
+--chain-name casper-test \
 --session-path <path-to-wasm>/delegate.wasm \
 --payment-amount 5000000000 \
 --session-arg "validator:public_key='<hex-encoded-validator-public-key>'" \
@@ -73,22 +73,22 @@ casper-client put-deploy \
 --secret-key <delegator-secret-key>.pem
 ```
 
-**Note** The delegator's public key and the secret key that signs the deploy must be part of the same key pair.
+**Note** The delegator's public key and the secret key that signs the deploy must be part of the same account key pair.
 
 **Request fields:**
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
 -   `secret-key` - Path to the secret key file
 
 -   `chain-name` - Name of the chain, to avoid the deploy from being accidentally or maliciously included in a different chain
 
-    -   The _chain-name_ for testnet is **casper-test**
-    -   The _chain-name_ for mainnet is **casper**
+    -   The _chain-name_ for Testnet is **casper-test**
+    -   The _chain-name_ for Mainnet is **casper**
 
 -   `session-path` - The path to where the `delegate.wasm` is located
 
--   `session-arg` - The arguments to the `delegate` execution
+-   `session-arg` - The arguments to the `delegate` request
 
     -   The argument `validator` is the public key of the validator to whom the tokens will be delegated
     -   The argument `amount` is the number of tokens to be delegated
@@ -109,7 +109,7 @@ A Casper network maintains an _auction_ where validators _bid_ on slots to becom
 1.  Our delegation is part of the _bid_ to the _auction_
 2.  The validator is part of the _active_ validator set
 
-Once the deploy has been executed, we can query the auction for information to confirm our delegation. We can use the Casper command-line client to create an RPC request with the following query:
+Once the deploy has been processed, we can query the auction for information to confirm our delegation. We can use the Casper command-line client to create an RPC request with the following query:
 
 ```bash
 casper-client get-auction-info \
@@ -118,7 +118,7 @@ casper-client get-auction-info \
 
 **Request fields**:
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
 The `get-auction-info` call will return all the bids currently in the auction contract and the list of active validators for `4` future eras from the present era.
 
@@ -166,7 +166,7 @@ casper-client get-auction-info \
 
 **Request fields**:
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
 **Important Response fields**:
 
