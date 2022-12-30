@@ -19,4 +19,5 @@ The following table provides links to the SDK documentation, in addition to the 
 |Java SDK by SyntiFi|[Casper-sdk](https://github.com/syntifi/casper-sdk)|[Remo Stieger](mailto:remo@syntifi.com)/[Andre Bertolace](mailto:andre@syntifi.com)|
 |PHP SDK|[Casper-php-sdk](https://github.com/make-software/casper-php-sdk)|Roman Bylbas, Ihor Burlachenko, Michael Steuer|
 | Scala SDK | [Casper-scala-sdk](https://github.com/abahmanem/casper-scala-sdk) | [M. Abahmane](mailto:elmabahma@gmail.com) |
+| C++ SDK | [Casper-cpp-sdk](https://github.com/caspercppsdk/casper-cpp-sdk) | [Y. Keten](mailto:caspercppsdk@gmail.com) |
 
