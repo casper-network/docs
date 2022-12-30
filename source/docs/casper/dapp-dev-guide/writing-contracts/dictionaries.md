@@ -6,6 +6,8 @@ Individual value changes to data stored within the NamedKeys would require deser
 
 As a solution to this problem, the Casper platform provides the `Dictionary` feature, which allows users a more efficient and scalable means to aggregate data over time.
 
+In almost all cases, dictionaries are the better form of data storage. They allow greater flexibility in altering stored data at a lower cost.
+
 ## Seed URefs
 
 Items within a dictionary exist as individual records stored underneath their unique [dictionary address](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](/design/casper-design.md/#uref-head) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
@@ -21,6 +23,12 @@ Creating a new dictionary is fairly simple and done within the context of a `Dep
 Developers should always consider context when creating dictionaries. We recommend creating a dictionary within the context of a Contract.
 
 While you can create a dictionary in the context of an Account and then pass associated access rights to a Contract, this approach can create potential security issues. If a third party uses the Contract, the initiating Account with access rights to the dictionary may be undesirable. To rectify this, you may send an additional `Deploy` removing those access rights, but it is better to create the dictionary within the context of the Contract.
+
+:::note
+
+Creating dictionaries in the context of an Account represents a potential security risk. We suggest that you do not create dictionaries in your Account's context.
+
+:::
 
 Dictionaries allow a contract to store additional data without drastically expanding the size of the `NamedKeys` within their context. If a contract's `NamedKeys` expand too far, they may run into system limitations that would unintentionally disable the contract's functionality.
 
