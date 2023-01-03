@@ -55,7 +55,7 @@ module.exports = {
                     exclude: ["./contract-dsl/archived", "./economics/archived", "./theory"],
                     /* Docs config options */
                     // showLastUpdateAuthor: false,
-                    // showLastUpdateTime: true,
+                    showLastUpdateTime: true,
                     // remarkPlugins: [require("@react-native-website/remark-snackplayer")],
                     // editCurrentVersion: true,
                     // onlyIncludeVersions: process.env.PREVIEW_DEPLOY === "true" ? ["current", ...versions.slice(0, 2)] : undefined,
