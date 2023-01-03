@@ -213,13 +213,7 @@ The video shows how to query the previously installed Counter contract package.
 
 ## Calling Contracts by Contract Name {#calling-contracts-by-name}
 
-We can also reference a contract using a key as the contract name. When you write the contract, use the `put_key` function to add the ContractHash under the contract's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#). The key you specify will enable you to reference the contract when calling it using `put-deploy`.
-
-```rust
-runtime::put_key("counter", contract_hash.into());
-```
-
-This example code stores the ContractHash into a URef, which you can reference once you install the contract in global state. In this case, the ContractHash will be stored under the "counter" NamedKey.
+We can also reference a contract using a key as the contract name. When you write the contract, use the `put_key` function to add the ContractHash under the contract's [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html#).
 
 Having a key enables you to call a contract's entry-point in global state by using the `put-deploy` command as illustrated here:
 
@@ -239,7 +233,13 @@ The arguments of interest are:
 
 **Example 1 - Calling the Counter contract using a named key:**
 
-This example uses the Counter contract stored in global state under the "counter" key defined in the code snippet above and an entry point called "counter_inc" that increments the counter.
+This example uses the Counter contract stored in global state under the "counter" named key. The code stores the ContractHash into a URef, which can be referenced once the contract is installed in global state. The full implementation is available on [GitHub](https://github.com/casper-ecosystem/counter/blob/934a452ccba8c5cf12f8bde706736400e047fba5/contract-v1/src/main.rs#L110).
+
+```rust
+runtime::put_key(CONTRACT_KEY, stored_contract_hash.into());
+```
+
+The following command invokes the entry point "counter_inc" and the contract stored under the "counter" named key.
 
 ```rust
 casper-client put-deploy \
@@ -251,7 +251,7 @@ casper-client put-deploy \
     --session-entry-point "counter_inc"
 ```
 
-The sample response will contain a `deploy_hash`, which you need to use as described [here](installing-contracts.md#querying-global-state), to verify the changes in global state.
+The sample response will contain a `deploy_hash`, which you need to use as described [here](installing-contracts.md#querying-global-state) to verify the changes in global state.
 
 **Example 2 - Calling the Auction contract using a named key:**
 
@@ -303,6 +303,21 @@ The arguments of interest are:
 
 This example calls the entry point "counter-inc" as part of the contract package name "counter_package_name", version 1, without any runtime arguments. 
 
+You should have previously created the contract by using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html), and provided the contract package name as the `hash_name` argument of `new_contract`.
+
+This example code stores the "contract_package_name" into a NamedKey, which you can reference once you install the contract in global state.
+
+```rust
+    let (stored_contract_hash, contract_version) =
+        storage::new_contract(counter_entry_points, 
+            Some(counter_named_keys), 
+            Some("counter_package_name".to_string()),
+            Some("counter_access_uref".to_string())
+    );
+```
+
+Here is the command to call the contract using the package name:
+
 ```rust
 casper-client put-deploy \
     --node-address http://65.21.235.219:7777 \
@@ -314,24 +329,7 @@ casper-client put-deploy \
     --session-version 1
 ```      
 
-:::note
-
-    You should have previously created the contract by using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html), and provided the contract package name as the `hash_name` argument of `new_contract`.
-
-    This example code stores the "contract_package_name" into a NamedKey, which you can reference once you install the contract in global state.
-
-    ```rust
-        let (stored_contract_hash, contract_version) =
-            storage::new_contract(counter_entry_points, 
-                Some(counter_named_keys), 
-                Some("counter_package_name".to_string()),
-                Some("counter_access_uref".to_string())
-        );
-    ```
-
-:::
-
-**Example 2 - Invoking the package name without specifying the version:**
+**Example 2 - Calling the package without specifying the version:**
 
 This example demonstrates how to call a contract that is part of the `erc20_test_call` package using runtime arguments. The call invokes the "check_balance_of" entry point and defaults to the highest enabled version since no version was specified.
 
