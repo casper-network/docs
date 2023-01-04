@@ -100,7 +100,7 @@ pub extern "C" fn call() {
 }
 ```
 
-Another system function is [transfer_to_public_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_public_key.html) and the full session code example is on [GitHub](https://github.com/casper-network/casper-node/blob/67c9c9bb84fdfc3f2d12103e25f0058104342bc0/smart_contracts/contracts/client/transfer-to-public-key/src/main.rs#L16).
+Another system function is [transfer_to_public_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_public_key.html). The full session code example is on [GitHub](https://github.com/casper-network/casper-node/blob/67c9c9bb84fdfc3f2d12103e25f0058104342bc0/smart_contracts/contracts/client/transfer-to-public-key/src/main.rs#L16).
 
 ```rust
 #[no_mangle]
@@ -111,7 +111,7 @@ pub extern "C" fn call() {
 }
 ```
 
-A few other transfer functions are available here:
+Other transfer functions are available here:
 
 - [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html)
 - [transfer_from_purse_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_account.html)
