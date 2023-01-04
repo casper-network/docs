@@ -65,6 +65,5 @@ Navigate to these pages for step-by-step tutorials on how to delegate and undele
 - [Delegating tokens using a block explorer](/workflow/delegate-ui)
 - [Delegating with Ledger devices](/workflow/staking-ledger/)
 - [Delegating with the Casper client](/workflow/delegate.md)
-- [Re-delegating with the Casper client to a new validator](/workflow/redelegate.md)
 - [Undelegating tokens using a block explorer](/workflow/undelegate-ui)
 

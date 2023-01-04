@@ -6,9 +6,14 @@ This section explains how to fulfill the prerequisites needed to interact with a
 
 This section covers:
 
-1. Installing the official Casper command-line client
-2. Setting up an account on a Casper Network
-3. Acquiring the IP address of a peer on the official Testnet or Mainnet  
+1. Setting up a Rust development environment
+2. Installing the official Casper command-line client
+3. Setting up an account on a Casper Network
+4. Acquiring the IP address of a peer on the official Testnet or Mainnet  
+
+## Installing Rust {#installing-rust}
+
+On the Casper platform, developers may write smart contracts in any language that compiles to Wasm. These How To guides focus on code examples that use Rust and a Rust client to interact with a Casper network. While following these guides, we recommend setting up Rust and installing all dependencies. For step-by-step instructions, visit [Getting Started with Rust](/dapp-dev-guide/writing-contracts/getting-started).
 
 ## Casper Command-line Client {#the-casper-command-line-client}
 

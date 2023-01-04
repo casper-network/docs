@@ -1,29 +1,42 @@
 # Delegating with the Casper Client
 
-This document details a workflow where an account holder on the Casper Network can delegate their tokens to a validator on a Casper Network.
+This document details a workflow where an account holder on a Casper network can delegate tokens to a validator.
 
-This workflow assumes:
+## Prerequisites
 
-1.  You meet the [prerequisites](setup.md)
-2.  You are using the Casper command-line client
-3.  You have the public key of a validator on a Casper Network
-4.  You have the delegation contract or Wasm to execute on the network
-5.  You have a valid `node-address`
-6.  You have previously [deployed a smart contract](/dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper Network
+1. You meet all prerequisites listed [here](setup.md), including having a valid `node-address` and the Casper command-line client
+2. You have previously [deployed a smart contract](/dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper network
 
-## Building The Delegation Wasm {#building-the-delegation-wasm}
+The workflow will take you through two additional prerequisites before sending the [delegation request](/workflow/delegate/#sending-the-delegation-request):
 
-Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository and building the contracts.
+3. Building the delegation Wasm to execute on the network
+4. Getting the public key of a validator on the network
 
-To build contracts, set up Rust, and install all dependencies. Visit [Setting up Rust](/dapp-dev-guide/writing-contracts/getting-started.md) in the Developer Guide for step-by-step instructions.
+### Building The Delegation Wasm {#building-the-delegation-wasm}
 
-Once you build the contracts, you can use the `delegate.wasm` to create a deploy that will initiate the delegation process. The Wasm can be found in:
+Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository.
 
-    target/wasm32-unknown-unknown/release
+```bash
+git clone https://github.com/casper-network/casper-node
+```
 
-## Acquiring a Validator's Public Key {#acquiring-a-validators-public-key}
+Prepare the Rust environment and then build the contracts using the [Makefile](https://github.com/casper-network/casper-node/blob/dev/Makefile) provided in the repository.
 
-The official Testnet and Mainnet provide a browser-based block explorer to look up the list of validators within their respective networks:
+```bash
+cd casper-node
+make setup-rs
+make build-contracts-rs
+```
+
+Once you build the contracts, you can use the `delegate.wasm` to create a deploy that will initiate the delegation process. The Wasm can be found in this directory: `target/wasm32-unknown-unknown/release/`.
+
+```bash
+ls target/wasm32-unknown-unknown/release/delegate.wasm
+```
+
+### Acquiring a Validator's Public Key {#acquiring-a-validators-public-key}
+
+The official Casper Testnet and Mainnet provide a browser-based block explorer to look up the list of validators:
 
 1.  [Validators on Mainnet](https://cspr.live/validators)
 2.  [Validators on Testnet](https://testnet.cspr.live/validators)
@@ -32,28 +45,26 @@ You will see a list of validators present on the network and their total stake (
 
 You can click on any validator listed to see more information about the validator, including the validator's personal stake.
 
-Each validator will show the delegation rate (commission); this represents the percentage of **your** reward share that the validator will retain. Thus, a 10% rate implies that the validator will retain 10% of your reward share. As a prospective delegator, selecting a validating node that you can trust and offers a favorable delegation rate is essential. Please do your due diligence before you stake your tokens with a validator.
+As a prospective delegator, selecting a trustworthy validator with a favorable rate is essential. Each validator shows the delegation rate (commission), which represents the percentage of **your** reward share that the validator will retain. Thus, a 10% rate implies that the validator will retain 10% of your reward share. Please do your due diligence before staking your tokens with a validator.
 
 Note the `PublicKey` of the validator you have selected to delegate your tokens.
 
-If you observe your delegation request in the bid structure but do not see the associated validator key in the `era_validators` structure, the validator you selected is not part of the current validator set. In this event, your tokens will not be earning rewards unless you un-delegate, wait through the unbonding period, and re-delegate to another validator.
+Suppose you observe your delegation request in the bid structure but do not see the associated validator key in the `era_validators` structure. In that case, the validator you selected is not part of the current validator set. In this event, your tokens will only be earning rewards if you un-delegate, wait through the unbonding period, and re-delegate to another validator.
 
-Additionally, any rewards earned are re-delegated by default to the validator from the initial delegation request. Therefore at the time of un-delegation, you may want to un-delegate the initial amount plus any additional rewards earned through the delegation process.
+Additionally, any rewards earned are re-delegated by default to the validator from the initial delegation request. Therefore at the time of un-delegation, you should consider un-delegating the initial amount plus any additional rewards earned through the delegation process.
 
-The active validator set is constantly rotating; therefore, when delegating to a validator, remember that the validator you selected may have been rotated out of the set.
+The active validator set constantly rotates; therefore, when delegating to a validator, remember that the validator you selected may have been rotated out of the set.
 
-## Executing the Delegation Request {#executing-the-delegation-request}
+## Sending the Delegation Request {#sending-the-delegation-request}
 
-We recommend first testing the following steps on our official Testnet before performing these steps in a live environment like the Casper Mainnet.
+We recommend testing the following steps on the official Testnet before performing them in a live environment like the Casper Mainnet.
 
-### Sending the Delegation Deploy {#sending-the-delegation-deploy}
+In this example, we use the Casper client to send a deploy containing the `delegate.wasm` to the network to initiate the delegation process.
 
-Send a deploy containing the `delegate.wasm` to the network to initiate the delegation process. Here is an example deployment of the delegation request:
-
-```bash
+```rust
 casper-client put-deploy \
---node-address http://<peer-ip-address>:7777/rpc \
---chain-name casper \
+--node-address http://<peer-ip-address>:7777 \
+--chain-name casper-test \
 --session-path <path-to-wasm>/delegate.wasm \
 --payment-amount 5000000000 \
 --session-arg "validator:public_key='<hex-encoded-validator-public-key>'" \
@@ -62,22 +73,22 @@ casper-client put-deploy \
 --secret-key <delegator-secret-key>.pem
 ```
 
-**Note** The delegator's public key and the secret key that signs the deploy must be part of the same key pair.
+**Note** The delegator's public key and the secret key that signs the deploy must be part of the same account key pair.
 
 **Request fields:**
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
--   `secret-key` - Path to secret key file
+-   `secret-key` - Path to the secret key file
 
 -   `chain-name` - Name of the chain, to avoid the deploy from being accidentally or maliciously included in a different chain
 
-    -   The _chain-name_ for testnet is **casper-test**
-    -   The _chain-name_ for mainnet is **casper**
+    -   The _chain-name_ for Testnet is **casper-test**
+    -   The _chain-name_ for Mainnet is **casper**
 
 -   `session-path` - The path to where the `delegate.wasm` is located
 
--   `session-arg` - The arguments to the `delegate` execution
+-   `session-arg` - The arguments to the `delegate` request
 
     -   The argument `validator` is the public key of the validator to whom the tokens will be delegated
     -   The argument `amount` is the number of tokens to be delegated
@@ -93,27 +104,27 @@ Refer to the [Deploy Status](querying.md#deploy-status) section to learn how to 
 
 ### Confirming the Delegation {#confirming-the-delegation}
 
-A Casper Network maintains an _auction_ where validators _bid_ on slots to become part of the active validator set. Delegation rewards are only earned for a validator who has won the auction and is part of the active set. Thus to ensure the delegated tokens can earn rewards, we must first check that:
+A Casper network maintains an _auction_ where validators _bid_ on slots to become part of the active validator set. Delegation rewards are only earned for a validator who has won the auction and is part of the active set. Thus to ensure the delegated tokens can earn rewards, we must first check that:
 
 1.  Our delegation is part of the _bid_ to the _auction_
 2.  The validator is part of the _active_ validator set
 
-Once the deploy has been executed, we can query the auction for information to confirm our delegation. We can use the Casper command-line client to create an RPC request with the following query:
+Once the deploy has been processed, we can query the auction for information to confirm our delegation. We can use the Casper command-line client to create an RPC request with the following query:
 
 ```bash
 casper-client get-auction-info \
---node-address http://<peer-ip-address>:7777/rpc
+--node-address http://<peer-ip-address>:7777
 ```
 
 **Request fields**:
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
 The `get-auction-info` call will return all the bids currently in the auction contract and the list of active validators for `4` future eras from the present era.
 
 Below is a sample output:
 
-```bash
+```json
 "bids": [
 {
   "bid": {
@@ -140,22 +151,22 @@ Below is a sample output:
 },
 ```
 
-If your public key and associated amount appear in the `bid` data structure, this means that the delegation request has been processed successfully. However, this does not mean the associated validator is part of the validator set, so you need to check the validator status.
+The delegation request has been processed successfully if your public key and associated amount appear in the `bid` data structure. However, this does not mean the associated validator is part of the validator set, so you must check the validator status.
 
 ### Checking Validator Status {#checking-validator-status}
 
-The auction maintains a field called `era_validators`, which contains the validator information for 4 future eras from the current era. An entry for a specific era lists the `PublicKeys` of the active validators for that era along with their stake in the network.
+The auction maintains a field called `era_validators`, which contains the validator information for 4 future eras from the current era. An entry for a specific era lists the `PublicKeys` of the active validators for that era, along with their stake in the network.
 
-If a validator is part of the set, its public key will be present in the `era_validators` field as part of the `Auction` data structure. We can use the Casper command-line client to create an RPC request to obtain auction information and assert that the selected validator is part of the active validator set.
+If a validator is part of the set, its public key will be in the `era_validators` field as part of the `Auction` data structure. We can use the Casper command-line client to create an RPC request to obtain auction information and assert that the selected validator is part of the active validator set.
 
 ```bash
 casper-client get-auction-info \
---node-address http://<peer-ip-address>:7777/rpc
+--node-address http://<peer-ip-address>:7777
 ```
 
 **Request fields**:
 
--   `node-address` - <HOST:PORT> Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
 **Important Response fields**:
 
@@ -163,7 +174,7 @@ In the response, check the `"auction_state"."era_validators"` structure, which s
 
 Below is an example of the `era_validators` structure:
 
-```bash
+```json
 "block_height":105,
      "era_validators":[
         {
