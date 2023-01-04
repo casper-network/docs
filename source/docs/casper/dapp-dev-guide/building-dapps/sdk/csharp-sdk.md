@@ -49,7 +49,7 @@ namespace Casper.NET.SDK.Examples
     {
         public static async Task Main(string[] args)
         {
-            string nodeAddress = "http://testnet-node.make.services:7777/rpc";
+            string nodeAddress = "http://testnet-node.make.services:7777";
 
             var hex = "0203914289b334f57366541099a52156b149436fdb0422b3c48fe4115d0578abf690";
             var publicKey = PublicKey.FromHexString(hex);
