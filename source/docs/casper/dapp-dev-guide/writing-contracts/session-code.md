@@ -85,9 +85,7 @@ The `call` function interacts with the contract's `counter_inc` and `counter_get
 
 ## Example 3: Transfers using Session Code {#transfers-using-session-code}
 
-In this example, we use session code to perform a transfer using the [transfer_from_purse_to_purse](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_purse.html) system function. This function calls the system `Mint` contract under the hood. Because the `Mint` Wasm is available for use, we sometimes call such transfers "Wasm-based transfers".
-
-The entire session code is available in [GitHub](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/bench/transfer-to-purse/src/main.rs), but this is its `call` function:
+In this example, we use session code to perform a transfer using the [transfer_from_purse_to_purse](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_purse.html) system function. The entire session code is available in [GitHub](https://github.com/casper-network/casper-node/blob/67c9c9bb84fdfc3f2d12103e25f0058104342bc0/smart_contracts/contracts/bench/transfer-to-purse/src/main.rs#L14), but this is the `call` function:
 
 ```rust
 #[no_mangle]
@@ -101,6 +99,24 @@ pub extern "C" fn call() {
         .unwrap_or_revert();
 }
 ```
+
+Another system function is [transfer_to_public_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_public_key.html) and the full session code example is on [GitHub](https://github.com/casper-network/casper-node/blob/67c9c9bb84fdfc3f2d12103e25f0058104342bc0/smart_contracts/contracts/client/transfer-to-public-key/src/main.rs#L16).
+
+```rust
+#[no_mangle]
+pub extern "C" fn call() {
+    let account_hash: PublicKey = runtime::get_named_arg(ARG_TARGET);
+    let transfer_amount: U512 = runtime::get_named_arg(ARG_AMOUNT);
+    system::transfer_to_public_key(account_hash, transfer_amount, None).unwrap_or_revert();
+}
+```
+
+A few other transfer functions are available here:
+
+- [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html)
+- [transfer_from_purse_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_account.html)
+- [transfer_from_purse_to_public_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_public_key.html)
+
 
 ## Compiling Session Code {#compiling-session-code}
 
