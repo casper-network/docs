@@ -34,6 +34,14 @@ Dictionaries allow a contract to store additional data without drastically expan
 
 A dictionary item key can be no longer than 64 bytes in length. 
 
+## Practical Dictionary Examples
+
+The [Casper CEP-78 Enhanced NFT Standard](https://github.com/casper-ecosystem/cep-78-enhanced-nft) includes several practical applications of dictionaries.
+
+Simple examples for dictionary use within CEP-78 include the [`BURNT_TOKEN`](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/contract/src/main.rs#L669) dictionary, which keeps a running list of all tokens within the collection that have been burnt.
+
+More advanced dictionary functionality can be found in the [CEP-78 Page System](https://github.com/casper-ecosystem/cep-78-enhanced-nft#the-cep-78-page-system), which uses a series of dictionaries to keep track of token ownership. These dictionaries form the basis of the reverse lookup mode, which allows users to easily view a list of owned tokens by account or contract.
+
 ## Creating Dictionaries in a Contract's Context
 
 The following code snippet shows the most basic example of creating a dictionary. 
