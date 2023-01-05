@@ -2,28 +2,29 @@
 
 ## Prerequisite
 
-You need to ensure the following prerequisites are met, before verifying a transfer:
+Before verifying a transfer, make sure you have:
+1. Initiated a [Direct Transfer](transfer-workflow.md) or [Multi-sig Deploy Transfer](deploy-transfer.md)
+2. The *deploy_hash* of the transfer you want to verify
+3. The *public key* hex for the source and target accounts
 
-1.  Set up your machine as per the [prerequisites](setup.md)
-2.  Use the Casper [command-line client](/workflow/setup#the-casper-command-line-client)
-3.  Initiate a transfer using [Direct Transfer](transfer-workflow.md) or [Multi-sig Deploy Transfer](deploy-transfer.md)
-4.  Get the *public key* hex for the source and target accounts
-5.  Get the *deploy_hash* of the transfer you want to verify
 
 ## State State Root Hash
 
-The state root hash is an identifier of the current network state. It gives a snapshot of the blockchain state at a moment in time. You can use the state-root-hash to query the network state after deployments. 
+The state root hash is an identifier of the current network state. It gives a snapshot of the blockchain state at a moment in time. You can use the state root hash to query the network state after deployments. 
 
 ```
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
-**Note**
 
->   After any deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you will be looking at events in the past.
+:::note
+
+After any deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you will be looking at events in the past.
+
+:::
 
 ## Query the Source Account {#query-the-source-account}
 
-Next, we will query for information about the _Source_ account, using the `state-root-hash` of the block containing our transfer and the public key of the _Target_ account.
+Here, we will query for information about the _Source_ account using the `state-root-hash` of the block containing the transfer and the public key of the _Target_ account.
 
 ```bash
 casper-client query-global-state \
@@ -36,13 +37,13 @@ casper-client query-global-state \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
--   `state-root-hash` - Hex-encoded hash of the state root
+-   `node-address` - An IP address of a node on the network
+-   `state-root-hash` - Hex-encoded hash of the network state
 -   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash or deploy-info hash.
 
 **Important response fields:**
 
--   `"result"."stored_value"."Account"."main_purse"` - the address of the main purse containing the sender's tokens. This purse is the source of the tokens transferred in this example
+-   `"result"."stored_value"."Account"."main_purse"` - the address of the main purse containing the sender's tokens. In this example, this purse is the source of the tokens transferred
 
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
@@ -109,7 +110,7 @@ casper-client query-global-state \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
 -   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash, or deploy-info hash.
 
@@ -165,9 +166,9 @@ casper-client query-global-state \
 
 ## Get Source Account Balance {#get-source-account-balance}
 
-All accounts on a Casper system have a purse associated with the Casper system mint, which we call the _main purse_. The balance associated with a given purse is recorded in the global state, and the value can be queried using the `URef` associated with the purse.
+All accounts on a Casper network have a purse associated with the Casper system mint, which we call the _main purse_. The balance associated with a given purse is recorded in global state, and the value can be queried using the `URef` associated with the purse.
 
-Now that we have the source purse address, we can get its balance using the `get-balance` command:
+Now that we have the source purse address, we can verify its balance using the `get-balance` command:
 
 ```bash
 casper-client get-balance \
@@ -180,7 +181,7 @@ casper-client get-balance \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
 -   `purse-uref` - The URef under which the purse is stored. This must be a properly formatted URef "uref-\-"
 
@@ -232,7 +233,7 @@ casper-client get-balance \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
 -   `purse-uref` - The URef under which the purse is stored. This must be a properly formatted URef "uref-\-"
 
@@ -286,7 +287,7 @@ casper-client query-global-state \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
 -   `key` - The base key for the query. This must be a properly formatted transfer address; "transfer-"
 
@@ -335,4 +336,4 @@ casper-client query-global-state \
 
 </details>
 
-The query responds with more information about the transfer we conducted: its deploy hash, the account which executed the transfer, the source, and target purses, and the target account. Using this additional information, we can verify that our transfer was executed successfully.
+The query responds with more information about the transfer we conducted: its deploy hash, the account which executed the transfer, the source and target purses, and the target account. We can verify that our transfer was processed successfully using this additional information.
