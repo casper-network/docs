@@ -24,12 +24,6 @@ Developers should always consider context when creating dictionaries. We recomme
 
 While you can create a dictionary in the context of an Account and then pass associated access rights to a Contract, this approach can create potential security issues. If a third party uses the Contract, the initiating Account with access rights to the dictionary may be undesirable. To rectify this, you may send an additional `Deploy` removing those access rights, but it is better to create the dictionary within the context of the Contract.
 
-:::note
-
-Creating dictionaries in the context of an Account represents a potential security risk. We suggest that you do not create dictionaries in your Account's context.
-
-:::
-
 Dictionaries allow a contract to store additional data without drastically expanding the size of the `NamedKeys` within their context. If a contract's `NamedKeys` expand too far, they may run into system limitations that would unintentionally disable the contract's functionality.
 
 A dictionary item key can be no longer than 64 bytes in length. 
@@ -38,7 +32,7 @@ A dictionary item key can be no longer than 64 bytes in length.
 
 The [Casper CEP-78 Enhanced NFT Standard](https://github.com/casper-ecosystem/cep-78-enhanced-nft) includes several practical applications of dictionaries.
 
-Simple examples for dictionary use within CEP-78 include the [`BURNT_TOKEN`](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/contract/src/main.rs#L669) dictionary, which keeps a running list of all tokens within the collection that have been burnt.
+Simple examples for dictionary use within CEP-78 include the [`approve`](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/contract/src/main.rs#L772) dictionary.
 
 More advanced dictionary functionality can be found in the [CEP-78 Page System](https://github.com/casper-ecosystem/cep-78-enhanced-nft#the-cep-78-page-system), which uses a series of dictionaries to keep track of token ownership. These dictionaries form the basis of the reverse lookup mode, which allows users to easily view a list of owned tokens by account or contract.
 
