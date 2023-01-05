@@ -6,6 +6,8 @@ Individual value changes to data stored within the NamedKeys would require deser
 
 As a solution to this problem, the Casper platform provides the `Dictionary` feature, which allows users a more efficient and scalable means to aggregate data over time.
 
+In almost all cases, dictionaries are the better form of data storage. They allow greater flexibility in altering stored data at a lower cost.
+
 ## Seed URefs
 
 Items within a dictionary exist as individual records stored underneath their unique [dictionary address](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](/design/casper-design.md/#uref-head) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
@@ -25,6 +27,14 @@ While you can create a dictionary in the context of an Account and then pass ass
 Dictionaries allow a contract to store additional data without drastically expanding the size of the `NamedKeys` within their context. If a contract's `NamedKeys` expand too far, they may run into system limitations that would unintentionally disable the contract's functionality.
 
 A dictionary item key can be no longer than 64 bytes in length. 
+
+## Practical Dictionary Examples
+
+The [Casper CEP-78 Enhanced NFT Standard](https://github.com/casper-ecosystem/cep-78-enhanced-nft) includes several practical applications of dictionaries.
+
+Simple examples for dictionary use within CEP-78 include the [`approve`](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/contract/src/main.rs#L772) dictionary.
+
+More advanced dictionary functionality can be found in the [CEP-78 Page System](https://github.com/casper-ecosystem/cep-78-enhanced-nft#the-cep-78-page-system), which uses a series of dictionaries to keep track of token ownership. These dictionaries form the basis of the reverse lookup mode, which allows users to easily view a list of owned tokens by account or contract.
 
 ## Creating Dictionaries in a Contract's Context
 
