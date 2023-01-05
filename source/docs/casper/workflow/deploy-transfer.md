@@ -2,8 +2,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Transferring Tokens using a Multi-sig Deploy
 
-This topic explores using a deploy file to transfer Casper tokens (CSPR) between accounts on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command. To understand multi-signature deploys, see also [Two-Party Multi-Signature Deploys](two-party-multi-sig.md).
-
+This topic explores using a deploy file to transfer Casper tokens (CSPR) between accounts on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
 ## Prerequisites
 
 You must ensure the following prerequisites are met, before using the deploy commands.
@@ -12,8 +11,9 @@ You must ensure the following prerequisites are met, before using the deploy com
     - A funded [account](/workflow/setup/#setting-up-an-account) on Testnet or Mainnet
     - A a valid _node address_ from the [Testnet peers](https://testnet.cspr.live/tools/peers) or [Mainnet peers](https://cspr.live/tools/peers)
     - The Casper [command-line client](/workflow/setup#the-casper-command-line-client)
-2. Get the path of the funded account's _secret key_ file
-3. Get the path of a target account's _public key_ hex file
+2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](two-party-multi-sig.md) workflow
+3. Get the path of the source account's _secret key_ file
+4. Get the path of a target account's _public key_ hex file
 
 ## Token Transfer Workflow
 
@@ -236,7 +236,7 @@ casper-client send-deploy --input transfer2.deploy --node-address http://65.21.2
 Make a note of the *deploy_hash* from the `send-deploy` command output to verify the status of the deploy.
 
 <details>
-<summary>Sample output of the send-deploy command</summary>
+<summary>Successful output of the send-deploy command</summary>
 
 ```json
 {
@@ -250,6 +250,21 @@ Make a note of the *deploy_hash* from the `send-deploy` command output to verify
 ```
 
 </details>
+
+If you get an account authorization error, you must set up the source account to allow multi-signature deploys using session code. The [Two-Party Multi-Signature Deploys](two-party-multi-sig.md) workflow is an example of how to accomplish this.
+
+<details>
+<summary>Example of an account authorization error</summary>
+
+```json
+{
+  "code": -32008,
+  "message": "deploy parameter failure: account authorization invalid at prestate_hash: 5f0392de8ac3512a48a110acfc5bc10d4a6a07109b350ae14cbec0428656c8ac"
+}
+```
+
+</details>
+
 
 ## Verifying the Transfer
 
