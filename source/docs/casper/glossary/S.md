@@ -20,7 +20,7 @@ The reward mechanism by which validators are rewarded for participating in conse
 
 ## Session code {#session-code}
 
-The _session code_ is a field contained in a deployment directive. The _session code_ contains the code the user wishes to execute against the blockchain. When the session code executes, it performs a transaction.
+_Session code_ is Wasm executed in the context of an account through sending a [Deploy](/glossary/D/#deploy). The _session code_ contains code the user wishes to execute against the blockchain. When the session code executes, it performs a transaction.
 
 ## Slashing {#slashing}
 
@@ -57,3 +57,7 @@ Stateful execution depends on a previous state, which makes the output differ ea
 ## Stateless {#stateless}
 
 Stateless means that the execution doesn't depend on a previous state, so the output of the execution is the same each time. It does not save or reference information about previous executions. Each execution is from scratch as if for the first time.
+
+## Switch Block {#switch-block}
+
+A `Switch Block` is the final block in an era, which contains the `era_summary`. See also [booking block](/glossary/B/#booking-block).

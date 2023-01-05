@@ -55,3 +55,6 @@ The block proposed by the leader, which the consensus processes (in [highway](H.
 
 A leader is selected from the validator set of that era for each round. The chance of getting selected as a leader is in proportion to the stake one has in that era.
 
+## Purse {#purse}
+
+A `purse` is a unique type of [URef](/glossary/U/#uref) representing a token balance. An account's *main purse* represents the balance of CSPR tokens (in [motes](/glossary/m/#motes)) that account has access to on a Casper network. An account may have more than one purse in some instances. More information on purses can be found [here](/design/casper-design/#urefs-and-purses).

@@ -12,7 +12,7 @@ Cargo is Rust's build system and package manager. This tool manages Rust project
 
 ## Casper network {#casper-network}
 
-The Casper network is a Proof-of-Stake blockchain that allows validators to stake the Casper native token CSPR on the network. Validators receive CSPR as an incentive for continuing to maintain and secure the network. CSPR rewards are distributed as blocks are validated into existence and organized into eras.
+The Casper network Mainnet is a Proof-of-Stake blockchain that allows validators to stake the Casper native token CSPR on the network. Validators receive CSPR as an incentive for continuing to maintain and secure the network. CSPR rewards are distributed as blocks are validated into existence and organized into eras.
 
 ## CBC {#cbc}
 

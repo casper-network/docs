@@ -8,7 +8,7 @@
 
 ## dApp {#dapp}
 
-A distributed application (dApp) is a set of [smart contracts](S.md#smart-contract).
+A decentralized application (dApp) is a set of [smart contracts](S.md#smart-contract).
 
 ## Delegation rate {#delegation-rate}
 
@@ -20,8 +20,14 @@ Delegators are users who participate in the platform's security by delegating th
 
 ## Deploy {#deploy}
 
-Deploys are state-changing instructions issued by a smart contract. The instructions are encrypted and include transferring tokens from one wallet to another, rewarding node validation, or adding smart contracts on the blockchain.
+Deploys are state-changing instructions sent to global state through the use of [session code](/glossary/S/#session-code). The instructions are encrypted and include transferring tokens from one wallet to another, rewarding node validation, or sending [Wasm](/glossary/W/#webassembly) to be executed.
 
 All deploys on the Casper Network can be broadly categorized as some unit of work that, when executed and committed, affects change to the [global state](G.md#global-state).
 
 Review the [deploy data structure](../design/serialization-standard.md#deploy) and the [deploy implementation](https://github.com/casper-network/casper-node/blob/master/node/src/types/deploy.rs#L475) for more details.
+
+## Dictionary {#dictionary}
+
+A `Dictionary` is a method of data storage on a Casper network. Dictionaries represent a more efficient and scalable form of data storage when compared against `NamedKeys`.
+
+More information can be found in the [Reading and Writing to Dictionaries](/dapp-dev-guide/writing-contracts/dictionaries/) document.

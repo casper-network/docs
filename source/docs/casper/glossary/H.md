@@ -6,6 +6,10 @@
 
 ---
 
+## Hash {#hash}
+
+A cryptographic function that creates a fixed-length output from input of any length. Casper networks use the [blake2b](/glossary/B/#blake2b) function.
+
 ## Highway {#highway}
 
 A consensus protocol that allows clients to use different confidence thresholds to convince themselves that a given block is _finalized_. The full paper is found in GitHub: <https://github.com/casper-network/highway>.
