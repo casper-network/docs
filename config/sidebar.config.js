@@ -5,7 +5,6 @@ module.exports = {
         "workflow/delegate-ui",
         "workflow/undelegate-ui",
         "workflow/ledger-setup",
-        "workflow/signer-guide",
         "workflow/token-transfer",
         "workflow/funding-from-exchanges",
         "workflow/testnet-faucet",
