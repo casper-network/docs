@@ -6,7 +6,7 @@ Individual value changes to data stored within the NamedKeys would require deser
 
 As a solution to this problem, the Casper platform provides the `Dictionary` feature, which allows users a more efficient and scalable means to aggregate data over time.
 
-In almost all cases, dictionaries are the better form of data storage. They allow greater flexibility in altering stored data at a lower cost. `NamedKeys` should be used mostly for access rights purposes.
+In almost all cases, dictionaries are the better form of data storage. They allow greater flexibility in altering stored data at a lower cost.
 
 ## Seed URefs
 
