@@ -12,7 +12,7 @@ You can use a block explorer on the Casper Network to view the blockchain statis
 
 You can also transfer CSPR tokens, delegate stake or undelegate stake using a block explorer. To perform these actions, you must sign in to your CSPR wallet using the Casper Signer. The following topics link you to detailed instructions on using a block explorer to access and work with your CSPR tokens:
 
-- Learn how to access your CSPR wallet using the [Signer guide](signer-guide.md)
+- Learn how to access your CSPR wallet using the [Signer guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
 - Understand the process of transferring CSPR tokens from [Transferring Tokens using a Block Explorer](token-transfer.md)
 - Explore the concepts and the process of staking, delegating and undelegating CSPR tokens using the [Delegation](delegate-ui.md) and [Undelegation](undelegate-ui.md) pages
 

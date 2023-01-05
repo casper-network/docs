@@ -207,4 +207,4 @@ With the Signer connected to the website, it is possible to sign a transaction. 
 
 * The [Vita JavaScript guide](https://vitejs.dev/guide/)
 * The [Casper Java SDK](https://github.com/casper-ecosystem/casper-js-sdk)  source code
-* The [Casper Signer user guide](/workflow/signer-guide.md)
+* The [Casper Signer user guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
