@@ -8,7 +8,7 @@ You can use the direct method to transfer tokens when you have an account with a
 
 **Transferring Tokens using Multi-sig Deploy**
 
-When the account used to initiate the transfer has multiple associated keys that need to sign the deploy, you can use a multi-sig deploy transfer. To use a multi-sig deploy transfer, see [Transferring Tokens using Multi-sig Account](deploy-transfer.md). To setup the account's associated keys, see the [Two-Party Multi-Signature Deploys](two-party-multi-sig.md) workflow.
+When the account used to initiate the transfer has multiple associated keys that need to sign the deploy, you can use a multi-sig deploy transfer. To set up the account's associated keys, see the [Two-Party Multi-Signature Deploys](two-party-multi-sig.md) workflow. To use a multi-sig deploy transfer, see [Transferring Tokens using Multi-sig Account](deploy-transfer.md).
 
 **Verifying a Transfer using the Command-line Client**
 
