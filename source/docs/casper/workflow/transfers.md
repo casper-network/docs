@@ -12,5 +12,5 @@ When the account used to initiate the transfer has multiple associated keys that
 
 **Verifying a Transfer using the Command-line Client**
 
-Once you have transferred the tokens, you might want to verify that the transfer was successful. To verify the status of the transfer, see [Verifying a Transfer](verify-transfer.md)
+To verify the status of a transfer, see [Verifying a Transfer](verify-transfer.md)
 
