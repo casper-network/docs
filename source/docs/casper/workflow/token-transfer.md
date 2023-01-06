@@ -7,7 +7,7 @@ You can transfer Casper tokens (CSPR) using any [block explorer](../block-explor
 ## Transferring Tokens 
 
 To transfer tokens, follow these steps:
-1. Sign in to your account with the Signer. For detailed instructions, see the [Signer Guide](signer-guide.md).
+1. Sign in to your account with the Signer. For detailed instructions, see the [Signer Guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html).
 2. Click **Wallet** on the top menu bar and select **Transfer CSPR** from the drop-down menu. 
 3. Enter the recipient’s wallet address, the amount you wish to transfer, and an optional Transfer ID for reference. 
     If you do not provide an ID, the system will auto-generate one.
@@ -32,10 +32,11 @@ To transfer tokens, follow these steps:
     -   Signing key which approves the transaction
     -   Your public key
     -   Recipient's account hash
+
 8. Click **Sign with Casper Signer** at the bottom of the window to complete the transaction. 
     You completed the transaction, and successfully transferred tokens.
 
     <img src={useBaseUrl("/image/workflow/transfer-confirm.png")} width="500" />
 
-9.  Next, you can view your CSPR balance, for more information, see the [Viewing Account Details](../signer-guide/#6-viewing-account-details).
+9.  Next, view the CSPR balance in your account.
 
