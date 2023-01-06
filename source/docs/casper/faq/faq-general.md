@@ -15,7 +15,7 @@ Store the <em>account-hash</em> to query and monitor the account. Customers do n
 
 You must ensure the following prerequisites are met before you can generate an account hash:
 
-1.  Set up your machine as per the [prerequisites](setup.md)
+1.  Set up your machine as per the [prerequisites](/workflow/setup.md)
 2.  Get a _public key_ hex
 3.  Use the Casper [command-line client](/workflow/setup#the-casper-command-line-client)
 
