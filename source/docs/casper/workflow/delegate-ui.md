@@ -10,7 +10,7 @@ Casper and other Proof-of-Stake protocols allow token holders to earn rewards an
 
 ## Prerequisites
 
-1. To stake tokens with a validator, you need access to a wallet with CSPR tokens. One option is the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce), and you can follow [the Signer Guide](/workflow/signer-guide) for more details. 
+1. To stake tokens with a validator, you need access to a wallet with CSPR tokens. One option is the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce), and you can follow [the Signer Guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html) for more details. 
 2. You may need to [fund the account](/workflow/funding-from-exchanges) you wish to use for delegating tokens.
 3. Connect to a block explorer to set up the delegation. This guide uses [cspr.live](https://cspr.live/) and the Casper Signer.
 4. [Review your account](#account-review) before starting the process.

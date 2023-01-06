@@ -97,7 +97,7 @@ This option is available on networks that have a block explorer.
 
 For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
 
-Start by creating an account using the [Casper Signer](../workflow/signer-guide.md) and download the secret key when prompted. You can choose the key type when creating your account.
+Start by creating an account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html) and download the secret key when prompted. You can choose the key type when creating your account.
 
 ## Funding your Account
 

@@ -123,7 +123,7 @@ This option is available on networks that have a block explorer.
 
 For instance, on the official Testnet network, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
 
-Start by creating an account using the [Casper Signer](../workflow/signer-guide.md). The Signer will prompt you to download the secret key of your new account by clicking on the `Download` option. The Signer will download the secret key in a file ending in `secret_key.cer`. We recommend securely storing this file. Note that the account is not stored on chain.
+Start by creating an account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html). The Signer will prompt you to download the secret key of your new account by clicking on the `Download` option. The Signer will download the secret key in a file ending in `secret_key.cer`. We recommend securely storing this file. Note that the account is not stored on chain.
 
 <img src={useBaseUrl("/image/workflow/download-prompt.png")} alt="Signer Secret Key Download Prompt" width="200" />
 
