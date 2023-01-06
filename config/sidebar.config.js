@@ -13,7 +13,6 @@ module.exports = {
         "workflow/staging-files-for-new-network",
         "workflow/setup",
         "workflow/querying",
-        "workflow/account-hash",
         "workflow/two-party-multi-sig",
         {
             type: "category",
