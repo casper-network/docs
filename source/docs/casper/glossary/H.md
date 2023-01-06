@@ -8,7 +8,7 @@
 
 ## Hash {#hash}
 
-A cryptographic function that creates a fixed-length output from input of any length. Casper networks use the [blake2b](/glossary/B/#blake2b) function.
+A hash is the output of a cryptographic function that creates a fixed-length output from an input of any length. Casper networks use the [blake2b](/glossary/B/#blake2b) function.
 
 ## Highway {#highway}
 

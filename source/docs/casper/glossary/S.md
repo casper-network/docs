@@ -20,7 +20,7 @@ The reward mechanism by which validators are rewarded for participating in conse
 
 ## Session code {#session-code}
 
-_Session code_ is Wasm executed in the context of an account through sending a [Deploy](/glossary/D/#deploy). The _session code_ contains code the user wishes to execute against the blockchain. When the session code executes, it performs a transaction.
+_Session code_ is Wasm executed in the context of an account through sending a [Deploy](/glossary/D/#deploy). The _session code_ contains code the user wishes to execute against the blockchain. When the session code executes, it performs changes to global state.
 
 ## Slashing {#slashing}
 

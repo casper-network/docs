@@ -8,11 +8,11 @@
 
 ## Account {#account}
 
-An Account is a structure that represents a user on a Casper network. An account will be automatically created when an existing account transfers tokens to an unused [`PublicKey`](/glossary/K/#key).
+An Account is a structure that represents a user on a Casper network. Information on creating an account can be found [here](/design/casper-design/#accounts-head).
 
 ## Account Hash {#account-hash}
 
-See [Account Hash](/workflow/account-hash/).
+The account hash is a 32-byte hash of the public key and it represents the address of the user account. It is the identifier of the account inside a smart contract. Information on generating an account hash can be found [here](/faq/faq-general/#accounts).
 
 ## AssemblyScript {#assemblyscript}
 

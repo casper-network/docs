@@ -16,7 +16,7 @@ A hash tree in which every leaf node is labelled with the cryptographic hash of 
 
 ## Motes {#motes}
 
-A mote is the native accounting unit for a Casper network. All accounting done within a Casper network occurs through the use of motes, with the [CSPR](/glossary/c/#CSPR) token existing as a human-readable convenience wherein a single CSPR consists of 1,000,000,000 motes.
+A mote is the native accounting unit for a Casper network. All accounting done within a Casper network occurs through motes, with the [CSPR](/glossary/c/#CSPR) token existing as a human-readable convenience wherein a single CSPR consists of 1,000,000,000 motes.
 
 ## Multi-Sig {#multisig}
 

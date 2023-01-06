@@ -8,4 +8,4 @@
 
 ## Key {#key}
 
-A `Key` is a cryptographically derived group of characters used to identify an [account](/glossary/A/#account). Each account will have a `PublicKey` and a `Secret Key`. More information on keys in a Casper network can be found [here](/dapp-dev-guide/keys/).
+A `Key` is a cryptographically-derived group of characters used to identify an [account](/glossary/A/#account). Each account will have a `PublicKey` and a `SecretKey`. More information on keys in a Casper network can be found [here](/dapp-dev-guide/keys/).

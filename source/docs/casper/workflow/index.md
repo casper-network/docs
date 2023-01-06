@@ -29,7 +29,6 @@ These developer guides highlight key features and capabilities of the Casper sys
 
 -   [Prerequisites](setup.md): setup needed for various workflows
 -   [Querying the Casper Network](querying.md): querying information on a Casper blockchain
--   [Account Hash](account-hash.md): generating account hash for an account on the Casper Network
 -   [Two-Party Multi-Signatures for Deployment](two-party-multi-sig.md): setting up an account for two-party signature deploys
 -   [Transferring Tokens using the Command-line](transfers.md): transferring CSPR tokens from one account to another using the command-line
 -   [Delegating Tokens](delegate.md): delegating tokens to a Validator on a Casper Network
