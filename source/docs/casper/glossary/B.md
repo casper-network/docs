@@ -6,6 +6,10 @@
 
 ---
 
+## Blake2b {#blake2b}
+
+A function used within the Casper platform to create cryptographic [hashes](/glossary/H/#hash). More information can be found [here](https://www.blake2.net/).
+
 ## Block {#block}
 
 Used in two contexts:
@@ -36,6 +40,10 @@ There are different levels of _finality_ in the [Highway](H.md#highway) protocol
 ## Block gossiping {#block-gossiping}
 
 Block gossiping occurs when a message containing a block is sent to one or more nodes on the network. In other words, block gossiping is sending a block validated by the current node but created by another node. The terms _block gossiping_ and [block passing](#block-passing) are interchangeable.
+
+## Block height {#block-height}
+
+Block height is an identifier for a given block based on the number of blocks completed prior to that block.
 
 ## Block passing {#block-passing}
 

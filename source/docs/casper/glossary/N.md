@@ -6,7 +6,7 @@
 
 ---
 
-## Named keys {#named-keys}
+## NamedKeys {#named-keys}
 
 [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html)
 are a collection of String-Key pairs used to easily identify some data on the network.
