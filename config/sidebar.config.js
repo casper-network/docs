@@ -59,6 +59,7 @@ module.exports = {
             collapsible: true,
             collapsed: true,
             items: [
+                "dapp-dev-guide/building-dapps/dapp",
                 "dapp-dev-guide/building-dapps/signing-a-deploy",
                 "dapp-dev-guide/building-dapps/sending-deploys",
                 "dapp-dev-guide/building-dapps/calling-contracts",
