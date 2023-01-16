@@ -158,7 +158,7 @@ casper-client list-rpcs --node-address <HOST:7777>
 <details>
 <summary><b>How can I monitor the events a node is emitting?</b></summary>
 
-You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on Testnet and Mainnet. You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](/dapp-dev-guide/building-dapps/monitoring-events.md) page.
+You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on Testnet and Mainnet. You will need the IP address of a [peer](/dapp-dev-guide/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](/dapp-dev-guide/building-dapps/monitoring-events.md) page.
 
 </details>
 

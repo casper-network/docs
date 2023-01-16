@@ -138,7 +138,7 @@ Before running session code on a live Casper network, test it as described [here
 
 Session code can execute on a Casper network via a [Deploy](/glossary/D.md#deploy). All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the network's global state.
 
-The [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and its `put-deploy` command provide one way to execute session code.
+The [Casper command-line client](/dapp-dev-guide/setup/#the-casper-command-line-client) and its `put-deploy` command provide one way to execute session code.
 
 ```bash
 casper-client put-deploy \

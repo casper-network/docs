@@ -4,7 +4,7 @@ The Casper node supports queries for users and developers to obtain information 
 
 This document assumes:
 
-1.  You have met the [prerequisites](setup.md)
+1.  You have met the [prerequisites](/dapp-dev-guide/setup.md)
 2.  You are familiar with the structure of the [Global State and the Blockchain Design](/design/index.md) to query data from the network
 
 When sending a query, it is important to note that the request will be routed to a single node in the network. You can request several types of data from a node:

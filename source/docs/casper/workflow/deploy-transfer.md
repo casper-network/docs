@@ -7,8 +7,8 @@ This topic explores using a deploy file to transfer Casper tokens (CSPR) between
 
 You must ensure the following prerequisites are met, before using the deploy commands.
 
-1. Set up all the prerequisites listed [here](setup.md), including:
-    - A funded [account](/workflow/setup/#setting-up-an-account) on Testnet or Mainnet
+1. Set up all the prerequisites listed [here](/dapp-dev-guide/setup.md), including:
+    - A funded [account](/dapp-dev-guide/setup/#setting-up-an-account) on Testnet or Mainnet
     - A a valid _node address_ from the [Testnet peers](https://testnet.cspr.live/tools/peers) or [Mainnet peers](https://cspr.live/tools/peers)
     - The Casper [command-line client](/workflow/setup#the-casper-command-line-client)
 2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](two-party-multi-sig.md) workflow

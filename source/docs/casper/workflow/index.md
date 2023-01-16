@@ -19,14 +19,14 @@ These user guides contain step-by-step instructions for interacting with the Cas
 
 ## Operator Guides {#operator-guides}
 
-- [Set Up a Private Casper Network](setup-private-network.md): a step-by-step guide to establishing and configuring a private Casper network
+- [Set Up a Private Casper Network](/workflow/setup-private-network.md): a step-by-step guide to establishing and configuring a private Casper network
 - [How to Stage Files for a New Network](staging-files-for-new-network.md): a guide to hosting protocol files for a new Casper network
 
 ## Developer Guides {#developer-guides}
 
 These developer guides highlight key features and capabilities of the Casper system.
 
--   [Prerequisites](setup.md): setup needed for various workflows
+-   [Prerequisites](/dapp-dev-guide/setup.md): setup needed for various workflows
 -   [Querying the Casper Network](querying.md): querying information on a Casper blockchain
 -   [Two-Party Multi-Signatures for Deployment](two-party-multi-sig.md): setting up an account for two-party signature deploys
 -   [Transferring Tokens using the Command-line](transfers.md): transferring CSPR tokens from one account to another using the command-line

@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Calling Smart Contracts with the Rust Client
 
-Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command. Each section below includes a short video demonstrating some example output.
+Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/dapp-dev-guide/setup/#the-casper-command-line-client) and the `put-deploy` command. Each section below includes a short video demonstrating some example output.
 
 The following examples use two contracts on [Testnet](https://testnet.cspr.live/):
 

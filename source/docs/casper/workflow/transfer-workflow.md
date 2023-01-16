@@ -4,7 +4,7 @@ This workflow describes how to use the Casper command-line client to transfer to
 
 This workflow assumes:
 
-1.  You meet the [prerequisites](setup.md)
+1.  You meet the [prerequisites](/dapp-dev-guide/setup.md)
 2.  You are using the Casper command-line client
 3.  You have a target *public key* hex the path to the source *secret key*
 4.  You have a valid *node-address*
