@@ -4,7 +4,7 @@
   <ShortName>Casper</ShortName>
   <Description>Search Casper</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://operators.casper.network/image/favicon.ico</Image>
+  <Image width="16" height="16" type="image/x-icon">https://operators.casper.network/icon/favicon.ico</Image>
   <Url type="text/html" method="get" template="https://operators.casper.network/search?q={searchTerms}"/>
   <Url type="application/opensearchdescription+xml" rel="self" template="https://operators.casper.network/opensearch.xml" />
   <moz:SearchForm>https://operators.casper.network/</moz:SearchForm>
