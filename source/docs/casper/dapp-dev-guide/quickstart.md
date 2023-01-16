@@ -48,7 +48,7 @@ Here is a list of commands for developers who already meet the prerequisites and
    casper-client get-state-root-hash --node-address http://65.21.235.219:7777
    ```
 
-8. Set up a [Casper account](https://docs.casperlabs.io/dapp-dev-guide/setup/#setting-up-an-account).
+8. Set up a [Casper account](/dapp-dev-guide/setup/#setting-up-an-account).
 
 9. Clone a simple counter contract or download it from GitHub:
 
