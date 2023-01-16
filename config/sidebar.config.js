@@ -26,6 +26,7 @@ module.exports = {
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
+        "dapp-dev-guide/quickstart",
         {
             type: "category",
             label: "Why Build on Casper",
