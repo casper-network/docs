@@ -11,7 +11,7 @@ This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-gui
 ## Prerequisites
 
 - You know how to [send and verify deploys](/dapp-dev-guide/building-dapps/sending-deploys.md)
-   - Your environment meets these [prerequisites](/dapp-dev-guide/setup/) and you have a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
+   - Your environment meets these [prerequisites](/dapp-dev-guide/setup/) and you have a client to interact with the network, such as the [default Casper client](/dapp-dev-guide/setup#the-casper-command-line-client)
    - You have a [Casper account](/dapp-dev-guide/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
    - You have enough CSPR tokens in your account to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](/workflow/token-transfer#2-the-faucet) to fund your testing account
 - You understand how to [write basic contract code](/dapp-dev-guide/writing-contracts/index.md) and session code

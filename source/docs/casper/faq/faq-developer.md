@@ -108,7 +108,7 @@ No, smart contracts cannot interact with the world outside of the blockchain on 
 <details>
 <summary><b>Why do I receive a 'casper-client: command not found' error?</b></summary>
 
-Refer to the [Casper Command-line Client](https://docs.casperlabs.io/workflow/setup#the-casper-command-line-client) document for instructions on interacting with the Casper Network.
+Refer to the [Casper Command-line Client](/dapp-dev-guide/setup#the-casper-command-line-client) document for instructions on interacting with the Casper Network.
 
 </details>
 
