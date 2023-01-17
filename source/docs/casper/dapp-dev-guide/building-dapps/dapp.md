@@ -6,11 +6,11 @@ The degree that a dApp interacts with the blockchain can vary greatly depending 
 
 ## Centralized Versus Decentralized
 
-A centralized system is one in which a single entity controls all aspects of the system. In some way, shape or form there is a single point of failure. Users are required to access this central entity to gain access to any involved application. The smallest subset of a centralized system would be a single machine running a single application. If the machine fails, the application will no longer function.
+A centralized system is one in which a single entity controls all aspects of the system. There is a single point of failure in some way, shape, or form. Users are required to access this central entity to gain access to any involved application. The smallest subset of a centralized system would be a single machine running a single application. If the machine fails, the application will no longer function.
 
-A semi-decentralized system may delegate different sub-systems to a group of machines or layer of applications that specialize in specific tasks. However, these specialized machines still represent a potential single point of failure, where a component of the system may cease to function and result in the inability to use the overall system.
+A semi-decentralized system may delegate different sub-systems to a group of machines or layer of applications that specialize in specific tasks. However, these specialized machines still represent a potential single point of failure, where a system component may cease to function and result in the inability to use the overall system.
 
-In contrast, a decentralized system consists of a group of [fungible](/glossary/F/#fungible) machines that can each perform as a full system or `distributed database`. Additional machines strengthen the overall system by adding additional redundancy and computational power.
+In contrast, a decentralized system consists of a group of interchangeable machines that can perform as a full system or `distributed database`. Additional machines strengthen the overall system by adding additional redundancy and computational power.
 
 ## Interacting with a Decentralized Network
 
