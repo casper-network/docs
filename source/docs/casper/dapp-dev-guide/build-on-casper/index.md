@@ -3,6 +3,8 @@ title: Introduction
 slug: introduction
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Introduction
 
 This guide intends to briefly show you the current features and advantages of building on the Casper Network.
@@ -72,7 +74,7 @@ The Casper [Mainnet](https://cspr.live) is a public, open-source, community-driv
 We also offer several tools to run AWS instances of Casper nodes.
 
 ## SDK Client Libraries {#sdk-client-libraries}
-In addition to the default [command-line Rust client](https://docs.casperlabs.io/workflow/setup#the-casper-command-line-client), the Casper community is building [other clients](https://docs.casperlabs.io/sdk) in JavaScript, Java, Golang, Python, C#, and other languages. 
+In addition to the default [command-line Rust client](/dapp-dev-guide/setup#the-casper-command-line-client), the Casper community is building [other clients](https://docs.casperlabs.io/sdk) in JavaScript, Java, Golang, Python, C#, and other languages. 
 
 ## Low Gas Fees {#low-gas-fees}
 Casper seeks to eliminate volatility and improve developer and enterprise experiences by establishing transparent, consistent, and low gas prices. This feature seeks to promote active and diverse network behaviour and we are researching innovative pricing models that will favor dApp developers as the ecosystem grows.

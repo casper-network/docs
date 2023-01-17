@@ -162,7 +162,7 @@ The following default values are specified in the file if you want to change the
 
 ## Rust Client Installation {#client-installation}
 
-The [Prerequisites](/workflow/setup/#the-casper-command-line-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
+The [Prerequisites](/dapp-dev-guide/setup/#the-casper-command-line-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
 
 ## Creating Keys and Funding Accounts {#create-fund-keys}
 
@@ -180,7 +180,7 @@ sudo -u casper casper-client keygen --help
 
 More about keys and key generation can also be found in `/etc/casper/validator_keys/README.md` if the `casper-node-launcher` was installed from the Debian package.
 
-To submit a bonding request, you will need to [fund your account](/workflow/setup/#fund-your-account) as well.
+To submit a bonding request, you will need to [fund your account](/dapp-dev-guide/setup/#fund-your-account) as well.
 
 :::note
 

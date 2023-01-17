@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Calling Smart Contracts with the Rust Client
 
-Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command. Each section below includes a short video demonstrating some example output.
+Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/dapp-dev-guide/setup/#the-casper-command-line-client) and the `put-deploy` command. Each section below includes a short video demonstrating some example output.
 
 The following examples use two contracts on [Testnet](https://testnet.cspr.live/):
 
@@ -17,7 +17,7 @@ The following examples use two contracts on [Testnet](https://testnet.cspr.live/
 ## Prerequisites {#prerequisites}
 
 - You know how to [send and verify deploys](/dapp-dev-guide/building-dapps/sending-deploys.md)
-- You know how to [install contracts and query global state](installing-contracts.md) using the [default Casper client](/workflow/setup#the-casper-command-line-client)
+- You know how to [install contracts and query global state](installing-contracts.md) using the [default Casper client](/dapp-dev-guide/setup#the-casper-command-line-client)
 - Install the [Counter contract](https://github.com/casper-ecosystem/counter/blob/master/contract-v1/src/main.rs) on Testnet if you have not done so already
 - Review the [system Auction contract](https://testnet.cspr.live/contract-package/e375d42c29c0e4b2baefa63cf2d70af34439eda851e08129d8515515d63bd6a9) on Testnet
 

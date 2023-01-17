@@ -10,7 +10,6 @@ module.exports = {
         "workflow/testnet-faucet",
         "workflow/setup-private-network",
         "workflow/staging-files-for-new-network",
-        "workflow/setup",
         "workflow/querying",
         "workflow/two-party-multi-sig",
         {
@@ -26,6 +25,7 @@ module.exports = {
     ],
     "dapp-dev-guide": [
         "dapp-dev-guide/index",
+        "dapp-dev-guide/quickstart",
         {
             type: "category",
             label: "Why Build on Casper",
@@ -53,6 +53,7 @@ module.exports = {
             ],
         },
         "dapp-dev-guide/list-cspr",
+        "dapp-dev-guide/setup",
         {
             type: "category",
             label: "Building dApps",

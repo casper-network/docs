@@ -17,7 +17,7 @@ The most secure way to send a bonding transaction is to compile the contract and
 - `openssl` - On Ubuntu, use `sudo apt-get install openssl`
 - `libssl-dev` - On Ubuntu, use `sudo apt-get install libssl-dev`
 
-3. Install the [Rust casper-client](/workflow/setup/#the-casper-command-line-client) and fund the [keys](/operators/setup/#create-fund-keys) you will use for bonding 
+3. Install the [Rust casper-client](/dapp-dev-guide/setup/#the-casper-command-line-client) and fund the [keys](/operators/setup/#create-fund-keys) you will use for bonding 
 4. [Build the contracts](#build-contracts)
 5. [Send a bonding request](#example-bonding-transaction)
 6. [Check the status of the auction](#check-the-status-of-the-bid-in-the-auction) to see if you have won a validator slot

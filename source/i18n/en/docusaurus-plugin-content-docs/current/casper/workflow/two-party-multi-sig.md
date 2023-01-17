@@ -6,7 +6,7 @@ This workflow describes how a trivial two-party multi-signature scheme for signi
 
 This workflow assumes:
 
-1.  You meet the [prerequisites](setup.md)
+1.  You meet the [prerequisites](/dapp-dev-guide/setup.md)
 2.  You are using the Casper command-line client
 3.  You have a main `PublicKey` hex (**MA**) and a `PublicKey` hex to associate (**AA**)
 4.  You have a valid `node-address`
