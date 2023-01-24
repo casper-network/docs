@@ -3,6 +3,23 @@
 
 Casper private networks operate in a similar way to the Casper public network. The significant difference in private networks is a closed validator set and having administrator account(s) which can control regular accounts. Hence, there are specific configurations when setting up the genesis block and administrator accounts. Besides the main configuration options that the Casper platform provides, each customer may add other configuration options when setting up a private network.
 
+## Contents
+
+1) [Prerequisites](#prerequisites)
+
+2) [Setting up a Validator Node](#step-1-setting-up-a-validator-node)
+
+3) [Setting up the Directory](#step-2-setting-up-the-directory)
+
+4) [Configuring the Genesis Block](#step-3-configuring-the-genesis-block)
+
+5) [Configuring the Administrator Accounts](#step-4-configuring-the-administrator-accounts)
+
+6) [Starting the Casper Node](#step-5-starting-the-casper-node)
+
+7) [Testing the Private Network](#step-7-testing-the-private-network)
+
+8) [Setting up a Block Explorer](#setting-up-a-block-explorer)
 
 ## Prerequisites
 Follow these guides to set up the required environment and user accounts.
@@ -516,3 +533,7 @@ administrators = ["NEW_PUBLIC_KEY"]
 ```
 
 After this step, the private network would be ready for use.
+
+## Setting up a Block Explorer
+
+Private and hybrid blockchains can find information on how to set up and operate our free version of a block explorer [here](https://github.com/casper-network/casper-blockexplorer).
