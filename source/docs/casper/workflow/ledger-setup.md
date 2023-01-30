@@ -2,7 +2,7 @@
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-A Ledger Device is a hardware wallet that is considered one of the most secure ways to store your digital assets. Ledger uses an offline, or cold storage, method of generating private keys, making it a preferred method for many crypto users. This guide will help you to connect your Ledger device to a Casper Web wallet on a block explorer such as [cspr.live](https://cspr.live/). The Casper Web wallet enables you to send and receive CSPR tokens.
+A Ledger Device is a hardware wallet that is considered one of the most secure ways to store your digital assets. Ledger uses an offline, or cold storage, method of generating private keys, making it a preferred method for many crypto users. This guide will help you connect your Ledger device to a Casper account using the [cspr.live](https://cspr.live/) block explorer to send and receive CSPR tokens.
 
 If you need help, contact us on the following services:
 
@@ -32,11 +32,11 @@ You can also find these instructions at the official Ledger support site [here](
 7.  Your device will display **"Processing..."**
 8.  The app installation is confirmed.
 
-## Use Ledger device with your Web wallet {#use-ledger-device-with-your-web-wallet}
+## Use Ledger with a Block Explorer {#use-ledger-with-a-block-explorer}
 
 ### Sign in {#sign-in}
 
-You can now use the Ledger device with Web wallet. Follow these steps:
+You can now use the Ledger device with the [cspr.live](https://cspr.live/) block explorer. Follow these steps:
 
 1.  Connect and unlock your Ledger device.
 2.  Open the Casper app on your Ledger device.
@@ -44,7 +44,7 @@ You can now use the Ledger device with Web wallet. Follow these steps:
 4.  Click on the **Connect** button in the Ledger section.
 5.  Click on the **Connect to Ledger wallet** button.
 6.  Select an account you want to use.
-7.  Now, your Ledger device is connected to the Web wallet.
+7.  Now, your Ledger device is connected to the block explorer.
 
 ### View account details {#view-account-details}
 
@@ -63,7 +63,7 @@ You can now use the Ledger device with Web wallet. Follow these steps:
 
 ### View account balance {#view-account-balance}
 
-You can check your account balance from the Web wallet:
+You can check your account balance from the block explorer:
 
 1.  Follow the steps described in the "View account details" section above.
 2.  On the **Liquid Account Balance** row, you will see your latest known account balance.
@@ -108,7 +108,7 @@ To receive tokens, you need to provide the sender with the public key of your ac
 
 Press the right button on your Ledger Device to review the transaction details (Amount and Address) until you see **"Approve"**.
 
-1.  Verify the **txn hash** - make sure it matches the value displayed in the Web wallet on [cspr.live](https://cspr.live).
+1.  Verify the **txn hash** - make sure it matches the value displayed on [cspr.live](https://cspr.live).
 
 <img src={useBaseUrl("/image/tutorials/ledger/device/3-txn-1.jpg")} alt="3-txn-1" width="600" />
 
@@ -136,7 +136,7 @@ The _account_ value continues on a second screen.
 
 <img src={useBaseUrl("/image/tutorials/ledger/device/10-fee.jpg")} alt="10-fee" width="600" />
 
-6.  Verify **target** - **NOTE** this **IS NOT** a public key of the recipient but the hash of that key. Compare the public key with the value in the Web wallet which shows you two fields for the recipient public key and target.".
+6.  Verify **target** - **NOTE** this **IS NOT** a public key of the recipient but the hash of that key. Compare the public key with the value in the block explorer which shows you two fields for the recipient public key and target.
 
 <img src={useBaseUrl("/image/tutorials/ledger/device/11-target-1.jpg")} alt="11-target-1" width="600" />
 
@@ -152,7 +152,7 @@ The _target_ value continues on a second screen.
 
 <img src={useBaseUrl("/image/tutorials/ledger/device/15-approve.jpg")} alt="15-approve" width="600" />
 
-After approving the transaction with your Ledger hardware wallet, the [cspr.live](https://cspr.live) Web wallet will display a "Transfer completed" page.
+After approving the transaction with your Ledger hardware wallet, the [cspr.live](https://cspr.live) block explorer will display a "Transfer completed" page.
 
 <img src={useBaseUrl("/image/tutorials/ledger/cspr-live/4-transfer-completed.png")} alt="4-transfer-completed" width="500" />
 
