@@ -34,10 +34,10 @@ Next, create a minimal user interface (UI) to interact with the Casper Signer. O
 ```html
 	<div id="app">
 
-	<!-- The button to connect your website into Casper signer wallet. -->
+	<!-- The button to connect your website to the Casper Signer. -->
 	<button id="btnConnect" >Connect</button>
 
-	<!-- The button to disconnect your website into Casper signer wallet -->
+	<!-- The button to disconnect your website from the Casper Signer. -->
 	<button id="btnDisconnect" >Disconnect</button>
 
 	<!-- The place where the public key will display. -->
@@ -81,7 +81,7 @@ After writing the HTML code, open the `main.js` file. Import the `casper-js-sdk`
 
 ## Step 3. Implement Some Functionality
 
-Now that we have the UI and the JS SDK, it's time to implement some functionality. In this example, we will interact with the Casper Signer wallet.
+Now that we have the UI and the JS SDK, it's time to implement some functionality. In this example, we will interact with the Casper Signer.
 
 First, we'll implement the functionality for the `Connect` button:
 
@@ -92,7 +92,7 @@ First, we'll implement the functionality for the `Connect` button:
 	})
 ```
 
-When clicking on the `Connect` button, the wallet will show the Signer pop-up window. 
+When clicking on the `Connect` button, the Signer will open a pop-up window. 
 
 <img src={useBaseUrl("/image/tutorials/signer/casper-connect.png")} alt="Image showing the connect button" width="500"/> 
 
@@ -151,7 +151,7 @@ Using the Signer window, select the account you wish to display in the web app. 
 
 ## Step 5. Sign and Send a Transaction
 
-With the Signer connected to the website, it is possible to sign a transaction. The Casper Signer will not send the transaction but only sign the transaction using your account keys. Your application will need to send the transaction after the wallet signs it with the following code:
+With the Signer connected to the website, it is possible to sign a transaction. The Casper Signer will not send the transaction but only sign the transaction using your account keys. Your application will need to send the transaction after the Signer signs it with the following code:
 
 ```javascript
 	async function sendTransaction(){
