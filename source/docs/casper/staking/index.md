@@ -60,7 +60,7 @@ For security purposes, whenever tokens are un-delegated, the protocol will conti
 
 Navigate to these pages for step-by-step tutorials on creating an account and delegating and undelegating tokens.
 
-- [Creating a wallet with the Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
+- [Creating an account with the Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
 - [Funding an account from an exchange](/workflow/funding-from-exchanges)
 - [Delegating tokens using a block explorer](/workflow/delegate-ui)
 - [Delegating with Ledger devices](/workflow/staking-ledger/)
