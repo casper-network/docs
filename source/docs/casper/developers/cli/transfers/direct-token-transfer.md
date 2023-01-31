@@ -156,7 +156,7 @@ casper-client transfer \
 
 A transfer on a Casper network is only executed after it has been included in a finalized block.
 
-Refer to the Section on [querying deploys](../../../resources/tutorials/beginner/querying-network.md#deploy-status) within the network to check the execution status of the transfer.
+Refer to the Section on [querying deploys](../../../resources/tutorials/beginner/querying-network.md#querying-deploys) within the network to check the execution status of the transfer.
 
 **Important response fields:**
 
@@ -482,5 +482,3 @@ Refer to the Section on [querying deploys](../../../resources/tutorials/beginner
 ```
 
 </details>
-
-
