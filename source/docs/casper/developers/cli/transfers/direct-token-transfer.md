@@ -49,6 +49,8 @@ casper-client transfer \
 
 -   `target-account` - Hex-encoded public key of the account from which the main purse will be used as the target
 
+-   `payment-amount` - The payment for the deploy in motes.
+
 **Important response fields:**
 
 -   `"result"."deploy_hash"` - the address of the executed transfer, needed to look up additional information about the transfer
