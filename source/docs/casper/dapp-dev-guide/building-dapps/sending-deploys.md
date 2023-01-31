@@ -1,4 +1,4 @@
-# Sending Deploys to the Network
+# Sending Deploys to a Casper network using the Rust Client
 
 Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](/design/casper-design.md/#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
