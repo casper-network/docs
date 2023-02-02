@@ -111,7 +111,7 @@ The above command will create three files in the current working directory:
 
 After generating keys for the account, you may add funds to the account's purse to finish the account creation process.
 
-**Note**: Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the account-address option of the client:
+**Note**: Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the `account-address` option of the client:
 
 ```bash
 casper-client account-address --public-key <path-to-public_key.pem/public-key-hex>

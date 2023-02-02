@@ -80,7 +80,7 @@ Next, you need to define any global variables or constants for the test.
 
 Each test function installs the contract and calls entry points to assert that the contract's behavior matches expectations. The test uses the `InMemoryWasmTestBuilder` to invoke an instance of the execution engine, effectively simulating the process of installing the contract on the chain.
 
-As part of this process, we use the `DEFAULT_RUN_GENESIS_REQUEST` to install the system contracts necessary for the tests, including the `Mint`, `Auction`, and `HandlePayment`contracts, as well as establishing a default address and funding the associated purse.
+As part of this process, we use the `DEFAULT_RUN_GENESIS_REQUEST` to install the system contracts necessary for the tests, including the `Mint`, `Auction`, and `HandlePayment`contracts, as well as establishing a default account and funding the associated purse.
 
 ```rust
     #[test]

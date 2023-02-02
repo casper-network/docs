@@ -12,7 +12,7 @@ This workflow describes how a trivial two-party multi-signature scheme for signi
 
 **CAUTION**: Incorrect account configurations could render accounts defunct and unusable. We highly recommend executing any changes to an account in a test environment like Testnet before performing them in a live environment like Mainnet.
 
-Each Account has an `associated_keys` field, a list containing the account address, and its weight for every associated account. Accounts can be associated by adding the account address to the `associated_keys` field.
+Each Account has an `associated_keys` field, which is a list containing account hashes and their corresponding weights. Accounts can be associated by adding the account hash to the `associated_keys` field.
 
 An Account on a Casper network assigns weights to keys associated with it. For a single key to sign a deploy, or edit the state of the account, its weight must be greater than or equal to a set threshold. The thresholds are labeled as the `action_thresholds` for the account.
 
@@ -127,4 +127,4 @@ casper-client query-global-state \
 ```
 </details>
 
-In the example output, you can see the account addresses listed within the `associated_keys` section. Each key has weight `1`; since the action threshold for `deployment` is `2`, neither account can sign and send a deploy individually. Thus, the deploy needs to be signed by the secret keys of each account to reach the required threshold.
+In the example output, you can see the account hashes listed within the `associated_keys` section. Each key has weight `1`; since the action threshold for `deployment` is `2`, neither account can sign and send a deploy individually. Thus, the deploy needs to be signed by the secret keys of each account to reach the required threshold.

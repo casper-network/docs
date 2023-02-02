@@ -28,7 +28,7 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 
 `PublicKey` is a 32 byte asymmetric public key, preceded by a one-byte prefix that tells whether the key is `ed25519` or `secp256k1`.
 
-`AccountHash` is a 32 byte hash of the `PublicKey`. It serves as the address for user accounts.
+`AccountHash` is a 32 byte hash of the `PublicKey` serving to identify user accounts.
 
 `ContractHash` is the 32 byte hash of specific smart contract versions. You can use this to call specific contract versions.
 

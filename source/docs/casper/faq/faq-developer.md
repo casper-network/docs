@@ -166,7 +166,7 @@ You can monitor a node's event stream on the port specified as the `event_stream
 <details>
  <summary><b>How can I query a deploy for an account?</b></summary>
 
-On-chain accounts are associated with an account address. Deploy data includes account address as a sub-field.
+On-chain accounts are associated with an account public key. Deploy data includes the account's public key as a sub-field.
 
 </details>
 

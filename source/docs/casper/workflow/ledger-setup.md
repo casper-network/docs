@@ -49,7 +49,7 @@ You can now use the Ledger device with the [cspr.live](https://cspr.live/) block
 ### View account details {#view-account-details}
 
 1.  Go to [cspr.live](https://cspr.live).
-2.  Click on the account address in the upper-right corner of the page.
+2.  Click on the account in the upper-right corner of the page.
 
 <img src={useBaseUrl("/image/tutorials/ledger/flow/3-view-account.png")} alt="3-view-account" width="750" />
 
