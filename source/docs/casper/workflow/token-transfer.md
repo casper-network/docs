@@ -2,7 +2,7 @@
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-You can transfer Casper tokens (CSPR) using any [block explorer](../block-explorer/) built to explore the Casper blockchain. The Wallet feature on these block explorers can be used to transfer tokens to another user, delegate stake, or undelegate stake. In this section, we will discuss the steps to transfer CSPR tokens.
+You can transfer Casper tokens (CSPR) using any [block explorer](../block-explorer/) built to explore the Casper blockchain. The Wallet feature on these block explorers can be used to transfer tokens to another user's purse, delegate stake, or undelegate stake. In this section, we will discuss the steps to transfer CSPR tokens.
 
 ## Transferring Tokens 
 

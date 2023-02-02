@@ -139,7 +139,7 @@ After generating the cryptographic key-pair for an Account, you must fund the ac
 
 On Testnet, you can fund an account by requesting test tokens according to [this guide](/workflow/testnet-faucet/). You can request test tokens **only once** for each account.
 
-On Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the setup of the new account. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
+On Mainnet, a pre-existing account will have to transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 
 ## Acquiring a Node Address from the Network {#acquire-node-address-from-network-peers}
 

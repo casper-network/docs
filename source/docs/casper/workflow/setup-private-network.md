@@ -54,7 +54,7 @@ A Casper private network contains a different set of configurations when compare
 You should add the configuration options below to the `chainspec.toml` file inside the [private network directory](/workflow/setup-private-network/#step-2-setting-up-the-directory).
 
 ### Unrestricted transfers configuration
-This option disables unrestricted transfers between regular accounts. A regular account user cannot do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators.
+This option disables unrestricted transfers between regular account purses. A regular account user cannot do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators.
 
 ```toml
 [core]
@@ -309,7 +309,7 @@ Keep in mind that for security reasons `ca_key.pem` should be stored securely an
 
 ### Funding Alice's account
 
-The following command transfers tokens to Alice's account.
+The following command transfers tokens to Alice's main purse.
 
 ```sh
 casper-client \

@@ -6,7 +6,7 @@
 This section includes some examples of how to use Golang SDK:
 
 * Sending a transfer
-* Deploying a contract
+* Installing a contract via a Deploy
 
 ## Generating Account Keys
 

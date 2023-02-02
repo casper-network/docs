@@ -95,7 +95,7 @@ After generating the keys with this code, you can add them to the [Casper Signer
 
 ### Sending a Transfer {#sending-a-transfer}
 
-This code block shows you how to define and send a transfer on the Casper Network. Replace the `account-address` in the code below with the sender's account address.
+This code block shows you how to define and send a transfer on a Casper network. Replace the `account-address` in the code below with the sender's account address.
 
 The `sendTransfer` function below will return a `transfer-hash` which you can check on https://testnet.cspr.live/.
 

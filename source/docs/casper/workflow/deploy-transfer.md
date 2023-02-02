@@ -2,7 +2,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Transferring Tokens using a Multi-sig Deploy
 
-This topic explores using a deploy file to transfer Casper tokens (CSPR) between accounts on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
+This topic explores using a deploy file to transfer Casper tokens (CSPR) between purses on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer Deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
 ## Prerequisites
 
 You must ensure the following prerequisites are met, before using the deploy commands.
