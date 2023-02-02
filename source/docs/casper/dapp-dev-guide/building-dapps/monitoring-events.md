@@ -359,7 +359,7 @@ id:598
 </details>
 
 - [deploy_hash](/design/serialization-standard/#deploy-hash) - The cryptographic hash of a Deploy.
-- [account](/design/serialization-standard/#serialization-standard-account) - A structure that represents a user on a Casper Network.
+- [account](/design/serialization-standard/#serialization-standard-account) - A structure that represents a user on a Casper network.
 - [timestamp](/design/serialization-standard/#timestamp) - A timestamp type, representing a concrete moment in time.
 - [ttl](/design/serialization-standard/#timediff) - A time difference between two timestamps.
 - [dependencies](/design/serialization-standard/#deploy-header) - A list of Deploy hashes. 

@@ -30,7 +30,7 @@ These developer guides highlight key features and capabilities of the Casper sys
 -   [Querying the Casper Network](querying.md): querying information on a Casper blockchain
 -   [Two-Party Multi-Signatures for Deployment](two-party-multi-sig.md): setting up an account for two-party signature deploys
 -   [Transferring Tokens using the Command-line](transfers.md): transferring CSPR tokens from one account to another using the command-line
--   [Delegating Tokens](delegate.md): delegating tokens to a Validator on a Casper Network
--   [Undelegating Tokens](undelegate.md): undelegating tokens from a validator on a Casper Network
+-   [Delegating Tokens](delegate.md): delegating tokens to a Validator on a Casper network
+-   [Undelegating Tokens](undelegate.md): undelegating tokens from a validator on a Casper network
 -   [Using the Casper Fungible Token Contract](https://github.com/casper-network/erc20-guide-extraction/): using the Casper fungible token contract to understand the fungible token transfer workflow
 

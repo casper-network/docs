@@ -6,7 +6,7 @@ We provide a custom implementation to serialize data structures used by the Casp
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represents a user on a Casper Network. The account structure consists of the following fields:
+An Account is a structure that represents a user on a Casper network. The account structure consists of the following fields:
 
 -   [`account_hash`](#account-hash)
 

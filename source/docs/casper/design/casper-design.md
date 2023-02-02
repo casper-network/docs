@@ -1,4 +1,4 @@
-# Overview of a Casper Network
+# Overview of a Casper network
 
 ## Introduction
 
@@ -257,7 +257,7 @@ Through this logic, the Casper mint holds all motes on the network and transfers
 
 ## Block Structure {#block-structure-head}
 
-A _block_ is the primary data structure by which network nodes communicate information about the state of a Casper Network. We briefly describe here the format of this data structure.
+A _block_ is the primary data structure by which network nodes communicate information about the state of a Casper network. We briefly describe here the format of this data structure.
 
 ### Data Fields {#block-structure-data}
 

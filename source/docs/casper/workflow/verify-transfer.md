@@ -272,7 +272,7 @@ casper-client get-balance \
 
 ## Query Transfer Details {#query-transfer-details}
 
-Deploys in a Casper Network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
+Deploys in a Casper network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
 
 We will use the `transfer-` to query more details about the transfer.
 
