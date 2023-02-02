@@ -45,7 +45,7 @@ You will see a list of validators present on the network and their total stake (
 
 You can click on any validator listed to see more information about the validator, including the validator's personal stake.
 
-As a prospective delegator, selecting a trustworthy validator with a favorable rate is essential. Each validator shows the delegation rate (commission), which represents the percentage of **your** reward share that the validator will retain. Thus, a 10% rate implies that the validator will retain 10% of your reward share. Please do your due diligence before staking your tokens with a validator.
+As a prospective delegator, selecting a trustworthy validator with a favorable rate is essential. Each validator shows the delegation rate, which is a percentage of **your** reward share that the validator will retain. Thus, a 10% rate implies that the validator will retain 10% of your reward share. Please do your due diligence before staking your tokens with a validator.
 
 Note the `PublicKey` of the validator you have selected to delegate your tokens.
 

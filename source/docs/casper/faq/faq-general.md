@@ -82,7 +82,7 @@ Yes. Follow [this guide](https://support.ledger.com/hc/en-us/articles/4416379141
 
 <summary><b>What are the important aspects to consider when delegating tokens to a validator?</b></summary>
 
-Users should consider consistent uptime, prompt upgrades and commission rates when choosing a validator. Offline and out-of-date validators do not generate rewards.
+Users should consider consistent uptime, prompt upgrades and delegation rates when choosing a validator. Offline and out-of-date validators do not generate rewards.
 
 Active engagement in the community is another important aspect.
 
