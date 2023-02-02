@@ -4,7 +4,7 @@ The Casper blockchain is available as the Mainnet and Testnet. The Mainnet is th
 
 ## What is a Block Explorer
 
-A block explorer is a search engine for the blockchain. It allows you to find information such as the transactions executed on the blockchain, the transaction statistics, the validators on the network and similar blockchain activity. A block explorer gives you information on your account and all the transactions carried out using that account. It can be used to find a specific transaction or view the transaction history of the blockchain. 
+A block explorer is a search engine for the blockchain. It allows you to find information such as the transactions executed on the blockchain, the transaction statistics, the validators on the network and similar blockchain activity. A block explorer gives you information on your account and all the Deploys carried out using that account. It can be used to find a specific transaction or view the transaction history of the blockchain. 
 
 ##  Using a Block Explorer
 
