@@ -63,10 +63,10 @@ You can now use the Ledger device with the [cspr.live](https://cspr.live/) block
 
 ### View account balance {#view-account-balance}
 
-You can check your account balance from the block explorer:
+You can check your account's main purse balance using the block explorer:
 
 1.  Follow the steps described in the "View account details" section above.
-2.  On the **Liquid Account Balance** row, you will see your latest known account balance.
+2.  On the **Liquid Account Balance** row, you will see the latest purse balance.
 
 ### Receive tokens {#receive-tokens}
 

@@ -38,5 +38,5 @@ To transfer tokens, follow these steps:
 
     <img src={useBaseUrl("/image/workflow/transfer-confirm.png")} width="500" />
 
-9.  Next, view the CSPR balance in your account.
+9.  Next, view the CSPR balance in your account's main purse.
 

@@ -12,9 +12,9 @@ This workflow describes how a trivial two-party multi-signature scheme for signi
 
 **CAUTION**: Incorrect account configurations could render accounts defunct and unusable. We highly recommend executing any changes to an account in a test environment like Testnet before performing them in a live environment like Mainnet.
 
-Each account has an `associated_keys` field, a list containing the account address, and its weight for every associated account. Accounts can be associated by adding the account address to the `associated_keys` field.
+Each Account has an `associated_keys` field, a list containing the account address, and its weight for every associated account. Accounts can be associated by adding the account address to the `associated_keys` field.
 
-An account on a Casper network assigns weights to keys associated with it. For a single key to sign a deploy, or edit the state of the account, its weight must be greater than or equal to a set threshold. The thresholds are labeled as the `action_thresholds` for the account.
+An Account on a Casper network assigns weights to keys associated with it. For a single key to sign a deploy, or edit the state of the account, its weight must be greater than or equal to a set threshold. The thresholds are labeled as the `action_thresholds` for the account.
 
 Each account within a Casper network has two action thresholds that manage the permissions to send deploys or manage the account. Each threshold defines the minimum weight that a single key or a combination of keys must have to either:
 
@@ -25,7 +25,7 @@ To enforce the multi-signature (multi-sig) feature for an account on a Casper ne
 
 ### Running session code to set up associated keys
 
-To set up the associated keys for an account, you must run session code that executes within the account's context. You will find an example of such session code on [GitHub](https://github.com/casper-ecosystem/two-party-multi-sig/). Note that this session code is not a general-purpose program and needs to be modified for each use case.
+To set up the associated keys for an Account, you must run session code that executes within the account's context. You will find an example of such session code on [GitHub](https://github.com/casper-ecosystem/two-party-multi-sig/). Note that this session code is not a general-purpose program and needs to be modified for each use case.
 
 ```bash
 git clone https://github.com/casper-ecosystem/two-party-multi-sig

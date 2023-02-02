@@ -9,7 +9,7 @@ Visit [https://make-software.github.io/casper-net-sdk/](https://make-software.gi
 
 ## Get started
 
-This example shows how to retrieve an account balance from a testnet node. Make sure you have .NET 5 or higher before continuing.
+This example shows how to retrieve an account's main purse balance from a testnet node. Make sure you have .NET 5 or higher before continuing.
 
 Open a terminal window and create a new console app:
 
@@ -82,6 +82,6 @@ Finally, run the example with:
 dotnet run
 ```
 
-The program will print the account balance retrieved from the testnet.
+The program will print the account's main purse balance retrieved from the testnet.
 
 Visit [https://make-software.github.io/casper-net-sdk/](https://make-software.github.io/casper-net-sdk/) to find other examples, tutorials, and complete documentation for this SDK.

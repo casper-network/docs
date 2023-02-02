@@ -8,7 +8,7 @@ For writing session code, we use the same project structure used for writing con
 
 ## Example 1: Writing Session Code {#writing-session-code}
 
-The following steps illustrate the process of writing session code using an example repository containing sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to an account and updates the action thresholds. Remember that [accounts](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
+The following steps illustrate the process of writing session code using an example repository containing sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to the account and updates the action thresholds. Remember that an [Account](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
 
 ```bash
 git clone https://github.com/casper-ecosystem/two-party-multi-sig/

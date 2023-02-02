@@ -164,7 +164,7 @@ casper-client query-global-state \
 
 </details>
 
-## Get Source Account Balance {#get-source-account-balance}
+## Get Source Purse Balance {#get-source-account-balance}
 
 All accounts on a Casper network have a purse associated with the Casper system mint, which we call the _main purse_. The balance associated with a given purse is recorded in global state, and the value can be queried using the `URef` associated with the purse.
 
@@ -218,7 +218,7 @@ casper-client get-balance \
 
 </details>
 
-## Get Target Account Balance {#get-target-account-balance}
+## Get Target Purse Balance {#get-target-account-balance}
 
 Similarly, now that we have the address of the target purse, we can get its balance.
 

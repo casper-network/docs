@@ -2,7 +2,7 @@
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This tutorial shows you how to use the JavaScript SDK by connecting the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) to a website, get the balance of an account and send a transaction.
+This tutorial shows you how to use the JavaScript SDK by connecting the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) to a website, get the balance of an account's main purse and send a Deploy.
 
 ## Step 1. Run a Mini Webserver
 
@@ -68,7 +68,7 @@ Below is the UI created with the sample code above.
 
 <img src={useBaseUrl("/image/tutorials/signer/simple-app.png")} alt="Image showing the web app UI" width="500"/>
 
-After writing the HTML code, open the `main.js` file. Import the `casper-js-sdk` to create the client and the services necessary to get account information and send transactions.
+After writing the HTML code, open the `main.js` file. Import the `casper-js-sdk` to create the client and the services necessary to get account information and send Deploys.
 
 ```javascript
 	import {CasperClient,CasperServiceByJsonRPC, CLPublicKey,DeployUtil } from "casper-js-sdk";
@@ -125,7 +125,7 @@ In this section, we will retrieve account information using the public key of an
 				CLPublicKey.fromHex(publicKey)
 				)
 
-			//account balance from the last block
+			// Account purse balance from the last block
 			const balance = await casperService.getAccountBalance(
 				root,
 				balanceUref

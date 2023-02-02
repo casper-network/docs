@@ -32,7 +32,7 @@ Validators define a commission (or delegation rate) that they take in exchange f
 
 ## Delegation Fees {#delegation-fees}
 
-It is important to know that the cost of the delegation process is approximately 3 CSPR. Ensure you have extra CSPR in your account apart from the amount you are delegating; otherwise, the transaction will fail. For example, if you want to delegate 1000 CSPR, you need to have at least 1003 CSPR in your account.
+It is important to know that the cost of the delegation process is approximately 3 CSPR. Ensure you have extra CSPR in your account's main purse apart from the amount you are delegating; otherwise, the transaction will fail. For example, if you want to delegate 1000 CSPR, you need to have at least 1003 CSPR in your account's main purse.
 
 ## Rewards {#rewards}
 

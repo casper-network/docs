@@ -141,7 +141,7 @@ We also provide a [Casper command-line client](/dapp-dev-guide/setup/#the-casper
 
 ### Creating an Account
 
-To interact with a Casper network and install code on-chain, you will need to [create a Casper account](/dapp-dev-guide/setup/#setting-up-an-account) with a public and secret key pair.
+To interact with a Casper network and install code on-chain, you will need to [create a Casper Account](/dapp-dev-guide/setup/#setting-up-an-account) with a public and secret key pair.
 
 ## Video Walkthrough
 

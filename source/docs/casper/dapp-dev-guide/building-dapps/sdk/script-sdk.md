@@ -156,10 +156,10 @@ const sendTransfer = async ({ from, to, amount }) => {
 };
 
 sendTransfer({
-    // Put here the account-address of the sender's account. Note that it needs to have a balance greater than 2.5CSPR
+    // Put here the account-address of the sender's main purse. Note that it needs to have a balance greater than 2.5CSPR
     from: "<account-address>",
 
-    // Put here the account-address of the receiving account. This account doesn't need to exist. If the key is correct, the network will create it when the deploy is sent
+    // Put here the account-address of the receiver's main purse. This account doesn't need to exist. If the key is correct, the network will create it when the deploy is sent
     to: "<account-address>",
 
     // Minimal amount is 2.5CSPR so 2.5 * 10000 (1CSPR = 10.000 motes)
