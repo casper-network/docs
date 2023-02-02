@@ -97,7 +97,7 @@ Next, create a directory called `assembly`, and in that directory, create a file
 
 In the `assembly` directory, also create an `index.ts` file, where the code for the contract needs to go.
 
-You can use the following sample snippet, which demonstrates a simple smart contract that immediately returns an error and writes a message to a block when executed on the Casper Network.
+You can use the following sample snippet, which demonstrates a simple smart contract that immediately returns an error and writes a message to a block when executed on a Casper network.
 
 ```typescript
 //@ts-nocheck

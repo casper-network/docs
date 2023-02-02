@@ -26,7 +26,7 @@ This section shows you how to write session code and smart contracts in Rust and
 |[Execution Error Codes](/dapp-dev-guide/writing-contracts/execution-error-codes.md)|Possible error codes when writing smart contracts.|
 |[Getting Started with AssemblyScript](/dapp-dev-guide/writing-contracts/assembly-script.md) | An introduction to using AssemblyScript with the Casper Platform |
 
-Additionally, the following tutorials outline some aspects of writing smart contracts on the Casper Network.
+Additionally, the following tutorials outline some aspects of writing smart contracts on a Casper network.
 
 | Title                                                       | Description                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |

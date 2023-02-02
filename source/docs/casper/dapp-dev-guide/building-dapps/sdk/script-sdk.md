@@ -24,7 +24,7 @@ These packages give you an easy way to install and interact with the correspondi
 
 ## Casper SDK for JavaScript {#casper-sdk-for-javascript}
 
-The [TypeScript/JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) allows developers to interact with the Casper Network using TypeScript or JavaScript. This section covers different examples of using the Casper JS SDK.
+The [TypeScript/JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) allows developers to interact with a Casper network using TypeScript or JavaScript. This section covers different examples of using the Casper JS SDK.
 
 ## Installation {#installation}
 

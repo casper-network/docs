@@ -8,7 +8,7 @@ Ultimately, smart contracts are meant to run on the blockchain. You can send you
 
 ## Paying for Deploys {#paying-for-deploys}
 
-CSPR tokens are used to pay for transactions on the Casper Network. There are several ways to fund your account:
+CSPR tokens are used to pay for transactions on the Casper Mainnet and Testnet. There are several ways to fund your account:
 
 - You may want to [transfer tokens from an exchange](/workflow/funding-from-exchanges)
 - You can use a [block explorer to transfer tokens](/workflow/token-transfer/) between accounts' purses
@@ -361,7 +361,7 @@ casper-client put-deploy --show-arg-examples
 
 ## Advanced Features {#advanced-features}
 
-The Casper Network supports complex deploys using multiple signatures. [Casper Accounts](/design/casper-design.md/#accounts-head) use a powerful permissions model that enables a multi-signature scheme for deploys.
+Casper networks support complex deploys using multiple signatures. [Casper Accounts](/design/casper-design.md/#accounts-head) use a powerful permissions model that enables a multi-signature scheme for deploys.
 
 The `put-deploy` command performs multiple actions under the hood, optimizing the typical use case. It creates a deploy, signs it, and sends the Deploy to the network without allowing multiple signatures. However, it is possible to call the following three commands and separate key management from account creation:
 

@@ -1,12 +1,12 @@
 # Required Methods for Minimal Compliance
 
-The methods included in this document represent the most basic, fundamental endpoints for a viable and compliant Casper SDK. They allow the user to retrieve the information necessary to interact with the Casper Network, as well as the means to interact.
+The methods included in this document represent the most basic, fundamental endpoints for a viable and compliant Casper SDK. They allow the user to retrieve the information necessary to interact with a Casper network, as well as the means to interact.
 
 * [`chain_get_block`](../json-rpc-informational#chain-get-block) - This method returns the JSON representation of a Block from the network. The ongoing validity of the chain depends on block verification, which includes both a record of deploys and transfers.
 
 * [`info_get_deploy`](../json-rpc-informational#info-get-deploy) - This method allows retrieval of a Deploy from a Casper network. Without this method, users will be unable to verify any subsequent information relating to a sent Deploy.
 
-* [`account_put_deploy`](../json-rpc-transactional#account-put-deploy) - This method allows users to send their compiled Wasm (as part of a Deploy) to a node on a Casper network. Deploys represent the only means by which a user can perform computation on the platform, without which their interaction with the Casper Network will be entirely passive.
+* [`account_put_deploy`](../json-rpc-transactional#account-put-deploy) - This method allows users to send their compiled Wasm (as part of a Deploy) to a node on a Casper network. Deploys represent the only means by which a user can perform computation on the platform, without which their interaction with a Casper network will be entirely passive.
 
 * [`chain_get_state_root_hash`](../json-rpc-informational#chain-get-state-root-hash) - The state root hash is one of the several [global state identifiers](../types_chain#globalstateidentifier) used to query the network state after deployments, and the only way to do so in the context of `state_get_balance` and `state_get_dictionary_item`. A minimal SDK requires both dependent methods.
 

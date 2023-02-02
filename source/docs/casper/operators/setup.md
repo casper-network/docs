@@ -39,7 +39,7 @@ The following is the filesystem's state after installing the `casper-client` and
 
 The default location for executables from the Debian package install is `/usr/bin`.
 
-- `casper-client` - A client for interacting with the Casper network
+- `casper-client` - A client for interacting with a Casper network
 - `casper-node-launcher` - The launcher application which starts the `casper-node` as a child process
 
 ### `/etc/casper/` {#etccasper}

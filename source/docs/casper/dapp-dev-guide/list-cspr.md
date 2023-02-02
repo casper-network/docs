@@ -6,9 +6,9 @@ CSPR is listed on [many exchanges](https://tokenmarketcaps.com/coins/casper/mark
 
 ## Setting up a Node
 
-While it is not necessary for an exchange to operate their own node on the Casper Network, we recommend that they do so if they expect to handle moderate to high volumes of transaction activity. A node operated by an exchange does not have to be a validating node, it can be read-only. For setup instructions, see [Basic Node Setup](../operators/setup.md).
+While it is not necessary for an exchange to operate their own node on the Casper Mainnet, we recommend that they do so if they expect to handle moderate to high volumes of transaction activity. A node operated by an exchange does not have to be a validating node, it can be read-only. For setup instructions, see [Basic Node Setup](../operators/setup.md).
 
-This setup enables you to have a self-administered gateway to the Casper Network to get data and submit transactions.
+This setup enables you to have a self-administered gateway to the Casper Mainnet to get data and submit transactions.
 
 ## Casper Account
 
@@ -138,8 +138,8 @@ For more information on how to write session code, see [Writing Session Code](..
 
 ## Integrating CSPR
 
-You can integrate with the [JSON-RPC API](../dapp-dev-guide/sdkspec/introduction.md) of a node on the Casper Network. 
-You can program directly against the RPC or if you prefer you can choose from the variety of SDK libraries that are available to use on the Casper Network see [SDK Libraries](../dapp-dev-guide/building-dapps/sdk/index.md). 
+You can integrate with the [JSON-RPC API](../dapp-dev-guide/sdkspec/introduction.md) of a node on the Casper Mainnet. 
+You can program directly against the RPC or if you prefer you can choose from the variety of SDK libraries that are available to use on a Casper network see [SDK Libraries](../dapp-dev-guide/building-dapps/sdk/index.md). 
 Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node. Use of the stream is optional. You might want to use this feature as it notifies you of events instead of requiring you to ask periodically. For more information about various events, see [Monitoring and Consuming Events](../dapp-dev-guide/building-dapps/monitoring-events.md).
 
 ## Testing the Integration

@@ -29,7 +29,7 @@ Follow these guides to set up the required environment and user accounts.
 
 
 ## Step 1. Setting up a Validator Node
-A [Casper node](/glossary/N/#node) is a physical or virtual device participating in the Casper network. You need to set up several [validator](/glossary/V/#validator) nodes on your private network. An [operator](/glossary/O/#operator) who has won an [auction](/glossary/A/#auction) bid will be a validator for the private network.
+A [Casper node](/glossary/N/#node) is a physical or virtual device participating in a Casper network. You need to set up several [validator](/glossary/V/#validator) nodes on your private network. An [operator](/glossary/O/#operator) who has won an [auction](/glossary/A/#auction) bid will be a validator for the private network.
 
 
 Use the below guides to set up and manage validator nodes.
