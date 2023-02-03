@@ -137,7 +137,7 @@ For [ed25519](/dapp-dev-guide/keys.md#eddsa-keys) keys, you can generate the `pu
 
 After generating the cryptographic key-pair for an Account, you must fund the account's main purse to create it on-chain.
 
-On Testnet, you can fund an account by requesting test tokens according to [this guide](/workflow/testnet-faucet/). You can request test tokens **only once** for each account.
+On Testnet, you can fund an account by requesting test tokens according to [this guide](/workflow/users/testnet-faucet/). You can request test tokens **only once** for each account.
 
 On Mainnet, a pre-existing account will have to transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 
