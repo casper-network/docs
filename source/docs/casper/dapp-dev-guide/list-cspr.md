@@ -128,7 +128,7 @@ casper-client transfer \
 
 Bulk or batched Wasm transfers allow you to apply some logic before or after the transfer. They also allow for conditional transfers. You may also use them if you are doing a series of transfers between multiple purses. Listed below are five methods for the [Rust contract API](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/system/index.html), which can be used in session code to achieve batched Wasm transfer:
 
--   `transfer_to_account`: Transfers amount of motes from the default purse of the account to the purse of a target account. If the target purse does not exist, the transfer process will create one. Can be called from session code only and not a contract as a contract doesn't have a main purse.
+-   `transfer_to_account`: Transfers amount of motes from the main purse of the account to the purse of a target account. If the target purse does not exist, the transfer process will create one. Can be called from session code only and not a contract as a contract doesn't have a main purse.
 -   `transfer_to_public_key`: Transfers amount of motes from the main purse of the caller’s account to the main purse of the target. If the account referenced by the target does not exist, the transfer will create a new account. Can be called from session code only and not from a contract as a contract doesn't have a main purse.
 -   `transfer_from_purse_to_purse`: Transfers amount of motes from source purse to target purse. If the target does not exist, the transfer fails.
 -   `transfer_from_purse_to_public_key`: Transfers amount of motes from source to the main purse of target. If the account referenced by the target does not exist, the transfer will create it.
