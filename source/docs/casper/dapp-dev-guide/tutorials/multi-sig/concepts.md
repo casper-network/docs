@@ -6,7 +6,7 @@ Many companies handle large transactions and use smart contracts to manage token
 
 Casper enables you to sign anything with its multi-signature (multi-sig) implementation. For example, you do not need a multi-sig wallet to call a feature from a smart contract. Instead, you can use the multi-sig feature at the account level and sign your account with multiple keys.
 
-Your [Account](/design/casper-design.md#accounts-head) is a cryptographically secured gateway into the Casper Network, and you can set it up using the [Casper Permissions Model](/design/casper-design.md/#accounts-permissions).
+Your [Account](/design/casper-design.md#accounts-head) is a cryptographically secured gateway into a Casper network, and you can set it up using the [Casper Permissions Model](/design/casper-design.md/#accounts-permissions).
 
 The account contains associated keys and action thresholds:
 

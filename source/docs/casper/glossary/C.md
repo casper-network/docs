@@ -45,4 +45,4 @@ A compilation unit in Rust. A crate can be compiled into a binary or into a libr
 
 ## CSPR {#cspr}
 
-CSPR is the Casper token pre-defined on the Casper network and used to pay for transaction execution and for [staking](S.md#staking) (securing the network). The total number of CSPR tokens is 10 billion.
+CSPR is the Casper token pre-defined on the Casper Mainnet and used to pay for transaction execution and for [staking](S.md#staking) (securing the network).

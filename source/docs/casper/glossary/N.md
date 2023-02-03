@@ -17,7 +17,7 @@ are a collection of String-Key pairs used to easily identify some data on the ne
 
 ## Node {#node}
 
-A Casper node is a physical or virtual device that is participating in the Casper network. They store, validate, and preserve the blockchain data.
+A Casper node is a physical or virtual device that is participating in a Casper network. They store, validate, and preserve the blockchain data.
 
 You will encounter different types of nodes on the network:
 

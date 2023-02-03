@@ -92,7 +92,7 @@ The `Cargo.toml` file includes the dependencies and versions the contract requir
 [dependencies]
 // A library for developing Casper network smart contracts.
 casper-contract = "1.4.4"
-// Types shared by many Casper crates for use on a Casper Network.
+// Types shared by many Casper crates for use on a Casper network.
 casper-types = "1.5.0"
 ```
 

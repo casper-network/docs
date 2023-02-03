@@ -30,7 +30,7 @@ The following instructions will take you through the undelegation process, start
 
 **Step 1 - Undelegation details**
 
-1.  Specify the validator from whom you want to undelegate your tokens if you have reached this screen using the Wallet functionality. The search box will automatically show you the validators with whom you have staked. Otherwise, verify the pre-populated key in the Validator field.
+1.  Specify the validator from whom you want to undelegate your tokens if you have reached this screen using the Wallet drop-down menu. The search box will automatically show you the validators with whom you have staked. Otherwise, verify the pre-populated key in the Validator field.
 2.  Enter the amount of Casper tokens you want to undelegate.
 3.  Click **Next**.
 

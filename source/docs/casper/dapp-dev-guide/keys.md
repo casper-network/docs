@@ -24,11 +24,11 @@ SAVE your keys to a safe place, preferably offline.
 
 ### Option 1: Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
 
-This option describes how you can use the Casper command-line client to set up your account with both key types.
+This option describes how you can use the Casper command-line client to set up an account using either key type.
 
 #### EdDSA Keys {#eddsa-keys}
 
-The command-line client generates EdDSA keys by default. Use the command below to create your account.
+The command-line client generates EdDSA keys by default. Use the command below to create the account.
 
 ```bash
 mkdir ed25519-keys
@@ -93,15 +93,15 @@ This option is available on networks that have a block explorer.
 
 For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
 
-Start by creating an account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html) and download the secret key when prompted. You can choose the key type when creating your account.
+Start by creating an account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html) and download the secret key when prompted. You can choose the key type when creating the account.
 
 ## Funding your Account
 
-Once you create your account, you can [fund the account](setup.md#funding-an-account) to finish the process of setting it up. 
+Once you create your account, you can [fund the account's main purse](setup.md#funding-an-account) to finish the process of setting it up. 
 
 :::note
 
-Until you fund your account, it does not exist on the blockchain.
+Until you fund your account's main purse, it does not exist on the blockchain.
 
 :::
 
@@ -134,7 +134,7 @@ casper-client transfer \
 --payment-amount 100000000
 ```
 
-The Casper command-line client requires the secret key in *PEM* format to send a transaction from this account. If you want to use existing Ethereum keys with the command-line client, a conversion to *PEM* format is needed.
+The Casper command-line client requires the secret key in *PEM* format to send a Deploy from this account. If you want to use existing Ethereum keys with the command-line client, a conversion to *PEM* format is needed.
 
 The following example is a JS script that generates a *PEM* file, using a [key encoder](https://github.com/stacks-network/key-encoder-js) and Node.js. To install these components, do the following:
 

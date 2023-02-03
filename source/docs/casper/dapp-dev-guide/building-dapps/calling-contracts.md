@@ -44,6 +44,6 @@ Further information on the structure of `StoredVersionedContractByName` can be f
 
 ### Transfer
 
-Native `Transfer`s are a Wasmless transfer on a Casper network. This is how most transfers take place, albeit through a system like the Rust client that crafts the associated deploy and sends it to the network.
+Native `Transfer`s are Wasmless transfers on a Casper network. This is how most transfers take place, albeit through a system like the Rust client that crafts the associated deploy and sends it to the network.
 
 Further information on the structure of a native `Transfer` can be found [here](/dapp-dev-guide/sdkspec/types_chain/#transfer).

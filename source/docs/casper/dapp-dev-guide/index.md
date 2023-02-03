@@ -18,7 +18,7 @@ The topics on the index include present and future documentation initiatives in 
 
 -   Understand more about the Casper Network
 -   Learn how to build and operate applications on the platform
--   Learn how to set up a Casper Network locally
+-   Learn how to set up a Casper network locally
 -   Work with the contracts API to access the network's Rust resources
 -   Learn how to create and test smart contracts using available libraries
 -   Work with the multi-signature capability to sign transactions

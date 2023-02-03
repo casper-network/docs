@@ -2,13 +2,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Transferring Tokens using a Multi-sig Deploy
 
-This topic explores using a deploy file to transfer Casper tokens (CSPR) between accounts on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
+This topic explores using a deploy file to transfer Casper tokens (CSPR) between purses on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer Deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
 ## Prerequisites
 
 You must ensure the following prerequisites are met, before using the deploy commands.
 
 1. Set up all the prerequisites listed [here](/dapp-dev-guide/setup.md), including:
-    - A funded [account](/dapp-dev-guide/setup/#setting-up-an-account) on Testnet or Mainnet
+    - A funded [Account](/dapp-dev-guide/setup/#setting-up-an-account) on Testnet or Mainnet
     - A a valid _node address_ from the [Testnet peers](https://testnet.cspr.live/tools/peers) or [Mainnet peers](https://cspr.live/tools/peers)
     - The Casper [command-line client](/dapp-dev-guide/setup#the-casper-command-line-client)
 2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](two-party-multi-sig.md) workflow

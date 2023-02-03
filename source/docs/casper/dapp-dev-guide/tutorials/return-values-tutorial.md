@@ -1,6 +1,6 @@
 # Interacting with Runtime Return Values
 
-Users interacting with a Casper Network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
+Users interacting with a Casper network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
 Developers should note the difference between a caller and an immediate caller. The immediate caller represents the session or contract code that directly accessed the entry point. The caller is the original, initiating session code that started the entire process. There are many cases where contract code may call additional contract code. In this case, the immediate caller may be another instance of contract code. Even in this event, the overall caller will be the initiating session code, while there may be several layers of stacked contract code acting as immediate callers.
 

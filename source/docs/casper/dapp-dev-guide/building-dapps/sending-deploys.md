@@ -1,29 +1,29 @@
 # Sending Deploys to a Casper network using the Rust Client
 
-Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [deploy](/design/casper-design.md/#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
+Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [Deploy](/design/casper-design.md/#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
 - You will need a client to interact with the network, such as the [default Casper client](/dapp-dev-guide/setup#the-casper-command-line-client)
-- Ensure you have an [Account](/dapp-dev-guide/setup#setting-up-an-account) and its associated [keys](/dapp-dev-guide/keys.md) This account will pay for the deploy, and its secret key will sign the deploy
-- Ensure this account has enough CSPR tokens to pay for the deploy
+- Ensure you have an [Account](/dapp-dev-guide/setup#setting-up-an-account) and its associated [keys](/dapp-dev-guide/keys.md) This account will pay for the Deploy, and its secret key will sign the Deploy
+- Ensure this account has enough CSPR tokens to pay for the Deploy
 
 ## Paying for Deploys {#paying-for-deploys}
 
-CSPR tokens are used to pay for transactions on the Casper Network. There are several ways to fund your account:
+CSPR tokens are used to pay for transactions on the Casper Mainnet and Testnet. There are several ways to fund your account:
 
 - You may want to [transfer tokens from an exchange](/workflow/funding-from-exchanges)
-- You can use a [block explorer to transfer tokens](/workflow/token-transfer/) between accounts
+- You can use a [block explorer to transfer tokens](/workflow/token-transfer/) between accounts' purses
 - You can also [transfer tokens using the default Casper client](/workflow/transfers/)
 - On the Testnet, you can use the [faucet functionality](/workflow/testnet-faucet/) for testing your smart contracts
 
 ## Monitoring the Event Stream for Deploys
 
-If you want to follow the [lifecycle](/design/casper-design.md/#execution-semantics-phases) of the deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](/dapp-dev-guide/building-dapps/monitoring-events). You need the following information to proceed:
+If you want to follow the [lifecycle](/design/casper-design.md/#execution-semantics-phases) of the Deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](/dapp-dev-guide/building-dapps/monitoring-events). You need the following information to proceed:
 
 - The IP address of a [peer](/dapp-dev-guide/setup/#acquire-node-address-from-network-peers) on the network
 - The port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default 9999 on Mainnet and Testnet
 - The URL for DeployAccepted events, which is <HOST:PORT>/events/deploys
 
-With the following command, you can start watching the event stream for DeployAccepted events. Note the event ID recorded when you send your deploy in the next section.
+With the following command, you can start watching the event stream for DeployAccepted events. Note the event ID recorded when you send the Deploy in the next section.
 
 ```bash
 curl -s http://65.21.235.219:9999/events/deploys
@@ -31,7 +31,7 @@ curl -s http://65.21.235.219:9999/events/deploys
 
 ## Sending a Deploy to the Network {#sending-the-deploy}
 
-You can call the Casper client's `put-deploy` command to put the compiled contract on the chain. In this example, the deploy will execute in the account's context. See the [advanced features](#advanced-features) section for key delegation.
+You can call the Casper client's `put-deploy` command to put the compiled contract on the chain. In this example, the Deploy will execute in the account's context. See the [advanced features](#advanced-features) section for key delegation.
 
 ```bash
 casper-client put-deploy \
@@ -43,14 +43,14 @@ casper-client put-deploy \
 ```
 
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777. You can find a list of trusted peers in network's configuration file, `config.toml`. Here is an [example](https://github.com/casper-network/casper-node/blob/dev/resources/production/config-example.toml#L131). You may send deploys to one of the trusted nodes or use them to query other online nodes.
-2. `secret-key` - The file name containing the secret key of the account paying for the deploy
-3. `chain-name` - The chain-name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*. As you can see, this example uses the Testnet
-4. `payment-amount` - The payment for the deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-price) below
+2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
+3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*. As you can see, this example uses the Testnet
+4. `payment-amount` - The payment for the Deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-price) below
 5. `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
 
 Once you call this command, it will return a deploy hash, which you will need to verify that the deploy was accepted by the node. Sending a deploy to the network does not mean that the transaction was processed successfully. Once the network has received the deploy and done some preliminary validation of it, it will queue up in the system before being proposed in a block for execution. Therefore, you will need to check to see that the contract was executed as expected.
 
-**Note**: Each deploy gets a unique hash, which is part of the cryptographic security of blockchain technology. No two deploys will ever return the same hash.
+**Note**: Each Deploy gets a unique hash, which is part of the cryptographic security of blockchain technology. No two deploys will ever return the same hash.
 
 <details>
 <summary>Sample put-deploy result</summary>
@@ -68,14 +68,14 @@ Once you call this command, it will return a deploy hash, which you will need to
 
 </details>
 
-Verify the deploy details with the `get-deploy` command and the deploy_hash received above.
+Verify the deploy details with the `get-deploy` command and the `deploy_hash` received above.
 
 ```bash
 casper-client get-deploy \
     --node-address <HOST:PORT> <DEPLOY-HASH>
 ```
 
-If the deploy succeeded, the `get-deploy` command would return a JSON object with the full details of the deploy.
+If the Deploy succeeded, the `get-deploy` command would return a JSON object with the full deploy details.
 
 <details>
 <summary>Sample get-deploy result</summary>
@@ -329,7 +329,7 @@ casper-client query-global-state --help
 
 ### Time-to-live {#ttl}
 
-Time-to-live is the parameter that determines how long a deploy will wait for execution. The acceptable maximum `ttl` is configurable by chain, with the Casper Mainnet maximum set to `1day`. If you are deploying to a different network, you will need to check `chainspec.toml` for that network to determine the acceptable maximum. The minimum is theoretically zero, but this will result in an immediate expiration and an invalid deploy.
+Time-to-live is the parameter that determines how long a deploy will wait for execution. The acceptable maximum `ttl` is configurable by chain, with the Casper Mainnet maximum set to `1day`. If you are sending a deploy to a different network, you will need to check `chainspec.toml` for that network to determine the acceptable maximum. The minimum is theoretically zero, but this will result in an immediate expiration and an invalid deploy.
 
 In the event of a network outage or other event that prevents execution within the `ttl`, the solution is to resend the deploy in question.
 
@@ -337,9 +337,9 @@ Should the deploy's `ttl` exceed the allowable limit, or if the deploy expires, 
 
 ### Deploy Payments {#deploy-payments}
 
-Dependent upon the complexity and needs of the deployment in question, several options exist to allow users to pay for smart contract execution.
+Dependent upon the complexity and needs of the Deploy in question, several options exist to allow users to pay for smart contract execution.
 
-The simplest way to pay for a deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional Wasm ran within will come at an additional cost on top of the payment. This includes invalid Wasm, which will still result in additional cost.
+The simplest way to pay for a Deploy on the Casper blockchain is to use the host side standard payment functionality. This can be done using an **empty** `ModuleBytes` as your payment code. However, you must specify the amount within a runtime argument. `ModuleBytes` can also serve as a custom payment contract if it is not empty, but any additional Wasm ran within will come at an additional cost on top of the payment. This includes invalid Wasm, which will still result in additional cost.
 
 You may find the host side functionality of standard payment insufficient for your purposes. In this event, Casper provides the following options for custom payment code:
 
@@ -351,9 +351,9 @@ You may find the host side functionality of standard payment insufficient for yo
 
 •	`StoredVersionContractByName`
 
-## Using arguments with deploys {#using-arguments-with-deploys}
+## Using Arguments with Deploys {#using-arguments-with-deploys}
 
-The session Wasm (or payment Wasm if you choose to _not_ use the standard payment) of a deploy often requires arguments to be passed to it when executed. These "runtime args" should be provided by using the `--session-arg` or `--payment-arg` options, once for each arg required. The Casper client provides some examples of how to do this:
+The session Wasm (or payment Wasm if you choose to _not_ use the standard payment) of a Deploy often requires arguments to be passed to it when executed. These "runtime args" should be provided by using the `--session-arg` or `--payment-arg` options, once for each arg required. The Casper client provides some examples of how to do this:
 
 ```bash
 casper-client put-deploy --show-arg-examples
@@ -361,23 +361,23 @@ casper-client put-deploy --show-arg-examples
 
 ## Advanced Features {#advanced-features}
 
-The Casper Network supports complex deploys using multiple signatures. [Casper Accounts](/design/casper-design.md/#accounts-head) use a powerful permissions model that enables a multi-signature scheme for deploys.
+Casper networks support complex deploys using multiple signatures. [Casper Accounts](/design/casper-design.md/#accounts-head) use a powerful permissions model that enables a multi-signature scheme for deploys.
 
-The `put-deploy` command performs multiple actions under the hood, optimizing the typical use case. It creates a deploy, signs it, and deploys to the network without allowing multiple signatures. However, it is possible to call the following three commands and separate key management from account creation:
+The `put-deploy` command performs multiple actions under the hood, optimizing the typical use case. It creates a deploy, signs it, and sends the Deploy to the network without allowing multiple signatures. However, it is possible to call the following three commands and separate key management from account creation:
 
-- `make-deploy` - Creates a deploy and outputs it to a file or stdout. As a file, the deploy can subsequently be signed by other parties using the `sign-deploy` subcommand and then sent to the network for execution using the `send-deploy` subcommand
-- `sign-deploy` - Reads a previously-saved deploy from a file, cryptographically signs it, and outputs it to a file or stdout
-- `send-deploy` - Reads a previously-saved deploy from a file and sends it to the network for execution
+- `make-deploy` - Creates a Deploy and outputs it to a file or stdout. As a file, the deploy can subsequently be signed by other parties using the `sign-deploy` subcommand and then sent to the network for execution using the `send-deploy` subcommand
+- `sign-deploy` - Reads a previously-saved Deploy from a file, cryptographically signs it, and outputs it to a file or stdout
+- `send-deploy` - Reads a previously-saved Deploy from a file and sends it to the network for execution
 
-To sign a deploy with multiple keys, create the deploy with the `make-deploy` command. The generated deploy file can be sent to the other signers, who then sign it with their keys by calling the `sign-deploy` for each key. Signatures need to be gathered on the deploy one after another until all required parties have signed the deploy. Finally, the signed deploy is sent to the network with the `send-deploy` command for processing.
+To sign a Deploy with multiple keys, create the Deploy with the `make-deploy` command. The generated deploy file can be sent to the other signers, who then sign it with their keys by calling the `sign-deploy` for each key. Signatures need to be gathered on the Deploy one after another until all required parties have signed the Deploy. Finally, the signed Deploy is sent to the network with the `send-deploy` command for processing.
 
-For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](/workflow/two-party-multi-sig/) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper Network.
+For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](/workflow/two-party-multi-sig/) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper network.
 
 ## A Note about Gas Price {#a-note-about-gas-price}
 
 A common question frequently arises: "How do I know what the payment amount (gas cost) should be?" 
 
-We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper Network to which you want to send the deploy. If you plan on sending a deploy to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the deploy.
+We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper network to which you want to send the deploy. If you plan on sending a deploy to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the deploy.
 
 If your test configuration matches your production [chainspec](/glossary/C/#chainspec), you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
 
