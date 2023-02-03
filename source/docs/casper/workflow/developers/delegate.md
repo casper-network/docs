@@ -100,7 +100,7 @@ casper-client put-deploy \
 
 Save the returned _deploy_hash_ from the output to query information about the delegation deploy later.
 
-Refer to the [Deploy Status](querying.md#deploy-status) section to learn how to confirm that your deploy was executed successfully.
+Refer to the [Deploy Status](/workflow/developers/querying.md#deploy-status) section to learn how to confirm that your deploy was executed successfully.
 
 ### Confirming the Delegation {#confirming-the-delegation}
 

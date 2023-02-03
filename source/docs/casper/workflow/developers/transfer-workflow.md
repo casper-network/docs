@@ -12,7 +12,7 @@ This workflow assumes:
 
 ## Transfer {#transfer}
 
-The `transfer` command allows you to move CSPR from one account's purse to another as denominated in [Motes](../design/casper-design.md/#tokens-divisibility). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
+The `transfer` command allows you to move CSPR from one account's purse to another as denominated in [Motes](/design/casper-design.md/#tokens-divisibility). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
 
 For transfers of at least 2.5 CSPR (2,500,000,000 Motes) from a single sender to a single recipient on a Casper network, the most efficient option is to use the direct transfer capability.
 
@@ -156,7 +156,7 @@ casper-client transfer \
 
 A transfer on a Casper network is only executed after it has been included in a finalized block.
 
-Refer to the Section on [querying deploys](querying.md#deploy-status) within the network to check the execution status of the transfer.
+Refer to the Section on [querying deploys](/workflow/developers/querying.md#deploy-status) within the network to check the execution status of the transfer.
 
 **Important response fields:**
 

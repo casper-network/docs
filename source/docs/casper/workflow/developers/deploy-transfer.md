@@ -273,6 +273,6 @@ To verify the transfer status, see [Verifying a Transfer](verify-transfer.md).
 
 :::tip 
 
-You can also verify if the transfer was successful by checking your account balance using a [block explorer](block-explorer.md). 
+You can also verify if the transfer was successful by checking your account balance using a [block explorer](/workflow/users/block-explorer.md). 
 
 :::

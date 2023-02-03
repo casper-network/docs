@@ -8,7 +8,7 @@ Before verifying a transfer, make sure you have:
 3. The *public key* hex for the source and target accounts
 
 
-## State State Root Hash
+## The State Root Hash
 
 The state root hash is an identifier of the current network state. It gives a snapshot of the blockchain state at a moment in time. You can use the state root hash to query the network state after deployments. 
 
@@ -39,7 +39,7 @@ casper-client query-global-state \
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
 -   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the network state
--   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash or deploy-info hash.
+-   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash, or deploy-info hash.
 
 **Important response fields:**
 
