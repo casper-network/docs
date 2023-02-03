@@ -8,7 +8,7 @@
 
 ## Reward {#reward}
 
-Validators receive rewards for participating in consensus and finalizing blocks. There is no precise per-block reward. Rewards are split proportionally among stakes within an era. If a validator is offline or cannot vote on many blocks, the rewards earned are also reduced. Delegators can only receive a proportional amount of the validator's rewards minus the validator's commission (Delegation Rate). Rewards are distributed at the end of each era.
+Validators receive rewards for participating in consensus and finalizing blocks. There is no precise per-block reward. Rewards are split proportionally among stakes within an era. If a validator is offline or cannot vote on many blocks, the rewards earned are also reduced. Delegators can only receive a proportional amount of the validator's rewards minus the validator's [delegation rate](D.md#delegation-rate). Rewards are distributed at the end of each era.
 
 ## Root hash {#root-hash}
 

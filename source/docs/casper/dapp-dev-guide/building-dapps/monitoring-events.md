@@ -129,7 +129,7 @@ id:696
 - [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
 - [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
 - [signature](/design/serialization-standard/#signature) - A serialized byte representation of a cryptographic signature.
-- [public_key](/design/serialization-standard/#publickey) - A unique personal address that is shared in the network.
+- [public_key](/design/serialization-standard/#publickey) - A hexadecimal-encoded cryptographic public key.
 
 ## Monitoring Other Events
 All the events apart from `DeployAccepted` and `FinalitySignature` are emitted on the endpoint `main` with the URL `http://<HOST>:9999/events/main`.
@@ -413,7 +413,7 @@ data:
 </details>
 
 - [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
-- [public_key](/design/serialization-standard/#publickey) - A unique personal address that is shared in the network.
+- [public_key](/design/serialization-standard/#publickey) - A hexadecimal-encoded cryptographic public key.
 - [timestamp](/design/serialization-standard/#timestamp) - A timestamp type, representing a concrete moment in time.
 
 ### Step event

@@ -33,7 +33,7 @@ We recommend setting up the rust-toolchain in the top level directory of your pr
 We publish three crates on [crates.io](https://crates.io/) to support smart contract development with Rust:
 
 -   [Casper Contract](https://crates.io/crates/casper-contract) - a library supporting communication with the blockchain. This is the main library you will need to write smart contracts.
--   [Casper Test Support](https://crates.io/crates/casper-engine-test-support) - an in-memory virtual machine against which you can test your smart contracts.
+-   [Casper Test Support](https://crates.io/crates/casper-engine-test-support) - a virtual machine against which you can test your smart contracts.
 -   [Casper Types](https://crates.io/crates/casper-types) - a library with types we use across the Rust ecosystem.
 
 A crate is a compilation unit, which can be compiled into a binary or a library.
@@ -109,7 +109,7 @@ make check-lint
 
 In addition to creating the contract, the Casper crate also automatically created sample tests in the _my-project/tests_ folder.
 
-The Casper local environment provides an in-memory virtual machine against which you can run your contract for testing. When you run the test crate, it will automatically build the smart contract in release mode and then run a series of tests against it in the Casper runtime environment. The custom build script is named _build.rs_ if you are interested in looking more into it.
+The Casper local environment provides a virtual machine against which you can run your contract for testing. When you run the test crate, it will automatically build the smart contract in release mode and then run a series of tests against it in the Casper runtime environment. The custom build script is named _build.rs_ if you are interested in looking more into it.
 
 :::note
 

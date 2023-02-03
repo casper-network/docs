@@ -12,7 +12,7 @@ A decentralized application (dApp) employs [smart contracts](S.md#smart-contract
 
 ## Delegation rate {#delegation-rate}
 
-Node operators ([validators](V.md#validator)) define a commission that they take in exchange for providing staking services. This commission is represented as a percentage of the rewards that the node operator retains for their services.
+Node operators ([validators](V.md#validator)) define a delegation rate that they take in exchange for providing staking services. This delegation rate is a percentage of the rewards that the node operator retains for their services.
 
 ## Delegator {#delegator}
 

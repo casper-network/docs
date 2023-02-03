@@ -48,18 +48,18 @@ Next, create a minimal user interface (UI) to interact with the Casper Signer. O
 	<h1>Transer</h1>
 
 	<!-- The amount to send in the transaction. -->
-	<!-- Minimal amount is 2.5CSPR so 2.5 * 10000 (1CSPR = 10.000 motes)  -->
+	<!-- Minimal amount is 2.5 CSPR (1 CSPR = 1,000,000,000 motes)  -->
 	<label for="Amount">Amount - min amount 25000000000</label>
 	<input id="Amount" type="number">
 
-	<!-- The address that will receive the coins. -->
+	<!-- The public key that will receive the coins. -->
 	<label for="Recipient">Recipient</label>
 	<input id="Recipient" type="text">
 
 	<!--The button that when clicked will send the transaction. -->
 	<button id="btnSend" >Send</button>
 
-	<!--The address of your transaction. -->
+	<!--The ID of your transaction. -->
 	<h1 id="tx"></h1>
 	</div>
 ```
@@ -145,7 +145,7 @@ Add the `AccountInformation` function inside the `btnConnect` to display the inf
 	})
 ``` 
 
-Using the Signer window, select the account you wish to display in the web app. Once selected, the account public key hex and balance should be displayed like this:
+Using the Signer window, select the account you wish to display in the web app. Once selected, the account public key and balance should be displayed like this:
 
 <img src={useBaseUrl("/image/tutorials/signer/casper-signer-balance.png")} alt="Image showing account balance" width="800"/>
 
@@ -155,7 +155,7 @@ With the Signer connected to the website, it is possible to sign a transaction. 
 
 ```javascript
 	async function sendTransaction(){
-	// get address to send from input.
+	// get the recipient's public key from input.
 	const to = document.getElementById("Recipient").value;
 	// get amount to send from input.
 	const amount = document.getElementById("Amount").value
@@ -176,7 +176,7 @@ With the Signer connected to the website, it is possible to sign a transaction. 
 
 	let deployParams = new DeployUtil.DeployParams(publicKey,"casper-test",gasPrice,ttl );
 	
-	// We create a public key from account-address (it is the hex representation of the public-key with an added prefix).
+	// We create a hex representation of the public key with an added prefix.
 	const toPublicKey = CLPublicKey.fromHex(to);
 
 	const session = DeployUtil.ExecutableDeployItem.newTransfer( amount,toPublicKey,null,id);
