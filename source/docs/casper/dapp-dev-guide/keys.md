@@ -5,8 +5,8 @@ The Casper blockchain uses an on-chain [account-based model](/design/casper-desi
 By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
 The Casper platform supports two types of keys for creating accounts and signing transactions: 
-- [ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66-byte long
-- [secp256k1](#ethereum-keys) keys, commonly known as Ethereum keys, which are 68-byte long
+- [ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
+- [secp256k1](#ethereum-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
 
 You can generate keys using both formats, and it is also possible to [work with existing Ethereum keys](#working-with-existing-ethereum-keys).
 
@@ -51,7 +51,7 @@ Here are some details about the files generated:
 2. `public_key_hex` is a hexadecimal-encoded string of the public key
 3. `secret_key.pem` is the *PEM*-encoded secret key
 
-The public-key-hex for `ed25519` keys starts with 01 and is 66-bytes long:
+The public-key-hex for `ed25519` keys starts with 01 and is 66 bytes long:
 
 ```bash
 cat ed25519-keys/public_key_hex
@@ -78,7 +78,7 @@ secp256k1-keys/
 0 directories, 3 files
 ```
 
-The public-key-hex for `secp256k1` keys starts with 02 and is 68-bytes long:
+The public-key-hex for `secp256k1` keys starts with 02 and is 68 bytes long:
 
 ```bash
 cat secp256k1-keys/public_key_hex
