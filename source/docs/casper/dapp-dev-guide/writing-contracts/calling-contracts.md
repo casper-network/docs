@@ -398,6 +398,6 @@ Visit the [Interacting with Runtime Return Values](/dapp-dev-guide/tutorials/ret
 ## What's Next? {#whats-next}
 
 - The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
-- Learn more about [Delegating with the Casper Client](/workflow/delegate)
+- Learn more about [Delegating with the Casper Client](/workflow/developers/delegate)
 - Look into the [Tutorials for Smart Contract Authors](/tutorials/)
-- See the [Developer How To Guides](/workflow/#developer-guides)
+- See the [Developer How To Guides](/workflow/developers)

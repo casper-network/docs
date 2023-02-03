@@ -7,7 +7,7 @@ This document details a workflow where an account holder on a Casper network can
 1. You meet all prerequisites listed [here](/dapp-dev-guide/setup.md), including having a valid `node-address` and the Casper command-line client
 2. You have previously [deployed a smart contract](/dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper network
 
-The workflow will take you through two additional prerequisites before sending the [delegation request](/workflow/delegate/#sending-the-delegation-request):
+The workflow will take you through two additional prerequisites before sending the [delegation request](/workflow/developers/delegate/#sending-the-delegation-request):
 
 3. Building the delegation Wasm to execute on the network
 4. Getting the public key of a validator on the network
