@@ -1,5 +1,5 @@
 ### Tl;dr: What does this PR fix/introduce?
-// Add 1 sentence about what this docs PR does
+// Add a brief description or bullet points about the changes introduced
 
 ### Additional context
 // Add further detail on the current situation, or what the PR seeks to address
