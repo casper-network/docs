@@ -1,4 +1,4 @@
-# Overview of a Casper network
+# Overview of a Casper Network
 
 ## Introduction
 
