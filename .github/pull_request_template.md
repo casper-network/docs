@@ -1,4 +1,4 @@
-### Tl;dr: What does this PR fix/introduce?
+### What does this PR fix/introduce?
 // Add a brief description or bullet points about the changes introduced
 
 ### Additional context
