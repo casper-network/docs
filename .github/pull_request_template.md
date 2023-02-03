@@ -1,13 +1,16 @@
-### Related links
+### Tl;dr: What does this PR fix/introduce?
+// Add 1 sentence about what this docs PR does
 
-// Paste links to Github tasks or links to related PRs.
+### Additional context
+// Add further detail on the current situation, or what the PR seeks to address
+// Include [loom](https://www.loom.com/), screenshots, or gifs([record](https://giphy.com/apps/giphycapture), [compress](https://gifcompressor.com/)) if helpful
 
-### Changes
+### Reviewers
+// Tag whoever needs to review. If you're not sure, leave blank
 
-// Paste brief description what has changed.
+### Checklist
+(Delete any that aren't relevant)
 
-// Paste [loom](https://www.loom.com/), screenshots, or gifs([record](https://giphy.com/apps/giphycapture), [compress](https://gifcompressor.com/)) here.
-
-### Notes
-
-// Paste any other notes if any
+- [ ] All technical procedures have been tested (if you want help with this, mention it in [Reviewers](#reviewers))
+- [ ] My changes follow the [Casper docs style guidelines](https://docs.casperlabs.io/workflow/contribute/)
+- [ ] (More tbc)
