@@ -11,7 +11,7 @@ Casper and other Proof-of-Stake protocols allow token holders to earn rewards an
 ## Prerequisites
 
 1. To stake tokens with a validator, you must create an account with CSPR tokens in its main purse. One option is to use the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) by following [the Signer Guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html). 
-2. You need to [fund the account's main purse](/workflow/funding-from-exchanges) to delegate tokens.
+2. You need to [fund the account's main purse](/workflow/users/funding-from-exchanges) to delegate tokens.
 3. Connect to a block explorer to set up the delegation. This guide uses [cspr.live](https://cspr.live/) and the Casper Signer.
 4. [Review your account](#account-review) before starting the process.
 5. Review the current [delegation fees](/staking#delegation-fees) and ensure you have extra CSPR in your account's main purse apart from the amount you are delegating. Otherwise, the delegation might fail.
@@ -79,7 +79,7 @@ The delegation transaction initiates as soon as the corresponding deploy is sign
 
 Remember to [Monitor your Stake](/staking/#monitoring-rewards). Staking rewards are delivered to your account's main purse after each era, which is currently set to 2 hours. Note that it may take up to 2 eras (4 hours) for the first reward to appear after delegation. The rewards are automatically added to your current stake on the corresponding validator. You may view them under the _Rewards_ tab on your account page on <https://cspr.live/>.
 
-If you want to undelegate your tokens, you can do so at any time. See the [Undelegation Guide](/workflow/undelegate-ui) for details.
+If you want to undelegate your tokens, you can do so at any time. See the [Undelegation Guide](/workflow/users/undelegate-ui) for details.
 
 ## Video Tutorial {#video-tutorial}
 

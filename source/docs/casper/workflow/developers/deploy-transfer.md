@@ -2,14 +2,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Transferring Tokens using a Multi-sig Deploy
 
-This topic explores using a deploy file to transfer Casper tokens (CSPR) between purses on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer Deploy and save the output to a file. You can then have the deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
+This topic explores using a deploy file to transfer Casper tokens (CSPR) between purses on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer Deploy and save the output to a file. You can then have the Deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
+
 ## Prerequisites
 
-You must ensure the following prerequisites are met, before using the deploy commands.
+You must ensure the following prerequisites are met.
 
 1. Set up all the prerequisites listed [here](/dapp-dev-guide/setup.md), including:
     - A funded [Account](/dapp-dev-guide/setup/#setting-up-an-account) on Testnet or Mainnet
-    - A a valid _node address_ from the [Testnet peers](https://testnet.cspr.live/tools/peers) or [Mainnet peers](https://cspr.live/tools/peers)
+    - A valid _node address_ from the [Testnet peers](https://testnet.cspr.live/tools/peers) or [Mainnet peers](https://cspr.live/tools/peers)
     - The Casper [command-line client](/dapp-dev-guide/setup#the-casper-command-line-client)
 2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](two-party-multi-sig.md) workflow
 3. Get the path of the source account's _secret key_ file
@@ -46,10 +47,10 @@ The following table explains the parameters used in the `make-transfer` command.
 | secret-key | The path of the secret key file for the source account |
 | chain-name | The name of the chain, to avoid the deploy from being accidentally or maliciously included in a different chain <ul><li>For Testnet use **casper-test**</li><li>For Mainnet use **casper**</li></ul> |
 | target-account | Hex-encoded public key of the target account from which the main purse will be used |
-| transfer-id | A user-defined identifier, permanently associated with the transfer |
+| transfer-id | A user-defined identifier permanently associated with the transfer |
 | payment-amount | The amount used to pay for executing the code on the network |
 
-In the output, you will see a section named **approvals**. This is where a signature from the source account is added to the deploy.
+In the output, you will see a section named **approvals**. This is where a signature from the source account is added to the Deploy.
 
 <details>
 <summary>Sample output of the make-transfer command</summary>
@@ -126,7 +127,7 @@ In the output, you will see a section named **approvals**. This is where a signa
 
 ### Signing the Deploy using the Casper Client
 
-Once the deploy file is created, you can sign the deploy using other designated accounts. For this example, we are signing the deploy with a second secret key, and saving the output in a `transfer2.deploy` file.
+Once the deploy file is created, you can sign the deploy using other designated accounts. For this example, we are signing the deploy with a second secret key and saving the output in a `transfer2.deploy` file.
 
 ```bash
 casper-client sign-deploy \
@@ -139,9 +140,9 @@ casper-client sign-deploy \
 | ------------ | -------------------------------------------------------------------- |
 | input        | The path of the deploy file, which needs to be signed                |
 | secret-key   | The path of the secret key file used to sign the deploy              |
-| output       | The path of the output file used to the save the deploy with multiple signatures |
+| output       | The path of the output file used to save the deploy with multiple signatures |
 
-You can observe towards the end of the following output there is an **approvals** section, which has two signatures, one from the account initiating the transfer and second from the account used to sign the deploy.
+Towards the end of the following output, you can observe that there is an **approvals** section, which has two signatures, one from the account initiating the transfer and the second from the account used to sign the deploy.
 
 <details>
 <summary>Sample output saved in the transfer2.deploy file</summary>
@@ -272,6 +273,6 @@ To verify the transfer status, see [Verifying a Transfer](verify-transfer.md).
 
 :::tip 
 
-You can also verify if the transfer was successful by checking your account balance using a [block explorer](block-explorer.md). 
+You can also verify if the transfer was successful by checking your account balance using a [block explorer](/workflow/users/block-explorer.md). 
 
 :::

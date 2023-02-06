@@ -10,10 +10,10 @@ Ultimately, smart contracts are meant to run on the blockchain. You can send you
 
 CSPR tokens are used to pay for transactions on the Casper Mainnet and Testnet. There are several ways to fund your account:
 
-- You may want to [transfer tokens from an exchange](/workflow/funding-from-exchanges)
-- You can use a [block explorer to transfer tokens](/workflow/token-transfer/) between accounts' purses
-- You can also [transfer tokens using the default Casper client](/workflow/transfers/)
-- On the Testnet, you can use the [faucet functionality](/workflow/testnet-faucet/) for testing your smart contracts
+- You may want to [transfer tokens from an exchange](/workflow/users/funding-from-exchanges)
+- You can use a [block explorer to transfer tokens](/workflow/users/token-transfer/) between accounts' purses
+- You can also [transfer tokens using the default Casper client](/workflow/developers/transfers/)
+- On the Testnet, you can use the [faucet functionality](/workflow/users/testnet-faucet/) for testing your smart contracts
 
 ## Monitoring the Event Stream for Deploys
 
@@ -371,7 +371,7 @@ The `put-deploy` command performs multiple actions under the hood, optimizing th
 
 To sign a Deploy with multiple keys, create the Deploy with the `make-deploy` command. The generated deploy file can be sent to the other signers, who then sign it with their keys by calling the `sign-deploy` for each key. Signatures need to be gathered on the Deploy one after another until all required parties have signed the Deploy. Finally, the signed Deploy is sent to the network with the `send-deploy` command for processing.
 
-For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](/workflow/two-party-multi-sig/) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper network.
+For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](/workflow/developers/deploy-transfer.md) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper network.
 
 ## A Note about Gas Price {#a-note-about-gas-price}
 

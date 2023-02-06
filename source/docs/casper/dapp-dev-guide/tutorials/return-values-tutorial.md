@@ -68,6 +68,6 @@ pub extern "C" fn call() {
 
 This session code calls into a contract's entry point by using `runtime::call_contract`, supplying the `contract_hash` to identify the contract to be called, and the name of the entry point to be invoked, in this case `donate`. It supplies the `donating_account_key`, which in this case is the account key of the caller. The contract will then provide a return value, in this case `donating_purse_uref`. To call an entry point, you will need to know the [CLType](/dapp-dev-guide/sdkspec/types_cl.md) of the return value and identify it within the code.
 
-You can determine the type of the return value by [querying the contract object](workflow/querying/#querying-an-account) in global state. To query a contract rather than an account, replace the key parameter with the formatted string representation of the contract hash.
+You can determine the type of the return value by [querying the contract object](/workflow/developers/querying/#querying-an-account) in global state. To query a contract rather than an account, replace the key parameter with the formatted string representation of the contract hash.
 
 This example code takes that returned value and transfers a `donation_amount` from the calling account's main purse to the established donation purse. It is not necessary for the code to store, or even use, the returned value. Use of the returned value depends on the needs of the developer.
