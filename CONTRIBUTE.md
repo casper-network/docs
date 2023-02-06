@@ -208,8 +208,8 @@ const CONTRACT_WASM: &str = "contract.wasm";
 
 When adding the following types of content, use a template:
 
-* [Overview page](../../../../.github/templates/overview-template.md)
-* [Tutorial page](../../../../.github/templates/tutorial-template.md)
+* [Overview page](.github/templates/overview-template.md)
+* [Tutorial page](.github/templates/tutorial-template.md)
 
 ## Acronyms and Abbreviations {#acronyms-and-abbreviations}
 
