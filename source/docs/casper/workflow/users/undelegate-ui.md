@@ -6,7 +6,7 @@ If you want to undelegate tokens from a validator, you can do so at any time. No
 
 ## Prerequisites 
 
-This guide assumes that you have previously delegated tokens] to a validator using a [block explorer](/workflow/delegate-ui) or the [Casper client](/workflow/delegate).
+This guide assumes that you have previously delegated tokens] to a validator using a [block explorer](/workflow/users/delegate-ui) or the [Casper client](/workflow/developers/delegate).
 
 ## Accessing the Undelegation Feature
 
@@ -30,7 +30,7 @@ The following instructions will take you through the undelegation process, start
 
 **Step 1 - Undelegation details**
 
-1.  Specify the validator from whom you want to undelegate your tokens if you have reached this screen using the Wallet functionality. The search box will automatically show you the validators with whom you have staked. Otherwise, verify the pre-populated key in the Validator field.
+1.  Specify the validator from whom you want to undelegate your tokens if you have reached this screen using the Wallet drop-down menu. The search box will automatically show you the validators with whom you have staked. Otherwise, verify the pre-populated key in the Validator field.
 2.  Enter the amount of Casper tokens you want to undelegate.
 3.  Click **Next**.
 

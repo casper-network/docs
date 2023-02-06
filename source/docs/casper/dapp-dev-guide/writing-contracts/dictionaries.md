@@ -117,7 +117,7 @@ Reading a dictionary item using the Contract's `NamedKeys` requires the followin
 
 * `Node Address` - The IP and port of a node on a Casper network. In the example below, the node address is pointing to a local NCTL network.
 
-* `State Root Hash` - The current state root hash of the Casper network hosting the dictionary item you are attempting to read.
+* `State Root Hash` - The current state root hash of a Casper network hosting the dictionary item you are attempting to read.
 
 * `Contract Hash` - The hash of the contract that references the dictionary in its `NamedKeys`.
 

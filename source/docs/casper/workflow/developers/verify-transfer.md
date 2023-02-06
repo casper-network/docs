@@ -8,7 +8,7 @@ Before verifying a transfer, make sure you have:
 3. The *public key* hex for the source and target accounts
 
 
-## State State Root Hash
+## The State Root Hash
 
 The state root hash is an identifier of the current network state. It gives a snapshot of the blockchain state at a moment in time. You can use the state root hash to query the network state after deployments. 
 
@@ -39,7 +39,7 @@ casper-client query-global-state \
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
 -   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the network state
--   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash or deploy-info hash.
+-   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash, or deploy-info hash.
 
 **Important response fields:**
 
@@ -164,7 +164,7 @@ casper-client query-global-state \
 
 </details>
 
-## Get Source Account Balance {#get-source-account-balance}
+## Get Source Purse Balance {#get-source-account-balance}
 
 All accounts on a Casper network have a purse associated with the Casper system mint, which we call the _main purse_. The balance associated with a given purse is recorded in global state, and the value can be queried using the `URef` associated with the purse.
 
@@ -218,7 +218,7 @@ casper-client get-balance \
 
 </details>
 
-## Get Target Account Balance {#get-target-account-balance}
+## Get Target Purse Balance {#get-target-account-balance}
 
 Similarly, now that we have the address of the target purse, we can get its balance.
 
@@ -272,7 +272,7 @@ casper-client get-balance \
 
 ## Query Transfer Details {#query-transfer-details}
 
-Deploys in a Casper Network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
+Deploys in a Casper network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
 
 We will use the `transfer-` to query more details about the transfer.
 

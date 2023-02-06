@@ -48,7 +48,7 @@ Here is a list of commands for developers who already meet the prerequisites and
    casper-client get-state-root-hash --node-address http://65.21.235.219:7777
    ```
 
-8. Set up a [Casper account](/dapp-dev-guide/setup/#setting-up-an-account).
+8. Set up a [Casper Account](/dapp-dev-guide/setup/#setting-up-an-account).
 
 9. Clone a simple counter contract or download it from GitHub:
 
@@ -99,7 +99,7 @@ Here is a list of commands for developers who already meet the prerequisites and
    --key [PATH_TO_PUBLIC_KEY]
    ```
 
-   - As another alternative, use the account hash for the `--key` argument. To get the account hash, look at the account on the Testnet, or run this command:
+   - As another alternative, use the account hash for the `--key` argument. To get the account hash, look at the account details on the block explorer, or run this command:
 
    ```bash
    casper-client account-address --public-key [PATH_TO_PUBLIC_KEY]

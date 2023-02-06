@@ -7,7 +7,7 @@ This document details a workflow where an account holder on a Casper network can
 1. You meet all prerequisites listed [here](/dapp-dev-guide/setup.md), including having a valid `node-address` and the Casper command-line client
 2. You have previously [deployed a smart contract](/dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper network
 
-The workflow will take you through two additional prerequisites before sending the [delegation request](/workflow/delegate/#sending-the-delegation-request):
+The workflow will take you through two additional prerequisites before sending the [delegation request](/workflow/developers/delegate/#sending-the-delegation-request):
 
 3. Building the delegation Wasm to execute on the network
 4. Getting the public key of a validator on the network
@@ -45,7 +45,7 @@ You will see a list of validators present on the network and their total stake (
 
 You can click on any validator listed to see more information about the validator, including the validator's personal stake.
 
-As a prospective delegator, selecting a trustworthy validator with a favorable rate is essential. Each validator shows the delegation rate (commission), which represents the percentage of **your** reward share that the validator will retain. Thus, a 10% rate implies that the validator will retain 10% of your reward share. Please do your due diligence before staking your tokens with a validator.
+As a prospective delegator, selecting a trustworthy validator with a favorable rate is essential. Each validator shows the delegation rate, which is a percentage of **your** reward share that the validator will retain. Thus, a 10% rate implies that the validator will retain 10% of your reward share. Please do your due diligence before staking your tokens with a validator.
 
 Note the `PublicKey` of the validator you have selected to delegate your tokens.
 
@@ -100,7 +100,7 @@ casper-client put-deploy \
 
 Save the returned _deploy_hash_ from the output to query information about the delegation deploy later.
 
-Refer to the [Deploy Status](querying.md#deploy-status) section to learn how to confirm that your deploy was executed successfully.
+Refer to the [Deploy Status](/workflow/developers/querying.md#deploy-status) section to learn how to confirm that your deploy was executed successfully.
 
 ### Confirming the Delegation {#confirming-the-delegation}
 

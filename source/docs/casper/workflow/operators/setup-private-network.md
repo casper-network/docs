@@ -3,16 +3,33 @@
 
 Casper private networks operate in a similar way to the Casper public network. The significant difference in private networks is a closed validator set and having administrator account(s) which can control regular accounts. Hence, there are specific configurations when setting up the genesis block and administrator accounts. Besides the main configuration options that the Casper platform provides, each customer may add other configuration options when setting up a private network.
 
+## Contents
+
+1) [Prerequisites](#prerequisites)
+
+2) [Setting up a Validator Node](#step-1-setting-up-a-validator-node)
+
+3) [Setting up the Directory](#step-2-setting-up-the-directory)
+
+4) [Configuring the Genesis Block](#step-3-configuring-the-genesis-block)
+
+5) [Configuring the Administrator Accounts](#step-4-configuring-the-administrator-accounts)
+
+6) [Starting the Casper Node](#step-5-starting-the-casper-node)
+
+7) [Testing the Private Network](#step-7-testing-the-private-network)
+
+8) [Setting up a Block Explorer](#setting-up-a-block-explorer)
 
 ## Prerequisites
 Follow these guides to set up the required environment and user accounts.
 - [Setting up the Casper client](/dapp-dev-guide/setup/#the-casper-command-line-client)
 - [Setting up the client for interacting with the network](https://github.com/casper-ecosystem/casper-client-rs/blob/main/README.md#casper-client)
-- [Setting up an account](/dapp-dev-guide/setup/#setting-up-an-account)
+- [Setting up an Account](/dapp-dev-guide/setup/#setting-up-an-account)
 
 
 ## Step 1. Setting up a Validator Node
-A [Casper node](/glossary/N/#node) is a physical or virtual device participating in the Casper network. You need to set up several [validator](/glossary/V/#validator) nodes on your private network. An [operator](/glossary/O/#operator) who has won an [auction](/glossary/A/#auction) bid will be a validator for the private network.
+A [Casper node](/glossary/N/#node) is a physical or virtual device participating in a Casper network. You need to set up several [validator](/glossary/V/#validator) nodes on your private network. An [operator](/glossary/O/#operator) who has won an [auction](/glossary/A/#auction) bid will be a validator for the private network.
 
 
 Use the below guides to set up and manage validator nodes.
@@ -22,7 +39,7 @@ Use the below guides to set up and manage validator nodes.
 - [Set up Mainnet and Testnet validator nodes](https://docs.cspr.community/): A set of guides for Mainnet and Testnet node-operators on setting up and configuring their Casper network validator nodes.
 
 Use these FAQ collections for tips and details for validators.
-- [FAQs for basic validator node ](https://docs.casperlabs.io/faq/faq-validator/)
+- [FAQs for basic validator node ](/faq/faq-validator/)
 - [FAQs on Main Net and Test Net validator node setup](https://docs.cspr.community/docs/faq-validator.html)
 
 ## Step 2. Setting up the Directory
@@ -34,10 +51,10 @@ Use these guides to set up your private network directories. You will find sever
 ## Step 3. Configuring the Genesis Block
 A Casper private network contains a different set of configurations when compared to the public network. The [`chainspec.toml`](/glossary/C/#chainspec) file contains the required configurations for the genesis process in a private network.
 
-You should add the configuration options below to the `chainspec.toml` file inside the [private network directory](/workflow/setup-private-network/#step-2-setting-up-the-directory).
+You should add the configuration options below to the `chainspec.toml` file inside the [private network directory](/workflow/operators/setup-private-network/#step-2-setting-up-the-directory).
 
 ### Unrestricted transfers configuration
-This option disables unrestricted transfers between regular accounts. A regular account user cannot do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators.
+This option disables unrestricted transfers between regular account purses. A regular account user cannot do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators.
 
 ```toml
 [core]
@@ -69,7 +86,7 @@ A `refund_ratio` is specified as a proper fraction (the numerator must be lower 
 [core]
 refund_handling = { type = "refund", refund_ratio = [1, 1] }
 ```
-After deducting the gas fee, the distribution of the remaining payment amount is handled based on the [fee_handling](/workflow/setup-private-network/#fee-handling-config) configuration.
+After deducting the gas fee, the distribution of the remaining payment amount is handled based on the [fee_handling](/workflow/operators/setup-private-network/#fee-handling-config) configuration.
 
 The default configuration for a public chain, including the Casper Mainet,  looks like this:
 
@@ -116,7 +133,7 @@ Other configurations related to the auction:
 In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes.
 
 ## Step 4. Configuring the Administrator Accounts
-An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one administrator account configured within a network to operate it as a `private network`. You can create new administrators and [rotate the validator set](/workflow/setup-private-network/#step-6-rotating-the-validator-accounts) in a single configuration update. The operator must first ensure the `global_state.toml` file contains new administrators. The validator set is updated after if an administrator is also a validator. Also, only the administrator accounts can hold and distribute token balances.
+An administrator is mandatory for a private network since it manages all the other [validator](/glossary/V/#validator) accounts. There should be at least one administrator account configured within a network to operate it as a `private network`. You can create new administrators and [rotate the validator set](/workflow/operators/setup-private-network/#step-6-rotating-the-validator-accounts) in a single configuration update. The operator must first ensure the `global_state.toml` file contains new administrators. The validator set is updated after if an administrator is also a validator. Also, only purses of administrator accounts can hold and distribute token balances.
 
 ### Configuring administrator accounts
 
@@ -292,7 +309,7 @@ Keep in mind that for security reasons `ca_key.pem` should be stored securely an
 
 ### Funding Alice's account
 
-The following command transfers tokens to Alice's account.
+The following command transfers tokens to Alice's main purse.
 
 ```sh
 casper-client \
@@ -516,3 +533,7 @@ administrators = ["NEW_PUBLIC_KEY"]
 ```
 
 After this step, the private network would be ready for use.
+
+## Setting up a Block Explorer
+
+Private and hybrid blockchains can find information on how to set up and operate our free version of a block explorer [here](https://github.com/casper-network/casper-blockexplorer).
