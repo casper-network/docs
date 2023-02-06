@@ -5,7 +5,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 These developer guides highlight key features and capabilities of the Casper blockchain.
 
 - [Prerequisites](/dapp-dev-guide/setup.md): setup needed for various workflows
-- [Querying the Casper Network](/workflow/developers/querying.md): querying information on a Casper network
+- [Querying a Casper Network](/workflow/developers/querying.md): querying information on a Casper network
 - [Two-Party Multi-Signatures for Deployment](two-party-multi-sig.md): setting up an account for two-party signature deploys
 - [Transferring Tokens using the Command-line](transfers.md): transferring tokens from one account to another using the command-line
    - [Transferring Tokens using Direct Transfer](transfer-workflow.md)
