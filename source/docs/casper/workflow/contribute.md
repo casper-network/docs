@@ -204,6 +204,13 @@ const CONTRACT_WASM: &str = "contract.wasm";
 
     * Limit quotation marks to the traditional usage, such as quoted speech.
 
+### Templates
+
+When adding the following types of content, use a template:
+
+* [Overview page](https://github.com/casper-network/docs/tree/dev/.github/templates/overview-template.md)
+* [Tutorial page](https://github.com/casper-network/docs/tree/dev/.github/templates/tutorial-template.md)
+
 ## Acronyms and Abbreviations {#acronyms-and-abbreviations}
 
 |Acronym/Abbreviation|Definition|
