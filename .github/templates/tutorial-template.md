@@ -14,7 +14,7 @@ If relevant, include what they'll have achieved or built by the end of this tuto
 
 This can include:
 - [ ] Recommended hardware/software/local setup
-- [ ] Familiarity of experience with Rust, JavaScript, at a certain level
+- [ ] Familiarity/experience with Rust, JavaScript, at a certain level
 - [ ] Completion of a prior tutorial or process
 - [ ] Accounts or logins
 - [ ] Anything else that is relevant
