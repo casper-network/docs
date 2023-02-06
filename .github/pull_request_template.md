@@ -1,5 +1,5 @@
 ### What does this PR fix/introduce?
-// Add a brief description or bullet points about the changes introduced
+// Add a brief description or bullet points about the changes introduced.
 
 ### Additional context
 // Add further detail on the current situation, or what the PR seeks to address.
