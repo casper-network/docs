@@ -37,7 +37,7 @@ sudo rm -rf /var/lib/casper/*
 
 ## Required Packages
 
-The following commands will set up the CasperLabs repository for packages:
+The following commands will set up the Casper Labs repository for packages:
 
 ```bash
 echo "deb https://repo.casperlabs.io/releases" bionic main | sudo tee -a /etc/apt/sources.list.d/casper.list

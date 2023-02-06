@@ -51,7 +51,7 @@ _Transaction fees_, or charges for gas use, ensure that the users compensate val
 
 ## Ecosystem {#ecosystem}
 
-The ecosystem layer encompasses dApp design and operation. CasperLabs maintains multiple partnerships with prospective dApp developers, and we anticipate devoting significant resources to research the economics of prospective dApps.
+The ecosystem layer encompasses dApp design and operation. Casper Labs maintains multiple partnerships with prospective dApp developers, and we anticipate devoting significant resources to research the economics of prospective dApps.
 
 ## Macroeconomy {#macroeconomy}
 

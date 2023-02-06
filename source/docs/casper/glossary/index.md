@@ -5,7 +5,7 @@ slug: /glossary
 
 # Glossary
 
-These definitions are correct in the context of the CasperLabs. They may (and probably will) have slightly different semantics in other contexts, including other blockchain contexts.
+These definitions are correct in the context of the Casper Labs. They may (and probably will) have slightly different semantics in other contexts, including other blockchain contexts.
 
 ---
 
