@@ -23,7 +23,7 @@ This is the Writing Style Guide used by Casper's documentation team.
 
 ## Overview {#overview}
 
-The CasperLabs Writing and Editing Style Guide aims to establish a set of standards and guidelines for writing and editing CasperLabs documents to provide uniformity and consistency throughout. This document briefly discusses the guidelines to be followed in developing the content for each deliverable. The official language to be used in all CasperLabs documents is American English, thus for spelling variations [Merriam Webster Dictionary](https://www.merriam-webster.com/dictionary/dictionary) will be the reference point.
+The Casper Writing and Editing Style Guide aims to establish a set of standards and guidelines for writing and editing documents to provide uniformity and consistency throughout. This document briefly discusses the guidelines to be followed in developing the content for each deliverable. The official language to be used in all Casper documents is American English, thus for spelling variations [Merriam Webster Dictionary](https://www.merriam-webster.com/dictionary/dictionary) will be the reference point.
 
 ---
 
@@ -31,7 +31,7 @@ The CasperLabs Writing and Editing Style Guide aims to establish a set of standa
 
 * Use Casper not casper.
 
-* Use CasperLabs instead of Casper Labs, casper labs, casperLabs, casperlabs, or any other variation.
+* Use Casper Labs instead of CasperLabs, casper labs, casperLabs, casperlabs, or any other variation.
 
 * Use Casper Network (the initial letter of both words capitalized) while referring to the Casper blockchain network.
 
