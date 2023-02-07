@@ -1,6 +1,6 @@
 <!-- This is a template to give you some rough structure for writing a tutorial.  -->
 <!-- Using a template means anyone can contribute and the experience for users reading the tutorials remains as consistent as possible. -->
-<!-- However, feel free to delete anything that isn't relevant to your tutorial.  -->
+<!-- However, feel free to delete anything irrelevant to your tutorial.  -->
 <!-- If you need any help, tag our developer advocates or TW team. Thank you for contributing! -->
 
 # Tutorial Title
