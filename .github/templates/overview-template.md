@@ -1,5 +1,5 @@
 <!-- This is a template for any "Overview" page. It helps us keep the reader experience consistent. -->
-<!-- An "Overview" page is used to tie multiple topics together in a subsection of the docs. -->
+<!-- An "Overview" page ties multiple topics together in a subsection of the docs. -->
 <!-- This template can be used at any nested level in the docs where there is an "Overview" page. Delete any sections you feel aren't relevant. -->
 
 # Overview
