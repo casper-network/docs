@@ -10,7 +10,7 @@ The main content of this page: include an overview of this section (all pages ne
 
 ## Quick Links
 
-Users might already know where they want to go. To save time, include a list here to popular pages.
+Users might already know where they want to go. To save time, include a list here of popular pages.
 
 You can also link up to the Portal, to the Concepts docs, or externally to help explain this topic.
 
