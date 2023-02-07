@@ -41,7 +41,7 @@ Further tutorials or docs to read once someone has successfully completed your t
 
 ### Tag your code snippets
 
-Remember to add the language when including any code blocks. While not supported natively by markdown, many markdown engines (including the one used by GitHub) will support syntax highlighting which is helpful for reviewers and future maintainers of your tutorial:
+Remember to add the language when including any code blocks. While not supported natively by markdown, many markdown engines (including the one used by GitHub) will support syntax highlighting, which is helpful for reviewers and future maintainers of your tutorial:
 
 ```
     ```rust
