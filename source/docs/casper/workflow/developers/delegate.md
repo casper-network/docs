@@ -49,9 +49,9 @@ As a prospective delegator, selecting a trustworthy validator with a favorable r
 
 Note the `PublicKey` of the validator you have selected to delegate your tokens.
 
-Suppose you observe your delegation request in the bid structure but do not see the associated validator key in the `era_validators` structure. In that case, the validator you selected is not part of the current validator set. In this event, your tokens will only be earning rewards if you un-delegate, wait through the unbonding period, and re-delegate to another validator.
+Suppose you observe your delegation request in the bid structure but do not see the associated validator key in the `era_validators` structure. In that case, the validator you selected is not part of the current validator set. In this event, your tokens will only be earning rewards if you undelegate, wait through the unbonding period, and redelegate to another validator.
 
-Additionally, any rewards earned are re-delegated by default to the validator from the initial delegation request. Therefore at the time of un-delegation, you should consider un-delegating the initial amount plus any additional rewards earned through the delegation process.
+Additionally, any rewards earned are redelegated by default to the validator from the initial delegation request. Therefore at the time of undelegation, you should consider undelegating the initial amount plus any additional rewards earned through the delegation process.
 
 The active validator set constantly rotates; therefore, when delegating to a validator, remember that the validator you selected may have been rotated out of the set.
 
