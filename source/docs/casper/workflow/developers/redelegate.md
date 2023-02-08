@@ -61,4 +61,4 @@ The redelegation process includes an unbonding delay before the tokens are redel
 
 Due to this delay, the new validator may become inactive before the redelegation completes. If this happens, the tokens will be returned to the delegator.
 
-Once the redelegation Deploy has been processed, you can query the auction to confirm the redelegation. The process of verifying the redelegation request is the same as [verifying a delegation request](/workflow/developers/delegate.md#confirming-the-delegation) using the `casper-client get-auction-info` command.
+Once the redelegation Deploy has been processed, you can query the auction to confirm the redelegation. This process is the same as [verifying a delegation request](/workflow/developers/delegate.md#confirming-the-delegation) using the `casper-client get-auction-info` command.
