@@ -25,7 +25,7 @@ Prepare the Rust environment and then build the contracts using the [Makefile](h
 ```bash
 cd casper-node
 make setup-rs
-make build-contracts-rs
+make build-client-contracts-rs
 ```
 
 Once you build the contracts, you can use the `delegate.wasm` to create a deploy that will initiate the delegation process. The Wasm can be found in this directory: `target/wasm32-unknown-unknown/release/`.
