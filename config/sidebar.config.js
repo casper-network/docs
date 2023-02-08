@@ -46,6 +46,7 @@ module.exports = {
                     ],
                 },
                 "workflow/developers/delegate",
+                "workflow/developers/redelegate",
                 "workflow/developers/undelegate",
             ],
         },
