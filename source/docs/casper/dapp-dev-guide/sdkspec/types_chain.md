@@ -688,7 +688,7 @@ Required Parameters:
 
 ## NewValidator {#newvalidator}
 
-The public key for the new validator in a re-delegation using [UnbondingPurse](#unbondingpurse).
+The public key for the new validator in a redelegation using [UnbondingPurse](#unbondingpurse).
 
 ## Operation {#operation}
 

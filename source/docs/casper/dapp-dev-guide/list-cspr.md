@@ -170,7 +170,7 @@ Staking operations consists of two parts:
 The staking deploy requires the following information:
 - The delegator's public key
 - The validator's public key
-- The new validator's public key (For re-delegation only)
+- The new validator's public key (For redelegation only)
 - The amount to be delegated
 - The gas cost
 - The auction manager contract's hash
