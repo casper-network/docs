@@ -912,7 +912,7 @@ Required Parameters:
 
 * [`validator_public_key`](#publickey) The original validator's public key.
 
-* [`new_validator`](#newvalidator) The re-delegated validator's public key.
+* [`new_validator`](#newvalidator) The redelegated validator's public key.
 
 ## URef {#uref}
 
