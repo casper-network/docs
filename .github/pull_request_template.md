@@ -8,6 +8,7 @@
 ### Checklist
 (Delete any that aren't relevant)
 
+- [ ] I ran the docs locally using `yarn install` and `yarn run start`.
 - [ ] My changes follow the [Casper docs style guidelines](https://docs.casperlabs.io/workflow/contribute/).
 - [ ] All links (internal and external) have been verified.
 - [ ] All technical procedures have been tested (if you want help with this, mention it in [Reviewers](#reviewers)).
