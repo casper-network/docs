@@ -47,7 +47,7 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [Casper Fungible Token](https://github.com/casper-ecosystem/erc20) | Implementation of Fungible Tokens for Casper networks | Casper Labs | Rust | Apache License 2.0 | 2022-09-01 | Tokens
 [Advanced Fungible Token](https://github.com/Rengo-Labs/CasperLabs-ERC777) | ERC-777 + 1820 Advanced Fungible Token with Callbacks & Self Identification | Rengo Labs | Rust | Apache-2.0 license | 2022-08-16 | Tokens
 [Helper Bot](https://github.com/a3mc/helperbot) | Helper bot for improving DevDao VAs productivity | A3MC | TypeScript | MIT license | 2022-08-19 | Tools
-[Java SDK](https://github.com/syntifi/casper-sdk) | Casper Client Java SDK | SyntiFi | Java | Apache License 2.0 | 2021-04-20 | Client SDK
+[Java SDK](https://github.com/casper-network/casper-java-sdk) | Casper Client Java SDK | SyntiFi | Java | Apache License 2.0 | 2021-04-20 | Client SDK
 [KYC Proxy Contact](https://github.com/casper-ecosystem/kyc-proxy-contract) | This is a proxy contract to check if an account is KYC approved through registered providers (KYC Contracts) | Casper Labs | Rust | NA | 2022-07-01 | Example contracts
 [LiquidNFT](https://github.com/Rengo-Labs/CasperLabs-LiquidNFT) | NFT Collateralized Loans | Rengo Labs | JavaScript | GNU General Public License v3.0 | 2022-09-15 | NFT
 [Payment Example Contract](https://github.com/casper-ecosystem/payment-example) | This example demonstrates the usage of purses to transfer motes inside a contract | Casper Labs | Rust | NA | 2022-06-22 | Example contracts
