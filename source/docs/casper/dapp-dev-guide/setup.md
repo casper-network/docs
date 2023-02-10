@@ -68,7 +68,7 @@ sudo dnf install casper-client-x-x-x*.rpm
 
 ## Building the Client from Source {#building-the-client-from-source}
 
-[Instructions]( https://github.com/casper-network/casper-node/tree/master/client)
+[Instructions](https://github.com/casper-network/casper-node/tree/master/client)
 
 ## Setting up an Account {#setting-up-an-account}
 
