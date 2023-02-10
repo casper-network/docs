@@ -22,9 +22,9 @@ casper-client put-deploy \
 --session-path <path-to-wasm>/redelegate.wasm \
 --payment-amount 5000000000 \
 --session-arg "validator:public_key='<hex-encoded-validator-public-key>'" \
---session-arg "amount:u512='<amount-to-delegate>'"
+--session-arg "amount:u512='<amount-to-delegate>'" \
 --session-arg "delegator:public_key='<hex-encoded-public-key>'" \
---session arg "new_validator:public_key='<hex-encoded-public-key>'" \
+--session-arg "new_validator:public_key='<hex-encoded-public-key>'" \
 --secret-key <delegator-secret-key>.pem
 ```
 
