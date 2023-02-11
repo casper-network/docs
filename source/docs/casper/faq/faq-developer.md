@@ -108,7 +108,7 @@ No, smart contracts cannot interact with the world outside of the blockchain on 
 <details>
 <summary><b>Why do I receive a 'casper-client: command not found' error?</b></summary>
 
-Refer to the [Casper Command-line Client](https://docs.casperlabs.io/workflow/setup#the-casper-command-line-client) document for instructions on interacting with the Casper Network.
+Refer to the [Casper Command-line Client](/dapp-dev-guide/setup#the-casper-command-line-client) document for instructions on interacting with a Casper network.
 
 </details>
 
@@ -158,7 +158,7 @@ casper-client list-rpcs --node-address <HOST:7777>
 <details>
 <summary><b>How can I monitor the events a node is emitting?</b></summary>
 
-You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on Testnet and Mainnet. You will need the IP address of a [peer](/workflow/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](/dapp-dev-guide/building-dapps/monitoring-events.md) page.
+You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on Testnet and Mainnet. You will need the IP address of a [peer](/dapp-dev-guide/setup/#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](/dapp-dev-guide/building-dapps/monitoring-events.md) page.
 
 </details>
 
@@ -166,7 +166,7 @@ You can monitor a node's event stream on the port specified as the `event_stream
 <details>
  <summary><b>How can I query a deploy for an account?</b></summary>
 
-On-chain accounts are associated with an account address. Deploy data includes account address as a sub-field.
+On-chain accounts are associated with an account public key. Deploy data includes the account's public key as a sub-field.
 
 </details>
 
@@ -235,8 +235,8 @@ There are two types of action that an account can perform: a deploy and key mana
 
 You may also reference the following two documents for additional information:
 
-- [Accounts](https://docs.casperlabs.io/design/accounts)
-- [Two-Party Multi-Signature workflow](/workflow/two-party-multi-sig/)
+- [Accounts](/design/casper-design.md/#accounts-head)
+- [Two-Party Multi-Signature workflow](/workflow/developers/deploy-transfer.md)
 
 </details>
 

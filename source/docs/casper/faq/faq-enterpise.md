@@ -1,6 +1,6 @@
 # FAQ - Enterprise
 
-Frequently asked questions regarding the Casper Network, CasperLabs, and the CSPR token sale.
+Frequently asked questions regarding the Casper Network, Casper Labs, and the CSPR token sale.
 
 ## Casper Network
 
@@ -46,44 +46,44 @@ Casper is optimized for enterprise and developers through three main features: u
 <details>
   <summary><b>What's an example of the Casper Network in use?</b></summary>
 
-IPwe is a global patent registry currently building on the Casper Network. CasperLabs and IPwe have partnered to build a chain of custody (CoC) solution for public patent records. The "CoC Solution" will use the Casper public blockchain to store, secure, and trace patent data. [Learn more](https://blog.casperlabs.io/intellectual-property-and-patent-assets-on-casper/).
+IPwe is a global patent registry currently building on the Casper Network. Casper Labs and IPwe have partnered to build a chain of custody (CoC) solution for public patent records. The "CoC Solution" will use the Casper public blockchain to store, secure, and trace patent data. [Learn more](https://blog.casperlabs.io/intellectual-property-and-patent-assets-on-casper/).
 
 </details>
 
 <details>
   <summary><b>How can I learn more about the Casper Network?</b></summary>
 
-Visit the [CasperLabs website](https://casperlabs.io/), [read the blog](https://blog.casperlabs.io/), and [join our community](https://casperlabs.io/community/).
+Visit the [Casper Labs website](https://casperlabs.io/), [read the blog](https://blog.casperlabs.io/), and [join our community](https://casperlabs.io/community/).
 
 </details>
 
-## CasperLabs
+## Casper Labs
 
 <details>
-  <summary><b>What's the difference between CasperLabs and Casper?</b></summary>
+  <summary><b>What's the difference between Casper Labs and Casper?</b></summary>
 
-CasperLabs is the development team that is currently building the Casper Network. CasperLabs has been developing Casper throughout both the testnet and mainnet periods. As a public, open-source network, Casper can be developed on and by anyone in addition to the CasperLabs team.
-
-</details>
-
-<details>
-  <summary><b>What's the CasperLabs team's background?</b></summary>
-
-The engineering, executive, business, and marketing teams of CasperLabs are diverse groups of thinkers and builders with decades of experience in internet-scale computing systems across academia, business, and engineering. [Meet the CasperLabs team](https://casperlabs.io/company/meet-our-team/).
+Casper Labs is the development team that is currently building the Casper Network. Casper Labs has been developing Casper throughout both the testnet and mainnet periods. As a public, open-source network, Casper can be developed on and by anyone in addition to the Casper Labs team.
 
 </details>
 
 <details>
-  <summary><b>What is CasperLabs' fundraising history?</b></summary>
+  <summary><b>What's the Casper Labs team's background?</b></summary>
 
-In September 2019, CasperLabs raised a \$14.5 million Series A round led by Terren Piezer with participation from Consensus Capital, Axiom Holdings Group, and Digital Strategies, MW Partners, and more.
+The engineering, executive, business, and marketing teams of Casper Labs are diverse groups of thinkers and builders with decades of experience in internet-scale computing systems across academia, business, and engineering. [Meet the Casper Labs team](https://casperlabs.io/company/meet-our-team/).
 
 </details>
 
 <details>
-  <summary><b>Who has partnered with CasperLabs to build on the Casper Network?</b></summary>
+  <summary><b>What is Casper Labs' fundraising history?</b></summary>
 
-CasperLabs has established a diverse ecosystem of participants who will be building, staking, and validating on Casper from day one, spanning blockchain, enterprise technology, and financial services. Among others, CasperLabs has established relationships with BitGo, Huobi, Ledger Leap, Chainlink, Metis, and Cardinal Cryptography. Companies including IPwe and Broadleaf are already using the Casper Network to unlock new value by tokenizing existing assets.
+In September 2019, Casper Labs raised a \$14.5 million Series A round led by Terren Piezer with participation from Consensus Capital, Axiom Holdings Group, and Digital Strategies, MW Partners, and more.
+
+</details>
+
+<details>
+  <summary><b>Who has partnered with Casper Labs to build on the Casper Network?</b></summary>
+
+Casper Labs has established a diverse ecosystem of participants who will be building, staking, and validating on Casper from day one, spanning blockchain, enterprise technology, and financial services. Among others, Casper Labs has established relationships with BitGo, Huobi, Ledger Leap, Chainlink, Metis, and Cardinal Cryptography. Companies including IPwe and Broadleaf are already using the Casper Network to unlock new value by tokenizing existing assets.
 
 To learn more about how to work within the Casper ecosystem, contact <neil@casperlabs.io>.
 

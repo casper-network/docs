@@ -11,7 +11,7 @@ This page consolidates several frequently asked questions (FAQ) and organizes th
 | Category | Description |
 | --- | --- |
 | [General](/faq/faq-general) | Contains details for all types of users, covering general functionality and domain details. |
-| [Enterprise](/faq/faq-enterpise) | Business-related questions regarding the Casper Network, CasperLabs, and the CSPR token sale. |
+| [Enterprise](/faq/faq-enterpise) | Business-related questions regarding the Casper Network, Casper Labs, and the CSPR token sale. |
 | [Developers](/faq/faq-developer) | Details related to the software development environment, developer tools, setup issues, smart contracts problems, and more. |
 | [Validators](/faq/faq-validator) | Tips and details for network node operators (validators). |
 
