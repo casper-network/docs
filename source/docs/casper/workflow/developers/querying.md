@@ -1,11 +1,11 @@
-# Querying the Network
+# Querying a Casper Network
 
 The Casper node supports queries for users and developers to obtain information stored on the blockchain.
 
 This document assumes:
 
-1.  You have met the [prerequisites](setup.md)
-2.  You are familiar with the structure of the [Global State and the Blockchain Design](../design/index.md) to query data from the network
+1.  You have met the [prerequisites](/dapp-dev-guide/setup.md)
+2.  You are familiar with the structure of the [Global State and the Blockchain Design](/design/index.md) to query data from the network
 
 When sending a query, it is important to note that the request will be routed to a single node in the network. You can request several types of data from a node:
 
@@ -22,13 +22,13 @@ All queries made to global state require the `state-root-hash`, which you can ob
 ```bash
 casper-client get-state-root-hash \
      --id 1 \
-     --node-address http://<node-ip-address>:7777/rpc
+     --node-address http://<node-ip-address>:7777
 ```
 
 **Request fields:**
 
 -   `id` - (STRING OR INTEGER) Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - (HOST:PORT) Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
@@ -61,7 +61,7 @@ casper-client get-state-root-hash \
 
 ## Querying an Account {#querying-an-account}
 
-[Accounts](/design/accounts.md) are stored in the global state and can be queried using the `query-global-state` command:
+[Accounts](/design/casper-design.md/#accounts-head) are stored in the global state and can be queried using the `query-global-state` command:
 
 ```bash
 casper-client query-global-state \
@@ -74,7 +74,7 @@ casper-client query-global-state \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
 -   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash or deploy-info hash.
 
@@ -145,7 +145,7 @@ casper-client get-balance \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
 -   `purse-uref` - The URef under which the purse is stored. This must be a properly formatted URef "uref-\-"
 
@@ -196,7 +196,7 @@ casper-client get-block \
 **Request fields:**
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` \ Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 -   `block-identifier` - Hex-encoded block hash or height of the block. If not given, the last block added to the chain as known at the given node will be used
 
 **Important response fields:**
@@ -291,5 +291,5 @@ casper-client get-deploy \
 **Request fields:**
 
 -   `id` - JSON-RPC identifier, applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` -Hostname or IP and port of node on which HTTP service is running \[default:<http://localhost:7777>\]
+-   `node-address` - An IP address of a node on the network
 -   `deploy-hash` - Hex-encoded hash of the deploy
