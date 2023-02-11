@@ -2,7 +2,7 @@
 
 ## Identity {#identity}
 
-Each node has an identity on the network (which is not the same as its identity in the consensus process). The network identity (ID) is based on the fingerprint of the public key of a self-signed TLS certificate. A node generates a new private key each time it starts, ensuring a unique ID.
+Each node has an identity on the network (which is not the same as its identity in the consensus process). The network identity (ID) is based on the fingerprint of the public key of a TLS certificate. A node generates a new private key each time it starts, ensuring a unique ID.
 
 Each identity is linked with an address, which is an IP and port pair where the node is reachable. This address is also called an endpoint.
 
@@ -14,7 +14,7 @@ During connection setup, the client checks the server's certificate, matching th
 
 Simultaneously, the connecting node sends its certificate as the client certificate, allowing the server to perform the same check-in reverse and establish the client's ID. At the end of the process, both nodes can be sure to which peer they are connected.
 
-Once a connection is established, the server will immediately seek to connect back to a node based on its endpoint (see [Node Discovery](#node-discovery) on how the server finds endpoints) if it is a one-way connection. If a bidirectional connection setup cannot be established within a certain amount of time, all peer ID connections are dropped.
+Once a connection is established, the server will immediately seek to connect back to the client based on its endpoint (see [Node Discovery](#node-discovery) on how the server finds endpoints).
 
 Connections are used for sending messages one-way only; only the node initiating a connection will send messages on it.
 
