@@ -44,7 +44,7 @@ Information on these processes can be found at the following locations:
 
 - [Unit Testing Session Code](/dapp-dev-guide/writing-contracts/testing-session-code/)
 
-- [Testing Smart Contracts](/dapp-dev-guide/writing-contracts/testing/)
+- [Testing Smart Contracts](/dapp-dev-guide/writing-contracts/testing-contracts/)
 
 - [Testing Smart Contracts with NCTL](/dapp-dev-guide/building-dapps/nctl-test/)
 
