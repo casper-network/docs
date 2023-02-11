@@ -8,11 +8,11 @@
 
 ## Reward {#reward}
 
-Validators receive rewards for participating in consensus and finalizing blocks. There is no precise per-block reward. Rewards are split proportionally among stakes within an era. If a validator is offline or cannot vote on many blocks, the rewards earned are also reduced. Delegators can only receive a proportional amount of the validator's rewards minus the validator's commission (Delegation Rate). Rewards are distributed at the end of each era.
+Validators receive rewards for participating in consensus and finalizing blocks. There is no precise per-block reward. Rewards are split proportionally among stakes within an era. If a validator is offline or cannot vote on many blocks, the rewards earned are also reduced. Delegators can only receive a proportional amount of the validator's rewards minus the validator's [delegation rate](D.md#delegation-rate). Rewards are distributed at the end of each era.
 
 ## Root hash {#root-hash}
 
-The root node of the hash tree (or [Merkle tree](M.md#merkle-tree)) of all the transactions in a block.
+The root hash, or Merkle Root, is a representation of all the data in a given hash tree. Refer to [Merkle tree](M.md#merkle-tree) if you wish to learn more.
 
 ## Rust {#rust}
 

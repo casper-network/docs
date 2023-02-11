@@ -10,11 +10,15 @@
 
 The ecosystem layer in Casper encompasses dApp design and operation.
 
+## Entry point {#entry-point}
+
+See [EntryPoint](/dapp-dev-guide/sdkspec/types_chain/#entrypoint) and [Defining the Contract Entry Points](/dapp-dev-guide/writing-contracts/rust-contracts/#step-4-defining-the-contract-entry-points).
+
 ## Era {#era}
 
 A period of time during which the validator set does not change.
 
-In the Casper Network, validators cannot join and leave at any point in time, but only at era boundaries. An era's validators are determined using an [auction](A.md#auction). At the beginning of the era, the validators create a new instance of the Highway protocol and run this consensus protocol until they finalize the era's last block (see [booking block](B.md#booking-block)).
+In a Casper network, validators cannot join and leave at any point in time, but only at era boundaries. An era's validators are determined using an [auction](A.md#auction). At the beginning of the era, the validators create a new instance of the Highway protocol and run this consensus protocol until they finalize the era's last block (see [booking block](B.md#booking-block)).
 
 ## Eviction {#eviction}
 

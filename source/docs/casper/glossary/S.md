@@ -20,7 +20,7 @@ The reward mechanism by which validators are rewarded for participating in conse
 
 ## Session code {#session-code}
 
-The _session code_ is a field contained in a deployment directive. The _session code_ contains the code the user wishes to execute against the blockchain. When the session code executes, it performs a transaction.
+_Session code_ is Wasm executed in the context of an account through sending a [Deploy](/glossary/D/#deploy). The _session code_ contains code the user wishes to execute against the blockchain. When the session code executes, it performs changes to global state.
 
 ## Slashing {#slashing}
 
@@ -30,7 +30,7 @@ In Proof-of-Stake, the deposit acts as collateral. The validator guarantees that
 
 Smart contracts are self-executing computer programs that perform specific actions based on pre-programmed terms stored on the blockchain. Once the pre-programmed terms are met, the smart contract executes the action and eliminates the need for a centralized third party.
 
-On the Casper Network, a smart contract is a WebAssembly (Wasm) program that the network stores as a value in the [global state](G.md#global-state). The execution of a smart contract causes changes to the global state.
+On a Casper network, a smart contract is a WebAssembly (Wasm) program that the network stores as a value in the [global state](G.md#global-state). The execution of a smart contract causes changes to the global state.
 
 A smart contract can be invoked by a transaction or by another smart contract. Smart contracts can declare input data as the arguments of a function. When invoking a smart contract, one must provide the input values.
 
@@ -44,7 +44,11 @@ A person that deposits tokens in the [proof-of-stake](P.md#proof-of-stake) contr
 
 ## Staking {#staking}
 
-A feature of Proof-of-Stake protocols that allows token holders to actively participate in the protocol, thus securing the network. The [Staking Guide](../staking/index.md) highlights the steps required to stake the CSPR token on the Casper network.
+A feature of Proof-of-Stake protocols that allows token holders to actively participate in the protocol, thus securing the network. The [Staking Guide](../staking/index.md) highlights the steps required to stake CSPR tokens on the Casper Mainnet.
+
+## State root hash {#state-root-hash}
+
+The state root hash is an identifier of the network's [global state](G.md#global-state) at a moment in time. The state root hash changes with each block executed, containing deploys. Normally, empty blocks do not modify global state. But, if the empty block is the last one in an era, it will also change the state root hash due to changes introduced by the auction contract calculating the validators for future eras.
 
 ## Stateful {#stateful}
 
@@ -53,3 +57,7 @@ Stateful execution depends on a previous state, which makes the output differ ea
 ## Stateless {#stateless}
 
 Stateless means that the execution doesn't depend on a previous state, so the output of the execution is the same each time. It does not save or reference information about previous executions. Each execution is from scratch as if for the first time.
+
+## Switch Block {#switch-block}
+
+A `Switch Block` is the final block in an era, which contains the `era_summary`. See also [booking block](/glossary/B/#booking-block).
