@@ -10,6 +10,10 @@
 
 Withdrawing money from the [auction](A.md#auction) contract with _withdraw bid_ and possibly ceasing to be a validator. The unbonding request is a transaction that informs the auction contract that the sender wants to decrease their deposit. In the next booking block, only the decreased deposit is considered when determining a future validator set. If it has been decreased to 0, the sender will not be included in the validator set anymore. However, the amount only gets transferred to the sender after the unbonding period. If during that period their node exhibits a fault, the unbonded amount can still be slashed.
 
+## URef {#uref}
+
+An **U**nforgeable **Ref**erence, used by a Casper network to store any value other than `Account`. More information can be found [here](/design/casper-design/#uref-head).
+
 ## Users {#users}
 
 Users execute session and contract code using the platform's computational resources.

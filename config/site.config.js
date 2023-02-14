@@ -9,7 +9,7 @@ module.exports = {
     onBrokenLinks: "throw",
     onBrokenMarkdownLinks: "throw",
     onDuplicateRoutes: "throw",
-    favicon: "image/favicon.ico",
+    favicon: "icon/favicon.ico",
     organizationName: "CasperNetwork",
     projectName: "Casper",
     /* Optional */
