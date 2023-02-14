@@ -716,39 +716,57 @@ This method returns the current status of a node.
 ```bash
 
 {
-          "name": "info_get_status_example",
-          "params": [],
-          "result": {
-            "name": "info_get_status_example_result",
-            "value": {
-              "api_version": "1.4.4",
-              "build_version": "1.4.4-6962edb3d-casper-mainnet",
-              "chainspec_name": "casper-example",
-              "last_added_block_info": {
-                "creator": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-                "era_id": 1,
-                "hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
-                "height": 10,
-                "state_root_hash": "0808080808080808080808080808080808080808080808080808080808080808",
-                "timestamp": "2020-11-17T00:39:24.072Z"
-              },
-              "next_upgrade": {
-                "activation_point": 42,
-                "protocol_version": "2.0.1"
-              },
-              "our_public_signing_key": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-              "peers": [
-                {
-                  "address": "127.0.0.1:54321",
-                  "node_id": "tls:0101..0101"
+              "name": "info_get_status_example",
+              "params": [],
+              "result": {
+                "name": "info_get_status_example_result",
+                "value": {
+                  "peers": [
+                    {
+                      "node_id": "tls:0101..0101",
+                      "address": "127.0.0.1:54321"
+                    }
+                  ],
+                  "api_version": "1.4.8",
+                  "build_version": "1.0.0-xxxxxxxxx@DEBUG",
+                  "chainspec_name": "casper-example",
+                  "starting_state_root_hash": null,
+                  "last_added_block_info": {
+                    "hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
+                    "timestamp": "2020-11-17T00:39:24.072Z",
+                    "era_id": 1,
+                    "height": 10,
+                    "state_root_hash": "0808080808080808080808080808080808080808080808080808080808080808",
+                    "creator": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c"
+                  },
+                  "our_public_signing_key": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+                  "round_length": "1m 5s 536ms",
+                  "next_upgrade": {
+                    "activation_point": 42,
+                    "protocol_version": "2.0.1"
+                  },
+                  "uptime": "13s",
+                  "reactor_state": "Initialize",
+                  "last_progress": "1970-01-01T00:00:00.000Z",
+                  "available_block_range": {
+                    "low": 0,
+                    "high": 0
+                  },
+                  "block_sync": {
+                    "historical": {
+                      "block_hash": "16ddf28e2b3d2e17f4cef36f8b58827eca917af225d139b0c77df3b4a67dc55e",
+                      "block_height": 40,
+                      "acquisition_state": "have strict finality(40) for: block hash 16dd..c55e"
+                    },
+                    "forward": {
+                      "block_hash": "59907b1e32a9158169c4d89d9ce5ac9164fc31240bfcfb0969227ece06d74983",
+                      "block_height": 6701,
+                      "acquisition_state": "have block body(6701) for: block hash 5990..4983"
+                    }
+                  }
                 }
-              ],
-              "round_length": "1m 5s 536ms",
-              "starting_state_root_hash": "0202020202020202020202020202020202020202020202020202020202020202",
-              "uptime": "13s"
-            }
-          }
-        }
+              }
+}
 
 ```
 
