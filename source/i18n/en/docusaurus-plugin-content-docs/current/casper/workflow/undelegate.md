@@ -4,7 +4,7 @@ This document details a workflow where tokens delegated to a validator on a Casp
 
 This workflow assumes:
 
-1.  You meet the [prerequisites](setup.md)
+1.  You meet the [prerequisites](/dapp-dev-guide/setup.md)
 2.  You are using the Casper command-line client
 3.  You have an undelegation contract or WASM to execute on the network
 4.  You have a valid `node-address`

@@ -119,6 +119,7 @@ You might find these commands useful:
 ### Page Development
 
 -   To create a new document, add an `md` or `mdx` file in the [docs/casper](https://github.com/casper-network/docs-app/tree/main/source/docs/casper) directory. Page routing will depend on page hierarchy unless you specify the routing configuration in the `config` folder.
+    - To add an Overview or Tutorial page, use a template from the [Templates](https://github.com/casper-network/docs/tree/dev/.github/templates) folder.
 -   To create a blog page, add an `md` or `mdx` file in the [blog](https://github.com/casper-network/docs-app/tree/main/source/blog) directory.
 -   To create React pages, follow the pattern in the [src/page](https://github.com/casper-network/docs-app/tree/main/src/pages) directory.
 

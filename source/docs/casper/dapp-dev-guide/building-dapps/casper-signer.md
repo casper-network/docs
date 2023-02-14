@@ -1,14 +1,14 @@
-# Using Casper Signer
+# Using the JavaScript SDK
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This tutorial shows you how to connect the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) wallet to your website, show the balance of the account and send a transaction.
+This tutorial shows you how to use the JavaScript SDK by connecting the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) to a website, get the balance of an account's main purse and send a Deploy.
 
 ## Step 1. Run a Mini Webserver
 
 First, install the [Casper JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) and [ViteJS](https://vitejs.dev/guide/) to run a mini webserver. You will need the Casper JavaScript SDK to connect to a Casper node, retrieve information from the blockchain, and send transactions. ViteJS is a front-end build tool that helps bundle a JavaScript library and start a webserver. 
 
-Run this npm command to initialize your server and configure it to use JavaScript:
+Run this npm command to initialize a local server and configure it to use JavaScript:
 
 ```bash
    npm init vite@latest
@@ -18,26 +18,26 @@ Run this npm command to initialize your server and configure it to use JavaScrip
 - Select the default framework
 - Select the default variant
 
-Go to the main folder and install the necessary dependencies and the Casper JavaScript SDK:
+Go to the project folder and install the necessary dependencies and the Casper JavaScript SDK:
 
 ```bash
-	cd tutorial
+	cd <project>
 	npm install
-	npm install casper-js-sdk@next --save
+	npm install casper-js-sdk
 	npm run dev
 ```
 
-## Step 2. Create a Simple UI to Interact with the Signer  
+## Step 2. Create a Simple User Interface 
 
-Next, create a minimal user interface (UI) to interact with the Casper Signer. Open the `index.html` in the main folder and write the HTML code to create your UI elements. Here you can add buttons, fields for the user inputs needed to send transactions, and other elements. Here is the sample code:
+Next, create a minimal user interface (UI) to interact with the Casper Signer. Open the `index.html` in the main folder and write the HTML code to create your UI elements. You can add buttons, fields for the user inputs needed to send transactions, and other elements. Here is the sample code:
 
 ```html
 	<div id="app">
 
-	<!-- The button to connect your website into Casper signer wallet. -->
+	<!-- The button to connect your website to the Casper Signer. -->
 	<button id="btnConnect" >Connect</button>
 
-	<!-- The button to disconnect your website into Casper signer wallet -->
+	<!-- The button to disconnect your website from the Casper Signer. -->
 	<button id="btnDisconnect" >Disconnect</button>
 
 	<!-- The place where the public key will display. -->
@@ -48,27 +48,27 @@ Next, create a minimal user interface (UI) to interact with the Casper Signer. O
 	<h1>Transer</h1>
 
 	<!-- The amount to send in the transaction. -->
-	<!-- Minimal amount is 2.5CSPR so 2.5 * 10000 (1CSPR = 10.000 motes)  -->
+	<!-- Minimal amount is 2.5 CSPR (1 CSPR = 1,000,000,000 motes)  -->
 	<label for="Amount">Amount - min amount 25000000000</label>
 	<input id="Amount" type="number">
 
-	<!-- The address that will receive the coins. -->
+	<!-- The public key that will receive the coins. -->
 	<label for="Recipient">Recipient</label>
 	<input id="Recipient" type="text">
 
 	<!--The button that when clicked will send the transaction. -->
 	<button id="btnSend" >Send</button>
 
-	<!--The address of your transaction. -->
+	<!--The ID of your transaction. -->
 	<h1 id="tx"></h1>
 	</div>
 ```
 
 Below is the UI created with the sample code above.
 
-<img src={useBaseUrl("/image/tutorials/signer/casper-signer-html.png")} alt="Image showing a sample user interface" width="800"/> 
+<img src={useBaseUrl("/image/tutorials/signer/simple-app.png")} alt="Image showing the web app UI" width="500"/>
 
-After writing the HTML code, open the `main.js` file and write the code to import the `casper-js-sdk` to create the client and the services necessary to get account information and send transactions.
+After writing the HTML code, open the `main.js` file. Import the `casper-js-sdk` to create the client and the services necessary to get account information and send Deploys.
 
 ```javascript
 	import {CasperClient,CasperServiceByJsonRPC, CLPublicKey,DeployUtil } from "casper-js-sdk";
@@ -79,11 +79,11 @@ After writing the HTML code, open the `main.js` file and write the code to impor
 	const casperClient = new CasperClient(apiUrl);
 ```
 
-## Step 3. Implement the `connect/disconnect` Button
+## Step 3. Implement Some Functionality
 
-Now that we have the UI and the imported library, it's time to interact with the Casper Signer wallet. 
+Now that we have the UI and the JS SDK, it's time to implement some functionality. In this example, we will interact with the Casper Signer.
 
-First, create the `connect` functionality for the button:
+First, we'll implement the functionality for the `Connect` button:
 
 ```javascript
 	const btnConnect = document.getElementById("btnConnect");
@@ -92,11 +92,13 @@ First, create the `connect` functionality for the button:
 	})
 ```
 
-When clicking on the `CONNECT` button, the wallet will show a pop-up asking if you want to connect this site into the wallet:
+When clicking on the `Connect` button, the Signer will open a pop-up window. 
 
 <img src={useBaseUrl("/image/tutorials/signer/casper-connect.png")} alt="Image showing the connect button" width="500"/> 
 
-Next, implement the `disconnect` functionality:
+Follow the UI prompts to connect the website to the Signer.
+
+Next, implement the functionality for the `Disconnect` button:
 
 ```javascript
 	const btnDisconnect = document.getElementById("btnDisconnect");
@@ -107,31 +109,28 @@ Next, implement the `disconnect` functionality:
 
 ## Step 4. Get the Account Balance
 
-In the previous section, you learned how to connect to the Signer wallet. In this part, you will learn how to retrieve account information using the public key of an account.
-
-Let's write the function to get basic account information, like the account's public key and balance.
+In this section, we will retrieve account information using the public key of an account. Let's write the function to get basic account information, like the account's public key and balance.
 
 ```javascript
 	async function AccountInformation(){
 		const isConnected = await window.casperlabsHelper.isConnected()
 		if(isConnected){
 			const publicKey = await window.casperlabsHelper.getActivePublicKey();
-			textAddress.textContent += publicKey;
+			textAddress.textContent = `PublicKeyHex ${publicKey}`;
 
-			const latestBlock = await casperService.getLatestBlockInfo();
-			const root = await casperService.getStateRootHash(latestBlock.block.hash);
+			const root = await casperService.getStateRootHash();
 
 			const balanceUref = await casperService.getAccountBalanceUrefByPublicKey(
 				root, 
 				CLPublicKey.fromHex(publicKey)
 				)
 
-			//account balance from the last block
+			// Account purse balance from the last block
 			const balance = await casperService.getAccountBalance(
-				latestBlock.block.header.state_root_hash,
+				root,
 				balanceUref
 			);
-			textBalance.textContent = `PublicKeyHex ${balance.toString()}`;
+			textBalance.textContent = `Balance ${balance.toString()}`;
 		}
 	}
 ```
@@ -146,17 +145,17 @@ Add the `AccountInformation` function inside the `btnConnect` to display the inf
 	})
 ``` 
 
-The result should be like this:
+Using the Signer window, select the account you wish to display in the web app. Once selected, the account public key and balance should be displayed like this:
 
 <img src={useBaseUrl("/image/tutorials/signer/casper-signer-balance.png")} alt="Image showing account balance" width="800"/>
 
 ## Step 5. Sign and Send a Transaction
 
-With the connected Signer wallet on your website, it is possible to sign a transaction. The Casper Signer will not send the transaction but only sign the transaction using your account keys. Your application will need to send the transaction after the wallet signs it with the following code:
+With the Signer connected to the website, it is possible to sign a transaction. The Casper Signer will not send the transaction but only sign the transaction using your account keys. Your application will need to send the transaction after the Signer signs it with the following code:
 
 ```javascript
 	async function sendTransaction(){
-	// get address to send from input.
+	// get the recipient's public key from input.
 	const to = document.getElementById("Recipient").value;
 	// get amount to send from input.
 	const amount = document.getElementById("Amount").value
@@ -177,7 +176,7 @@ With the connected Signer wallet on your website, it is possible to sign a trans
 
 	let deployParams = new DeployUtil.DeployParams(publicKey,"casper-test",gasPrice,ttl );
 	
-	// We create a public key from account-address (it is the hex representation of the public-key with an added prefix).
+	// We create a hex representation of the public key with an added prefix.
 	const toPublicKey = CLPublicKey.fromHex(to);
 
 	const session = DeployUtil.ExecutableDeployItem.newTransfer( amount,toPublicKey,null,id);
@@ -204,12 +203,8 @@ With the connected Signer wallet on your website, it is possible to sign a trans
 	btnSend.addEventListener("click",async () => await sendTransaction())
 ```
 
-The resulting UI elements will look like this:
-
-<img src={useBaseUrl("/image/tutorials/signer/casper-transcation-sign.png")} alt="Image showing Casper signer pop-up with" width="500"/>
-
 ## External links
 
-* The [Vita JavaScript guide](https://vitejs.dev/guide/)
-* The [Casper Java SDK source code](https://github.com/casper-ecosystem/casper-js-sdk)
-* The [Casper Signer guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
+* The [Vite JavaScript guide](https://vitejs.dev/guide/)
+* The [Casper Java SDK](https://github.com/casper-ecosystem/casper-js-sdk)  source code
+* The [Casper Signer user guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html)

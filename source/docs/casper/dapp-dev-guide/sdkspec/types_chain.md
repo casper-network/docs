@@ -786,7 +786,7 @@ Hex-encoded cryptographic signature, including the algorithm tag prefix.
 
 Representation of a value stored in global state. `Account`, `Contract` and `ContractPackage` have their own `json_compatibility` representation (see their docs for further info).
 
-* [`CLValue`](#clvalue) A CasperLabs value.
+* [`CLValue`](#clvalue) A Casper-specific value.
 
 * [`Account`](#account) An Account.
 

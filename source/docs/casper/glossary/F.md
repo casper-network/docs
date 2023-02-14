@@ -9,3 +9,7 @@
 ## Finality {#finality}
 
 See [block finality](B.md#block-finality).
+
+## Fungible {#fungible}
+
+A fungible item possesses mutual interchangeability and may be replaced seamlessly with another, identical item. A fungible token standard is one in which all tokens are equivalent and interchangeable. In contrast to a [non-fungible token](/glossary/N/#non-fungible-token), where each token is unique and not interchangeable.

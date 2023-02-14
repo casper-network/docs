@@ -30,14 +30,14 @@ You can find examples of testing this library with python scripts in the `test` 
 
 In this section, we outline a couple of essential tasks you can accomplish with the Python SDK:
 
-* [Sending a transfer](#sending-a-transfer) between two accounts
+* [Sending a transfer](#sending-a-transfer) between two purses
 * [Staking](#staking) tokens with a validator
 
 For further examples, take a look at the [How-tos](https://github.com/casper-network/casper-python-sdk/tree/main/how_tos).
 
 ### Sending a transfer
 
-This example shows you how to define and transfer funds between accounts on a Casper network. Replace the *path_to_cp2_account_key* in the code below with the receiver's account address.
+This example shows you how to define and transfer funds between purses on a Casper network. Replace the *path_to_cp2_account_key* in the code below with the receiver's account public key.
 
 ```python
     import os

@@ -12,7 +12,7 @@ Cargo is Rust's build system and package manager. This tool manages Rust project
 
 ## Casper network {#casper-network}
 
-The Casper network is a Proof-of-Stake blockchain that allows validators to stake the Casper native token CSPR on the network. Validators receive CSPR as an incentive for continuing to maintain and secure the network. CSPR rewards are distributed as blocks are validated into existence and organized into eras.
+Casper is a Proof-of-Stake blockchain platform with an account-based model that performs execution after consensus. More information on the design of a Casper network can be found [here](/design/casper-design/).
 
 ## CBC {#cbc}
 
@@ -23,7 +23,7 @@ Correct-by-construction (CBC) protocols are consensus protocols meeting the foll
 
 ## Chainspec {#chainspec}
 
-A collection of configuration settings describing the state of the system at genesis and upgrades to basic system functionality (including system contracts and gas costs) occurring after [genesis](G.md#genesis).
+A collection of configuration settings describing the state of the system at genesis and upgrades to basic system functionality (including system contracts and gas costs) occurring after [genesis](G.md#genesis). Here is an example [chainspec](https://github.com/casper-network/casper-node/blob/release-1.4.8/resources/production/chainspec.toml), which will change with newer releases.
 
 ## Consensus {#consensus}
 
@@ -45,4 +45,4 @@ A compilation unit in Rust. A crate can be compiled into a binary or into a libr
 
 ## CSPR {#cspr}
 
-CSPR is the Casper token pre-defined on the Casper network and used to pay for transaction execution and for [staking](S.md#staking) (securing the network). The total number of CSPR tokens is 10 billion.
+CSPR is the Casper token pre-defined on the Casper Mainnet and used to pay for transaction execution and for [staking](S.md#staking) (securing the network).

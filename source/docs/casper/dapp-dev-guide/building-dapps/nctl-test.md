@@ -2,15 +2,15 @@
 
 NCTL effectively simulates a live Casper network. The process for sending a `Deploy` to an NCTL-based network is therefore similar to doing so on a live network.
 
-Testing `Deploys` prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](/dapp-dev-guide/writing-contracts/rust.md) and testing it [using the provided framework](/dapp-dev-guide/writing-contracts/testing.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
+Testing `Deploys` prior to sending them to a Casper network ensures that they operate as intended. When working in an environment that requires payment for execution, errors and inefficiencies quickly add up. To this end, Casper provides several layers of testing to identify and rectify any errors. After [writing your smart contract](/dapp-dev-guide/writing-contracts/rust-contracts.md) and testing it [using the provided framework](/dapp-dev-guide/writing-contracts/testing-contracts.md), NCTL serves as the next step in the process. While testing is entirely optional, it should be considered a best practice to avoid paying for the execution of faulty code.
 
 ## Getting Started with NCTL
 
 Prior to testing a `Deploy` through NCTL, you should have the following steps accomplished:
 
-1) [Completed writing a Deploy](/dapp-dev-guide/writing-contracts/rust.md)
+1) [Completed writing a Deploy](/dapp-dev-guide/writing-contracts/rust-contracts.md)
 
-2) [Tested the Deploy](/dapp-dev-guide/writing-contracts/testing.md) using the Casper testing framework
+2) [Tested the Deploy](/dapp-dev-guide/writing-contracts/testing-contracts.md) using the Casper testing framework
 
 3) [Setup NCTL](/dapp-dev-guide/building-dapps/setup-nctl.md) on your system
 
@@ -22,7 +22,11 @@ Prior to attempting an NCTL test, you must verify that your local NCTL instance 
 nctl-status
 ```
 
-You should see five nodes `RUNNING` and five `STOPPED`. Further, verify that the node and user information propagated within the *casper-node/utils/assets* directory. Each node and user should have the associated `Keys` necessary to interact with the network.
+You should see five nodes `RUNNING` and five `STOPPED`. Further, verify that the node and user information propagated within the *casper-node/utils/assets* directory. Each node and user should have the associated `Keys` necessary to interact with the network. Run the following command to view first user details:
+
+```
+nctl-view-user-account user=1
+```
 
 ## Installing the Smart Contract
 
@@ -38,7 +42,7 @@ You will need the following information to use the `put-deploy` command:
 
 * The **path** to your `Deploy` that you wish to send to the NCTL network. This will appear in our example put-deploy as `--session-path <PATH>` and will require you to define the path to your specific `Deploy` Wasm.
 
-* The **node address** for a node on your NCTL network. In this example, we are using the node at `http://localhost:11101/rpc`. On the Casper Mainnet or Testnet, nodes will use port `7777`. This will appear in our example put-deploy as `--node-address http://localhost:11101/rpc`.
+* The **node address** for a node on your NCTL network. In this example, we are using the node at `http://localhost:11101`. On the Casper Mainnet or Testnet, nodes will use port `7777`. This will appear in our example put-deploy as `--node-address http://<HOST>:7777`.
 
 The command to send your `Deploy` should look similar to the following code snippet:
 
@@ -54,7 +58,7 @@ $(get_path_to_client) put-deploy \
 --secret-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem \
 --payment-amount 2500000000 \
 --session-path <PATH> \
---node-address http://localhost:11101/rpc
+--node-address http://localhost:11101
 ```
 
 The response will return something similar to the following information. Note the `deploy_hash`:
@@ -76,7 +80,7 @@ The previous command sent the `Deploy` to the NCTL network, but we recommend ver
 
 To query the `Deploy`'s status, you will pass both the `deploy_hash` and the same `node-address` from above using the following command. This will return either an error message in the event of failure or the `Deploy` details if it succeeds.
 ```
-$(get_path_to_client) get-deploy 8e6309cc37bc58d8fedc1094ee1bd264a636d39fc0e05b5e1d72d98f7b6faf13 -n http://localhost:11101/rpc
+$(get_path_to_client) get-deploy 8e6309cc37bc58d8fedc1094ee1bd264a636d39fc0e05b5e1d72d98f7b6faf13 -n http://localhost:11101
 ```
 
 ## Interacting with the Installed Contract
@@ -86,13 +90,13 @@ Once your NCTL network executes your `Deploy`, you can test the functionality of
 
 ```
 $(get_path_to_client) get-account-info \
---node-address http://localhost:11101/rpc \
+--node-address http://localhost:11101 \
 --public-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/public_key.pem
 ```
 
 This command will return information pertaining to the account, including the `NamedKeys`. The `ContractHash` of the contract to be tested will appear here. The process of calling the contract is similar to that of installing it, as they are both accomplished through sending a `Deploy`. In this instance, you will need the following information:
 
-* The **node address**, entered in this instance using `--node-address http://localhost:11101/rpc`
+* The **node address**, entered in this instance using `--node-address http://localhost:11101`
 
 * The **chain name**, entered in this instance using `--chain-name "casper-net-1"`
 
@@ -104,7 +108,7 @@ This command will return information pertaining to the account, including the `N
 
 ```
 $(get_path_to_client) put-deploy \
---node-address http://localhost:11101/rpc \
+--node-address http://localhost:11101 \
 --chain-name "casper-net-1" \
 --payment-amount 500000000 \
 --session-path <PATH> \
@@ -113,7 +117,7 @@ $(get_path_to_client) put-deploy \
 
 ## Verifying Correct Contract Behavior
 
-After calling your installed contract, you can verify that the contract behaved as expected by observing the associated change in [global state](/dapp-dev-guide/writing-contracts/installing-contracts/#querying-global-state). Depending on how your contract functions, this can have different meanings and results. If we use our donation contract from the [basic smart contract tutorial](/dapp-dev-guide/writing-contracts/rust), the NCTL process would have the following flow:
+After calling your installed contract, you can verify that the contract behaved as expected by observing the associated change in [global state](/dapp-dev-guide/writing-contracts/installing-contracts/#querying-global-state). Depending on how your contract functions, this can have different meanings and results. If we use our donation contract from the [basic smart contract tutorial](/dapp-dev-guide/writing-contracts/rust-contracts), the NCTL process would have the following flow:
 
 1) Send a `Deploy` to install the "Donation" smart contract.
 
