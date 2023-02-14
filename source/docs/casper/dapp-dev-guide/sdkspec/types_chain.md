@@ -774,17 +774,17 @@ The identifier to obtain the purse corresponding to a balance query. Valid ident
 
 The state of the reactor, which will return one of the following:
 
-* `Initialize`
+* `Initialize` Get all components and reactor state set up on start.
 
-* `CatchUp`
+* `CatchUp` Orient to the network and attempt to catch up to tip.
 
-* `Upgrading`
+* `Upgrading` Running commit upgrade and creating immediate switch block.
 
-* `KeepUp`
+* `KeepUp` Stay caught up with tip.
 
-* `Validate`
+* `Validate` Node is currently caught up and is an active validator.
 
-* `ShutdownForUpgrade`
+* `ShutdownForUpgrade` Node should be shut down for upgrade.
 
 ## Reward {#reward}
 
