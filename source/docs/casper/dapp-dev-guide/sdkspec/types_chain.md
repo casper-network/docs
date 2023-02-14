@@ -108,6 +108,16 @@ Identifier for possible ways to retrieve a Block.
 
 * `Height` Identify and retrieve the Block with its height.
 
+## ChainspecRawBytes {#chainspecrawbytes}
+
+The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.
+
+* `chainspec_bytes` Hex-encoded raw bytes of the current chainspec.toml file.
+
+* `maybe_genesis_accounts_bytes` Hex-encoded raw bytes of the current genesis accounts.toml file.
+
+* `maybe_global_state_bytes` Hex-encoded raw bytes of the current global_state.toml file.
+
 ## Contract {#contract} 
 
 A contract struct that can be serialized as a JSON object.

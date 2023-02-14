@@ -208,6 +208,43 @@ This method returns a state root hash at a given [Block](/design/casper-design.m
 
 </details>
 
+## info_get_chainspec {#info-get-chainspec}
+
+This method returns raw bytes for chainspec files.
+
+### `info_get_chainspec_result`
+
+|Parameter|Type|Description|
+|---------|----|-----------| 
+|api_version|String|The RPC API version.|
+|[chainspec_bytes](/dapp-dev-guide/sdkspec/types_chain#ChainspecRawBytes)|Object|The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.|
+
+<details>
+
+<summary><b>Example info_get_chainspec</b></summary>
+
+```bash
+
+{
+              "name": "info_get_chainspec_example",
+              "params": [],
+              "result": {
+                "name": "info_get_chainspec_example_result",
+                "value": {
+                  "api_version": "1.4.8",
+                  "chainspec_bytes": {
+                    "chainspec_bytes": "2a2a",
+                    "maybe_genesis_accounts_bytes": null,
+                    "maybe_global_state_bytes": null
+                  }
+                }
+              }
+            }
+
+```
+
+</details>
+
 ## info_get_deploy {#info-get-deploy}
 
 This method retrieves a [Deploy](/design/casper-design.md/#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
