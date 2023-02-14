@@ -704,7 +704,7 @@ This method returns the current status of a node.
 |[next_upgrade](/dapp-dev-guide/sdkspec/types_chain#nextupgrade)|Object|Information about the next scheduled upgrade.|
 |[our_public_signing_key](/dapp-dev-guide/sdkspec/types_chain#publickey)|String|Our public signing key.|
 |[peers](/dapp-dev-guide/sdkspec/types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
-|[reactor_state](/dapp-dev-guide/sdkspace/types_chain#reactorstate)]|String|The current state of the node reactor.|
+|[reactor_state](/dapp-dev-guide/sdkspec/types_chain#reactorstate)]|String|The current state of the node reactor.|
 |[round_length](/dapp-dev-guide/sdkspec/types_chain#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
 |[starting_state_root_hash](/dapp-dev-guide/sdkspec/types_chain#digest)|String|The state root hash used at the start of the current session.|
 |[uptime](/dapp-dev-guide/sdkspec/types_chain#timediff)|Integer|Time that passed since the node has started.|
