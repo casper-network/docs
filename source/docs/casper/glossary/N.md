@@ -6,9 +6,18 @@
 
 ---
 
+## NamedKeys {#named-keys}
+
+[NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html)
+are a collection of String-Key pairs used to easily identify some data on the network.
+
+- The [String](https://doc.rust-lang.org/nightly/alloc/string/struct.String.html) is the name given to identify the data
+- The [Key](https://docs.rs/casper-types/latest/casper_types/enum.Key.html) is the data to be referenced
+
+
 ## Node {#node}
 
-A Casper node is a physical or virtual device that is participating in the Casper network. They store, validate, and preserve the blockchain data.
+A Casper node is a physical or virtual device that is participating in a Casper network. They store, validate, and preserve the blockchain data.
 
 You will encounter different types of nodes on the network:
 

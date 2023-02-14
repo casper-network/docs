@@ -10,7 +10,7 @@ For examples of such SDKs, please refer to our [SDK Client Libraries](/dapp-dev-
 
 ### Serialization
 
-The Casper platform uses a custom serialization format. Tto this end, we've established a [serialization standard](/design/serialization-standard/) that describes the format, which SDK developers must implement in their language of choice.
+The Casper platform uses a custom serialization format. To this end, we've established a [serialization standard](/design/serialization-standard/) that describes the format, which SDK developers must implement in their language of choice.
 
 -------
 

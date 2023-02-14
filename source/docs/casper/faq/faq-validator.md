@@ -79,7 +79,7 @@ Casper-node does not work with ARM type servers. You can see our hardware specif
 <details>
 <summary><b>What operating systems are supported for casper-node?</b></summary>
 
-Casper is currently tested and packaged for Ubuntu 18.04 or 20.04.
+Casper is currently tested and packaged for Ubuntu 20.04.
 
 </details>
 

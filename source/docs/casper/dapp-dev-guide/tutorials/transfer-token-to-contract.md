@@ -1,6 +1,6 @@
 # Safely Transfer Tokens to a Contract
 
-This tutorial covers two methods to handle tokens via a contract. This is not a native process to the Casper Network and will require the use of custom code. The following two scenarios provide a framework for developers and the pros and cons of each example. Developers should choose the option that best suits their individual needs.
+This tutorial covers two methods to handle tokens via a contract. This is not a native process to a Casper network and will require the use of custom code. The following two scenarios provide a framework for developers and the pros and cons of each example. Developers should choose the option that best suits their individual needs.
 
 ## Scenario 1 - Creating a Throw-Away Purse {#scenario1}
 
@@ -12,8 +12,7 @@ This scenario is less complex, but more wasteful than the second scenario. Any p
 
 Please note that the creation of a purse costs 2.5 CSPR on the Casper Mainnet.
 
-```
-
+```rust
 #[no_mangle]
 pub extern "C" fn call() {
     let amount: U512 = runtime::get_named_arg("amount");
@@ -60,8 +59,7 @@ In [Scenario 1](#scenario1), the newly created purse is a pure means of transfer
 
 Scenario 2 offers a less wasteful means of transferring tokens to a contract but comes with the added burden of internal complexity. When choosing between the two scenarios, you must evaluate the scope and needs of your project and choose accordingly.
 
-```
-
+```rust
 // Scenario 2: with this style, the contract being called has some internal accounting
 // to keep track of a reusable purse associated to the calling account; this avoids
 // wasteful creation of one time purses but requires the smart contract being called

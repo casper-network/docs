@@ -6,7 +6,7 @@ We provide a custom implementation to serialize data structures used by the Casp
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represents a user on a Casper Network. The account structure consists of the following fields:
+An Account is a structure that represents a user on a Casper network. The account structure consists of the following fields:
 
 -   [`account_hash`](#account-hash)
 
@@ -249,51 +249,7 @@ The deploy hash is a digest over the contents of the deploy header. The deploy h
 
 ### Payment & Session {#payment--session}
 
-Payment and Session are both defined as `ExecutableDeployItems`. `ExecutableDeployItems` is an enum described as follows:
-
-```rust
-pub enum ExecutableDeployItem {
-    ModuleBytes {
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        module_bytes: Vec<u8>,
-        // assumes implicit `call` noarg entrypoint
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    StoredContractByHash {
-        #[serde(with = "HexForm::<[u8; KEY_HASH_LENGTH]>")]
-        hash: ContractHash,
-        entry_point: String,
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    StoredContractByName {
-        name: String,
-        entry_point: String,
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    StoredVersionedContractByHash {
-        #[serde(with = "HexForm::<[u8; KEY_HASH_LENGTH]>")]
-        hash: ContractPackageHash,
-        version: Option<ContractVersion>, // defaults to highest enabled version
-        entry_point: String,
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    StoredVersionedContractByName {
-        name: String,
-        version: Option<ContractVersion>, // defaults to highest enabled version
-        entry_point: String,
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-    Transfer {
-        #[serde(with = "HexForm::<Vec<u8>>")]
-        args: Vec<u8>,
-    },
-}
-```
+Payment and Session are both defined as `ExecutableDeployItems`. More information on `ExecutableDeployItems` can be found [here](/dapp-dev-guide/building-dapps/calling-contracts/)
 
 -   Module Bytes are serialized such that the first byte within the serialized buffer is `0` with the rest of the buffer containing the bytes present.
 
@@ -310,12 +266,12 @@ pub enum ExecutableDeployItem {
     -   `StoredContractByName { name: "U5A74bSZH8abT8HqVaK9", entry_point: "gIetSxltnRDvMhWdxTqQ", args: 07beadc3da884faa17454a }`
     -   `0x0214000000553541373462535a483861625438487156614b39140000006749657453786c746e5244764d685764785471510b00000007beadc3da884faa17454a`
 
--   StoredVersionedContractByHash serializes such that the first byte within the serialized buffer is 3u8. However, the field version within the enum serializes as an Option CLValue, i.e., if the value is None as shown in the example, it serializes to 0, else it serializes the inner u32 value, which is described below.
+-   StoredVersionedContractByHash serializes such that the first byte within the serialized buffer is 3u8. However, the field version within the enum serializes as an [Option](#option-clvalue-option) CLValue.
 
     -   `StoredVersionedContractByHash { hash: b348fdd0d0b3f66468687df93141b5924f6bb957d5893c08b60d5a78d0b9a423, version: None, entry_point: "PsLz5c7JsqT8BK8ll0kF", args: 3d0d7f193f70740386cb78b383e2e30c4f976cf3fa834bafbda4ed9dbfeb52ce1777817e8ed8868cfac6462b7cd31028aa5a7a60066db35371a2f8 }`
     -   `0x03b348fdd0d0b3f66468687df93141b5924f6bb957d5893c08b60d5a78d0b9a423001400000050734c7a3563374a73715438424b386c6c306b463b0000003d0d7f193f70740386cb78b383e2e30c4f976cf3fa834bafbda4ed9dbfeb52ce1777817e8ed8868cfac6462b7cd31028aa5a7a60066db35371a2f8`
 
--   StoredVersionedContractByName serializes such that the first byte within the serialized buffer is 4u8. The name and entry_point are serialized as a String CLValue, with the Option version field serializing to 0 if the value is None; else, it serializes the inner u32 value as described below.
+-   StoredVersionedContractByName serializes such that the first byte within the serialized buffer is 4u8. The name and entry_point are serialized as a [String](#string-clvalue-string) CLValue, with the version field serializing as an [Option](#option-clvalue-option).
 
     -   `StoredVersionedContractByName { name: "lWJWKdZUEudSakJzw1tn", version: Some(1632552656), entry_point: "S1cXRT3E1jyFlWBAIVQ8", args: 9975e6957ea6b07176c7d8471478fb28df9f02a61689ef58234b1a3cffaebf9f303e3ef60ae0d8 }`
     -   `0x04140000006c574a574b645a5545756453616b4a7a7731746e01d0c64e61140000005331635852543345316a79466c57424149565138270000009975e6957ea6b07176c7d8471478fb28df9f02a61689ef58234b1a3cffaebf9f303e3ef60ae0d8`
@@ -328,65 +284,6 @@ Approval contains two fields:
 
 -   `signer`: The public key of the approvals signer. It serializes to the byte representation of the `PublicKey`. If the `PublicKey` is an `Ed25519` key, then the first byte within the serialized buffer is 1 followed by the bytes of the key itself; else, in the case of `Secp256k1`, the first byte is 2.
 -   `signature`: The approval signature, which serializes as the byte representation of the `Signature`. The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
-
-### Deploy Serialization at High Level {#deploy-serialization-at-high-level}
-
-Consider the following deploy:
-
-```json
-{
-    "hash": "01da3c604f71e0e7df83ff1ab4ef15bb04de64ca02e3d2b78de6950e8b5ee187",
-    "header": {
-        "account": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-        "timestamp": "2020-11-17T00:39:24.072Z",
-        "ttl": "1h",
-        "gas_price": 1,
-        "body_hash": "4811966d37fe5674a8af4001884ea0d9042d1c06668da0c963769c3a01ebd08f",
-        "dependencies": ["0101010101010101010101010101010101010101010101010101010101010101"],
-        "chain_name": "casper-example"
-    },
-    "payment": {
-        "StoredContractByName": {
-            "name": "casper-example",
-            "entry_point": "example-entry-point",
-            "args": [
-                [
-                    "quantity",
-                    {
-                        "cl_type": "I32",
-                        "bytes": "e8030000",
-                        "parsed": 1000
-                    }
-                ]
-            ]
-        }
-    },
-    "session": {
-        "Transfer": {
-            "args": [
-                [
-                    "amount",
-                    {
-                        "cl_type": "I32",
-                        "bytes": "e8030000",
-                        "parsed": 1000
-                    }
-                ]
-            ]
-        }
-    },
-    "approvals": [
-        {
-            "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-            "signature": "012dbf03817a51794a8e19e0724884075e6d1fbec326b766ecfa6658b41f81290da85e23b24e88b1c8d9761185c961daee1adab0649912a6477bcd2e69bd91bd08"
-        }
-    ]
-}
-```
-
-The above deploy will serialize to:
-
-`01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900ca856a4d37501000080ee36000000000001000000000000004811966d37fe5674a8af4001884ea0d9042d1c06668da0c963769c3a01ebd08f0100000001010101010101010101010101010101010101010101010101010101010101010e0000006361737065722d6578616d706c6501da3c604f71e0e7df83ff1ab4ef15bb04de64ca02e3d2b78de6950e8b5ee187020e0000006361737065722d6578616d706c65130000006578616d706c652d656e7472792d706f696e7401000000080000007175616e7469747904000000e803000001050100000006000000616d6f756e7404000000e8030000010100000001d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c012dbf03817a51794a8e19e0724884075e6d1fbec326b766ecfa6658b41f81290da85e23b24e88b1c8d9761185c961daee1adab0649912a6477bcd2e69bd91bd08`
 
 ## DeployInfo {#deployinfo}
 
@@ -483,7 +380,7 @@ They are serialized as a `BTreeMap` where the first 4 bytes represent a `u32` va
 
 In this chapter, we describe what constitutes a "key", the permissions model for the keys, and how they are serialized.
 
-A _key_ in the [Global State](./global-state.md#global-state-intro) is one of the following data types:
+A _key_ in [Global State](./casper-design.md#global-state-head) is one of the following data types:
 
 -   32-byte account identifier (called an "account identity key")
 -   32-byte immutable contract identifier (called a "hash key")
@@ -502,15 +399,15 @@ The one exception to note here is the identifier for [`EraInfo`](#erainfo), whic
 
 ### Account identity key {#global-state-account-key}
 
-This key type is used specifically for accounts in the global state. All accounts in the system must be stored under an account identity key, and no other types. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./accounts.md#accounts-associated-keys-weights) for more information).
+This key type is used specifically for accounts in the global state. All accounts in the system must be stored under an account identity key, and no other types. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./casper-design.md#accounts-associated-keys-weights) for more information).
 
 ### Hash key {#serialization-standard-hash-key}
 
-This key type is used for storing contracts immutably. Once a contract is written under a hash key, that contract can never change. The 32-byte identifier representing this key is derived from the `blake2b256` hash of the deploy hash (see [block-structure-head](./block-structure.md#block-structure-head) for more information) concatenated with a 4-byte sequential ID. The ID begins at zero for each deploy and increments by one each time a contract is stored. The purpose of this ID is to allow each contract stored in the same deploy to have a unique key.
+This key type is used for storing contracts immutably. Once a contract is written under a hash key, that contract can never change. The 32-byte identifier representing this key is derived from the `blake2b256` hash of the deploy hash (see [block-structure-head](./casper-design.md#block-structure-head) for more information) concatenated with a 4-byte sequential ID. The ID begins at zero for each deploy and increments by one each time a contract is stored. The purpose of this ID is to allow each contract stored in the same deploy to have a unique key.
 
 ### Unforgeable Reference (`URef`) {#serialization-standard-uref}
 
-`URef` broadly speaking can be used to store values and manage permissions to interact with the value stored under the `URef`. `URef` is a tuple which contains the address under which the values are stored and the Access rights to the `URef`. Refer to the [Unforgeable Reference](./uref.md#uref-head) section for details on how `URefs` are managed.
+`URef` broadly speaking can be used to store values and manage permissions to interact with the value stored under the `URef`. `URef` is a tuple which contains the address under which the values are stored and the Access rights to the `URef`. Refer to the [Unforgeable Reference](./casper-design.md#uref-head) section for details on how `URefs` are managed.
 
 ### Transfer Key {#serialization-standard-transfer-key}
 
@@ -524,9 +421,9 @@ This key type is used specifically for storing information related to deploys in
 
 This key type is used specifically for storing information related to the `Auction` metadata for a particular era. The underlying data type stored under this is a vector of the allocation of seigniorage for that given era. The identifier for this key is a new type that wraps around the primitive `u64` data type and co-relates to the era number when the auction information was stored.
 
-This key type is used specifically for storing information related to auction bids in the global state. Information for the bids is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./accounts.md#accounts-associated-keys-weights) for more information).
+This key type is used specifically for storing information related to auction bids in the global state. Information for the bids is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./casper-design.md#accounts-associated-keys-weights) for more information).
 
-This key type is used specifically for storing information related to auction withdraws in the global state. Information for the withdrawals is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./accounts.md#accounts-associated-keys-weights) for more information).
+This key type is used specifically for storing information related to auction withdraws in the global state. Information for the withdrawals is stored under this key only. The 32-byte identifier which represents this key is derived from the `blake2b256` hash of the public key used to create the associated account (see [Accounts](./casper-design.md#accounts-associated-keys-weights) for more information).
 
 ### Serialization for `Key` {#serialization-standard-serialization-key}
 
@@ -583,7 +480,7 @@ There are three types of actions that can be done on a value: read, write, add. 
 
 ---
 
-Refer to [URef permissions](uref.md) on how permissions are handled in the case of `URef`s.
+Refer to [URef permissions](/design/casper-design.md/#uref-permissions) on how permissions are handled in the case of `URef`s.
 
 ## NamedArg {#namedarg}
 
@@ -711,7 +608,7 @@ A value stored in the global state is a `StoredValue`. A `StoredValue` is one of
 -   A contract
 -   An account
 
-We discuss `CLValue` and contract in more detail below. Details about accounts can be found in [accounts-head](./accounts.md#accounts-head).
+We discuss `CLValue` and contract in more detail below. Details about accounts can be found in [accounts-head](./casper-design.md#accounts-head).
 
 Each `StoredValue` is serialized when written to the global state. The serialization format consists of a single byte tag, indicating which variant of `StoredValue` it is, followed by the serialization of that variant. The tag for each variant is as follows:
 
@@ -725,8 +622,6 @@ The details of `CLType` serialization are in the following section. Using the se
 -   accounts serialize in the same way as data with `CLType` equal to `Tuple5(ByteArray(U8, 32), Map(String, Key), URef, Map(ByteArray(U8, 32), U8), Tuple2(U8, U8))`.
 
 Note: `Tuple5` is not a presently supported `CLType`. However, it is clear how to generalize the rules for `Tuple1`, `Tuple2`, `Tuple3` to any size tuple.
-
-Note: links to further serialization examples and a reference implementation are found in [Appendix B](./appendix.md#appendix-b).
 
 ### `CLValue` {#clvalue}
 
@@ -893,13 +788,13 @@ A complete `CLValue`, including both the data and the type, can also be serializ
 
 ### Contracts {#global-state-contracts}
 
-Contracts are a special value type because they contain the on-chain logic of the applications running on the Casper network. A _contract_ contains the following data:
+Contracts are a special value type because they contain the on-chain logic of the applications running on a Casper network. A _contract_ contains the following data:
 
 -   a [wasm module](https://webassembly.github.io/spec/core/syntax/modules.html)
 -   a collection of named keys
 -   a protocol version
 
-The wasm module must contain a function named `call`, which takes no arguments and returns no values. This is the main entry point into the contract. Moreover, the module may import any of the functions supported by the Casper runtime; a list of all supported functions can be found in [Appendix A](./appendix.md#appendix-a).
+The wasm module must contain a function named `call`, which takes no arguments and returns no values. This is the main entry point into the contract. Moreover, the module may import any of the functions supported by the [Casper runtime](/design/casper-design.md/#execution-semantics-runtime).
 
 Note: though the `call` function signature has no arguments and no return value, within the `call` function body, the `get_named_arg` runtime function can be used to accept arguments (by ordinal), and the `ret` runtime function can be used to return a single `CLValue` to the caller.
 
@@ -920,3 +815,4 @@ A purse used for unbonding, replaced in 1.5 by [UnbondingPurse](#unbondingpurse)
 -   `era_of_creation` Era in which this unbonding request was created, as an [`EraId`](#eraid) newtype, which serializes as a [`u64`](#clvalue-numeric) value.
 
 -   `amount` The unbonding amount, serialized as a [`U512`](#clvalue-numeric) value.
+
