@@ -37,10 +37,10 @@ This command allows you to query the state of a Casper network at a given moment
 ```rust
 casper-client put-deploy \
     --node-address [NODE_SERVER_ADDRESS] \
-    --chain-name casper-test \
+    --chain-name casper-net-1 \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount 5000000000000 \
-    --session-path [CONTRACT_PATH]/counter-define.wasm
+    --session-path [CONTRACT_PATH]/counter-v1.wasm
 ```
 
 This command creates a deploy and sends it to the network for execution. In this first usage of the command,

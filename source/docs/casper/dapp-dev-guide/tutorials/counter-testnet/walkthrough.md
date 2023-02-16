@@ -10,17 +10,22 @@ First, we will need to clone [the counter contract repository](https://github.co
 git clone https://github.com/casper-ecosystem/counter
 ```
 
-If you explore the source code, you will see that there are two smart contracts:
+If you explore the source code, you will see that there are two smart contracts and one session code :
 
--   `counter-define`
+-   `contract-v1: a smart contract`
 
     -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store the number of times we increment the counter
     -   Provides a function to get the current count (_count_get_)
     -   Provides a function to increment the current count (_counter_inc_)
+    
+-   `contract-v2: a smart contract`
 
--   `counter-call`
+    -   This is a another version of counter contract. This version upgrades the contract and provides additional function to decrement the counter. 
+    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in [Upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract)
 
-    -   Retrieves the _counter-define_ contract, gets the current count value, increments it, and makes sure count was incremented by 1
+-   `counter-call: a session code`
+
+    -   Retrieves the _contract-v1_ contract, gets the current count value, increments it, and makes sure count was incremented by 1
 
 ## View the Network State {#view-the-network-state}
 
@@ -61,7 +66,7 @@ Substitute the state root hash and account hash values you just retrieved into t
 
 ## Deploy the Counter {#deploy-the-counter}
 
-Let us try installing the _counter-define_ contract to the chain. First, we need to compile it.
+Let us try installing the _contract-v1_ contract to the chain. First, we need to compile it.
 
 The makefile included in the repository makes compilation trivial. With these two commands, we can build (in release mode) and test the contract before installing it. _make prepare_ sets the Wasm target and _make test_ builds the contracts and verifies them.
 
@@ -79,7 +84,7 @@ casper-client put-deploy \
     --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
     --payment-amount 5000000000000 \
-    --session-path ./counter/target/wasm32-unknown-unknown/release/counter-define.wasm
+    --session-path ./contract-v1/target/wasm32-unknown-unknown/release/counter-v1.wasm
 ```
 
 -   Replace the `[PATH_TO_YOUR_KEY]` field with the actual path of where your secret key is stored.
@@ -148,7 +153,7 @@ The first two commands access the counter and count named keys, respectively, us
 
 ## Increment the Counter {#increment-the-counter}
 
-We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _counter-define_ contract. You can call an entry-point in an installed contract by using the _put-deploy_ command as illustrated here:
+We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _contract-v1_. You can call an entry-point in an installed contract by using the _put-deploy_ command as illustrated here:
 
 ```bash
 casper-client put-deploy \
@@ -184,9 +189,9 @@ You should be able to see the counter variable and observe its value has increas
 
 ## Increment the Counter Again {#increment-the-counter-again}
 
-If you recall, we had a second contract named _counter-call_ in the repository. This time around, we can see if we can increment the count using that second contract instead of the session entry-point we used above.
+If you recall, we had a third session code named _counter-call_ in the repository. This time around, we can see if we can increment the count using that session code instead of the session entry-point we used above.
 
-Keep in mind, this is another _put-deploy_ call just like when we sent the _counter_define_ contract to the blockchain. The session-path is once again going to be different for you depending on where you compiled the contract.
+Keep in mind, this is another _put-deploy_ call just like when we sent the _contract-v1_ contract to the blockchain. The session-path is once again going to be different for you depending on where you compiled the contract.
 
 ```bash
 casper-client put-deploy \
