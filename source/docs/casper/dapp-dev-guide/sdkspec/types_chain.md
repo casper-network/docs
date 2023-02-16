@@ -74,6 +74,12 @@ Required Parameters:
 
 * [`state_root_hash`](#digest) Global state hash.
 
+## AvailableBlockRange {#availableblockrange}
+
+* `low` The inclusive lower bound of the range.
+
+* `high` The inclusive upper bound of the range.
+
 ## Bid {#bid}
 
 An entry in the validator map.
@@ -107,6 +113,26 @@ Identifier for possible ways to retrieve a Block.
 * [`Hash`](#blockhash) Identify and retrieve the Block with its hash.
 
 * `Height` Identify and retrieve the Block with its height.
+
+## BlockSynchronizerStatus {#blocksynchronizerstatus}
+
+The status of the block synchronizer.
+
+* `Historical` The status of syncing a historical block, if any.
+
+    * [`block_hash`](#blockhash-blockhash) The block hash.
+
+    * `block_height` The height of the block, if known.
+
+    * `acquisition_state` The state of acquisition of the data associated with the block.
+
+* `Forward` The status of syncing a forward block, if any.
+
+    * [`block_hash`](#blockhash-blockhash) The block hash.
+
+    * `block_height` The height of the block, if known.
+
+    * `acquisition_state` The state of acquisition of the data associated with the block.
 
 ## ChainspecRawBytes {#chainspecrawbytes}
 
@@ -753,6 +779,22 @@ The identifier to obtain the purse corresponding to a balance query. Valid ident
 * `main_purse_under_account_hash` The main purse under a provided [`AccountHash`](/dapp-dev-guide/sdkspec/types_chain#accounthash).
 
 * `purse_uref` A specific purse identified by the associated [`URef`](/dapp-dev-guide/sdkspec/types_chain#uref).
+
+## ReactorState {#reactorstate}
+
+The state of the reactor, which will return one of the following:
+
+* `Initialize` Get all components and reactor state set up on start.
+
+* `CatchUp` Orient to the network and attempt to catch up to tip.
+
+* `Upgrading` Running commit upgrade and creating immediate switch block.
+
+* `KeepUp` Stay caught up with tip.
+
+* `Validate` Node is currently caught up and is an active validator.
+
+* `ShutdownForUpgrade` Node should be shut down for upgrade.
 
 ## Reward {#reward}
 
