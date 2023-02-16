@@ -9,11 +9,11 @@ There are three types of event streams in our platform categorized based on the 
 
 **Deploy events**
 
-These are associated with Deploys on a node. Currently, only `DeployAccepted` event is emitted . Refer to the [Deploys](/design/execution-semantics/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
+These are associated with Deploys on a node. Currently, only `DeployAccepted` event is emitted . Refer to the [Deploys](/design/casper-design.md/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
 
 **Finality Signature event**
 
-This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](/design/execution-semantics/#consensus-reached) section and [block finality](/glossary/B/#block-finality) 
+This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](/design/casper-design.md/#consensus-reached) section and [block finality](/glossary/B/#block-finality) 
 section to learn more about finality signatures.
 
 **Main events**
@@ -24,7 +24,7 @@ All the events other than `DeployAccepted` and `FinalitySignature` fall under th
 You can start watching the event stream details using a simple Curl call as in the below format:
 
 ```bash
-curl -s http://<HOST:PORT>/events/<ENDPOINT>
+curl -sN http://<HOST:PORT>/events/<ENDPOINT>
 ```
 
 - `HOST` - The IP address of a peer on the network
@@ -38,7 +38,7 @@ Refer to the [serialization standard](/design/serialization-standard/) page to g
 You can start watching the event stream for the `DeployAccepted` event or any other events being emitted on this endpoint using the following command. Replace the `HOST` field with the `peer IP address`.
 
 ```bash
-curl -s http://<HOST>:9999/events/deploys
+curl -sN http://<HOST>:9999/events/deploys
 ```
 **DeployAccepted event details**
 
@@ -98,7 +98,7 @@ You can find the definitions of the terms in the above `DeployAccepted` JSON rep
 You can start watching the event stream for the `FinalitySignature` event or any other events being emitted on this endpoint using the following command. Replace the `HOST` field with the `peer IP address`.
 
 ```bash
-curl -s http://<HOST>:9999/events/sigs
+curl -sN http://<HOST>:9999/events/sigs
 ```
 **FinalitySignatures event details**
 
@@ -129,14 +129,14 @@ id:696
 - [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
 - [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
 - [signature](/design/serialization-standard/#signature) - A serialized byte representation of a cryptographic signature.
-- [public_key](/design/serialization-standard/#publickey) - A unique personal address that is shared in the network.
+- [public_key](/design/serialization-standard/#publickey) - A hexadecimal-encoded cryptographic public key.
 
 ## Monitoring Other Events
 All the events apart from `DeployAccepted` and `FinalitySignature` are emitted on the endpoint `main` with the URL `http://<HOST>:9999/events/main`.
 Use the below command to monitor those event streams:
 
 ```bash
-curl -s http://<HOST>:9999/events/main
+curl -sN http://<HOST>:9999/events/main
 ```
 Further details of each event are presented in the following sections. 
 
@@ -359,7 +359,7 @@ id:598
 </details>
 
 - [deploy_hash](/design/serialization-standard/#deploy-hash) - The cryptographic hash of a Deploy.
-- [account](/design/serialization-standard/#serialization-standard-account) - A structure that represents a user on a Casper Network.
+- [account](/design/serialization-standard/#serialization-standard-account) - A structure that represents a user on a Casper network.
 - [timestamp](/design/serialization-standard/#timestamp) - A timestamp type, representing a concrete moment in time.
 - [ttl](/design/serialization-standard/#timediff) - A time difference between two timestamps.
 - [dependencies](/design/serialization-standard/#deploy-header) - A list of Deploy hashes. 
@@ -413,7 +413,7 @@ data:
 </details>
 
 - [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
-- [public_key](/design/serialization-standard/#publickey) - A unique personal address that is shared in the network.
+- [public_key](/design/serialization-standard/#publickey) - A hexadecimal-encoded cryptographic public key.
 - [timestamp](/design/serialization-standard/#timestamp) - A timestamp type, representing a concrete moment in time.
 
 ### Step event
@@ -646,12 +646,12 @@ id:1107
 This command will replay the event stream from an old event onwards. Replace HOST, EVENT_TYPE, and ID fields with the values of your scenario.
 
 ```bash
-curl -s http://<HOST>:9999/events/<EVENT_TYPE>?start_from=<ID>
+curl -sN http://<HOST>:9999/events/<EVENT_TYPE>?start_from=<ID>
 ```
 *Example:*
 
 ```bash
-curl -s http://65.21.235.219:9999/events/main?start_from=29267508
+curl -sN http://65.21.235.219:9999/events/main?start_from=29267508
 ```
 
 Each URL can have a query string added to the form `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events.

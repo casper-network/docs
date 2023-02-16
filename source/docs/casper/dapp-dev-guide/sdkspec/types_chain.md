@@ -134,6 +134,16 @@ The status of the block synchronizer.
 
     * `acquisition_state` The state of acquisition of the data associated with the block.
 
+## ChainspecRawBytes {#chainspecrawbytes}
+
+The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.
+
+* `chainspec_bytes` Hex-encoded raw bytes of the current chainspec.toml file.
+
+* `maybe_genesis_accounts_bytes` Hex-encoded raw bytes of the current genesis accounts.toml file.
+
+* `maybe_global_state_bytes` Hex-encoded raw bytes of the current global_state.toml file.
+
 ## Contract {#contract} 
 
 A contract struct that can be serialized as a JSON object.
@@ -828,7 +838,7 @@ Hex-encoded cryptographic signature, including the algorithm tag prefix.
 
 Representation of a value stored in global state. `Account`, `Contract` and `ContractPackage` have their own `json_compatibility` representation (see their docs for further info).
 
-* [`CLValue`](#clvalue) A CasperLabs value.
+* [`CLValue`](#clvalue) A Casper-specific value.
 
 * [`Account`](#account) An Account.
 

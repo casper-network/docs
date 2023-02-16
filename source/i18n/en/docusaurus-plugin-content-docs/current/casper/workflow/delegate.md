@@ -4,7 +4,7 @@ This document details a workflow where an account holder on the Casper Network c
 
 This workflow assumes:
 
-1.  You meet the [prerequisites](setup.md)
+1.  You meet the [prerequisites](/dapp-dev-guide/setup.md)
 2.  You are using the Casper command-line client
 3.  You have the public key of a validator on a Casper Network
 4.  You have the delegation contract or WASM to execute on the network
@@ -89,7 +89,7 @@ casper-client put-deploy \
 
 Save the returned _deploy_hash_ from the output to query information about the delegation deploy later.
 
-Refer to the [Deploy Status](querying.md#deploy-status) section to learn how to confirm that your deploy was executed successfully.
+Refer to the [Deploy Status](/workflow/developers/querying.md#deploy-status) section to learn how to confirm that your deploy was executed successfully.
 
 ### Confirming the Delegation {#confirming-the-delegation}
 

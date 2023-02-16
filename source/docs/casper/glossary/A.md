@@ -6,6 +6,14 @@
 
 ---
 
+## Account {#account}
+
+An Account is a structure that represents a user on a Casper network. Information on creating an account can be found [here](/design/casper-design/#accounts-head).
+
+## Account Hash {#account-hash}
+
+The account hash is a 32-byte hash of the public key representing the user account. Information on generating an account hash can be found [here](/faq/faq-general/#accounts).
+
 ## AssemblyScript {#assemblyscript}
 
 AssemblyScript is a TypeScript-based programming language (JavaScript with static types) that is optimized for WebAssembly and compiled to WebAssembly using _asc_, the reference AssemblyScript compiler. It is developed by the AssemblyScript Project and the AssemblyScript community.

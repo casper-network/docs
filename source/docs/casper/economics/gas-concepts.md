@@ -10,14 +10,14 @@ Gas fees are consumed on the network irrespective of whether your transaction wa
 
 ## How is gas cost determined?
 
-The amount of gas required for a transaction is determined by how much code is executed on the blockchain. Currently, gas is priced at a fixed price of 1 mote (defined as 1x10^9 CSPR tokens) per 1 unit of gas. The gas charged for a transaction on the blockchain is paid to the validators who are operating the network.
+The amount of gas required for a transaction is determined by how much code is executed on the blockchain. Currently, gas is priced at a fixed price of 1 mote (1 CSPR is 10^9 motes) per 1 unit of gas. The gas charged for a transaction on the blockchain is paid to the network's validators.
 
 ## Why do we need gas cost?
 
 Casper is a decentralized network of individual validators supplying their computational resources to keep the network live. As such, computations must be rate-limited and priced for the following reasons:
 
 -   Rate-limiting is used to ensure a secure and live network:
-    -   It prevents a denial-of-service (DoS) attack. In computer networks, rate-limiting is used to control the rate of requests sent or received by a network to prevent DoS attacks. Gas behaves in a similar fashion, because each block permits only a fixed amount of transactions (gas) to be included in the era.
+    -   It prevents a specific kind of denial-of-service (DoS) attack. In computer networks, rate-limiting is used to control the rate of requests sent or received by a network to prevent DoS attacks. Gas behaves in a similar fashion, because each block permits only a fixed amount of transactions (gas) to be included in the era.
     -   It explicitly quantifies the system load. The gas cost helps us evaluate the use of computational resources and measure the amount of computational work that validators need to perform for each transaction. With this knowledge, we can specify minimum system requirements for validators.
 -   Pricing leads to more meaningful transactions:
     -   Issuers of transactions and smart contract writers will be more aware of the limited network resources because there is a cost associated with each transaction. Pricing prevents users from spamming arbitrary amounts of empty transactions because there is a price to pay for each deploy.

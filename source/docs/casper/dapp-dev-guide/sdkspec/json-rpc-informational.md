@@ -7,7 +7,7 @@ The following methods return information from a node on a Casper network. The re
 
 ## chain_get_block {#chain-get-block}
 
-This method returns the JSON representation of a [Block](/design/block-structure/) from the network.
+This method returns the JSON representation of a [Block](/design/casper-design/#block-structure-head) from the network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
@@ -109,7 +109,7 @@ The result from `chain_get_block` depends on block availability from a given nod
 
 ## chain_get_block_transfers {#chain-get-block-transfers}
 
-This method returns all native transfers within a given [Block](/design/block-structure/) from a network.
+This method returns all native transfers within a given [Block](/design/casper-design/#block-structure-head) from a network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
@@ -166,7 +166,7 @@ This method returns all native transfers within a given [Block](/design/block-st
 
 ## chain_get_state_root_hash {#chain-get-state-root-hash} 
 
-This method returns a state root hash at a given [Block](/design/block-structure/). If you do not specify a `block_identifier`, you will receive the highest state root hash.
+This method returns a state root hash at a given [Block](/design/casper-design.md/#block-structure-head). If you do not specify a `block_identifier`, you will receive the highest state root hash.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
@@ -208,9 +208,46 @@ This method returns a state root hash at a given [Block](/design/block-structure
 
 </details>
 
+## info_get_chainspec {#info-get-chainspec}
+
+This method returns raw bytes for chainspec files.
+
+### `info_get_chainspec_result`
+
+|Parameter|Type|Description|
+|---------|----|-----------| 
+|api_version|String|The RPC API version.|
+|[chainspec_bytes](/dapp-dev-guide/sdkspec/types_chain#ChainspecRawBytes)|Object|The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.|
+
+<details>
+
+<summary><b>Example info_get_chainspec</b></summary>
+
+```bash
+
+{
+              "name": "info_get_chainspec_example",
+              "params": [],
+              "result": {
+                "name": "info_get_chainspec_example_result",
+                "value": {
+                  "api_version": "1.4.8",
+                  "chainspec_bytes": {
+                    "chainspec_bytes": "2a2a",
+                    "maybe_genesis_accounts_bytes": null,
+                    "maybe_global_state_bytes": null
+                  }
+                }
+              }
+            }
+
+```
+
+</details>
+
 ## info_get_deploy {#info-get-deploy}
 
-This method retrieves a [Deploy](/design/execution-semantics/#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
+This method retrieves a [Deploy](/design/casper-design.md/#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
@@ -344,7 +381,7 @@ If the `execution_results` field is empty, it means that the network processed t
 
 ## query_global_state {#query-global-state}
 
-This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](/design/block-structure#block_hash) or state root hash.
+This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](/design/casper-design.md/#block_hash) or state root hash.
 
 * Note: Querying a purse's balance requires the use of `state_get_balance` rather than any iteration of `query_global_state`.
 
@@ -460,7 +497,7 @@ This method allows for you to query for a value stored under certain keys in glo
 
 ## state_get_account_info {#state-get-account-info}
 
-This method returns a JSON representation of an [Account](/design/accounts) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
+This method returns a JSON representation of an [Account](/design/casper-design.md/#accounts-head) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
