@@ -99,9 +99,9 @@ The result contains the [deploy_hash](../../sdkspec/types_chain#deployhash), whi
 
 ## speculative_exec {#speculative_exec}
 
-The `speculative_exec` endpoint provides a method to execute a `Deploy` without committing it to global state. By default, `speculative_exec` is disabled on a node. Sending a request to a node with the endpoint disabled will result in an error message. If enabled, `speculative_exec` operates on a separate port from the primary JSON-RPC, using 7778.
+The `speculative_exec` endpoint provides a method to execute a `Deploy` without committing its execution effects to global state. By default, `speculative_exec` is disabled on a node. Sending a request to a node with the endpoint disabled will result in an error message. If enabled, `speculative_exec` operates on a separate port from the primary JSON-RPC, using 7778.
 
-`speculative_exec` executes a deploy at a specified block. In the case of this endpoint, the execution is not committed to global state. As such, it can be used for observing the execution effects of a deploy without associated payment.
+`speculative_exec` executes a Deploy at a specified block. In the case of this endpoint, the execution effects are not committed to global state. As such, it can be used for observing the execution effects of a Deploy without paying for the execution of the Deploy.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
