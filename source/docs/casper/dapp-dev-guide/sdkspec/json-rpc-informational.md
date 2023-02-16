@@ -700,11 +700,11 @@ This method returns the current status of a node.
 |build_version|String|The compiled node version.|
 |chainspec_name|String|The chainspec name, used to identify the currently connected network.|
 |[last_added_block_info](/dapp-dev-guide/sdkspec/types_chain#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
-|[last_progress](/dapp-dev-guide/sdkspec/types_chain#timestamp)||Timestamp of the last recorded progress in the reactor.|
+|[last_progress](/dapp-dev-guide/sdkspec/types_chain#timestamp)|String|Timestamp of the last recorded progress in the reactor.|
 |[next_upgrade](/dapp-dev-guide/sdkspec/types_chain#nextupgrade)|Object|Information about the next scheduled upgrade.|
 |[our_public_signing_key](/dapp-dev-guide/sdkspec/types_chain#publickey)|String|Our public signing key.|
 |[peers](/dapp-dev-guide/sdkspec/types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
-|[reactor_state](/dapp-dev-guide/sdkspec/types_chain#reactorstate)]|String|The current state of the node reactor.|
+|[reactor_state](/dapp-dev-guide/sdkspec/types_chain#reactorstate)|String|The current state of the node reactor.|
 |[round_length](/dapp-dev-guide/sdkspec/types_chain#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
 |[starting_state_root_hash](/dapp-dev-guide/sdkspec/types_chain#digest)|String|The state root hash used at the start of the current session.|
 |[uptime](/dapp-dev-guide/sdkspec/types_chain#timediff)|Integer|Time that passed since the node has started.|

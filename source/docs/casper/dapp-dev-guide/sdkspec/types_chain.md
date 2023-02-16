@@ -124,7 +124,7 @@ The status of the block synchronizer.
 
     * `block_height` The height of the block, if known.
 
-    * `acquisition_state` The state of acquisition of hte data associated with the block.
+    * `acquisition_state` The state of acquisition of the data associated with the block.
 
 * `Forward` The status of syncing a forward block, if any.
 
@@ -132,7 +132,7 @@ The status of the block synchronizer.
 
     * `block_height` The height of the block, if known.
 
-    * `acquisition_state` The state of acquisition of hte data associated with the block.
+    * `acquisition_state` The state of acquisition of the data associated with the block.
 
 ## Contract {#contract} 
 
