@@ -21,7 +21,8 @@ If you explore the source code, you will see that there are two versions of the 
     
 -   `contract-v2`
 
-    -   This is a another version of the counter contract. This version upgrades the contract and provides additional function to decrement the counter. 
+    -   This is a another version of the counter contract. 
+    -   This version upgrades the contract and provides additional function to decrement the counter. 
     -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in the _Upgrade tutorial_.
 
 -   `counter-call`
