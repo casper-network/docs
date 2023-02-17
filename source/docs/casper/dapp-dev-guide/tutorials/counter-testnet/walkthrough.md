@@ -21,7 +21,7 @@ If you explore the source code, you will see that there are two smart contracts 
 -   `contract-v2: a smart contract`
 
     -   This is a another version of the counter contract. This version upgrades the contract and provides additional function to decrement the counter. 
-    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in [Upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract)
+    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in the [Upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract).
 
 -   `counter-call: a session code`
 
