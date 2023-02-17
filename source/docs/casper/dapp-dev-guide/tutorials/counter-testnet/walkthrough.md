@@ -10,22 +10,24 @@ First, we will need to clone [the counter contract repository](https://github.co
 git clone https://github.com/casper-ecosystem/counter
 ```
 
-If you explore the source code, you will see that there are two smart contracts and one session code :
+If you explore the source code, you will see that there are two versions of the counter contract and one file with session code that calls the contract's entry-points:
 
--   `contract-v1: a smart contract`
+-   `contract-v1`
 
-    -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store the number of times we increment the counter
-    -   Provides a function to get the current count (_count_get_)
-    -   Provides a function to increment the current count (_counter_inc_)
+    -   This is a first version of the counter contract.
+    -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store the number of times we increment the counter.
+    -   Provides a function to get the current count (_count_get_).
+    -   Provides a function to increment the current count (_counter_inc_).
     
--   `contract-v2: a smart contract`
+-   `contract-v2`
 
-    -   This is a another version of counter contract. This version upgrades the contract and provides additional function to decrement the counter. 
-    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in [Upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract)
+    -   This is a another version of the counter contract. 
+    -   This version upgrades the contract and provides additional function to decrement the counter. 
+    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in the _Upgrade tutorial_.
 
--   `counter-call: a session code`
+-   `counter-call`
 
-    -   Retrieves the _contract-v1_ contract, gets the current count value, increments it, and makes sure count was incremented by 1
+    -   Retrieves the _contract-v1_ contract, gets the current count value, increments it, and makes sure count was incremented by 1.
 
 ## View the Network State {#view-the-network-state}
 
@@ -153,7 +155,7 @@ The first two commands access the counter and count named keys, respectively, us
 
 ## Increment the Counter {#increment-the-counter}
 
-We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _contract-v1_. You can call an entry-point in an installed contract by using the _put-deploy_ command as illustrated here:
+We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _contract-v1_ contract. You can call an entry-point in an installed contract by using the _put-deploy_ command as illustrated here:
 
 ```bash
 casper-client put-deploy \
@@ -189,7 +191,7 @@ You should be able to see the counter variable and observe its value has increas
 
 ## Increment the Counter Again {#increment-the-counter-again}
 
-If you recall, we had a third session code named _counter-call_ in the repository. This time around, we can see if we can increment the count using that session code instead of the session entry-point we used above.
+If you recall, the repository contains a file named _counter-call_ with session code. This time, increment the count using session code instead of the above entry-point.
 
 Keep in mind, this is another _put-deploy_ call just like when we sent the _contract-v1_ contract to the blockchain. The session-path is once again going to be different for you depending on where you compiled the contract.
 

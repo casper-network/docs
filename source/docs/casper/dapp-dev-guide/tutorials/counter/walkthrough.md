@@ -10,22 +10,24 @@ First, we will need to clone [the counter contract repository](https://github.co
 git clone https://github.com/casper-ecosystem/counter
 ```
 
-If you explore the source code, you will see that there are two smart contracts and one session code :
+If you explore the source code, you will see that there are two versions of the counter contract and one file with session code that calls the contract's entry-points:
 
--   `contract-v1: a smart contract`
+-   `contract-v1`
 
-    -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store the number of times we increment the counter
-    -   Provides a function to get the current count (_count_get_)
-    -   Provides a function to increment the current count (_counter_inc_)
+    -   This is a first version of the counter contract. 
+    -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store the number of times we increment the counter.
+    -   Provides a function to get the current count (_count_get_).
+    -   Provides a function to increment the current count (_counter_inc_).
     
--   `contract-v2: a smart contract`
+-   `contract-v2`
 
-    -   This is a another version of counter contract. This version upgrades the contract and provides additional function to decrement the counter. 
-    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in [Upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract)
+    -   This is a another version of the counter contract. 
+    -   This version upgrades the contract and provides additional function to decrement the counter. 
+    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in the _Upgrade tutorial_.
 
--   `counter-call: a session code`
+-   `counter-call`
 
-    -   Retrieves the _contract-v1_ contract, gets the current count value, increments it, and makes sure count was incremented by 1
+    -   Retrieves the _contract-v1_ contract, gets the current count value, increments it, and makes sure count was incremented by 1.
 
 ## Create a Local Network {#create-a-local-network}
 
