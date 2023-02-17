@@ -25,7 +25,7 @@ If you explore the source code, you will see that there are two smart contracts 
 
 -   `counter-call: a session code`
 
-    -   Retrieves the _contract-v1_ contract, gets the current count value, increments it, and makes sure count was incremented by 1
+    -   Retrieves the _contract-v1_ contract, gets the current count value, increments it, and makes sure count was incremented by 1.
 
 ## View the Network State {#view-the-network-state}
 
