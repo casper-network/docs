@@ -190,7 +190,7 @@ You should be able to see the counter variable and observe its value has increas
 
 ## Increment the Counter Again {#increment-the-counter-again}
 
-If you recall, we had a third session code named _counter-call_ in the repository. This time around, we can see if we can increment the count using that session code instead of the session entry-point we used above.
+If you recall, the repository contains a file named _counter-call_ with session code. This time, increment the count using session code instead of the above entry-point.
 
 Keep in mind, this is another _put-deploy_ call just like when we sent the _contract-v1_ contract to the blockchain. The session-path is once again going to be different for you depending on where you compiled the contract.
 
