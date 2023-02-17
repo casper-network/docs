@@ -23,7 +23,7 @@ If you explore the source code, you will see that there are two versions of the 
     -   This is a another version of the counter contract. This version upgrades the contract and provides additional function to decrement the counter. 
     -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in the [Upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract).
 
--   `counter-call: a session code`
+-   `counter-call`
 
     -   Retrieves the _contract-v1_ contract, gets the current count value, increments it, and makes sure count was incremented by 1.
 
