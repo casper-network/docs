@@ -153,7 +153,7 @@ The first two commands access the counter and count named keys, respectively, us
 
 ## Increment the Counter {#increment-the-counter}
 
-We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _contract-v1_. You can call an entry-point in an installed contract by using the _put-deploy_ command as illustrated here:
+We now have a counter on the chain, and we verified everything is good. Now we want to increment it. We can do that by calling the entry-point _counter_inc_, the function we defined in the _contract-v1_ contract. You can call an entry-point in an installed contract by using the _put-deploy_ command as illustrated here:
 
 ```bash
 casper-client put-deploy \
