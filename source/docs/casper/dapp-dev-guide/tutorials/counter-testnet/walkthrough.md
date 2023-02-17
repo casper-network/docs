@@ -10,7 +10,7 @@ First, we will need to clone [the counter contract repository](https://github.co
 git clone https://github.com/casper-ecosystem/counter
 ```
 
-If you explore the source code, you will see that there are two smart contracts and one session code :
+If you explore the source code, you will see that there are two versions of the counter contract and one file with session code that calls the contract's entry-points:
 
 -   `contract-v1`
 
