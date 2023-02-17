@@ -18,7 +18,7 @@ If you explore the source code, you will see that there are two versions of the 
     -   Provides a function to get the current count (_count_get_)
     -   Provides a function to increment the current count (_counter_inc_)
     
--   `contract-v2: a smart contract`
+-   `contract-v2`
 
     -   This is a another version of the counter contract. This version upgrades the contract and provides additional function to decrement the counter. 
     -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in the [Upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract).
