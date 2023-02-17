@@ -12,7 +12,7 @@ git clone https://github.com/casper-ecosystem/counter
 
 If you explore the source code, you will see that there are two smart contracts and one session code :
 
--   `contract-v1: a smart contract`
+-   `contract-v1`
 
     -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store the number of times we increment the counter
     -   Provides a function to get the current count (_count_get_)
