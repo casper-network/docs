@@ -14,14 +14,15 @@ If you explore the source code, you will see that there are two versions of the 
 
 -   `contract-v1`
 
-    -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store the number of times we increment the counter
-    -   Provides a function to get the current count (_count_get_)
-    -   Provides a function to increment the current count (_counter_inc_)
+    -   This is a first version of the counter contract.
+    -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store the number of times we increment the counter.
+    -   Provides a function to get the current count (_count_get_).
+    -   Provides a function to increment the current count (_counter_inc_).
     
 -   `contract-v2`
 
     -   This is a another version of the counter contract. This version upgrades the contract and provides additional function to decrement the counter. 
-    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in the [Upgrade tutorial](/dapp-dev-guide/tutorials/upgrade-contract).
+    -   We will not be using _contract-v2_ in this tutorial, yet we will be learning about it in the _Upgrade tutorial_.
 
 -   `counter-call`
 
