@@ -13,7 +13,7 @@ This section covers:
 
 ## Installing Rust {#installing-rust}
 
-On the Casper platform, developers may write smart contracts in any language that compiles to Wasm. These How To guides focus on code examples that use Rust and a Rust client to interact with a Casper network. While following these guides, we recommend setting up Rust and installing all dependencies. For step-by-step instructions, visit [Getting Started with Rust](/dapp-dev-guide/writing-contracts/getting-started).
+On the Casper platform, developers may write smart contracts in any language that compiles to Wasm. These How To guides focus on code examples that use Rust and a Rust client to interact with a Casper network. While following these guides, we recommend setting up Rust and installing all dependencies. For step-by-step instructions, visit [Getting Started with Rust](./writing-contracts/getting-started.md).
 
 ## Casper Command-line Client {#the-casper-command-line-client}
 
@@ -72,7 +72,7 @@ sudo dnf install casper-client-x-x-x*.rpm
 
 ## Setting up an Account {#setting-up-an-account}
 
-The [Account](/design/casper-design.md/#accounts-head) creation process consists of two steps:
+The [Account](../design/casper-design.md#accounts-head) creation process consists of two steps:
 
 1. Creating the Account
 2. Funding the Account
@@ -93,7 +93,7 @@ Users can create an account through the Casper command-line client. Alternativel
 
 ### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
 
-This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](/dapp-dev-guide/keys.md).
+This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](./keys.md).
 
 Execute the following command to generate your keys:
 
@@ -131,13 +131,13 @@ The Signer does not allow you to download the corresponding public key and hexad
 
 <img src={useBaseUrl("/image/workflow/account-details.png")} alt="Signer Account Details" width="200" class="inline-img" />
 
-For [ed25519](/dapp-dev-guide/keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
+For [ed25519](./keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
 
 ## Funding Accounts {#fund-your-account}
 
 After generating the cryptographic key-pair for an Account, you must fund the account's main purse to create it on-chain.
 
-On Testnet, you can fund an account by requesting test tokens according to [this guide](/workflow/users/testnet-faucet/). You can request test tokens **only once** for each account.
+On Testnet, you can fund an account by requesting test tokens according to [this guide](../workflow/users/testnet-faucet.md). You can request test tokens **only once** for each account.
 
 On Mainnet, a pre-existing account will have to transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 

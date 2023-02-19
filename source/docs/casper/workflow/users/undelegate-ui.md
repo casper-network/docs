@@ -6,7 +6,7 @@ If you want to undelegate tokens from a validator, you can do so at any time. No
 
 ## Prerequisites 
 
-This guide assumes that you have previously delegated tokens] to a validator using a [block explorer](/workflow/users/delegate-ui) or the [Casper client](/workflow/developers/delegate).
+This guide assumes that you have previously delegated tokens] to a validator using a [block explorer](./delegate-ui.md) or the [Casper client](../developers/delegate.md).
 
 ## Accessing the Undelegation Feature
 

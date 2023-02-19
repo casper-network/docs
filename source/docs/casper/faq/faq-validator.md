@@ -72,7 +72,7 @@ rsync -av --inplace --sparse  /var/lib/casper/ /new_mount
 <details>
 <summary><b>Does Casper run on ARM?</b></summary>
 
-Casper-node does not work with ARM type servers. You can see our hardware specifications [here](/operators/hardware/).
+Casper-node does not work with ARM type servers. You can see our hardware specifications [here](../operators/hardware.md).
 
 </details>
 

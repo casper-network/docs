@@ -1,25 +1,25 @@
 # Sending Deploys to a Casper network using the Rust Client
 
-Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [Deploy](/design/casper-design.md/#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
+Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [Deploy](../../design/casper-design.md#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
-- You will need a client to interact with the network, such as the [default Casper client](/dapp-dev-guide/setup#the-casper-command-line-client)
-- Ensure you have an [Account](/dapp-dev-guide/setup#setting-up-an-account) and its associated [keys](/dapp-dev-guide/keys.md) This account will pay for the Deploy, and its secret key will sign the Deploy
+- You will need a client to interact with the network, such as the [default Casper client](../setup.md#the-casper-command-line-client)
+- Ensure you have an [Account](../setup.md#setting-up-an-account) and its associated [keys](../keys.md) This account will pay for the Deploy, and its secret key will sign the Deploy
 - Ensure this account has enough CSPR tokens to pay for the Deploy
 
 ## Paying for Deploys {#paying-for-deploys}
 
 CSPR tokens are used to pay for transactions on the Casper Mainnet and Testnet. There are several ways to fund your account:
 
-- You may want to [transfer tokens from an exchange](/workflow/users/funding-from-exchanges)
-- You can use a [block explorer to transfer tokens](/workflow/users/token-transfer/) between accounts' purses
-- You can also [transfer tokens using the default Casper client](/workflow/developers/transfers/)
-- On the Testnet, you can use the [faucet functionality](/workflow/users/testnet-faucet/) for testing your smart contracts
+- You may want to [transfer tokens from an exchange](../../workflow/users/funding-from-exchanges.md)
+- You can use a [block explorer to transfer tokens](../../workflow/users/token-transfer.md) between accounts' purses
+- You can also [transfer tokens using the default Casper client](../../workflow/developers/transfers.md)
+- On the Testnet, you can use the [faucet functionality](../../workflow/users/testnet-faucet.md) for testing your smart contracts
 
 ## Monitoring the Event Stream for Deploys
 
-If you want to follow the [lifecycle](/design/casper-design.md/#execution-semantics-phases) of the Deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](/dapp-dev-guide/building-dapps/monitoring-events). You need the following information to proceed:
+If you want to follow the [lifecycle](../../design/casper-design.md#execution-semantics-phases) of the Deploy, you can start monitoring a node's event stream. This section will focus only on DeployAccepted events, but there are other event types described [here](./monitoring-events.md). You need the following information to proceed:
 
-- The IP address of a [peer](/dapp-dev-guide/setup/#acquire-node-address-from-network-peers) on the network
+- The IP address of a [peer](../setup.md#acquire-node-address-from-network-peers) on the network
 - The port specified as the `event_stream_server.address` in the node's *config.toml*, which is by default 9999 on Mainnet and Testnet
 - The URL for DeployAccepted events, which is <HOST:PORT>/events/deploys
 
@@ -361,7 +361,7 @@ casper-client put-deploy --show-arg-examples
 
 ## Advanced Features {#advanced-features}
 
-Casper networks support complex deploys using multiple signatures. [Casper Accounts](/design/casper-design.md/#accounts-head) use a powerful permissions model that enables a multi-signature scheme for deploys.
+Casper networks support complex deploys using multiple signatures. [Casper Accounts](../../design/casper-design.md#accounts-head) use a powerful permissions model that enables a multi-signature scheme for deploys.
 
 The `put-deploy` command performs multiple actions under the hood, optimizing the typical use case. It creates a deploy, signs it, and sends the Deploy to the network without allowing multiple signatures. However, it is possible to call the following three commands and separate key management from account creation:
 
@@ -371,7 +371,7 @@ The `put-deploy` command performs multiple actions under the hood, optimizing th
 
 To sign a Deploy with multiple keys, create the Deploy with the `make-deploy` command. The generated deploy file can be sent to the other signers, who then sign it with their keys by calling the `sign-deploy` for each key. Signatures need to be gathered on the Deploy one after another until all required parties have signed the Deploy. Finally, the signed Deploy is sent to the network with the `send-deploy` command for processing.
 
-For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](/workflow/developers/deploy-transfer.md) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper network.
+For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](../../workflow/developers/deploy-transfer.md) guide. This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper network.
 
 ## A Note about Gas Price {#a-note-about-gas-price}
 
@@ -379,6 +379,6 @@ A common question frequently arises: "How do I know what the payment amount (gas
 
 We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper network to which you want to send the deploy. If you plan on sending a deploy to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the deploy.
 
-If your test configuration matches your production [chainspec](/glossary/C/#chainspec), you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
+If your test configuration matches your production [chainspec](../../glossary/C.md#chainspec), you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../../economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
 
 Please be aware that sending a deploy always requires payment. This is true regardless of the validity of included Wasm.
