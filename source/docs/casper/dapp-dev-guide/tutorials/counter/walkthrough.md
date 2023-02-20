@@ -151,7 +151,7 @@ casper-client query-global-state --node-address http://localhost:11101 \
     --key [ACCOUNT_HASH] -q "counter"
 ```
 
-Retrieve the specific counter variable details:
+Retrieve the specific count value:
 
 ```bash
 casper-client query-global-state --node-address http://localhost:11101 \
@@ -166,7 +166,7 @@ casper-client query-global-state --node-address http://localhost:11101 \
     --state-root-hash [STATE_ROOT_HASH] --key deploy-[DEPLOY_HASH]
 ```
 
-The first two commands access the counter and count named keys, respectively, using the query path argument. The third command uses the deploy hash (the return value of _put-deploy_) to query the state of that specific deploy only.
+The first two commands access the `counter` and `count` named keys, respectively, using the query path argument. The third command uses the deploy hash (the return value of _put-deploy_) to query the state of that specific deploy only.
 
 ## Increment the Counter {#increment-the-counter}
 
@@ -186,7 +186,7 @@ Notice that this command is nearly identical to the command used to install the 
 
 ## View the Updated Network State Again {#view-the-updated-network-state-again}
 
-After calling the entry-point, theoretically, the counter value should increment by one, but how can you be sure of that? You can query the network again, however, remember that you have to get a new state root hash. Check if the counter was incremented by looking at the count with the query argument.
+After calling the entry-point, theoretically, the count value should increment by one, but how can you be sure of that? You can query the network again, however, remember that you have to get a new state root hash. Check if the count was incremented by looking at it with the query argument.
 
 Get the NEW state-root-hash:
 
