@@ -1,6 +1,6 @@
 # Introduction
 
-This document outlines the JSON-RPC API endpoints and types definitions for developers crafting an SDK for use with Casper networks.
+This document outlines the JSON-RPC API endpoints and types definitions for developers crafting an SDK for use with Casper networks. Casper uses a custom JSON-RPC implementation known as `casper-json-rpc` that is compliant with the [JSON-RPC 2.0 specification](https://www.jsonrpc.org/specification). 
 
 ## Creating a Casper SDK
 

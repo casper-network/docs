@@ -78,6 +78,7 @@ module.exports = {
                 "dapp-dev-guide/sdkspec/json-rpc-pos",
                 "dapp-dev-guide/sdkspec/types_chain",
                 "dapp-dev-guide/sdkspec/types_cl",
+                "dapp-dev-guide/sdkspec/errors",
             ],
         },
         "dapp-dev-guide/list-cspr",
