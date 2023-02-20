@@ -73,7 +73,7 @@ Here is a list of commands for developers who already meet the prerequisites and
    --chain-name casper-test \
    --secret-key [YOUR_PATH_TO_SECRET_KEY_FILE] \
    --payment-amount 30000000000 \
-   --session-path contracts/counter-define/target/wasm32-unknown-unknown/release/counter-define.wasm
+   --session-path contracts/counter-v1/target/wasm32-unknown-unknown/release/counter-v1.wasm
    ```
 
 13. Check the deploy status given the deploy hash from the previous command:

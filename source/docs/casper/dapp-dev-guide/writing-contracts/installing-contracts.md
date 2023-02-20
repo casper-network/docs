@@ -42,7 +42,7 @@ Once you call this command, it will return a deploy hash. You can use this hash 
 
 **Example - Install the contract:**
 
-Here we send a `counter-define.wasm` to a local NCTL network.
+Here we send a `counter-v1.wasm` to a local NCTL network.
 
 ```bash
 casper-client put-deploy \
@@ -50,7 +50,7 @@ casper-client put-deploy \
     --chain-name casper-net-1 \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
     --payment-amount 5000000000000 \
-    --session-path ./counter/target/wasm32-unknown-unknown/release/counter-define.wasm
+    --session-path ./counter/target/wasm32-unknown-unknown/release/counter-v1.wasm
 ```
 
 To verify the deploy, call `get-deploy` and provide the deploy hash you received from `put-deploy`.
