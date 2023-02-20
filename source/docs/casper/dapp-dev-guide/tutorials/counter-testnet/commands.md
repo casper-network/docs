@@ -6,7 +6,7 @@
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
-The first command that we will cover as part of the _casper-client_ tool is the _get-state-root-hash_ command. The state root hash is an identifier of the current network state. It is similar to a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. For this tutorial, it will be used to query the network state after sending deploys.
+The first command to cover is the _get-state-root-hash_ command from the _casper-client_ tool. The state root hash is an identifier of the current network state. It is similar to a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. For this tutorial, it will be used to query the network state after sending deploys.
 
 :::note
 
@@ -27,7 +27,7 @@ casper-client query-global-state \
 This command allows you to query the state of a Casper network at a given moment in time, which is specified by the _state-root-hash_ described above.
 
 -   The _node-address_ is the server on the network.
--   The _key_ is the identifier for the query. It must be either the account public key, account hash, contract address hash, transfer hash, or deploy hash. We will demonstrate two of these key types in this tutorial.
+-   The _key_ is the identifier for the query. It must be either the account public key, account hash, contract address hash, transfer hash, or deploy hash. The tutorial demonstrates two of these key types.
 -   The optional query path argument (_q_) allows you to drill into the specifics of a query concerning the key.
 
 ## Put Deploys (onto the Chain) {#put-deploys-onto-the-chain}
@@ -40,7 +40,7 @@ casper-client put-deploy \
     --chain-name casper-test \
     --secret-key [KEY_PATH]/secret_key.pem \
     --payment-amount 5000000000000 \
-    --session-path [CONTRACT_PATH]/counter-define.wasm
+    --session-path [CONTRACT_PATH]/counter-v1.wasm
 ```
 
 This command creates a deploy and sends it to the network for execution. In this first usage of the command,
@@ -63,7 +63,7 @@ casper-client put-deploy \
 
 This second usage of _put-deploy_ does not place a new contract on the chain, but it allows you to call entry points (functions) defined in smart contracts.
 
-Here we show the example using "counter" and "counter_inc" because, in the [Counter tutorial](./walkthrough.md), we have defined a smart contract by the name of "counter", and there is an entry-point named "counter_inc" defined within it. However, these will be different when you write your contracts.
+This examples uses "counter" and "counter_inc" from the [tutorial walkthrough](./walkthrough.md). However, these will be different when you write your contracts.
 
 ## Get Deploys (from the Chain) {#get-deploys-from-the-chain}
 

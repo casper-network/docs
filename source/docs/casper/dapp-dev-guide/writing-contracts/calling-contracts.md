@@ -371,7 +371,7 @@ The argument of interest is:
 
 **Example - Session code acting on a contract:**
 
-The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) shows how to change the state of a contract (counter-define.wasm) using session code (counter-call.wasm).
+The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) shows how to change the state of a contract (counter-v1.wasm) using session code (counter-call.wasm).
 
 ```rust
 
