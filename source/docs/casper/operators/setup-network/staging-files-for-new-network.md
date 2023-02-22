@@ -106,7 +106,7 @@ For a network to be started, we to build the configuration files for a certain g
 
 ### chainspec.toml
 
-The [chainspec.toml](../../glossary/C.md#chainspec) file is configuration for the network and must be exactly the same on all nodes.  
+The [chainspec.toml](../../concepts/glossary/C.md#chainspec) file is configuration for the network and must be exactly the same on all nodes.  
 
 The name for a network is specified `network.name`.  
 

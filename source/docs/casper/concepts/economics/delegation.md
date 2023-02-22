@@ -38,7 +38,7 @@ It is essential to have enough funds in your account's main purse when you set u
 
 **Transaction Fee**
 
-As a result, when performing a [delegation using the command line](../workflow/developers/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
+As a result, when performing a [delegation using the command line](../../developers/cli/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
 
 <p align="center"><img src={useBaseUrl("/image/economic-delegationDetails.png")}  alt="details" width="400" /> </p>
 

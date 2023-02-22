@@ -1,14 +1,14 @@
 # Writing Session Code
 
-This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](./contract-vs-session.md). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
+This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](../../concepts/session-code.md). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
 
 ## Creating the Directory Structure {#directory-structure}
 
-For writing session code, we use the same project structure used for writing contracts, described [here](./rust-contracts.md#directory-structure).
+For writing session code, we use the same project structure used for writing contracts, described [here](./simple-contract.md#directory-structure).
 
 ## Example 1: Writing Session Code {#writing-session-code}
 
-The following steps illustrate the process of writing session code using an example repository containing sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to the account and updates the action thresholds. Remember that an [Account](../../design/casper-design.md#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
+The following steps illustrate the process of writing session code using an example repository containing sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to the account and updates the action thresholds. Remember that an [Account](../../concepts/design/casper-design.md#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
 
 ```bash
 git clone https://github.com/casper-ecosystem/two-party-multi-sig/
@@ -134,11 +134,11 @@ make build-contract
 
 ## Executing Session Code {#executing-session-code}
 
-Before running session code on a live Casper network, test it as described [here](./testing-session-code.md). You can also set up a local network using [NCTL](../building-dapps/setup-nctl.md) for additional tests.
+Before running session code on a live Casper network, test it as described [here](./testing-session-code.md). You can also set up a local network using [NCTL](../../dapp-dev-guide/building-dapps/setup-nctl.md) for additional tests.
 
-Session code can execute on a Casper network via a [Deploy](../../glossary/D.md#deploy). All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the network's global state.
+Session code can execute on a Casper network via a [Deploy](../../concepts/glossary/D.md#deploy). All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the network's global state.
 
-The [Casper command-line client](../setup.md#the-casper-command-line-client) and its `put-deploy` command provide one way to execute session code.
+The [Casper command-line client](../prerequisites.md#the-casper-command-line-client) and its `put-deploy` command provide one way to execute session code.
 
 ```bash
 casper-client put-deploy \

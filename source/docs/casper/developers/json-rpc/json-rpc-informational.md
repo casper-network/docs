@@ -7,7 +7,7 @@ The following methods return information from a node on a Casper network. The re
 
 ## chain_get_block {#chain-get-block}
 
-This method returns the JSON representation of a [Block](../../design/casper-design.md#block-structure-head) from the network.
+This method returns the JSON representation of a [Block](../../concepts/design/casper-design.md#block-structure-head) from the network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
@@ -109,7 +109,7 @@ The result from `chain_get_block` depends on block availability from a given nod
 
 ## chain_get_block_transfers {#chain-get-block-transfers}
 
-This method returns all native transfers within a given [Block](../../design/casper-design.md#block-structure-head) from a network.
+This method returns all native transfers within a given [Block](../../concepts/design/casper-design.md#block-structure-head) from a network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
@@ -166,7 +166,7 @@ This method returns all native transfers within a given [Block](../../design/cas
 
 ## chain_get_state_root_hash {#chain-get-state-root-hash} 
 
-This method returns a state root hash at a given [Block](../../design/casper-design.md#block-structure-head). If you do not specify a `block_identifier`, you will receive the highest state root hash.
+This method returns a state root hash at a given [Block](../../concepts/design/casper-design.md#block-structure-head). If you do not specify a `block_identifier`, you will receive the highest state root hash.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
@@ -210,7 +210,7 @@ This method returns a state root hash at a given [Block](../../design/casper-des
 
 ## info_get_deploy {#info-get-deploy}
 
-This method retrieves a [Deploy](../../design/casper-design.md#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
+This method retrieves a [Deploy](../../concepts/design/casper-design.md#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
@@ -344,7 +344,7 @@ If the `execution_results` field is empty, it means that the network processed t
 
 ## query_global_state {#query-global-state}
 
-This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](../../design/casper-design.md#block_hash) or state root hash.
+This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](../../concepts/design/casper-design.md#block_hash) or state root hash.
 
 * Note: Querying a purse's balance requires the use of `state_get_balance` rather than any iteration of `query_global_state`.
 
@@ -460,7 +460,7 @@ This method allows for you to query for a value stored under certain keys in glo
 
 ## state_get_account_info {#state-get-account-info}
 
-This method returns a JSON representation of an [Account](../../design/casper-design.md#accounts-head) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
+This method returns a JSON representation of an [Account](../../concepts/design/casper-design.md#accounts-head) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
@@ -529,7 +529,7 @@ This method returns a purse's balance from a network. The request takes in the f
 
 To query for the balance of an Account, you must provide the formatted representation of the Account's main purse URef, which can be obtained from the  [`state_get_account_info`](#stategetaccountinfo-state-get-account-info) response. The response contains the balance of a purse in motes.
 
-For instance, one native layer-1 token of the Casper Mainnet [CSPR](../../glossary/C.md#cspr) is comprised of 1,000,000,000 motes. On a different Casper network, the representation of token-to-motes may differ.
+For instance, one native layer-1 token of the Casper Mainnet [CSPR](../../concepts/glossary/C.md#cspr) is comprised of 1,000,000,000 motes. On a different Casper network, the representation of token-to-motes may differ.
 
 |Parameter|Type|Description|
 |---------|----|-----------|

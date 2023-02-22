@@ -23,19 +23,19 @@ Casper private networks operate in a similar way to the Casper public network. T
 
 ## Prerequisites
 Follow these guides to set up the required environment and user accounts.
-- [Setting up the Casper client](../../dapp-dev-guide/setup.md#the-casper-command-line-client)
+- [Setting up the Casper client](../../developers/prerequisites.md#the-casper-command-line-client)
 - [Setting up the client for interacting with the network](https://github.com/casper-ecosystem/casper-client-rs/blob/main/README.md#casper-client)
-- [Setting up an Account](../../dapp-dev-guide/setup.md#setting-up-an-account)
+- [Setting up an Account](../../developers/prerequisites.md#setting-up-an-account)
 
 
 ## Step 1. Setting up a Validator Node
-A [Casper node](../../glossary/N.md#node) is a physical or virtual device participating in a Casper network. You need to set up several [validator](../../glossary/V.md#validator) nodes on your private network. An [operator](../../glossary/O.md#operator) who has won an [auction](../../glossary/A.md#auction) bid will be a validator for the private network.
+A [Casper node](../../concepts/glossary/N.md#node) is a physical or virtual device participating in a Casper network. You need to set up several [validator](../../concepts/glossary/V.md#validator) nodes on your private network. An [operator](../../concepts/glossary/O.md#operator) who has won an [auction](../../concepts/glossary/A.md#auction) bid will be a validator for the private network.
 
 
 Use the below guides to set up and manage validator nodes.
 
 - [Casper node setup - GitHub guide](https://github.com/casper-network/casper-node/tree/master/resources/production#casper-node-setup): A guide to configuring a system with the new Rust node to operate within a network.
-- [Basic node setup tutorial](../../operators/setup.md): A guide on using the `casper-node-launcher`, generating directories and files needed for running casper-node versions and performing upgrades, generating keys, and setting up the configuration file for nodes.
+- [Basic node setup tutorial](../setup/basic-node-configuration.md): A guide on using the `casper-node-launcher`, generating directories and files needed for running casper-node versions and performing upgrades, generating keys, and setting up the configuration file for nodes.
 - [Set up Mainnet and Testnet validator nodes](https://docs.cspr.community/): A set of guides for Mainnet and Testnet node-operators on setting up and configuring their Casper network validator nodes.
 
 Use these FAQ collections for tips and details for validators.
@@ -45,13 +45,13 @@ Use these FAQ collections for tips and details for validators.
 ## Step 2. Setting up the Directory
 Use these guides to set up your private network directories. You will find several main directories dedicated to different purposes.
 
-- Go through the [file location](../../operators/setup.md#file-locations) section to understand how directories are created and managed in a Casper private network.
-- Refer to the [setting up a new network](../../operators/create.md) guide to identify the required configuration files to set up a genesis block.
+- Go through the [file location](../setup/basic-node-configuration.md#file-locations) section to understand how directories are created and managed in a Casper private network.
+- Refer to the [setting up a new network](./development-prerequisites.md) guide to identify the required configuration files to set up a genesis block.
 
 ## Step 3. Configuring the Genesis Block
-A Casper private network contains a different set of configurations when compared to the public network. The [`chainspec.toml`](../../glossary/C.md#chainspec) file contains the required configurations for the genesis process in a private network.
+A Casper private network contains a different set of configurations when compared to the public network. The [`chainspec.toml`](../../concepts/glossary/C.md#chainspec) file contains the required configurations for the genesis process in a private network.
 
-You should add the configuration options below to the `chainspec.toml` file inside the [private network directory](./setup-private-network.md#step-2-setting-up-the-directory).
+You should add the configuration options below to the `chainspec.toml` file inside the [private network directory](./create-private.md#step-2-setting-up-the-directory).
 
 ### Unrestricted transfers configuration
 This option disables unrestricted transfers between regular account purses. A regular account user cannot do a fund transfer when this attribute is set to false. Only administrators can transfer tokens freely between users and other administrators.
@@ -86,7 +86,7 @@ A `refund_ratio` is specified as a proper fraction (the numerator must be lower 
 [core]
 refund_handling = { type = "refund", refund_ratio = [1, 1] }
 ```
-After deducting the gas fee, the distribution of the remaining payment amount is handled based on the [fee_handling](./setup-private-network.md#fee-handling-config) configuration.
+After deducting the gas fee, the distribution of the remaining payment amount is handled based on the [fee_handling](./create-private.md#fee-handling-config) configuration.
 
 The default configuration for a public chain, including the Casper Mainet,  looks like this:
 
@@ -108,7 +108,7 @@ fee_handling = { type = "pay_to_proposer" }
 ```
 
 The `fee_handling` configuration has three variations:
-- `pay_to_proposer`: The rest of the payment amount after deducing the gas fee from a refund is paid to the block's [proposer](../../glossary/P.md#proposer).
+- `pay_to_proposer`: The rest of the payment amount after deducing the gas fee from a refund is paid to the block's [proposer](../../concepts/glossary/P.md#proposer).
 - `burn`: The tokens paid are burned, and the total supply is reduced.
 - `accumulate`: The funds are transferred to a special accumulation purse. Here, the accumulation purse is owned by a handle payment system contract, and the amount is distributed among all the administrators defined at the end of a switch block. The fees are paid to the purse owned by the handle payment contract, and no tokens are transferred to the proposer when this configuration is enabled.
 
@@ -133,7 +133,7 @@ Other configurations related to the auction:
 In a public network, `allow_auction_bid` is set to *true*, which allows bidding for new entries and validator nodes.
 
 ## Step 4. Configuring the Administrator Accounts
-An administrator is mandatory for a private network since it manages all the other [validator](../../glossary/V.md#validator) accounts. There should be at least one administrator account configured within a network to operate it as a `private network`. You can create new administrators and [rotate the validator set](./setup-private-network.md#step-6-rotating-the-validator-accounts) in a single configuration update. The operator must first ensure the `global_state.toml` file contains new administrators. The validator set is updated after if an administrator is also a validator. Also, only purses of administrator accounts can hold and distribute token balances.
+An administrator is mandatory for a private network since it manages all the other [validator](../../concepts/glossary/V.md#validator) accounts. There should be at least one administrator account configured within a network to operate it as a `private network`. You can create new administrators and [rotate the validator set](./create-private.md#step-6-rotating-the-validator-accounts) in a single configuration update. The operator must first ensure the `global_state.toml` file contains new administrators. The validator set is updated after if an administrator is also a validator. Also, only purses of administrator accounts can hold and distribute token balances.
 
 ### Configuring administrator accounts
 
@@ -223,7 +223,7 @@ Please make sure you are running this tool as the same user that owns `$DATA_DIR
 
 :::
 
-You can find more details on enabling new validators in the [joining a running network](../../operators/joining.md) guide. The guide explains how to join the network and provide additional security to the system.
+You can find more details on enabling new validators in the [joining a running network](../setup/joining.md) guide. The guide explains how to join the network and provide additional security to the system.
 
 ## Step 7. Testing the Private Network
 We will describe the testing flow using an example customer and the configuration below. These options are relative to this example customer.
@@ -254,7 +254,7 @@ export NODE_ADDR=http://18.224.190.213:7777
 export CHAIN_NAME="private-test"
 ```
 
-This testing example will also use an `alice/secret_key.pem` file, a secret key generated through the [keys generation process](../../dapp-dev-guide/keys.md#creating-accounts-and-keys). Alice is a regular user in this testing example.
+This testing example will also use an `alice/secret_key.pem` file, a secret key generated through the [keys generation process](../../concepts/accounts-and-keys.md#creating-accounts-and-keys). Alice is a regular user in this testing example.
 
 ### Network access control
 

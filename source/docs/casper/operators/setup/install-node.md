@@ -74,7 +74,7 @@ If you do not have keys yet, you can create them using the following command:
 sudo -u casper casper-client keygen /etc/casper/validator_keys
 ```
 
-For more details, see the [Node Setup](./setup.md#create-fund-keys) page.
+For more details, see the [Node Setup](./basic-node-configuration.md#create-fund-keys) page.
 
 ## Getting a Trusted Hash
 

@@ -19,7 +19,7 @@ Here is a list of commands for developers who already meet the prerequisites and
 
    `cargo install cargo-casper`
 
-6. Install the [Casper client](./setup.md#the-casper-command-line-client): 
+6. Install the [Casper client](../developers/prerequisites.md#the-casper-command-line-client): 
 
    `cargo install casper-client`
 
@@ -42,13 +42,13 @@ Here is a list of commands for developers who already meet the prerequisites and
 
    **Note:** Make sure you also have the development packages of `openssl` installed. For example, `libssl-dev` on Ubuntu or `openssl-devel` on Fedora.
 
-7. Test the `casper-client` by [querying a node](./setup.md#acquire-node-address-from-network-peers) on the network and getting the latest [state root hash](../glossary/S.md#state-root-hash).
+7. Test the `casper-client` by [querying a node](../developers/prerequisites.md#acquire-node-address-from-network-peers) on the network and getting the latest [state root hash](../concepts/glossary/S.md#state-root-hash).
 
    ```bash
    casper-client get-state-root-hash --node-address http://65.21.235.219:7777
    ```
 
-8. Set up a [Casper Account](./setup.md#setting-up-an-account).
+8. Set up a [Casper Account](../developers/prerequisites.md#setting-up-an-account).
 
 9. Clone a simple counter contract or download it from GitHub:
 

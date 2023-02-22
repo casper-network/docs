@@ -44,7 +44,7 @@ A person that deposits tokens in the [proof-of-stake](./P.md#proof-of-stake) con
 
 ## Staking {#staking}
 
-A feature of Proof-of-Stake protocols that allows token holders to actively participate in the protocol, thus securing the network. The [Staking Guide](../staking/index.md) highlights the steps required to stake CSPR tokens on the Casper Mainnet.
+A feature of Proof-of-Stake protocols that allows token holders to actively participate in the protocol, thus securing the network. The [Staking Guide](../economics/staking.md) highlights the steps required to stake CSPR tokens on the Casper Mainnet.
 
 ## State root hash {#state-root-hash}
 

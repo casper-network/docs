@@ -20,4 +20,4 @@ A mote is the native accounting unit for a Casper network. All accounting done w
 
 ## Multi-Sig {#multisig}
 
-Short for `Multi-Signature`. Accounts on a Casper network can associate other accounts to allow or require a multiple signature scheme for deploys. More information on the use of Multi-Sig can be found [here](../workflow/developers/deploy-transfer.md).
+Short for `Multi-Signature`. Accounts on a Casper network can associate other accounts to allow or require a multiple signature scheme for deploys. More information on the use of Multi-Sig can be found [here](../../developers/cli/transfers/multisig-deploy-transfer.md).

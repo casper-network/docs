@@ -134,7 +134,7 @@ For the node to connect to a network, the node needs a set of trusted peers for 
 
 ### Updating the `config.toml` file {#updating-config-file}
 
-At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. See the [Configuration File](./setup.md#config-file) for more details.
+At the top of a `config.toml` file as shown here, enter the trusted block hash to replace the `'HEX-FORMATTED BLOCK HASH'` and uncomment the line by deleting the leading '#'. See the [Configuration File](./basic-node-configuration.md#config-file) for more details.
 
 ```
 # ================================
@@ -162,7 +162,7 @@ The following default values are specified in the file if you want to change the
 
 ## Rust Client Installation {#client-installation}
 
-The [Prerequisites](../dapp-dev-guide/setup.md#the-casper-command-line-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
+The [Prerequisites](../../developers/prerequisites.md#the-casper-command-line-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
 
 ## Creating Keys and Funding Accounts {#create-fund-keys}
 
@@ -172,7 +172,7 @@ The following command will create keys in the `/etc/casper/validator_keys` folde
 sudo -u casper casper-client keygen /etc/casper/validator_keys
 ```
 
-To learn about other options for generating keys, see [Accounts and Cryptographic Keys](../dapp-dev-guide/keys.md) or run the Rust client `keygen` command with the `--help` option. 
+To learn about other options for generating keys, see [Accounts and Cryptographic Keys](../../concepts/accounts-and-keys.md) or run the Rust client `keygen` command with the `--help` option. 
 
 ```bash
 sudo -u casper casper-client keygen --help
@@ -180,7 +180,7 @@ sudo -u casper casper-client keygen --help
 
 More about keys and key generation can also be found in `/etc/casper/validator_keys/README.md` if the `casper-node-launcher` was installed from the Debian package.
 
-To submit a bonding request, you will need to [fund your account](../dapp-dev-guide/setup.md#fund-your-account) as well.
+To submit a bonding request, you will need to [fund your account](../../developers/prerequisites.md#fund-your-account) as well.
 
 :::note
 

@@ -29,9 +29,9 @@ For all the commands used in this tutorial, here are a few pointers:
 
 Create three sets of keys one each for the Manager, Supervisor and Clerk. 
 
-To create accounts on the Casper blockchain, you need to generate keys and fund your accounts. For more information see [Account and Cryptographic Keys](../../keys.md). 
+To create accounts on the Casper blockchain, you need to generate keys and fund your accounts. For more information see [Account and Cryptographic Keys](../../../concepts/accounts-and-keys.md). 
 
-To fund your Testnet account, see [Funding Testnet Accounts](../../../workflow/users/testnet-faucet.md).
+To fund your Testnet account, see [Funding Testnet Accounts](../../../users/testnet-faucet.md).
 
 ## Deploying the Keys Manager Contract
 
@@ -744,7 +744,7 @@ We offer some additional examples of account management in the next section.
 
 :::tip
 
-To make a transfer using your multisig account, see [Transferring Tokens using a Multisig Account](../../../workflow/developers/deploy-transfer.md).
+To make a transfer using your multisig account, see [Transferring Tokens using a Multisig Account](../../../developers/cli/transfers/multisig-deploy-transfer.md).
 
 :::
 

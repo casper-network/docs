@@ -8,4 +8,4 @@
 
 ## Key {#key}
 
-`Keys` are the type under which data (i.e., CLValues, smart contracts, user accounts) are indexed on the network. More information on keys in a Casper network can be found [here](../dapp-dev-guide/keys.md).
+`Keys` are the type under which data (i.e., CLValues, smart contracts, user accounts) are indexed on the network. More information on keys in a Casper network can be found [here](../accounts-and-keys.md).

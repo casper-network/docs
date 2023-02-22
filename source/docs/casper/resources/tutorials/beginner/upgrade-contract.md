@@ -14,7 +14,7 @@ Here is a video walkthrough of this tutorial.
 
 ## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
-- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](../building-dapps/sending-deploys.md), and [calling contracts](../writing-contracts/calling-contracts.md) on a Casper network
+- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](../../../developers/dapps/sending-deploys.md), and [calling contracts](../../../developers/cli/calling-contracts.md) on a Casper network
 
 ## Contract Versioning Flow {#contract-versioning-flow}
 
@@ -77,7 +77,7 @@ To add a new contract version in the package, invoke the [add_contract_version](
 
 Explanation of arguments:
 
-  - `contract_package_hash` - This hash directs you to the contract package. See [Hash and Key Explanations](../understanding-hash-types.md#hash-and-key-explanations)
+  - `contract_package_hash` - This hash directs you to the contract package. See [Hash and Key Explanations](../../../concepts/understanding-hash-types.md#hash-and-key-explanations)
   - `entry_points` - Entry points of the contract, which can be modified or newly added
   - `named_keys` - Named key pairs of the contract
 
@@ -104,7 +104,7 @@ make build-contract
 
 ### Step 4. Install the contract
 
-[Install the contract](../building-dapps/sending-deploys.md#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../building-dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
+[Install the contract](../../../developers/dapps/sending-deploys.md#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../../../developers/dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
 ### Step 5. Verify your changes 
 
