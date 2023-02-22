@@ -249,7 +249,7 @@ The deploy hash is a digest over the contents of the deploy header. The deploy h
 
 ### Payment & Session {#payment--session}
 
-Payment and Session are both defined as `ExecutableDeployItems`. More information on `ExecutableDeployItems` can be found [here](../../dapp-dev-guide/building-dapps/calling-contracts.md)
+Payment and Session are both defined as `ExecutableDeployItems`. More information on `ExecutableDeployItems` can be found [here](../../developers/writing-onchain-code/calling-contracts.md)
 
 -   Module Bytes are serialized such that the first byte within the serialized buffer is `0` with the rest of the buffer containing the bytes present.
 

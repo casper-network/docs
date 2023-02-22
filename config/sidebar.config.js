@@ -92,6 +92,7 @@ module.exports = {
                 "developers/writing-onchain-code/simple-contract",
                 "developers/writing-onchain-code/testing-contracts",
                 "developers/writing-onchain-code/upgrading-contracts",
+                "developers/writing-onchain-code/calling-contracts",
                 //"developers/writing-onchain-code/contracts-and-session-code", // NEW CONTENT WILL BE HERE
                 "developers/writing-onchain-code/writing-session-code",
                 "developers/writing-onchain-code/testing-session-code",
@@ -299,7 +300,6 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/building-dapps/dapp",
-                "dapp-dev-guide/building-dapps/calling-contracts",
                 "dapp-dev-guide/building-dapps/setup-nctl",
                 "dapp-dev-guide/building-dapps/nctl-test",
             ],
