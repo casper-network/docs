@@ -137,15 +137,15 @@ As a brief example, open up _my-project/contract/src/main.rs_ in your editor, mo
 
 ### Installing the Casper Client
 
-We also provide a [Casper command-line client](/dapp-dev-guide/setup/#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain. 
+We also provide a [Casper command-line client](../setup.md#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain. 
 
 ### Creating an Account
 
-To interact with a Casper network and install code on-chain, you will need to [create a Casper Account](/dapp-dev-guide/setup/#setting-up-an-account) with a public and secret key pair.
+To interact with a Casper network and install code on-chain, you will need to [create a Casper Account](../setup.md#setting-up-an-account) with a public and secret key pair.
 
 ## Video Walkthrough
 
-The following video tutorial complements this guide. You can also consult the [FAQ page](faq/faq-developer.md) for more details.
+The following video tutorial complements this guide. You can also consult the [FAQ page](../../faq/faq-developer.md) for more details.
 
 <p align="center">
 <iframe width="400" height="225" src="https://www.youtube.com/embed?v=TRmmiFBwPr0&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=2" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -2,17 +2,17 @@
 
 ---
 
-[A](A.md) [B](B.md) [C](C.md) [D](D.md) [E](E.md) [F](F.md) [G](G.md) [H](H.md) [I](I.md) [J](J.md) [K](K.md) [L](L.md) [M](M.md) [N](N.md) [O](O.md) [P](P.md) [Q](Q.md) [R](R.md) [S](S.md) [T](T.md) [U](U.md) [V](V.md) [W](W.md) [X](X.md) [Y](Y.md) [Z](Z.md)
+[A](./A.md) [B](./B.md) [C](./C.md) [D](./D.md) [E](./E.md) [F](./F.md) [G](./G.md) [H](./H.md) [I](./I.md) [J](./J.md) [K](./K.md) [L](./L.md) [M](./M.md) [N](./N.md) [O](./O.md) [P](./P.md) [Q](./Q.md) [R](./R.md) [S](./S.md) [T](./T.md) [U](./U.md) [V](./V.md) [W](./W.md) [X](./X.md) [Y](./Y.md) [Z](./Z.md)
 
 ---
 
 ## Account {#account}
 
-An Account is a structure that represents a user on a Casper network. Information on creating an account can be found [here](/design/casper-design/#accounts-head).
+An Account is a structure that represents a user on a Casper network. Information on creating an account can be found [here](../design/casper-design.md#accounts-head).
 
 ## Account Hash {#account-hash}
 
-The account hash is a 32-byte hash of the public key representing the user account. Information on generating an account hash can be found [here](/faq/faq-general/#accounts).
+The account hash is a 32-byte hash of the public key representing the user account. Information on generating an account hash can be found [here](../faq/faq-general.md#accounts).
 
 ## AssemblyScript {#assemblyscript}
 
@@ -28,4 +28,4 @@ The auction contract acts as a front-end user interface to the auction by direct
 
 ## Auction delay {#auction-delay}
 
-The number of full eras that pass between the [booking block](B.md#booking-block) and the era whose validator set it defines. The auction delay is configurable and can be several eras long.
+The number of full eras that pass between the [booking block](./B.md#booking-block) and the era whose validator set it defines. The auction delay is configurable and can be several eras long.

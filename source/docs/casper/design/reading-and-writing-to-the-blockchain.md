@@ -2,13 +2,13 @@
 
 Casper features several means of reading and writing data to global state, depending on user needs and complexity. Reading data from global state can be done off-chain or on-chain. Writing data requires on-chain interactions, due to the nature of the system.
 
-Storage on global state can be accomplished with [`NamedKeys`](/dapp-dev-guide/sdkspec/types_chain/#namedkey), a form of [`URef`](/design/casper-design.md/#uref-head/) or through the [use of dictionaries](/dapp-dev-guide/writing-contracts/dictionaries.md).
+Storage on global state can be accomplished with [`NamedKeys`](../dapp-dev-guide/sdkspec/types_chain.md#namedkey), a form of [`URef`](./casper-design.md#uref-head/) or through the [use of dictionaries](../dapp-dev-guide/writing-contracts/dictionaries.md).
 
 Due to the nature of Casper's serialization standard, `NamedKeys` should be used sparingly for smaller subsets of data. Developers should use dictionaries for larger subsets of mapped structures.
 
 ## Casper JSON-RPC
 
-The [`query_global_state`](/dapp-dev-guide/sdkspec/json-rpc-informational/#query-global-state) method available through the JSON-RPC allows users to read data from global state without performing on-chain actions.
+The [`query_global_state`](../dapp-dev-guide/sdkspec/json-rpc-informational.md#query-global-state) method available through the JSON-RPC allows users to read data from global state without performing on-chain actions.
 
 ## Casper API
 

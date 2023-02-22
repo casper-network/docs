@@ -1,6 +1,6 @@
 # Accounts and Cryptographic Keys
 
-The Casper blockchain uses an on-chain [account-based model](/design/casper-design.md/#accounts-head), uniquely identified by an `AccountHash` derived from a specific `PublicKey`. The `AccountHash` is a 32-byte hash derived from any of the supported `PublicKey` variants below to standardize keys that can vary in length.
+The Casper blockchain uses an on-chain [account-based model](../design/casper-design.md#accounts-head), uniquely identified by an `AccountHash` derived from a specific `PublicKey`. The `AccountHash` is a 32-byte hash derived from any of the supported `PublicKey` variants below to standardize keys that can vary in length.
 
 By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
@@ -97,7 +97,7 @@ Start by creating an account using the [Casper Signer](https://docs.cspr.communi
 
 ## Funding your Account
 
-Once you create your account, you can [fund the account's main purse](setup.md#funding-an-account) to finish the process of setting it up. 
+Once you create your account, you can [fund the account's main purse](./setup.md#funding-an-account) to finish the process of setting it up. 
 
 :::note
 

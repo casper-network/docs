@@ -1,12 +1,12 @@
 # Two-Party Multi-Signature Deploys
 
-[Accounts](/design/casper-design.md/#accounts-head) on a Casper network can associate other accounts to allow or require a multiple-signature scheme for deploys.
+[Accounts](../../design/casper-design.md#accounts-head) on a Casper network can associate other accounts to allow or require a multiple-signature scheme for deploys.
 
 This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper network. This workflow assumes:
 
-1. You meet the [prerequisites](/dapp-dev-guide/setup.md), including having the Casper command-line client and a valid node address
+1. You meet the [prerequisites](../../dapp-dev-guide/setup.md), including having the Casper command-line client and a valid node address
 2. You have the main account's `PublicKey` hex (**MA**) and another `PublicKey` hex to associate (**AA**)
-3.  You have previously [sent deploys](/dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper network
+3.  You have previously [sent deploys](../../dapp-dev-guide/building-dapps/sending-deploys.md) to a Casper network
 
 ## Configuring the Main Account {#configuring-the-main-account}
 
@@ -75,12 +75,12 @@ casper-client put-deploy \
 
 ### Confirming Processing and Account Status {#confirming-execution-and-account-status}
 
-Account configuration on a Casper blockchain is stored in a [Merkle Tree](/glossary/M.md#merkle-tree) and is a snapshot of the blockchain's [Global State](/design/casper-design.md/#global-state-head). The representation of global state for a given block can be computed by executing the deploys (including transfers) within the block and its ancestors. The root node of the Merkle Tree identifying a particular state is called the `state-root-hash` and is stored in every executed block.
+Account configuration on a Casper blockchain is stored in a [Merkle Tree](../../glossary/M.md#merkle-tree) and is a snapshot of the blockchain's [Global State](../../design/casper-design.md#global-state-head). The representation of global state for a given block can be computed by executing the deploys (including transfers) within the block and its ancestors. The root node of the Merkle Tree identifying a particular state is called the `state-root-hash` and is stored in every executed block.
 
 To check that the account was configured correctly, you need the `state-root-hash` corresponding to the block that contains your deploy. To obtain the `state-root-hash`, you need to:
 
-1.  [Confirm the execution status of the deploy](/workflow/developers/querying.md#querying-deploys) and obtain the hash of the block containing it
-2.  [Query the block containing the deploy](/workflow/developers/querying.md#querying-blocks) to obtain the corresponding `state_root_hash`
+1.  [Confirm the execution status of the deploy](./querying.md#querying-deploys) and obtain the hash of the block containing it
+2.  [Query the block containing the deploy](./querying.md#querying-blocks) to obtain the corresponding `state_root_hash`
 
 Using the `state_root_hash` and the `hex-encoded-public-key` of the main account, query the network and check the account's configuration.
 

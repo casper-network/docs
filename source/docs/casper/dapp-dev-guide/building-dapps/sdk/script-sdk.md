@@ -50,7 +50,7 @@ In this section, we outline a couple of essential tasks you can accomplish with 
 -   Sending a transfer
 
 <!-- TODO Hiding this until we refresh the tutorial.
-For a complete implementation example, read the [Multi-Signature Tutorial](/dapp-dev-guide/tutorials/multi-sig/index.md), which uses the JavaScript SDK. -->
+For a complete implementation example, read the [Multi-Signature Tutorial](../../tutorials/multi-sig/index.md), which uses the JavaScript SDK. -->
 
 ### Generating Account Keys {#generating-account-keys}
 

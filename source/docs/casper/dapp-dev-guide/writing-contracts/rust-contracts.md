@@ -4,15 +4,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## What is a Smart Contract?
 
-A smart contract is a self-contained program installed on a blockchain. In the context of a Casper network, a smart contract consists of contract code installed on-chain using a [Deploy](/design/casper-design.md/#execution-semantics-deploys). Casper smart contracts are programs that run on a Casper network. They interact with accounts and other contracts through entry points, allowing for various triggers, conditions, and logic.
+A smart contract is a self-contained program installed on a blockchain. In the context of a Casper network, a smart contract consists of contract code installed on-chain using a [Deploy](../../design/casper-design.md#execution-semantics-deploys). Casper smart contracts are programs that run on a Casper network. They interact with accounts and other contracts through entry points, allowing for various triggers, conditions, and logic.
 
 Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. These contracts can, in turn, call one another to perform interconnected operations and create more complex programs. The decentralized nature of blockchain technology means that these smart contracts do not suffer from any single point of failure. Even if a Casper node leaves the network, other nodes will continue to allow the contract to operate as intended.
 
 ## Key Features of Casper Contracts
 
-On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. This tutorial focuses specifically on writing a smart contract in the Rust language. The Rust compiler compiles the contract code into Wasm. After that, the Wasm binary can be [sent to a node](/dapp-dev-guide/writing-contracts/installing-contracts/) on a Casper network using a Deploy. Nodes within the network then [gossip deploys](/design/p2p/#communications-gossiping), include them within a block, and finalize them. After finalizing, the network executes the deploys within the block.
+On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. This tutorial focuses specifically on writing a smart contract in the Rust language. The Rust compiler compiles the contract code into Wasm. After that, the Wasm binary can be [sent to a node](./installing-contracts.md) on a Casper network using a Deploy. Nodes within the network then [gossip deploys](../../design/p2p.md#communications-gossiping), include them within a block, and finalize them. After finalizing, the network executes the deploys within the block.
 
-Further, the Casper platform allows for [upgradable contracts](/dapp-dev-guide/writing-contracts/upgrading-contracts/). A [ContractPackage](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackage.html) is created through the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) or [new_locked_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). The new contract is added to this package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package alongside any previously installed contract versions, if applicable.
+Further, the Casper platform allows for [upgradable contracts](./upgrading-contracts.md). A [ContractPackage](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackage.html) is created through the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) or [new_locked_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](../understanding-hash-types.md#hash-and-key-explanations). The new contract is added to this package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package alongside any previously installed contract versions, if applicable.
 
 The `new_contract` and `new_locked_contract` methods are a convenience that automatically creates the package associated with a new contract. Developers choosing not to use these methods must first create a contract package to function as a container for their new contract.
 
@@ -50,7 +50,7 @@ project-directory/
 
 ### Creating the Project Automatically
 
-The `cargo casper` command can automatically set up the project structure, as shown [here](/dapp-dev-guide/writing-contracts/getting-started#creating-a-project). Alternatively, follow the steps below to customize the project, yet create the various folders using `cargo`. 
+The `cargo casper` command can automatically set up the project structure, as shown [here](./getting-started.md#creating-a-project). Alternatively, follow the steps below to customize the project, yet create the various folders using `cargo`. 
 
 1. Create a top-level project directory for the contract code and its corresponding tests.
 
@@ -78,7 +78,7 @@ The `cargo casper` command can automatically set up the project structure, as sh
     - `main.rs` - This file would store the unit test code required to test the contract. If you wish, you can rename the file to `integration-tests.rs` as shown in the example structure.
     - `Cargo.toml` - This is the file with test configurations.
 
-    The [Testing Smart Contracts](/dapp-dev-guide/writing-contracts/testing-contracts) guide explains how to update the tests using example code. 
+    The [Testing Smart Contracts](./testing-contracts.md) guide explains how to update the tests using example code. 
 
 ## Writing a Basic Smart Contract
 
@@ -158,7 +158,7 @@ const COUNT_KEY: &str = "count";
 
 #### Defining the Contract Entry Points
 
-Entry points provide access to contract code installed in global state. Either [session code](/dapp-dev-guide/writing-contracts/contract-vs-session) or another smart contract may call these entry points. A contract must have at least one entry point and may have more than one entry point. Entry points are defined by their name, and those names should be clear and self-describing. Each entry point is equivalent to a static main entry point in a traditional program.
+Entry points provide access to contract code installed in global state. Either [session code](./contract-vs-session.md) or another smart contract may call these entry points. A contract must have at least one entry point and may have more than one entry point. Entry points are defined by their name, and those names should be clear and self-describing. Each entry point is equivalent to a static main entry point in a traditional program.
 
 Entry points are not functions or methods, and they have no arguments. They are static entry points into the contract's logic. Yet, the contract logic can access parameters by name, passed along with the Deploy. Note that another smart contract may access any of these entry points.
 
@@ -316,7 +316,7 @@ make build-contract
 
 ## Executing Contract Code {#executing-contract-code}
 
-Contract execution must be initiated through an outside call, usually via [session code](/dapp-dev-guide/writing-contracts/contract-vs-session/) or another smart contract. Developers should also be familiar with the difference between contract code and session code, explained in the next section.
+Contract execution must be initiated through an outside call, usually via [session code](./contract-vs-session.md) or another smart contract. Developers should also be familiar with the difference between contract code and session code, explained in the next section.
 
 ## Video Walkthrough {#video-walkthrough}
 
@@ -329,6 +329,6 @@ The following brief video accompanies this guide.
 
 ## What's Next? {#whats-next}
 
-- Learn to [test your contract](/dapp-dev-guide/writing-contracts/testing-contracts).
-- Understand [session code](/dapp-dev-guide/writing-contracts/contract-vs-session) and how it triggers a smart contract.
-- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md) with the Casper command-line client.
+- Learn to [test your contract](./testing-contracts.md).
+- Understand [session code](./contract-vs-session.md) and how it triggers a smart contract.
+- Learn to [install a contract and query global state](./installing-contracts.md) with the Casper command-line client.

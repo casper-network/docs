@@ -9,11 +9,11 @@ There are three types of event streams in our platform categorized based on the 
 
 **Deploy events**
 
-These are associated with Deploys on a node. Currently, only `DeployAccepted` event is emitted . Refer to the [Deploys](/design/casper-design.md/#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
+These are associated with Deploys on a node. Currently, only `DeployAccepted` event is emitted . Refer to the [Deploys](../../design/casper-design.md#execution-semantics-deploys) section to discover more about Deploys and their life cycles.
 
 **Finality Signature event**
 
-This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](/design/casper-design.md/#consensus-reached) section and [block finality](/glossary/B/#block-finality) 
+This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](../../design/casper-design.md#consensus-reached) section and [block finality](../../glossary/B.md#block-finality) 
 section to learn more about finality signatures.
 
 **Main events**
@@ -31,7 +31,7 @@ curl -sN http://<HOST:PORT>/events/<ENDPOINT>
 - `PORT` - The port 9999 (The default port number for nodes on Mainnet or Testnet)
 - `ENDPOINT` - The specific endpoint of the node which the event will be emitted
 
-Refer to the [serialization standard](/design/serialization-standard/) page to get details on required custom serializations and the [types](/dapp-dev-guide/sdkspec/types_chain/) page to find definitions of the terms used in the event stream output.
+Refer to the [serialization standard](../../design/serialization-standard.md) page to get details on required custom serializations and the [types](../sdkspec/types_chain.md) page to find definitions of the terms used in the event stream output.
 
 ## Monitoring DeployAccepted Event
 
@@ -90,8 +90,8 @@ id:506
 </details>
 
 You can find the definitions of the terms in the above `DeployAccepted` JSON representation by referring to the following links:
-- [Deploy](/design/serialization-standard/#serialization-standard-deploy) - Contains the serialization details of a Deploy with other related details like Deploy- Hash, Deploy-Header, Payment and Session, Approval.
-- [Types](/dapp-dev-guide/sdkspec/types_chain/) - Contains the definitions of the terms in the event stream output.
+- [Deploy](../../design/serialization-standard.md#serialization-standard-deploy) - Contains the serialization details of a Deploy with other related details like Deploy- Hash, Deploy-Header, Payment and Session, Approval.
+- [Types](../sdkspec/types_chain.md) - Contains the definitions of the terms in the event stream output.
 
 ## Monitoring FinalitySignature Event
 
@@ -104,7 +104,7 @@ curl -sN http://<HOST>:9999/events/sigs
 
 The URL to consume the `FinalitySignature` event is `http://<HOST>:9999/events/sigs`.
 
-The `FinalitySignature` event is emitted whenever a new [finality](/glossary/B/#block-finality) signature is received.
+The `FinalitySignature` event is emitted whenever a new [finality](../../glossary/B.md#block-finality) signature is received.
 
 The following example contains the JSON representation of the `FinalitySignature` event structure.
 
@@ -126,10 +126,10 @@ id:696
 ```
 </details>
 
-- [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
-- [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
-- [signature](/design/serialization-standard/#signature) - A serialized byte representation of a cryptographic signature.
-- [public_key](/design/serialization-standard/#publickey) - A hexadecimal-encoded cryptographic public key.
+- [block_hash](../../design/serialization-standard.md#block-hash) - A cryptographic hash that is used to identify a Block.
+- [era_id](../../design/serialization-standard.md#eraid) - The period of time used to specify when specific events in a blockchain network occur.
+- [signature](../../design/serialization-standard.md#signature) - A serialized byte representation of a cryptographic signature.
+- [public_key](../../design/serialization-standard.md#publickey) - A hexadecimal-encoded cryptographic public key.
 
 ## Monitoring Other Events
 All the events apart from `DeployAccepted` and `FinalitySignature` are emitted on the endpoint `main` with the URL `http://<HOST>:9999/events/main`.
@@ -198,8 +198,8 @@ id:594
 ```
 </details>
 
-- [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
-- [block](/design/serialization-standard/#serialization-standard-block) - The JSON representation of the Block.
+- [block_hash](../../design/serialization-standard.md#block-hash) - A cryptographic hash that is used to identify a Block.
+- [block](../../design/serialization-standard.md#serialization-standard-block) - The JSON representation of the Block.
 
 ### DeployProcessed event
 
@@ -358,13 +358,13 @@ id:598
 ```
 </details>
 
-- [deploy_hash](/design/serialization-standard/#deploy-hash) - The cryptographic hash of a Deploy.
-- [account](/design/serialization-standard/#serialization-standard-account) - A structure that represents a user on a Casper network.
-- [timestamp](/design/serialization-standard/#timestamp) - A timestamp type, representing a concrete moment in time.
-- [ttl](/design/serialization-standard/#timediff) - A time difference between two timestamps.
-- [dependencies](/design/serialization-standard/#deploy-header) - A list of Deploy hashes. 
-- [block_hash](/design/serialization-standard/#block-hash) - A cryptographic hash that is used to identify a Block.
-- [execution_result](/design/serialization-standard/#executionresult) - The result of executing a single deploy.
+- [deploy_hash](../../design/serialization-standard.md#deploy-hash) - The cryptographic hash of a Deploy.
+- [account](../../design/serialization-standard.md#serialization-standard-account) - A structure that represents a user on a Casper network.
+- [timestamp](../../design/serialization-standard.md#timestamp) - A timestamp type, representing a concrete moment in time.
+- [ttl](../../design/serialization-standard.md#timediff) - A time difference between two timestamps.
+- [dependencies](../../design/serialization-standard.md#deploy-header) - A list of Deploy hashes. 
+- [block_hash](../../design/serialization-standard.md#block-hash) - A cryptographic hash that is used to identify a Block.
+- [execution_result](../../design/serialization-standard.md#executionresult) - The result of executing a single deploy.
 
 ### DeployExpired event
 
@@ -388,7 +388,7 @@ id:887
 ```
 </details>
 
-- [deploy_hash](/design/serialization-standard/#deploy-hash) - The cryptographic hash of a Deploy.
+- [deploy_hash](../../design/serialization-standard.md#deploy-hash) - The cryptographic hash of a Deploy.
 
 ### Fault event
 
@@ -412,9 +412,9 @@ data:
 ```
 </details>
 
-- [era_id](/design/serialization-standard/#eraid) - The period of time used to specify when specific events in a blockchain network occur.
-- [public_key](/design/serialization-standard/#publickey) - A hexadecimal-encoded cryptographic public key.
-- [timestamp](/design/serialization-standard/#timestamp) - A timestamp type, representing a concrete moment in time.
+- [era_id](../../design/serialization-standard.md#eraid) - The period of time used to specify when specific events in a blockchain network occur.
+- [public_key](../../design/serialization-standard.md#publickey) - A hexadecimal-encoded cryptographic public key.
+- [timestamp](../../design/serialization-standard.md#timestamp) - A timestamp type, representing a concrete moment in time.
 
 ### Step event
 
@@ -621,10 +621,10 @@ data:
 ```
 </details>
 
-- [era_id](/design/serialization-standard/#eraid) - The period of time is used to specify when specific events in a blockchain network will occur.
-- [execution_effect](/design/serialization-standard/#executioneffect) - The journal of execution transforms from a single Deploy.
-- [operations](/design/serialization-standard/#operation) - Operations performed while executing a deploy.
-- [transform](/design/serialization-standard/#transform) - The actual transformation performed while executing a deploy.
+- [era_id](../../design/serialization-standard.md#eraid) - The period of time is used to specify when specific events in a blockchain network will occur.
+- [execution_effect](../../design/serialization-standard.md#executioneffect) - The journal of execution transforms from a single Deploy.
+- [operations](../../design/serialization-standard.md#operation) - Operations performed while executing a deploy.
+- [transform](../../design/serialization-standard.md#transform) - The actual transformation performed while executing a deploy.
 
 ### Shutdown event
 

@@ -2,13 +2,13 @@
 
 ---
 
-[A](A.md) [B](B.md) [C](C.md) [D](D.md) [E](E.md) [F](F.md) [G](G.md) [H](H.md) [I](I.md) [J](J.md) [K](K.md) [L](L.md) [M](M.md) [N](N.md) [O](O.md) [P](P.md) [Q](Q.md) [R](R.md) [S](S.md) [T](T.md) [U](U.md) [V](V.md) [W](W.md) [X](X.md) [Y](Y.md) [Z](Z.md)
+[A](./A.md) [B](./B.md) [C](./C.md) [D](./D.md) [E](./E.md) [F](./F.md) [G](./G.md) [H](./H.md) [I](./I.md) [J](./J.md) [K](./K.md) [L](./L.md) [M](./M.md) [N](./N.md) [O](./O.md) [P](./P.md) [Q](./Q.md) [R](./R.md) [S](./S.md) [T](./T.md) [U](./U.md) [V](./V.md) [W](./W.md) [X](./X.md) [Y](./Y.md) [Z](./Z.md)
 
 ---
 
 ## Blake2b {#blake2b}
 
-A function used within the Casper platform to create cryptographic [hashes](/glossary/H/#hash). More information can be found [here](https://www.blake2.net/).
+A function used within the Casper platform to create cryptographic [hashes](./H.md#hash). More information can be found [here](https://www.blake2.net/).
 
 ## Block {#block}
 
@@ -25,9 +25,9 @@ Each block points to its parent. An exception is the first block, which has no p
 
 Block creation means computing the deployment results and collecting the results that belong together into a block. We follow a process called _execution after consensus_.
 
-The [block proposal](B.md#block-proposal) happens first, and the proposed [proto block](P.md#proto-block) contains a set of deploys that have not been executed yet.
+The [block proposal](./B.md#block-proposal) happens first, and the proposed [proto block](./P.md#proto-block) contains a set of deploys that have not been executed yet.
 
-Only after consensus on a _proto block_ has been reached, the deploys are executed. The resulting new global state [root hash](R.md#root-hash) is put into an actual block, together with the executed deploys.
+Only after consensus on a _proto block_ has been reached, the deploys are executed. The resulting new global state [root hash](./R.md#root-hash) is put into an actual block, together with the executed deploys.
 
 Note that only validators can create valid blocks.
 
@@ -35,7 +35,7 @@ Note that only validators can create valid blocks.
 
 A block is "finalized" if the validators agree on adding it to the blockchain.
 
-There are different levels of _finality_ in the [Highway](H.md#highway) protocol. A finalized block has a fault-tolerance _F_, expressed as a fraction of the total stake. For an observer to see a conflicting block as finalized, several validators whose total stake exceeds _F_ would have to collude and show different information in a way that would ultimately be detected and punished (see [slashing](S.md#slashing)).
+There are different levels of _finality_ in the [Highway](./H.md#highway) protocol. A finalized block has a fault-tolerance _F_, expressed as a fraction of the total stake. For an observer to see a conflicting block as finalized, several validators whose total stake exceeds _F_ would have to collude and show different information in a way that would ultimately be detected and punished (see [slashing](./S.md#slashing)).
 
 ## Block gossiping {#block-gossiping}
 
@@ -63,7 +63,7 @@ The process of determining the validity of a block obtained from another node on
 
 ## Blockchain {#blockchain}
 
-Blockchain is a P2P network where the collection of nodes ([validators](V.md#validator)) concurrently updates a decentralized, shared database. They do this collectively, building an ever-growing chain of [transactions](T.md#transaction). For performance reasons, transactions are bundled in [blocks](#block). According to a particular cooperation protocol (consensus protocol), the collection of [nodes](N.md#node) connected via a P2P network cooperate to maintain this shared database as a single source of truth. The database's current state is called the [global state](G.md#global-state) and has a sizeable map-like collection.
+Blockchain is a P2P network where the collection of nodes ([validators](./V.md#validator)) concurrently updates a decentralized, shared database. They do this collectively, building an ever-growing chain of [transactions](./T.md#transaction). For performance reasons, transactions are bundled in [blocks](#block). According to a particular cooperation protocol (consensus protocol), the collection of [nodes](./N.md#node) connected via a P2P network cooperate to maintain this shared database as a single source of truth. The database's current state is called the [global state](./G.md#global-state) and has a sizeable map-like collection.
 
 ## Block store {#block-store}
 
@@ -71,12 +71,12 @@ The layer of the node software responsible for storing blocks. This layer is per
 
 ## Bond {#bond}
 
-The amount of money (in crypto-currency) that is allocated by a node in order to participate in [consensus](C.md#consensus) (and to be a [validator](V.md#validator)).
+The amount of money (in crypto-currency) that is allocated by a node in order to participate in [consensus](./C.md#consensus) (and to be a [validator](./V.md#validator)).
 
 ## Bonding {#bonding}
 
-Depositing money in the [auction contract](A.md#auction-contract) and try to become a [staker](S.md#staker). The bonding request is a transaction that transfers tokens to the auction contract. In the next [booking block](#booking-block), a new set of validators is determined, with weights according to their deposits. This new set becomes active in the era(s) using that booking block.
+Depositing money in the [auction contract](./A.md#auction-contract) and try to become a [staker](./S.md#staker). The bonding request is a transaction that transfers tokens to the auction contract. In the next [booking block](#booking-block), a new set of validators is determined, with weights according to their deposits. This new set becomes active in the era(s) using that booking block.
 
 ## Booking block {#booking-block}
 
-The booking block for an era is the block that determines the era's validator set. In it, the [auction contract](A.md#auction-contract) selects the highest bidders to be the future era's validators. There is a configurable delay, the _auction_delay_, which is the number of eras between the booking block and the era to which it applies. The booking block is always a switch block, so the booking block for era _N + auction_delay + 1_ is the last block of era _N_.
+The booking block for an era is the block that determines the era's validator set. In it, the [auction contract](./A.md#auction-contract) selects the highest bidders to be the future era's validators. There is a configurable delay, the _auction_delay_, which is the number of eras between the booking block and the era to which it applies. The booking block is always a switch block, so the booking block for era _N + auction_delay + 1_ is the last block of era _N_.

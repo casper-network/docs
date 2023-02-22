@@ -64,7 +64,7 @@ A Casper network is a decentralized computation platform. This section describes
 
 ### Measuring Computational Work {#execution-semantics-gas}
 
-Computation is done in a [WebAssembly (Wasm)](https://webassembly.org/) interpreter, allowing any programming language which compiles to Wasm to become a smart contract language for the Casper blockchain. Similar to Ethereum, Casper uses [`Gas`](/economics/gas-concepts/) to measure computational work in a way that is consistent from node to node in a Casper network. Each Wasm opcode is assigned a `Gas` cost, and the amount of gas spent is tracked by the runtime with each opcode executed by the interpreter.
+Computation is done in a [WebAssembly (Wasm)](https://webassembly.org/) interpreter, allowing any programming language which compiles to Wasm to become a smart contract language for the Casper blockchain. Similar to Ethereum, Casper uses [`Gas`](../economics/gas-concepts.md) to measure computational work in a way that is consistent from node to node in a Casper network. Each Wasm opcode is assigned a `Gas` cost, and the amount of gas spent is tracked by the runtime with each opcode executed by the interpreter.
 
 Costs for opcode instructions on the Casper Mainnet network can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L115).
 
@@ -76,13 +76,13 @@ Although the network measures costs in `Gas`, payment for computation occurs in 
 
 Please note that Casper will not refund any amount of unused gas.
 
-This decision is taken to incentivize the [Casper Runtime Economics](/economics/runtime.md#runtime-economics) by efficiently allocating the computational resources. The [consensus-before-execution model](/economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage the optimized gas consumption from users and to prevent the overuse of block space by poorly handled deploys.
+This decision is taken to incentivize the [Casper Runtime Economics](../economics/runtime.md#runtime-economics) by efficiently allocating the computational resources. The [consensus-before-execution model](../economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage the optimized gas consumption from users and to prevent the overuse of block space by poorly handled deploys.
 
 :::
 
 ### Deploys {#execution-semantics-deploys}
 
-A [Deploy](/design/serialization-standard/#serialization-standard-deploy) is a data structure containing Wasm and the requester's signature(s). Additionally, the deploy header contains additional metadata about the deploy itself. A deploy’s structure is as follows:
+A [Deploy](./serialization-standard.md#serialization-standard-deploy) is a data structure containing Wasm and the requester's signature(s). Additionally, the deploy header contains additional metadata about the deploy itself. A deploy’s structure is as follows:
 
 <p align="center">
 <img src={"/image/design/deploy-structure.png"} alt="Image showing the deploy data structure" width="500"/> 
@@ -90,7 +90,7 @@ A [Deploy](/design/serialization-standard/#serialization-standard-deploy) is a d
 
 -   Body: Containing payment code and session code (more details on these below)
 -   Header: containing
-    -   The [Public Key](/design/serialization-standard/#publickey) of the account in whose context the deploy will run
+    -   The [Public Key](./serialization-standard.md#publickey) of the account in whose context the deploy will run
     -   The timestamp of the deploy’s creation
     -   A time-to-live, after which the deploy expires and cannot be included in a block
     -   the `blake2b256` hash of the body
@@ -167,8 +167,8 @@ All these features are accessible via functions in the [Casper External FFI](htt
 The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`. The [global state trie store](#global-state-trie) requires all keys to be the same length, so the AccountHash is a 32-byte derivative used to abstract any of the supported public key variants.
 
 The Casper platform supports two types of keys for creating accounts and signing transactions: 
-- [ed25519](/dapp-dev-guide/keys.md#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
-- [secp256k1](/dapp-dev-guide/keys.md#ethereum-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
+- [ed25519](../dapp-dev-guide/keys.md#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
+- [secp256k1](../dapp-dev-guide/keys.md#ethereum-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
 
 By default, a transactional interaction with the blockchain takes the form of a Deploy cryptographically signed by the key-pair corresponding to the PublicKey used to create the account. All user activity on the Casper blockchain (i.e., "deploys") must originate from an account. Each account has its own context where it can locally store information (e.g., references to useful contracts, metrics, and aggregated data from other parts of the blockchain). Each account also has a "main purse" where it can hold Casper tokens (see [Tokens](#tokens-purses-and-accounts) for more information).
 
@@ -240,7 +240,7 @@ In the case where there is a reference to stored on-chain Wasm (smart contracts)
 
 ## Unforgeable Reference (URef) {#uref-head}
 
-This key type is used for storing any value except `Account`. Additionally, `URef`s used in Wasm carry permission information to prevent unauthorized usage of the value stored under the key. The runtime tracks this permission information. This means that if malicious Wasm attempts to produce a `URef` with permissions that the Wasm does not have, the Wasm has attempted to "forge" the unforgeable reference, and the runtime will raise a forged `URef` error. Permissions for a `URef` can be given across contract calls, allowing data stored under a `URef` to be shared in a controlled way. The 32-byte identifier representing the key is generated randomly by the runtime (see [Execution Semantics](#execution-semantics-head) for more information). The serialization for `Access Rights` that define the permissions for `URefs` is detailed in the [CLValues](serialization-standard.md) section.
+This key type is used for storing any value except `Account`. Additionally, `URef`s used in Wasm carry permission information to prevent unauthorized usage of the value stored under the key. The runtime tracks this permission information. This means that if malicious Wasm attempts to produce a `URef` with permissions that the Wasm does not have, the Wasm has attempted to "forge" the unforgeable reference, and the runtime will raise a forged `URef` error. Permissions for a `URef` can be given across contract calls, allowing data stored under a `URef` to be shared in a controlled way. The 32-byte identifier representing the key is generated randomly by the runtime (see [Execution Semantics](#execution-semantics-head) for more information). The serialization for `Access Rights` that define the permissions for `URefs` is detailed in the [CLValues](./serialization-standard.md) section.
 
 ### Permissions for `URef`s {#uref-permissions}
 
@@ -257,7 +257,7 @@ The ability to pass `URef`s between contexts via `call_contract` / `ret`, allows
 
 ### `URef`s and Purses
 
-Purses represent a unique type of `URef` used for accounting measures within a Casper network. `URef`s exist as a top-level entity, meaning that individual accounts do not own ‘URef’s. As described above, accounts and contracts possess certain `Access Rights`, allowing them to interact with the given `URef`. While an account will possess an associated `URef` representing their main purse, this `URef` exists as a [`Unit`](../serialization-standard#clvalue-unit) and corresponds to a *balance* key within the Casper *mint*. The individual balance key within the Casper mint is the account's purse, with transfers authorized solely through the associated `URef` and the `Access Rights` granted to it.
+Purses represent a unique type of `URef` used for accounting measures within a Casper network. `URef`s exist as a top-level entity, meaning that individual accounts do not own ‘URef’s. As described above, accounts and contracts possess certain `Access Rights`, allowing them to interact with the given `URef`. While an account will possess an associated `URef` representing their main purse, this `URef` exists as a [`Unit`](./serialization-standard.md#clvalue-unit) and corresponds to a *balance* key within the Casper *mint*. The individual balance key within the Casper mint is the account's purse, with transfers authorized solely through the associated `URef` and the `Access Rights` granted to it.
 
 Through this logic, the Casper mint holds all motes on the network and transfers between balance keys at the behest of accounts and contracts as required.
 
@@ -281,7 +281,7 @@ The `block_hash` is the `blake2b256` hash of the block header.
 
 #### Header {#header}
 
-The [block header](/design/serialization-standard/#serialization-standard-block) contains the following fields:
+The [block header](./serialization-standard.md#serialization-standard-block) contains the following fields:
 
 * `parent_hash`
 
@@ -331,11 +331,11 @@ The block body contains an **ordered** list of `DeployHashes` which refer to dep
 
 The block body also contains the public key of the validator that proposed the block.
 
-Refer to the [Serialization Standard](serialization-standard.md) for additional information on how blocks and deploy are serialized.
+Refer to the [Serialization Standard](./serialization-standard.md) for additional information on how blocks and deploy are serialized.
 
 ## Tokens {#tokens-head}
 
-Casper is a decentralized Proof-of-Stake blockchain platform that uses a consensus algorithm called [Highway](/design/highway/). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../staking/index.md) to bond. In the blockchain space, this unit of value is a _token_.
+Casper is a decentralized Proof-of-Stake blockchain platform that uses a consensus algorithm called [Highway](./highway.md). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../staking/index.md) to bond. In the blockchain space, this unit of value is a _token_.
 
 This chapter describes tokens and how one can use them on the Casper platform.
 

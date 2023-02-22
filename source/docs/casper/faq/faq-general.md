@@ -16,9 +16,9 @@ Exchanges should store the account hash to query and monitor the account. Custom
 
 You must ensure the following prerequisites are met before you can generate an account hash:
 
-1.  [Set up your machine](/dapp-dev-guide/setup.md)
+1.  [Set up your machine](../dapp-dev-guide/setup.md)
 2.  Have a Casper Account and its _public key_
-3.  Install the Casper [command-line client](/dapp-dev-guide/setup#the-casper-command-line-client)
+3.  Install the Casper [command-line client](../dapp-dev-guide/setup.md#the-casper-command-line-client)
 
 **Generating an Account Hash**
 
@@ -91,14 +91,14 @@ Active engagement in the community is another important aspect.
 <details>
 <summary><b>How do I stake tokens via the command line?</b></summary>
 
-Follow [the delegation workflow](/workflow/developers/delegate/) to learn how to stake your tokens via the command line.
+Follow [the delegation workflow](../workflow/developers/delegate.md) to learn how to stake your tokens via the command line.
 
 </details>
 
 <details>
 <summary><b>How do I stake tokens using cspr.live?</b></summary>
 
-See [this article](/workflow/users/delegate-ui/).
+See [this article](../workflow/users/delegate-ui.md).
 
 </details>
 

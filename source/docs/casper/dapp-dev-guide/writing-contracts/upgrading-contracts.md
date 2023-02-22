@@ -23,7 +23,7 @@ To learn more about versioning contracts, consult the following video, which bui
 <iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=10" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-Or, for a different perspective, consult the [Smart Contract Upgrade Tutorial](/dapp-dev-guide/tutorials/upgrade-contract.md).
+Or, for a different perspective, consult the [Smart Contract Upgrade Tutorial](../tutorials/upgrade-contract.md).
 
 ## Maintaining a Contract
 The contract maintenance process is generally covered through the contract upgrade process.

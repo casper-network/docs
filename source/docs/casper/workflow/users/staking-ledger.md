@@ -7,7 +7,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Before getting started, you need to complete two prerequisite steps:
 
 1. Set up your Ledger device using the [official documentation](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true).
-2. Connect the Ledger to your [cspr.live](https://cspr.live/) account by following the [Ledger Setup](/workflow/users/ledger-setup/) guide.
+2. Connect the Ledger to your [cspr.live](https://cspr.live/) account by following the [Ledger Setup](./ledger-setup.md) guide.
 
 ### **Important Notes**
 
@@ -38,7 +38,7 @@ Before getting started, you need to complete two prerequisite steps:
 
 ### Receive Tokens from an External Source
 
-This portion will vary slightly depending on where your funds are currently stored. However, the process will require that you send tokens to your public key as described in the [documentation](/workflow/users/ledger-setup/#receive-tokens).
+This portion will vary slightly depending on where your funds are currently stored. However, the process will require that you send tokens to your public key as described in the [documentation](./ledger-setup.md#receive-tokens).
 
 ### Staking Tokens
 

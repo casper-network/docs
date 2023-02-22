@@ -6,24 +6,24 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Calling Smart Contracts with the Rust Client
 
-Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](/dapp-dev-guide/setup/#the-casper-command-line-client) and the `put-deploy` command. Each section below includes a short video demonstrating some example output.
+Smart contracts exist as stored on-chain logic, allowing disparate users to call the included entry points. This tutorial covers different ways to call Casper contracts with the [Casper command-line client](../setup.md#the-casper-command-line-client) and the `put-deploy` command. Each section below includes a short video demonstrating some example output.
 
 The following examples use two contracts on [Testnet](https://testnet.cspr.live/):
 
-- The [Counter contract](https://github.com/casper-ecosystem/counter/blob/master/contract-v1/src/main.rs) described while [Writing a Basic Smart Contract in Rust](/dapp-dev-guide/writing-contracts/rust-contracts). You will need to [install this contract](/dapp-dev-guide/writing-contracts/installing-contracts) on Testnet
+- The [Counter contract](https://github.com/casper-ecosystem/counter/blob/master/contract-v1/src/main.rs) described while [Writing a Basic Smart Contract in Rust](./rust-contracts.md). You will need to [install this contract](./installing-contracts.md) on Testnet
 - The Auction contract found in [this contract package](https://testnet.cspr.live/contract-package/e375d42c29c0e4b2baefa63cf2d70af34439eda851e08129d8515515d63bd6a9), already installed on Testnet as a system contract. The examples will call its `delegate` entry point
 
 
 ## Prerequisites {#prerequisites}
 
-- You know how to [send and verify deploys](/dapp-dev-guide/building-dapps/sending-deploys.md)
-- You know how to [install contracts and query global state](installing-contracts.md) using the [default Casper client](/dapp-dev-guide/setup#the-casper-command-line-client)
+- You know how to [send and verify deploys](../building-dapps/sending-deploys.md)
+- You know how to [install contracts and query global state](./installing-contracts.md) using the [default Casper client](../setup.md#the-casper-command-line-client)
 - Install the [Counter contract](https://github.com/casper-ecosystem/counter/blob/master/contract-v1/src/main.rs) on Testnet if you have not done so already
 - Review the [system Auction contract](https://testnet.cspr.live/contract-package/e375d42c29c0e4b2baefa63cf2d70af34439eda851e08129d8515515d63bd6a9) on Testnet
 
 ## Calling Contracts by Contract Hash {#calling-contracts-by-hash}
 
-After [installing a contract](installing-contracts.md) in global state, you can use the contract's hash to call one of its entry points. The following usage of `put-deploy` allows you to call an entry point and receive a deploy hash. The hash is needed to verify that the deploy was processed successfully.
+After [installing a contract](./installing-contracts.md) in global state, you can use the contract's hash to call one of its entry points. The following usage of `put-deploy` allows you to call an entry point and receive a deploy hash. The hash is needed to verify that the deploy was processed successfully.
 
 ```rust
 casper-client put-deploy \
@@ -59,11 +59,11 @@ casper-client put-deploy \
 
 :::note
 
-This `put-deploy` command is nearly identical to the command used to [install the contract](installing-contracts.md#installing-contract-code). Here, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated entry point. No Wasm file is needed in this example since the contract is already on the blockchain, and the entry point doesn’t return a value. If an entry point returns a value, use code to [interact with runtime return values](/dapp-dev-guide/tutorials/return-values-tutorial/).
+This `put-deploy` command is nearly identical to the command used to [install the contract](./installing-contracts.md#installing-contract-code). Here, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated entry point. No Wasm file is needed in this example since the contract is already on the blockchain, and the entry point doesn’t return a value. If an entry point returns a value, use code to [interact with runtime return values](../tutorials/return-values-tutorial.md).
 
 :::
 
-The following sample response contains a `deploy_hash`, needed to verify the changes in global state, as described [here](installing-contracts.md#querying-global-state).
+The following sample response contains a `deploy_hash`, needed to verify the changes in global state, as described [here](./installing-contracts.md#querying-global-state).
 
 <details>
 <summary><b>Sample response</b></summary>
@@ -144,7 +144,7 @@ This video shows how to call a modified Counter contract using session arguments
 
 ## Calling Contracts by Package Hash {#calling-contracts-by-package-hash}
 
-You can also call an entry point in a contract that is part of a contract package (see [contract upgrades](upgrading-contracts.md)). Call `put-deploy` using the stored package hash, the entry point you wish to access, the contract version number, and any runtime arguments. The call defaults to the highest enabled version if no version was specified.
+You can also call an entry point in a contract that is part of a contract package (see [contract upgrades](./upgrading-contracts.md)). Call `put-deploy` using the stored package hash, the entry point you wish to access, the contract version number, and any runtime arguments. The call defaults to the highest enabled version if no version was specified.
 
 ```rust
 casper-client put-deploy \
@@ -251,7 +251,7 @@ casper-client put-deploy \
     --session-entry-point "counter_inc"
 ```
 
-The sample response will contain a `deploy_hash`, which you need to use as described [here](installing-contracts.md#querying-global-state) to verify the changes in global state.
+The sample response will contain a `deploy_hash`, which you need to use as described [here](./installing-contracts.md#querying-global-state) to verify the changes in global state.
 
 **Example 2 - Calling the Auction contract using a named key:**
 
@@ -371,7 +371,7 @@ The argument of interest is:
 
 **Example - Session code acting on a contract:**
 
-The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) shows how to change the state of a contract (counter-v1.wasm) using session code (counter-call.wasm).
+The [Counter Contract Tutorial](../tutorials/counter/index.md) shows how to change the state of a contract (counter-v1.wasm) using session code (counter-call.wasm).
 
 ```rust
 
@@ -393,11 +393,11 @@ casper-client put-deploy \
 
 ## Calling Contracts that Return a Value
 
-Visit the [Interacting with Runtime Return Values](/dapp-dev-guide/tutorials/return-values-tutorial/) tutorial to learn how to call a contract that returns a value using session code or contract code.
+Visit the [Interacting with Runtime Return Values](../tutorials/return-values-tutorial.md) tutorial to learn how to call a contract that returns a value using session code or contract code.
 
 ## What's Next? {#whats-next}
 
-- The [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
-- Learn more about [Delegating with the Casper Client](/workflow/developers/delegate)
+- The [Counter Contract Tutorial](../tutorials/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
+- Learn more about [Delegating with the Casper Client](../../workflow/developers/delegate.md)
 - Look into the [Tutorials for Smart Contract Authors](/tutorials/)
 - See the [Developer How To Guides](/workflow/developers)

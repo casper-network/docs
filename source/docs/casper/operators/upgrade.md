@@ -1,6 +1,6 @@
 # Upgrading the Node
 
-The [`chainspec.toml`](/glossary/C/#chainspec) contains a section to indicate from which era the given `casper-node` version should start running.
+The [`chainspec.toml`](../glossary/C.md#chainspec) contains a section to indicate from which era the given `casper-node` version should start running.
 
 ```
 [protocol]

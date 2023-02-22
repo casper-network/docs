@@ -1,6 +1,6 @@
 # Testing Session Code
 
-This section describes how to test session code using the Casper unit-testing framework. The [writing session code](/dapp-dev-guide/writing-contracts/session-code/) section is a prerequisite for this tutorial, which uses the example code described [here](/dapp-dev-guide/writing-contracts/session-code#writing-session-code).
+This section describes how to test session code using the Casper unit-testing framework. The [writing session code](./session-code.md) section is a prerequisite for this tutorial, which uses the example code described [here](./session-code.md#writing-session-code).
 
 ## Specifying Dependencies in Cargo.toml {#specifying-dependencies}
 
@@ -174,4 +174,4 @@ The following brief video describes testing the [sample session code](https://gi
 
 ## What's Next? {#whats-next}
 
-- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md).
+- Learn to [install a contract and query global state](./installing-contracts.md).
