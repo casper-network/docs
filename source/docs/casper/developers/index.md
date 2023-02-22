@@ -1,6 +1,6 @@
 ---
 title: Overview
-slug: /dapp-dev-guide
+slug: /developers
 ---
 
 # Developers
