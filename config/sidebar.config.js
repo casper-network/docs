@@ -117,7 +117,7 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Build dApps",
+            label: "Building dApps",
             collapsible: true,
             collapsed: true,
             items: [
