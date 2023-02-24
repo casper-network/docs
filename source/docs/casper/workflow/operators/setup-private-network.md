@@ -217,7 +217,7 @@ For example, to rotate the validators in era 10, one would need to wait for the 
 
 You can now stage the upgrade by copying the chainspecs, configs and binaries where they should be while the network is still down. Once these are in place, you can restart the network with rotated validators.
 
-::note
+:::note
 
 Please make sure you are running this tool as the same user that owns `$DATA_DIR`. Otherwise, you may receive a permission denied error.
 
