@@ -35,15 +35,15 @@ module.exports = {
             position: "left",
         },
         {
-            to: `${routePrefix}/resources`,
-            activeBasePath: `${routePrefix}/resources`,
-            label: "Resources",
-            position: "left",
-        },
-        {
             to: `${routePrefix}/users`,
             activeBasePath: `${routePrefix}/users`,
             label: "Users",
+            position: "left",
+        },
+        {
+            to: `${routePrefix}/resources`,
+            activeBasePath: `${routePrefix}/resources`,
+            label: "Resources",
             position: "left",
         },
         {
