@@ -77,7 +77,7 @@ module.exports = {
     ],
     developers: [
         "developers/index",
-        "developers/table-of-content",
+        "developers/table-of-contents",
         "developers/prerequisites",
         {
             type: "category",
@@ -176,7 +176,7 @@ module.exports = {
     ],
     operators: [
         "operators/index",
-        "operators/table-of-content",
+        "operators/table-of-contents",
         {
             type: "category",
             label: "Getting set up",
