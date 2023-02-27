@@ -284,6 +284,7 @@ module.exports = {
         "users/delegate-ui",
         "users/undelegate-ui",
         "users/ledger-setup",
+        "users/staking-ledger",
         "users/token-transfer",
         "users/funding-from-exchanges",
         "users/testnet-faucet",
