@@ -196,11 +196,7 @@ module.exports = {
             label: "Setting up a Network",
             collapsible: true,
             collapsed: true,
-            items: [
-                "operators/setup-network/development-prerequisites",
-                "operators/setup-network/create-private",
-                "operators/setup-network/staging-files-for-new-network",
-            ],
+            items: ["operators/setup-network/chain-spec", "operators/setup-network/create-private", "operators/setup-network/staging-files-for-new-network"],
         },
     ],
     resources: [

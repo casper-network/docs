@@ -46,7 +46,7 @@ Use these FAQ collections for tips and details for validators.
 Use these guides to set up your private network directories. You will find several main directories dedicated to different purposes.
 
 - Go through the [file location](../setup/basic-node-configuration.md#file-locations) section to understand how directories are created and managed in a Casper private network.
-- Refer to the [setting up a new network](./development-prerequisites.md) guide to identify the required configuration files to set up a genesis block.
+- Refer to the [setting up a new network](./chain-spec.md) guide to identify the required configuration files to set up a genesis block.
 
 ## Step 3. Configuring the Genesis Block
 A Casper private network contains a different set of configurations when compared to the public network. The [`chainspec.toml`](../../concepts/glossary/C.md#chainspec) file contains the required configurations for the genesis process in a private network.

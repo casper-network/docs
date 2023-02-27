@@ -12,6 +12,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
   - [Unbonding as a Validator](./becoming-a-validator/unbonding.md): the process to withdraw a bid and unbonding
   - [Upgrading the Node](./becoming-a-validator/upgrade.md): before joining the network, the node needs to be upgraded
 - Setting Up A Network
-  - [Setting up a Network](./setup-network/development-prerequisites.md): the basics for creating a new network
+  - [Setting up a Network](./setup-network/chain-spec.md): the basics for creating a new network
   - [Set Up a Private Casper Network](./setup-network/create-private.md): a step-by-step guide to establishing and configuring a private Casper network
   - [Staging Files for a New Network](./setup-network/staging-files-for-new-network.md): a guide to hosting protocol files for a new Casper network
