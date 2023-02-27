@@ -254,7 +254,7 @@ module.exports = {
                 },
                 {
                     type: "category",
-                    label: "Advanced tutorials",
+                    label: "Advanced Tutorials",
                     collapsible: true,
                     collapsed: true,
                     items: [
