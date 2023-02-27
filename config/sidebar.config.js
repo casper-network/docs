@@ -216,7 +216,7 @@ module.exports = {
                 "resources/tutorials/index",
                 {
                     type: "category",
-                    label: "Beginner tutorials",
+                    label: "Beginner Tutorials",
                     collapsible: true,
                     collapsed: true,
                     items: [
