@@ -12,4 +12,7 @@ These developer guides highlight key features and capabilities of the Casper blo
    - [Transferring Tokens using the Command-line](./cli/transfers/index.md): transferring tokens from one account to another using the command-line
    - [Delegating tokens](./cli/delegate.md): delegating tokens to a Validator on a Casper network
    - [Undelegating tokens](./cli/undelegate.md): undelegating tokens from a validator on a Casper network
+
+You may find other helpful guides in GitHub.
+
 - [Using the Casper Fungible Token Contract](https://github.com/casper-network/erc20-guide-extraction/): using the Casper fungible token contract to understand the fungible token transfer workflow
