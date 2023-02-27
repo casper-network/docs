@@ -12,6 +12,9 @@ These developer guides highlight key features and capabilities of the Casper blo
    - [Transferring Tokens using the Command-line](./cli/transfers/index.md): transferring tokens from one account to another using the command-line
    - [Delegating tokens](./cli/delegate.md): delegating tokens to a Validator on a Casper network
    - [Undelegating tokens](./cli/undelegate.md): undelegating tokens from a validator on a Casper network
+   - [Installing Smart Contracts and Querying Global State](./cli/installing-contracts.md): steps to install a contract on a Casper network
+   - [Calling Smart Contracts with the Rust Client](./cli/calling-contracts.md): various ways to call a contract's entry-points
+   - [Execution Error Codes](./cli/execution-error-codes.md): smart contract execution error codes
 
 You may find other helpful guides in GitHub.
 
