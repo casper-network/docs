@@ -182,14 +182,20 @@ module.exports = {
             label: "Getting set up",
             collapsible: true,
             collapsed: true,
-            items: ["operators/setup/hardware", "operators/setup/basic-node-configuration", "operators/setup/install-node", "operators/setup/joining"],
+            items: [
+                "operators/setup/hardware",
+                "operators/setup/basic-node-configuration",
+                "operators/setup/install-node",
+                "operators/setup/upgrade",
+                "operators/setup/joining",
+            ],
         },
         {
             type: "category",
             label: "Becoming a Validator",
             collapsible: true,
             collapsed: true,
-            items: ["operators/becoming-a-validator/bonding", "operators/becoming-a-validator/unbonding", "operators/becoming-a-validator/upgrade"],
+            items: ["operators/becoming-a-validator/bonding", "operators/becoming-a-validator/unbonding"],
         },
         {
             type: "category",
