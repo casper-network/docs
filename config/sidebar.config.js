@@ -205,6 +205,13 @@ module.exports = {
     ],
     resources: [
         "resources/index",
+        {
+            type: "category",
+            label: "Why Build on Casper",
+            collapsible: true,
+            collapsed: true,
+            items: ["resources/build-on-casper/index", "resources/build-on-casper/casper-open-source-software"],
+        },
         "resources/quick-start",
         //"resources/sample-projects", // NEW CONTENT WILL BE HERE
         {
@@ -280,13 +287,6 @@ module.exports = {
         "users/token-transfer",
         "users/funding-from-exchanges",
         "users/testnet-faucet",
-        {
-            type: "category",
-            label: "Why Build on Casper",
-            collapsible: true,
-            collapsed: true,
-            items: ["users/build-on-casper/index", "users/build-on-casper/casper-open-source-software"],
-        },
     ],
     faq: ["faq/index", "faq/faq-general", "faq/faq-enterpise", "faq/faq-developer", "faq/faq-validator"],
     workflow: ["workflow/ledger-setup"],
