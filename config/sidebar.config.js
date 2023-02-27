@@ -227,7 +227,7 @@ module.exports = {
                         "resources/tutorials/beginner/upgrade-contract",
                         {
                             type: "category",
-                            label: "Build Counter on the Testnet",
+                            label: "A Counter on the Testnet",
                             collapsible: true,
                             collapsed: true,
                             items: [
@@ -239,7 +239,7 @@ module.exports = {
                         },
                         {
                             type: "category",
-                            label: "Build Counter on an NCTL Network",
+                            label: "A Counter on an NCTL Network",
                             collapsible: true,
                             collapsed: true,
                             className: "text_transform_reset",
