@@ -179,7 +179,7 @@ casper-client put-deploy \
 There are two ways to call versioned contracts:
 
 1. Calling Contracts by Package Hash​:
-- To call the entry point we wish to access, the contract version number, and any runtime arguments. The call defaults to the highest enabled version if no version was specified. 
+- Calling the contract by package hash requires the entry point we wish to access, the contract version number, and any runtime arguments. The call defaults to the highest enabled version if no version was specified. 
 - You will find the package hash under the account’s named keys.
  
 ```bash
