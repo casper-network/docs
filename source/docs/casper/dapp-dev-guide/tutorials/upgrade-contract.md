@@ -139,7 +139,7 @@ Get the NEW state-root-hash:
 casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
 ```
 
-Let’s check the new contract entry points. You should see the _counter_decrement_ entry point now.
+Check the new contract entry points. You should see the _counter_decrement_ entry point now.
 
 ```bash
 casper-client query-global-state \
