@@ -114,7 +114,7 @@ To observe the upgrade workflow you can install [the counter contract-v2](https:
 
 :::note
 
-Prerequisite for the below commands is that you have already installed the contract-v1 as shown in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet) before you install the contract-v2.
+Installing contract-v1 as shown in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet) is a prerequisite before installing contract-v2.
 
 :::
 
