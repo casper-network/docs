@@ -14,12 +14,8 @@ Here is a video walkthrough of this tutorial.
 
 ## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
-<<<<<<< Updated upstream
-- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](../building-dapps/sending-deploys.md), and [calling contracts](../writing-contracts/calling-contracts.md) on a Casper network
-=======
 - You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/building-dapps/sending-deploys/), and [calling contracts](/dapp-dev-guide/writing-contracts/calling-contracts) on a Casper network
-- You are familar with [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet)  and [example counter repository](https://github.com/casper-ecosystem/counter/) 
->>>>>>> Stashed changes
+- You are familar with [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet/walkthrough)  and [example counter repository](https://github.com/casper-ecosystem/counter/) 
 
 ## Contract Versioning Flow {#contract-versioning-flow}
 
@@ -118,7 +114,7 @@ To observe the upgrade workflow you can install [the counter contract-v2](https:
 
 :::note
 
-Assumtion for the below commands is that you have already installed the contract-v1 as shown in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet) before you install the contract-v2.
+Prerequisite for the below commands is that you have already installed the contract-v1 as shown in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet) before you install the contract-v2.
 
 :::
 
