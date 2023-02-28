@@ -19,7 +19,7 @@ Here is a video walkthrough of this tutorial.
 
 ## Contract Versioning Flow {#contract-versioning-flow}
 
-Following is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash. 
+The following is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash. 
 
 1. Create a contract in the most common way, using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html)
 2. Add a new version of the contract using [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html)
