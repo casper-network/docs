@@ -26,7 +26,7 @@ module.exports = {
     // customFields: dataConfig,
     themeConfig: {
         // algolia: algoliaConfig,
-        // announcementBar: announcementConfig,
+        announcementBar: announcementConfig,
         colorMode: colorConfig,
         footer: footerConfig,
         hideableSidebar: true,

@@ -5,11 +5,11 @@ slug: /multi-sig
 
 # Multi-Signature Tutorial
 
-See the [Two-Party Multi-Signature workflow](../../../workflow/developers/deploy-transfer.md).
+See the [Two-Party Multi-Signature workflow](../../../developers/cli/transfers/multisig-deploy-transfer.md).
 
 <!-- TODO The videos and the tutorial need to be updated. Keeping the content in the repository for now and commenting it out so that it doesn't show up in search results.
 
-In this tutorial, you will learn to use [Casper's permissions model](../../../design/casper-design.md#accounts-permissions) to sign transactions with multiple keys. The code for this tutorial is available in [GitHub](https://github.com/casper-ecosystem/keys-manager). The sample code creates a smart contract and a sample client that invokes the multi-signature feature on a local Casper network.
+In this tutorial, you will learn to use [Casper's permissions model](../../../concepts/design/casper-design.md#accounts-permissions) to sign transactions with multiple keys. The code for this tutorial is available in [GitHub](https://github.com/casper-ecosystem/keys-manager). The sample code creates a smart contract and a sample client that invokes the multi-signature feature on a local Casper network.
 
 - [Account Management Concepts](./concepts.md)
 - [Smart Contract Example](./contract.md)

@@ -108,7 +108,7 @@ No, smart contracts cannot interact with the world outside of the blockchain on 
 <details>
 <summary><b>Why do I receive a 'casper-client: command not found' error?</b></summary>
 
-Refer to the [Casper Command-line Client](../dapp-dev-guide/setup.md#the-casper-command-line-client) document for instructions on interacting with a Casper network.
+Refer to the [Casper Command-line Client](../developers/prerequisites.md#the-casper-command-line-client) document for instructions on interacting with a Casper network.
 
 </details>
 
@@ -128,7 +128,7 @@ If the calls use the same arguments, yet the cost is increasing, you might consi
 <details>
 <summary><b>Why does my deploy get an 'Out of Gas' error?</b></summary>
 
-If you received this error, the specified payment amount for the deploy was insufficient. Try specifying a higher amount of CSPR and re-send the deploy. See the [note about gas price](../dapp-dev-guide/building-dapps/sending-deploys.md#a-note-about-gas-price) within [Sending Deploys to the Network](../dapp-dev-guide/building-dapps/sending-deploys.md).
+If you received this error, the specified payment amount for the deploy was insufficient. Try specifying a higher amount of CSPR and re-send the deploy. See the [note about gas price](../developers/dapps/sending-deploys.md#a-note-about-gas-price) within [Sending Deploys to the Network](../developers/dapps/sending-deploys.md).
 
 </details>
 
@@ -158,7 +158,7 @@ casper-client list-rpcs --node-address <HOST:7777>
 <details>
 <summary><b>How can I monitor the events a node is emitting?</b></summary>
 
-You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on Testnet and Mainnet. You will need the IP address of a [peer](../dapp-dev-guide/setup.md#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](../dapp-dev-guide/building-dapps/monitoring-events.md) page.
+You can monitor a node's event stream on the port specified as the `event_stream_server.address` in the node's configuration (config.toml), which is by default 9999 on Testnet and Mainnet. You will need the IP address of a [peer](../developers/prerequisites.md#acquire-node-address-from-network-peers) on the network. For details and examples, visit the [Monitoring Events](../developers/dapps/monitor-and-consume-events.md) page.
 
 </details>
 
@@ -206,7 +206,7 @@ casper-client get-block-transfers --help
 <details>
  <summary><b>When is the balance updated after a deploy?</b></summary>
 
- Execution occurs after consensus. As outlined [in the dApp Developer Guide](../dapp-dev-guide/building-dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys), deploys are queued in the system before being listed in a block for execution.
+ Execution occurs after consensus. As outlined [in the dApp Developer Guide](../developers/dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys), deploys are queued in the system before being listed in a block for execution.
 
  Balance updates should occur after contract execution and block finalization.
 
@@ -224,7 +224,7 @@ casper-client get-block-transfers --help
 <details>
   <summary><b>How should we work with the PEM keys?</b></summary>
   
-  The <a href="https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html">Keys API</a> provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="/dapp-dev-guide/keys/">GitHub</a> and the documentation. For more information on creating and working with keys, see <a href="/dapp-dev-guide/keys/">Accounts and Cryptographic Keys</a>.
+  The <a href="https://casper-ecosystem.github.io/casper-js-sdk/next/modules/_lib_keys_.html">Keys API</a> provides methods for <i>Ed25519</i> and <i>Secp256K1</i> keys. Also, review the tests in <a href="/concepts/accounts-and-keys/">GitHub</a> and the documentation. For more information on creating and working with keys, see <a href="/concepts/accounts-and-keys/">Accounts and Cryptographic Keys</a>.
 
 </details>
 
@@ -235,8 +235,8 @@ There are two types of action that an account can perform: a deploy and key mana
 
 You may also reference the following two documents for additional information:
 
-- [Accounts](../design/casper-design.md#accounts-head)
-- [Two-Party Multi-Signature workflow](../workflow/developers/deploy-transfer.md)
+- [Accounts](../concepts/design/casper-design.md#accounts-head)
+- [Two-Party Multi-Signature workflow](../developers/cli/transfers/multisig-deploy-transfer.md)
 
 </details>
 
