@@ -118,7 +118,7 @@ Prerequisite for the below commands is that you have already installed the contr
 
 :::
 
-Now, we will deploy version 2 of the contract, which will add the counter_decrement entry point to an existing contract package on the chain.
+Now, let's deploy version 2 of the contract, which will add the counter_decrement entry point to an existing contract package on the chain.
 
 ```bash
 casper-client put-deploy \
@@ -131,7 +131,7 @@ casper-client put-deploy \
 
 ### Step 5. Verify your changes 
 
-If you run below commands, you will see the new contract entry points now. 
+If you run below commands, you will be able to observe the new contract entry points. 
 
 Get the NEW state-root-hash:
 
@@ -139,7 +139,7 @@ Get the NEW state-root-hash:
 casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
 ```
 
-Let’s check the new contract entry points. We should see the _counter_decrement_ entry point now.
+Let’s check the new contract entry points. You should see the _counter_decrement_ entry point now.
 
 ```bash
 casper-client query-global-state \
