@@ -110,7 +110,7 @@ make build-contract
 
 To observe the upgrade workflow you can install [the counter contract-v2](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v2/src/main.rs). If you explore the code, you will observe the different versions of the contract.
 - contract-v1 is the counter contract you can see in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet).
-- contract-v2 is the contract with the new entry point called counter_decrement.
+- contract-v2 is the contract with the new entry point called `counter_decrement`.
 
 :::note
 
