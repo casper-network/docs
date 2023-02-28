@@ -1,14 +1,16 @@
 # Accounts and Cryptographic Keys
 
-The Casper blockchain uses an on-chain [account-based model](/design/casper-design.md/#accounts-head), uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
+The Casper blockchain uses an on-chain [account-based model](../design/casper-design.md#accounts-head), uniquely identified by an `AccountHash` derived from a specific `PublicKey`. The `AccountHash` is a 32-byte hash derived from any of the supported `PublicKey` variants below to standardize keys that can vary in length.
 
 By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
 The Casper platform supports two types of keys for creating accounts and signing transactions: 
-- [ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA)
-- [secp256k1](#ethereum-keys) keys, commonly known as Ethereum keys
+- [ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
+- [secp256k1](#ethereum-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
 
 You can generate keys using both formats, and it is also possible to [work with existing Ethereum keys](#working-with-existing-ethereum-keys).
+
+You can also [generate an account hash](#generating-an-account-hash) from a public key with the Casper command-line client.
 
 ## Creating Accounts and Keys {#creating-accounts-and-keys}
 
@@ -22,11 +24,11 @@ SAVE your keys to a safe place, preferably offline.
 
 ### Option 1: Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
 
-This option describes how you can use the Casper command-line client to set up your account with both key types.
+This option describes how you can use the Casper command-line client to set up an account using either key type.
 
 #### EdDSA Keys {#eddsa-keys}
 
-The command-line client generates EdDSA keys by default. Use the command below to create your account.
+The command-line client generates EdDSA keys by default. Use the command below to create the account.
 
 ```bash
 mkdir ed25519-keys
@@ -49,7 +51,7 @@ Here are some details about the files generated:
 2. `public_key_hex` is a hexadecimal-encoded string of the public key
 3. `secret_key.pem` is the *PEM*-encoded secret key
 
-The public-key-hex for `ed25519` keys starts with 01:
+The public-key-hex for `ed25519` keys starts with 01 and is 66 bytes long:
 
 ```bash
 cat ed25519-keys/public_key_hex
@@ -76,20 +78,14 @@ secp256k1-keys/
 0 directories, 3 files
 ```
 
-The public-key-hex for `secp256k1` keys starts with 02:
+The public-key-hex for `secp256k1` keys starts with 02 and is 68 bytes long:
 
 ```bash
 cat secp256k1-keys/public_key_hex
 020287e1a79d0d9f3196391808a8b3e5007895f43cde679e4c960e7e9b92841bb98d
 ```
 
-#### Account Hash
 
-Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the *account-address* option of the client. The argument for the *public-key* must be a properly formatted public key. The public key may also be read from a file, which should be one of the two files generated via the *keygen* command: *public_key_hex* or *public_key.pem*.
-
-```bash
-casper-client account-address --public-key <FORMATTED STRING or PATH>
-```
 
 ### Option 2: Generating Keys using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
 
@@ -97,15 +93,15 @@ This option is available on networks that have a block explorer.
 
 For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
 
-Start by creating an account using the [Casper Signer](../workflow/signer-guide.md) and download the secret key when prompted. You can choose the key type when creating your account.
+Start by creating an account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html) and download the secret key when prompted. You can choose the key type when creating the account.
 
 ## Funding your Account
 
-Once you create your account, you can [fund the account](../workflow/setup.md#funding-an-account) to finish the process of setting it up. 
+Once you create your account, you can [fund the account's main purse](./setup.md#funding-an-account) to finish the process of setting it up. 
 
 :::note
 
-Until you fund your account, it does not exist on the blockchain.
+Until you fund your account's main purse, it does not exist on the blockchain.
 
 :::
 
@@ -138,7 +134,7 @@ casper-client transfer \
 --payment-amount 100000000
 ```
 
-The Casper command-line client requires the secret key in *PEM* format to send a transaction from this account. If you want to use existing Ethereum keys with the command-line client, a conversion to *PEM* format is needed.
+The Casper command-line client requires the secret key in *PEM* format to send a Deploy from this account. If you want to use existing Ethereum keys with the command-line client, a conversion to *PEM* format is needed.
 
 The following example is a JS script that generates a *PEM* file, using a [key encoder](https://github.com/stacks-network/key-encoder-js) and Node.js. To install these components, do the following:
 
@@ -177,4 +173,12 @@ MHQCAQEEIBjXY+7xZagzTjL4p8bGWS8FPRcW13mgytdu5c3e556MoAcGBSuBBAAK
 oUQDQgAEpV4dVaPeAEaH0VXrQtLzjpGt1pui1q08311em6wDCchGNjzsnOY7stGF
 tlKF2V5RFQn4rzkwipSYnrqaPf1pTA==
 -----END EC PRIVATE KEY-----
+```
+
+## Generating an Account Hash {#generating-an-account-hash}
+
+To generate the account hash for a public key, use the *account-address* option of the Casper client. The argument for the *public-key* must be a properly formatted public key. The public key may also be read from a file, which should be one of the two files generated via the *keygen* command: *public_key_hex* or *public_key.pem*.
+
+```bash
+casper-client account-address --public-key <FORMATTED STRING or PATH>
 ```

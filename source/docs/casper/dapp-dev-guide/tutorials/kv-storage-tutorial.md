@@ -216,7 +216,7 @@ mod tests {
 
 ### Running Locally {#running-locally}
 
-You can run unit tests locally if you have set up the contract using _cargo-casper_ as shown in the [Getting started](/dapp-dev-guide/writing-contracts/getting-started.md) guide.
+You can run unit tests locally if you have set up the contract using _cargo-casper_ as shown in the [Getting started](../writing-contracts/getting-started.md) guide.
 
 ```bash
 cargo test -p tests
@@ -243,7 +243,7 @@ casper-client put-deploy \
 
 **Query the Account & Get the Contract Hash**
 
-The internal state of the blockchain is updated via a series of steps (blocks). All blockchain queries must include a [_global state hash_ which corresponds to the block hash or height of the blockchain. Visit [Querying the address of a contract](/dapp-dev-guide/writing-contracts/getting-started.md#querying-global-state-for-the-address-of-a-contract).
+The internal state of the blockchain is updated via a series of steps (blocks). All blockchain queries must include a [_global state hash_ which corresponds to the block hash or height of the blockchain. Visit [Querying the address of a contract](../writing-contracts/getting-started.md#querying-global-state-for-the-address-of-a-contract).
 
 **Invoke an Entry Point & Set a value**
 
@@ -283,4 +283,4 @@ An example global state query looks like this:
 casper-client query-global-state --node-address http://<HOST>:<PORT> -k <PUBLIC_KEY_AS_HEX> -g GLOBAL_STATE_HASH | jq -r
 ```
 
-Please reference the [Querying Section](/dapp-dev-guide/writing-contracts/getting-started.md#querying-global-state-for-the-address-of-a-contract) for more details.
+Please reference the [Querying Section](../writing-contracts/getting-started.md#querying-global-state-for-the-address-of-a-contract) for more details.

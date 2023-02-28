@@ -24,7 +24,7 @@ These packages give you an easy way to install and interact with the correspondi
 
 ## Casper SDK for JavaScript {#casper-sdk-for-javascript}
 
-The [TypeScript/JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) allows developers to interact with the Casper Network using TypeScript or JavaScript. This section covers different examples of using the Casper JS SDK.
+The [TypeScript/JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) allows developers to interact with a Casper network using TypeScript or JavaScript. This section covers different examples of using the Casper JS SDK.
 
 ## Installation {#installation}
 
@@ -50,7 +50,7 @@ In this section, we outline a couple of essential tasks you can accomplish with 
 -   Sending a transfer
 
 <!-- TODO Hiding this until we refresh the tutorial.
-For a complete implementation example, read the [Multi-Signature Tutorial](/dapp-dev-guide/tutorials/multi-sig/index.md), which uses the JavaScript SDK. -->
+For a complete implementation example, read the [Multi-Signature Tutorial](../../tutorials/multi-sig/index.md), which uses the JavaScript SDK. -->
 
 ### Generating Account Keys {#generating-account-keys}
 
@@ -66,10 +66,10 @@ const createAccountKeys = () => {
     const edKeyPair = Keys.Ed25519.new();
     const { publicKey, privateKey } = edKeyPair;
 
-    // Get account-address from public key
+    // Create a hexadecimal representation of the public key
     const accountAddress = publicKey.toHex();
 
-    // Get account-hash (Uint8Array) from public key
+    // Get the account hash (Uint8Array) from the public key
     const accountHash = publicKey.toAccountHash();
 
     // Store keys as PEM files
@@ -95,7 +95,7 @@ After generating the keys with this code, you can add them to the [Casper Signer
 
 ### Sending a Transfer {#sending-a-transfer}
 
-This code block shows you how to define and send a transfer on the Casper Network. Replace the `account-address` in the code below with the sender's account address.
+This code block shows you how to define and send a transfer on a Casper network. Replace the `sender-public-key` and `recipient-public-key` in the code below.
 
 The `sendTransfer` function below will return a `transfer-hash` which you can check on https://testnet.cspr.live/.
 
@@ -107,7 +107,7 @@ const casperClientSDK = require("casper-js-sdk");
 
 const { Keys, CasperClient, CLPublicKey, DeployUtil } = require("casper-js-sdk");
 
-const RPC_API = "http://159.65.203.12:7777/rpc";
+const RPC_API = "http://159.65.203.12:7777";
 const STATUS_API = "http://159.65.203.12:8888";
 
 const sendTransfer = async ({ from, to, amount }) => {
@@ -142,7 +142,7 @@ const sendTransfer = async ({ from, to, amount }) => {
 
     let deployParams = new DeployUtil.DeployParams(signKeyPair.publicKey, networkName, gasPrice, ttl);
 
-    // We create a public key from account-address (it is the hex representation of the public-key with an added prefix)
+    // We create a hex representation of the public key with an added prefix
     const toPublicKey = CLPublicKey.fromHex(to);
 
     const session = DeployUtil.ExecutableDeployItem.newTransfer(amount, toPublicKey, null, id);
@@ -156,13 +156,13 @@ const sendTransfer = async ({ from, to, amount }) => {
 };
 
 sendTransfer({
-    // Put here the account-address of the sender's account. Note that it needs to have a balance greater than 2.5CSPR
-    from: "<account-address>",
+    // Put here the public key of the sender's main purse. Note that it needs to have a balance greater than 2.5 CSPR
+    from: "<sender-public-key>",
 
-    // Put here the account-address of the receiving account. This account doesn't need to exist. If the key is correct, the network will create it when the deploy is sent
-    to: "<account-address>",
+    // Put here the public key of the recipient's main purse. This account doesn't need to exist. If the key is correctly formatted, the network will create the account when the deploy is sent
+    to: "<recipient-public-key>",
 
-    // Minimal amount is 2.5CSPR so 2.5 * 10000 (1CSPR = 10.000 motes)
+    // Minimal amount is 2.5 CSPR (1 CSPR = 1,000,000,000 motes)
     amount: 25000000000,
 });
 ```

@@ -4,11 +4,11 @@ Each Casper network is permissionless, enabling new validators to join the netwo
 
 ## Step 1: Provision Hardware {#step-1-provision-hardware}
 
-Visit the [Hardware Specifications](hardware.md) section and provision your node hardware.
+Visit the [Hardware Specifications](./hardware.md) section and provision your node hardware.
 
 ## Step 2: Set Up the Node {#step-2-set-up-the-node}
 
-Follow the instructions on the [Node Setup](/operators/install-node/) page. 
+Follow the instructions on the [Node Setup](./install-node.md) page. 
 
 ## Step 3: Build the Required Contracts {#step-3-build-contracts}
 
@@ -20,7 +20,7 @@ Use the commands below to build all the necessary contracts for bonding, retriev
 git clone https://github.com/casper-network/casper-node
 ```
 
-2. Use the following commands to build the contracts in release mode. Make sure you have [installed Rust](/dapp-dev-guide/writing-contracts/getting-started.md#installing-rust).
+2. Use the following commands to build the contracts in release mode. Make sure you have [installed Rust](../dapp-dev-guide/writing-contracts/getting-started.md#installing-rust).
 
 ```bash
 cd casper-node
@@ -37,13 +37,13 @@ These commands will build all the necessary Wasm contracts for operating as a va
 
 ## Step 4: Create and Fund Keys for Bonding {#step-4-create--fund-keys-for-bonding}
 
-See the [Node Setup](/operators/setup#create-fund-keys) instructions if you have not generated and funded your validator keys.
+See the [Node Setup](./setup.md#create-fund-keys) instructions if you have not generated and funded your validator keys.
 
 ## Step 5: Update the Trusted Hash {#step-5-update-the-trusted-hash}
 
 The node's `config.toml` needs to be updated with a recent trusted hash. 
 
-See the [Trusted Hash for Synchronizing](/operators/setup/#trusted-hash-for-synchronizing) instructions if you have not set up a trusted hash during node installation.
+See the [Trusted Hash for Synchronizing](./setup.md#trusted-hash-for-synchronizing) instructions if you have not set up a trusted hash during node installation.
 
 ## Step 6: Start the Node {#step-6-start-the-node}
 
@@ -103,7 +103,7 @@ Towards the end of the following output, notice the `era_id` and `height` that y
 
 ## Step 8: Send the Bonding Request {#step-7-send-the-bonding-request}
 
-You can submit a [bonding request](bonding.md) to change your synchronized node to a validating node.
+You can submit a [bonding request](./bonding.md) to change your synchronized node to a validating node.
 
 The bonding request must be sent after the node has synchronized the protocol state and linear blockchain to avoid being ejected for liveness failures.
 

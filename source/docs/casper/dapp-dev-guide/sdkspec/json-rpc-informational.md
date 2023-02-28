@@ -7,11 +7,11 @@ The following methods return information from a node on a Casper network. The re
 
 ## chain_get_block {#chain-get-block}
 
-This method returns the JSON representation of a [Block](/design/casper-design/#block-structure-head) from the network.
+This method returns the JSON representation of a [Block](../../design/casper-design.md#block-structure-head) from the network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
-|[block_identifier](/dapp-dev-guide/sdkspec/types_chain#blockidentifier)|Object|The Block hash or the Block height.|
+|[block_identifier](./types_chain.md#blockidentifier)|Object|The Block hash or the Block height.|
 
 ### `chain_get_block_result`
 
@@ -20,7 +20,7 @@ The result from `chain_get_block` depends on block availability from a given nod
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[block](/dapp-dev-guide/sdkspec/types_chain#jsonblock)|Object|The Block, if found. (Not required)|
+|[block](./types_chain.md#jsonblock)|Object|The Block, if found. (Not required)|
 
 <details>
 
@@ -109,19 +109,19 @@ The result from `chain_get_block` depends on block availability from a given nod
 
 ## chain_get_block_transfers {#chain-get-block-transfers}
 
-This method returns all native transfers within a given [Block](/design/casper-design/#block-structure-head) from a network.
+This method returns all native transfers within a given [Block](../../design/casper-design.md#block-structure-head) from a network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
-|[block_identifier](/dapp-dev-guide/sdkspec/types_chain#blockidentifier)|Object|The Block hash.|
+|[block_identifier](./types_chain.md#blockidentifier)|Object|The Block hash.|
 
 ### `chain_get_block_transfers_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[block_hash](/dapp-dev-guide/sdkspec/types_chain#blockhash)|Object|The Block hash, if found.|
-|[transfers](/dapp-dev-guide/sdkspec/types_chain#transfer)|Array|The Block's transfers, if found.|
+|[block_hash](./types_chain.md#blockhash)|Object|The Block hash, if found.|
+|[transfers](./types_chain.md#transfer)|Array|The Block's transfers, if found.|
 
 <details>
 
@@ -166,18 +166,18 @@ This method returns all native transfers within a given [Block](/design/casper-d
 
 ## chain_get_state_root_hash {#chain-get-state-root-hash} 
 
-This method returns a state root hash at a given [Block](/design/casper-design.md/#block-structure-head). If you do not specify a `block_identifier`, you will receive the highest state root hash.
+This method returns a state root hash at a given [Block](../../design/casper-design.md#block-structure-head). If you do not specify a `block_identifier`, you will receive the highest state root hash.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[block_identifier](/dapp-dev-guide/sdkspec/types_chain#blockidentifier)|Object|The Block hash. (Optional)|
+|[block_identifier](./types_chain.md#blockidentifier)|Object|The Block hash. (Optional)|
 
 ### `chain_get_state_root_hash_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[state_root_hash](/dapp-dev-guide/sdkspec/types_chain#digest)|String| Hex-encoded hash of the state root.|
+|[state_root_hash](./types_chain.md#digest)|String| Hex-encoded hash of the state root.|
 
 <details>
 
@@ -210,11 +210,11 @@ This method returns a state root hash at a given [Block](/design/casper-design.m
 
 ## info_get_deploy {#info-get-deploy}
 
-This method retrieves a [Deploy](/design/casper-design.md/#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
+This method retrieves a [Deploy](../../design/casper-design.md#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[deploy_hash](/dapp-dev-guide/sdkspec/types_chain#deployhash)|String|The Deploy hash.|
+|[deploy_hash](./types_chain.md#deployhash)|String|The Deploy hash.|
 
 ### `info_get_deploy_result`
 
@@ -225,8 +225,8 @@ If the `execution_results` field is empty, it means that the network processed t
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
-|[deploy](/dapp-dev-guide/sdkspec/types_chain#deploy)|Object|The Deploy.|
-|[execution_results](/dapp-dev-guide/sdkspec/types_chain#jsonexecutionresult)|Object|The map of Block hash to execution result.|
+|[deploy](./types_chain.md#deploy)|Object|The Deploy.|
+|[execution_results](./types_chain.md#jsonexecutionresult)|Object|The map of Block hash to execution result.|
 
 <details>
 
@@ -344,13 +344,13 @@ If the `execution_results` field is empty, it means that the network processed t
 
 ## query_global_state {#query-global-state}
 
-This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](/design/casper-design.md/#block_hash) or state root hash.
+This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](../../design/casper-design.md#block_hash) or state root hash.
 
 * Note: Querying a purse's balance requires the use of `state_get_balance` rather than any iteration of `query_global_state`.
 
 |Parameter|Type|Description|
 |---------|----|-----------|   
-|[state_identifier](/dapp-dev-guide/sdkspec/types_chain#globalstateidentifier)|Object|The identifier used for the query.|
+|[state_identifier](./types_chain.md#globalstateidentifier)|Object|The identifier used for the query.|
 |key|String|`casper_types::Key` as a formatted string.|
 |path|Array|The path components starting from the key as base.|
     
@@ -359,9 +359,9 @@ This method allows for you to query for a value stored under certain keys in glo
 |Parameter|Type|Description|
 |---------|----|-----------|     
 |api_version|String|The RPC API version.|
-|[block_header](/dapp-dev-guide/sdkspec/types_chain#jsonblockheader)|Object|The Block header if a Block hash was provided. (Not required)|
-|[stored_value](/dapp-dev-guide/sdkspec/types_chain#storedvalue)|Object|The stored value.|
-|[merkle_proof](/dapp-dev-guide/sdkspec/types_chain#merkle-proof)|String|The merkle proof.|
+|[block_header](./types_chain.md#jsonblockheader)|Object|The Block header if a Block hash was provided. (Not required)|
+|[stored_value](./types_chain.md#storedvalue)|Object|The stored value.|
+|[merkle_proof](./types_chain.md#merkle-proof)|String|The merkle proof.|
 
 <details>
 
@@ -460,20 +460,20 @@ This method allows for you to query for a value stored under certain keys in glo
 
 ## state_get_account_info {#state-get-account-info}
 
-This method returns a JSON representation of an [Account](/design/casper-design.md/#accounts-head) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
+This method returns a JSON representation of an [Account](../../design/casper-design.md#accounts-head) from the network. The `block_identifier` must refer to a Block after the Account's creation, or the method will return an empty response.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[public_key](/dapp-dev-guide/sdkspec/types_chain#publickey)|String|The public key of the Account.|
-|[block_identifier](/dapp-dev-guide/sdkspec/types_chain#blockidentifier)|Object|The Block identifier.|
+|[public_key](./types_chain.md#publickey)|String|The public key of the Account.|
+|[block_identifier](./types_chain.md#blockidentifier)|Object|The Block identifier.|
 
 ### `state_get_account_info_result`
 
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
-|[account](/dapp-dev-guide/sdkspec/types_chain#account)|Object|A JSON representation of the Account structure.| 
-|[merkle_proof](/dapp-dev-guide/sdkspec/types_chain#merkleproof)|String|The merkle proof.|
+|[account](./types_chain.md#account)|Object|A JSON representation of the Account structure.| 
+|[merkle_proof](./types_chain.md#merkleproof)|String|The merkle proof.|
 
 <details>
 
@@ -529,11 +529,11 @@ This method returns a purse's balance from a network. The request takes in the f
 
 To query for the balance of an Account, you must provide the formatted representation of the Account's main purse URef, which can be obtained from the  [`state_get_account_info`](#stategetaccountinfo-state-get-account-info) response. The response contains the balance of a purse in motes.
 
-For instance, one native layer-1 token of the Casper Mainnet [CSPR](/glossary/C#cspr) is comprised of 1,000,000,000 motes. On a different Casper network, the representation of token-to-motes may differ.
+For instance, one native layer-1 token of the Casper Mainnet [CSPR](../../glossary/C.md#cspr) is comprised of 1,000,000,000 motes. On a different Casper network, the representation of token-to-motes may differ.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[state_root_hash](/dapp-dev-guide/sdkspec/types_chain#digest)|String|The hash of state root.|
+|[state_root_hash](./types_chain.md#digest)|String|The hash of state root.|
 |purse_uref|String|Formatted URef.|
 
 ### `state_get_balance_result`
@@ -541,8 +541,8 @@ For instance, one native layer-1 token of the Casper Mainnet [CSPR](/glossary/C#
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[balance_value](/dapp-dev-guide/sdkspec/types_chain#u512)|String|The balance value in motes.|
-|[merkle_proof](/dapp-dev-guide/sdkspec/types_chain#merkle-proof)|String|The merkle proof.|
+|[balance_value](./types_chain.md#u512)|String|The balance value in motes.|
+|[merkle_proof](./types_chain.md#merkle-proof)|String|The merkle proof.|
 
 <details>
 <summary><b>Example state_get_balance</b></summary>
@@ -583,8 +583,8 @@ You may query a stored value directly using the dictionary address.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[state_root_hash](/dapp-dev-guide/sdkspec/types_chain#digest)|String|Hash of the state root.|
-|[dictionary_identifier](/dapp-dev-guide/sdkspec/types_chain#dictionaryidentifier)|Object|The Dictionary query identifier.|
+|[state_root_hash](./types_chain.md#digest)|String|Hash of the state root.|
+|[dictionary_identifier](./types_chain.md#dictionaryidentifier)|Object|The Dictionary query identifier.|
     
 ### `state_get_dictionary_item_result`
 
@@ -592,8 +592,8 @@ You may query a stored value directly using the dictionary address.
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
 |dictionary_key|String|The key under which the value is stored.|
-|[stored_value](/dapp-dev-guide/sdkspec/types_chain#storedvalue)|Object|The stored value.|
-|[merkle_proof](/dapp-dev-guide/sdkspec/types_chain#merkle-proof)|String|The merkle proof.|
+|[stored_value](./types_chain.md#storedvalue)|Object|The stored value.|
+|[merkle_proof](./types_chain.md#merkle-proof)|String|The merkle proof.|
 
 <details>
 
@@ -657,7 +657,7 @@ This method returns a list of peers connected to the node.
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[peers](/dapp-dev-guide/sdkspec/types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
+|[peers](./types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
 
 <details>
 
@@ -697,13 +697,13 @@ This method returns the current status of a node.
 |api_version|String|The RPC API version.|
 |build_version|String|The compiled node version.|
 |chainspec_name|String|The chainspec name, used to identify the currently connected network.|
-|[last_added_block_info](/dapp-dev-guide/sdkspec/types_chain#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
-|[next_upgrade](/dapp-dev-guide/sdkspec/types_chain#nextupgrade)|Object|Information about the next scheduled upgrade.|
-|[our_public_signing_key](/dapp-dev-guide/sdkspec/types_chain#publickey)|String|Our public signing key.|
-|[peers](/dapp-dev-guide/sdkspec/types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
-|[round_length](/dapp-dev-guide/sdkspec/types_chain#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
-|[starting_state_root_hash](/dapp-dev-guide/sdkspec/types_chain#digest)|String|The state root hash used at the start of the current session.|
-|[uptime](/dapp-dev-guide/sdkspec/types_chain#timediff)|Integer|Time that passed since the node has started.|
+|[last_added_block_info](./types_chain.md#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
+|[next_upgrade](./types_chain.md#nextupgrade)|Object|Information about the next scheduled upgrade.|
+|[our_public_signing_key](./types_chain.md#publickey)|String|Our public signing key.|
+|[peers](./types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
+|[round_length](./types_chain.md#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
+|[starting_state_root_hash](./types_chain.md#digest)|String|The state root hash used at the start of the current session.|
+|[uptime](./types_chain.md#timediff)|Integer|Time that passed since the node has started.|
 
 <details>
 

@@ -35,7 +35,7 @@ _Evictions_ deactivate validators who fail to participate in an era, disabling t
 
 ## Runtime {#runtime}
 
-The runtime layer encompasses the deployment and execution of smart contracts, session code, and other activity that performs computation on the global state. This suggests potential markets for finite platform resources, such as markets for computing time and storage. Such markets could ensure that resources are allocated to their highest-value uses. Currently, however, we limit ourselves to [metering computing time](../design/casper-design.md/#execution-semantics-gas), measured as gas. Gas can be conceptualized as relative time use of different Wasm operations and host-side functions. Use of storage is also presently assigned a gas cost. We do not currently have a pricing mechanism for metered gas, although an outstanding Casper Enhancement Proposal ([CEP #22](https://github.com/casper-network/ceps/pull/22)) suggests the implementation of a first-price gas auction similar to Ethereum's. The initial Mainnet deploy selection mechanism is based on FIFO.
+The runtime layer encompasses the deployment and execution of smart contracts, session code, and other activity that performs computation on the global state. This suggests potential markets for finite platform resources, such as markets for computing time and storage. Such markets could ensure that resources are allocated to their highest-value uses. Currently, however, we limit ourselves to [metering computing time](../design/casper-design.md#execution-semantics-gas), measured as gas. Gas can be conceptualized as relative time use of different Wasm operations and host-side functions. Use of storage is also presently assigned a gas cost. We do not currently have a pricing mechanism for metered gas, although an outstanding Casper Enhancement Proposal ([CEP #22](https://github.com/casper-network/ceps/pull/22)) suggests the implementation of a first-price gas auction similar to Ethereum's. The initial Mainnet deploy selection mechanism is based on FIFO.
 
 We expect to continue work on runtime resource markets, particularly gas futures ([CEP #17](https://github.com/casper-network/ceps/pull/17)).
 
@@ -51,7 +51,7 @@ _Transaction fees_, or charges for gas use, ensure that the users compensate val
 
 ## Ecosystem {#ecosystem}
 
-The ecosystem layer encompasses dApp design and operation. CasperLabs maintains multiple partnerships with prospective dApp developers, and we anticipate devoting significant resources to research the economics of prospective dApps.
+The ecosystem layer encompasses dApp design and operation. Casper Labs maintains multiple partnerships with prospective dApp developers, and we anticipate devoting significant resources to research the economics of prospective dApps.
 
 ## Macroeconomy {#macroeconomy}
 

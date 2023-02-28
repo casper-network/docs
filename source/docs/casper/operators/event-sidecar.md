@@ -4,18 +4,19 @@ The Casper Event Sidecar is an application running alongside the node process, a
 
 An alternate name for this application is the SSE Sidecar because it uses the node's Event Stream API returning Server-Sent Events (SSEs) in JSON format. Visit GitHub for detailed information on the following:
 
-- [Source code](https://github.com/CasperLabs/event-sidecar) 
-- [System components and architecture](https://github.com/CasperLabs/event-sidecar/#system-components--architecture) 
-- [Node configuration instructions](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/ETC_README.md#configuration) 
-   - [Default configuration file](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/default_config.toml)
-- [Maintenance scripts](https://github.com/CasperLabs/event-sidecar/tree/dev/resources/maintainer_scripts)
-
+<!-- TODO add links when the private sidecar repository is available 
+- Source code - link to the main repository 
+- System components and architecture - link to the architecture section
+- Node configuration instructions - link to resources/ETC_README.md#configuration
+   - Default configuration file - link to resources/default_config.toml
+- Maintenance scripts - link to resources/maintainer_scripts
+-->
 
 ## Installing the Sidecar Service {#installing-the-sidecar}
 
 The following command will install the Debian package for the Casper Event Sidecar service on various flavors of Linux. 
 
-<!-- TODO Once the package is published and PR https://github.com/CasperLabs/event-sidecar/pull/50 is merged, update the command below with the new link to the casper-event-sidecar*.deb package. The link below assumes a package available locally. -->
+<!-- TODO Once the package is published, update the command below with the new link to the casper-event-sidecar*.deb package. The link below assumes a package available locally. -->
 
 ```bash
 sudo apt install ./casper-event-sidecar_0.1.0-0_amd64.deb
@@ -114,9 +115,11 @@ sudo systemctl start casper-event-sidecar.service
 
 ## Configuring the Sidecar Service {#configuring-the-sidecar}
 
-Detailed node configuration instructions are available in [GitHub](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/ETC_README.md#configuration).
+Detailed node configuration instructions are available in GitHub.
+<!-- TODO link GitHub to ETC_README.md#configuration from the sidecar repo -->
 
-If the service was installed on a Casper node, this file holds a default configuration: `/etc/casper-event-sidecar/config.toml`. The file is also available in [GitHub](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/default_config.toml).
+If the service was installed on a Casper node, this file holds a default configuration: `/etc/casper-event-sidecar/config.toml`. The file is also available in GitHub.
+<!-- TODO link GitHub to resources/default_config.toml from the sidecar repo -->
 
 Operators will need to update this file according to their needs. GitHub has further details regarding each configuration option.
 
@@ -132,7 +135,9 @@ curl -sN http://<HOST:PORT>/events/<TYPE>
 - `PORT` - The port number where the Sidecar emits events
 - `TYPE` - The type of emitted event
 
-Given the [default configuration](https://github.com/CasperLabs/event-sidecar/blob/b2ed0d1183aa7e5f6613fbeae80c6a06f437f0a9/resources/default_config.toml#L27-L29), the command would look like this:
+Given the default configuration, the command would look like this:
+<!-- TODO link "default configuration" to the default_config.toml#L27-L29 -->
+
 
 ```bash
 curl -sN http://127.0.0.1:19999/events/deploys

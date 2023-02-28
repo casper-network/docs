@@ -1,46 +1,27 @@
-# Unit Testing Session Code
+# Testing Session Code
 
+This section describes how to test session code using the Casper unit-testing framework. The [writing session code](./session-code.md) section is a prerequisite for this tutorial, which uses the example code described [here](./session-code.md#writing-session-code).
 
-This section describes how to test a session code based on the unit testing mechanism. It's recommended to follow the [writing session code](/dapp-dev-guide/writing-contracts/session-code/) section before starting this tutorial. Here, we will cover how to test a successful session code execution and how to verify the success of the test program by asserting the return value.
+## Specifying Dependencies in Cargo.toml {#specifying-dependencies}
 
-The session code executes in the context of the account which sent the deploy. In this scenario, since the session code is executing in the corresponding account's contexts, it has the same access permissions as the corresponding account. 
+The [Cargo.toml](https://github.com/casper-ecosystem/two-party-multi-sig/blob/main/tests/Cargo.toml) sample file in the `tests` directory contains the test framework dependencies. Specify the dependencies for your tests similarly and update the crate versions. Dependencies may vary with each project. These are the basic dependencies the testing framework requires:
 
-In this tutorial, we use the example from the [sample contract](#sample-contract-used-to-build-the-session-code) section to build the test program.
-
-
-## Steps to Create and Run the Unit Test
-
-### Step 1. Creating the test crate
-Use the below command to create the test crate. It will auto-generate the folder structure for the test project.
-
-```bash
-cargo new tests
-```
-This creates the `tests` folder with the `/src/main.rs` file and the `cargo.toml` file.
-
-- `tests` - This is the name you provide for the folder.
-- `main.rs` - This is the file that contains the unit test code required to test the contract. You can rename the file if required.
-- `Cargo.toml` - This is the file with project configurations.
-
-
-### Step 2. Adding the project dependencies
-Include the below dependencies inside the `Cargo.toml` file.
-
-```bash
+```rust
 [dev-dependencies]
-casper-execution-engine = "1.5.0"
-casper-engine-test-support = {version = "2.1.0", features = ["test-support"]}
+casper-engine-test-support = { version = "2.2.0", features = ["test-support"] }
+casper-execution-engine = "2.0.0"
 casper-types = "1.5.0"
 ```
-Importing the dependencies may vary with your project requirements. These are the basic dependencies required by this project.
 
-- `casper-execution-engine` - This imports the functionalities of the execution engine which enables the Wasm execution. Each node contains an instance of an execution engine within it.
-- `casper-engine-test-support` - This is a helper crate that provides the interface to interact with the execution engine to execute the Wasm.
-- `casper-types` - These are Casper's custom types used in the program.
+- `casper-execution-engine` - This crate imports the execution engine functionality, enabling Wasm execution within the test framework. Each node contains an instance of an execution engine, and the testing framework simulates this behavior.
+- `casper-engine-test-support` - A helper crate that provides the interface to write tests and interact with an instance of the execution engine.
+- `casper-types` - Types shared by many Casper crates for use on a Casper network. 
 
-### Step 3. Writing tests in the main.rs file
+## Writing the Tests {#writing-the-tests}
 
-You can include the `#![no_main]` annotation or include an empty main method to initialze the test program.
+Tests for this example session code reside in the [tests/src/integration-tests.rs](https://github.com/casper-ecosystem/two-party-multi-sig/blob/main/tests/src/integration_tests.rs) file.
+
+Notice that this file contains an empty `main` method to initialize the test program. Alternatively, we could use the `#![no_main]` annotation at the top of the file, as we did [here](https://github.com/casper-ecosystem/two-party-multi-sig/blob/236bb18b9e98da7f9d8706f5e4825494845cfec2/contract/src/main.rs#L1-L2).
 
 ```rust
 fn main() {
@@ -48,187 +29,140 @@ fn main() {
 }
 ```
 
-Adjust the file attributes to support the execution environment. The `#[cfg(test)]` attribute tells the Rust compiler to compile and run the test code only when invoking `cargo test`, not when debugging or releasing. All your individual testing functions go within `mod tests` which indicates the grouping mechanism.
+The `#[cfg(test)]` attribute tells the Rust compiler to compile and run the tests only when invoking `cargo test`, not while debugging or releasing. All testing functions reside within the grouping mechanism `mod tests`.
 
 ```rust
 #[cfg(test)]
 mod tests {
-    The whole test program resides here...
+    // The entire test program resides here
 }
 ```
 
-### Step 4. Importing the required packages
-The subsequent code modules use these packages to prepare and send the session code to the network.
+### Importing Required Packages
+
+Next, import the packages required for the tests to run. The example tests use these packages:
 
 ```rust
-use std::path::PathBuf;
-use casper_engine_test_support::{DeployItemBuilder, 
-ExecuteRequestBuilder, InMemoryWasmTestBuilder, 
-DEFAULT_RUN_GENESIS_REQUEST, DEFAULT_ACCOUNT_ADDR,
-DEFAULT_PAYMENT, ARG_AMOUNT};
-use casper_execution_engine::core::engine_state::{
-        run_genesis_request::RunGenesisRequest, GenesisAccount,
+    use casper_engine_test_support::{
+        ExecuteRequestBuilder, InMemoryWasmTestBuilder, DEFAULT_ACCOUNT_ADDR,
+        DEFAULT_RUN_GENESIS_REQUEST,
     };
-use casper_types::{
-        account::AccountHash, runtime_args, Key, Motes, 
-        PublicKey, RuntimeArgs, SecretKey, U512,
-    };
+    use casper_types::account::AccountHash;
+    use casper_types::{runtime_args, RuntimeArgs};
 ```
-- `PathBuf` - This package supports loading the session code Wasm.
-- `casper_engine_test_support` - This package provides the interfaces to write tests and interact with an instance of the execution engine.
-- `casper_execution_engine` - This package imports the Casper execution engine itself.
-- `casper_types` - These packages enable the general type imports to the test program.
 
-### Step 5. Defining the constants 
-The names of the runtime arguments are defined as constants. It is mandatory to use the exact names as in the original contract class to define these constants. These are dictated by the arguments specified by the session code. If your session code takes in different arguments, you should define them as constants at this point.
+### Defining The Constants 
+
+The names of the runtime arguments are defined as constants. Using the exact names as in the original contract class is mandatory to define these constants. These are dictated by the arguments specified by the session code. If your session code takes in different arguments, you should define them as constants at this point.
  
 ```rust
-const ARG_NUMBER_1: &str = "number_1";
-const ARG_NUMBER_2: &str = "number_2";
-// This constant defines which wasm file to load and pass to the instance of the EE
-const CONTRACT_WASM: &str = "contract.wasm";
+const ASSOCIATED_ACCOUNT_HASH: AccountHash = AccountHash::new([1u8; 32]); // hash of the associated account
+const ASSOCIATED_ACCOUNT: &str = "deployment-account"; // the associated account argument
+const CONTRACT_WASM: &str = "contract.wasm"; // file to pass to the instance of the EE
 ```
 
-### Step 6. Creating the test function
-In this step, you will build the program to test the contract. 
+### Creating a Test Function
 
-Start with annotating the function with `#[test]` attribute. This indicates the function as a test function and performs the execution accordingly. The bodies of test functions typically perform some setup, run the code we want to test, then assert whether the results are what we expect.
+In this step, we create a program to test the session code. The bodies of test functions typically perform some setup, run the code, then verify the results using assertions. Each test function is annotated with the `#[test]` attribute.
 
 ```rust
 #[test]
-fn <your-unit-test-name>{
-   Individual test function implementation...
+fn <unit-test-name>{
+   // Test function implementation
 }
 ```
 
-Following is a code sample of a basic unit test for adding two numbers. `should_add_two_numbers` is the name given to this specific unit test.
+This [unit test](https://github.com/casper-ecosystem/two-party-multi-sig/blob/236bb18b9e98da7f9d8706f5e4825494845cfec2/tests/src/integration_tests.rs#L15-L55) is a good example of testing session code. At a high level, the test follows this process:
+
+1) Initialize an instance of the execution engine and the `InMemoryWasmTestBuilder`.
 
 ```rust
-fn should_add_two_numbers() {
-
-// Initialize an instance of the execution engine and assign it to the builder variable
-let mut builder = InMemoryWasmTestBuilder::default();
-
-// Execute the genesis process
-builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
-
-// Retrieve the contract wasm from the specified location and assign to the session code variable
-let session_code = PathBuf::from(CONTRACT_WASM);
-    
-// Retrieve runtime arguments. These should be same as defined in the contract
-// This allows use to check and assert behavior of the session code
-let runtime_args = runtime_args! {
-    ARG_NUMBER_1 => 1,
-    ARG_NUMBER_2 => 2
-};
-
-// Create a deploy item, which emulates the deploy being sent to the network
-// Use the host side functionality of standard payment and passes in the required runtime argument "amount" with some default value
-// Load the session wasm and pass in the runtime arguments
-// Sets up the session code to be executed in the default account using auth keys and default account address
-let deploy_item = DeployItemBuilder::new()
-    .with_empty_payment_bytes(runtime_args! {
-                ARG_AMOUNT => *DEFAULT_PAYMENT})
-    .with_session_code(CONTRACT_WASM, runtime_args.clone())
-    .with_authorization_keys(&[*DEFAULT_ACCOUNT_ADDR])
-    .with_address(*DEFAULT_ACCOUNT_ADDR)
-    .build();
-
-// Create the execution request that will eventually be executed by the EE.
-let execute_request = ExecuteRequestBuilder::from_deploy_item(
-            deploy_item
-    ).build();
-
-// Invoke the EE to execute the session code that we are testing
-builder.exec(execute_request).expect_success()
-            .commit();
-
-// Verify the results of the execution match our expectations from the contract using the test results
-let result_key = *builder
-            .get_account(*DEFAULT_ACCOUNT_ADDR)
-            .expect("the default account must be present")
-            .named_keys()
-            .get("answer")
-            .expect("must have key as part of session code execution");
-let value: u32 = builder.query(None, result_key, &vec![])
-            .expect("must have the stored value")
-            .as_cl_value()
-            .expect("must have some CLValue")
-            .to_owned()
-            .into_t()
-            .expect("must convert the CLValue into a u64");
-assert_eq!(3, value);
-    }
-}
+    let mut builder = InMemoryWasmTestBuilder::default();
 ```
 
-The above code snippet starts by initializing the test builder and the genesis request. Then, the contract Wasm is loaded to the session code object.  After that, the deploy object is created using the details like payment method, contract Wasm, and account address. Then, the deploy object is passed to the created execute request. Finally, the execution engine is invoked to process the execute request. Refer to [creating a test function](/dapp-dev-guide/writing-contracts/testing/#deploy-the-smart-contract) for more details about each function. 
-
-### Step 7. Verifying the test results
-In the above section, the session code is sent to the network. Now it's time to verify the results of that deployment. Once the session code has been executed successfully, we must verify that the results of the execution match our expectations. 
-
-The below code snippet retrieves the value of interest which is named as `answer`. It is stored under the URef which is a part of the account's named keys. Then, the formatted value is asserted against our expected value to verify the success of the test program.
+2) Execute the genesis process.
 
 ```rust
-let result_key = *builder
-            .get_account(*DEFAULT_ACCOUNT_ADDR)
-            .expect("the default account must be present")
-            .named_keys()
-            .get("answer")
-            .expect("must have key as part of session code execution");
+    builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
 ```
 
-The next part reads the `result_key` by calling the query method and assign the result of it to the variable `value`. The `result_key` needs to trnsform in order to match with the data type we are trying to assert with.
+3) Execute the test-specific logic. In this example, retrieve information about the account running the session code and its associated keys. For full details, visit [GitHub](https://github.com/casper-ecosystem/two-party-multi-sig/blob/236bb18b9e98da7f9d8706f5e4825494845cfec2/tests/src/integration_tests.rs#L15-L55).
+
+4) Retrieve runtime arguments, which should be the same as defined in the contract.
+
+5) Create the execution request that sets up the session code to be processed. In this example, the `CONTRACT_WASM` is the session code.
 
 ```rust
-let value: u32 = builder.query(None, result_key, &vec![])
-            .expect("must have the stored value")
-            .as_cl_value()
-            .expect("must have some CLValue")
-            .to_owned()
-            .into_t()
-            .expect("must convert the CLValue into a u64");
+    let execute_request =
+        ExecuteRequestBuilder::standard(*DEFAULT_ACCOUNT_ADDR, CONTRACT_WASM, runtime_args)
+            .build();
 ```
-Finally, assert that the query's result matches the expected value; here, the expected value is 3.
 
-```rust         
-assert_eq!(3, value);
+6) Invoke the execution engine to process the session code. 
+
+```rust
+    builder.exec(execute_request).expect_success().commit();
 ```
--   `query()` : Queries the state for a given value
--   `expect()` : Validates the query which contains the output message. This will unwrap the value; the test will panic and crash if the value can't be unwrapped. The string value inside the argument will output as the reason to crash
--   `as_cl_value()` : Returns a wrapped [CLValue](design/serialization-standard#serialization-standard-values) if this is a CLValue variant 
--   `Into_t()` : Converts the CLValue back to the original type (i.e., a String type in this sample). Note that the `expected_value` is a `String` type lifted to the `Value` type. It is also possible to map `returned_value` to the `String` type
 
+7) Verify that the results match the expected output. This example checks the associated keys.
 
-### Step 8. Running the test
-Use the below command to run the test.
+```rust
+    assert!(associated_keys.contains_key(&ASSOCIATED_ACCOUNT_HASH));
+```
+
+### Running the Test
+
+This example uses a `Makefile` to run the tests.
 
 ```bash
 make test
 ```
-This command should be configured inside the project's `Makefile`. It generates the `tests/wasm` folder and runs the tests. 
 
-Below is a section of the make file that contains a set of configurations.
+Under the hood, the `Makefile` generates a `tests/wasm` folder, copies the Wasm to the folder, and runs the tests with `cargo test`. 
 
 ```bash
-prepare:
-	rustup target add wasm32-unknown-unknown
-
-build-contract:
-	cd contract && cargo build --release -p contract --target wasm32-unknown-unknown
-    wasm-strip contract/target/wasm32-unknown-unknown/release/contract.wasm 2>/dev/null | true
-
-test: build-contract 
-    mkdir -p tests/wasm
-    cp contract/target/wasm32-unknown-unknown/release/contract.wasm tests/wasm
-    cd tests && cargo test
+mkdir -p tests/wasm
+cp contract/target/wasm32-unknown-unknown/release/contract.wasm tests/wasm
+cd tests && cargo test
 ```
 
-:::note
+### Other Examples
 
-Use the command `cargo install cargo casper`, if you want to set up the whole directory structure in one command. Refer to [installing casper crates](/dapp-dev-guide/writing-contracts/getting-started/#installing-the-casper-crates) section for more details.
+In the [counter unit tests](https://github.com/casper-ecosystem/counter/blob/master/tests/src/integration_tests.rs), we use session code to call the contract. The code loads the account that pays for the session code, the session code Wasm, and the runtime arguments. Then, the code invokes the execution engine to process the session code.
 
-:::
+```rust
+    // Use session code to increment the counter.
+    let session_code_request = ExecuteRequestBuilder::standard(
+        *DEFAULT_ACCOUNT_ADDR,
+        COUNTER_CALL_WASM,
+        runtime_args! {
+            CONTRACT_KEY => contract_v1_hash
+        },
+    )
+    .build();
+
+    builder.exec(session_code_request)
+        .expect_success()
+        .commit();
+```
+
+The verification step looks like this:
+
+```rust
+
+    let incremented_count = builder
+        .query(None, count_key, &[])
+        .expect("should be stored value.")
+        .as_cl_value()
+        .expect("should be cl value.")
+        .clone()
+        .into_t::<i32>()
+        .expect("should be i32.");
+
+    assert_eq!(incremented_count, 1);
+```
+
+For many more examples, visit the [casper-node](https://github.com/casper-network/casper-node/tree/dev/smart_contracts/contracts/test) GitHub repository.
 
 ## Video Walkthrough
 
@@ -238,118 +172,6 @@ The following brief video describes testing the [sample session code](https://gi
 <iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=5" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-## Other Code Samples
-
-Expand the sections below to view the complete code samples and unit tests.
-
-#### Sample contract used to build the session code
-<details>
-<summary>Contract code sample used in the session code testing</summary>
-
-```rust
-#![no_std]
-#![no_main]
-use casper_contract::contract_api::{runtime, storage};
-const ARG_NUMBER_1: &str = "number_1";
-const ARG_NUMBER_2: &str = "number_2";
-#[no_mangle]
-pub extern "C" fn call() {
-    // Get the named arg number_1
-    let num1: u32 = runtime::get_named_arg(ARG_NUMBER_1);
-    // Get the named_arg number_2
-    let num2: u32 = runtime::get_named_arg(ARG_NUMBER_2);
-    let result = num1 + num2;
-    // Write the answer under some URef
-    let result_uref = storage::new_uref(result);
-    // Put the URef in the current context, which is the context of the account calling this piece of session code.
-    runtime::put_key("answer", result_uref.into())
-}
-```
-
-</details>
-
-
-#### Sample test code
-<details>
-<summary>Unit test code sample to test the session code</summary>
-
-```rust
-#[cfg(test)]
-mod tests {
-
-use std::path::PathBuf;
-use casper_engine_test_support::{DeployItemBuilder, ExecuteRequestBuilder, InMemoryWasmTestBuilder, DEFAULT_RUN_GENESIS_REQUEST, DEFAULT_ACCOUNT_ADDR, DEFAULT_PAYMENT, ARG_AMOUNT};
-use casper_execution_engine::core::engine_state::{
-        run_genesis_request::RunGenesisRequest, GenesisAccount,
-    };
-use casper_types::{
-        account::AccountHash, runtime_args, Key, Motes, PublicKey, RuntimeArgs, SecretKey, U512,
-    };
-
-const ARG_NUMBER_1: &str = "number_1";
-const ARG_NUMBER_2: &str = "number_2";
-const CONTRACT_WASM: &str = "contract.wasm";
-
-#[test]
-    fn should_add_two_numbers() {
-    
-    let mut builder = InMemoryWasmTestBuilder::default();
-
-    builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
-     
-    let session_code = PathBuf::from(CONTRACT_WASM);
-     
-    let runtime_args = runtime_args! {
-        ARG_NUMBER_1 => 1,
-        ARG_NUMBER_2 => 2
-    };
-     
-    let deploy_item = DeployItemBuilder::new()
-    .with_empty_payment_bytes(runtime_args! {
-    ARG_AMOUNT => *DEFAULT_PAYMENT
-    }) 
-    .with_session_code(CONTRACT_WASM, runtime_args.clone())
-    .with_authorization_keys(&[*DEFAULT_ACCOUNT_ADDR])
-    .with_address(*DEFAULT_ACCOUNT_ADDR)
-    .build();
-
-    let execute_request = ExecuteRequestBuilder::from_deploy_item(
-        deploy_item
-        ).build();
-
-    let _example_request = ExecuteRequestBuilder::standard(
-        *DEFAULT_ACCOUNT_ADDR,
-        CONTRACT_WASM,
-        runtime_args
-        ).build(); 
-        .
-        builder.exec(execute_request).expect_success()
-            .commit();
-            
-    let result_key = *builder
-        .get_account(*DEFAULT_ACCOUNT_ADDR)
-        .expect("the default account must be present")
-        .named_keys()
-        .get("answer")
-        .expect("must have key as part of session code execution");
-    let value: u32 = builder.query(None, result_key, &vec![])
-        .expect("must have the stored value")
-        .as_cl_value()
-        .expect("must have some CLValue")
-        .to_owned()
-        .into_t()
-        .expect("must convert the CLValue into a u64"); 
-assert_eq!(3, value);
-    }
-}
-
- fn main() {
-    panic!("Execute \"cargo test\" to test the contract, not \"cargo run\".");
- }  
-}
-```
-</details>
-
 ## What's Next? {#whats-next}
 
-- Learn to [write a smart contract in Rust](/dapp-dev-guide/writing-contracts/rust)
+- Learn to [install a contract and query global state](./installing-contracts.md).

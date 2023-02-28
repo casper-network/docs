@@ -6,7 +6,7 @@ This workflow describes how a trivial two-party multi-signature scheme for signi
 
 This workflow assumes:
 
-1.  You meet the [prerequisites](setup.md)
+1.  You meet the [prerequisites](/dapp-dev-guide/setup.md)
 2.  You are using the Casper command-line client
 3.  You have a main `PublicKey` hex (**MA**) and a `PublicKey` hex to associate (**AA**)
 4.  You have a valid `node-address`
@@ -119,8 +119,8 @@ Account configuration on a Casper blockchain is stored in a [Merkle Tree](https:
 
 To check that your account was configured correctly, you need the `state-root-hash` corresponding to the block that contains your deploy. To obtain the `state-root-hash`, you need to:
 
-1.  [Confirm the execution status of the deploy](querying.md#querying-deploys) and obtain the hash of the block containing it
-2.  [Query the block containing the deploy](querying.md#querying-blocks) to obtain the corresponding `state_root_hash`
+1.  [Confirm the execution status of the deploy](/workflow/developers/querying.md#querying-deploys) and obtain the hash of the block containing it
+2.  [Query the block containing the deploy](/workflow/developers/querying.md#querying-blocks) to obtain the corresponding `state_root_hash`
 
 Use the `state_root_hash` and the `hex-encoded-public-key` of the main account to query the network for the account and check its configuration.
 

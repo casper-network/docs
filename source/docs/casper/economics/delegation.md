@@ -34,11 +34,11 @@ If you perform the delegation for the first time, the system charges some gas to
 
 _Example:_ The system can charge 0.5 CSPR in addition to the base delegation fee of 2.5 CSPR, resulting in a delegation cost of 3 CSPR on [Mainnet](https://cspr.live/)
 
-It is essential to have enough funds in your account when you set up a delegation transaction. Otherwise, the transaction will fail, and you will lose the transfer cost. For example, if you have 200 CSPR in your account, delegate at most 197 CSPR and leave at least 3 CSPR for the delegation cost. Another option is to delegate 195 CSPR and leave some additional buffer.
+It is essential to have enough funds in your account's main purse when you set up a delegation transaction. Otherwise, the transaction will fail, and you will lose the transfer cost. For example, if you have 200 CSPR in your purse, delegate at most 197 CSPR and leave at least 3 CSPR for the delegation cost. Another option is to delegate 195 CSPR and leave some additional buffer.
 
 **Transaction Fee**
 
-As a result, when performing a [delegation using the command line](../workflow/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
+As a result, when performing a [delegation using the command line](../workflow/developers/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
 
 <p align="center"><img src={useBaseUrl("/image/economic-delegationDetails.png")}  alt="details" width="400" /> </p>
 

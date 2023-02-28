@@ -5,8 +5,8 @@ module.exports = {
     title: "",
     logo: {
         alt: "Casper Logo",
-        src: "/icon/logo-dark.svg",
-        srcDark: "/icon/logo-white.svg",
+        src: "/icon/Casper_Wordmark_Red_RGB.png",
+        srcDark: "/icon/Casper_Wordmark_White_RGB.png",
     },
     // hideOnScroll: true,
     items: [

@@ -29,7 +29,7 @@ Note the following command options above:
 
 The withdraw_bid contract accepts 3 arguments:
 
-- `public key`: The hexadecimal public key of the account to withdraw. This key must match the secret key that signs the deployment and has to match the public key of a bid in the auction contract.
+- `public key`: The hexadecimal public key of the account's purse to withdraw. This key must match the secret key that signs the deployment and has to match the public key of a bid in the auction contract.
 - `amount`: This is the amount that is being withdrawn.
 - `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided.
 

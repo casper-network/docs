@@ -1,6 +1,6 @@
 # Getting Started with AssemblyScript
 
-CasperLabs maintains the [casper-contract](https://www.npmjs.com/package/casper-contract) to allow developers to create smart contracts using [AssemblyScript](https://www.npmjs.com/package/assemblyscript). The package source is hosted in the [main Casper Network repository](https://github.com/casper-network/casper-node/tree/master/smart_contracts/contract_as/assembly).
+Casper Labs maintains the [casper-contract](https://www.npmjs.com/package/casper-contract) to allow developers to create smart contracts using [AssemblyScript](https://www.npmjs.com/package/assemblyscript). The package source is hosted in the [main Casper Network repository](https://github.com/casper-network/casper-node/tree/master/smart_contracts/contract_as/assembly).
 
 ## Prerequisites {#prerequisites}
 
@@ -97,7 +97,7 @@ Next, create a directory called `assembly`, and in that directory, create a file
 
 In the `assembly` directory, also create an `index.ts` file, where the code for the contract needs to go.
 
-You can use the following sample snippet, which demonstrates a simple smart contract that immediately returns an error and writes a message to a block when executed on the Casper Network.
+You can use the following sample snippet, which demonstrates a simple smart contract that immediately returns an error and writes a message to a block when executed on a Casper network.
 
 ```typescript
 //@ts-nocheck

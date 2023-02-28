@@ -2,11 +2,11 @@
 
 ---
 
-[A](A.md) [B](B.md) [C](C.md) [D](D.md) [E](E.md) [F](F.md) [G](G.md) [H](H.md) [I](I.md) [J](J.md) [K](K.md) [L](L.md) [M](M.md) [N](N.md) [O](O.md) [P](P.md) [Q](Q.md) [R](R.md) [S](S.md) [T](T.md) [U](U.md) [V](V.md) [W](W.md) [X](X.md) [Y](Y.md) [Z](Z.md)
+[A](./A.md) [B](./B.md) [C](./C.md) [D](./D.md) [E](./E.md) [F](./F.md) [G](./G.md) [H](./H.md) [I](./I.md) [J](./J.md) [K](./K.md) [L](./L.md) [M](./M.md) [N](./N.md) [O](./O.md) [P](./P.md) [Q](./Q.md) [R](./R.md) [S](./S.md) [T](./T.md) [U](./U.md) [V](./V.md) [W](./W.md) [X](./X.md) [Y](./Y.md) [Z](./Z.md)
 
 ---
 
-## Named keys {#named-keys}
+## NamedKeys {#named-keys}
 
 [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html)
 are a collection of String-Key pairs used to easily identify some data on the network.
@@ -17,7 +17,7 @@ are a collection of String-Key pairs used to easily identify some data on the ne
 
 ## Node {#node}
 
-A Casper node is a physical or virtual device that is participating in the Casper network. They store, validate, and preserve the blockchain data.
+A Casper node is a physical or virtual device that is participating in a Casper network. They store, validate, and preserve the blockchain data.
 
 You will encounter different types of nodes on the network:
 
@@ -26,7 +26,7 @@ You will encounter different types of nodes on the network:
 
 ## Node operator {#node-operator}
 
-See [operator](O.md#operator).
+See [operator](./O.md#operator).
 
 ## Non-Fungible Token (NFT) {#non-fungible-token}
 Cryptographic assets on a blockchain with unique identification codes and metadata that distinguish them from each other. They cannot be traded or exchanged at equivalency. This differs from fungible tokens like cryptocurrencies, which are identical to each other and, therefore, can be used as a medium for commercial transactions.

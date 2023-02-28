@@ -2,7 +2,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Understanding Call Stacks
 
-Users wishing to interact with a Casper network must do so through [sending a Deploy](/dapp-dev-guide/building-dapps/sending-deploys/). All Deploys consist of [session code](/dapp-dev-guide/writing-contracts/session-code/) run in the context of the user account that sent the Deploy. The session code may [install contract code to global state](/dapp-dev-guide/writing-contracts/installing-contracts/), or interact with previously [installed contract code](/dapp-dev-guide/building-dapps/calling-contracts/).
+Users wishing to interact with a Casper network must do so through [sending a Deploy](./sending-deploys.md). All Deploys consist of [session code](../writing-contracts/session-code.md) run in the context of the user account that sent the Deploy. The session code may [install contract code to global state](../writing-contracts/installing-contracts.md), or interact with previously [installed contract code](./calling-contracts.md).
 
 When the session code within a Deploy interacts with one or more contracts, this is the beginning of a [`Call Stack`](https://docs.rs/casper-types/latest/casper_types/system/enum.CallStackElement.html). A call stack is the chronological order in which contracts call other contracts, initiated by an instance of session code.
 
