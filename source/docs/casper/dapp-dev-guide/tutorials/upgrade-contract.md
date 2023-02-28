@@ -162,7 +162,7 @@ casper-client query-global-state \
     --key [ACCOUNT_HASH] -q "counter_package_name"
 ```
 
-Now let’s exercise the new entry point and check the results. The below command will call the _counter_decrement_ entry point using package name.
+Call the new entry point and check the results. The below command will call the _counter_decrement_ entry point using package name.
 
 ```bash
 casper-client put-deploy \
