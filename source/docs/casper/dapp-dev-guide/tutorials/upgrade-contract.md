@@ -147,7 +147,7 @@ casper-client query-global-state \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter"
 ```
-Let's check the version and package details with the latest state root hash:
+Check the version and package details with the latest state root hash:
 
 ```bash
 casper-client query-global-state \
