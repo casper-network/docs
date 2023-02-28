@@ -5,11 +5,11 @@ The Casper Event Sidecar is an application running alongside the node process, a
 An alternate name for this application is the SSE Sidecar because it uses the node's Event Stream API returning Server-Sent Events (SSEs) in JSON format. Visit GitHub for detailed information on the following:
 
 <!-- TODO add links when the private sidecar repository is available 
-- [Source code](https://github.com/CasperLabs/event-sidecar) 
-- [System components and architecture](https://github.com/CasperLabs/event-sidecar/#system-components--architecture) 
-- [Node configuration instructions](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/ETC_README.md#configuration) 
-   - [Default configuration file](https://github.com/CasperLabs/event-sidecar/blob/dev/resources/default_config.toml)
-- [Maintenance scripts](https://github.com/CasperLabs/event-sidecar/tree/dev/resources/maintainer_scripts)
+- Source code - link to the main repository 
+- System components and architecture - link to the architecture section
+- Node configuration instructions - link to resources/ETC_README.md#configuration
+   - Default configuration file - link to resources/default_config.toml
+- Maintenance scripts - link to resources/maintainer_scripts
 -->
 
 ## Installing the Sidecar Service {#installing-the-sidecar}
