@@ -209,7 +209,7 @@ casper-client put-deploy \
 
 :::
 
-After calling the entry-point, the count value should decrement by one. You can query the network again, however, remember that you have to get a new state root hash. Check if the count was decremented by looking at it with the query argument.
+After calling the entry-point, the count value should decrement by one. You can verify the decrement by querying the network again, but you will need a new state root hash.
 
 Get the NEW state-root-hash:
 
