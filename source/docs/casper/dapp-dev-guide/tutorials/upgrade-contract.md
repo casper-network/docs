@@ -118,7 +118,7 @@ Installing contract-v1 as shown in the [counter tutorial](/dapp-dev-guide/tutori
 
 :::
 
-Now, let's deploy version 2 of the contract, which will add the counter_decrement entry point to an existing contract package on the chain.
+Now, let's deploy version 2 of the contract, which will add the `counter_decrement` entry point to an existing contract package on the chain.
 
 ```bash
 casper-client put-deploy \
