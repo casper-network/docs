@@ -131,7 +131,7 @@ casper-client put-deploy \
 
 ### Step 5. Verify your changes 
 
-If you run below commands, you will be able to observe the new contract entry points. 
+Running the below commands will allow you to observe the new contract entry points.
 
 Get the NEW state-root-hash:
 
