@@ -24,7 +24,7 @@ A deploy executes in the context of the user's [Account](#accounts-head) but can
 
 :::note
 
-Refer to [Keys and Permissions](./serialization-standard.md#serialization-standard-state-keys) for further information on keys.
+Refer to [Keys and Permissions](../serialization-standard.md#serialization-standard-state-keys) for further information on keys.
 
 :::
 
@@ -82,7 +82,7 @@ This decision is taken to incentivize the [Casper Runtime Economics](../economic
 
 ### Deploys {#execution-semantics-deploys}
 
-A [Deploy](./serialization-standard.md#serialization-standard-deploy) is a data structure containing Wasm and the requester's signature(s). Additionally, the deploy header contains additional metadata about the deploy itself. A deploy’s structure is as follows:
+A [Deploy](../serialization-standard.md#serialization-standard-deploy) is a data structure containing Wasm and the requester's signature(s). Additionally, the deploy header contains additional metadata about the deploy itself. A deploy’s structure is as follows:
 
 <p align="center">
 <img src={"/image/design/deploy-structure.png"} alt="Image showing the deploy data structure" width="500"/> 
@@ -90,7 +90,7 @@ A [Deploy](./serialization-standard.md#serialization-standard-deploy) is a data 
 
 -   Body: Containing payment code and session code (more details on these below)
 -   Header: containing
-    -   The [Public Key](./serialization-standard.md#publickey) of the account in whose context the deploy will run
+    -   The [Public Key](../serialization-standard.md#publickey) of the account in whose context the deploy will run
     -   The timestamp of the deploy’s creation
     -   A time-to-live, after which the deploy expires and cannot be included in a block
     -   the `blake2b256` hash of the body
@@ -143,7 +143,7 @@ _Session code_ provides the main logic for the deploy. It only executes if the p
 The user-defined logic of a deploy can be specified in a number of ways:
 
 -   a Wasm module in binary format representing valid session code, including logic to be executed in the context of an account or to store Wasm in the form of a contract to be executed later. (Note that the named keys from the context of the account the deploy is running in.)
--   a 32-byte identifier representing the [hash](./serialization-standard.md#serialization-standard-hash-key) where a contract is already stored in the global state
+-   a 32-byte identifier representing the [hash](../serialization-standard.md#serialization-standard-hash-key) where a contract is already stored in the global state
 -   a name corresponding to a named key in the account, where a contract is stored under the key
 
 Payment and session code can be independently specified, so different methods of specifying them may be used (e.g. payment could be specified by a hash key, while the session is explicitly provided as a Wasm module).
@@ -240,7 +240,7 @@ In the case where there is a reference to stored on-chain Wasm (smart contracts)
 
 ## Unforgeable Reference (URef) {#uref-head}
 
-This key type is used for storing any value except `Account`. Additionally, `URef`s used in Wasm carry permission information to prevent unauthorized usage of the value stored under the key. The runtime tracks this permission information. This means that if malicious Wasm attempts to produce a `URef` with permissions that the Wasm does not have, the Wasm has attempted to "forge" the unforgeable reference, and the runtime will raise a forged `URef` error. Permissions for a `URef` can be given across contract calls, allowing data stored under a `URef` to be shared in a controlled way. The 32-byte identifier representing the key is generated randomly by the runtime (see [Execution Semantics](#execution-semantics-head) for more information). The serialization for `Access Rights` that define the permissions for `URefs` is detailed in the [CLValues](./serialization-standard.md) section.
+This key type is used for storing any value except `Account`. Additionally, `URef`s used in Wasm carry permission information to prevent unauthorized usage of the value stored under the key. The runtime tracks this permission information. This means that if malicious Wasm attempts to produce a `URef` with permissions that the Wasm does not have, the Wasm has attempted to "forge" the unforgeable reference, and the runtime will raise a forged `URef` error. Permissions for a `URef` can be given across contract calls, allowing data stored under a `URef` to be shared in a controlled way. The 32-byte identifier representing the key is generated randomly by the runtime (see [Execution Semantics](#execution-semantics-head) for more information). The serialization for `Access Rights` that define the permissions for `URefs` is detailed in the [CLValues](../serialization-standard.md) section.
 
 ### Permissions for `URef`s {#uref-permissions}
 
@@ -257,7 +257,7 @@ The ability to pass `URef`s between contexts via `call_contract` / `ret`, allows
 
 ### `URef`s and Purses
 
-Purses represent a unique type of `URef` used for accounting measures within a Casper network. `URef`s exist as a top-level entity, meaning that individual accounts do not own ‘URef’s. As described above, accounts and contracts possess certain `Access Rights`, allowing them to interact with the given `URef`. While an account will possess an associated `URef` representing their main purse, this `URef` exists as a [`Unit`](./serialization-standard.md#clvalue-unit) and corresponds to a *balance* key within the Casper *mint*. The individual balance key within the Casper mint is the account's purse, with transfers authorized solely through the associated `URef` and the `Access Rights` granted to it.
+Purses represent a unique type of `URef` used for accounting measures within a Casper network. `URef`s exist as a top-level entity, meaning that individual accounts do not own ‘URef’s. As described above, accounts and contracts possess certain `Access Rights`, allowing them to interact with the given `URef`. While an account will possess an associated `URef` representing their main purse, this `URef` exists as a [`Unit`](../serialization-standard.md#clvalue-unit) and corresponds to a *balance* key within the Casper *mint*. The individual balance key within the Casper mint is the account's purse, with transfers authorized solely through the associated `URef` and the `Access Rights` granted to it.
 
 Through this logic, the Casper mint holds all motes on the network and transfers between balance keys at the behest of accounts and contracts as required.
 
@@ -281,7 +281,7 @@ The `block_hash` is the `blake2b256` hash of the block header.
 
 #### Header {#header}
 
-The [block header](./serialization-standard.md#serialization-standard-block) contains the following fields:
+The [block header](../serialization-standard.md#serialization-standard-block) contains the following fields:
 
 * `parent_hash`
 
@@ -331,7 +331,7 @@ The block body contains an **ordered** list of `DeployHashes` which refer to dep
 
 The block body also contains the public key of the validator that proposed the block.
 
-Refer to the [Serialization Standard](./serialization-standard.md) for additional information on how blocks and deploy are serialized.
+Refer to the [Serialization Standard](../serialization-standard.md) for additional information on how blocks and deploy are serialized.
 
 ## Tokens {#tokens-head}
 

@@ -130,7 +130,7 @@ jobs:
         echo "Testing if a page responds correctly"
         curl --fail http://127.0.0.1:4000/operators/setup-network/chain-spec/
         echo "Testing if a page responds correctly"
-        curl --fail http://127.0.0.1:4000/concepts/design/serialization-standard/
+        curl --fail http://127.0.0.1:4000/concepts/serialization-standard/
       working-directory: ./docs
 
   deploy-prod:
@@ -166,7 +166,7 @@ jobs:
       - name: Test another random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail https://$prod_pages_fqdn/concepts/design/serialization-standard
+          curl --fail https://$prod_pages_fqdn/concepts/serialization-standard
 
   rollback-if-tests-fail-prod:
     if: ${{ always() && (needs.system-tests-postdeployment-prod.result=='failure') }}

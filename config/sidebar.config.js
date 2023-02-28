@@ -10,6 +10,7 @@ module.exports = {
         "concepts/callstack",
         "concepts/session-code",
         "concepts/dictionaries",
+        "concepts/serialization-standard",
         {
             type: "category",
             label: "Design",
@@ -21,7 +22,6 @@ module.exports = {
                 "concepts/design/highway",
                 "concepts/design/casper-design",
                 "concepts/design/reading-and-writing-to-the-blockchain",
-                "concepts/design/serialization-standard",
             ],
         },
         {
