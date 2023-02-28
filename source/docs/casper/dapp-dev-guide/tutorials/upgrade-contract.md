@@ -193,7 +193,7 @@ casper-client put-deploy \
 ```
 
 2. Calling Contracts by Package Name​: 
-- To call an entry point in a contract by referencing the contract package name, you can use the session-package-name and session-entry-point. 
+- Calling the contract by its contract package name requires the session-package-name and session-entry-point. 
 - This will enable you to access the entry-point in global state by using the put-deploy command. You will find stored the "contract_package_name" into a NamedKey, which we can use in the code.
 
  
