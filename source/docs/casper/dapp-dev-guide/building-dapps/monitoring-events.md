@@ -12,7 +12,9 @@ An alternate name for this application is the SSE Sidecar because it uses the no
 
 <img class="align-center" src={useBaseUrl("/image/dApp/sidecar-diagram.png")} alt="Sidecar components and architecture diagram" width="800"/>
 
-Visit [GitHub](https://github.com/CasperLabs/event-sidecar/) for the latest source code and information on [system architecture](https://github.com/CasperLabs/event-sidecar/#system-components--architecture).
+Visit GitHub for the latest source code and information on system architecture.
+<!-- TODO Link GitHub to the event sidecar repo -->
+<!-- TODO Link "system architecture" to the event sidecar repo#system-components--architecture documentation -->
 
 ## The Event Stream
 
