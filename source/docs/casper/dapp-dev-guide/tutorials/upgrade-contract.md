@@ -14,11 +14,16 @@ Here is a video walkthrough of this tutorial.
 
 ## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
+<<<<<<< Updated upstream
 - You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](../building-dapps/sending-deploys.md), and [calling contracts](../writing-contracts/calling-contracts.md) on a Casper network
+=======
+- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/building-dapps/sending-deploys/), and [calling contracts](/dapp-dev-guide/writing-contracts/calling-contracts) on a Casper network
+- You are familar with [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet)  and [example counter repository](https://github.com/casper-ecosystem/counter/) 
+>>>>>>> Stashed changes
 
 ## Contract Versioning Flow {#contract-versioning-flow}
 
-Here is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash.
+Following is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash. 
 
 1. Create a contract in the most common way, using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html)
 2. Add a new version of the contract using [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html)
@@ -26,6 +31,7 @@ Here is an example workflow for creating a versioned contract package. Your work
 4. Install the contract on the network via a deploy
 5. Verify that your new contract version works as desired
 
+To demonstrate the upgrade workflow, we will be using [example counter contract version 2](https://github.com/casper-ecosystem/counter/blob/master/contract-v2/src/main.rs) in this tutorial.
 
 ### Step 1. Create a new unlocked contract
 
@@ -50,7 +56,7 @@ When creating the contract, you can specify the package name and access URef for
     runtime::put_key(CONTRACT_VERSION_KEY, version_uref.into());
 ```
 
-This [simple counter example](https://github.com/casper-ecosystem/counter/blob/67a7eb8b306e5dcc9da9ff596987b6c4f0a98fd6/contracts/counter-define/src/main.rs#L79-L83) shows you a contract package that can be versioned.
+This [simple counter example](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v2/src/main.rs#L105) shows you a contract package that can be versioned.
 
 :::note
 
@@ -66,7 +72,7 @@ There are many changes you could make to a Casper contract, including:
 - Modifying the behavior of an existing entry point in the contract
 - Completely re-writing the contract
 
-To add a new contract version in the package, invoke the [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html) function and pass in the [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html), [EntryPoints](https://docs.rs/casper-types/latest/casper_types/contracts/struct.EntryPoints.html), and [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html). In the counter example, you will find the `add_contract_version` call [here](https://github.com/casper-network/casper-node/blob/18571e0c22d7918a953f497649b733151cfb3c3c/smart_contracts/contracts/client/counter-define/src/main.rs#L78-L79).
+To add a new contract version in the package, invoke the [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html) function and pass in the [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html), [EntryPoints](https://docs.rs/casper-types/latest/casper_types/contracts/struct.EntryPoints.html), and [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html). In the counter example, you will find the `add_contract_version` call [here](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v2/src/main.rs#L164).
 
 ```rust
     let (contract_hash, contract_version) = 
@@ -91,7 +97,6 @@ Explanation of arguments:
 
 :::
 
-
 ### Step 3. Build the contract Wasm
 
 Use these commands to prepare and build the newly added contract:
@@ -106,9 +111,125 @@ make build-contract
 
 [Install the contract](../building-dapps/sending-deploys.md#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../building-dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
+
+To observe the upgrade workflow you can install [the counter contract-v2](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v2/src/main.rs). If you explore the code, you will observe the different versions of the contract.
+- contract-v1 is the counter contract you can see in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet).
+- contract-v2 is the contract with the new entry point called counter_decrement.
+
+:::note
+
+Assumtion for the below commands is that you have already installed the contract-v1 as shown in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet) before you install the contract-v2.
+
+:::
+
+Now, we will deploy version 2 of the contract, which will add the counter_decrement entry point to an existing contract package on the chain.
+
+```bash
+casper-client put-deploy \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name casper-test \
+    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
+    --payment-amount 5000000000000 \
+    --session-path ./contract-v1/target/wasm32-unknown-unknown/release/counter-v2.wasm
+```
+
 ### Step 5. Verify your changes 
 
-You can write unit tests to verify the behavior of the new contract version with [call_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_contract.html) or [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html). When you add a new contract to the package (which increments the highest enabled version), you will obtain a new contract hash, the primary identifier of the contract. You can use the contract hash with call_contract. Alternatively, you can use call_versioned_contract and specify the contract_package_hash and the newly added version.
+If you run below commands, you will see the new contract entry points now. 
+
+Get the NEW state-root-hash:
+
+```bash
+casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
+```
+
+Let’s check the new contract entry points. We should see the _counter_decrement_ entry point now.
+
+```bash
+casper-client query-global-state \
+    --node-address http://[NODE_IP]:7777 \
+    --state-root-hash [STATE_ROOT_HASH] \
+    --key [ACCOUNT_HASH] -q "counter"
+```
+Let's check the version and package details with the latest state root hash:
+
+```bash
+casper-client query-global-state \
+    --node-address http://[NODE_IP]:7777 \
+    --state-root-hash [STATE_ROOT_HASH] \
+    --key [ACCOUNT_HASH] -q "version"
+```
+```bash
+casper-client query-global-state \
+    --node-address http://[NODE_IP]:7777 \
+    --state-root-hash [STATE_ROOT_HASH] \
+    --key [ACCOUNT_HASH] -q "counter_package_name"
+```
+
+Now let’s exercise the new entry point and check the results. The below command will call the _counter_decrement_ entry point using package name.
+
+```bash
+casper-client put-deploy \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name casper-test \
+    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
+    --payment-amount 5000000000000 \
+    --session-package-name "counter_package_name" \
+    --session-entry-point "counter_decrement"
+```
+
+:::note
+
+There are two ways to call versioned contracts:
+
+1. Calling Contracts by Package Hash​:
+- To call the entry point we wish to access, the contract version number, and any runtime arguments. The call defaults to the highest enabled version if no version was specified. 
+- You will find the package hash under the account’s named keys.
+ 
+```bash
+casper-client put-deploy \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name casper-test \
+    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
+    --payment-amount 5000000000000 \
+    --session-package-hash  [PACKAGE_HASH]] \
+    --session-entry-point "counter_decrement"
+```
+
+2. Calling Contracts by Package Name​: 
+- To call an entry point in a contract by referencing the contract package name, you can use the session-package-name and session-entry-point. 
+- This will enable you to access the entry-point in global state by using the put-deploy command. You will find stored the "contract_package_name" into a NamedKey, which we can use in the code.
+
+ 
+```bash
+casper-client put-deploy \
+    --node-address http://[NODE_IP]:7777 \
+    --chain-name casper-test \
+    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
+    --payment-amount 5000000000000 \
+    --session-package-name  "counter_package_name" \
+    --session-entry-point "counter_decrement"
+```
+
+:::
+
+After calling the entry-point, the count value should decrement by one. You can query the network again, however, remember that you have to get a new state root hash. Check if the count was decremented by looking at it with the query argument.
+
+Get the NEW state-root-hash:
+
+```bash
+casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
+```
+
+Get the network state, specifically for the count variable this time:
+
+```bash
+casper-client query-global-state --node-address http://[NODE_IP]:7777 \
+    --state-root-hash [STATE_ROOT_HASH] \
+    --key [ACCOUNT_HASH] -q "counter/count"
+```
+
+You can also write unit tests to verify the behavior of the new contract version with [call_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_contract.html) or [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html). When you add a new contract to the package (which increments the highest enabled version), you will obtain a new contract hash, the primary identifier of the contract. You can use the contract hash with call_contract. Alternatively, you can use call_versioned_contract and specify the contract_package_hash and the newly added version.
 
 For the simple example counter above, here are the [corresponding tests](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/test/contract-context/src/main.rs). Notice how the tests store and verify the [contract's version](https://github.com/casper-network/casper-node/blob/8356f393d361832b18fee7227b5dcd65e29db768/smart_contracts/contracts/test/contract-context/src/main.rs#L172-L173).
 
