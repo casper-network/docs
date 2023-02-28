@@ -6,7 +6,7 @@
 This section includes some examples of how to use Golang SDK:
 
 * Sending a transfer
-* Deploying a contract
+* Installing a contract via a Deploy
 
 ## Generating Account Keys
 
@@ -23,7 +23,7 @@ This section includes some examples of how to use Golang SDK:
 ```
 ```bash
     func main() {
-        nodeRpc := "http://159.65.118.250:7777/rpc"
+        nodeRpc := "http://159.65.118.250:7777"
         nodeEvent := "http://159.65.118.250:9999"
         privKeyPath := "/path/to/secret_key.pem"
         
@@ -67,7 +67,7 @@ This section includes some examples of how to use Golang SDK:
 ```
 ```bash
     func main() {
-        nodeRpc := "http://159.65.118.250:7777/rpc"
+        nodeRpc := "http://159.65.118.250:7777"
         nodeEvent := "http://159.65.118.250:9999"
         privKeyPath := "/path/to/secret_key.pem"
         modulePath := "/path/to/contract.wasm"

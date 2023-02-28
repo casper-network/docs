@@ -4,22 +4,22 @@
 
 ## account_put_deploy {#account-put-deploy}
 
-This is the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network. The request takes in the [Deploy](/design/casper-design.md/#execution-semantics-deploys) as a parameter, prior to sending it to a node on a network for execution.
+This is the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network. The request takes in the [Deploy](../../design/casper-design.md#execution-semantics-deploys) as a parameter, prior to sending it to a node on a network for execution.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[deploy](../../sdkspec/types_chain/#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
+|[deploy](./types_chain.md#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
 
-> **Note**: You can find a list of [trusted peers](https://docs.casperlabs.io/operators/joining/#known-addresses) in the network's configuration file, `config.toml`. Here is an [example config.toml](https://github.com/casper-network/casper-node/blob/dev/resources/production/config-example.toml#L131). You may send deploys to one of the trusted nodes or use them to query other online nodes.
+> **Note**: You can find a list of [trusted peers](../../operators/joining.md#known-addresses) in the network's configuration file, `config.toml`. Here is an [example config.toml](https://github.com/casper-network/casper-node/blob/dev/resources/production/config-example.toml#L131). You may send deploys to one of the trusted nodes or use them to query other online nodes.
 
 ### `account_put_deploy_result`
 
-The result contains the [deploy_hash](../../sdkspec/types_chain/#deployhash), which is the primary identifier of a Deploy within a Casper network.
+The result contains the [deploy_hash](./types_chain.md#deployhash), which is the primary identifier of a Deploy within a Casper network.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[deploy_hash](../../sdkspec/types_chain/#deployhash)|String| A hex-encoded hash of the Deploy as sent.|
+|[deploy_hash](./types_chain.md#deployhash)|String| A hex-encoded hash of the Deploy as sent.|
 
 <details>
 
@@ -96,24 +96,3 @@ The result contains the [deploy_hash](../../sdkspec/types_chain/#deployhash), wh
 ```
 
 </details>
-
-## speculative_exec {#speculative_exec}
-
-The `speculative_exec` endpoint provides a method to execute a `Deploy` without committing it to global state. By default, `speculative_exec` is disabled on a node. Sending a request to a node with the endpoint disabled will result in an error message. If enabled, `speculative_exec` operates on a separate port from the primary JSON-RPC, using 7778.
-
-`speculative_exec` executes a deploy at a specified block. In the case of this endpoint, the execution is not committed to global state. As such, it can be used for observing the execution effects of a deploy without associated payment.
-
-|Parameter|Type|Description|
-|---------|----|-----------|
-|[block_identifier](../../sdkspec/types_chain/#blockidentifier)|Object|The block hash or height on top of which to execute the deploy. If not supplied,the most recent block will be used.|
-|[deploy](../../sdkspec/types_chain/#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
-
-### `speculative_exec_result`
-
-The result contains the hash of the targeted block and the results of the execution.
-
-|Parameter|Type|Description|
-|---------|----|-----------|
-|api_version|String|The RPC API version.|
-|[block_hash](../../sdkspec/types_chain/#blockhash)|Object|The Block hash on top of which the deploy was executed.|
-|[execution_results](../../sdkspec/types_chain/#executionresult)|Object|The map of Block hash to execution result.|

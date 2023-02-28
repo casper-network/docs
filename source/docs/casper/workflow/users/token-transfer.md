@@ -2,20 +2,20 @@
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-You can transfer Casper tokens (CSPR) using any [block explorer](../block-explorer/) built to explore the Casper blockchain. The Wallet feature on these block explorers can be used to transfer tokens to another user, delegate stake, or undelegate stake. In this section, we will discuss the steps to transfer CSPR tokens.
+You can transfer Casper tokens (CSPR) using any [block explorer](./block-explorer.md) built to explore the Casper blockchain. The Wallet feature on these block explorers can be used to transfer tokens to another user's purse, delegate stake, or undelegate stake. In this section, we will discuss the steps to transfer CSPR tokens.
 
 ## Transferring Tokens 
 
 To transfer tokens, follow these steps:
-1. Sign in to your account with the Signer. For detailed instructions, see the [Signer Guide](signer-guide.md).
+1. Sign in to your account with the Signer. For detailed instructions, see the [Signer Guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html).
 2. Click **Wallet** on the top menu bar and select **Transfer CSPR** from the drop-down menu. 
-3. Enter the recipient’s wallet address, the amount you wish to transfer, and an optional Transfer ID for reference. 
+3. Enter the recipient’s public key, the amount you wish to transfer, and an optional Transfer ID for reference. 
     If you do not provide an ID, the system will auto-generate one.
 4. Click **Next** to proceed. The following figure shows an example transfer of 50 CSPR.
 
     <img src={useBaseUrl("/image/workflow/CSPR-first-step.png")} width="500" />
 
-5. A confirmation window appears, and you may verify the recipient’s wallet address and transaction amount. Click **Confirm and transfer** to proceed to the next step. In the following figure, you may observe the transaction details initiated in the previous step. The transaction fees is displayed in CSPR and USD.
+5. A confirmation window appears to verify the details entered. Click **Confirm and transfer** to proceed to the next step. In the following figure, you may observe the transaction details initiated in the previous step. The transaction fees is displayed in CSPR and USD.
 
 <img src={useBaseUrl("/image/workflow/CSPR-second-step.png")} width="500" />
 
@@ -32,10 +32,11 @@ To transfer tokens, follow these steps:
     -   Signing key which approves the transaction
     -   Your public key
     -   Recipient's account hash
+
 8. Click **Sign with Casper Signer** at the bottom of the window to complete the transaction. 
     You completed the transaction, and successfully transferred tokens.
 
     <img src={useBaseUrl("/image/workflow/transfer-confirm.png")} width="500" />
 
-9.  Next, you can view your CSPR balance, for more information, see the [Viewing Account Details](../signer-guide/#6-viewing-account-details).
+9.  Next, view the CSPR balance in your account's main purse.
 

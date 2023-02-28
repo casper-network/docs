@@ -1,6 +1,6 @@
 # Testing Session Code
 
-This section describes how to test session code using the Casper unit-testing framework. The [writing session code](/dapp-dev-guide/writing-contracts/session-code/) section is a prerequisite for this tutorial, which uses the example code described [here](/dapp-dev-guide/writing-contracts/session-code#writing-session-code).
+This section describes how to test session code using the Casper unit-testing framework. The [writing session code](./session-code.md) section is a prerequisite for this tutorial, which uses the example code described [here](./session-code.md#writing-session-code).
 
 ## Specifying Dependencies in Cargo.toml {#specifying-dependencies}
 
@@ -131,17 +131,19 @@ cd tests && cargo test
 In the [counter unit tests](https://github.com/casper-ecosystem/counter/blob/master/tests/src/integration_tests.rs), we use session code to call the contract. The code loads the account that pays for the session code, the session code Wasm, and the runtime arguments. Then, the code invokes the execution engine to process the session code.
 
 ```rust
-    // Use session code to increment the counter
+    // Use session code to increment the counter.
     let session_code_request = ExecuteRequestBuilder::standard(
         *DEFAULT_ACCOUNT_ADDR,
         COUNTER_CALL_WASM,
         runtime_args! {
-            CONTRACT_KEY => contract_hash
+            CONTRACT_KEY => contract_v1_hash
         },
     )
     .build();
 
-    builder.exec(session_code_request).expect_success().commit();
+    builder.exec(session_code_request)
+        .expect_success()
+        .commit();
 ```
 
 The verification step looks like this:
@@ -172,4 +174,4 @@ The following brief video describes testing the [sample session code](https://gi
 
 ## What's Next? {#whats-next}
 
-- Learn to [install a contract and query global state](/dapp-dev-guide/writing-contracts/installing-contracts.md).
+- Learn to [install a contract and query global state](./installing-contracts.md).

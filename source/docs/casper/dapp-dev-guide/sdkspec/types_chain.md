@@ -738,11 +738,11 @@ Hex-encoded cryptographic public key, including the algorithm tag prefix.
 
 The identifier to obtain the purse corresponding to a balance query. Valid identifiers include:
 
-* `main_purse_under_public_key` The main purse under a provided [`PublicKey`](/dapp-dev-guide/sdkspec/types_chain#publickey).
+* `main_purse_under_public_key` The main purse under a provided [`PublicKey`](./types_chain.md#publickey).
 
-* `main_purse_under_account_hash` The main purse under a provided [`AccountHash`](/dapp-dev-guide/sdkspec/types_chain#accounthash).
+* `main_purse_under_account_hash` The main purse under a provided [`AccountHash`](./types_chain.md#accounthash).
 
-* `purse_uref` A specific purse identified by the associated [`URef`](/dapp-dev-guide/sdkspec/types_chain#uref).
+* `purse_uref` A specific purse identified by the associated [`URef`](./types_chain.md#uref).
 
 ## Reward {#reward}
 
@@ -786,7 +786,7 @@ Hex-encoded cryptographic signature, including the algorithm tag prefix.
 
 Representation of a value stored in global state. `Account`, `Contract` and `ContractPackage` have their own `json_compatibility` representation (see their docs for further info).
 
-* [`CLValue`](#clvalue) A CasperLabs value.
+* [`CLValue`](#clvalue) A Casper-specific value.
 
 * [`Account`](#account) An Account.
 

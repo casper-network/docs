@@ -6,21 +6,21 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Installing Smart Contracts and Querying Global State
 
-This tutorial is a continuation of the [Smart Contracts on Casper](/dapp-dev-guide/writing-contracts/rust-contracts) guide, and covers the installation of Casper contracts using the [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and the `put-deploy` command.
+This tutorial is a continuation of the [Smart Contracts on Casper](./rust-contracts.md) guide, and covers the installation of Casper contracts using the [Casper command-line client](../setup.md#the-casper-command-line-client) and the `put-deploy` command.
 
 ## Prerequisites
 
-- You know how to [send and verify deploys](/dapp-dev-guide/building-dapps/sending-deploys.md)
-   - Your environment meets these [prerequisites](/workflow/setup/) and you have a client to interact with the network, such as the [default Casper client](/workflow/setup#the-casper-command-line-client)
-   - You have a [Casper account](/workflow/setup/#setting-up-an-account) with a public and secret key pair to initiate the deploy
-   - You have enough CSPR tokens in your account to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](/workflow/token-transfer#2-the-faucet) to fund your testing account
-- You understand how to [write basic contract code](/dapp-dev-guide/writing-contracts/index.md) and session code
+- You know how to [send and verify deploys](../building-dapps/sending-deploys.md)
+   - Your environment meets these [prerequisites](../setup.md) and you have a client to interact with the network, such as the [default Casper client](../setup.md#the-casper-command-line-client)
+   - You have a [Casper Account](../setup.md#setting-up-an-account) with a public and secret key pair to initiate the deploy
+   - You have enough CSPR tokens in your account's main purse to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](../../workflow/users/token-transfer.md#2-the-faucet) to fund your testing account's main purse
+- You understand how to [write basic contract code](./index.md) and session code
 - You have a contract Wasm to send to a Casper network
 
 
 ## Installing a Contract in Global State {#installing-contract-code}
 
-To install a contract in [global state](/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](/dapp-dev-guide/building-dapps/sending-deploys.md#sending-the-deploy) after sending it to the network.
+To install a contract in [global state](../../glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](../building-dapps/sending-deploys.md#sending-the-deploy) after sending it to the network.
 
 ```bash
 casper-client put-deploy \
@@ -42,7 +42,7 @@ Once you call this command, it will return a deploy hash. You can use this hash 
 
 **Example - Install the contract:**
 
-Here we send a `counter-define.wasm` to a local NCTL network.
+Here we send a `counter-v1.wasm` to a local NCTL network.
 
 ```bash
 casper-client put-deploy \
@@ -50,7 +50,7 @@ casper-client put-deploy \
     --chain-name casper-net-1 \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
     --payment-amount 5000000000000 \
-    --session-path ./counter/target/wasm32-unknown-unknown/release/counter-define.wasm
+    --session-path ./counter/target/wasm32-unknown-unknown/release/counter-v1.wasm
 ```
 
 To verify the deploy, call `get-deploy` and provide the deploy hash you received from `put-deploy`.
@@ -243,7 +243,7 @@ Here is how the sample contract would look and would contain details such as the
 
 **Example - Query a value using its key and the contract hash:**
 
-Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](/dapp-dev-guide/tutorials/counter/index.md), where a "count" variable is incremented and stored under a named key.
+Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](../tutorials/counter/index.md), where a "count" variable is incremented and stored under a named key.
 
 ```bash
 casper-client query-global-state \
@@ -301,7 +301,7 @@ casper-client query-global-state \
   --state-root-hash 763e737cf55a298d54bcdfb4ee55526538a1a086128914b9cc25ccbdebbbb966
 ```
 
-Here is how the contract package details would look. The response would contain the `contract_hash`, which you would need to [call a contract by hash](calling-contracts.md#calling-contracts-by-hash) in the next section. You would also see the `access_key` for the `ContractPackage` and the current `contract_version`.
+Here is how the contract package details would look. The response would contain the `contract_hash`, which you would need to [call a contract by hash](./calling-contracts.md#calling-contracts-by-hash) in the next section. You would also see the `access_key` for the `ContractPackage` and the current `contract_version`.
 
 <details>
 <summary><b>Sample contract package state</b></summary>
@@ -345,4 +345,4 @@ This video shows you what to expect when querying the network.
 
 ## What's Next? {#whats-next}
 
-- Learn [different ways to call contracts](calling-contracts.md) using the Casper command-line client
+- Learn [different ways to call contracts](./calling-contracts.md) using the Casper command-line client

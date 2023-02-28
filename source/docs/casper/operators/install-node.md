@@ -37,7 +37,7 @@ sudo rm -rf /var/lib/casper/*
 
 ## Required Packages
 
-The following commands will set up the CasperLabs repository for packages:
+The following commands will set up the Casper Labs repository for packages:
 
 ```bash
 echo "deb https://repo.casperlabs.io/releases" bionic main | sudo tee -a /etc/apt/sources.list.d/casper.list
@@ -74,7 +74,7 @@ If you do not have keys yet, you can create them using the following command:
 sudo -u casper casper-client keygen /etc/casper/validator_keys
 ```
 
-For more details, see the [Node Setup](/operators/setup#create-fund-keys) page.
+For more details, see the [Node Setup](./setup.md#create-fund-keys) page.
 
 ## Getting a Trusted Hash
 

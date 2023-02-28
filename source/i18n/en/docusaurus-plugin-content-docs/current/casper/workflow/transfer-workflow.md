@@ -4,7 +4,7 @@ This workflow describes how to use the Casper command-line client to transfer to
 
 This workflow assumes:
 
-1.  You meet the [prerequisites](setup.md)
+1.  You meet the [prerequisites](/dapp-dev-guide/setup.md)
 2.  You are using the Casper command-line client
 3.  You have a source `PublicKey` hex and a target `PublicKey` hex
 4.  You have a valid `node-address`
@@ -155,7 +155,7 @@ casper-client transfer \
 
 A transfer on a Casper Network is only executed after it has been included in a finalized block.
 
-Refer to the Section on [querying deploys](querying.md#deploy-status) within the network to check the execution status of the transfer.
+Refer to the Section on [querying deploys](/workflow/developers/querying.md#deploy-status) within the network to check the execution status of the transfer.
 
 **Important response fields:**
 

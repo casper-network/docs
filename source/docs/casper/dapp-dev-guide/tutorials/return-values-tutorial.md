@@ -1,6 +1,6 @@
 # Interacting with Runtime Return Values
 
-Users interacting with a Casper Network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
+Users interacting with a Casper network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
 
 Developers should note the difference between a caller and an immediate caller. The immediate caller represents the session or contract code that directly accessed the entry point. The caller is the original, initiating session code that started the entire process. There are many cases where contract code may call additional contract code. In this case, the immediate caller may be another instance of contract code. Even in this event, the overall caller will be the initiating session code, while there may be several layers of stacked contract code acting as immediate callers.
 
@@ -66,8 +66,8 @@ pub extern "C" fn call() {
 
 ```
 
-This session code calls into a contract's entry point by using `runtime::call_contract`, supplying the `contract_hash` to identify the contract to be called, and the name of the entry point to be invoked, in this case `donate`. It supplies the `donating_account_key`, which in this case is the account key of the caller. The contract will then provide a return value, in this case `donating_purse_uref`. To call an entry point, you will need to know the [CLType](/dapp-dev-guide/sdkspec/types_cl.md) of the return value and identify it within the code.
+This session code calls into a contract's entry point by using `runtime::call_contract`, supplying the `contract_hash` to identify the contract to be called, and the name of the entry point to be invoked, in this case `donate`. It supplies the `donating_account_key`, which in this case is the account key of the caller. The contract will then provide a return value, in this case `donating_purse_uref`. To call an entry point, you will need to know the [CLType](../sdkspec/types_cl.md) of the return value and identify it within the code.
 
-You can determine the type of the return value by [querying the contract object](workflow/querying/#querying-an-account) in global state. To query a contract rather than an account, replace the key parameter with the formatted string representation of the contract hash.
+You can determine the type of the return value by [querying the contract object](../../workflow/developers/querying.md#querying-an-account) in global state. To query a contract rather than an account, replace the key parameter with the formatted string representation of the contract hash.
 
 This example code takes that returned value and transfers a `donation_amount` from the calling account's main purse to the established donation purse. It is not necessary for the code to store, or even use, the returned value. Use of the returned value depends on the needs of the developer.

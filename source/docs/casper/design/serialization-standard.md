@@ -6,7 +6,7 @@ We provide a custom implementation to serialize data structures used by the Casp
 
 ## Account {#serialization-standard-account}
 
-An Account is a structure that represents a user on a Casper Network. The account structure consists of the following fields:
+An Account is a structure that represents a user on a Casper network. The account structure consists of the following fields:
 
 -   [`account_hash`](#account-hash)
 
@@ -249,7 +249,7 @@ The deploy hash is a digest over the contents of the deploy header. The deploy h
 
 ### Payment & Session {#payment--session}
 
-Payment and Session are both defined as `ExecutableDeployItems`. More information on `ExecutableDeployItems` can be found [here](/dapp-dev-guide/building-dapps/calling-contracts/)
+Payment and Session are both defined as `ExecutableDeployItems`. More information on `ExecutableDeployItems` can be found [here](../dapp-dev-guide/building-dapps/calling-contracts.md)
 
 -   Module Bytes are serialized such that the first byte within the serialized buffer is `0` with the rest of the buffer containing the bytes present.
 
@@ -480,7 +480,7 @@ There are three types of actions that can be done on a value: read, write, add. 
 
 ---
 
-Refer to [URef permissions](/design/casper-design.md/#uref-permissions) on how permissions are handled in the case of `URef`s.
+Refer to [URef permissions](./casper-design.md#uref-permissions) on how permissions are handled in the case of `URef`s.
 
 ## NamedArg {#namedarg}
 
@@ -788,13 +788,13 @@ A complete `CLValue`, including both the data and the type, can also be serializ
 
 ### Contracts {#global-state-contracts}
 
-Contracts are a special value type because they contain the on-chain logic of the applications running on the Casper network. A _contract_ contains the following data:
+Contracts are a special value type because they contain the on-chain logic of the applications running on a Casper network. A _contract_ contains the following data:
 
 -   a [wasm module](https://webassembly.github.io/spec/core/syntax/modules.html)
 -   a collection of named keys
 -   a protocol version
 
-The wasm module must contain a function named `call`, which takes no arguments and returns no values. This is the main entry point into the contract. Moreover, the module may import any of the functions supported by the [Casper runtime](/design/casper-design.md/#execution-semantics-runtime).
+The wasm module must contain a function named `call`, which takes no arguments and returns no values. This is the main entry point into the contract. Moreover, the module may import any of the functions supported by the [Casper runtime](./casper-design.md#execution-semantics-runtime).
 
 Note: though the `call` function signature has no arguments and no return value, within the `call` function body, the `get_named_arg` runtime function can be used to accept arguments (by ordinal), and the `ret` runtime function can be used to return a single `CLValue` to the caller.
 

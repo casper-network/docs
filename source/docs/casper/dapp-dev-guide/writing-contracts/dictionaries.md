@@ -1,14 +1,16 @@
 # Reading and Writing to Dictionaries
 
-In a Casper network, you can now store sets of data under [`Keys`](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations). Previously, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within an `Account` or `Contract` context. In the case of Contracts, sustained and continuous use of URefs would result in the expansion of the associated `NamedKeys` structures.
+In a Casper network, you can now store sets of data under [`Keys`](../understanding-hash-types.md#hash-and-key-explanations). Previously, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within an `Account` or `Contract` context. In the case of Contracts, sustained and continuous use of URefs would result in the expansion of the associated `NamedKeys` structures.
 
 Individual value changes to data stored within the NamedKeys would require deserializing the entire NamedKeys data structure, increasing gas costs over time and thus having a negative impact. Additionally, users storing large subsets of mapped data structures would face the same deep copy problem where minor or single updates required the complete deserialization of the map structure, also leading to increased gas costs.
 
 As a solution to this problem, the Casper platform provides the `Dictionary` feature, which allows users a more efficient and scalable means to aggregate data over time.
 
+In almost all cases, dictionaries are the better form of data storage. They allow greater flexibility in altering stored data at a lower cost.
+
 ## Seed URefs
 
-Items within a dictionary exist as individual records stored underneath their unique [dictionary address](/dapp-dev-guide/understanding-hash-types#hash-and-key-explanations) in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](/design/casper-design.md/#uref-head) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
+Items within a dictionary exist as individual records stored underneath their unique [dictionary address](../understanding-hash-types.md#hash-and-key-explanations) in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](../../design/casper-design.md#uref-head) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
 
 As each dictionary item exists as a stand-alone entity in global state, regularly used dictionary keys may be used directly without referencing their seed URef.
 
@@ -25,6 +27,14 @@ While you can create a dictionary in the context of an Account and then pass ass
 Dictionaries allow a contract to store additional data without drastically expanding the size of the `NamedKeys` within their context. If a contract's `NamedKeys` expand too far, they may run into system limitations that would unintentionally disable the contract's functionality.
 
 A dictionary item key can be no longer than 64 bytes in length. 
+
+## Practical Dictionary Examples
+
+The [Casper CEP-78 Enhanced NFT Standard](https://github.com/casper-ecosystem/cep-78-enhanced-nft) includes several practical applications of dictionaries.
+
+Simple examples for dictionary use within CEP-78 include the [`approve`](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/contract/src/main.rs#L772) dictionary.
+
+More advanced dictionary functionality can be found in the [CEP-78 Page System](https://github.com/casper-ecosystem/cep-78-enhanced-nft#the-cep-78-page-system), which uses a series of dictionaries to keep track of token ownership. These dictionaries form the basis of the reverse lookup mode, which allows users to easily view a list of owned tokens by account or contract.
 
 ## Creating Dictionaries in a Contract's Context
 
@@ -99,7 +109,7 @@ The second section uses [`dictionary_get`](https://docs.rs/casper-contract/1.4.4
 
 ## Reading Items from a Dictionary using the JSON-RPC
 
-The Casper platform provides several means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](/dapp-dev-guide/sdkspec/types_chain/#dictionaryidentifier) JSON-RPC type. The following explains how to query the dictionary items using the [Casper client](https://crates.io/crates/casper-client).
+The Casper platform provides several means of looking up a dictionary item. These means are explained within the [`DictionaryIdentifier`](../sdkspec/types_chain.md#dictionaryidentifier) JSON-RPC type. The following explains how to query the dictionary items using the [Casper client](https://crates.io/crates/casper-client).
 
 ### `ContractNamedKey` lookup via a Contract's named keys.
 
@@ -107,7 +117,7 @@ Reading a dictionary item using the Contract's `NamedKeys` requires the followin
 
 * `Node Address` - The IP and port of a node on a Casper network. In the example below, the node address is pointing to a local NCTL network.
 
-* `State Root Hash` - The current state root hash of the Casper network hosting the dictionary item you are attempting to read.
+* `State Root Hash` - The current state root hash of a Casper network hosting the dictionary item you are attempting to read.
 
 * `Contract Hash` - The hash of the contract that references the dictionary in its `NamedKeys`.
 

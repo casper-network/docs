@@ -1,6 +1,6 @@
 # Guidance for JSON-RPC SDK Compliance
 
-A compliant Casper JSON-RPC SDK implementation must support all the endpoints and relevant types within the specification. The specification allows everything ranging from a minimal viable implementation to a full implementation, and a given SDK should cite which level of implementation they claim to be compliant with. For example, an SDK claiming to be an informational SDK must have implemented all entry points and relevant types described in the [informational JSON-RPC methods](../sdkspec/json-rpc-informational.md) page.
+A compliant Casper JSON-RPC SDK implementation must support all the endpoints and relevant types within the specification. The specification allows everything ranging from a minimal viable implementation to a full implementation, and a given SDK should cite which level of implementation they claim to be compliant with. For example, an SDK claiming to be an informational SDK must have implemented all entry points and relevant types described in the [informational JSON-RPC methods](./json-rpc-informational.md) page.
 
 **A Casper JSON-RPC SDK claiming to be complete is expected to implement *all* endpoints and *all* types defined in the serialization standard.**
 

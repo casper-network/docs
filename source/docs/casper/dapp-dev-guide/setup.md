@@ -6,9 +6,14 @@ This section explains how to fulfill the prerequisites needed to interact with a
 
 This section covers:
 
-1. Installing the official Casper command-line client
-2. Setting up an account on a Casper Network
-3. Acquiring the IP address of a peer on the official Testnet or Mainnet  
+1. Setting up a Rust development environment
+2. Installing the official Casper command-line client
+3. Setting up an Account on a Casper network
+4. Acquiring the IP address of a peer on the official Testnet or Mainnet  
+
+## Installing Rust {#installing-rust}
+
+On the Casper platform, developers may write smart contracts in any language that compiles to Wasm. These How To guides focus on code examples that use Rust and a Rust client to interact with a Casper network. While following these guides, we recommend setting up Rust and installing all dependencies. For step-by-step instructions, visit [Getting Started with Rust](./writing-contracts/getting-started.md).
 
 ## Casper Command-line Client {#the-casper-command-line-client}
 
@@ -63,19 +68,19 @@ sudo dnf install casper-client-x-x-x*.rpm
 
 ## Building the Client from Source {#building-the-client-from-source}
 
-[Instructions]( https://github.com/casper-network/casper-node/tree/master/client)
+[Instructions](https://github.com/casper-network/casper-node/tree/master/client)
 
 ## Setting up an Account {#setting-up-an-account}
 
-The [Account](/design/casper-design.md/#accounts-head) creation process consists of two steps:
+The [Account](../design/casper-design.md#accounts-head) creation process consists of two steps:
 
-1. Creating the account
-2. Funding the account
+1. Creating the Account
+2. Funding the Account
 
 The following video complements the instructions below, showing you the expected output.
 
 <p align="center">
-<iframe width="400" height="225" src="https://www.youtube.com/watch?v=sA1HTPjV_bc&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="400" height="225" src="https://www.youtube.com/embed?v=sA1HTPjV_bc&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
 ## Creating an Account {#creating-an-account}
@@ -88,7 +93,7 @@ Users can create an account through the Casper command-line client. Alternativel
 
 ### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
 
-This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](/dapp-dev-guide/keys.md).
+This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](./keys.md).
 
 Execute the following command to generate your keys:
 
@@ -104,9 +109,9 @@ The above command will create three files in the current working directory:
 
 **Note**: Save your keys to a safe place, preferably offline.
 
-After generating keys for the account, you may add funds to finish the account creation process.
+After generating keys for the account, you may add funds to the account's purse to finish the account creation process.
 
-**Note**: Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the account-address option of the client:
+**Note**: Responses from the node contain `AccountHashes` instead of the direct hexadecimal-encoded public key. To view the account hash for a public key, use the `account-address` option of the client:
 
 ```bash
 casper-client account-address --public-key <path-to-public_key.pem/public-key-hex>
@@ -118,7 +123,7 @@ This option is available on networks that have a block explorer.
 
 For instance, on the official Testnet network, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
 
-Start by creating an account using the [Casper Signer](../workflow/signer-guide.md). The Signer will prompt you to download the secret key of your new account by clicking on the `Download` option. The Signer will download the secret key in a file ending in `secret_key.cer`. We recommend securely storing this file. Note that the account is not stored on chain.
+Start by creating an Account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html). The Signer will prompt you to download the secret key of your new account by clicking on the `Download` option. The Signer will download the secret key in a file ending in `secret_key.cer`. We recommend securely storing this file. Note that the account is not stored on chain.
 
 <img src={useBaseUrl("/image/workflow/download-prompt.png")} alt="Signer Secret Key Download Prompt" width="200" />
 
@@ -126,15 +131,15 @@ The Signer does not allow you to download the corresponding public key and hexad
 
 <img src={useBaseUrl("/image/workflow/account-details.png")} alt="Signer Account Details" width="200" class="inline-img" />
 
-For [ed25519](/dapp-dev-guide/keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
+For [ed25519](./keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
 
 ## Funding Accounts {#fund-your-account}
 
-After generating the cryptographic key-pair for an account, you must fund the account to create it on-chain.
+After generating the cryptographic key-pair for an Account, you must fund the account's main purse to create it on-chain.
 
-On Testnet, you can fund an account by requesting test tokens according to [this guide](/workflow/testnet-faucet/). You can request test tokens **only once** for each account.
+On Testnet, you can fund an account by requesting test tokens according to [this guide](../workflow/users/testnet-faucet.md). You can request test tokens **only once** for each account.
 
-On Mainnet, a pre-existing account will have to transfer CSPR tokens to finalize the setup of the new account. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
+On Mainnet, a pre-existing account will have to transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 
 ## Acquiring a Node Address from the Network {#acquire-node-address-from-network-peers}
 

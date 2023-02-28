@@ -1,14 +1,14 @@
 # Writing Session Code
 
-This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](/dapp-dev-guide/writing-contracts/contract-vs-session.md). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
+This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](./contract-vs-session.md). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
 
 ## Creating the Directory Structure {#directory-structure}
 
-For writing session code, we use the same project structure used for writing contracts, described [here](/dapp-dev-guide/writing-contracts/rust-contracts.md#directory-structure).
+For writing session code, we use the same project structure used for writing contracts, described [here](./rust-contracts.md#directory-structure).
 
-## Writing Session Code {#writing-session-code}
+## Example 1: Writing Session Code {#writing-session-code}
 
-The following steps illustrate the process of writing session code using an example repository containing sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to an account and updates the action thresholds. Remember that [accounts](/design/casper-design/#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
+The following steps illustrate the process of writing session code using an example repository containing sample session code for configuring an account: https://github.com/casper-ecosystem/two-party-multi-sig/. The sample code adds an associated key to the account and updates the action thresholds. Remember that an [Account](../../design/casper-design.md#accounts-head) on a Casper network can add associated accounts and set up a multi-signature scheme for deploys. To follow along, clone the repository.
 
 ```bash
 git clone https://github.com/casper-ecosystem/two-party-multi-sig/
@@ -62,9 +62,9 @@ pub extern "C" fn call() {
 
 When compiled, the `call` function could be used from another library. For example, a C library could link to the resulting Wasm.
 
-### Another Session Code Example
+## Example 2: Calling a Contract with Session Code {#calling-contracts-with-session-code}
 
-The second example of session code is the [counter-call/src/main.rs](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file, in the [counter](https://github.com/casper-ecosystem/counter) repository. This example shows how we commonly use session code to invoke logic stored within a smart contract. To follow along, clone the repository.
+Another example of session code is the [counter-call/src/main.rs](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file, in the [counter](https://github.com/casper-ecosystem/counter) repository. This example shows how we commonly use session code to invoke logic stored within a smart contract. To follow along, clone the repository.
 
 ```bash
 git clone https://github.com/casper-ecosystem/counter/
@@ -83,12 +83,39 @@ The `call` function interacts with the contract's `counter_inc` and `counter_get
     let _: () = runtime::call_contract(contract_hash, COUNTER_INC, RuntimeArgs::new());
 ```
 
-<!-- TODO Add a third example for Wasm-based transfers.
+## Example 3: Transfers using Session Code {#transfers-using-session-code}
 
-### Session code example 3
+In this example, we use session code to perform a transfer using the [transfer_from_purse_to_purse](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_purse.html) system function. The entire session code is available in [GitHub](https://github.com/casper-network/casper-node/blob/67c9c9bb84fdfc3f2d12103e25f0058104342bc0/smart_contracts/contracts/bench/transfer-to-purse/src/main.rs#L14), but this is the `call` function:
 
-Session code is also useful when we perform Wasm-based transfers. 
--->
+```rust
+#[no_mangle]
+pub extern "C" fn call() {
+    let target_purse: URef = runtime::get_named_arg(ARG_TARGET_PURSE);
+    let amount: U512 = runtime::get_named_arg(ARG_AMOUNT);
+
+    let source_purse = account::get_main_purse();
+
+    system::transfer_from_purse_to_purse(source_purse, target_purse, amount, None)
+        .unwrap_or_revert();
+}
+```
+
+Another system function is [transfer_to_public_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_public_key.html). The full session code example is on [GitHub](https://github.com/casper-network/casper-node/blob/67c9c9bb84fdfc3f2d12103e25f0058104342bc0/smart_contracts/contracts/client/transfer-to-public-key/src/main.rs#L16).
+
+```rust
+#[no_mangle]
+pub extern "C" fn call() {
+    let account_hash: PublicKey = runtime::get_named_arg(ARG_TARGET);
+    let transfer_amount: U512 = runtime::get_named_arg(ARG_AMOUNT);
+    system::transfer_to_public_key(account_hash, transfer_amount, None).unwrap_or_revert();
+}
+```
+
+Other transfer functions are available here:
+
+- [transfer_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_to_account.html)
+- [transfer_from_purse_to_account](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_account.html)
+- [transfer_from_purse_to_public_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/fn.transfer_from_purse_to_public_key.html)
 
 
 ## Compiling Session Code {#compiling-session-code}
@@ -107,11 +134,11 @@ make build-contract
 
 ## Executing Session Code {#executing-session-code}
 
-Before running session code on a live Casper network, test it as described [here](/dapp-dev-guide/writing-contracts/testing-session-code). You can also set up a local network using [NCTL](/dapp-dev-guide/building-dapps/setup-nctl) for additional tests.
+Before running session code on a live Casper network, test it as described [here](./testing-session-code.md). You can also set up a local network using [NCTL](../building-dapps/setup-nctl.md) for additional tests.
 
-Session code can execute on a Casper network via a [Deploy](/glossary/D.md#deploy). All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the network's global state.
+Session code can execute on a Casper network via a [Deploy](../../glossary/D.md#deploy). All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the network's global state.
 
-The [Casper command-line client](/workflow/setup/#the-casper-command-line-client) and its `put-deploy` command provide one way to execute session code.
+The [Casper command-line client](../setup.md#the-casper-command-line-client) and its `put-deploy` command provide one way to execute session code.
 
 ```bash
 casper-client put-deploy \
@@ -146,4 +173,4 @@ The following brief video describes [sample session code](https://github.com/cas
 
 ## What's Next? {#whats-next}
 
-- Learn to [test session code](/dapp-dev-guide/writing-contracts/testing-session-code) using the Casper testing framework.
+- Learn to [test session code](./testing-session-code.md) using the Casper testing framework.
