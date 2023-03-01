@@ -105,8 +105,8 @@ The `speculative_exec` endpoint provides a method to execute a `Deploy` without 
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[block_identifier](../../sdkspec/types_chain.md#blockidentifier)|Object|The block hash or height on top of which to execute the deploy. If not supplied,the most recent block will be used.|
-|[deploy](../../sdkspec/types_chain.md#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
+|[block_identifier](./types_chain.md#blockidentifier)|Object|The block hash or height on top of which to execute the deploy. If not supplied,the most recent block will be used.|
+|[deploy](./types_chain.md#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
 
 ### `speculative_exec_result`
 
@@ -115,5 +115,5 @@ The result contains the hash of the targeted block and the results of the execut
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[block_hash](../../sdkspec/types_chain.md#blockhash)|Object|The Block hash on top of which the deploy was executed.|
-|[execution_results](../../sdkspec/types_chain.md#executionresult)|Object|The map of Block hash to execution result.|
+|[block_hash](./types_chain.md#blockhash)|Object|The Block hash on top of which the deploy was executed.|
+|[execution_results](./types_chain.md#executionresult)|Object|The map of Block hash to execution result.|
