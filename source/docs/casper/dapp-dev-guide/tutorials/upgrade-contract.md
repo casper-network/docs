@@ -15,7 +15,7 @@ Here is a video walkthrough of this tutorial.
 ## Prerequisites {#prerequisites}
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state
 - You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/building-dapps/sending-deploys/), and [calling contracts](/dapp-dev-guide/writing-contracts/calling-contracts) on a Casper network
-- You are familar with the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet/walkthrough) and the [example counter repository](https://github.com/casper-ecosystem/counter/)
+- You have installed [A Counter on the Testnet](/counter-testnet/) that you will upgrade as part of this tutorial
 
 ## Contract Versioning Flow {#contract-versioning-flow}
 
