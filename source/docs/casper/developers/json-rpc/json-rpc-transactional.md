@@ -4,13 +4,13 @@
 
 ## account_put_deploy {#account-put-deploy}
 
-This is the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network. The request takes in the [Deploy](/design/casper-design/#execution-semantics-deploys) as a parameter, prior to sending it to a node on a network for execution.
+This is the only means by which users can send their compiled Wasm (as part of a Deploy) to a node on a Casper network. The request takes in the [Deploy](../../concepts/design/casper-design.md/#execution-semantics-deploys) as a parameter, prior to sending it to a node on a network for execution.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
 |[deploy](./types_chain.md#deploy)|Object|A Deploy consists of an item containing a smart contract along with the requester's signature(s).|
 
-> **Note**: You can find a list of [trusted peers](https://docs.casperlabs.io/operators/joining/#known-addresses) in the network's configuration file, `config.toml`. Here is an [example config.toml](https://github.com/casper-network/casper-node/blob/dev/resources/production/config-example.toml#L131). You may send deploys to one of the trusted nodes or use them to query other online nodes.
+> **Note**: You can find a list of [trusted peers](../../operators/setup/joining.md/#known-addresses) in the network's configuration file, `config.toml`. Here is an [example config.toml](https://github.com/casper-network/casper-node/blob/dev/resources/production/config-example.toml#L131). You may send deploys to one of the trusted nodes or use them to query other online nodes.
 
 ### `account_put_deploy_result`
 
