@@ -27,7 +27,7 @@ The following is an example workflow for creating a versioned contract package. 
 4. Install the contract on the network via a deploy
 5. Verify that your new contract version works as desired
 
-In this tutorial, we will be using [version two of the example counter contract](https://github.com/casper-ecosystem/counter/blob/master/contract-v2/src/main.rs) to demonstrate the upgraded workflow.
+In this tutorial, you will use [the second version](https://github.com/casper-ecosystem/counter/blob/master/contract-v2/src/main.rs) of the counter contract to perform the upgrade.
 
 ### Step 1. Create a new unlocked contract
 
