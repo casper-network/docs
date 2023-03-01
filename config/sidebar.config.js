@@ -167,6 +167,7 @@ module.exports = {
                     ],
                 },
                 "developers/cli/delegate",
+                "developers/cli/redelegate",
                 "developers/cli/undelegate",
                 "developers/cli/installing-contracts",
                 "developers/cli/calling-contracts",
