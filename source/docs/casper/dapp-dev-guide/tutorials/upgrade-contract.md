@@ -131,7 +131,7 @@ casper-client put-deploy \
 
 ### Step 5. Verify your changes 
 
-Running the below commands will allow you to observe the new contract entry points.
+You can test the new entry-point by using the Rust command-line client.
 
 Get the NEW state-root-hash:
 
