@@ -17,6 +17,17 @@ Here is a video walkthrough of this tutorial.
 - You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](/dapp-dev-guide/building-dapps/sending-deploys/), and [calling contracts](/dapp-dev-guide/writing-contracts/calling-contracts) on a Casper network
 - You have installed [A Counter on the Testnet](/counter-testnet/) that you will upgrade as part of this tutorial
 
+:::note
+
+Installing the first version of the contract(contract-v1) as shown in the [counter tutorial](/counter-testnet) is a prerequisite before installing the second version of the contract(contract-v2).
+
+If you explore [the code](https://github.com/casper-ecosystem/counter/tree/57e3912735f93e1d0f667b936675964ecfdc6594), you will observe the different versions of the contract.
+
+- contract-v1 is the counter contract you can see in the [A Counter on the Testnet](/counter-testnet/).
+- contract-v2 is the contract with the new entry point called `counter_decrement`.
+
+:::
+
 ## Contract Versioning Flow {#contract-versioning-flow}
 
 The following is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash. 
@@ -52,7 +63,7 @@ When creating the contract, you can specify the package name and access URef for
     runtime::put_key(CONTRACT_VERSION_KEY, version_uref.into());
 ```
 
-This [simple counter example](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v2/src/main.rs#L105) shows you a contract package that can be versioned.
+This [counter version 1](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v1/src/main.rs#L94) shows you a contract package that can be versioned.
 
 :::note
 
@@ -108,17 +119,7 @@ make build-contract
 [Install the contract](../building-dapps/sending-deploys.md#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../building-dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
 
-To observe the upgrade workflow you can install [the counter contract-v2](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v2/src/main.rs). If you explore the code, you will observe the different versions of the contract.
-- contract-v1 is the counter contract you can see in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet).
-- contract-v2 is the contract with the new entry point called `counter_decrement`.
-
-:::note
-
-Installing contract-v1 as shown in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet) is a prerequisite before installing contract-v2.
-
-:::
-
-Now, let's deploy version 2 of the contract, which will add the `counter_decrement` entry point to an existing contract package on the chain.
+To observe the upgrade workflow you can install, which will add the `counter_decrement` entry point to an existing contract package on the chain.
 
 ```bash
 casper-client put-deploy \
@@ -126,7 +127,7 @@ casper-client put-deploy \
     --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
     --payment-amount 5000000000000 \
-    --session-path ./contract-v1/target/wasm32-unknown-unknown/release/counter-v2.wasm
+    --session-path ./contract-v2/target/wasm32-unknown-unknown/release/counter-v2.wasm
 ```
 
 ### Step 5. Verify your changes 
