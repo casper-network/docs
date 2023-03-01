@@ -55,4 +55,4 @@ Remember to add the language when including any code blocks. While not supported
 
 ### Single or multi-page tutorial?
 
-If your tutorial is long and you feel it would be easier to follow if split over multiple pages, create a folder and individual files, like this [Counter tutorial](source/docs/casper/dapp-dev-guide/tutorials/counter).
+If your tutorial is long and you feel it would be easier to follow if split over multiple pages, create a folder and individual files, like this [Counter tutorial](../../source/docs/casper/resources/tutorials/beginner/counter/index.md).
