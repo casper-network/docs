@@ -53,7 +53,7 @@ casper-client put-deploy \
 
 -   `"result"."deploy_hash"` - The hash of the redelegation Deploy
 
-Save the returned _deploy_hash_ from the output to [query information](querying.md#querying-deploys) about the redelegation Deploy.
+Save the returned _deploy_hash_ from the output to [query information](../../resources/tutorials/beginner/querying-network.md#querying-deploys) about the redelegation Deploy.
 
 ## Verifying the Redelegation {#asserting-the-redelegation}
 
