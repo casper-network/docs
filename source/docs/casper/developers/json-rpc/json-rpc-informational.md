@@ -217,7 +217,7 @@ This method returns raw bytes for chainspec files.
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[chainspec_bytes](./types_chain#ChainspecRawBytes)|Object|The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.|
+|[chainspec_bytes](./types_chain.md#ChainspecRawBytes)|Object|The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.|
 
 <details>
 
@@ -732,19 +732,19 @@ This method returns the current status of a node.
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[available_block_range](./types_chain#AvailableBlockRange)|Object|The available block range in storage.|
-|[block_sync](./types_chain#BlockSynchronizerStatus)|Object|The status of the block synchronizer builders.|
+|[available_block_range](./types_chain.md#AvailableBlockRange)|Object|The available block range in storage.|
+|[block_sync](./types_chain.md#BlockSynchronizerStatus)|Object|The status of the block synchronizer builders.|
 |build_version|String|The compiled node version.|
 |chainspec_name|String|The chainspec name, used to identify the currently connected network.|
-|[last_added_block_info](./types_chain#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
-|[last_progress](./types_chain#timestamp)|String|Timestamp of the last recorded progress in the reactor.|
-|[next_upgrade](./types_chain#nextupgrade)|Object|Information about the next scheduled upgrade.|
-|[our_public_signing_key](./types_chain#publickey)|String|Our public signing key.|
-|[peers](./types_chain#peersmap)|Array|The node ID and network address of each connected peer.|
-|[reactor_state](./types_chain#reactorstate)|String|The current state of the node reactor.|
-|[round_length](./types_chain#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
-|[starting_state_root_hash](./types_chain#digest)|String|The state root hash used at the start of the current session.|
-|[uptime](./types_chain#timediff)|Integer|Time that passed since the node has started.|
+|[last_added_block_info](./types_chain.md#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
+|[last_progress](./types_chain.md#timestamp)|String|Timestamp of the last recorded progress in the reactor.|
+|[next_upgrade](./types_chain.md#nextupgrade)|Object|Information about the next scheduled upgrade.|
+|[our_public_signing_key](./types_chain.md#publickey)|String|Our public signing key.|
+|[peers](./types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
+|[reactor_state](./types_chain.md#reactorstate)|String|The current state of the node reactor.|
+|[round_length](./types_chain.md#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
+|[starting_state_root_hash](./types_chain.md#digest)|String|The state root hash used at the start of the current session.|
+|[uptime](./types_chain.md#timediff)|Integer|Time that passed since the node has started.|
 
 <details>
 
