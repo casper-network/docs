@@ -119,9 +119,6 @@ make build-contract
 [Install the contract](../building-dapps/sending-deploys.md#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../building-dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
 
-<<<<<<< HEAD
-To observe the upgrade workflow you can install, which will add the `counter_decrement` entry point to an existing contract package on the chain.
-=======
 To observe the upgrade workflow you can install [the counter contract-v2](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v2/src/main.rs). If you explore the code, you will observe the different versions of the contract.
 - contract-v1 is the counter contract you can see in the [counter tutorial](/dapp-dev-guide/tutorials/counter-testnet).
 - contract-v2 is the contract with the new entry point called `counter_decrement`.
@@ -133,7 +130,6 @@ Installing contract-v1 as shown in the [counter tutorial](/dapp-dev-guide/tutori
 :::
 
 Next, install the second contract version on the chain. This version contains the `counter_decrement` entry-point.
->>>>>>> 1b8e5a8bafb216f3f9dc223c22df0403b49a1726
 
 ```bash
 casper-client put-deploy \
