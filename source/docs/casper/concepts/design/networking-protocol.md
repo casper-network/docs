@@ -4,7 +4,7 @@
 
 This is a description of the `casper-node`'s networking protocol. This document follows the conventions laid out in [RFC2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
-## Connection level
+## Connection Level
 
 Any `casper-node` taking part in the Casper network SHOULD open connections to every other casper-node it is aware of and has not blocked. These connections are established using TLS, presenting a client certificate.
 
@@ -83,9 +83,9 @@ Any other use of `bincode` encoding (e.g. for GetRequest payloads, see below) MU
 
 Unless noted otherwise, any structure encoded as MessagePack or bincode is serialized using the standard  [`serde`](https://serde.rs)-derived encoding. For `bytesrepr` serialization refer to the specific implementations in the `bytesrepr` crate.
 
-Any data types given from here on out are described using simplified [Rust](https://rust-lang.org) structure definitions.
+Any data types given from here on out are described using simplified [Rust](https://rust-lang.org/) structure definitions.
 
-## The `Message` type
+## The `Message` Type
 
 The following data types make up the networking protocol:
 
@@ -116,7 +116,7 @@ struct Digest([u8; 32]);
 
 For [`String`](https://doc.rust-lang.org/std/string/struct.String.html), [`SocketAddr`](https://doc.rust-lang.org/std/net/enum.SocketAddr.html), [`ProtocolVersion`](https://docs.rs/casper-types/1.5.0/casper_types/struct.ProtocolVersion.html), [`Option`](https://doc.rust-lang.org/std/option/enum.Option.html), [`PublicKey`](https://docs.rs/casper-types/1.5.0/casper_types/crypto/enum.PublicKey.html), [`Signature`](https://docs.rs/casper-types/1.5.0/casper_types/crypto/enum.Signature.html) see the respective docs and details below.
 
-## Handshake behavior
+## Handshake Behavior
 
 A node establishing a new connection MUST immediately send a handshake through said connection to the peer, regardless of whether an incoming or outgoing connection was established (this is an exception to the restriction of only sending data through outgoing connections).
 
@@ -130,7 +130,7 @@ A node MAY compare peers that provide a `consensus_certificate` to the currently
 
 Upon handshake completion, the node SHOULD learn the provided `public_addr`. 
 
-## Blocking nodes
+## Blocking Nodes
 
 If a node blocks a peer, it MUST sever all incoming and outgoing connections to said node. It MUST take note of the NodeId of the node, marking it as blocked and MUST not allow any new connection to proceed past the handshake.
 
@@ -138,7 +138,7 @@ A node MUST NOT block peers based on IP address or port. Nodes MUST NOT block pe
 
 After a block on a node is expired, the node SHOULD _forget_ the nodes IP address, allowing a later _learning_ of said address again.
 
-## The `Payload` type
+## The `Payload` Type
 
 The `Payload` (found in the node sources as `Message` in `payload.rs`) contains variants for all node-to-node communicating subsystems of a running node, which are described below. Note that some of the variants have been renamed for clarity in this specification. Since field names are not used in `bincode` encoding, this should have no effect on implementations.
 
@@ -263,7 +263,7 @@ If the item was not found, `serialized_item` MUST contain a `FetchedOrNotFound::
 
 A node MUST not send any items to a peer that it itself has not verified.
 
-The following table shows which tag corresponds to which ID and item type. Type definitions for `DeployHash` and `GossippedAddress` can be found earlier in this document, other types are described following this section.  Further details of many of these types can be found in the [Serialization Standard](https://docs.casperlabs.io/design/serialization-standard/), but be aware that those docs describe serializing using bytesrepr rather than bincode.
+The following table shows which tag corresponds to which ID and item type. Type definitions for `DeployHash` and `GossippedAddress` can be found earlier in this document, other types are described following this section.  Further details of many of these types can be found in the [Serialization Standard](../serialization-standard.md), but be aware that those docs describe serializing using bytesrepr rather than bincode.
 
 | Tag                                      | ID type               | Payload (item) type        |
 | ---------------------------------------- | --------------------- | -------------------------- |
@@ -503,7 +503,7 @@ The `Payload::FinalitySignature` variant is used when broadcasting finality sign
 
 A node that is an active validator MUST create and broadcast, i.e. send to all connected peers, a finality signature for every valid block it receives or creates.
 
-## Trie chunking
+## Trie Chunking
 
 Large trie nodes are split when transferred across the network, according to `CHUNK_SIZE_BYTES`, which is set to 8388608 bytes (8 megabytes). Any trie node that is less than 8388608 in size will be represented by a `TrieOrChunk::Trie` instance.
 

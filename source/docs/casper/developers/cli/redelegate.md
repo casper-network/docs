@@ -1,13 +1,13 @@
 # Redelegating Tokens with the Casper Client
 
-This document details a workflow where tokens delegated to a validator can be redelegated to another validator without sending an [unbonding request](undelegate.md) first. The unbonding process will happen in the background.
+This document details a workflow where tokens delegated to a validator can be redelegated to another validator without sending an [unbonding request](./undelegate.md) first. The unbonding process will happen in the background.
 
 ## Prerequisites
 
-1. You meet all [prerequisites](/dapp-dev-guide/setup.md), including having a valid `node-address` and the Casper command-line client
-2. You have [delegated tokens](/workflow/developers/delegate) to a validator on a Casper network, and you have the validator's public key
-3. As part of the delegation process, you have [built the casper-node contracts](/workflow/developers/delegate#building-the-delegation-wasm) that produced the redelegation Wasm to execute on the network
-4. You have the public key of the new validator to whom you wish to redelegate tokens. See [Acquiring a Validator's Public Key](/workflow/developers/delegate#acquiring-a-validators-public-key) for more details
+1. You meet all [prerequisites](../prerequisites.md), including having a valid `node-address` and the Casper command-line client
+2. You have [delegated tokens](./delegate.md) to a validator on a Casper network, and you have the validator's public key
+3. As part of the delegation process, you have [built the casper-node contracts](./delegate.md#building-the-delegation-wasm) that produced the redelegation Wasm to execute on the network
+4. You have the public key of the new validator to whom you wish to redelegate tokens. See [Acquiring a Validator's Public Key](./delegate.md#acquiring-a-validators-public-key) for more details
 
 ## Sending the Redelegation Request {#sending-the-redelegation-deploy}
 
@@ -53,7 +53,7 @@ casper-client put-deploy \
 
 -   `"result"."deploy_hash"` - The hash of the redelegation Deploy
 
-Save the returned _deploy_hash_ from the output to [query information](querying.md#querying-deploys) about the redelegation Deploy.
+Save the returned _deploy_hash_ from the output to [query information](../../resources/tutorials/beginner/querying-network.md#querying-deploys) about the redelegation Deploy.
 
 ## Verifying the Redelegation {#asserting-the-redelegation}
 
@@ -61,4 +61,4 @@ The redelegation process includes an unbonding delay before the tokens are redel
 
 Due to this delay, the new validator may become inactive before the redelegation completes. If this happens, the tokens will be returned to the delegator.
 
-Once the redelegation Deploy has been processed, you can query the auction to confirm the redelegation. This process is the same as [verifying a delegation request](/workflow/developers/delegate.md#confirming-the-delegation) using the `casper-client get-auction-info` command.
+Once the redelegation Deploy has been processed, you can query the auction to confirm the redelegation. This process is the same as [verifying a delegation request](./delegate.md#confirming-the-delegation) using the `casper-client get-auction-info` command.
