@@ -198,6 +198,61 @@ casper-client query-global-state \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter"
 ```
+
+<details>
+<summary><b>Example output</b></summary>
+
+```rust
+       {
+  "id": 5602352547578277096,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.13",
+    "block_header": null,
+    "merkle_proof": "[54054 hex chars]",
+    "stored_value": {
+      "Contract": {
+        "contract_package_hash": "contract-package-wasmc014187ccf3366cca70317d6d567cd56a05ecf1ee50ed3bd02727c2864e3d3a8",
+        "contract_wasm_hash": "contract-wasm-64d252f1ab72c7295a85d15c3f456f8bdda586580b0b7106e203fa4fd83f05d7",
+        "entry_points": [
+          {
+            "access": "Public",
+            "args": [],
+            "entry_point_type": "Contract",
+            "name": "counter_decrement",
+            "ret": "Unit"
+          },
+          {
+            "access": "Public",
+            "args": [],
+            "entry_point_type": "Contract",
+            "name": "counter_get",
+            "ret": "I32"
+          },
+          {
+            "access": "Public",
+            "args": [],
+            "entry_point_type": "Contract",
+            "name": "counter_inc",
+            "ret": "Unit"
+          }
+        ],
+        "named_keys": [
+          {
+            "key": "uref-ca980a2e4c08dc3f233b728b22b909cd4e894295155a7902bf88a59eac1531d1-007",
+            "name": "count"
+          }
+        ],
+        "protocol_version": "1.4.13"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+
 Check the version and package details with the latest state root hash:
 
 ```bash
@@ -206,12 +261,73 @@ casper-client query-global-state \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "version"
 ```
+<details>
+<summary><b>Example output</b></summary>
+
+```rust
+      {
+  "id": 9084525900533244372,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.13",
+    "block_header": null,
+    "merkle_proof": "[64874 hex chars]",
+    "stored_value": {
+      "CLValue": {
+        "bytes": "02000000",
+        "cl_type": "U32",
+        "parsed": 2
+      }
+    }
+  }
+
+```
+
+</details>
+
 ```bash
 casper-client query-global-state \
     --node-address http://[NODE_IP]:7777 \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter_package_name"
 ```
+<details>
+<summary><b>Example output</b></summary>
+
+```rust
+      {
+  "id": 6933525663267881367,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.13",
+    "block_header": null,
+    "merkle_proof": "[52174 hex chars]",
+    "stored_value": {
+      "ContractPackage": {
+        "access_key": "uref-101817ffd5aa47b08ca710649dbdc41edf0a20d7802c736d34053656c0a99eaf-007",
+        "disabled_versions": [],
+        "groups": [],
+        "versions": [
+          {
+            "contract_hash": "contract-4ee8a4cfbc0a183d189611b6a14c0f7b57e7635fa17a8acfc5c645fec4c36316",
+            "contract_version": 1,
+            "protocol_version_major": 1
+          },
+          {
+            "contract_hash": "contract-2cd9f6485423ba846fae83729016b03df26d9babb939466906c8f1d168b40949",
+            "contract_version": 2,
+            "protocol_version_major": 1
+          }
+        ]
+      }
+    }
+  }
+}
+
+
+```
+
+</details>
 
 Call the new entry point, _counter_decrement_, using the package name and check the results. 
 
