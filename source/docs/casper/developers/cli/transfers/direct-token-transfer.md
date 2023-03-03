@@ -49,7 +49,7 @@ casper-client transfer \
 
 -   `target-account` - Hex-encoded public key of the account from which the main purse will be used as the target
 
--   `payment-amount` - The payment for the deploy in motes.
+-   `payment-amount` - The payment for the transfer in motes
 
 **Important response fields:**
 
