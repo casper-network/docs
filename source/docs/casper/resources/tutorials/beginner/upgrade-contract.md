@@ -182,7 +182,7 @@ You could store the latest version of the contract package under a NamedKey, as 
 
 :::
 
-You can also test the new entry-point by using the Rust command-line client.
+You can also test the new entry point by using the Rust command-line client.
 
 Get the NEW state-root-hash:
 
