@@ -203,7 +203,7 @@ casper-client query-global-state \
 <summary><b>Example output</b></summary>
 
 ```rust
-       {
+ {
   "id": 5602352547578277096,
   "jsonrpc": "2.0",
   "result": {
