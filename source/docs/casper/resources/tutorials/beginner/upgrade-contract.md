@@ -123,7 +123,7 @@ To observe the upgrade workflow, you can install the second contract version on 
 
 :::note
 
-Installing counter contract version 1 as shown in the [counter tutorial](/counter-testnet) is a prerequisite before installing counter contract version 2.
+Installing the first version of the contract, as shown in the [Counter tutorial](/counter-testnet), is a prerequisite before installing the second version.
 
 :::
 
