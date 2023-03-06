@@ -61,7 +61,6 @@ The table below shows you the main structure of the documentation framework.
 
 | Folder/File          | Description                               |
 | -------------------- | ----------------------------------------- |
-| .circleci            | CI/CD pipeline module                     |
 | .docusaurus          | Docusaurus default configuration module   |
 | .github              | GitHub module                             |
 | .husky               | Husky script module                       |
