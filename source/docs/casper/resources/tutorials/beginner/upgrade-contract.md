@@ -19,7 +19,7 @@ Here is a video walkthrough of this tutorial.
 
 :::note
 
-Installing the first version of the contract(contract-v1) as shown in the [counter tutorial](/counter-testnet) is a prerequisite before installing the second version of the contract(contract-v2).
+Installing the first version of the contract (contract-v1.wasm) as shown in the [counter tutorial](/counter-testnet) is a prerequisite before installing the second version of the contract (contract-v2.wasm).
 
 If you explore [the code](https://github.com/casper-ecosystem/counter/tree/57e3912735f93e1d0f667b936675964ecfdc6594), you will observe the different versions of the contract.
 
