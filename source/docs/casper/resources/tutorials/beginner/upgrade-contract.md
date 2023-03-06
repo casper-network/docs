@@ -119,7 +119,7 @@ make build-contract
 [Install the contract](../../../developers/dapps/sending-deploys.md#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../../../developers/dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
 
-To observe the upgrade workflow you can install the second contract version on chain. This version contains the `counter_decrement` entry point.
+To observe the upgrade workflow, you can install the second contract version on the chain. This version contains the `counter_decrement` entry point.
 
 :::note
 
