@@ -36,7 +36,7 @@ references:
 executors:
   node:
     docker:
-    - image: node:14.15.0
+    - image: node:16.14
   aws:
     docker:
     - image: mesosphere/aws-cli
