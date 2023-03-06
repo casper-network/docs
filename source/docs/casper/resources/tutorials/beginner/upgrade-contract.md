@@ -23,8 +23,8 @@ Installing the first version of the contract (contract-v1.wasm) as shown in the 
 
 If you explore [the code](https://github.com/casper-ecosystem/counter/), you will observe the different versions of the contract.
 
-- contract-v1 is the counter contract you can see in the [A Counter on the Testnet](/counter-testnet/) tutorial.
-- contract-v2 is the contract with the new `counter_decrement` entry point.
+- `contract-v1` is the counter contract you can see in the [A Counter on the Testnet](/counter-testnet/) tutorial
+- `contract-v2` is the contract with the new `counter_decrement` entry point
 
 :::
 
