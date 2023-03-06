@@ -347,7 +347,7 @@ There are two ways to call versioned contracts:
 2. [Calling Contracts by Package Name](/developers/writing-onchain-code/calling-contracts/#StoredVersionedContractByName)
 :::
 
-After calling the entry-point, the count value should have been decremented. You can verify it by querying the network again using the new state root hash.
+After calling the entry point, the count value should have been decremented. You can verify it by querying the network again using the new state root hash.
 
 
 ## Disabling a Contract Version
