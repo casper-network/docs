@@ -150,26 +150,26 @@ You could store the latest version of the contract package under a NamedKey, as 
 <summary><b>Example test function</b></summary>
 
 ```rust
-         // Verify the contract version is now 2.
-        let account = builder
-            .get_account(*DEFAULT_ACCOUNT_ADDR)
-            .expect("should have account");
+        // Verify the contract version is now 2.
+    let account = builder
+        .get_account(*DEFAULT_ACCOUNT_ADDR)
+        .expect("should have account");
 
-        let version_key = *account
-            .named_keys()
-            .get(CONTRACT_VERSION_KEY)
-            .expect("version uref should exist");
+    let version_key = *account
+        .named_keys()
+        .get(CONTRACT_VERSION_KEY)
+        .expect("version uref should exist");
 
-        let version = builder
-            .query(None, version_key, &[])
-            .expect("should be stored value.")
-            .as_cl_value()
-            .expect("should be cl value.")
-            .clone()
-            .into_t::<u32>()
-            .expect("should be u32.");
+    let version = builder
+        .query(None, version_key, &[])
+        .expect("should be stored value.")
+        .as_cl_value()
+        .expect("should be cl value.")
+        .clone()
+        .into_t::<u32>()
+        .expect("should be u32.");
 
-        assert_eq!(version, 2);
+    assert_eq!(version, 2);
 ```
 
 </details>
