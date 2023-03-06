@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[1087],{1241:function(s){s.exports=JSON.parse('{"name":"staking","permalink":"/tags/staking","docs":[{"id":"concepts/economics/staking","title":"Overview","description":"This page describes key concepts related to the staking process.","permalink":"/staking"}],"allTagsPath":"/tags"}')}}]);

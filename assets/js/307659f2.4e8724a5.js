@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[1028],{5994:function(e){e.exports=JSON.parse('{"label":"CSPR","permalink":"/tags/cspr","allTagsPath":"/tags","count":1,"items":[{"id":"welcome","title":"Welcome","description":"This article provides an overview of the Casper project.","permalink":"/"}]}')}}]);

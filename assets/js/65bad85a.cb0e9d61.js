@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[2831],{6620:function(e){e.exports=JSON.parse('{"name":"CasperLabs","permalink":"/tags/casper-labs","docs":[{"id":"welcome","title":"Welcome","description":"This article provides an overview of the Casper project.","permalink":"/"}],"allTagsPath":"/tags"}')}}]);
