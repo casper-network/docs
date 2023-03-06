@@ -63,7 +63,7 @@ When creating the contract, you can specify the package name and access URef for
     runtime::put_key(CONTRACT_VERSION_KEY, version_uref.into());
 ```
 
-This [counter version 1](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v1/src/main.rs#L94) shows you a contract package that can be versioned. This step is covered in the [A Counter on the Testnet](/counter-testnet/) tutorial.
+The [first version of the counter](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v1/src/main.rs#L94) shows you a contract package that can be versioned. This step is covered in the [A Counter on the Testnet](/counter-testnet/) tutorial.
 
 :::note
 
