@@ -140,7 +140,7 @@ casper-client put-deploy \
 
 You can write unit tests to verify the behavior of the new contract version with [call_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_contract.html) or [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html). When you add a new contract to the package (which increments the highest enabled version), you will obtain a new contract hash, the primary identifier of the contract. You can use the contract hash with call_contract. Alternatively, you can use call_versioned_contract and specify the contract_package_hash and the newly added version.
 
-For the simple example counter above, here are the [corresponding tests](https://github.com/casper-ecosystem/counter/blob/master/tests/src/integration_tests.rs). Notice how the tests store and verify the [contract's version](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v1/src/main.rs#L107).
+For the simple example counter above, here are the [corresponding tests](https://github.com/casper-ecosystem/counter/blob/master/tests/src/integration_tests.rs). Notice how the tests store and verify the [contract's version](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v1/src/main.rs#L107) and entry points.
 
 :::note
 
