@@ -150,32 +150,26 @@ You could store the latest version of the contract package under a NamedKey, as 
 <summary><b>Example test function</b></summary>
 
 ```rust
-         fn install_version1_and_upgrade_to_version2() 
-        {
-        let mut builder = InMemoryWasmTestBuilder::default();
-        builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
-
-        // Install the first version of the contract.
-        let contract_v1_installation_request = ExecuteRequestBuilder::standard(
-            *DEFAULT_ACCOUNT_ADDR,
-            COUNTER_V1_WASM,
-            runtime_args! {},
-        )
-        
-        // Check the contract hash.
-        let contract_v1_hash = builder
-            .get_expected_account(*DEFAULT_ACCOUNT_ADDR)
-            .named_keys()
-            .get(CONTRACT_KEY)
-            .expect("must have contract hash key as part of contract creation")
-            .into_hash()
-            .map(ContractHash::new)
-            .expect("must get contract hash");
-
-        // Verify the first contract version is 1. We'll check this when we upgrade later.
+         // Verify the contract version is now 2.
         let account = builder
             .get_account(*DEFAULT_ACCOUNT_ADDR)
             .expect("should have account");
+
+        let version_key = *account
+            .named_keys()
+            .get(CONTRACT_VERSION_KEY)
+            .expect("version uref should exist");
+
+        let version = builder
+            .query(None, version_key, &[])
+            .expect("should be stored value.")
+            .as_cl_value()
+            .expect("should be cl value.")
+            .clone()
+            .into_t::<u32>()
+            .expect("should be u32.");
+
+        assert_eq!(version, 2);
 ```
 
 </details>
