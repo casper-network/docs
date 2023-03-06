@@ -150,7 +150,7 @@ You could store the latest version of the contract package under a NamedKey, as 
 <summary><b>Example test function</b></summary>
 
 ```rust
-        // Verify the contract version is now 2.
+    // Verify the contract version is now 2.
     let account = builder
         .get_account(*DEFAULT_ACCOUNT_ADDR)
         .expect("should have account");
