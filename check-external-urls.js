@@ -102,6 +102,7 @@ class MarkdownExternalUrlChecker {
                 await page.goto(url, { waitUntil: "load" });
             } catch (err) {
                 resolve({ error: err.message });
+                return;
             }
             await page.close();
             resolve({ error: "Unknown exception occured" });
