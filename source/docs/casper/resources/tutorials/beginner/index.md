@@ -17,9 +17,3 @@ The following tutorials present several Casper features in depth:
 |[Interacting with Runtime Return Values](../advanced/return-values-tutorial.md)| Learning how to return a value using contract code |
 |[Safely Transfer Tokens to a Contract](../advanced/transfer-token-to-contract.md) | How to handle tokens via a contract |
 |[Smart Contract Upgrades](./upgrade-contract.md) | Learn how to upgrade smart contracts |
-
-<!-- TODO Hide these 2 tutorials until we update them.
-|[Key-Value Storage](../../../dapp-dev-guide/tutorials/kv-storage-tutorial.md)  | Design a simple contract to store a value |
-|[Multi-Signatures and Key Recovery](../../../dapp-dev-guide/tutorials/multi-sig/index.md)      | Learn to sign transactions with multiple keys                    | -->
-
-
