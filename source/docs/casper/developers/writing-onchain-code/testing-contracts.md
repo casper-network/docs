@@ -1,3 +1,5 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Testing Smart Contracts
 
 ## Introduction
@@ -6,7 +8,9 @@ As part of the Casper development environment, we provide a [testing framework](
 
 :::note
 
-The Casper test support crate is one of many options for testing contracts before sending them to a Casper network. If you prefer, you can create your own testing framework.
+The Casper test support crate is one of many options for testing contracts before sending them to a Casper network.
+
+Independent of the framework, knowledge of setting up the debugger and logging the messages from the test execution will ensure, that the contract is fully functional before being deployed on the Casper network.
 
 :::
 
@@ -26,7 +30,82 @@ casper-types = "1.5.0"
 
 - `casper-execution-engine` - This crate imports the execution engine functionality, enabling Wasm execution within the test framework. Each node contains an instance of an execution engine, and the testing framework simulates this behavior.
 - `casper-engine-test-support` - A helper crate that provides the interface to write tests and interact with an instance of the execution engine.
-- `casper-types` - Types shared by many Casper crates for use on a Casper network. 
+- `casper-types` - Types shared by many Casper crates for use on a Casper network.
+
+## Setting up the Debugger and types of debugging
+
+There are many ways to make sure that the code is written properly and will not cause any problems after being deployed on the blockchain. While having a good understating of Casper testing framework is crucial for a proper smart contract development, it is also necessary to know how to leverage other tools which will confirm that the logic in the smart contract is functioning properly.
+It was already mentioned that debugging in Rust is not active out of the box. There are some steps that need to be completed in order to be able to debug code in Rust.
+
+### Debugging code using breakpoints in VS Code:
+
+1. Set up CodeLLDB extension to be able to set up breakpoints in the code. This is a native debugger supporting C++, Rust and other compiled languages.
+2. Go into the main project folder and type the command “make test” in the VS Code Terminal. This will create the target folder.
+3. Mark the tests.rs and from the toolbar in VS Code go to Run -> Start Debugging. This will create a new configuration for Rust.
+4. You will be able to set breakpoints now.
+5. There are two possibilities to run unit tests:
+- Either from the main project folder using the command “make test”
+- Or from the “tests” subfolder using the command “cargo test”
+
+Both variants will yield the same result which will run the tests and show if all were completed successfully.
+
+<p align="center"><img src={useBaseUrl("/image/testing-contracts/running-tests.png")} alt="running-tests" width="600"/></p>
+
+If you are completely sure that the code written in the unit tests is correct, then there is no further need to go deeper than that. It is advisable however to know what to do if you want to know how the code exactly works.
+The debug configuration needs to be set up in the following way, so it allows for the debugging of the tests.
+
+```bash
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug",
+            "program":  "${workspaceRoot}/default-project/tests/target/debug/deps/integration_tests-2771dd9bbf2fac3c",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "sourceLanguages": [
+                "rust"
+            ]
+        }
+    ]
+}
+```
+
+The most important is the program path which needs to be set exactly to the unit tests path seen during the “make test” or “cargo test” unit tests run.
+In this case this would be `integration_tests-2771dd9bbf2fac3c`.
+
+6.	Set the breakpoints in the unit tests file.
+
+<p align="center"><img src={useBaseUrl("/image/testing-contracts/set-breakpoint.png")} alt="set-breakpoint" width="600"/></p>
+
+7.	Select the test.rs file and run the program in debug mode (F5).
+
+<p align="center"><img src={useBaseUrl("/image/testing-contracts/caught-breakpoint.png")} alt="caught-breakpoint" width="600"/></p>
+
+This will allow you to see the parameters of the debugged unit tests.
+
+### Debugging with macros
+
+A second most popular type of debugging is putting the “println!” Macro in the code so the parameters can be printed out during “cargo test”.
+
+<p align="center"><img src={useBaseUrl("/image/testing-contracts/println-macro.png")} alt="println-macro" width="600"/></p>
+
+It is important to note, that running “cargo test” without any parameters will not log the “println!” on the screen.
+For this to take effect the command
+
+```bash
+cargo test -- --nocapture
+```
+
+must be used.
+This will produce the following outcome:
+
+<p align="center"><img src={useBaseUrl("/image/testing-contracts/println-tests.png")} alt="println-tests" width="600"/></p>
+
+One thing that might be confusing is that although the macro is put in the first test function, it appears on top of the test stack. This is due to Rust running the tests in parallel.
+Those kinds of tests should be run targeting the function in question as to not introduce too much confusion during analysis.
 
 ## Writing the Tests {#writing-the-tests}
 
@@ -61,7 +140,7 @@ Import external test support, which includes a variety of default values and hel
     use casper_types::{runtime_args, ContractHash, RuntimeArgs};
 ```
 
-Next, you need to define any global variables or constants for the test. 
+Next, you need to define any global variables or constants for the test.
 
 ```rust
     const COUNTER_V1_WASM: &str = "counter-v1.wasm"; // The first version of the contract
@@ -88,7 +167,7 @@ As part of this process, we use the `DEFAULT_RUN_GENESIS_REQUEST` to install the
     fn install_version1_and_check_entry_points() {
         let mut builder = InMemoryWasmTestBuilder::default();
         builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
-        
+
         // See the repository for the full function.
     }
 ```
@@ -149,7 +228,7 @@ Next, we test an entry point that should not exist in the first version of the c
         .commit();
 ```
 
-#### Calling the Contract using Session Code 
+#### Calling the Contract using Session Code
 
 In the counter example, we use the session code included in the [counter-call.wasm](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file. For more details on what session code is and how it differs from contract code, see the [next section](../../concepts/session-code.md).
 
@@ -214,7 +293,7 @@ To run the tests, the counter example uses a `Makefile`.
 make test
 ```
 
-Under the hood, the `Makefile` generates a `tests/wasm` folder, copies the Wasm files to the folder, and runs the tests using `cargo test`. 
+Under the hood, the `Makefile` generates a `tests/wasm` folder, copies the Wasm files to the folder, and runs the tests using `cargo test`.
 
 ```bash
 test: build-contract
