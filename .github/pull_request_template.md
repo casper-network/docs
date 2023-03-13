@@ -8,9 +8,10 @@
 ### Checklist
 (Delete any that aren't relevant)
 
-- [ ] I ran the docs locally using `yarn install` and `yarn run start`.
+- [ ] Docs are successfully building - `yarn install && yarn run build`.
+- [ ] For new **internal** links I used *relative file paths* (with .md extension) - e.g. `../../faq/faq-general.md` - instead of introducing *absolute file path*, or *relative/absolute URL*.
+- [ ] All external links have been verified with `yarn run check:externals`.
 - [ ] My changes follow the [Casper docs style guidelines](https://docs.casperlabs.io/workflow/contribute/).
-- [ ] All links (internal and external) have been verified.
 - [ ] All technical procedures have been tested (if you want help with this, mention it in [Reviewers](#reviewers)).
 - [ ] If structural changes are introduced (not just content changes), cross-broswer testing has been completed.
 
