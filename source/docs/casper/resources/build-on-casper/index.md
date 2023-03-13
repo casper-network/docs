@@ -24,6 +24,7 @@ The Casper Ecosystem is growing every day through the addition of new dApps and 
 - [Ledger](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true)
 - [Tor.us](https://casper.tor.us)
 - [Casper Signer](https://chrome.google.com/webstore/search/casper?hl=en)
+- [Casper Wallet](https://www.casperwallet.io)
 
 ### Block Explorers
 - [cspr.live](https://cspr.live)
