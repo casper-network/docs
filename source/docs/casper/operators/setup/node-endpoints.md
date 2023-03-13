@@ -9,9 +9,9 @@ This document describes in more detail a Casper node's default endpoints:
 - [REST HTTP server port: 8888](#8888)
 - [SSE HTTP event stream server port: 9999](#9999)
 
-Node operators can modify a node's configuration options, including the port settings, by updating the [node's config.toml](./basic-node-configuration.md#config-file), which is the node's configuration file. An example configuration file can be found [here](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml).
+Node operators can modify a node's configuration options, including the port settings, by updating the [node's config.toml](./basic-node-configuration.md#config-file) file. An example configuration file can be found [here](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml).
 
-The default endpoints for Mainnet and Testnet are described below in more detail. If the node connects to a different network, the ports may differ depending on how the network was set up.
+The default endpoints for Mainnet and Testnet are open by default and are described below in more detail. If the node connects to a different network, the ports may differ depending on how the network was set up.
 
 
 ## Default Networking Port: 35000 {#35000}
