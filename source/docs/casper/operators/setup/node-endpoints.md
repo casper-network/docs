@@ -9,15 +9,12 @@ This document describes in more detail a Casper node's default endpoints:
 - [REST HTTP server port: 8888](#8888)
 - [SSE HTTP event stream server port: 9999](#9999)
 
-
-## Default Endpoints
-
 Node operators can modify a node's configuration options, including the port settings, by updating the [node's config.toml](../setup/basic-node-configuration/#config-file), which is the node's configuration file. An example configuration file can be found [here](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml).
 
 The default endpoints for Mainnet and Testnet are described below in more detail. If the node connects to a different network, the ports may differ depending on how the network was set up.
 
 
-### Default networking port: 35000 {#35000}
+## Default Networking Port: 35000 {#35000}
 
 The configuration options for networking are under the `network` section of the `config.toml` file. The `bind_address` using port 35000 is the only port required to be open for the node to function. A Casper node taking part in the network should open connections to every other node it is aware of and has not blocked. In the `config.toml` file, the setting is:
 
@@ -28,7 +25,7 @@ bind_address = '0.0.0.0:35000'
 If the networking port is closed, the node becomes unreachable, and the node won't be discoverable in the network. If this is a validator, it will face eviction. A read-only node will be considered to be offline.
 
 
-### Default JSON-RPC HTTP server port: 7777 {#7777}
+## Default JSON-RPC HTTP Server Port: 7777 {#7777}
 
 The configuration options for the JSON-RPC HTTP server are under the `rpc_server` section in the `config.toml` file. The `address` using port 7777 is the listening address for JSON-RPC HTTP server. 
 
@@ -39,7 +36,7 @@ address = '0.0.0.0:7777'
 DApps would use this address to [interact with the Casper JSON-RPC API](../../developers/json-rpc). Users would use this address to [interact with the network using CLI](../../developers/cli/). Validators would use this address to [bond](../becoming-a-validator/bonding/#example-bonding-transaction) or [unbond](../becoming-a-validator/unbonding/). If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
 
 
-### Default REST HTTP server port: 8888 {#8888}
+## Default REST HTTP Server Port: 8888 {#8888}
 
 The configuration options for the JSON-RPC HTTP server are under the `rest_server` section in the `config.toml` file. The `address` listing port 8888 is the listening address for the REST HTTP server. 
 
@@ -50,6 +47,8 @@ address = '0.0.0.0:8888'
 Opening port 8888 is recommended but not required. This port allows the node to be included in the general network health metrics, thus giving a more accurate picture of overall network health. If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
 
 One may use this port to [get a trusted hash](https://docs.casperlabs.io/operators/setup/basic-node-configuration/#trusted-hash-for-synchronizing), [verify successful staging](https://docs.casperlabs.io/operators/setup/upgrade/#verifying-successful-staging) during an upgrade, or to [confirm that the node is synchronized](https://docs.casperlabs.io/operators/setup/joining/#step-7-confirm-the-node-is-synchronized).
+
+### Example usage
 
 For general health metrics, use this command:
 
@@ -87,7 +86,7 @@ To monitor local block height as well as RPC port status:
 watch -n 15 'curl -s http://<node_address>:8888/status | jq ".peers | length"; curl -s localhost:8888/status | jq .last_added_block_info; casper-client get-block'
 ```
 
-### Default SSE HTTP event stream server port: 9999 {#9999}
+## Default SSE HTTP Event Stream Server Port: 9999 {#9999}
 
 The configuration options for the SSE HTTP event stream server are listed under the `event_stream_server` section of the `config.toml` file. The `address` listing port 9999 is the listening address for the SSE HTTP event stream server. 
 
@@ -100,7 +99,7 @@ If this port is closed, the requests coming to this port will not be served, but
 
 ## Restricting Access for Private Networks
 
-Any node can join Mainnet and Testnet since they are public Casper networks. Private networks may wish to restrict access for new nodes joining the network as described [here](https://docs.casperlabs.io/operators/setup-network/create-private/#network-access-control).
+Any node can join Mainnet and Testnet and communicate with the nodes in the network. Private networks may wish to restrict access for new nodes joining the network as described [here](https://docs.casperlabs.io/operators/setup-network/create-private/#network-access-control).
 
 
 ## Summary of Related Links
