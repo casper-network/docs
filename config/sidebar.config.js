@@ -188,6 +188,7 @@ module.exports = {
                 "operators/setup/install-node",
                 "operators/setup/upgrade",
                 "operators/setup/joining",
+                "operators/setup/port-settings",
             ],
         },
         {
