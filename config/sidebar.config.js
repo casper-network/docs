@@ -307,29 +307,5 @@ module.exports = {
                 "dapp-dev-guide/building-dapps/nctl-test",
             ],
         },
-        //{
-        //    type: "category",
-        //    label: "Tutorials",
-        //    collapsible: true,
-        //    collapsed: true,
-        //    items: [
-        //        // TODO Hiding these 2 tutorials until we can refresh them
-        //        //                "dapp-dev-guide/tutorials/kv-storage-tutorial",
-        //        //                {
-        //        //                    type: "category",
-        //        //                    label: "Multi-Signature Tutorial",
-        //        //                    collapsible: true,
-        //        //                    collapsed: true,
-        //        //                    items: [
-        //        //                        "dapp-dev-guide/tutorials/multi-sig/index",
-        //        //                        "dapp-dev-guide/tutorials/multi-sig/concepts",
-        //        //                        "dapp-dev-guide/tutorials/multi-sig/contract",
-        //        //                        "dapp-dev-guide/tutorials/multi-sig/client",
-        //        //                        "dapp-dev-guide/tutorials/multi-sig/example",
-        //        //                        "dapp-dev-guide/tutorials/multi-sig/additional",
-        //        //                   ],
-        //        //                },
-        //    ],
-        //},
     ],*/
 };
