@@ -1,6 +1,6 @@
 # Sending Deploys to a Casper network using the Rust Client
 
-Ultimately, smart contracts are meant to run on the blockchain. You can send your contract to the network via a [Deploy](../../concepts/design/casper-design.md#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
+In order to install smart contracts on the blockchain, you can send your Wasm to the network via a [deploy](../../concepts/design/casper-design.md#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
 
 - You will need a client to interact with the network, such as the [default Casper client](../prerequisites.md#the-casper-command-line-client)
 - Ensure you have an [Account](../prerequisites.md#setting-up-an-account) and its associated [keys](../../concepts/accounts-and-keys.md) This account will pay for the Deploy, and its secret key will sign the Deploy
@@ -8,12 +8,13 @@ Ultimately, smart contracts are meant to run on the blockchain. You can send you
 
 ## Paying for Deploys {#paying-for-deploys}
 
-CSPR tokens are used to pay for transactions on the Casper Mainnet and Testnet. There are several ways to fund your account:
+CSPR tokens are used to pay for Deploys on the Casper Mainnet and Testnet. There are several ways to fund your account:
 
 - You may want to [transfer tokens from an exchange](../../users/funding-from-exchanges.md)
 - You can use a [block explorer to transfer tokens](../../users/token-transfer.md) between accounts' purses
 - You can also [transfer tokens using the default Casper client](../cli/transfers/index.md)
 - On the Testnet, you can use the [faucet functionality](../../users/testnet-faucet.md) for testing your smart contracts
+- When running a Network locally, using [nctl](../../dapp-dev-guide/building-dapps/nctl-test.md), you have several funded accounts to play with
 
 ## Monitoring the Event Stream for Deploys
 
@@ -48,7 +49,7 @@ casper-client put-deploy \
 4. `payment-amount` - The payment for the Deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-price) below
 5. `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
 
-Once you call this command, it will return a deploy hash, which you will need to verify that the deploy was accepted by the node. Sending a deploy to the network does not mean that the transaction was processed successfully. Once the network has received the deploy and done some preliminary validation of it, it will queue up in the system before being proposed in a block for execution. Therefore, you will need to check to see that the contract was executed as expected.
+Once you execute this command, it will return a Deploy hash, which you will need to verify that the Deploy was accepted by the node and to query the execution results of the Deploy. Sending a Deploy to the network does not mean that the Deploy was processed successfully. Once the network has received the Deploy and done some preliminary validation of it, it will queue up in the system before being proposed in a block for execution. Therefore, you will need to check to see that the Deploy was executed as expected.
 
 **Note**: Each Deploy gets a unique hash, which is part of the cryptographic security of blockchain technology. No two deploys will ever return the same hash.
 
@@ -375,7 +376,7 @@ For a step-by-step workflow, visit the [Two-Party Multi-Signature Deploy](../cli
 
 ## A Note about Gas Price {#a-note-about-gas-price}
 
-A common question frequently arises: "How do I know what the payment amount (gas cost) should be?" 
+A common question frequently arises: "How do I know what the payment amount (gas cost) should be?"
 
 We recommend installing your contracts in a test environment, making sure the cost tables match those of the production Casper network to which you want to send the deploy. If you plan on sending a deploy to [Mainnet](https://cspr.live/), you can use the [Testnet](https://testnet.cspr.live/) to estimate the payment amount needed for the deploy.
 
