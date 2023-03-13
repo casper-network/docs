@@ -9,7 +9,7 @@ This document describes in more detail a Casper node's default endpoints:
 - [REST HTTP server port: 8888](#8888)
 - [SSE HTTP event stream server port: 9999](#9999)
 
-Node operators can modify a node's configuration options, including the port settings, by updating the [node's config.toml](../setup/basic-node-configuration/#config-file), which is the node's configuration file. An example configuration file can be found [here](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml).
+Node operators can modify a node's configuration options, including the port settings, by updating the [node's config.toml](../setup/basic-node-configuration#config-file), which is the node's configuration file. An example configuration file can be found [here](https://github.com/casper-network/casper-protocol-release/blob/main/config/config-example.toml).
 
 The default endpoints for Mainnet and Testnet are described below in more detail. If the node connects to a different network, the ports may differ depending on how the network was set up.
 
@@ -33,7 +33,7 @@ The configuration options for the JSON-RPC HTTP server are under the `rpc_server
 address = '0.0.0.0:7777'
 ```
 
-DApps would use this address to [interact with the Casper JSON-RPC API](../../developers/json-rpc). Users would use this address to [interact with the network using CLI](../../developers/cli/). Validators would use this address to [bond](../becoming-a-validator/bonding/#example-bonding-transaction) or [unbond](../becoming-a-validator/unbonding/). If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
+DApps would use this address to [interact with the Casper JSON-RPC API](../../developers/json-rpc). Users would use this address to [interact with the network using CLI](../../developers/cli/). Validators would use this address to [bond](../becoming-a-validator/bonding#example-bonding-transaction) or [unbond](../becoming-a-validator/unbonding/). If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
 
 
 ## Default REST HTTP Server Port: 8888 {#8888}
@@ -46,7 +46,7 @@ address = '0.0.0.0:8888'
 
 Opening port 8888 is recommended but not required. This port allows the node to be included in the general network health metrics, thus giving a more accurate picture of overall network health. If this port is closed, the requests coming to this port will not be served, but the node remains unaffected.
 
-One may use this port to [get a trusted hash](https://docs.casperlabs.io/operators/setup/basic-node-configuration/#trusted-hash-for-synchronizing), [verify successful staging](https://docs.casperlabs.io/operators/setup/upgrade/#verifying-successful-staging) during an upgrade, or to [confirm that the node is synchronized](https://docs.casperlabs.io/operators/setup/joining/#step-7-confirm-the-node-is-synchronized).
+One may use this port to [get a trusted hash](https://docs.casperlabs.io/operators/setup/basic-node-configuration#trusted-hash-for-synchronizing), [verify successful staging](https://docs.casperlabs.io/operators/setup/upgrade#verifying-successful-staging) during an upgrade, or to [confirm that the node is synchronized](https://docs.casperlabs.io/operators/setup/joining#step-7-confirm-the-node-is-synchronized).
 
 ### Example usage
 
@@ -99,7 +99,7 @@ If this port is closed, the requests coming to this port will not be served, but
 
 ## Restricting Access for Private Networks
 
-Any node can join Mainnet and Testnet and communicate with the nodes in the network. Private networks may wish to restrict access for new nodes joining the network as described [here](https://docs.casperlabs.io/operators/setup-network/create-private/#network-access-control).
+Any node can join Mainnet and Testnet and communicate with the nodes in the network. Private networks may wish to restrict access for new nodes joining the network as described [here](https://docs.casperlabs.io/operators/setup-network/create-private#network-access-control).
 
 
 ## Summary of Related Links
@@ -111,10 +111,10 @@ Here is a summary of the links mentioned on this page:
 - [The node configuration file](../setup/basic-node-configuration.md#config-file)
 - [Interacting with the Casper JSON-RPC API](../../developers/json-rpc)
 - [Interacting with the network using CLI](../../developers/cli/)
-- [Bonding](../becoming-a-validator/bonding/#example-bonding-transaction) or [unbonding](../becoming-a-validator/unbonding/) as a validator
-- [Getting a trusted node hash](https://docs.casperlabs.io/operators/setup/basic-node-configuration/#trusted-hash-for-synchronizing)
-- [Verifying successful staging](https://docs.casperlabs.io/operators/setup/upgrade/#verifying-successful-staging)
-- [Confirming that the node is synchronized](https://docs.casperlabs.io/operators/setup/joining/#step-7-confirm-the-node-is-synchronized)
+- [Bonding](../becoming-a-validator/bonding#example-bonding-transaction) or [unbonding](../becoming-a-validator/unbonding/) as a validator
+- [Getting a trusted node hash](https://docs.casperlabs.io/operators/setup/basic-node-configuration#trusted-hash-for-synchronizing)
+- [Verifying successful staging](https://docs.casperlabs.io/operators/setup/upgrade#verifying-successful-staging)
+- [Confirming that the node is synchronized](https://docs.casperlabs.io/operators/setup/joining#step-7-confirm-the-node-is-synchronized)
 - [Monitoring and consuming events](../../developers/dapps/monitor-and-consume-events/)
 - [Private network access control](../setup-network/create-private.md#network-access-control)
 - [FAQs for a basic validator node ](../../faq/faq-validator.md)
