@@ -108,7 +108,7 @@ Identifier for possible ways to retrieve a Block.
 
 * `Height` Identify and retrieve the Block with its height.
 
-## Contract {#contract} 
+## Contract {#contract}
 
 A contract struct that can be serialized as a JSON object.
 
@@ -257,7 +257,7 @@ Options for dictionary item lookups.
     `dictionary_name` The named key under which the dictionary seed URef is stored.
 
     `dictionary_item_key` The dictionary item key formatted as a string.
-        
+
 * `URef` Lookup a dictionary item via its seed URef.
 
     `seed_uref` The dictionary's seed URef.
@@ -414,7 +414,7 @@ Required Parameters:
 
 * [`args`](#runtimeargs)
 
-## ExecutionEffect {#executioneffect} 
+## ExecutionEffect {#executioneffect}
 
 The journal of execution transforms from a single Deploy.
 
