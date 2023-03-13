@@ -1,8 +1,10 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Getting Started with Rust
 
 This guide covers the basic tools you will need to set up your first Casper smart contract. You will also be able to build a sample smart contract and run a few basic tests on it on your local machine.
 
-Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. This guide will walk you through the steps to set up your development environment and build your first contract. 
+Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. This guide will walk you through the steps to set up your development environment and build your first contract.
 
 ## Prerequisites {#prerequisites}
 
@@ -23,10 +25,6 @@ Once you finish installing Rust, check your version:
 ```bash
 rustup --version
 ```
-
-You will need the latest nightly toolchain to develop smart contracts in Rust. Please refer to the [Rust Documentation on Channels](https://rust-lang.github.io/rustup/concepts/channels.html) and the [Rust Documentation on Toolchains](https://rust-lang.github.io/rustup/concepts/toolchains.html) for further information.
-
-We recommend setting up the rust-toolchain in the top level directory of your project.
 
 **Casper Rust Packages**
 
@@ -137,7 +135,31 @@ As a brief example, open up _my-project/contract/src/main.rs_ in your editor, mo
 
 ### Installing the Casper Client
 
-We also provide a [Casper command-line client](../prerequisites.md#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain. 
+We also provide a [Casper command-line client](../prerequisites.md#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain.
+
+### Setting up an IDE
+
+There are many IDEs available for Rust development. The most popular IDEs for Rust are the following:
+
+- Visual Studio Code
+- CLion
+- IntelliJ Idea
+- Vim
+
+You can use whatever IDE you feel the most comfortable using. In all the exercises and tutorials, we will be using Visual Studio Code as it is the most popular one and has a lot of additional extensions, which might prove useful during the development process.
+The easiest way of installing the VSC is to get it from the [official site](https://code.visualstudio.com):
+
+<p align="center"><img src={useBaseUrl("/image/introduction/download-vscode.png")} alt="download-vscode" width="400"/></p>
+
+We advise installing the following extensions to support the development process:
+
+- Better TOML – support for formatting the TOML files
+- CodeLLDB – the Debug Extension – without it, it is impossible to debug the RUST Code from the IDE
+- crates – will help managing the crates
+- Error Lens – enhances the experience during programming and highlights the syntax errors to be more prominent and easily identifiable
+- rust-analyzer – official supported Rust Language extension
+
+During the exercises and tutorials, ways to leverage the extensions will be briefly described.
 
 ### Creating an Account
 
