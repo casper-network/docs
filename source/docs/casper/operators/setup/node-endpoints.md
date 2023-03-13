@@ -1,4 +1,4 @@
-# A Node's Port Settings
+# Node Endpoints
 
 As specified in the [Network Requirements](./install-node.md#network-requirements), a Casper node uses specific ports to communicate with client applications and other nodes on the network. This document goes into more detail describing the default port settings and linking to related topics.
 
