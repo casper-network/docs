@@ -185,6 +185,7 @@ module.exports = {
             items: [
                 "operators/setup/hardware",
                 "operators/setup/basic-node-configuration",
+                "operators/setup/node-endpoints",
                 "operators/setup/install-node",
                 "operators/setup/upgrade",
                 "operators/setup/joining",
