@@ -36,27 +36,6 @@ project-directory/
 
 The project structure will be different while designing the full stack architecture. This will be expanded upon while describing the dApps.
 
-### Creating the Project Manually
-
-:::tip
-
-As a beginner it is not advised to start with the manual project structure.
-Structure created automatically with `cargo casper` contains everything that is needed to start coding.
-
-:::
-
-1. Create a top-level project directory to store the contract code and its corresponding tests.
-
-2. Create a folder for the contract code inside the project directory. This folder contains the logic that will be compiled into Wasm and executed on a Casper node. In this example, we named the folder `contract`. You can use a different folder name if you wish.
-
-   - In the `contract` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the contract's dependencies.
-   - Add a Rust file with the contract code in the `src` folder. In this example, we have the `main.rs` file.
-
-3. Navigating back to the project directory, create a folder for the tests, which help verify the contract's functionality. In this example, we named the folder `tests`.
-
-   - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
-   - In the `src` folder, add a Rust file with the tests that verify the contract's behavior. In this example, we have the `integration-tests.rs` file.
-
 ### Creating the Project Automatically
 
 The `cargo casper` command can automatically set up the project structure, as shown [here](./getting-started.md#creating-a-project). Alternatively, follow the steps below to customize the project, yet create the various folders using `cargo`.
@@ -89,6 +68,30 @@ The `cargo casper` command can automatically set up the project structure, as sh
 
     The [Testing Smart Contracts](./testing-contracts.md) guide explains how to update the tests using example code.
 
+
+
+### Creating the Project Manually
+
+:::tip
+
+As a beginner it is not advised to start with the manual project structure.
+Structure created automatically with `cargo casper` contains everything that is needed to start coding.
+
+:::
+
+1. Create a top-level project directory to store the contract code and its corresponding tests.
+
+2. Create a folder for the contract code inside the project directory. This folder contains the logic that will be compiled into Wasm and executed on a Casper node. In this example, we named the folder `contract`. You can use a different folder name if you wish.
+
+   - In the `contract` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the contract's dependencies.
+   - Add a Rust file with the contract code in the `src` folder. In this example, we have the `main.rs` file.
+
+3. Navigating back to the project directory, create a folder for the tests, which help verify the contract's functionality. In this example, we named the folder `tests`.
+
+   - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
+   - In the `src` folder, add a Rust file with the tests that verify the contract's behavior. In this example, we have the `integration-tests.rs` file.
+
+
 ## Writing a Basic Smart Contract
 
 This section covers the process of writing a smart contract in Rust, using example code from the [counter contract](https://github.com/casper-ecosystem/counter/). This simple contract allows callers to increment and retrieve an integer. Casper provides a [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html) within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/index.html) crate.
@@ -111,11 +114,11 @@ To be able to comfortably write code in Rust it is crucial to understand these t
 
 The `Cargo.toml` file includes the dependencies and versions the contract requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
 
-```typescript
+```toml
 [dependencies]
-// A library for developing Casper network smart contracts.
+# A library for developing Casper network smart contracts.
 casper-contract = "1.4.4"
-// Types shared by many Casper crates for use on a Casper network.
+# Types shared by many Casper crates for use on a Casper network.
 casper-types = "1.5.0"
 ```
 
@@ -328,6 +331,7 @@ let (stored_contract_hash, _) =
 To compile the smart contract, run the following command in the directory hosting the `Cargo.toml` file and `src` folder.
 
 ```bash
+rustup target add wasm32-unknown-unknown
 cargo build --release --target wasm32-unknown-unknown
 ```
 
