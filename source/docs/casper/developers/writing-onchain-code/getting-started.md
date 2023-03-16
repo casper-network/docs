@@ -18,6 +18,13 @@ The [official Rust guide](https://www.rust-lang.org/tools/install) recommends in
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
+The installation script automatically adds Rust to your system PATH after your next login.
+To start using Rust right away instead of restarting your terminal, run the following command in your shell to add Rust to your system PATH manually:
+
+```bash
+$ source $HOME/.cargo/env
+```
+
 You can also use `brew` on MacOS or `apt` on Linux to install Rust.
 
 Once you finish installing Rust, check your version:
@@ -48,6 +55,9 @@ CMake is a popular build tool that we will utilize, and you may very well have i
 
 ```bash
 $ cmake --version
+```
+Output:
+```
 cmake version 3.20.0
 
 CMake suite maintained and supported by Kitware (kitware.com/cmake).
@@ -57,7 +67,7 @@ CMake suite maintained and supported by Kitware (kitware.com/cmake).
 
 ### Installing the Casper Crates {#installing-the-casper-crates}
 
-The best and fastest way to set up a Casper Rust Smart Contract project is to use `cargo-casper`. When you use this, it will set the project up with a simple contract, a runtime environment and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python). It is possible to use this configuration in your CI/CD pipeline as well.
+The best and fastest way to set up a Casper Rust Smart Contract project is to use `cargo-casper`. When you use this, it will set the project up with a simple contract, a runtime environment and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or npm/yarn for those coming from Javascript). It is possible to use this configuration in your CI/CD pipeline as well.
 
 ```bash
 cargo install cargo-casper
@@ -93,7 +103,9 @@ make prepare
 make build-contract
 ```
 
-Inside the _contract_ folder, you will now see a _target_ folder that contains the compiled smart contract named _contract.wasm_ at `my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`.
+You can find the compiled contract here:
+
+`my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`
 
 **Linting**
 
@@ -135,7 +147,7 @@ As a brief example, open up _my-project/contract/src/main.rs_ in your editor, mo
 
 ### Installing the Casper Client
 
-We also provide a [Casper command-line client](../prerequisites.md#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain.
+The [Casper command-line client](../prerequisites.md#the-casper-command-line-client) is a Rust CLI tool that can help you transmit deploys and install code on-chain. It's recommended to install the client as it's used to deploy contracts and session code in other on-chain tutorials.
 
 ### Setting up an IDE {#setting-ide}
 
