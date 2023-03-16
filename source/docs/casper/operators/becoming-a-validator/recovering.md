@@ -43,7 +43,7 @@ You know you were evicted if the `get-auction-info` command returned your bid sh
 If you receive a `parse error: Invalid numeric literal at`, this usually means that your RPC port is not up yet. Get your node in sync, and the RPC will come up. This should be working before you try to recover. Try running the following command to check the status of your RPC port:
 
 ```bash
-casper-client get-auction-info --node-address http://<peer-ip-address>:7777
+casper-client get-auction-info
 ```
 
 ## Correcting any Underlying Node Issues
