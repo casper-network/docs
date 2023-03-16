@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This page describes the differences between a validator node being considered inactive or faulty.
 
-In the last block of each era _N_, the consensus algorithm checks whether there are _any_ messages from your validator node in that era that have been received by most of the other validators. Only if there is no such message does your node get marked as "inactive" in that block.
+In the last block of each era _N_, the consensus algorithm checks whether there are _any_ messages from your validator node in that era that have been received by most of the other validators. Only if there is no such message does your node get marked as **inactive** in that block.
 
 Similarly, the consensus algorithm checks whether any two messages from your validator node contradict each other. If that is the case, it gets marked as "faulty" in that block. Usually, that means:
 
