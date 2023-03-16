@@ -196,7 +196,12 @@ module.exports = {
             label: "Becoming a Validator",
             collapsible: true,
             collapsed: true,
-            items: ["operators/becoming-a-validator/bonding", "operators/becoming-a-validator/unbonding"],
+            items: [
+                "operators/becoming-a-validator/bonding",
+                "operators/becoming-a-validator/recovering",
+                "operators/becoming-a-validator/inactive-vs-faulty",
+                "operators/becoming-a-validator/unbonding",
+            ],
         },
         {
             type: "category",
