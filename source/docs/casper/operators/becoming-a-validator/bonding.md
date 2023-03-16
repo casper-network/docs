@@ -290,7 +290,7 @@ If a bid doesn't win a slot in the auction, it is too low. The resolution is to 
 
 ## Avoiding Ejection {#avoiding-ejection}
 
-To stay bonded and avoid ejection, each validator must keep the node running and in sync with the rest of the network. To recover from ejection, you will find more details [here](./recovering.md).
+To stay bonded and avoid ejection, each validator must keep their node running and in sync with the rest of the network. To recover from ejection, you will find more details [here](./recovering.md).
 
 ## Withdrawing a Bid {#withdrawing-a-bid}
 
