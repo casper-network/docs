@@ -38,7 +38,7 @@ Or, if you set up the node as described in this documentation, you can run anoth
 casper-client get-auction-info | jq --arg pk "$(cat /etc/casper/validator_keys/public_key_hex)" '.result.auction_state.bids[] | select( (.public_key | ascii_downcase) == ($pk | ascii_downcase) )'
 ```
 
-You know you were evicted if the `get-auction-info` command returned your bid showing an `inactive " field. See the [Inactive vs. Faulty Validator Nodes](./inactive-vs-faulty.md) page for more information.
+You know you were evicted if the `get-auction-info` command returned your bid showing an **inactive** field. See the [Inactive vs. Faulty Validator Nodes](./inactive-vs-faulty.md) page for more information.
 
 If you receive a `parse error: Invalid numeric literal at`, this usually means that your RPC port is not up yet. Get your node in sync, and the RPC will come up. This should be working before you try to recover. Try running the following command to check the status of your RPC port:
 
