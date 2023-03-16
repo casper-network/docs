@@ -22,7 +22,7 @@ For example, if we are in Era 100 and your node is invalid, your node will be ma
 
 If you were a previous validator and still exist on the [Validators Auction](https://cspr.live/validators-auction) tab but not in [Validators](https://cspr.live/validators), you may have been evicted or outbid. 
 
-### Detection using the Casper client
+### Detection using the Casper Client
 
 The entire auction information is returned with the `casper-client get-auction-info` command. It would help if you filtered this down to your public key. 
 
