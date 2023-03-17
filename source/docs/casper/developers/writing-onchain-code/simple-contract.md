@@ -230,6 +230,10 @@ Each entry point should have these arguments:
 This step adds the individual entry points to a `counter_entry_points` object using the `add_entry_point` method. This object will later be passed to the `new_contract` method.
 
 ```rust
+#[no_mangle]
+pub extern "C" fn call() {
+    // Initialize the count to 0 locally
+    let count_start = storage::new_uref(0_i32);
     // Create the entry points for this contract
     let mut counter_entry_points = EntryPoints::new();
 
@@ -249,6 +253,7 @@ This step adds the individual entry points to a `counter_entry_points` object us
         EntryPointType::Contract,
     ));
 ```
+In the following, we will add more content to this call function.
 
 3) Create the contract's named keys.
 
@@ -295,6 +300,59 @@ Generally, the `Contract_Hash` and `Contract_Version` are saved as `NamedKeys` i
 
     // Create a named key for the contract hash.
     runtime::put_key(CONTRACT_KEY, stored_contract_hash.into());
+```
+
+The complete call function should look like this:
+
+```rust
+#[no_mangle]
+pub extern "C" fn call() {
+    // Initialize the count to 0 locally
+    let count_start = storage::new_uref(0_i32);
+
+    // In the named keys of the contract, add a key for the count
+    let mut counter_named_keys = NamedKeys::new();
+    let key_name = String::from(COUNT_KEY);
+    counter_named_keys.insert(key_name, count_start.into());
+
+    // Create entry points for this contract
+    let mut counter_entry_points = EntryPoints::new();
+
+    counter_entry_points.add_entry_point(EntryPoint::new(
+        ENTRY_POINT_COUNTER_GET,
+        Vec::new(),
+        CLType::I32,
+        EntryPointAccess::Public,
+        EntryPointType::Contract,
+    ));
+
+    counter_entry_points.add_entry_point(EntryPoint::new(
+        ENTRY_POINT_COUNTER_INC,
+        Vec::new(),
+        CLType::Unit,
+        EntryPointAccess::Public,
+        EntryPointType::Contract,
+    ));
+
+    // Create a new contract package that can be upgraded
+    let (stored_contract_hash, contract_version) = storage::new_contract(
+        counter_entry_points,
+        Some(counter_named_keys),
+        Some(CONTRACT_PACKAGE_NAME.to_string()),
+        Some(CONTRACT_ACCESS_UREF.to_string()),
+    );
+
+    /* To create a locked contract instead, use new_locked_contract and throw away the contract version returned
+    let (stored_contract_hash, _) =
+        storage::new_locked_contract(counter_entry_points, Some(counter_named_keys), None, None); */
+
+    // Store the contract version in the context's named keys
+    let version_uref = storage::new_uref(contract_version);
+    runtime::put_key(CONTRACT_VERSION_KEY, version_uref.into());
+
+    // Create a named key for the contract hash
+    runtime::put_key(CONTRACT_KEY, stored_contract_hash.into());
+}
 ```
 
 ## Locked Contracts {#locked-contracts}
