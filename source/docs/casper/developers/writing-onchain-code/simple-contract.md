@@ -38,7 +38,7 @@ The project structure will be different while designing the full stack architect
 
 ### Creating the Project Automatically
 
-The `cargo casper` command can automatically set up the project structure, as shown [here](./getting-started.md#creating-a-project). Alternatively, follow the steps below to customize the project, yet create the various folders using `cargo`.
+The `cargo casper` [command](./getting-started.md#creating-a-project) can automatically set up the project structure, as shownabove. Alternatively, follow the steps below to customize the project, yet create the various folders using `cargo`.
 
 1. Create a top-level project directory for the contract code and its corresponding tests.
 
