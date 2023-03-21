@@ -8,7 +8,7 @@ slug: /intro-to-dapps
 ## Definition of a dApp
 
 First, some definitions. What exactly is a DApp? DApp stands for **Decentralized Application**. Specifically, an app built on a blockchain network which combines smart contracts and a user interface.
-To be considered a DApp, an app should fulfill the following requirements:
+To be considered a dApp, an app should fulfill the following requirements:
 
 - Decentralized: DApps are run by thousands of nodes around the globe. No party can take control of it, including governments and the developers.
 - Deterministic: The execution of DApps is not affected by any changes in the environment.
