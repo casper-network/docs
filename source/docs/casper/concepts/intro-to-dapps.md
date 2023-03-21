@@ -31,7 +31,7 @@ You do not need to provide real-world identification, such as a Google or Facebo
 Data stored on the blockchain is immutable and decentralized, rather than relying on a centralized authority. Users may not change the transaction record or any other data present on the blockchain.
 
 
-## Downsides to DApps
+## Downsides to dApps
 
 1. Maintenance: Compared to traditional applications, once a DApp is published, it is more difficult to maintain as the data is stored on the Blockchain which is immutable. If bugs are found, developers can’t fix them as easily as with a traditional client-server architecture.
 2. Network Efficiency
