@@ -17,7 +17,7 @@ To be considered a dApp, an app should fulfill the following requirements:
 
 A dApp is not a client-server application, where the application can do some work offline. Nor is it a web application that can operate in a disconnected mode, where there is a central server which acts as a repository of information and business logic. A dApp’s concept and construction depend on a distributed architecture where a network of nodes processes the installation and invocation of smart contracts, rather than through a central server.
 
-## Benefits of a DApp
+## Benefits of a dApp
 
 1. Durability/uptime characteristics. Because of the fact that each operation on a DApp is processed by one or many identical nodes in a network, if one node goes down it has no effect on the overall operation of the network. DApps can maintain 24/7, uninterrupted uptime without investment in massive data centers or secure facilities. A DApp cannot be attacked by Denial of Service (DDOS) attacks.
 2. User Privacy: You do not need to provide some real-world identification, such as a GMail or Facebook account, to interact with a Blockchain network.
