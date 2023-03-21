@@ -1,5 +1,5 @@
 ---
-title: Deploy & Deploy Lifecycle
+title: Deploys and the Deploy Lifecycle
 slug: /deploy-and-deploy-lifecycle
 ---
 
