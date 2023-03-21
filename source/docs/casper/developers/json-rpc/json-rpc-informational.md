@@ -247,6 +247,7 @@ This method retrieves a [Deploy](../../concepts/design/casper-design.md#executio
 |Parameter|Type|Description|
 |---------|----|-----------|
 |[deploy_hash](./types_chain.md#deployhash)|String|The Deploy hash.|
+|[finalized_approvals](./types_chain.md#finalizedapprovals)|Boolean|Determines whether to return the Deploy with the finalized approvals substituted. (Optional)|
 
 <details>
 
@@ -785,7 +786,7 @@ This method returns the current status of a node.
 {
   "id": 1,
   "jsonrpc": "2.0",
-  "method": "info_get_peers",
+  "method": "info_get_status",
   "params": []
 }
 
@@ -819,12 +820,30 @@ This method returns the current status of a node.
   "jsonrpc": "2.0",
   "result": {
     "api_version": "1.4.13",
+    "build_version": "1.4.13-c8db6a737-casper-mainnet",
+    "chainspec_name": "casper-example",
+    "last_added_block_info": {
+      "creator": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+      "era_id": 1,
+      "hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
+      "height": 10,
+      "state_root_hash": "0808080808080808080808080808080808080808080808080808080808080808",
+      "timestamp": "2020-11-17T00:39:24.072Z"
+    },
+    "next_upgrade": {
+      "activation_point": 42,
+      "protocol_version": "2.0.1"
+    },
+    "our_public_signing_key": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
     "peers": [
       {
         "address": "127.0.0.1:54321",
         "node_id": "tls:0101..0101"
       }
-    ]
+    ],
+    "round_length": "1m 5s 536ms",
+    "starting_state_root_hash": "0202020202020202020202020202020202020202020202020202020202020202",
+    "uptime": "13s"
   }
 }
 
