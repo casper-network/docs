@@ -11,7 +11,7 @@ DApp stands for **Decentralized Application**. Specifically, it refers to an app
 To be considered a dApp, an app should fulfill the following requirements:
 
 - Decentralized: DApps are run by multiple nodes around the globe. No party can take control of them, including governments and the developers.
-- Deterministic: The execution of DApps is not affected by any changes in the environment.
+- Deterministic: Changes in the environment do not affect the execution of a dApp.
 - Turing complete: DApps can perform any action given the required resources.
 - Isolated: DApps are executed in an isolated situation. If a DApp has a bug, it won't affect the normal functioning of the Blockchain network.
 
