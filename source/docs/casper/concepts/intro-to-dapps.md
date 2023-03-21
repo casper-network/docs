@@ -1,5 +1,5 @@
 ---
-title: Introduction to DApps
+title: Introduction to dApps
 slug: /intro-to-dapps
 ---
 
