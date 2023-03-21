@@ -22,7 +22,9 @@ A dApp is not a client-server application, where the application can do some wor
 1. Durability/uptime characteristics
 
 Due to the fact that each operation on a dApp is processed by one or many identical nodes in a network, failure of a single node has no effect on the overall operation of the network. DApps can maintain 24/7, uninterrupted uptime without investment in massive data centers or secure facilities. A dApp cannot be attacked by Denial of Service (DDOS) attacks.
-2. User Privacy: You do not need to provide some real-world identification, such as a GMail or Facebook account, to interact with a Blockchain network.
+2. User privacy
+
+You do not need to provide real-world identification, such as a Google or Facebook account, to interact with a blockchain network.
 3. Resistance to outside control. No single entity can block another from accessing the blockchain, reading data, deploying or interacting with DApps, or submitting transactions to the chain.
 4. Trust in the state of the block chain: The data stored on the blockchain is immutable and indisputable, rather than relying on a centralized authority. Users may not change the transaction record or other data that has already been launched to the public.
 
