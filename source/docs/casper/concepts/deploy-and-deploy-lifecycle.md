@@ -3,7 +3,7 @@ title: Deploy & Deploy Lifecycle
 slug: /deploy-and-deploy-lifecycle
 ---
 
-# Deploy & the Deploy Lifecycle
+# Deploys and the Deploy Lifecycle
 
 ## Deploys {#execution-semantics-deploys}
 
