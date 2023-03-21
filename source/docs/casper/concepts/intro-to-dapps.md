@@ -26,7 +26,9 @@ Due to the fact that each operation on a dApp is processed by one or many identi
 
 You do not need to provide real-world identification, such as a Google or Facebook account, to interact with a blockchain network.
 3. Resistance to outside control. No single entity can block another from accessing the blockchain, reading data, deploying or interacting with DApps, or submitting transactions to the chain.
-4. Trust in the state of the block chain: The data stored on the blockchain is immutable and indisputable, rather than relying on a centralized authority. Users may not change the transaction record or other data that has already been launched to the public.
+4. Trust in the state of the blockchain
+
+Data stored on the blockchain is immutable and decentralized, rather than relying on a centralized authority. Users may not change the transaction record or any other data present on the blockchain.
 
 
 ## Downsides to DApps
