@@ -22,7 +22,7 @@ A [Deploy](./serialization-standard.md#serialization-standard-deploy) is a data 
 - Deploy hash: the `blake2b` hash of the Header
 - Approvals: the set of signatures which have signed the deploy hash; these are used in the [account permissions model](./design/casper-design.md#accounts-associated-keys-weights)
 
-## Deploy Lifecycle {#execution-semantics-phases}
+## The Deploy Lifecycle {#execution-semantics-phases}
 
 A deploy goes through the following phases on Casper:
 
