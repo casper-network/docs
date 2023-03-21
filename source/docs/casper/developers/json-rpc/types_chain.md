@@ -450,6 +450,10 @@ The result of executing a single Deploy.
 
     [`cost`](#u512)
 
+## FinalizedApprovals {#finalizedapprovals}
+
+A boolean value that determines whether to return the deploy with the finalized approvals substituted. If `false` or omitted, returns the deploy with the approvals that were originally received by the node.
+
 ## GlobalStateIdentifier {#globalstateidentifier}
 
 Identifier for possible ways to query global state.
