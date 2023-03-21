@@ -35,7 +35,9 @@ Data stored on the blockchain is immutable and decentralized, rather than relyin
 
 ## Downsides to dApps
 
-1. Maintenance: Compared to traditional applications, once a DApp is published, it is more difficult to maintain as the data is stored on the Blockchain which is immutable. If bugs are found, developers can’t fix them as easily as with a traditional client-server architecture.
+1. Maintenance
+
+Compared to traditional applications, once a DApp is published, it is more difficult to maintain. The data is stored immutably on the blockchain. If bugs are found, developers can’t fix them as easily as with a traditional client-server architecture.
 2. Network Efficiency
 
 DApp networks and platforms need to reach consensus before mutating the state of the chain. This means that processing millions of transactions per second, such as in a low-latency trading or betting applications, is not possible. Dapps are not the correct architecture for applications that require high network performance.
