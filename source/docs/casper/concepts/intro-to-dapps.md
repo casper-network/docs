@@ -3,7 +3,7 @@ title: Introduction to DApps
 slug: /intro-to-dapps
 ---
 
-# Introduction to DApps (Distributed Applications)
+# Introduction to dApps (Distributed Applications)
 
 ## Definition of a DApp
 
