@@ -15,7 +15,7 @@ To be considered a dApp, an app should fulfill the following requirements:
 - Turing complete: DApps can perform any action given the required resources.
 - Isolated: DApps are executed in an isolated situation. If a DApp has a bug, it won't affect the normal functioning of the blockchain network.
 
-So a DApp is not just a client-server application where the application can do some work offline, nor a web application which can operate in a disconnected mode, where there is a central server which acts as a repository of information and business logic. A DApp is conceived and built using a distributed architecture where the network of nodes does the processing of smart contracts instead of a central server.
+A dApp is not a client-server application, where the application can do some work offline. Nor is it a web application that can operate in a disconnected mode, where there is a central server which acts as a repository of information and business logic. A dApp’s concept and construction depend on a distributed architecture where a network of nodes processes the installation and invocation of smart contracts, rather than through a central server.
 
 ## Benefits of a DApp
 
