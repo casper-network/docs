@@ -13,7 +13,7 @@ To be considered a dApp, an app should fulfill the following requirements:
 - Decentralized: DApps are run by multiple nodes around the globe. No party can take control of them, including governments and the developers.
 - Deterministic: Changes in the environment do not affect the execution of a dApp.
 - Turing complete: DApps can perform any action given the required resources.
-- Isolated: DApps are executed in an isolated situation. If a DApp has a bug, it won't affect the normal functioning of the Blockchain network.
+- Isolated: DApps are executed in an isolated situation. If a DApp has a bug, it won't affect the normal functioning of the blockchain network.
 
 So a DApp is not just a client-server application where the application can do some work offline, nor a web application which can operate in a disconnected mode, where there is a central server which acts as a repository of information and business logic. A DApp is conceived and built using a distributed architecture where the network of nodes does the processing of smart contracts instead of a central server.
 
