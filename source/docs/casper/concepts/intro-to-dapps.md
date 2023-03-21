@@ -28,7 +28,9 @@ So a DApp is not just a client-server application where the application can do s
 ## Downsides to DApps
 
 1. Maintenance: Compared to traditional applications, once a DApp is published, it is more difficult to maintain as the data is stored on the Blockchain which is immutable. If bugs are found, developers can’t fix them as easily as with a traditional client-server architecture.
-2. Network Efficiency: DApp networks and platforms need to agree consensus before mutating the state of the chain. This means that processing millions of transactions per second, such as in a low-latency trading or betting application, is not possible. If blistering network performance is a prerequisite, then perhaps DApps are not the correct architecture for the application.
+2. Network Efficiency
+
+DApp networks and platforms need to reach consensus before mutating the state of the chain. This means that processing millions of transactions per second, such as in a low-latency trading or betting applications, is not possible. Dapps are not the correct architecture for applications that require high network performance.
 
 ## Some popular use cases
 
