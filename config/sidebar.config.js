@@ -5,7 +5,7 @@ module.exports = {
         "concepts/accounts-and-keys",
         "concepts/understanding-hash-types",
         //"concepts/deploy-and-deploy-lifecycle", // NEW CONTENT WILL BE HERE
-        //"concepts/global-state", // NEW CONTENT WILL BE HERE
+        "concepts/global-state",
         //"concepts/smart-contracts", // NEW CONTENT WILL BE HERE
         "concepts/callstack",
         "concepts/session-code",
