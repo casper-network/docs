@@ -1,0 +1,122 @@
+@import "../../../assets/scss/mixins";
+
+.button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    border-radius: 1px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0;
+    max-width: 250px;
+
+    &_container {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        margin: 8px 12px 8px 14px;
+        @include transition(0.3s all);
+        width: 100%;
+
+        > p {
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+            max-width: 80%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        > svg {
+            margin: 0;
+
+            > path {
+                width: 9.33px;
+                height: 8.17px;
+            }
+        }
+    }
+}
+
+//PrimaryBtn
+.primary {
+    background: var(--casperWhite);
+    border: 1px solid var(--casperWhite);
+    color: var(--black);
+    @include transition(0.3s all);
+
+    &_container {
+        @include transition(0.3s all);
+        > svg {
+            > path {
+                fill: var(--black);
+            }
+        }
+    }
+    &:hover,
+    &:focus {
+        outline: none;
+        background: var(--primaryBtn-hover);
+        border: 1px solid var(--primaryBtn-hover);
+        color: var(--black);
+
+        .button_container {
+            gap: 13px;
+        }
+    }
+    &:active {
+        background: var(--casperWhite);
+        border: 1px solid var(--casperWhite);
+    }
+}
+.disabled {
+    color: var(--primaryBtn-disabled);
+    border: 1px solid var(--primaryBtn-disabled);
+    &:hover,
+    &:focus {
+        outline: none;
+        background: var(--casperWhite);
+        border: 1px solid var(--primaryBtn-disabled);
+        .button_container {
+            gap: 8px;
+        }
+    }
+}
+
+//SecondaryBtn
+.secondary {
+    background: var(--black);
+    border: 1px solid var(--casperWhite);
+    color: var(--casperWhite);
+    @include transition(0.3s all);
+
+    &_container {
+        > svg {
+            > path {
+                fill: var(--casperWhite);
+            }
+        }
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: none;
+        background-color: var(--secondaryBtn-hover);
+        color: var(--casperWhite);
+
+        .secondary_container {
+            gap: 13px;
+        }
+    }
+}

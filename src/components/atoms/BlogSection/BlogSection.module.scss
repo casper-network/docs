@@ -1,0 +1,16 @@
+.blogtiles {
+    width: 100%;
+    background-color: var(--black);
+    color: var(--casperWhite);
+
+    .blogtiles_content {
+        @media (max-width: 1400px) {
+            grid-template-columns: repeat(auto-fill, minmax(360px, 100px));
+            justify-content: center;
+            align-items: center;
+        }
+        @media (max-width: 400px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}

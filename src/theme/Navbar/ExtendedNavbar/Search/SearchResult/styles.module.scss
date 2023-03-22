@@ -1,0 +1,77 @@
+@use "../../../../../assets/scss/mixins";
+
+.results_container {
+    position: absolute;
+    width: 100%;
+    background-color: var(--liftedBlack);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 27px;
+    padding: 20px 15px;
+    max-height: 381px;
+    overflow-y: scroll;
+
+    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+
+    .results_container_hit {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: #ffffff;
+        text-decoration: none;
+        max-height: 50px;
+        
+
+        svg {
+            path {
+                fill: #6d6d6d;
+            }
+        }
+        &:hover {
+            @include mixins.transition(0.3s all);
+            color: var(--casperYellow);
+        }
+        .results_container_hit_link {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: flex-start;
+            align-items: center;
+            width: 90%;
+
+            .hitContent {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+                width: 100%;
+                justify-content: flex-start;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                > small {
+                    max-width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    color: #c3c3c3;
+                }
+            }
+            em {
+                color: var(--casperYellow);
+                background-color: transparent;
+                font-style: normal;
+            }
+        }
+    }
+}
+
+@media (max-width: 996px) {
+    .results_container {
+        z-index: 6;
+    }
+}

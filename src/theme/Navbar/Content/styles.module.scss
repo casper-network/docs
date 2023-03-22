@@ -1,0 +1,14 @@
+@use "../../../assets/scss/variables/sizes";
+
+.fullNavBarHeight{
+  height: var(--navBarDocHeight);
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 996px) {
+  .colorModeToggle {
+    display: none;
+  }
+}

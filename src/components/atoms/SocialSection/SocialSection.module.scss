@@ -1,0 +1,29 @@
+.socialtiles {
+    width: 100%;
+    background-color: var(--liftedBlack);
+    color: var(--casperWhite);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .socialtiles_content {
+        @media (max-width: 1400px) {
+            grid-template-columns: repeat(auto-fill, minmax(350px, 400px));
+            justify-content: center;
+            align-items: center;
+
+            [class*='span-4'] {
+                grid-column: unset
+            }
+        }
+
+        @media (max-width: 400px) {
+            > section {
+                width: 100%;
+                overflow: hidden;
+            }
+
+            grid-template-columns: 1fr;
+        }
+    }
+}
