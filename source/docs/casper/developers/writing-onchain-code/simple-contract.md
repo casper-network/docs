@@ -432,7 +432,7 @@ let (stored_contract_hash, _) =
 
 ## Compiling Contract Code {#compiling-contract-code}
 
-To compile the smart contract, run the following command in the directory hosting the `Cargo.toml` file and `src` folder.
+To compile the smart contract, run the following commands in the `contract` folder in your project's directory where `Cargo.toml` file and `src` folder are hosted.
 
 ```bash
 rustup target add wasm32-unknown-unknown
