@@ -297,6 +297,7 @@ pub extern "C" fn call() {
         EntryPointAccess::Public,
         EntryPointType::Contract,
     ));
+}
 ```
 In the following, we will add more content to this call function.
 
