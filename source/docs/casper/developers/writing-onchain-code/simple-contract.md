@@ -133,7 +133,7 @@ Structure created automatically with `cargo casper` contains everything that is 
 4. Manually create Makefile and rust-toolchain as per [Semi-automatic setup (4.)](#semi-automatic-project-setup)
 ### Dependencies
 
-The `Cargo.toml` file includes the dependencies and versions the contract requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
+The `Cargo.toml` file in the `contract` folder includes the dependencies and versions the contract requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
 
 
 If you followed the [automatic setup](#automatic-project-setup), the dependencies should already be defined in `Cargo.toml`. For the [semi-automatic setup](#semi-automatic-project-setup) and [manual setup](#manual-project-setup) however, you'll need to manually add the dependencies to your crate's `Cargo.toml` file:
