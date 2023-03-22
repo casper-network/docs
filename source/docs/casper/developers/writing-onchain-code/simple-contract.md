@@ -24,10 +24,15 @@ To begin creating a smart contract, you need to set up the project structure, ei
 
 ```bash
 project-directory/
+
 └── contract/
     ├── src/
         └── main.rs
     └── Cargo.toml
+
+└── Makefile
+└── rust-toolchain
+
 └── tests/
     ├── src/
         └── integration-tests.rs
@@ -36,9 +41,15 @@ project-directory/
 
 The project structure will be different while designing the full stack architecture. This will be expanded upon while describing the dApps.
 
-### Creating the Project Automatically
+### Automatically using cargo-casper {#automatic-project-setup}
+The `cargo casper` [command](./getting-started.md#creating-a-project) can automatically set up the project structure, as shown above. This is the recommended way of setting up a new casper project. The `cargo casper` command will generate an example contract in the contract directory, as well as an example tests crate with logic defined in integration-tests.rs. The Makefile includes commands to prepare and build the contract and the rust-toolchain file specifies the target build version of rust.
+### Semi-automatically using "vanilla" cargo {#semi-automatic-project-setup}
+:::tip
 
-The `cargo casper` [command](./getting-started.md#creating-a-project) can automatically set up the project structure, as shown above. Alternatively, follow the steps below to customize the project, yet create the various folders using `cargo`.
+As a beginner it is not advised to start with the semi-automatic project structure.
+Structure created automatically with `cargo casper` contains everything that is needed to start coding.
+
+:::
 
 1. Create a top-level project directory for the contract code and its corresponding tests.
 
@@ -68,10 +79,39 @@ The `cargo casper` [command](./getting-started.md#creating-a-project) can automa
 
     The [Testing Smart Contracts](./testing-contracts.md) guide explains how to update the tests using example code.
 
+4. Other than cargo-casper, "vanilla" cargo does not create a Makefile and rust-toolchain configuration file for us. Therefore we need to manually add these to the root of our project tree.
 
+Makefile:
+```bash
+prepare:
+        rustup target add wasm32-unknown-unknown
 
-### Creating the Project Manually
+build-contract:
+        cd contract && cargo build --release --target wasm32-unknown-unknown
+        wasm-strip contract/target/wasm32-unknown-unknown/release/contract.wasm 2>/dev/null | true
 
+test: build-contract
+        mkdir -p tests/wasm
+        cp contract/target/wasm32-unknown-unknown/release/contract.wasm tests/wasm
+        cd tests && cargo test
+
+clippy:
+        cd contract && cargo clippy --all-targets -- -D warnings
+        cd tests && cargo clippy --all-targets -- -D warnings
+
+check-lint: clippy
+        cd contract && cargo fmt -- --check
+        cd tests && cargo fmt -- --check
+
+lint: clippy
+        cd contract && cargo fmt
+        cd tests && cargo fmt
+```
+rust-toolchain file:
+```bash
+nightly-2022-08-03
+```
+### Manually {#manual-project-setup}
 :::tip
 
 As a beginner it is not advised to start with the manual project structure.
@@ -90,9 +130,29 @@ Structure created automatically with `cargo casper` contains everything that is 
 
    - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
    - In the `src` folder, add a Rust file with the tests that verify the contract's behavior. In this example, we have the `integration-tests.rs` file.
+4. Manually create Makefile and rust-toolchain as per [Semi-automatic setup (4.)](#semi-automatic-project-setup)
+### Dependencies
+
+The `Cargo.toml` file includes the dependencies and versions the contract requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
+
+
+If you followed the [automatic setup](#automatic-project-setup), the dependencies should already be defined in `Cargo.toml`. For the [semi-automatic setup](#semi-automatic-project-setup) and [manual setup](#manual-project-setup) however, you'll need to manually add the dependencies to your crate's `Cargo.toml` file:
+
+```toml
+[dependencies]
+# A library for developing Casper network smart contracts.
+casper-contract = "1.4.4"
+# Types shared by many Casper crates for use on a Casper network.
+casper-types = "1.5.0"
+```
+
+- `casper-contract = "1.4.4"` - Provides the SDK for the execution engine (EE). The latest version of the crate is published [here](https://crates.io/crates/casper-contract).
+- `casper-types = "1.5.0"` - Includes types shared by many Casper crates for use on a Casper network. This crate is necessary for the EE to understand and interpret the session code. The latest version of the crate is published [here](https://crates.io/crates/casper-types).
+
 
 
 ## Writing a Basic Smart Contract
+At this point you either have the default example contract defined in `contract/main.rs` ([automatic](#automatic-project-setup) setup using cargo-casper), an empty `contract/main.rs` file ([manual](#manual-project-setup) project setup), or a rust "hello world" program defined in your `contract/main.rs` ([semi-automatic](#semi-automatic-project-setup) setup using "vanilla cargo"). In the following, you will write a new contract step-by-step. Therefore it is recommended to clear the content of contract/main.rs ( if any ).
 
 This section covers the process of writing a smart contract in Rust, using example code from the [counter contract](https://github.com/casper-ecosystem/counter/). This simple contract allows callers to increment and retrieve an integer. Casper provides a [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html) within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/index.html) crate.
 
@@ -110,24 +170,9 @@ To be able to comfortably write code in Rust it is crucial to understand these t
 
 :::
 
-### Dependencies in `Cargo.toml`
-
-The `Cargo.toml` file includes the dependencies and versions the contract requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
-
-```toml
-[dependencies]
-# A library for developing Casper network smart contracts.
-casper-contract = "1.4.4"
-# Types shared by many Casper crates for use on a Casper network.
-casper-types = "1.5.0"
-```
-
-- `casper-contract = "1.4.4"` - Provides the SDK for the execution engine (EE). The latest version of the crate is published [here](https://crates.io/crates/casper-contract).
-- `casper-types = "1.5.0"` - Includes types shared by many Casper crates for use on a Casper network. This crate is necessary for the EE to understand and interpret the session code. The latest version of the crate is published [here](https://crates.io/crates/casper-types).
-
 ### Updating the `main.rs` File
 
-To begin writing contract code, add the following file attributes to support the Wasm execution environment. If you have an auto-generated `main.rs` file, remove the auto-generated main function.
+To begin writing contract code, add the following file attributes to support the Wasm execution environment. If you still have an auto-generated `main.rs` file, remove the auto-generated main function.
 
 ```rust
 #![no_std]
@@ -396,6 +441,7 @@ cargo build --release --target wasm32-unknown-unknown
 For the counter example, you may use the Makefile provided:
 
 ```bash
+make prepare
 make build-contract
 ```
 
