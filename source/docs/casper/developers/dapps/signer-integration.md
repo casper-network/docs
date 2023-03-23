@@ -32,7 +32,7 @@ Signer.isConnected()
 
 ## Create Vaults & Accounts
 
-You can use available JavaScript methods to create new vaults and accounts within the Signer. A vault is a wallet that may hold many accounts, whereas an account is an entity with a single public and private key that can interact with the Casper Network.
+You can use the available JavaScript methods to create new vaults and accounts within the Signer. A vault is designed to hold many accounts, whereas an account is an entity with a single public and private key that can interact with a Casper network.
 
 To check if the user has created a vault, read the boolean result of the promissory function :
 
