@@ -51,7 +51,7 @@ Both variants will yield the same result, running the tests and showing if all w
 <p align="center"><img src={useBaseUrl("/image/testing-contracts/running-tests.png")} alt="running-tests" width="600"/></p>
 
 If you are completely sure that the code written in the unit tests is correct, then there is no further need to go deeper than that. It is advisable however to know what to do if you want to know how the code exactly works.
-The debug configuration needs to be set up in the following way, so it allows for the debugging of the tests.
+The debug configuration needs to be set up in the following way to allow for debugging the tests.
 
 ```bash
 {
