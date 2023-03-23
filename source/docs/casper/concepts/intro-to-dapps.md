@@ -7,26 +7,12 @@ title: Introduction to dApps
 ### What is a dApp?
 
 DApp stands for **Decentralized Application**. Specifically, it refers to an application built on a blockchain network which combines smart contracts and a user interface. 
-To be considered a dApp, an application should fulfill the following requirements:
 
-#### Characteristics of a dApp
-- Decentralized: DApps are run by thousands of nodes around the globe. No party can take control of it, including governments and the developers.
-- Deterministic: The execution of DApps is not affected by any changes in the environment.
-- Turing complete: DApps can perform any action given the required resources.
-- Isolated: DApps are executed in an isolated situation. If a dApp has a bug, it won't affect the normal functioning of the Blockchain network.
-
-A decentralized system consists of a group of interchangeable machines that can perform as a full system or distributed database. Additional machines strengthen the overall system by adding redundancy and computational power.
+A decentralized network consists of a group of interchangeable machines (nodes) that can perform as a full system or distributed database. Additional machines strengthen the overall system by adding redundancy and computational power. 
 
 A dApp is not just a client-server application where the application can do some work offline, nor is it a web application which can operate in a disconnected mode. A dApp is conceived and built using a distributed architecture where a network of [nodes](../concepts/glossary/N.md#node) does the processing of smart contracts instead of a single central server.
 
-Any dApp will need access to a decentralized network, in one form or another. In a Casper network, this means connecting to a [node](../concepts/glossary/N.md#node). The decentralized aspect creates a situation where each node is fundamentally interchangeable for this purpose. If the connected node fails, the dApp can switch to a different node and continue operating without losing data or functionality.
-
-#### Some use cases for dApps
-
-1. DeFi
-[De-Fi (Decentralized Finance)](https://www.investopedia.com/decentralized-finance-defi-5113835) refers to a movement towards financial systems without the need for centralized authorities, like banks or governments, to act as intermediaries and verify transactions. This is enabled by the "trustless" model provided under a blockchain system, where the validity of a transaction is ensured by the very nature of the platform. This represents a challenge to traditional systems of digital finance, with additional possibilities and concerns.
-2. Gaming apps and NFTs
-  [Game-Fi](https://gamefi.org/) is a gaming model based on blockchain technology. Through GameFi, users of a gaming app can earn cryptocurrency and non-fungible tokens [(NFT)](/concepts/glossary/N/#non-fungible-token). These items can then be traded in the market, allowing players to securely earn money while gaming.
+Any dApp will need access to a decentralized network, in one form or another. In a Casper network, this means connecting to a [node](../concepts/glossary/N.md#node). The decentralized nature of the network means that node is fundamentally interchangeable for this purpose. If the connected node fails, the dApp can switch to a different node and continue operating without losing data or functionality.
 
 ### Interacting with a Casper Decentralized Network
 
