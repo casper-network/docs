@@ -1,50 +1,55 @@
 ---
 title: Introduction to dApps
-slug: /intro-to-dapps
 ---
 
-# Introduction to dApps (Distributed Applications)
+# Introduction to dApps (Distributed Applications) on the Casper network
 
-## Definition of a dApp
+### What is a dApp?
 
-DApp stands for **Decentralized Application**. Specifically, it refers to an app built on a blockchain network which combines smart contracts and a user interface.
-To be considered a dApp, an app should fulfill the following requirements:
+DApp stands for **Decentralized Application**. Specifically, it refers to an application built on a blockchain network which combines smart contracts and a user interface. 
+To be considered a dApp, an application should fulfill the following requirements:
 
-- Decentralized: DApps are run by multiple nodes around the globe. No party can take control of them, including governments and the developers.
-- Deterministic: Changes in the environment do not affect the execution of a dApp.
+#### Characteristics of a dApp
+- Decentralized: DApps are run by thousands of nodes around the globe. No party can take control of it, including governments and the developers.
+- Deterministic: The execution of DApps is not affected by any changes in the environment.
 - Turing complete: DApps can perform any action given the required resources.
-- Isolated: DApps are executed in an isolated situation. If a DApp has a bug, it won't affect the normal functioning of the blockchain network.
+- Isolated: DApps are executed in an isolated situation. If a DApp has a bug, it won't affect the normal functioning of the Blockchain network.
 
-A dApp is not a client-server application, where the application can do some work offline. Nor is it a web application that can operate in a disconnected mode, where there is a central server which acts as a repository of information and business logic. A dApp’s concept and construction depend on a distributed architecture where a network of nodes processes the installation and invocation of smart contracts, rather than through a central server.
+A decentralized system consists of a group of interchangeable machines that can perform as a full system or distributed database. Additional machines strengthen the overall system by adding redundancy and computational power.
 
-## Benefits of a dApp
+A dApp is not just a client-server application where the application can do some work offline, nor is it a web application which can operate in a disconnected mode. A dApp is conceived and built using a distributed architecture where a network of [nodes](../concepts/glossary/N.md#node) does the processing of smart contracts instead of a single central server.
 
-1. Durability/uptime characteristics
+Any dApp will need access to a decentralized network, in one form or another. In a Casper network, this means connecting to a [node](../concepts/glossary/N.md#node). The decentralized aspect creates a situation where each node is fundamentally interchangeable for this purpose. If the connected node fails, the dApp can switch to a different node and continue operating without losing data or functionality.
 
-Due to the fact that each operation on a dApp is processed by one or many identical nodes in a network, failure of a single node has no effect on the overall operation of the network. DApps can maintain 24/7, uninterrupted uptime without investment in massive data centers or secure facilities. A dApp cannot be attacked by Denial of Service (DDOS) attacks.
-2. User privacy
-
-You do not need to provide real-world identification, such as a Google or Facebook account, to interact with a blockchain network.
-3. Resistance to outside control
-
-No single entity can block another from accessing the blockchain, reading data, deploying or interacting with dApps, or submitting transactions to the chain.
-4. Trust in the state of the blockchain
-
-Data stored on the blockchain is immutable and decentralized, rather than relying on a centralized authority. Users may not change the transaction record or any other data present on the blockchain.
-
-
-## Downsides to dApps
-
-1. Maintenance
-
-Compared to traditional applications, once a DApp is published, it is more difficult to maintain. The data is stored immutably on the blockchain. If bugs are found, developers can’t fix them as easily as with a traditional client-server architecture.
-2. Network Efficiency
-
-DApp networks and platforms need to reach consensus before mutating the state of the chain. This means that processing millions of transactions per second, such as in a low-latency trading or betting applications, is not possible. Dapps are not the correct architecture for applications that require high network performance.
-
-## Some popular use cases
+#### Some use cases for dApps
 
 1. DeFi
 [De-Fi (Decentralized Finance)](https://www.investopedia.com/decentralized-finance-defi-5113835) refers to a movement towards financial systems without the need for centralized authorities, like banks or governments, to act as intermediaries and verify transactions. This is enabled by the "trustless" model provided under a blockchain system, where the validity of a transaction is ensured by the very nature of the platform. This represents a challenge to traditional systems of digital finance, with additional possibilities and concerns.
 2. Gaming apps and NFTs
   [Game-Fi](https://gamefi.org/) is a gaming model based on blockchain technology. Through GameFi, users of a gaming app can earn cryptocurrency and non-fungible tokens [(NFT)](/concepts/glossary/N/#non-fungible-token). These items can then be traded in the market, allowing players to securely earn money while gaming.
+
+### Interacting with a Casper Decentralized Network
+
+For a dApp to integrate with a Casper network, it must be able to send [Deploys](../concepts/glossary/D.md#deploy) via the [JSON-RPC](../developers/json-rpc/index.md). Business logic specific to the dApp can then be executed on chain via the Deploy. [Sending a Deploy](../developers/dapps/sending-deploys.md) to a node will result in that node [gossiping](../concepts/design/p2p.md#communications-gossiping) that Deploy to other nodes, assuming that the Deploy is valid and accepted. The Deploy will then be enqueued for execution.
+
+A Deploy contains [session code](../concepts/glossary/S.md#session-code) in the form of [Wasm](../concepts/glossary/W.md#webassembly) to be executed in the context of the sending [account](../concepts/glossary/A.md#account). Therefore, developers may use any programming language that can compile to Wasm when building a dApp for a Casper network. This session code may consist of Wasm to be executed once, or Wasm which will install contract code to be stored in global state. If the dApp requires periodic execution of the same Wasm, it is more efficient from both a gas and execution perspective to install the Wasm as a contract to be called later. As gas costs operate on a per-byte basis, smart contracts will incur less gas costs over time when compared against executing the same session code repeatedly. 
+A dApp may send a Deploy simultaneously to each node it is connected to, but can only do so once per node, per Deploy.
+
+#### Updating data in a Casper dApp
+Sending a Deploy is the only means by which a dApp can change [global state](../concepts/glossary/G.md#global-state). All associated changes to global state occur after successful execution of the Deploy. In the case of a failed execution, the stack is unwound and any changes to global state as part of executing the Deploy are reverted. However, as there is a penalty payment that must be incurred, there is a change in global state through reducing the balance of the sending account. To send a Deploy, an account must hold a minimum balance greater than the network's penalty payment. This penalty payment can vary from network to network. On the public Casper Mainnet, the penalty payment is set to 2.5 CSPR.
+
+#### Post-Consensus Execution in a Casper network
+Unlike other blockchain networks, a Casper network performs execution ***after*** [consensus](../concepts/glossary/C.md#consensus). This means that observing the execution of the Deploy is sufficient proof of [finality](../concepts/glossary/B.md#block-finality) for most cases. For a stronger finality requirement, you can observe the finality signatures for the block that includes the given Deploy.
+
+#### Deploy lifecycle
+There is an inherent timing consideration when sending a Deploy, from the point where it is sent to when it is executed. The [Deploy Lifecycle](../concepts/design/casper-design.md#execution-semantics-phases) results in a delay longer than would be expected from a centralized application. The Deploy must be sent, accepted, gossiped, included in a finalized block and executed. This process varies from network to network. This delay should be taken into consideration when designing dApps for use with a Casper network, as the number of connected peers and the number of Deploys currently being sent may cause it to increase.
+
+
+### Related reading
+
+  - [Deploys and the Deploy lifecycle](../concepts/deploy-and-deploy-lifecycle.md)
+  - [Global State](../concepts/global-state.md)
+  - [Session Code](../concepts/session-code.md)
+  - [Smart Contracts](../concepts/smart-contracts.md)
+
+
