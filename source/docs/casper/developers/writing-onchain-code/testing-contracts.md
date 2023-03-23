@@ -72,7 +72,7 @@ The debug configuration needs to be set up in the following way to allow for deb
 }
 ```
 
-The most important is the program path which needs to be set exactly to the unit tests path seen during the “make test” or “cargo test” unit tests run.
+You need to set the program path to match the path for running the tests; for example, use the path where you ran the tests using `make test` or `cargo test`.
 In this case this would be `integration_tests-2771dd9bbf2fac3c`.
 
 6.	Set the breakpoints in the unit tests file.
