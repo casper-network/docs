@@ -438,7 +438,7 @@ rustup target add wasm32-unknown-unknown
 cargo build --release --target wasm32-unknown-unknown
 ```
 
-For the counter example, in your project's directory where you have 'Makefile' run the following:
+For the counter example, in your project's directory where you have `Makefile` run the following:
 
 ```bash
 make prepare
