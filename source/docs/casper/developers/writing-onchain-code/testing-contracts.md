@@ -38,13 +38,13 @@ There are many ways to ensure the code is written correctly and will not cause p
 
 ### Debugging code using breakpoints in VS Code
 
-1. Set up CodeLLDB extension to be able to set up breakpoints in the code. This is a native debugger supporting C++, Rust and other compiled languages.
-2. Go into the main project folder and type the command “make test” in the VS Code Terminal. This will create the target folder.
-3. Mark the tests.rs and from the toolbar in VS Code go to Run -> Start Debugging. This will create a new configuration for Rust.
+1. Set up the CodeLLDB extension, a native debugger supporting C++, Rust, and other compiled languages. This way, you can debug your code by adding breakpoints.
+2. Select the main project folder. Type the `make test` command in the VS Code terminal to create the target folder with Wasm files.
+3. Select the tests.rs file. Using the toolbar, create a new configuration for Rust by navigating to `Run -> Start Debugging`.
 4. You will be able to set breakpoints now.
 5. There are two possibilities to run unit tests:
-- Either from the main project folder using the command “make test”
-- Or from the “tests” subfolder using the command “cargo test”
+- Either from the main project folder using the command `make test`
+- Or from the `tests` subfolder using the command `cargo test`
 
 Both variants will yield the same result which will run the tests and show if all were completed successfully.
 
