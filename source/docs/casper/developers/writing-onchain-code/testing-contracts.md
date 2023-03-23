@@ -10,7 +10,7 @@ As part of the Casper development environment, we provide a [testing framework](
 
 The Casper test support crate is one of many options for testing contracts before sending them to a Casper network.
 
-Independent of the framework, knowledge of setting up the debugger and logging the messages from the test execution will ensure, that the contract is fully functional before being deployed on the Casper network.
+Independent of the framework, knowing how to set up the debugger and log the messages from the test execution will ensure that the contract is fully functional before being deployed on a Casper network.
 
 :::
 
