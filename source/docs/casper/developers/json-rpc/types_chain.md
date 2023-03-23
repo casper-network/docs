@@ -20,7 +20,7 @@ Required Parameters:
 
 ## AccountHash {#accounthash}
 
-The AccountHash is a Hex-encoding of the PublicKey and therefore can be viewed as an address.
+The AccountHash is a 32-byte hash derived from a supported PublicKey. Its role is to standardize keys that can vary in length.
 
 ## ActionThresholds {#actionthresholds}
 
