@@ -4,16 +4,18 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This topic explains the usage of authorization keys when signing a deploy and how to access them from a smart contract. Try the [Working with Authorization Keys](../resources/tutorials/advanced/list-auth-keys-tutorial.md) tutorial for an example.
 
-## Account Associated Keys vs. Deploy Authorization Keys
+## Associated Keys vs. Authorization Keys
 
-Let's review the difference between associated keys (to an Account) and authorization keys (for a Deploy).
+Let's review the difference between associated keys to an Account and authorization keys for a Deploy.
 
-- Associated keys are public keys that are associated with a given account. To understand associated keys and how they are linked to an account, read about [associated keys and weights](./design/casper-design/#accounts-associated-keys-weights) and try the [Two-Party Multi-Signature](../resources/tutorials/advanced/two-party-multi-sig/) tutorial.
+- Associated keys are public keys that are associated with a given account. To understand associated keys and how they are linked to an account, read about [associated keys and weights](../concepts/design/casper-design.md#accounts-associated-keys-weights) and try the [Two-Party Multi-Signature](../resources/tutorials/advanced/two-party-multi-sig.md) tutorial.
 - Authorization keys are public keys used to sign a deploy and are listed in the Deploy's `approvals`. Authorization keys are a subset of the associated keys of the account under which the deploy is executed. 
 - When a node receives a deploy, it checks that the deploy has the required authorization keys under `approvals` before including it in a block.
 - Different deploys executing the same smart contract can have different authorization keys.
 
-<p align="center"><img src={"../../../../static/image/authorization-keys.png"} alt="Image showing associated keys and authorization keys" width="400"/></p>
+<p align="center">
+<img src={"/image/authorization-keys.png"} alt="Image showing associated keys and authorization keys" width="400"/> 
+</p>
 
 Here is a sample JSON representation of an Account's associated keys:
 
