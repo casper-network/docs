@@ -279,7 +279,7 @@ module.exports = {
                         "resources/tutorials/advanced/transfer-token-to-contract",
                         "resources/tutorials/advanced/two-party-multi-sig",
                         "resources/tutorials/advanced/return-values-tutorial",
-                        "resources/tutorials/advanced/list-auth-keys-tutorial.md",
+                        "resources/tutorials/advanced/list-auth-keys-tutorial",
                         "resources/tutorials/advanced/list-cspr",
                     ],
                 },
