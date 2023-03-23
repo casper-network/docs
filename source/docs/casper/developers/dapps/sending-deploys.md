@@ -49,7 +49,7 @@ casper-client put-deploy \
 4. `payment-amount` - The payment for the Deploy in motes. This example uses 2.5 CSPR, but you need to modify this for your contract. See the [note](#a-note-about-gas-price) below
 5. `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
 
-Once you execute this command, it will return a Deploy hash, which you will need to verify that the Deploy was accepted by the node and to query the execution results of the Deploy. Sending a Deploy to the network does not mean that the Deploy was processed successfully. Once the network has received the Deploy and done some preliminary validation of it, it will queue up in the system before being proposed in a block for execution. Therefore, you will need to check to see that the Deploy was executed as expected.
+The command will return a deploy hash, which is needed to verify the deploy's execution results. Sending the deploy and receiving the deploy hash does not mean the deploy was processed successfully. Therefore, you must check the deploy execution using the deploy hash. See the deploy lifecycle for more details.
 
 **Note**: Each Deploy gets a unique hash, which is part of the cryptographic security of blockchain technology. No two deploys will ever return the same hash.
 
