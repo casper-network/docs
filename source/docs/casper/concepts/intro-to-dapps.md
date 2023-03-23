@@ -13,7 +13,7 @@ To be considered a dApp, an application should fulfill the following requirement
 - Decentralized: DApps are run by thousands of nodes around the globe. No party can take control of it, including governments and the developers.
 - Deterministic: The execution of DApps is not affected by any changes in the environment.
 - Turing complete: DApps can perform any action given the required resources.
-- Isolated: DApps are executed in an isolated situation. If a DApp has a bug, it won't affect the normal functioning of the Blockchain network.
+- Isolated: DApps are executed in an isolated situation. If a dApp has a bug, it won't affect the normal functioning of the Blockchain network.
 
 A decentralized system consists of a group of interchangeable machines that can perform as a full system or distributed database. Additional machines strengthen the overall system by adding redundancy and computational power.
 
