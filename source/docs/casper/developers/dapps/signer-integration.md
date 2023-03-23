@@ -99,7 +99,7 @@ const unsignedDeploy = contract.callEntrypoint(
   "test_entrypoint",
   runtimeArguments,
   CLPublicKey.fromHex(publicKeyHex),
-  "casper", // Or "casper-test" for testnet
+  "casper", // Or "casper-test" for Testnet
   "1000000000", // Gas payment, 10^9 motes or 1 CSPR
   [] // Empty signing-keys array
 );
