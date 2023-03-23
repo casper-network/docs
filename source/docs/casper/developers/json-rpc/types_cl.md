@@ -34,7 +34,7 @@ Casper types, i.e. types which can be stored and manipulated by smart contracts.
 
 * `Tuple3` 3-ary tuple of `CLType`s.
 
-## CLValue {#clvalue} 
+## CLValue {#clvalue}
 
 A Casper value, i.e. a value which can be stored and manipulated by smart contracts. It holds the underlying data as a type-erased, serialized `Vec<u8>` and also holds the CLType of the underlying data as a separate member. The `parsed` field, representing the original value, is a convenience only available when a CLValue is encoded to JSON, and can always be set to null if preferred.
 
