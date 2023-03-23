@@ -52,7 +52,6 @@ You may also create a test account that will remain persistent in the Signer usi
 Signer.createTestAccount("Account Name", privateKey)
 ```
 
-where `privateKey` is the base 16 private key of the account as a `string`
 
 ## Get Account Public Key
 
