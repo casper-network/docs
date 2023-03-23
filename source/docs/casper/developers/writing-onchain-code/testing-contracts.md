@@ -46,7 +46,7 @@ There are many ways to ensure the code is written correctly and will not cause p
 - Either from the main project folder using the command `make test`
 - Or from the `tests` subfolder using the command `cargo test`
 
-Both variants will yield the same result which will run the tests and show if all were completed successfully.
+Both variants will yield the same result, running the tests and showing if all were completed successfully.
 
 <p align="center"><img src={useBaseUrl("/image/testing-contracts/running-tests.png")} alt="running-tests" width="600"/></p>
 
