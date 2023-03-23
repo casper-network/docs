@@ -12,6 +12,74 @@ This is the only means by which users can send their compiled Wasm (as part of a
 
 > **Note**: You can find a list of [trusted peers](../../operators/setup/joining.md/#known-addresses) in the network's configuration file, `config.toml`. Here is an [example config.toml](https://github.com/casper-network/casper-node/blob/dev/resources/production/config-example.toml#L131). You may send deploys to one of the trusted nodes or use them to query other online nodes.
 
+<details>
+
+<summary><b>Example account_put_deploy request</b></summary>
+
+```bash
+
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "account_put_deploy",
+  "params": [
+    {
+      "approvals": [
+        {
+          "signature": "014c1a89f92e29dd74fc648f741137d9caf4edba97c5f9799ce0c9aa6b0c9b58db368c64098603dbecef645774c05dff057cb1f91f2cf390bbacce78aa6f084007",
+          "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c"
+        }
+      ],
+      "hash": "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa",
+      "header": {
+        "account": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+        "body_hash": "d53cf72d17278fd47d399013ca389c50d589352f1a12593c0b8e01872a641b50",
+        "chain_name": "casper-example",
+        "dependencies": [
+          "0101010101010101010101010101010101010101010101010101010101010101"
+        ],
+        "gas_price": 1,
+        "timestamp": "2020-11-17T00:39:24.072Z",
+        "ttl": "1h"
+      },
+      "payment": {
+        "StoredContractByName": {
+          "args": [
+            [
+              "amount",
+              {
+                "bytes": "e8030000",
+                "cl_type": "I32",
+                "parsed": 1000
+              }
+            ]
+          ],
+          "entry_point": "example-entry-point",
+          "name": "casper-example"
+        }
+      },
+      "session": {
+        "Transfer": {
+          "args": [
+            [
+              "amount",
+              {
+                "bytes": "e8030000",
+                "cl_type": "I32",
+                "parsed": 1000
+              }
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}
+
+```
+
+</details>
+
 ### `account_put_deploy_result`
 
 The result contains the [deploy_hash](./types_chain.md#deployhash), which is the primary identifier of a Deploy within a Casper network.
@@ -23,75 +91,18 @@ The result contains the [deploy_hash](./types_chain.md#deployhash), which is the
 
 <details>
 
-<summary><b>Example account_put_deploy</b></summary>
+<summary><b>Example account_put_deploy result</b></summary>
 
 ```bash
 
 {
-          "name": "account_put_deploy_example",
-          "params": [
-            {
-              "name": "deploy",
-              "value": {
-                "approvals": [
-                  {
-                    "signature": "012dbf03817a51794a8e19e0724884075e6d1fbec326b766ecfa6658b41f81290da85e23b24e88b1c8d9761185c961daee1adab0649912a6477bcd2e69bd91bd08",
-                    "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c"
-                  }
-                ],
-                "hash": "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa",
-                "header": {
-                  "account": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-                  "body_hash": "d53cf72d17278fd47d399013ca389c50d589352f1a12593c0b8e01872a641b50",
-                  "chain_name": "casper-example",
-                  "dependencies": [
-                    "0101010101010101010101010101010101010101010101010101010101010101"
-                  ],
-                  "gas_price": 1,
-                  "timestamp": "2020-11-17T00:39:24.072Z",
-                  "ttl": "1h"
-                },
-                "payment": {
-                  "StoredContractByName": {
-                    "args": [
-                      [
-                        "amount",
-                        {
-                          "bytes": "e8030000",
-                          "cl_type": "I32",
-                          "parsed": 1000
-                        }
-                      ]
-                    ],
-                    "entry_point": "example-entry-point",
-                    "name": "casper-example"
-                  }
-                },
-                "session": {
-                  "Transfer": {
-                    "args": [
-                      [
-                        "amount",
-                        {
-                          "bytes": "e8030000",
-                          "cl_type": "I32",
-                          "parsed": 1000
-                        }
-                      ]
-                    ]
-                  }
-                }
-              }
-            }
-          ],
-          "result": {
-            "name": "account_put_deploy_example_result",
-            "value": {
-              "api_version": "1.4.4",
-              "deploy_hash": "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa"
-            }
-          }
-        }
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.13",
+    "deploy_hash": "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa"
+  }
+}
 
 ```
 

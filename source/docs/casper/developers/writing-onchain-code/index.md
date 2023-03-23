@@ -39,4 +39,3 @@ Additionally, the following tutorials outline some aspects of writing smart cont
 |[Working with Authorization Keys](../../resources/tutorials/advanced/list-auth-keys-tutorial.md)| Retrieving and using the authorization keys associated with a deploy         |
 |[Safely Transfer Tokens to a Contract](../../resources/tutorials/advanced/transfer-token-to-contract.md) | How to handle tokens via a contract                     |
 |[Smart Contract Upgrades](../../resources/tutorials/beginner/upgrade-contract.md)               | Learn how to upgrade smart contracts                             |
-
