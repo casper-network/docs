@@ -87,7 +87,7 @@ This will allow you to see the parameters of the debugged unit tests.
 
 ### Debugging with macros
 
-A second most popular type of debugging is putting the “println!” Macro in the code so the parameters can be printed out during “cargo test”.
+The second most popular type of debugging is using the `println!` macro in the code so the parameters can be printed out while running `cargo test`.
 
 <p align="center"><img src={useBaseUrl("/image/testing-contracts/println-macro.png")} alt="println-macro" width="600"/></p>
 
