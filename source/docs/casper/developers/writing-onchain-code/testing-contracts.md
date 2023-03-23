@@ -83,7 +83,7 @@ In this example, the path is set to: "${workspaceRoot}/default-project/tests/tar
 
 <p align="center"><img src={useBaseUrl("/image/testing-contracts/caught-breakpoint.png")} alt="caught-breakpoint" width="600"/></p>
 
-This will allow you to see the parameters of the debugged unit tests.
+This will allow you to see the unit test parameters while debugging.
 
 ### Debugging with macros
 
