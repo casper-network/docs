@@ -20,7 +20,7 @@ Required Parameters:
 
 ## AccountHash {#accounthash}
 
-Hex-encoded Account hash.
+The AccountHash is a 32-byte hash derived from a supported PublicKey. Its role is to standardize keys that can vary in length.
 
 ## ActionThresholds {#actionthresholds}
 
@@ -293,7 +293,7 @@ Options for dictionary item lookups.
     `dictionary_name` The named key under which the dictionary seed URef is stored.
 
     `dictionary_item_key` The dictionary item key formatted as a string.
-        
+
 * `URef` Lookup a dictionary item via its seed URef.
 
     `seed_uref` The dictionary's seed URef.
@@ -450,7 +450,7 @@ Required Parameters:
 
 * [`args`](#runtimeargs)
 
-## ExecutionEffect {#executioneffect} 
+## ExecutionEffect {#executioneffect}
 
 The journal of execution transforms from a single Deploy.
 
@@ -485,6 +485,10 @@ The result of executing a single Deploy.
     [`transfers`](#transferaddr)
 
     [`cost`](#u512)
+
+## FinalizedApprovals {#finalizedapprovals}
+
+A boolean value that determines whether to return the deploy with the finalized approvals substituted. If `false` or omitted, returns the deploy with the approvals that were originally received by the node.
 
 ## GlobalStateIdentifier {#globalstateidentifier}
 

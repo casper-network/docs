@@ -49,9 +49,6 @@ In this section, we outline a couple of essential tasks you can accomplish with 
 -   Generating account keys
 -   Sending a transfer
 
-<!-- TODO Hiding this until we refresh the tutorial.
-For a complete implementation example, read the [Multi-Signature Tutorial](../../../dapp-dev-guide/tutorials/multi-sig/index.md), which uses the JavaScript SDK. -->
-
 ### Generating Account Keys {#generating-account-keys}
 
 This example shows you how to use the SDK to generate account keys to sign your deploy.

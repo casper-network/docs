@@ -38,7 +38,3 @@ Additionally, the following tutorials outline some aspects of writing smart cont
 |[Interacting with Runtime Return Values](../../resources/tutorials/advanced/return-values-tutorial.md)| Learning how to return a value using contract code         |
 |[Safely Transfer Tokens to a Contract](../../resources/tutorials/advanced/transfer-token-to-contract.md) | How to handle tokens via a contract                     |
 |[Smart Contract Upgrades](../../resources/tutorials/beginner/upgrade-contract.md)               | Learn how to upgrade smart contracts                             |
-<!-- TODO refresh these tutorials and re-enable the links.
-|[Key-Value Storage with Casper DSL](../../dapp-dev-guide/tutorials/kv-storage-tutorial.md)  | Design a simple contract to store a value and use the Casper DSL |
-|[Multi-Signatures and Key Recovery](../../dapp-dev-guide/tutorials/multi-sig/index.md)      | Learn to sign transactions with multiple keys                    | -->
-
