@@ -152,7 +152,7 @@ casper-types = "1.5.0"
 
 
 ## Writing a Basic Smart Contract
-At this point you either have the default example contract defined in `contract/main.rs` ([automatic](#automatic-project-setup) setup using cargo-casper), an empty `contract/main.rs` file ([manual](#manual-project-setup) project setup), or a rust "hello world" program defined in your `contract/main.rs` ([semi-automatic](#semi-automatic-project-setup) setup using "vanilla cargo"). In the following, you will write a new contract step-by-step. Therefore it is recommended to clear the content of contract/main.rs (if any).
+At this point you either have the default example contract defined in `contract/src/main.rs` ([automatic](#automatic-project-setup) setup using cargo-casper), an empty `contract/src/main.rs` file ([manual](#manual-project-setup) project setup), or a rust "hello world" program defined in your `contract/src/main.rs` ([semi-automatic](#semi-automatic-project-setup) setup using "vanilla cargo"). In the following, you will write a new contract step-by-step. Therefore it is recommended to clear the content of contract/main.rs (if any).
 
 This section covers the process of writing a smart contract in Rust, using example code from the [counter contract](https://github.com/casper-ecosystem/counter/). This simple contract allows callers to increment and retrieve an integer. Casper provides a [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html) within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/index.html) crate.
 
