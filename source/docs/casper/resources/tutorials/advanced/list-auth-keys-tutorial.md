@@ -6,10 +6,7 @@ This tutorial demonstrates retrieving and using the authorization keys associate
 let authorization_keys = runtime::list_authorization_keys();
 ```
 
-<!-- TODO Remove https://docs.casperlabs.io if this is moved to the 1.5 docs from all the links.-->
-<!-- TODO Adjust the links once we decided on the final location of this file. -->
-
-Remember that authorization keys are listed under a Deploy's [approvals](https://docs.casperlabs.io/concepts/serialization-standard.md#serialization-standard-deploy) section, which lists the signatures and the public keys of the signers, also called authorizing keys. Here is an example of a deploy's approvals:
+Remember that authorization keys are listed under a Deploy's [approvals](../../../concepts/serialization-standard.md#serialization-standard-deploy) section, which lists the signatures and the public keys of the signers, also called authorizing keys. Here is an example of a deploy's approvals:
 
 ```json
 "approvals": [
@@ -22,18 +19,18 @@ Remember that authorization keys are listed under a Deploy's [approvals](https:/
 
 The contract code in this example retrieves the set of authorization keys for a given deploy by calling the `runtime::list_authorization_keys` function. In other words, `list_authorization_keys` returns the set of account hashes representing the keys used to sign a deploy. Upon installation, the contract code stores the authorization keys for the installer deploy into a NamedKey. The contract also contains an entry point that returns the intersection of the caller deploy's, and installer deploy's authorization keys. The tests in this repository verify different scenarios and check the resulting intersection. 
 
-**Note**: This tutorial highlights certain lines of code, but for a full working version of the code, visit [GitHub](https://github.com/casper-ecosystem/authorization-keys-example).
+**Note**: This tutorial highlights certain lines of code, but for a full working version of the code, visit [GitHub](https://github.com/casper-ecosystem/tutorials-example-wasm).
 
 
 ## Prerequisites
 
-- You meet the [development prerequisites](https://docs.casperlabs.io/developers/prerequisites.md) and are familiar with [writing and testing on-chain code](https://docs.casperlabs.io/developers/writing-contracts/)
-- You know how to [send and verify deploys](https://docs.casperlabs.io/developers/dapps/sending-deploys.md)
+- You meet the [development prerequisites](../../../developers/prerequisites.md) and are familiar with [writing and testing on-chain code](../../../developers/writing-contracts/)
+- You know how to [send and verify deploys](../../../developers/dapps/sending-deploys.md)
 - You are familiar with these concepts:
-   - [Casper Accounts](https://docs.casperlabs.io/concepts/serialization-standard/#serialization-standard-account) 
-   - [Deploys](https://docs.casperlabs.io/concepts/serialization-standard/#serialization-standard-deploy)
-   - [Associated Keys](https://docs.casperlabs.io/concepts/serialization-standard/#associatedkey)
-   - [Approvals](https://docs.casperlabs.io/concepts/serialization-standard/#approval), also known as authorization keys
+   - [Casper Accounts](../../../concepts/serialization-standard/#serialization-standard-account) 
+   - [Deploys](../../../concepts/serialization-standard/#serialization-standard-deploy)
+   - [Associated Keys](../../../concepts/serialization-standard/#associatedkey)
+   - [Approvals](../../../concepts/serialization-standard/#approval), also known as authorization keys
 
 
 ## Workflow
@@ -41,7 +38,7 @@ The contract code in this example retrieves the set of authorization keys for a 
 To start, clone the [tutorials-example-wasm](https://github.com/casper-ecosystem/tutorials-example-wasm) repository from GitHub. Then, open the `authorization-keys-example` directory, prepare your Rust environment, and build the tests with the following commands.
 
 ```bash
-git clone https://github.com/casper-ecosystem/authorization-keys-example/
+git clone https://github.com/casper-ecosystem/tutorials-example-wasm
 cd tutorials-example-wasm/authorization-keys-example
 make prepare
 make test
@@ -85,7 +82,7 @@ let authorization_keys_caller: Vec<AccountHash> =
 
 #### `add_keys.wasm` 
 
-This file contains session code that adds an associated key to the calling account. For more details and a similar example, visit the [Two-Party Multi-Signature](https://docs.casperlabs.io/resources/tutorials/advanced/two-party-multi-sig/) tutorial.
+This file contains session code that adds an associated key to the calling account. For more details and a similar example, visit the [Two-Party Multi-Signature](./two-party-multi-sig.md) tutorial.
 
 #### `contract_call.wasm`
 

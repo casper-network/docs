@@ -7,6 +7,7 @@ module.exports = {
         //"concepts/deploy-and-deploy-lifecycle", // NEW CONTENT WILL BE HERE
         //"concepts/global-state", // NEW CONTENT WILL BE HERE
         //"concepts/smart-contracts", // NEW CONTENT WILL BE HERE
+        "concepts/list-auth-keys",
         "concepts/callstack",
         "concepts/session-code",
         "concepts/dictionaries",
