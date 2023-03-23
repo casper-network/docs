@@ -34,8 +34,7 @@ casper-types = "1.5.0"
 
 ## Setting up the Debugger and types of debugging
 
-There are many ways to make sure that the code is written properly and will not cause any problems after being deployed on the blockchain. While having a good understating of Casper testing framework is crucial for a proper smart contract development, it is also necessary to know how to leverage other tools which will confirm that the logic in the smart contract is functioning properly.
-It was already mentioned that debugging in Rust is not active out of the box. There are some steps that need to be completed in order to be able to debug code in Rust.
+There are many ways to ensure the code is written correctly and will not cause problems after being deployed on the blockchain. While a good understanding of the Casper testing framework is crucial for proper smart contract development, it is also necessary to know how to leverage other tools to confirm that the logic in the smart contract is functioning correctly. Since debugging in Rust is not enabled out of the box, you must do some additional setup to debug code in Rust.
 
 ### Debugging code using breakpoints in VS Code
 
