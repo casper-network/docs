@@ -103,7 +103,7 @@ This will produce the following outcome:
 
 <p align="center"><img src={useBaseUrl("/image/testing-contracts/println-tests.png")} alt="println-tests" width="600"/></p>
 
-One thing that might be confusing is that although the macro is put in the first test function, it appears on top of the test stack. This is due to Rust running the tests in parallel.
+It might be confusing that although the macro is put in the first test function, it appears on top of the test stack. This is due to Rust running the tests in parallel.
 Those kinds of tests should be run targeting the function in question as to not introduce too much confusion during analysis.
 
 ## Writing the Tests {#writing-the-tests}
