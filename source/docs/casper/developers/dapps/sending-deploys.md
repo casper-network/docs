@@ -14,7 +14,7 @@ CSPR tokens are used to pay for Deploys on the Casper Mainnet and Testnet. There
 - You can use a [block explorer to transfer tokens](../../users/token-transfer.md) between accounts' purses
 - You can also [transfer tokens using the default Casper client](../cli/transfers/index.md)
 - On the Testnet, you can use the [faucet functionality](../../users/testnet-faucet.md) for testing your smart contracts
-- When running a Network locally, using [nctl](../../dapp-dev-guide/building-dapps/nctl-test.md), you have several funded accounts to play with
+- If running a network locally using [NCTL](../../dapp-dev-guide/building-dapps/nctl-test.md), the tool provides several funded accounts
 
 ## Monitoring the Event Stream for Deploys
 
