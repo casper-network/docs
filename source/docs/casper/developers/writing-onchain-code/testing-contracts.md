@@ -91,7 +91,7 @@ The second most popular type of debugging is using the `println!` macro in the c
 
 <p align="center"><img src={useBaseUrl("/image/testing-contracts/println-macro.png")} alt="println-macro" width="600"/></p>
 
-It is important to note, that running “cargo test” without any parameters will not log the “println!” on the screen.
+It is important to note that running `cargo test` without any parameters will not log the `println!` in the terminal.
 For this to take effect the command
 
 ```bash
