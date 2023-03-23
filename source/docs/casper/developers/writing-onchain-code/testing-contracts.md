@@ -79,7 +79,7 @@ In this example, the path is set to: "${workspaceRoot}/default-project/tests/tar
 
 <p align="center"><img src={useBaseUrl("/image/testing-contracts/set-breakpoint.png")} alt="set-breakpoint" width="600"/></p>
 
-7.	Select the test.rs file and run the program in debug mode (F5).
+7.	Select the `test.rs` file and run the program in debug mode (key shortcut: F5).
 
 <p align="center"><img src={useBaseUrl("/image/testing-contracts/caught-breakpoint.png")} alt="caught-breakpoint" width="600"/></p>
 
