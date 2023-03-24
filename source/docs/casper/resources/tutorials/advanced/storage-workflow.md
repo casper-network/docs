@@ -14,13 +14,18 @@ Both the [`put_key`](https://docs.rs/casper-contract/latest/casper_contract/cont
 
 * `storage:dictionary_put` / `storage::dictionary_get`
 
+For most data storage needs on a Casper network, dictionaries are more efficient and provide lower gas costs than `NamedKeys`. Each dictionary item exists independently, sharing a single dictionary seed URef for reference purposes.
 
+More information on dictionaries can be found on the [Reading and Writing to Dictionaries](./concepts/dictionaries/) page.
 
-### Example of `put_key`
+### Example of `put_key` and `storage::write`
 
 This sample code creates a new contract and stores the contract version in global state using the `runtime::put_key` function. The user provides a runtime argument `my_stored_value`, which is stored in a URef via the `storage::new_uref` function.
 
-If the stored value already exists, the `storage::write` function overwrites the stored value with the new runtime argument. The URef is then stored in the current context as a `NamedKey` titled `MY_STORED_VALUE_UREF`
+If the stored value already exists, the `storage::write` function overwrites the stored value with the new runtime argument. The URef is then stored in the current context as a `NamedKey` titled `MY_STORED_VALUE_UREF`.
+
+Full example code can be found [here](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/dev/storage-example/contract/src/main.rs).
+
 ```rust
 
 #[no_mangle]
@@ -48,9 +53,11 @@ pub extern "C" fn call() {
 
 ```
 
-### Example of `get_key`
+### Example of `get_key` and `storage::read`
 
-In this example, a package hash is stored in global state and is retrieved using the `get_key` function.
+This example compliments the code sample above by retrieving the `CONTRACT_HASH` using the `get_key` function, before comparing a provided runtime argument against the previously stored `MY_STORED_VALUE_UREF` using `storage::read`.
+
+Full example code can be found [here](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/dev/storage-example/client/named_key_session/src/main.rs).
 
 ```rust
 
@@ -94,13 +101,3 @@ The following functions might also be of interest for working with named keys:
 * [list_named_keys](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.list_named_keys.html) - Returns the named keys of the current context
 * [has_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.has_key.html) - Returns true if the key exists in the current context’s named keys
 * [remove_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.remove_key.html) - Removes the requested `NamedKey` from the current context
-
-### Example of `list_named_keys`
-
-
-
-### Example of `has_key`
-
-
-
-### Example of `remove_key`
