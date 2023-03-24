@@ -19,7 +19,7 @@ Remember that authorization keys are listed under a Deploy's [approvals](../../.
 
 The contract code in this example retrieves the set of authorization keys for a given deploy by calling the `runtime::list_authorization_keys` function. In other words, `list_authorization_keys` returns the set of account hashes representing the keys used to sign a deploy. Upon installation, the contract code stores the authorization keys for the installer deploy into a NamedKey. The contract also contains an entry point that returns the intersection of the caller deploy's, and installer deploy's authorization keys. The tests in this repository verify different scenarios and check the resulting intersection. 
 
-**Note**: This tutorial highlights certain lines of code, but for a full working version of the code, visit [GitHub](https://github.com/casper-ecosystem/tutorials-example-wasm/tree/dev/authorization-keys-example).
+**Note**: This tutorial highlights certain lines of code, but for a full working version of the code, visit GitHub. <!-- TODO add a link to casper-ecosystem/tutorials-example-wasm/tree/dev/authorization-keys-example when it becomes public. -->
 
 
 ## Prerequisites
@@ -35,10 +35,12 @@ The contract code in this example retrieves the set of authorization keys for a 
 
 ## Workflow
 
-To start, clone the [tutorials-example-wasm](https://github.com/casper-ecosystem/tutorials-example-wasm) repository from GitHub. Then, open the `authorization-keys-example` directory, prepare your Rust environment, and build the tests with the following commands.
+<!-- TODO add a link to casper-ecosystem/tutorials-example-wasm when it becomes public.-->
+To start, clone the `tutorials-example-wasm` repository from GitHub. Then, open the `authorization-keys-example` directory, prepare your Rust environment, and build the tests with the following commands.
 
+<!-- TODO add the full link for git clone when the repo is public.-->
 ```bash
-git clone https://github.com/casper-ecosystem/tutorials-example-wasm
+git clone casper-ecosystem/tutorials-example-wasm
 cd tutorials-example-wasm/authorization-keys-example
 make prepare
 make test
