@@ -278,6 +278,7 @@ module.exports = {
                         "resources/tutorials/advanced/two-party-multi-sig",
                         "resources/tutorials/advanced/return-values-tutorial",
                         "resources/tutorials/advanced/list-cspr",
+                        "resources/tutorials/advanced/storage-workflow",
                     ],
                 },
             ],
