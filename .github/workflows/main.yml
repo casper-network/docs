@@ -68,6 +68,8 @@ jobs:
       - name: Build app
         run: |
           yarn build --out-dir ./docs
+        env:
+          NODE_ENV: production
 
       - name: Add CNAME file to the build output payload to keep the custom domain settings of GitHub Pages enabled
         run: |
