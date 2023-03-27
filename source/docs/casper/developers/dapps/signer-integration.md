@@ -85,7 +85,6 @@ To sign a given message using the Casper JS SDK, initiate a signature request us
 Signer.signMessage("Message to be signed", publicKey)
 ```
 
-where `publicKey` is the base 16 `string`-typed public key of the active account within the Casper Signer.
 
 ### Sign Transaction
 
