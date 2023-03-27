@@ -536,4 +536,4 @@ After this step, the private network would be ready for use.
 
 ## Setting up a Block Explorer
 
-Private and hybrid blockchains can find information on how to set up and operate our free version of a block explorer [here](https://github.com/casper-network/casper-blockexplorer).
+Private and hybrid blockchains can find information on how to set up and operate our free version of a block explorer [here](https://github.com/casper-network/casper-blockexplorer-frontend).

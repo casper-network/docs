@@ -2,61 +2,19 @@
 
 ## Introduction
 
-Casper is a Proof-of-Stake blockchain platform with an account-based model that performs execution after consensus. A Casper network stores data on a structure known as [Global State](#global-state-head). Users interact with global state through session code sent in a [Deploy](#execution-semantics-deploys). Deploys contain [Wasm](https://webassembly.org/) to be executed by the network, thus allowing developers to use their preferred programming language rather than a proprietary language.
+Casper is a Proof-of-Stake blockchain platform with an account-based model that performs execution after [consensus](../glossary/C.md#consensus). A Casper network stores data in a structure known as [Global State](../global-state.md). Users interact with global state through session code sent in a [Deploy](../glossary/D.md#deploy). Deploys contain [Wasm](https://webassembly.org/) to be executed by the network, thus allowing developers to use their preferred programming language rather than a proprietary language.
 
 A deploy executes in the context of the user's [Account](#accounts-head) but can call stored Wasm that will execute in its own context. User-related information other than an account is stored in global state as an [Unforgeable Reference](#uref-head) or `URef`. After a node accepts a deploy as valid, it places the deploy in a proposed [Block](#block-structure-head) and gossips it among nodes until the network reaches consensus. At this point, the network executes the Wasm included within the deploy.
 
-1. [Global State](#global-state-head)
+1. [Execution Semantics](#execution-semantics-head)
 
-2. [Execution Semantics](#execution-semantics-head)
+2. [Accounts](#accounts-head)
 
-3. [Accounts](#accounts-head)
+3. [Unforgeable Reference (URef)](#uref-head)
 
-4. [Unforgeable Reference (URef)](#uref-head)
+4. [Block Structure](#block-structure-head)
 
-5. [Block Structure](#block-structure-head)
-
-6. [Tokens](#tokens-head)
-
-## Global State {#global-state-head}
-
-"Global state" is the storage layer for the Casper blockchain. All accounts, contracts, and any associated data are stored in global state. Global state follows the semantics of a key-value store (with additional permissions logic, as not all users can access all values in the same way).
-
-:::note
-
-Refer to [Keys and Permissions](../serialization-standard.md#serialization-standard-state-keys) for further information on keys.
-
-:::
-
-Changes to global state occur through executing deploys contained within finalized blocks. For validators to efficiently judge the correctness of these changes, they need information about the new state communicated succinctly. Further, the network must communicate portions of global state to users while allowing them to verify the correctness of the parts they receive. The key-value store is implemented as a [Merkle trie](#global-state-trie) for these reasons.
-
-### Merkle Trie Structure {#global-state-trie}
-
-![Global State](/image/design/global-state.png)
-
-At a high level, a Merkle trie is a key-value store data structure that can be shared piecewise in a verifiable way (via a construction called a Merkle proof). Each node is labeled by the hash of its data. Leaf nodes are labeled with the hash of their data. Non-leaf nodes are labeled with the hash of the labels of their child nodes.
-
-Casper's implementation of the trie has radix of 256, meaning each branch node can have up to 256 children. A path through the tree can be an array of bytes, and serialization directly links a key with a path through the tree as its associated value.
-
-Formally, a trie node is one of the following:
-
--   a leaf, which includes a key and a value
--   a branch, which has up to 256 `blake2b256` hashes, pointing to up to 256 other nodes in the trie (recall each node is labeled by its hash)
--   an extension node, which includes a byte array (called the affix) and a `blake2b256` hash pointing to another node in the trie
-
-The purpose of the extension node is to allow path compression. Consider an example where all keys use the same first four bytes for values in the trie. In this case, it would be inefficient to traverse through four branch nodes where there is only one choice; instead, the root node of the trie could be an extension node with an affix equal to those first four bytes and a pointer to the first non-trivial branch node.
-
-The Rust implementation of Casper's trie can be found on GitHub:
-
--   [Definition of the trie data structure](https://github.com/casper-network/casper-node/blob/dev/execution_engine/src/storage/trie/mod.rs#L475)
--   [Reading from the trie](https://github.com/casper-network/casper-node/blob/dev/execution_engine/src/storage/trie_store/operations/mod.rs#L45)
--   [Writing to the trie](https://github.com/casper-network/casper-node/blob/dev/execution_engine/src/storage/trie_store/operations/mod.rs#L954)
-
-:::note
-
-Conceptually, each block has its trie because the state changes based on the deploys it contains. For this reason, Casper's implementation has a notion of a `TrieStore`, which allows us to look up the root node for each trie.
-
-:::
+5. [Tokens](#tokens-head)
 
 ## Execution Semantics {#execution-semantics-head}
 
@@ -77,76 +35,7 @@ Although the network measures costs in `Gas`, payment for computation occurs in 
 Please note that Casper will not refund any amount of unused gas.
 
 This decision is taken to incentivize the [Casper Runtime Economics](../economics/runtime.md#runtime-economics) by efficiently allocating the computational resources. The [consensus-before-execution model](../economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage the optimized gas consumption from users and to prevent the overuse of block space by poorly handled deploys.
-
 :::
-
-### Deploys {#execution-semantics-deploys}
-
-A [Deploy](../serialization-standard.md#serialization-standard-deploy) is a data structure containing Wasm and the requester's signature(s). Additionally, the deploy header contains additional metadata about the deploy itself. A deploy’s structure is as follows:
-
-<p align="center">
-<img src={"/image/design/deploy-structure.png"} alt="Image showing the deploy data structure" width="500"/> 
-</p>
-
--   Body: Containing payment code and session code (more details on these below)
--   Header: containing
-    -   The [Public Key](../serialization-standard.md#publickey) of the account in whose context the deploy will run
-    -   The timestamp of the deploy’s creation
-    -   A time-to-live, after which the deploy expires and cannot be included in a block
-    -   the `blake2b256` hash of the body
--   Deploy hash: the `blake2b` hash of the Header
--   Approvals: the set of signatures which have signed the deploy hash; these are used in the [account permissions model](#accounts-associated-keys-weights)
-
-### Deploy Lifecycle {#execution-semantics-phases}
-
-A deploy goes through the following phases on Casper:
-
-1. Deploy Received
-2. Deploy Gossiped
-3. Block Proposed
-4. Block Gossiped
-5. Consensus Reached
-6. Deploy Executed
-
-#### Deploy Received
-A client sending the deploy will send it to one or more nodes via their JSON RPC servers. The node will ensure that a given deploy matches configuration settings outlined in the network's chainspec. Deploy configuration for the Casper Mainnet can be found [here](https://github.com/casper-network/casper-node/blob/dev/resources/production/chainspec.toml#L79). Once accepted, the system returns the deploy hash to the client to indicate it has been enqueued for execution. The deploy could expire while waiting to be gossiped; whenever this happens, a `DeployExpired` event is emitted by the event stream servers of all nodes which have the expired deploy.
-
-#### Deploy Gossiped
-After a node accepts a new deploy, it will gossip to all other nodes. A validator node will put the deploy into the block proposer buffer. The validator leader will pick the deploy from the block proposer buffer to create a new proposed block for the chain. This mechanism is efficient and ensures all nodes in the network eventually hold the given deploy. Each node that accepts a gossiped deploy also emits a `DeployAccepted` event on its event stream server. The deploy may expire while waiting for a node to add it to the block. Whenever this happens, the node emits a `DeployExpired` event.
-
-#### Block Proposed
-The validator leader for this round will propose a block that includes as many deploys from the block proposer buffer as can fit in a block.
-
-#### Block Gossiped
-The proposed block propagates to all other nodes.
-
-#### Consensus Reached
-Once the other validators reach consensus that the proposed block is valid, all deploys in the block are executed, and this block becomes the final block added to the chain. Whenever reaching consensus, the event stream server emits a `BlockAdded`. `FinalitySignature` events emit shortly after that. Finality signatures for the new block arrive from the validators.
-
-#### Deploy Executed 
-
-A deploy executes in distinct phases to accommodate flexibly paying for computation. The phases of a deploy are *payment*, *session*, and *finalization*. Payment code executes during the payment phase. If it is successful, the session code executes during the session phase. And, independently of session code execution, the finalization phase does some bookkeeping around the payment. Once the deploy is executed, a `DeployProcessed` event is emitted by the event stream server.
-
-In the event of execution failure, the sender will be charged the minimum penalty payment - 2.5 CSPR on the Casper Mainnet. This prevents malicious spamming of faulty deploys.
-
-**Payment code**
-
-_Payment code_ determines the payment amount for the computation requested and how much the sender is willing to pay. Payment code may include arbitrary logic, providing flexibility in paying for a deploy. For example, the simplest payment code could use the account's [main purse](#tokens-purses-and-accounts). In contrast, an enterprise application may require a multi-signature scheme that accesses a corporate purse. To ensure the payment code will pay for its own computation, only accounts with a balance in their main purse greater than or equal to `MAX_PAYMENT_COST` may execute deploys. Based on the current conversion rate between gas and motes, we restrict the gas limit of the payment code execution so that the process spends no more than `MAX_PAYMENT_COST` motes (a constant of the system.)
-If the payment is absent or not enough, then payment execution is not successful. In this case, the effects of the payment code on global state are reverted, and the system covers the cost of the computation with motes taken from the offending account's main purse.
-
-**Session code**
-
-_Session code_ provides the main logic for the deploy. It only executes if the payment code is successful. The gas limit for this computation is determined based on the amount of payment given (after subtracting the cost of the payment code itself).
-
-**Specifying payment code and session code**
-
-The user-defined logic of a deploy can be specified in a number of ways:
-
--   a Wasm module in binary format representing valid session code, including logic to be executed in the context of an account or to store Wasm in the form of a contract to be executed later. (Note that the named keys from the context of the account the deploy is running in.)
--   a 32-byte identifier representing the [hash](../serialization-standard.md#serialization-standard-hash-key) where a contract is already stored in the global state
--   a name corresponding to a named key in the account, where a contract is stored under the key
-
-Payment and session code can be independently specified, so different methods of specifying them may be used (e.g. payment could be specified by a hash key, while the session is explicitly provided as a Wasm module).
 
 ### The Casper Network Runtime {#execution-semantics-runtime}
 

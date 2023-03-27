@@ -25,6 +25,10 @@ module.exports = {
     /* Optional */
     // customFields: dataConfig,
     themeConfig: {
+        tableOfContents: {
+            minHeadingLevel: 2,
+            maxHeadingLevel: 6,
+        },
         // algolia: algoliaConfig,
         announcementBar: announcementConfig,
         colorMode: colorConfig,

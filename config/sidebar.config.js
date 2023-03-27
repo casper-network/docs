@@ -1,11 +1,11 @@
 module.exports = {
     concepts: [
         "concepts/index",
-        //"concepts/intro-to-dapps", // NEW CONTENT WILL BE HERE
+        "concepts/intro-to-dapps",
         "concepts/accounts-and-keys",
         "concepts/understanding-hash-types",
-        //"concepts/deploy-and-deploy-lifecycle", // NEW CONTENT WILL BE HERE
-        //"concepts/global-state", // NEW CONTENT WILL BE HERE
+        "concepts/deploy-and-deploy-lifecycle",
+        "concepts/global-state",
         "concepts/smart-contracts",
         "concepts/callstack",
         "concepts/session-code",
