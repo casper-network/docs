@@ -40,7 +40,7 @@ jobs:
           cache: yarn
 
       - name: Template credentials
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/dev'
         uses: cuchi/jinja2-action@1149b92d9ea6db61d7f71c22e3d5028d8065f140
         with:
           template: .github/templates/.env.production.j2
