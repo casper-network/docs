@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /CNAME
-Disallow: /opensearch.xml
-Disallow: /.nojekyll
-Sitemap: https://docs.casperlabs.io/sitemap.xml
