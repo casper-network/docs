@@ -88,7 +88,7 @@ Signer.signMessage("Message to be signed", publicKey)
 
 ### Sign Transaction
 
-Transactions can be forwarded to the Casper Signer to be signed by a user without the user needing to reveal their private key to the application. To accomplish this, convert a valid, unsigned `Deploy` object to JSON and call the `sign` method on the `Signer` class:
+Transactions can be forwarded to the Casper Signer to be signed by a user without revealing their private key to the application. To accomplish this, convert a valid, unsigned `Deploy` object to JSON and call the `sign` method on the `Signer` class:
 
 ```javascript
 const publicKeyHex = await Signer.getActivePublicKey()
