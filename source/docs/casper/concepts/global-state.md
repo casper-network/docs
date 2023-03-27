@@ -30,9 +30,9 @@ The purpose of the extension node is to allow path compression. Consider an exam
 
 The Rust implementation of Casper's trie can be found on GitHub:
 
--   [Definition of the trie data structure](https://github.com/casper-network/casper-node/blob/v1.4.13/execution_engine/src/storage/trie/mod.rs#L340)
--   [Reading from the trie](https://github.com/casper-network/casper-node/blob/v1.4.13/execution_engine/src/storage/trie_store/operations/mod.rs#L44)
--   [Writing to the trie](https://github.com/casper-network/casper-node/blob/v1.4.13/execution_engine/src/storage/trie_store/operations/mod.rs#L845)
+-   [Definition of the trie data structure](https://github.com/casper-network/casper-node/blob/c8db6a737c41dcdfb86ed6bed16d24284cf5c3b9/execution_engine/src/storage/trie/mod.rs#L340)
+-   [Reading from the trie](https://github.com/casper-network/casper-node/blob/c8db6a737c41dcdfb86ed6bed16d24284cf5c3b9/execution_engine/src/storage/trie_store/operations/mod.rs#L44)
+-   [Writing to the trie](https://github.com/casper-network/casper-node/blob/c8db6a737c41dcdfb86ed6bed16d24284cf5c3b9/execution_engine/src/storage/trie_store/operations/mod.rs#L845)
 
 :::note
 
