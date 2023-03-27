@@ -5,7 +5,9 @@
 The storage layer for the Casper blockchain is called *global state* and has the semantics of a key-value store with additional permissions logic. All accounts, contracts, and any associated data they have are stored in global state. Not all users can access all data, so permissions need to be set accordingly.
 
 :::note
+
 Refer to [Keys and Permissions](./serialization-standard.md#serialization-standard-state-keys) for further information on keys.
+
 :::
 
 Each finalized block causes changes to the network's global state because of the execution of the deploys it contains. For validators to efficiently judge the correctness of these changes, information about the new state needs to be communicated succinctly. Moreover, the network must communicate portions of global state to users while allowing them to verify the correctness of the parts they receive. For these reasons, the key-value store is implemented as a [Merkle trie](#global-state-trie).
@@ -28,9 +30,9 @@ The purpose of the extension node is to allow path compression. Consider an exam
 
 The Rust implementation of Casper's trie can be found on GitHub:
 
--   [Definition of the trie data structure](https://github.com/casper-network/casper-node/blob/latest/execution_engine/src/storage/trie/mod.rs#L340)
--   [Reading from the trie](https://github.com/casper-network/casper-node/blob/latest/execution_engine/src/storage/trie_store/operations/mod.rs#L44)
--   [Writing to the trie](https://github.com/casper-network/casper-node/blob/latest/execution_engine/src/storage/trie_store/operations/mod.rs#L845)
+-   [Definition of the trie data structure](https://github.com/casper-network/casper-node/blob/v1.4.13/execution_engine/src/storage/trie/mod.rs#L340)
+-   [Reading from the trie](https://github.com/casper-network/casper-node/blob/v1.4.13/execution_engine/src/storage/trie_store/operations/mod.rs#L44)
+-   [Writing to the trie](https://github.com/casper-network/casper-node/blob/v1.4.13/execution_engine/src/storage/trie_store/operations/mod.rs#L845)
 
 :::note
 
