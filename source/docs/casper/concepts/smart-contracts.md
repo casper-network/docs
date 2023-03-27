@@ -9,7 +9,7 @@ A smart contract is a self-executing program that automates the actions required
 Casper smart contracts can be implemented in any programming language that compiles to [Wasm](../concepts/glossary/W.md#webassembly), which can be installed and executed on-chain using [Deploys](../concepts/glossary/D.md#deploy). Most documentation examples and the Casper system contracts are written in Rust. You can find a guide to writing a simple, smart contract in Rust [here](../developers/writing-onchain-code/simple-contract.md).
 
 
-#### Further Reading
+### Further Reading
 
 - [Writing Contracts](../../casper/developers/writing-onchain-code/simple-contract.md)
 - [Sending a Deploy](../developers/dapps/sending-deploys.md)
