@@ -99,6 +99,7 @@ const convertLink = (source: any): ILink => {
     type: source.type,
     url: source.url,
     children: [],
+    openInNewTab: source.open_in_new_tab ?? false,
   };
 };
 

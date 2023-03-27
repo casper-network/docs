@@ -3,4 +3,5 @@ export default interface ILink {
   type: 'internal' | 'external';
   url: string;
   children: Array<ILink>;
+  openInNewTab: boolean;
 }

@@ -228,8 +228,10 @@ Open the `config/algolia.config.js` file and replace the `api_key`, `index_name`
 
 ### Custom header
 
-If the docusaurus version is updated, the navbar could stop working!.
+If the docusaurus version is updated, the navbar, footer and side bar could stop working!.
 In that case run the command ```npm run swizzle @docusaurus/theme-classic Navbar -- --eject``` and restructure the navbar again.
+
+For more information about this: https://docusaurus.io/docs/swizzling
 
 Complete the following enviroment variables to enable the navbar.
 
