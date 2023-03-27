@@ -12,6 +12,8 @@ Each block causes changes to this global state because of the execution of the d
 
 ## Merkle trie structure {#global-state-trie}
 
+![Global State](/image/design/global-state.png)
+
 At a high level, a Merkle trie is a key-value store data structure that can be shared piece-wise in a verifiable way (via a construction called a Merkle proof). Each node is labeled by the hash of its data. Leaf nodes are labeled with the hash of their data. Non-leaf nodes are labeled with the hash of the labels of their child nodes.
 
 Our implementation of the trie has radix of 256, meaning each branch node can have up to 256 children. A path through the tree can be an array of bytes, and serialization directly links a key with a path through the tree as its associated value.
