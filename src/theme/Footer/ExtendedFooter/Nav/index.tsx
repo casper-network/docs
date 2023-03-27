@@ -6,7 +6,7 @@ import Link from "@docusaurus/Link";
 
 interface INavProps {
     footer: IFooterData;
-    renderLink: (type: string, title: string, url: string) => any;
+    renderLink: (type: string, title: string, url: string, openInNewTab: boolean) => any;
     getExternalLink: (path: string) => string;
 }
 
@@ -19,7 +19,7 @@ function Nav({ footer, renderLink, getExternalLink }: INavProps) {
                         <p className={`primaryParagraph ${styles.nav_category_title}`}>{column.title}</p>
                         <div className={styles.nav_category_links}>
                             {column.links.map((link, i) => {
-                                return renderLink(link.type, link.title, link.url);
+                                return renderLink(link.type, link.title, link.url, link.openInNewTab);
                             })}
                         </div>
                     </div>

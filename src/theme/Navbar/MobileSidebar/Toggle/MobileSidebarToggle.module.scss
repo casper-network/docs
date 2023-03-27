@@ -6,6 +6,7 @@
     position: relative;
     margin: 0;
     width: 100%;
+    overflow-x: hidden;
 
     &_container {
         display: flex;

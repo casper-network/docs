@@ -6,6 +6,7 @@ import useEventListener from "../../../../../hooks/useEventListener";
 import SearchResult from "../SearchResult";
 import useClickOutside from "../UseClickOutside";
 import styles from "./styles.module.scss";
+import useWindow from "../../../../../hooks/useWindow";
 
 export default function SearchBox({ placeholder, locale, siteUrl }: any) {
     const refInput = useRef<HTMLInputElement>(null);
@@ -60,6 +61,7 @@ export default function SearchBox({ placeholder, locale, siteUrl }: any) {
     useClickOutside(refInput, (isInside: boolean) => setHasFocus(isInside));
 
     function clearInput(elemId: string) {
+        if (!useWindow()) return;
         (document.getElementById(elemId) as HTMLInputElement).value = "";
         setSearchTerm("");
         setShowResults(false);
@@ -80,7 +82,7 @@ export default function SearchBox({ placeholder, locale, siteUrl }: any) {
                     {icons.cancel}
                 </button>
             )}
-            {hasFocus && showResults && <SearchResult locale={locale} siteUrl={siteUrl} hits={hits}></SearchResult>}
+            {hasFocus && showResults && <SearchResult locale={locale} siteUrl={siteUrl} hits={hits} setHasFocus={setHasFocus}></SearchResult>}
         </div>
     );
 }

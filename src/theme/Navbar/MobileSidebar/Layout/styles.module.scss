@@ -1,4 +1,5 @@
 @use "../../../../assets/scss/variables/sizes";
+@use "../../../../assets/scss/mixins";
 
 .sideBarWrapper {
     position: absolute;
@@ -9,12 +10,18 @@
     flex-direction: column;
     justify-content: space-between;
     height: fit-content;
-    transform: translate3d(0, calc(var(--navBarDocHeight) * -1), 0);
-}
+    transform: translate3d(0, 0, 0);
 
-.docSearchContainer {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    padding: 15px;
+    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+
+    &.showingAnnouncer {
+        padding-bottom: var(--announcerHeight);
+    }
+
+    .docSearchContainer {
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        padding: 15px;
+    }
 }

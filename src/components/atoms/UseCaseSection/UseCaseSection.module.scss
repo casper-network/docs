@@ -5,9 +5,13 @@
 
     .usecasetiles_content {
         @media (max-width: 1400px) {
-            grid-template-columns: repeat(auto-fill, minmax(360px, 100px));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 400px));
             justify-content: center;
             align-items: center;
+
+            [class*='span-'] {
+                grid-column: unset
+            }
         }
         @media (max-width: 400px) {
             grid-template-columns: 1fr;

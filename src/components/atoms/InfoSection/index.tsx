@@ -35,7 +35,7 @@ export function InfoSection({ tiles, button, header, subheader }: IInfoSectionPr
                             return <InfoTile key={`info_tile_${i}`} {...{ ...{ tile }, ...{ span } }} />;
                         })}
                 </div>
-                {button && <SiteButton {...button} />}
+                <div className={styles.buttonWrapper}>{button && <SiteButton {...button} />}</div>
             </div>
         </Section>
     );

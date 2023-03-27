@@ -161,6 +161,14 @@ nav.menu {
     overflow-y: hidden;
 }
 
+.navbar__items--right {
+    > [class*="searchBox"] {
+        @media #{media-queries.$mobile} {
+            display: none;
+        }
+    }
+}
+
 .navbar__links {
     white-space: nowrap;
 }
@@ -173,33 +181,6 @@ nav.menu {
 
 .main-wrapper {
     align-items: center;
-
-    > [class*="docPage"] {
-        max-width: var(--maxContentWidth);
-    }
-}
-
-[class*="docSidebarContainer"] {
-    background-color: transparent;
-    margin-top: 0 !important;
-    display: flex !important;
-    align-self: flex-start;
-    position: -webkit-sticky;
-    position: sticky;
-    top: calc(0px + var(--navBarDocHeight));
-    height: 100%;
-
-}
-
-[class*="sidebarViewport_node_modules"] {
-    overflow-y: scroll;
-    overflow-x: hidden;
-
-    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
-}
-
-[class*="docSidebarContainerHidden"] {
-    width: 60px !important;
 }
 
 footer.footer {
@@ -299,36 +280,10 @@ main > .container {
     }
 }
 
-button[aria-label="Collapse sidebar"] {
-    border: none;
-    background: transparent;
-}
-
 @media (max-width: 1399px) {
     .DocSearch-Button-Keys,
     .DocSearch-Button-Placeholder {
         display: none !important;
-    }
-}
-
-@media (min-width: 997px) {
-    [class*="sidebar_node_modules"] {
-        flex-direction: column-reverse !important;
-        align-items: flex-start !important;
-        padding-top: 0 !important;
-    }
-    [class*="expandButton_node_modules"] {
-        padding-top: 12px;
-        padding-left: 25px;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        background-color: transparent !important;
-        :hover {
-            background-color: transparent !important;
-        }
-    }
-    [class*="docSidebarContainer_node_modules"] {
-        border: 0 !important;
     }
 }
 

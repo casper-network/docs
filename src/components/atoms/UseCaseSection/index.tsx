@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./UseCaseSection.module.scss";
-import useWindowWidth from "../../../hooks/useWindowWidth";
 import Section from "../../containers/Section";
 import { UseCaseTile, IUseCaseTileProps } from "./UseCaseTile";
 
@@ -11,8 +10,6 @@ export interface IUseCaseSectionProps {
 }
 
 export function UseCaseSection({ header, subheader, tiles }: IUseCaseSectionProps) {
-    const desktop = useWindowWidth(1401);
-
     const setSpan = (length: number) => {
         switch (length) {
             case 1:
@@ -33,7 +30,7 @@ export function UseCaseSection({ header, subheader, tiles }: IUseCaseSectionProp
             <div className={`${styles.usecasetile} containerSite`}>
                 <div className={`${styles.usecasetiles_content} contentBox`}>
                     {tiles.map((data: any, index: number) => (
-                        <section className={`${desktop && "span-4"}`} key={`section-${index}`}>
+                        <section className={`span-4`} key={`usecase-section-${index}`}>
                             <UseCaseTile {...{ ...data, ...{ span: span } }} />
                         </section>
                     ))}

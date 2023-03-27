@@ -202,3 +202,11 @@
         }
     }
 }
+
+@media (max-width: 1024px) {
+    .card {
+        &[class*="span-"] {
+            grid-column: unset !important;
+        }
+    }
+}

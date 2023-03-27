@@ -18,9 +18,21 @@ interface ISidebar {
     current: string;
     siteConfig: any;
     socialMedia: ISocialMedia[];
+    closeNavBarHandler: () => void;
 }
 
-function Sidebar({ sidebarOpen, header, dropdownParentRef, handleClick, dropdownOpen, current, siteConfig, socialMedia, currentLocale }: ISidebar) {
+function Sidebar({
+    sidebarOpen,
+    header,
+    dropdownParentRef,
+    handleClick,
+    dropdownOpen,
+    current,
+    siteConfig,
+    socialMedia,
+    currentLocale,
+    closeNavBarHandler,
+}: ISidebar) {
     return (
         <section className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarClose : ""}`}>
             <div className={styles.sidebar_container}>
@@ -44,6 +56,7 @@ function Sidebar({ sidebarOpen, header, dropdownParentRef, handleClick, dropdown
                             dropdownOpen={dropdownOpen}
                             current={current}
                             locale={currentLocale}
+                            closeNavBarHandler={closeNavBarHandler}
                         />
                     </section>
                 )}

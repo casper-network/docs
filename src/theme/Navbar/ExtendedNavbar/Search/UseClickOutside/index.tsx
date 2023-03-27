@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import useWindow from "../../../../../hooks/useWindow";
 
 const events = [`mousedown`, `touchstart`];
 
@@ -13,6 +14,7 @@ export default (ref: any, onClickOutside: any) => {
 
     useEffect(() => {
         for (const event of events) {
+            if (!useWindow) return;
             document.addEventListener(event, onClick);
         }
 

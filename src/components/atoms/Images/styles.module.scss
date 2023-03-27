@@ -1,7 +1,10 @@
+@use "../../../assets/scss/variables/media-queries";
+
 .images {
     position: relative;
     width: 100%;
     min-height: 53vh;
+
 
     &_content {
         position: relative;
@@ -20,6 +23,17 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+            }
+        }
+    }
+}
+
+@media #{media-queries.$mobile} {
+    .images_content {
+        .images_content_section {
+
+            &[class*='span'] {
+                grid-column: span 12;
             }
         }
     }

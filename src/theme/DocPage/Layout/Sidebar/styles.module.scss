@@ -1,0 +1,49 @@
+@use "../../../../assets/scss/mixins";
+
+:root {
+  --doc-sidebar-width: 300px;
+  --doc-sidebar-hidden-width: 60px;
+}
+
+.docSidebarContainer {
+  display: none;
+}
+
+@media (min-width: 997px) {
+  .docSidebarContainer {
+    width: var(--doc-sidebar-width);
+    will-change: width;
+    transition: width var(--ifm-transition-fast) ease;
+    clip-path: inset(0);
+    
+    background-color: transparent;
+    margin-top: 0;
+    display: flex;
+    align-self: flex-start;
+    position: -webkit-sticky;
+    position: sticky;
+    top: calc(var(--navBarDocHeight) + var(--dynamicNavBarSiteHeight, 0px));
+    height: 100%;
+  }
+
+  .docSidebarContainerHidden {
+    width: var(--doc-sidebar-hidden-width);
+    cursor: pointer;
+
+    > [class*="sidebarViewport"] {
+      overflow: hidden;
+    }
+  }
+
+  .sidebarViewport {
+    top: 0;
+    position: sticky;
+    height: 100%;
+    max-height: 100vh;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+  }
+}

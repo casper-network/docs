@@ -39,7 +39,7 @@ export default function ExtendedFooter() {
         }
     };
 
-    const renderLink = (type: "internal" | "external", title: string, url: string) => {
+    const renderLink = (type: "internal" | "external", title: string, url: string, openInNewTab: boolean) => {
         switch (type) {
             case "internal":
                 return (
@@ -50,7 +50,7 @@ export default function ExtendedFooter() {
 
             case "external":
                 return (
-                    <a key={`${title}`} href={url}>
+                    <a key={`${title}`} href={url} target={openInNewTab ? "_blank" : "_self"}>
                         {title}
                     </a>
                 );
@@ -93,7 +93,7 @@ export default function ExtendedFooter() {
                         {footerData.bottomLinks && (
                             <div className={styles.footer_container_bottomData}>
                                 {footerData.bottomLinks.map((link, i) => {
-                                    return <span key={`${link.title}_${i}`}>{renderLink(link.type, link.title, link.url)}</span>;
+                                    return <span key={`${link.title}_${i}`}>{renderLink(link.type, link.title, link.url, link.openInNewTab)}</span>;
                                 })}
                             </div>
                         )}

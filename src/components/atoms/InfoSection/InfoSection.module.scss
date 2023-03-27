@@ -3,8 +3,13 @@
         grid-template-rows: max-content;
     }
 
-    > a {
-        margin-top: 50px;
+    .buttonWrapper {
+        margin-top: 20px;
+        :hover {
+            > [class*="button_container"] {
+                gap: 8px;
+            }
+        }
     }
 }
 
@@ -13,8 +18,12 @@
         grid-template-columns: repeat(auto-fill, minmax(360px, 100px));
         justify-content: center;
     }
+    .wrapper {
+        .buttonWrapper {
+            margin-top: 60px;
+        }
+    }
 }
-
 @media (max-width: 400px) {
     [class*="container"] > .tileContent {
         grid-template-columns: 1fr;

@@ -13,7 +13,7 @@ export interface ISiteButtonProps {
 export function SiteButton({ text, url, inverted, disabled }: ISiteButtonProps) {
     return (
         <>
-            <Link to={url} className={`${styles.button} ${disabled && styles.disabled} ${!inverted ? styles.primary : styles.secondary} `}>
+            <Link to={!disabled ? url : ""} className={`${styles.button} ${disabled && styles.disabled} ${!inverted ? styles.primary : styles.secondary} `}>
                 <div className={`${styles.button_container} ${!inverted ? styles.primary_container : styles.secondary_container}`}>
                     <p>{text}</p>
                     {icons.arrowRight}

@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./DocsSection.module.scss";
 import { DocsTile, IDocsTileProps } from "./DocsTile";
-import useWindowWidth from "../../../hooks/useWindowWidth";
 import Section from "../../containers/Section";
 
 export interface IDocsSectionProps {

@@ -4,8 +4,10 @@
     background-color: var(--black);
     color: var(--casperWhite);
 
+
     &_content {
         position: relative;
+        
 
         &_img {
             position: relative;
@@ -64,6 +66,14 @@
             }
             .ImageAndTextBlock_content_text {
                 order: 2;
+            }
+        }
+        .ImageAndTextBlock_content {
+            .ImageAndTextBlock_content_img,
+            .ImageAndTextBlock_content_text {
+                &[class*="span-"] {
+                    grid-column: span 12;
+                }
             }
         }
     }

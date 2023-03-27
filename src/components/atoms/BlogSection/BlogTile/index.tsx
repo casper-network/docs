@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./BlogTile.module.scss";
 import { ISiteButtonProps, SiteButton } from "../../SiteButton";
-import useWindowWidth from "../../../../hooks/useWindowWidth";
 
 export interface IBlogTileProps {
     image: string;
@@ -14,9 +13,8 @@ export interface IBlogTileProps {
 }
 
 export function BlogTile({ image, image_title, category, title, span, date, button }: IBlogTileProps) {
-    const desktop = useWindowWidth(1025);
     return (
-        <div className={`${styles.card} ${desktop ? `span-${span}` : ""}`}>
+        <div className={`${styles.card} span-${span}`}>
             <div className={`${styles.card_img}`}>
                 <img src={image} alt={image_title ? `${image_title}` : title ? `${title}` : `BlogTile`} />
             </div>

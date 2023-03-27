@@ -6,9 +6,10 @@ interface ISearchResultProps {
     locale: string;
     siteUrl: string;
     hits: any[];
+    setHasFocus: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function SearchResult({ locale, siteUrl, hits }: ISearchResultProps) {
+export default function SearchResult({ locale, siteUrl, hits, setHasFocus }: ISearchResultProps) {
     const { siteConfig } = useDocusaurusContext();
     const { customFields } = siteConfig;
 
@@ -51,7 +52,7 @@ export default function SearchResult({ locale, siteUrl, hits }: ISearchResultPro
 
     return (
         <>
-            <div className={styles.results_container}>
+            <div className={styles.results_container} onClick={() => setHasFocus(false)}>
                 {hits && hits.length > 0 ? (
                     hits.map((hit: any, i: number) => {
                         if (hit._highlightResult?.title?.matchedWords?.length > 0 || hit._highlightResult?.internal?.content?.matchedWords?.length > 0) {

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./ExtendedNavbar.module.scss";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 import { useLocation } from "@docusaurus/router";
@@ -18,6 +17,8 @@ import icons from "../../../icons";
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import Nav from "./Nav";
 import Sidebar from "./SideBar";
+import useWindow from "../../../hooks/useWindow";
+import styles from "./ExtendedNavbar.module.scss";
 
 export default function ExtendedNavbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -88,6 +89,7 @@ export default function ExtendedNavbar() {
     }, [isDesktop]);
 
     useEffect(() => {
+        if (!useWindow) return;
         if (document && document.body) {
             const bodyDocument = document.body;
             if (sidebarOpen && !isDesktop) {
@@ -186,6 +188,7 @@ export default function ExtendedNavbar() {
                     current={current}
                     siteConfig={siteConfig}
                     socialMedia={data.socialMedia}
+                    closeNavBarHandler={closeNavBarHandler}
                 />
             </div>
         </div>

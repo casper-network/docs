@@ -15,7 +15,7 @@ function useOnScreen(ref: any, rootMargin = "0px") {
             },
         );
         if (ref.current) {
-            observer.observe(ref.current);
+            observer.observe(ref.current as Element);
         }
         return () => {
             if (ref.current) observer.unobserve(ref.current);

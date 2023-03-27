@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./BlogSection.module.scss";
-import useWindowWidth from "../../../hooks/useWindowWidth";
 import Section from "../../containers/Section";
 import { BlogTile, IBlogTileProps } from "./BlogTile";
 
@@ -11,8 +10,6 @@ export interface IBlogSectionProps {
 }
 
 export function BlogSection({ header, subheader, tiles }: IBlogSectionProps) {
-    const desktop = useWindowWidth(1401);
-
     const setSpan = (length: number) => {
         switch (length) {
             case 1:
@@ -33,7 +30,7 @@ export function BlogSection({ header, subheader, tiles }: IBlogSectionProps) {
             <div className={`${styles.blogtiles} containerSite`}>
                 <div className={`${styles.blogtiles_content} contentBox`}>
                     {tiles.map((data: any, index: number) => (
-                        <section className={`${desktop ? "span-4" : ""}`} key={`section-${index}`}>
+                        <section className={`span-4`} key={`blog-section-${index}`}>
                             <BlogTile {...{ ...data, ...{ span: span } }} />
                         </section>
                     ))}

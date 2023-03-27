@@ -8,7 +8,7 @@ interface INavBarLinkProps extends ILink {
     closeNavBarHandler: () => void;
 }
 
-export default function NavBarLink({ title, url, type, children, locale, closeNavBarHandler }: INavBarLinkProps) {
+export default function NavBarLink({ title, url, type, openInNewTab, children, locale, closeNavBarHandler }: INavBarLinkProps) {
     const { siteConfig } = useDocusaurusContext();
     const { customFields } = siteConfig;
 
@@ -22,7 +22,7 @@ export default function NavBarLink({ title, url, type, children, locale, closeNa
             return `${url}/${locale}/${truncatedPath}`;
         }
     };
-    const renderLink = (type: "internal" | "external", title: string, url: string) => {
+    const renderLink = (type: "internal" | "external", title: string, url: string, openInNewTab: boolean) => {
         switch (type) {
             case "internal":
                 return (
@@ -33,7 +33,7 @@ export default function NavBarLink({ title, url, type, children, locale, closeNa
 
             case "external":
                 return (
-                    <a key={`${title}`} href={url} onClick={() => closeNavBarHandler()}>
+                    <a key={`${title}`} href={url} target={openInNewTab ? "_blank" : "_self"}>
                         {title}
                     </a>
                 );
@@ -44,12 +44,16 @@ export default function NavBarLink({ title, url, type, children, locale, closeNa
 
     return (
         <li className={`${styles.link} ${children?.length === 0 ? styles.onlyTitle : ""}`}>
-            <span>{renderLink(type, title, url)}</span>
+            <span>{renderLink(type, title, url, openInNewTab)}</span>
             {children && (
                 <ul className={`${styles.subLinkList} noWrap`}>
                     {children.length > 0 &&
                         children.map((subLink, i) => {
-                            return <li key={`column_group_link_subLink_${subLink.title}_${i}`}>{renderLink(subLink.type, subLink.title, subLink.url)}</li>;
+                            return (
+                                <li key={`column_group_link_subLink_${subLink.title}_${i}`}>
+                                    {renderLink(subLink.type, subLink.title, subLink.url, subLink.openInNewTab)}
+                                </li>
+                            );
                         })}
                 </ul>
             )}

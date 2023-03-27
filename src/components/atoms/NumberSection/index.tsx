@@ -29,15 +29,17 @@ export function NumberSection({ header, subheader, numbers, text }: INumberSecti
                 <div className={`${styles.number_section_box} contentBox`}>
                     {numbers.map((data: any, index: number) => (
                         <div className={`${styles.number_section_box_span} ${desktop ? "span-4" : ""}`} key={`number-${index}`}>
-                            <Number number={data.number} description={data.description} onScreen={onScreen} />
+                            <Number number={data.number} description={data.description} onScreen={onScreen} key={`number-${index}`} />
                         </div>
                     ))}
                 </div>
-                <div className={`contentBox`}>
-                    <div className={`${styles.number_section_text} span-12`} ref={ref}>
-                        <p>{text}</p>
+                {text && (
+                    <div className={`contentBox`}>
+                        <div className={`${styles.number_section_text} span-12`} ref={ref}>
+                            <p dangerouslySetInnerHTML={{ __html: text! }} className="primaryParagraph"></p>
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </Section>
     );

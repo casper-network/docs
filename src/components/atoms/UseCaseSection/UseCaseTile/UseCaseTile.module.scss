@@ -73,7 +73,7 @@
                     .iconButton {
                         background: none;
                         border: none;
-                        
+
                         :active :hover {
                             background: #f9aaca;
                         }
@@ -167,15 +167,25 @@
                     align-items: unset;
                     justify-content: unset;
                     gap: 5px;
+
                     .title {
                         justify-content: flex-start;
                         max-width: 100%;
                     }
+
                     .buttons {
                         justify-content: flex-end;
                     }
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .card {
+        &[class*="span"] {
+            grid-column: unset !important;
         }
     }
 }

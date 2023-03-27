@@ -82,6 +82,12 @@
 .disabled {
     color: var(--primaryBtn-disabled);
     border: 1px solid var(--primaryBtn-disabled);
+    cursor: default;
+    svg {
+        > path {
+            fill: var(--primaryBtn-disabled);
+        }
+    }
     &:hover,
     &:focus {
         outline: none;
