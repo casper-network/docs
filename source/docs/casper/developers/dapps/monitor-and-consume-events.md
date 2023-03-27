@@ -24,7 +24,7 @@ All the events other than `DeployAccepted` and `FinalitySignature` fall under th
 You can start watching the event stream details using a simple Curl call as in the below format:
 
 ```bash
-curl -sN http://<HOST:PORT>/events/<ENDPOINT>
+curl -s http://<HOST:PORT>/events/<ENDPOINT>
 ```
 
 - `HOST` - The IP address of a peer on the network
