@@ -118,7 +118,7 @@ RPC: Ready
 ● casper-node-launcher.service - Casper Node Launcher
    Loaded: loaded (/lib/systemd/system/casper-node-launcher.service; enabled; vendor preset: enabled)
    Active: active (running) since Wed 2022-03-16 21:08:50 UTC; 4 days ago
-     Docs: https://docs.casperlabs.io
+     Docs: https://docs.casper.network
  Main PID: 2934 (casper-node-lau)
     Tasks: 12 (limit: 4915)
    CGroup: /system.slice/casper-node-launcher.service
