@@ -10,7 +10,7 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [Camel Casper](https://github.com/abahmanem/camel-casper) | [Apache Camel](https://camel.apache.org/) connector for the Casper Blockchain | M.Abahmane | Java | MIT license | 2022-03-26 | Tools
 [Casper .NET SDK](https://github.com/make-software/casper-net-sdk) | Casper .NET Client SDK to interact with Casper network nodes via RPC. | MAKE Software | .NET | Apache-2.0 license | 2022-04-19 | Client SDK
 [Casper Analytics App](https://github.com/caspercommunityio/casper-analytics-app) | Casper Analytics App. Built with Ionic. Easily exportable as iOS and Andriod App | caspercommunity.io | PHP | MIT license | 2022-01-20 | Tools
-[Casper C++ SDK](https://github.com/yusufketen/casper-cpp-sdk) | C++ library to interact with Casper network nodes via RPC | Yusuf Keten | C++ | Apache License 2.0 | 2022-09-13 | Client SDK
+[Casper C++ SDK](https://github.com/caspercppsdk/casper-cpp-sdk) | C++ library to interact with Casper network nodes via RPC | Yusuf Keten | C++ | Apache License 2.0 | 2022-09-13 | Client SDK
 [Casper Calculator](https://github.com/nad128668/casper-calculator) | Casper Earnings Calculator and Node Monitor | Charles Nguyen | JavaScript | MIT license | 2021-09-26 | Tools
 [Casper Contract Upgrade](https://github.com/casper-ecosystem/contract-upgrade-example) | Example contract to demonstrate the general way of upgrading a contract and the necessary steps | Casper Labs | Rust | Apache License 2.0 | 2022-06-21 | Example Contracts
 [Casper Dart SDK](https://github.com/cdolaz/casper_dart_sdk) | Casper Dart SDK is for interacting with the Casper Blockchain using RPC. | Temiltas | Dart | Apache License 2.0 | 2022-06-26 | Client SDK
