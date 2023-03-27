@@ -129,6 +129,7 @@ module.exports = {
                     collapsed: true,
                     items: [
                         "developers/dapps/sdk/index",
+                        "developers/dapps/sdk/client-library-usage",
                         "developers/dapps/sdk/script-sdk",
                         "developers/dapps/sdk/csharp-sdk",
                         "developers/dapps/sdk/go-sdk",
