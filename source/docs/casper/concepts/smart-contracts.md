@@ -1,6 +1,6 @@
 # Smart Contracts
 
-## General/Intro
+## Smart Contracts in General
 
 A smart contract is a self-executing program that automates the actions required in a digital agreement. Once completed, the transactions are trackable and irreversible. Smart contracts permit trusted transactions and agreements among disparate, anonymous parties without the need for a central authority, legal system, or external enforcement mechanism.
 
