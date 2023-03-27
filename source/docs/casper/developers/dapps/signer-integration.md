@@ -79,7 +79,7 @@ Note that this function is deprecated in favor of `getActivePublicKey()`. It is 
 
 When a message is signed with a Casper account, it serves as proof that the account owner sent the message and that the message has not been tampered with since it was signed. The signature is generated using the account's private key, which only the account owner can access. The signature can then be verified by anyone with access to the message, the signature, and the public key associated with the Casper account.
 
-To sign a given message using the Casper JS SDK, initiate a signature request using this function:
+To sign a given message using the Casper JS SDK, initiate a signature request using this function, where `publicKey` is the Base16 `String`-typed public key of the active account within the Casper Signer.
 
 ```javascript
 Signer.signMessage("Message to be signed", publicKey)
