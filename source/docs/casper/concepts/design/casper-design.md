@@ -2,61 +2,19 @@
 
 ## Introduction
 
-Casper is a Proof-of-Stake blockchain platform with an account-based model that performs execution after consensus. A Casper network stores data on a structure known as [Global State](#global-state-head). Users interact with global state through session code sent in a [Deploy](#execution-semantics-deploys). Deploys contain [Wasm](https://webassembly.org/) to be executed by the network, thus allowing developers to use their preferred programming language rather than a proprietary language.
+Casper is a Proof-of-Stake blockchain platform with an account-based model that performs execution after [consensus](../glossary/C.md#consensus). A Casper network stores data in a structure known as [Global State](../global-state.md). Users interact with global state through session code sent in a [Deploy](../glossary/D.md#deploy). Deploys contain [Wasm](https://webassembly.org/) to be executed by the network, thus allowing developers to use their preferred programming language rather than a proprietary language.
 
 A deploy executes in the context of the user's [Account](#accounts-head) but can call stored Wasm that will execute in its own context. User-related information other than an account is stored in global state as an [Unforgeable Reference](#uref-head) or `URef`. After a node accepts a deploy as valid, it places the deploy in a proposed [Block](#block-structure-head) and gossips it among nodes until the network reaches consensus. At this point, the network executes the Wasm included within the deploy.
 
-1. [Global State](#global-state-head)
+1. [Execution Semantics](#execution-semantics-head)
 
-2. [Execution Semantics](#execution-semantics-head)
+2. [Accounts](#accounts-head)
 
-3. [Accounts](#accounts-head)
+3. [Unforgeable Reference (URef)](#uref-head)
 
-4. [Unforgeable Reference (URef)](#uref-head)
+4. [Block Structure](#block-structure-head)
 
-5. [Block Structure](#block-structure-head)
-
-6. [Tokens](#tokens-head)
-
-## Global State {#global-state-head}
-
-"Global state" is the storage layer for the Casper blockchain. All accounts, contracts, and any associated data are stored in global state. Global state follows the semantics of a key-value store (with additional permissions logic, as not all users can access all values in the same way).
-
-:::note
-
-Refer to [Keys and Permissions](../serialization-standard.md#serialization-standard-state-keys) for further information on keys.
-
-:::
-
-Changes to global state occur through executing deploys contained within finalized blocks. For validators to efficiently judge the correctness of these changes, they need information about the new state communicated succinctly. Further, the network must communicate portions of global state to users while allowing them to verify the correctness of the parts they receive. The key-value store is implemented as a [Merkle trie](#global-state-trie) for these reasons.
-
-### Merkle Trie Structure {#global-state-trie}
-
-![Global State](/image/design/global-state.png)
-
-At a high level, a Merkle trie is a key-value store data structure that can be shared piecewise in a verifiable way (via a construction called a Merkle proof). Each node is labeled by the hash of its data. Leaf nodes are labeled with the hash of their data. Non-leaf nodes are labeled with the hash of the labels of their child nodes.
-
-Casper's implementation of the trie has radix of 256, meaning each branch node can have up to 256 children. A path through the tree can be an array of bytes, and serialization directly links a key with a path through the tree as its associated value.
-
-Formally, a trie node is one of the following:
-
--   a leaf, which includes a key and a value
--   a branch, which has up to 256 `blake2b256` hashes, pointing to up to 256 other nodes in the trie (recall each node is labeled by its hash)
--   an extension node, which includes a byte array (called the affix) and a `blake2b256` hash pointing to another node in the trie
-
-The purpose of the extension node is to allow path compression. Consider an example where all keys use the same first four bytes for values in the trie. In this case, it would be inefficient to traverse through four branch nodes where there is only one choice; instead, the root node of the trie could be an extension node with an affix equal to those first four bytes and a pointer to the first non-trivial branch node.
-
-The Rust implementation of Casper's trie can be found on GitHub:
-
--   [Definition of the trie data structure](https://github.com/casper-network/casper-node/blob/dev/execution_engine/src/storage/trie/mod.rs#L475)
--   [Reading from the trie](https://github.com/casper-network/casper-node/blob/dev/execution_engine/src/storage/trie_store/operations/mod.rs#L45)
--   [Writing to the trie](https://github.com/casper-network/casper-node/blob/dev/execution_engine/src/storage/trie_store/operations/mod.rs#L954)
-
-:::note
-
-Conceptually, each block has its trie because the state changes based on the deploys it contains. For this reason, Casper's implementation has a notion of a `TrieStore`, which allows us to look up the root node for each trie.
-
-:::
+5. [Tokens](#tokens-head)
 
 ## Execution Semantics {#execution-semantics-head}
 
