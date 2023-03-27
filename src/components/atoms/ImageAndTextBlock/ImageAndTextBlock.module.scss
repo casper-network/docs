@@ -4,10 +4,8 @@
     background-color: var(--black);
     color: var(--casperWhite);
 
-
     &_content {
         position: relative;
-        
 
         &_img {
             position: relative;
@@ -39,7 +37,7 @@
             > p {
                 margin: 14px 0px;
                 display: -webkit-box;
-                -webkit-line-clamp: 6;
+                -webkit-line-clamp: 8;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
@@ -73,6 +71,13 @@
             .ImageAndTextBlock_content_text {
                 &[class*="span-"] {
                     grid-column: span 12;
+                }
+            }
+
+            &_text {
+                > p {
+                    display: block;
+                    overflow: visible;
                 }
             }
         }
