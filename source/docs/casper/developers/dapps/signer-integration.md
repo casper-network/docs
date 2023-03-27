@@ -2,7 +2,7 @@
 
 The [Casper Signer](https://github.com/casper-ecosystem/signer) is a browser plugin for interfacing with Casper accounts. You can interact with the Casper Signer using the `Signer` class in the [Casper JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk/).
 
-## Integration
+## Integrating with the Casper Signer
 
 To connect to the Casper Signer from a dApp's front-end is simple. Start by importing the `Signer` class from the Casper JS SDK.
 
