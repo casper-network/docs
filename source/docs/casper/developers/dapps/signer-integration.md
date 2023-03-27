@@ -75,7 +75,7 @@ Note that this function is deprecated in favor of `getActivePublicKey()`. It is 
 
 ## Signing Messages and Transactions
 
-### Sign Message
+### Signing a message
 
 When a message is signed with a Casper account, it serves as proof that the account owner sent the message and that the message has not been tampered with since it was signed. The signature is generated using the account's private key, which only the account owner can access. The signature can then be verified by anyone with access to the message, the signature, and the public key associated with the Casper account.
 
