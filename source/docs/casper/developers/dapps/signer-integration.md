@@ -53,7 +53,7 @@ Signer.createTestAccount("Account Name", privateKey)
 ```
 
 
-## Get Account Public Key
+## Getting an Account's Public Key
 
 Two methods exist for getting the active account's public key in different formats. There are many reasons you may want to read the public key of the active account, the main being the use of it in a smart contract call or query. 
 
