@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 116px;
+    min-height: 116px;
     max-width: 400px;
     background-color: var(--black);
     color: var(--casperWhite);
@@ -13,6 +13,7 @@
     text-decoration: none;
     cursor: pointer;
     overflow: hidden;
+    padding: 25px 14px 25px 0;
 
     background: linear-gradient(90deg, var(--mainColor) 0%, var(--black) 45%);
     background-size: 100% 100%;
@@ -44,7 +45,6 @@
         align-items: flex-start;
         flex-direction: column;
         width: 100%;
-        padding-right: 14px;
 
         > p,
         h4 {
@@ -95,6 +95,17 @@
         width: 55px;
         svg {
             transform: scale(0.7);
+        }
+    }
+}
+
+@media (max-width: 903px) {
+    .tilecard_text {
+        > p,
+        h4 {
+            display: block;
+            overflow: visible;
+            max-height: fit-content;
         }
     }
 }
