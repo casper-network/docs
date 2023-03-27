@@ -109,7 +109,7 @@ const signedDeployJSON = await Signer.sign(unsignedDeployJSON, publicKeyHex)
 
 The `sign` function throws an error if the Casper Signer is not connected (see `isConnected`) or if the signing public key (`publicKeyHex` above) does not match the active public key in the Signer.
 
-Once you have the `signedDeployJSON` you can craft a [POST request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) to your dApp's backend, passing along the signed JSON deploy in the body. Be sure to set the `Content-Type` header to `application/json`.
+Once you have the `signedDeployJSON`, you can craft a [POST request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST) to your dApp's backend, passing along the signed JSON deploy in the body. Set the `Content-Type` header to `application/json`.
 
 ## Responding to Signer Events
 
