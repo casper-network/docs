@@ -274,6 +274,7 @@ module.exports = {
                     collapsed: true,
                     items: [
                         "resources/tutorials/advanced/index",
+                        "resources/tutorials/advanced/cross-contract",
                         "resources/tutorials/advanced/transfer-token-to-contract",
                         "resources/tutorials/advanced/two-party-multi-sig",
                         "resources/tutorials/advanced/return-values-tutorial",
