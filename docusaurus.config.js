@@ -25,11 +25,19 @@ module.exports = {
     /* Optional */
     // customFields: dataConfig,
     themeConfig: {
+        tableOfContents: {
+            minHeadingLevel: 2,
+            maxHeadingLevel: 6,
+        },
         // algolia: algoliaConfig,
-        // announcementBar: announcementConfig,
+        announcementBar: announcementConfig,
         colorMode: colorConfig,
         footer: footerConfig,
-        hideableSidebar: true,
+        docs: {
+            sidebar: {
+                hideable: true,
+            },
+        },
         /* Optional */
         // googleAnalytics: analyticsConfig.googleAnalytics,
         // gtag: analyticsConfig.gtag,

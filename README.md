@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://docs.casperlabs.io/.
+Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://docs.casper.network/.
 
 ## Setup
 
@@ -11,7 +11,7 @@ Follow these steps to run the documentation website locally, displayed in your l
 ### Pre-requisites
 
 -   Install a code editor, such as Visual Studio Code (`vscode`). You may also want to install editing extensions such as `prettier`, `eslint`, and others listed in the `.vscode/extensions.json` file.
--   Install [Node.js](https://nodejs.org/en/download/) (version 14+).
+-   Install [Node.js](https://nodejs.org/en/download/) (version 16.14+).
 -   Install `yarn` via `npm` using this command:
 
     ```
@@ -61,7 +61,6 @@ The table below shows you the main structure of the documentation framework.
 
 | Folder/File          | Description                               |
 | -------------------- | ----------------------------------------- |
-| .circleci            | CI/CD pipeline module                     |
 | .docusaurus          | Docusaurus default configuration module   |
 | .github              | GitHub module                             |
 | .husky               | Husky script module                       |
