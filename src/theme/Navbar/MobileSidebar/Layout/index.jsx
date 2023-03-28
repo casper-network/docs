@@ -14,9 +14,7 @@ export default function NavbarMobileSidebarLayout({ header, primaryMenu, seconda
     const searchBarItem = items.find((item) => item.type === "search");
     const ref = React.useRef(null);
 
-    const announcer = useWindow
-        ? document.getElementsByClassName("announcementBar_node_modules-@docusaurus-theme-classic-lib-theme-AnnouncementBar-styles-module")[0]
-        : null;
+    const announcer = useWindow ? document.querySelectorAll('*[class^="announcementBar_"]')[0] : null;
     let announcerHeight, onScreen;
 
     if (announcer) {
