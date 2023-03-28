@@ -24,9 +24,10 @@ More information on dictionaries can be found on the [Reading and Writing to Dic
 
 ### Example of `put_key` and `storage::write`
 
-This sample code creates a new contract and stores the contract version in global state using the `runtime::put_key` function. The user provides a runtime argument `my_stored_value`, which is stored in a URef via the `storage::new_uref` function.
+This sample code creates a new contract and stores the contract hash in global state using the `runtime::put_key` function. 
+The code uses a boolean value, `MY_STORED_VALUE`, which is initialized to `false` using the `storage::new_uref` function. The value is then set to `true` and stored in a URef.
 
-If the stored value already exists, the `storage::write` function overwrites the stored value with the new runtime argument. The URef is then stored in the current context as a `NamedKey` titled `MY_STORED_VALUE_UREF`.
+Once the stored value has been initialized, the `storage::write` function overwrites the existing value with `true`. The URef is then stored in the current context as a `NamedKey` titled `MY_STORED_VALUE_UREF`.
 
 Full example code can be found [here](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/dev/storage-example/contract/src/main.rs).
 
@@ -59,7 +60,7 @@ pub extern "C" fn call() {
 
 ### Example of `get_key` and `storage::read`
 
-This example compliments the code sample above by retrieving the `CONTRACT_HASH` using the `get_key` function, before comparing a provided runtime argument against the previously stored `MY_STORED_VALUE_UREF` using `storage::read`.
+This example compliments the code sample above by retrieving the `CONTRACT_HASH` using the `get_key` function, before comparing a provided runtime argument `ARG_MY_STORED_VALUE` against the previously stored `MY_STORED_VALUE_UREF` using `storage::read`.
 
 Full example code can be found [here](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/dev/storage-example/client/named_key_session/src/main.rs).
 
