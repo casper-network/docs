@@ -1,3 +1,7 @@
+require("dotenv").config({
+    path: process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : `.env`,
+});
+
 const {
     algoliaConfig,
     algoliaOfflineConfig,
@@ -96,15 +100,6 @@ module.exports = {
         "docusaurus-plugin-sass",
         /* Optional */
         // ["@docusaurus/plugin-pwa", pwaConfig],
-        [
-            "docusaurus2-dotenv",
-            {
-                path: "./.env.production",
-                safe: false,
-                systemvars: false,
-                silent: false,
-            },
-        ],
         [
             "docusaurus-plugin-navdata",
             {
