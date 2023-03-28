@@ -93,9 +93,9 @@ export default function ExtendedNavbar() {
         if (document && document.body) {
             const bodyDocument = document.body;
             if (sidebarOpen && !isDesktop) {
-                bodyDocument.classList.add("scrollDocument");
+                bodyDocument.classList.add("preventScrollDocument");
             } else {
-                bodyDocument.classList.remove("scrollDocument");
+                bodyDocument.classList.remove("preventScrollDocument");
             }
         }
     }, [isDesktop, sidebarOpen]);

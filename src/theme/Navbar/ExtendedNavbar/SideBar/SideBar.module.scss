@@ -7,6 +7,7 @@
     left: 0;
     z-index: var(--navBarZIndex);
     width: 100%;
+    max-width: 100dvw;
     background-color: var(--liftedBlack);
     transform: translateX(-996px);
     @include mixins.transition(0.7s ease-in);
