@@ -24,7 +24,7 @@ You can then use the `Signer` class to send a connection request to the Casper S
 Signer.sendConnectionRequest()
 ```
 
-and check if the Casper Signer is connected using:
+Check if the Casper Signer is connected using the following:
 
 ```javascript
 Signer.isConnected()
