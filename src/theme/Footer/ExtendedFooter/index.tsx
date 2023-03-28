@@ -77,9 +77,11 @@ export default function ExtendedFooter() {
                     <div className={`${styles.footer_container}`}>
                         <div className={styles.footer_container_upperData}>
                             <div className={styles.footer_container_upperData_social}>
-                                <h2>{footerData.title}</h2>
+                                {footerData && footerData.title && <h2>{footerData.title}</h2>}
                                 <SocialMedia socialMedia={data.socialMedia} />
-                                <p className={`${styles.footer_container_upperData_social_description} primaryParagraph`}>{footerData.description}</p>
+                                {footerData && footerData.description && (
+                                    <p className={`${styles.footer_container_upperData_social_description} primaryParagraph`}>{footerData.description}</p>
+                                )}
                                 {footerData && footerData.logo && (
                                     <div className={styles.logoCasper}>
                                         <Link href={getExternalLink("/")}>
