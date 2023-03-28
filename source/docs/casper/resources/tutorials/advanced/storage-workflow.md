@@ -8,7 +8,7 @@ Essentially, there are three means of storage within the Casper ecosystem. These
 
 ### `runtime::put_key` / `runtime::get_key`
 
-Both the [`put_key`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.put_key.html) and [`get_key`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.get_key.html) functions refer to Casper `Key` types as outlined in both the [Understanding Hash Types](./concepts/serialization-standard/#serialization-standard-state-keys) and [Serialization Standard](./serialization-standard/#serialization-standard-state-keys). These keys are stored within a URef as a `Key` type.
+Both the [`put_key`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.put_key.html) and [`get_key`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.get_key.html) functions refer to Casper `Key` types as outlined in both the [Understanding Hash Types](../../..concepts/serialization-standard/#serialization-standard-state-keys) and [Serialization Standard](../../../concepts/serialization-standard.md#serialization-standard-state-keys). These keys are stored within a URef as a `Key` type.
 
 ### `storage::write` / `storage::read`
 
@@ -18,7 +18,7 @@ Both the [`put_key`](https://docs.rs/casper-contract/latest/casper_contract/cont
 
 For most data storage needs on a Casper network, dictionaries are more efficient and provide lower gas costs than `NamedKeys`. Each dictionary item exists independently, sharing a single dictionary seed URef for reference purposes.
 
-More information on dictionaries can be found on the [Reading and Writing to Dictionaries](./concepts/dictionaries/) page.
+More information on dictionaries can be found on the [Reading and Writing to Dictionaries](../../../concepts/dictionaries.md) page.
 
 ## Example Code
 
@@ -75,7 +75,7 @@ This example compliments the code sample above by retrieving the `CONTRACT_HASH`
 
 ### Example of `dictionary_put` and `dictionary_get`
 
-Examples of dictionary usage for storage can be found in the *Writing Entries into a Dictionary* section of [Reading and Writing to Dictionaries](./concepts/dictionaries/#writing-entries-into-a-dictionary).
+Examples of dictionary usage for storage can be found in the *Writing Entries into a Dictionary* section of [Reading and Writing to Dictionaries](../../../concepts/dictionaries.md#writing-entries-into-a-dictionary).
 
 ## Additional Functions for Named Keys
 
