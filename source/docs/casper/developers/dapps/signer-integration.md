@@ -46,7 +46,7 @@ To create a new vault, call the following function, providing a password for the
 Signer.createNewVault("password")
 ```
 
-You may also create a test account that will remain persistent in the Signer using the following code, where `privateKey` is the base 16 private key of the account as a `String`.
+You may also create a test account that will remain persistent in the Signer using the following code, where `privateKey` is the Base16 private key of the account as a `String`.
 
 ```javascript
 Signer.createTestAccount("Account Name", privateKey)
