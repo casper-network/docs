@@ -113,7 +113,7 @@ Once you have the `signedDeployJSON`, you can craft a [POST request](https://dev
 
 ## Responding to Signer Events
 
-The Casper Signer will emit events when it changes states. By listening for these events, you can update your application to respond to them.
+The Casper Signer will emit events when it changes state. Your application can update and change state as well by listening to these events.
 
 For example, the Casper Signer will lock itself automatically after a set interval of disuse (2-10 minutes). When this occurs, the Casper Signer emits the `signer:locked` event. We can listen for this event by using `addEventListener` on the `window`.
 
