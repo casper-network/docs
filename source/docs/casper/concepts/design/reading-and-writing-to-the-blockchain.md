@@ -18,6 +18,9 @@ The Casper API includes the following functions for reading and writing to globa
 
 * [put_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.put_key.html) - Stores the given `Key` under the given `name` in the current context's named keys
 * [get_key](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.get_key.html) - Returns the requested `NamedKey` from the current context
+* [storage::new_uref](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_uref.html) - Creates a new URef in the current context
+* [storage::write](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.write.html) - Writes a given value under a previously created URef
+* [storage::read](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.read.html) - Reads the value from a URef in global state
 * [dictionary_put](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.dictionary_put.html) - Writes the given value under the given `dictionary_item_key`
 * [dictionary_get](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.dictionary_get.html) - Retrieves the value stored under a `dictionary_item_key`
 

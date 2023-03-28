@@ -2,7 +2,7 @@
 
 The following examples outline methods to read and write data to global state on a Casper network using the Rust programming language.
 
-Essentially, there are three means of storage within the Casper ecosystem. These consist of `runtime::put_key`, `storage::write` and `storage::dictionary_put`. These stored values can be read using `runtime::get_key`, `storage::read` and `storage::dictionary_get`, respectively. Each method stores data in a specific way, and it's important to understand the differences.
+Essentially, there are three means of storage within the Casper ecosystem. These consist of `runtime::put_key`, `storage::write`(alongside `storage::new_uref` as explained below) and `storage::dictionary_put`. These stored values can be read using `runtime::get_key`, `storage::read` and `storage::dictionary_get`, respectively. Each method stores data in a specific way, and it's important to understand the differences.
 
 ## Description of Functions
 
@@ -12,7 +12,7 @@ Both the [`put_key`](https://docs.rs/casper-contract/latest/casper_contract/cont
 
 ### `storage::write` / `storage::read`
 
-[`storage::write`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.write.html) writes a given value to a previously established URef (created using [`storage::new_uref`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_uref.html)). Unlike `put_key`, this value is not one of the `Key` types listed above, but rather any of the potential [`CLType`](https://docs.casperlabs.io/developers/json-rpc/types_cl/#cltype)s as outlined.
+[`storage::write`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.write.html) writes a given value to a previously established URef (created using [`storage::new_uref`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_uref.html)). Unlike `put_key`, this value is not one of the `Key` types listed above, but rather any of the potential [`CLType`](https://docs.casperlabs.io/developers/json-rpc/types_cl/#cltype)s as outlined. [`storage::read`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.read.html) provides a method to retrieve these values from the associated URef.
 
 ### `storage:dictionary_put` / `storage::dictionary_get`
 
@@ -24,22 +24,11 @@ More information on dictionaries can be found on the [Reading and Writing to Dic
 
 ### Example of `put_key` and `storage::write`
 
-This sample code creates a new contract and stores the contract version in global state using the `runtime::put_key` function. The user provides a runtime argument `my_stored_value`, which is stored in a URef via the `storage::new_uref` function.
+This sample code creates a new contract and stores the contract hash in global state using the `runtime::put_key` function.
 
-If the stored value already exists, the `storage::write` function overwrites the stored value with the new runtime argument. The URef is then stored in the current context as a `NamedKey` titled `MY_STORED_VALUE_UREF`.
-
-Full example code can be found [here](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/dev/storage-example/contract/src/main.rs).
+Once the stored value has been initialized, the `storage::write` function overwrites the existing value with `true`. The URef is then stored in the current context as a `NamedKey` titled `MY_STORED_VALUE_UREF`.
 
 ```rust
-
-#[no_mangle]
-pub extern "C" fn call() {
-    let (contract_hash, _version) = storage::new_contract(
-        EntryPoints::new(),
-        None,
-        Some(CONTRACT_PACKAGE.to_string()),
-        Some(ACCESS_KEY.to_string()),
-    );
 
     // Store contract hash under a Named key CONTRACT_HASH
     runtime::put_key(CONTRACT_HASH, contract_hash.into());
@@ -59,19 +48,9 @@ pub extern "C" fn call() {
 
 ### Example of `get_key` and `storage::read`
 
-This example compliments the code sample above by retrieving the `CONTRACT_HASH` using the `get_key` function, before comparing a provided runtime argument against the previously stored `MY_STORED_VALUE_UREF` using `storage::read`.
-
-Full example code can be found [here](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/dev/storage-example/client/named_key_session/src/main.rs).
+This example compliments the code sample above by retrieving the `CONTRACT_HASH` using the `get_key` function, before comparing a provided runtime argument `ARG_MY_STORED_VALUE` against the previously stored `MY_STORED_VALUE_UREF` using `storage::read`.
 
 ```rust
-
-#[no_mangle]
-pub extern "C" fn call() {
-    let _contract_hash: ContractHash = runtime::get_key(CONTRACT_HASH)
-        .unwrap_or_revert()
-        .into_hash()
-        .map(ContractHash::new)
-        .unwrap_or_revert();
 
     let my_stored_value_uref: URef = runtime::get_key(MY_STORED_VALUE_UREF)
         .unwrap_or_revert()
