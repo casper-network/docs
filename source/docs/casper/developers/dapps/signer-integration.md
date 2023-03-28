@@ -123,7 +123,7 @@ window.addEventListener("signer:locked", (msg) => {
 });
 ```
 
-The variable `msg` shown above contains event information specific to the event such as `isConnected` `isUnlocked` and the active public key.
+The variable `msg` shown above contains event information specific to the event, such as `isConnected`, `isUnlocked`, and the active public key.
 
 There are a few different events you may listen to:
 
