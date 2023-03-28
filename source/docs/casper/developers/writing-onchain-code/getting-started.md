@@ -137,7 +137,7 @@ As a brief example, open up _my-project/contract/src/main.rs_ in your editor, mo
 
 We also provide a [Casper command-line client](../prerequisites.md#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain.
 
-### Setting up an IDE
+### Setting up an IDE {#setting-ide}
 
 There are many IDEs available for Rust development. The most popular IDEs for Rust are the following:
 
