@@ -76,7 +76,6 @@ In your `keypair` variable is a private key and a public key. There are many rea
 <TabItem value="js" label="JavaScript">
 
 ```javascript
-// Create a hexadecimal representation of the public key and account hash.
 const publicKeyHex = publicKey.toHex();
 const accountHashBytes = publicKey.toAccountHash();
 const accountHashHex = Buffer.from(accountHashBytes).toString('hex');
@@ -148,6 +147,7 @@ const { CasperClient, DeployUtil } = require("casper-js-sdk");
 const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc");
 const receipientPublicKeyHex = "01e8c84f4fbb58d37991ef373c08043a45c44cd7f499453fa2bd3e141cc0113b3c"
 
+const amount = 25e8 // Minimum transfer, 2.5 CSPR
 let deployParams = new DeployUtil.DeployParams(
   keypair.publicKey,
   "casper" // or "casper-test" for testnet
@@ -158,7 +158,7 @@ const session = DeployUtil.ExecutableDeployItem.newTransferWithOptionalTransferI
   recipientPublicKeyHex
 );
 
-const payment = DeployUtil.standardPayment(100000000); // Gas payment in motes
+const payment = DeployUtil.standardPayment(1e8); // Gas payment in motes, 0.1 CSPR
 const deploy = DeployUtil.makeDeploy(deployParams, session, payment);
 const signedDeploy = DeployUtil.signDeploy(deploy, keypair);
 
@@ -185,7 +185,7 @@ deployParams = pycspr.create_deploy_parameters(
 
 deploy = pycspr.create_transfer(
     params = deployParams,
-    amount = int(2.5e9), # Minimum transfer, 2.5 CSPR
+    amount = int(25e8), # Minimum transfer, 2.5 CSPR
     target = recipientPublicKeyBytes
 )
 
@@ -211,10 +211,11 @@ Once submitted, the above snippet will print the deploy hash in the console.
 <TabItem value="js" label="JavaScript">
 
 ```javascript
-const { CasperClient, Contracts, RuntimeArgs, CLValueBuilder }
+const { CasperClient, Contracts, RuntimeArgs, CLValueBuilder } = require("casper-js-sdk")
+const fs = require("fs")
 
 const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc")
-const contract = new Contracts.Contract(client)
+const contract = new Contracts.Contract(casperClient)
 
 const contractWasm = new Uint8Array(fs.readFileSync("/path/to/contract.wasm").buffer)
 
@@ -257,6 +258,98 @@ session = ModuleBytes(
 )
 
 deploy = pycspr.create_deploy(deployParams, payment, session)
+
+deploy.approve(keypair)
+client.send_deploy(deploy)
+print(deploy.hash.hex())
+```
+
+</TabItem>
+
+</Tabs>
+
+Once submitted, the above snippet will print the deploy hash in the console.
+
+## Staking
+
+Token staking is vital to the Casper Network, enabling its delegated Proof-of-Stake consensus mechanism to operate effectively. With the help of any of the Casper SDKs, you can stake tokens by delegating them to validators.
+
+The delegation functionality exists as a piece of session code obtainable from the [casper-node](https://github.com/casper-network/casper-node) repository. To delegate tokens, first clone the repository:
+
+```bash
+git clone https://github.com/casper-network/casper-node.git
+cd casper-node/
+```
+
+Then compile the [delegate contract](https://github.com/casper-network/casper-node/blob/dev/smart_contracts/contracts/client/delegate/src/main.rs):
+
+```bash
+make setup-rs
+make build-contract-rs/delegate
+```
+
+Now, assuming that you cloned `casper-node` from your project's root directory, `cd` back into it:
+
+```bash
+cd ../
+```
+
+Now in your dApp's backend (or standalone script), load the *delegate.wasm* file into memory and deploy it with the arguments "amount", "delegator", and "validator" included.
+
+<Tabs>
+
+<TabItem value="js" label="JavaScript">
+
+```javascript
+const { CasperClient, Contracts, RuntimeArgs, CLValueBuilder, CLPublicKey } = require("casper-js-sdk")
+const fs = require("fs")
+
+const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc")
+const contract = new Contracts.Contract(casperClient)
+
+const contractWasm = new Uint8Array(fs.readFileSync("./casper-node/target/wasm32-unknown-unknown/release/delegate.wasm").buffer)
+
+const runtimeArguments = RuntimeArgs.fromMap({
+  "amount": CLValueBuilder.u512(5e11), // 500 CSPR, minimum delegation amount
+	"delegator": keypair.publicKey,
+  "validator": CLPublicKey.fromHex("01e8c84f4fbb58d37991ef373c08043a45c44cd7f499453fa2bd3e141cc0113b3c")
+})
+
+const deploy = contract.install(
+	contractWasm,
+	runtimeArguments,
+	"5000000000", // Gas payment (5 CSPR)
+	keypair.publicKey,
+	"casper", // or "casper-test" for testnet
+	[keypair]
+)
+
+console.log(await casperClient.putDeploy(deploy))
+```
+
+</TabItem>
+
+<TabItem value="python" label="Python">
+
+```python
+import pycspr
+
+validator_public_key = pycspr.factory.accounts.create_public_key_from_account_key(
+	bytes.fromhex("01e8c84f4fbb58d37991ef373c08043a45c44cd7f499453fa2bd3e141cc0113b3c")
+)
+
+deploy_params = pycspr.create_deploy_parameters(
+	account = keypair, # Only the public key is used, see `create_deploy_parameters`
+	chain_name = "casper" # or "casper-test" for testnet
+)
+
+deploy = pycspr.create_validator_delegation(
+	params = deploy_params,
+	amount = int(5e11), # 500 CSPR, minimum delegation amount
+	public_key_of_delegator = keypair,
+	public_key_of_validator = validator_public_key,
+	path_to_wasm = "./casper-node/target/wasm32-unknown-unknown/release/delegate.wasm"
+)
 
 deploy.approve(keypair)
 client.send_deploy(deploy)
