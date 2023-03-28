@@ -271,7 +271,7 @@ let add_keys_deploy_item = DeployItemBuilder::new()
     .build();
 ```
 
-Then, the test creates a deploy to invoke the contract's entry point. This deploy executes under `ACCOUNT_USER_1` and has two authorization keys, `account_addr_1` and the default account hash. Note that both authorization keys must sign the deploy to meet the deploy's action threshold set to 2. The deploy should be executed successfully because the resulting intersection should contain the default account hash.
+Then, the test creates a deploy to invoke the contract's entry point. This deploy executes under `ACCOUNT_USER_1` and has two authorization keys, `account_addr_1` and the default account hash. Note that both authorization keys must sign the deploy to meet the deploy's action threshold, which is set to 2. The deploy should be executed successfully because the resulting intersection should contain the default account hash.
 
 ```rust
 let entry_point_deploy_item = DeployItemBuilder::new()
