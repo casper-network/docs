@@ -1,0 +1,15 @@
+@use "./variables/fonts-variables";
+@use "./variables/media-queries";
+
+[hidden] {
+    display: none !important;
+}
+
+.font-sans {
+    font-family: fonts-variables.$font-casperSans;
+}
+
+.font-markdown {
+    font-family: fonts-variables.$font-sourceCodePro;
+    letter-spacing: 0.01em;
+}

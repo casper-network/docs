@@ -1,0 +1,49 @@
+@font-face {
+    font-family: "Casper Sans";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("../../../static/fonts/CasperSans-Light.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Casper Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../../static/fonts/CasperSans-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Casper Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../../../static/fonts/CasperSans-Medium.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Source Code Pro";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../../static/fonts/SourceCodePro-Regular.ttf") format("ttf");
+}
+
+
+/* @font-face {
+    font-family: "Casper Sans";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("../../../static/fonts/CasperSans-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Source Code Pro";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../../static/fonts/SourceCodePro-Regular.ttf") format("ttf");
+}
+ */
