@@ -5,7 +5,7 @@ import TabItem from '@theme/TabItem';
 
 There are 3 layers to building a decentralized application that interacts with the Casper Network: Front-end, backend, and blockchain. This document outlines lists the requirements for each.
 
-## Front-end
+## Front-End
 
 The front-end, or "client-side" of a dApp consists of the interface that the user uses to interact with the smart contracts on the Casper Network. This interface usually comes in the form of a website/webpage, mobile device application, or computer program, but could also include APIs with callable/queryable endpoints.
 
