@@ -9,7 +9,7 @@ There are 3 layers to building a decentralized application that interacts with t
 
 The front-end, or *client-side* of a dApp consists of the interface that the user uses to interact with smart contracts on a Casper Network. This interface usually comes in the form of a website/webpage, mobile device application or computer program, but could also include APIs with endpoints that may be called or queried.
 
-You will need to choose a Casper-compatible SDK for the language you are using to call and query smart contracts on the Network. Casper's SDKs have methods available for constructing deployments and gathering state data. While these interactions can be prepared on the front-end, they must be sent to the backend of your application before being sent off to the Network, so as to fulfill [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) requirements.
+You will need to choose a Casper-compatible SDK for the language you are using to call and query smart contracts on a Casper network. Casper's SDKs have methods available for constructing Deploys and gathering global state data. While these interactions can be prepared on the front-end, they must be sent to the backend of your application before being sent off to a network, so as to fulfill [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) requirements.
 
 ### Signing Transactions
 
