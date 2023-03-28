@@ -7,6 +7,7 @@ module.exports = {
         //"concepts/deploy-and-deploy-lifecycle", // NEW CONTENT WILL BE HERE
         //"concepts/global-state", // NEW CONTENT WILL BE HERE
         //"concepts/smart-contracts", // NEW CONTENT WILL BE HERE
+        "concepts/list-auth-keys",
         "concepts/callstack",
         "concepts/session-code",
         "concepts/dictionaries",
@@ -278,6 +279,7 @@ module.exports = {
                         "resources/tutorials/advanced/transfer-token-to-contract",
                         "resources/tutorials/advanced/two-party-multi-sig",
                         "resources/tutorials/advanced/return-values-tutorial",
+                        "resources/tutorials/advanced/list-auth-keys-tutorial",
                         "resources/tutorials/advanced/list-cspr",
                     ],
                 },
