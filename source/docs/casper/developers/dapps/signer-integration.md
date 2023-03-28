@@ -65,14 +65,6 @@ Signer.getActivePublicKey()
 
 This function resolves to a `string`, or rejects with an error.
 
-To get the public key in base 64, run:
-
-```javascript
-Signer.getSelectedPublicKeyBase64()
-```
-
-Note that this function is deprecated in favor of `getActivePublicKey()`. It is recommended to use `getActivePublicKey()` and convert to base 64.
-
 ## Signing Messages and Transactions
 
 ### Signing a message
