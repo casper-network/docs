@@ -12,15 +12,23 @@ export default function NavbarMobileSidebarLayout({ header, primaryMenu, seconda
     const { shown: secondaryMenuShown } = useNavbarSecondaryMenu();
     const items = useNavbarItems();
     const searchBarItem = items.find((item) => item.type === "search");
-    const ref = React.useRef(null);
+    const announcerRef = React.useRef(null);
+    const siteNavBarRef = React.useRef(null);
 
     const announcer = useWindow ? document.querySelectorAll('*[class^="announcementBar_"]')[0] : null;
-    let announcerHeight, onScreen;
+    const siteNavBar = useWindow ? document.querySelectorAll('*[class^="navbar_wrapper"]')[0] : null;
+
+    let announcerHeight, siteNavBarHeight, onScreen;
 
     if (announcer) {
-        ref.current = announcer;
-        onScreen = useOnScreen(ref, "0px");
-        announcerHeight = ref.current.offsetHeight;
+        announcerRef.current = announcer;
+        onScreen = useOnScreen(announcerRef, "0px");
+        announcerHeight = announcerRef.current.offsetHeight;
+    }
+
+    if (siteNavBar) {
+        siteNavBarRef.current = siteNavBar;
+        siteNavBarHeight = siteNavBarRef.current.offsetHeight;
     }
 
     function useNavbarItems() {
@@ -32,7 +40,8 @@ export default function NavbarMobileSidebarLayout({ header, primaryMenu, seconda
         <div
             className={`navbar-sidebar ${styles.sideBarWrapper} ${onScreen ? styles.showingAnnouncer : ""}`}
             style={{
-                ["--announcerHeight"]: `${announcerHeight}px`,
+                ["--announcerHeight"]: `${announcerHeight ? announcerHeight : 0}px`,
+                ["--siteNavbarMobileHeight"]: `${siteNavBarHeight ? siteNavBarHeight : 0}px`,
             }}
         >
             {header}

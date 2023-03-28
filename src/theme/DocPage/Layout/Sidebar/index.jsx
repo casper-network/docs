@@ -20,7 +20,7 @@ export default function DocPageLayoutSidebar({ sidebar, hiddenSidebarContainer, 
     const { siteConfig } = useDocusaurusContext();
     const { customFields } = siteConfig;
     const [hiddenSidebar, setHiddenSidebar] = useState(false);
-    const [siteNavBarHeight, setSiteNavBarHeight] = useState(false);
+    const [siteNavBarHeight, setSiteNavBarHeight] = useState(0);
 
     const ref = React.useRef(null);
     const toggleSidebar = useCallback(() => {
@@ -33,14 +33,13 @@ export default function DocPageLayoutSidebar({ sidebar, hiddenSidebarContainer, 
     function checkAndGetSiteNavbar() {
         if (customFields.directusUrl && customFields.directusGraphqlUrl && customFields.siteUrl) {
             if (!useWindow()) return;
-            const siteNavbar = document.querySelector(".navbar_wrapper_src-theme-Navbar-ExtendedNavbar-ExtendedNavbar-module");
-            if (siteNavbar) {
-                ref.current = siteNavbar;
+            const siteNavBar = useWindow ? document.querySelectorAll('*[class^="navbar_wrapper"]')[0] : null;
+
+            if (siteNavBar) {
+                ref.current = siteNavBar;
                 setSiteNavBarHeight(ref.current.offsetHeight);
-                return true;
             }
         }
-        return false;
     }
 
     useEffect(() => {
