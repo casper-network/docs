@@ -1,5 +1,5 @@
 ---
-title: Introduction to SDKs
+title: SDK Client Libraries
 slug: /sdk
 ---
 
