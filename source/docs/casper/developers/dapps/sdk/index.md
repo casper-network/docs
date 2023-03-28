@@ -3,7 +3,7 @@ title: Introduction to SDKs
 slug: /sdk
 ---
 
-# SDK Client Libraries
+# Introduction to SDKs
 
 This section covers the software development kits (SDKs) published by third parties available for interacting with the Casper blockchain. These SDKs are client-side libraries providing functions or methods (depending on the language) to interact with a Casper network. You can use them as a model to develop your application and accomplish tasks such as generating account keys, sending transfers, or other blockchain transactions.
 
