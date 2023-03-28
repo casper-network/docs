@@ -59,7 +59,7 @@ client = NodeClient(NodeConnection(host = "NODE_ADDRESS", port_rpc = 7777))
 
 :::tip
 
-You can find online peers for Mainnet at [cspr.live](https://cspr.live) or testnet at [testnet.cspr.live](https://testnet.cspr.live)*
+You can find online peers for Mainnet at [cspr.live](https://cspr.live) or testnet at [testnet.cspr.live](https://testnet.cspr.live)
 
 :::
 
@@ -75,4 +75,4 @@ The last stop for a deploy or query is the blockchain itself. Like the majority 
 
 More than likely, you will want your dApp to perform personalized functions, store custom data, and perhaps even store or transact upon tokens with monetary value. All of these behaviors can be implemented by writing custom smart contracts for your application. Smart contracts on a Casper network can perform any function that a classical computer can. Casper's smart contracts are executed as [WebAssembly](https://webassembly.org/) binaries, and can be written in any language that compiles to WebAssembly. Currently, most developers choose to write their smart contracts in [Rust](https://www.rust-lang.org/) for its reliability and ease-of-use. Additionally, Casper's smart contract documentation is written for Rust.
 
-To learn how to write smart contracts for your dApp, read the [smart contract documentation](../writing-contracts/).
+To learn how to write smart contracts for your dApp, read the [smart contract documentation](../writing-onchain-code/index.md).
