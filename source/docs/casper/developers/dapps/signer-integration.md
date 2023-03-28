@@ -153,7 +153,7 @@ There are a few different events you may listen to:
 
 ## Disconnecting
 
-After connecting the Casper Signer to your dApp, you may at some point want to disconnect. There is a method available for this:
+After connecting the Casper Signer to your dApp, you may, at some point, want to disconnect. There is a method available for this:
 
 ```javascript
 Signer.disconnectFromSite()
