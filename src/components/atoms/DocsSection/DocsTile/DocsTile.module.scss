@@ -1,0 +1,100 @@
+@use "../../../../assets/scss/mixins";
+
+.tilecard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 116px;
+    max-width: 400px;
+    background-color: var(--black);
+    color: var(--casperWhite);
+    border: 0.25px solid var(--casperWhite);
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+
+    background: linear-gradient(90deg, var(--mainColor) 0%, var(--black) 45%);
+    background-size: 100% 100%;
+    @include mixins.transition(0.5s all);
+
+    &_img {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+
+        svg {
+            margin: 0;
+            width: 38px;
+            height: 43px;
+
+            path {
+                fill: var(--casperWhite);
+                @include mixins.transition(0.3s all);
+            }
+        }
+    }
+
+    &_text {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+        padding-right: 14px;
+
+        > p,
+        h4 {
+            margin: 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            max-height: 100px;
+            @include mixins.transition(0.3s all);
+        }
+
+        > p {
+            -webkit-line-clamp: 2;
+        }
+
+        > h4 {
+            -webkit-line-clamp: 1;
+        }
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: linear-gradient(90deg, var(--mainColor) 0%, var(--black) 50%);
+        background-size: 600% 100%;
+        @include mixins.transition(0.5s ease-in);
+
+        &:global(.yellow),
+        &:global(.brownLight) {
+            .tilecard_text h4,
+            .tilecard_text p {
+                color: var(--black);
+            }
+
+            .tilecard_img {
+                svg {
+                    path {
+                        fill: var(--black);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .tilecard_img {
+        width: 55px;
+        svg {
+            transform: scale(0.7);
+        }
+    }
+}

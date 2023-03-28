@@ -35,6 +35,7 @@ Although the network measures costs in `Gas`, payment for computation occurs in 
 Please note that Casper will not refund any amount of unused gas.
 
 This decision is taken to incentivize the [Casper Runtime Economics](../economics/runtime.md#runtime-economics) by efficiently allocating the computational resources. The [consensus-before-execution model](../economics/runtime.md#consensus-before-execution-basics-of-payment) implements the mechanism to encourage the optimized gas consumption from users and to prevent the overuse of block space by poorly handled deploys.
+
 :::
 
 ### The Casper Network Runtime {#execution-semantics-runtime}
