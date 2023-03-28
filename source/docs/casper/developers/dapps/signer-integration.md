@@ -127,29 +127,17 @@ The variable `msg` shown above contains event information specific to the event,
 
 There are a few different events you may listen to:
 
-* `signer:connected`
+* `signer:connected` - Emitted when the Casper Signer connects to the dApp.
 
-  Emitted when the Casper Signer connects to the dApp.
+* `signer:disconnected` - Emitted when the Casper Signer disconnects from the dApp.
 
-* `signer:disconnected`
+* `signer:tabUpdated` - Emitted when a tab is updated within the Signer.
 
-  Emitted when the Casper Signer disconnects from the dApp.
+* `signer:activeKeyChanged` - Emitted when the active account changes within the Signer.
 
-* `signer:tabUpdated`
+* `signer:locked` - Emitted when the Casper Signer is locked. Can be performed by the user or occur due to timeout.
 
-  Emitted when a tab is updated within the Signer.
-
-* `signer:activeKeyChanged`
-
-  Emitted when the active account changes within the Signer.
-
-* `signer:locked`
-
-  Emitted when the Casper Signer is locked. Can be performed by the user or occur due to timeout.
-
-* `signer:unlocked`
-
-  Emitted when the Casper Signer is unlocked.
+* `signer:unlocked` - Emitted when the Casper Signer is unlocked.
 
 ## Disconnecting
 
