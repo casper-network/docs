@@ -3,8 +3,8 @@
     top: calc((var(--ifm-navbar-height) / 2) - 50% + 2px);
     left: 0;
     display: flex;
-    width: 100%;
     cursor: default;
+    width: fit-content;
     overflow: hidden;
 
     .dropdown {
