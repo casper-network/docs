@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 
 # SDK Client Library Usage
 
-## Installing SDK Client Libraries
+## Installing the SDKs
 
 <Tabs>
 
@@ -136,7 +136,9 @@ Replace `ED25519` with `SECP256K1` if you wish.
 
 ## Transferring CSPR
 
-Using the `keypair` created above in [Accounts](#accounts), you can sign a deploy that transfers CSPR.
+Using the `keypair` created [above](#creating-accounts), you can sign a deploy that transfers CSPR.
+
+Replace the `NODE_ADDRESS` and corresponding RPC port with an active node on the network. You can find active online peers for Mainnet on [cspr.live](https://cspr.live/tools/peers) and for Testnet on [testnet.cspr.live](https://testnet.cspr.live/tools/peers). The RPC port is usually `7777`, but it depends on the network's configuration settings.
 
 <Tabs>
 
@@ -165,8 +167,6 @@ const signedDeploy = DeployUtil.signDeploy(deploy, keypair);
 console.log(await casperClient.putDeploy(signedDeploy));
 ```
 
-*Note: You can find active online peers for Mainnet on [cspr.live](https://cspr.live/tools/peers) and for Testnet on [testnet.cspr.live](https://testnet.cspr.live/tools/peers).*
-
 </TabItem>
 
 <TabItem value="python" label="Python">
@@ -185,7 +185,7 @@ deployParams = pycspr.create_deploy_parameters(
 
 deploy = pycspr.create_transfer(
     params = deployParams,
-    amount = int(2.5e9), # Minimum transfer, 2.5 CSPR
+    amount = int(2.5e9), # Minimum transfer: 2.5 CSPR
     target = recipientPublicKeyBytes
 )
 
@@ -193,8 +193,6 @@ deploy.approve(keypair)
 client.send_deploy(deploy)
 print(deploy.hash.hex())
 ```
-
-*Note: You can find active online peers for Mainnet on [cspr.live](https://cspr.live/tools/peers) and for Testnet on [testnet.cspr.live](https://testnet.cspr.live/tools/peers).*
 
 </TabItem>
 
@@ -205,6 +203,10 @@ Once submitted, the above snippet will print the deploy hash in the console.
 ---
 
 ## Installing Contracts
+
+To install a contract on the network, you need to sign and send a deploy containing the compiled Wasm.
+
+Replace the `NODE_ADDRESS` and corresponding RPC port with an active node on the network. You can find active online peers for Mainnet on [cspr.live](https://cspr.live/tools/peers) and for Testnet on [testnet.cspr.live](https://testnet.cspr.live/tools/peers). The RPC port is usually `7777`, but it depends on the network's configuration settings.
 
 <Tabs>
 
