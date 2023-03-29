@@ -78,9 +78,10 @@ The `keypair` variable contains the private and public key pair for the account.
 ```javascript
 // Create a hexadecimal representation of the public key and account hash.
 const publicKeyHex = publicKey.toHex();
-const accountHashBytes = publicKey.toAccountHash();
-const accountHashHex = Buffer.from(accountHashBytes).toString('hex');
+const accountHashHex = publicKey.toAccountHashStr();
 ```
+
+Note that `accountHashHex` will be prefixed with the text "account-hash-".
 
 </TabItem>
 
