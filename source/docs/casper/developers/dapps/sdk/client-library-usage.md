@@ -3,13 +3,13 @@ import TabItem from '@theme/TabItem';
 
 # SDK Client Library Usage
 
-## Installation
+## Installing SDK Client Libraries
 
 <Tabs>
 
 <TabItem value="js" label="JavaScript">
 
-Use `npm` or `yarn` to install [casper-js-sdk](https://www.npmjs.com/package/casper-js-sdk) package:
+Use `npm` or `yarn` to install the [casper-js-sdk](https://www.npmjs.com/package/casper-js-sdk) package:
 
 ```bash
 npm install casper-js-sdk
@@ -22,7 +22,7 @@ yarn install casper-js-sdk
 
 <TabItem value="python" label="Python">
 
-Use [`pip`](https://pypi.org/project/pip/) to install [pycspr](https://pypi.org/project/pycspr/) package:
+Use [`pip`](https://pypi.org/project/pip/) to install the [pycspr](https://pypi.org/project/pycspr/) package:
 
 ```bash
 pip install pycspr
@@ -34,11 +34,11 @@ pip install pycspr
 
 ---
 
-## Accounts
+## Creating Accounts
 
-You may use the SDKs to interact with accounts on the Casper Network. Accounts can be of either ed25519 or secp256k1 cryptography.
+You may use the SDKs to interact with accounts on a Casper network. Accounts can use either an Ed25519 or Secp256k1 digital signature scheme. See the [Accounts and Cryptographic Keys](../../../concepts/accounts-and-keys.md) page for more details.
 
-### Create new keypair
+### Creating new account keys
 
 <Tabs>
 
@@ -46,11 +46,11 @@ You may use the SDKs to interact with accounts on the Casper Network. Accounts c
 
 ```javascript
 const { Keys } = require("casper-js-sdk");
-const keypair = Keys.ALGO.new();
+const keypair = Keys.ED25519.new();
 const { publicKey, privateKey } = keypair;
 ```
 
-Replace `ALGO` with your key algorithm: `Ed25519` or `Secp256K1`.
+Replace `ED25519` with `SECP256K1` if you wish.
 
 </TabItem>
 
@@ -58,18 +58,18 @@ Replace `ALGO` with your key algorithm: `Ed25519` or `Secp256K1`.
 
 ```python
 from pycspr.crypto import KeyAlgorithm, get_key_pair
-keypair = get_key_pair(KeyAlgorithm.ALGO)
+keypair = get_key_pair(KeyAlgorithm.ED25519)
 ```
 
-Replace `ALGO` with your key algorithm: `ED25519` or `SECP256K1`.
+Replace `ED25519` with `SECP256K1` if you wish.
 
 </TabItem>
 
 </Tabs>
 
-### Exporting Keys
+### Exporting the public key and account hash
 
-In your `keypair` variable is a private key and a public key. There are many reasons you may want to use, read, or export your public key. You may also want access to the account hash as it is often used within smart contracts on the Casper Network. The following methods show you how to dissect your keypair.
+The `keypair` variable contains the private and public key pair for the account. You can use, read, or export the public key. You may also want access to the account hash, often used within smart contracts on a Casper network. The following methods show how to extract the public key and account hash.
 
 <Tabs>
 
@@ -99,9 +99,9 @@ accountHashHex = pycspr.crypto.cl_checksum.encode(accountHashBytes)
 
 </Tabs>
 
-### Load from private key
+### Uploading the secret key from a file
 
-When you want to use a specific account, you should not include your private key within your source code, but instead load in your keypair from a local file.
+To use a specific account, you should not include the private key in the source code; instead, upload the account's secret key from a local file. Update the path to the file in the example below.
 
 <Tabs>
 
@@ -109,10 +109,10 @@ When you want to use a specific account, you should not include your private key
 
 ```javascript
 const { Keys } = require("casper-js-sdk");
-const keypair = Keys.ALGO.loadKeyPairFromPrivateFile("./secret_key.pem");
+const keypair = Keys.ED25519.loadKeyPairFromPrivateFile("./secret_key.pem");
 ```
 
-Replace `ALGO` with your key algorithm: `Ed25519` or `Secp256K1`.
+Replace `ED25519` with `SECP256K1` if you wish.
 
 </TabItem>
 
@@ -122,11 +122,11 @@ Replace `ALGO` with your key algorithm: `Ed25519` or `Secp256K1`.
 import pycspr
 keypair = pycspr.parse_private_key(
     "./secret_key.pem",
-    pycspr.crypto.KeyAlgorithm.ALGO
+    pycspr.crypto.KeyAlgorithm.ED25519
 )
 ```
 
-Replace `ALGO` with your key algorithm: `ED25519` or `SECP256K1`.
+Replace `ED25519` with `SECP256K1` if you wish.
 
 </TabItem>
 
@@ -136,7 +136,7 @@ Replace `ALGO` with your key algorithm: `ED25519` or `SECP256K1`.
 
 ## Transferring CSPR
 
-Using the `keypair` created above in [Accounts](#accounts), you can sign a CSPR transferral deploy.
+Using the `keypair` created above in [Accounts](#accounts), you can sign a deploy that transfers CSPR.
 
 <Tabs>
 
@@ -150,7 +150,7 @@ const receipientPublicKeyHex = "01e8c84f4fbb58d37991ef373c08043a45c44cd7f499453f
 
 let deployParams = new DeployUtil.DeployParams(
   keypair.publicKey,
-  "casper" // or "casper-test" for testnet
+  "casper" // or "casper-test" for Testnet
 );
 
 const session = DeployUtil.ExecutableDeployItem.newTransferWithOptionalTransferId(
@@ -165,7 +165,7 @@ const signedDeploy = DeployUtil.signDeploy(deploy, keypair);
 console.log(await casperClient.putDeploy(signedDeploy));
 ```
 
-*Note: You can find active online peers to communicate with from the `CasperClient` object at [cspr.live](https://cspr.live/tools/peers) for mainnet and for testnet: [testnet.cspr.live](https://testnet.cspr.live/tools/peers).*
+*Note: You can find active online peers for Mainnet on [cspr.live](https://cspr.live/tools/peers) and for Testnet on [testnet.cspr.live](https://testnet.cspr.live/tools/peers).*
 
 </TabItem>
 
@@ -180,7 +180,7 @@ recipientPublicKeyBytes = pycspr.crypto.cl_checksum.decode(recipientPublicKeyHex
 
 deployParams = pycspr.create_deploy_parameters(
     account = keypair,
-    chain_name = "casper" # or "casper-test" for testnet
+    chain_name = "casper" # or "casper-test" for Testnet
 )
 
 deploy = pycspr.create_transfer(
@@ -194,7 +194,7 @@ client.send_deploy(deploy)
 print(deploy.hash.hex())
 ```
 
-*Note: You can find active online peers to communicate with from the `NodeConnection` object at [cspr.live](https://cspr.live/tools/peers) for mainnet and for testnet: [testnet.cspr.live](https://testnet.cspr.live/tools/peers).*
+*Note: You can find active online peers for Mainnet on [cspr.live](https://cspr.live/tools/peers) and for Testnet on [testnet.cspr.live](https://testnet.cspr.live/tools/peers).*
 
 </TabItem>
 
@@ -223,12 +223,12 @@ const runtimeArguments = RuntimeArgs.fromMap({
 })
 
 const deploy = contract.install(
-	contractWasm,
-	runtimeArguments,
-	"10000000000", // Gas payment (10 CSPR)
-	keypair.publicKey,
-	"casper", // or "casper-test" for testnet
-	[keypair]
+  contractWasm,
+  runtimeArguments,
+  "10000000000", // Gas payment (10 CSPR)
+  keypair.publicKey,
+  "casper", // or "casper-test" for Testnet
+  [keypair]
 )
 
 console.log(await casperClient.putDeploy(deploy))
@@ -246,7 +246,7 @@ client = NodeClient(NodeConnection(host = "NODE_ADDRESS", port_rpc = 7777))
 
 deployParams = pycspr.create_deploy_parameters(
     account = keypair,
-    chain_name = "casper" # or "casper-test" for testnet
+    chain_name = "casper" # or "casper-test" for Testnet
 )
 payment = pycspr.create_standard_payment(10000000000) # 10 CSPR
 session = ModuleBytes(
