@@ -144,7 +144,7 @@ jobs:
       working-directory: ./docs
 
   deploy-prod:
-    if: github.ref == 'refs/heads/dev'
+    if: ${{ github.ref == 'refs/heads/dev' && github.repository == 'casper-network/docs' }}
     needs: [backup, system-tests-predeployment]
     runs-on: ubuntu-latest
 
