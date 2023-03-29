@@ -13,7 +13,7 @@ You will need to choose a Casper-compatible SDK for the language you are using t
 
 ### Signing Transactions
 
-The signing of transactions will, in many cases, need to be performed by the user on the front-end, for which you have a few options:
+The signing of transactions will, in many cases, need to be performed by the user on the front-end, for which you have a couple options:
 
 1. The Casper Signer
 
@@ -22,10 +22,6 @@ The signing of transactions will, in many cases, need to be performed by the use
 2. Third-party signers
 
    Third-party signers may be used as well. A JSON representation of the unsigned transaction should be forwarded to the third-party signer and accept a callback containing the signed deploy object.
-
-3. Pasted private key (not recommended)
-
-   It is also possible to allow a user to paste/type in their private key to be used to sign the transaction. This is not recommended for security reasons.
 
 ### Querying Global State
 
