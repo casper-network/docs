@@ -145,7 +145,7 @@ Using the `keypair` created above in [Accounts](#accounts), you can sign a deplo
 ```javascript
 const { CasperClient, DeployUtil } = require("casper-js-sdk");
 
-const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc");
+const casperClient = new CasperClient("http://NODE_ADDRESS:7777");
 const receipientPublicKeyHex = "01e8c84f4fbb58d37991ef373c08043a45c44cd7f499453fa2bd3e141cc0113b3c"
 
 let deployParams = new DeployUtil.DeployParams(
@@ -213,7 +213,7 @@ Once submitted, the above snippet will print the deploy hash in the console.
 ```javascript
 const { CasperClient, Contracts, RuntimeArgs, CLValueBuilder }
 
-const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc")
+const casperClient = new CasperClient("http://NODE_ADDRESS:7777")
 const contract = new Contracts.Contract(client)
 
 const contractWasm = new Uint8Array(fs.readFileSync("/path/to/contract.wasm").buffer)
