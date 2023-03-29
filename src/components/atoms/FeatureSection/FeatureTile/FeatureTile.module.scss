@@ -40,7 +40,7 @@
         padding-right: 14px;
 
         &_text {
-            height: 150px;
+            min-height: 150px;
             margin-bottom: 25px;
             > h4 {
                 max-width: 270px;
@@ -63,8 +63,23 @@
             }
         }
     }
-    
+
     @media (max-width: 400px) {
         min-width: unset;
+    }
+}
+
+@media (max-width: 903px) {
+    .resourcetilecard_content_text {
+        > h4 {
+            display: block;
+            overflow: visible;
+        }
+
+        > p {
+            display: block;
+            overflow: visible;
+            max-height: fit-content;
+        }
     }
 }

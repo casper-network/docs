@@ -21,8 +21,8 @@ body {
     @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
 }
 
-.scrollDocument {
-    overflow-y: hidden !important;
+.preventScrollDocument {
+    overflow: hidden !important;
 }
 
 h1 {
