@@ -394,7 +394,7 @@ By clicking the contract hash, you can see all entry points included in the cont
 
 An additional tab, `Deploys`, that is currently empty. If our contract included a cross-contract call that called an entry point from another contract, it would appear here. For now, we can note the hash of the contract, which is `hash-b7a06298cc71d4cac05929cc0713dfd5a541c68b71cb500cd04547b5cd0385ea`.
 
-## Create another contract for the cross-contract call {#cross-contract}
+## Create Another Contract for the Cross-Contract Call {#cross-contract}
 
 Let us write another contract, which we will also deploy on the Casper Network. This smart contract will contain a `call_contract_2` endpoint and after its invocation the previous contracts endpoint `update_msg` will be called.
 
