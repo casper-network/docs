@@ -652,7 +652,7 @@ casper-client put-deploy \
 
 :::tip
 
-The contract hash has to be of type `ContractHash` in the contract itself, we can pass the hash as a `Key` argument and change it to `ContractHash` in the smart contract.
+The contract hash has to be of type `ContractHash` in the contract itself. We can pass the hash as a `Key` argument and change it to `ContractHash` in the smart contract.
 
 :::
 
