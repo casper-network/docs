@@ -677,7 +677,7 @@ We would expect that the value of the message reference in the other contract wo
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/cross-contract/NewHelloWorld.png")} width="600" alt="NewHelloWorld" />
 
-With this we have succesfully built a cross contract communication between two contracts.
+With this we have succeeded in cross-contract communication between two contracts.
 
 ## Summary {#summary}
 
