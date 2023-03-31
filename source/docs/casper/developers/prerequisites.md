@@ -91,7 +91,7 @@ By default, a transactional interaction with the blockchain takes the form of a 
 
 Users can create an account through the Casper command-line client. Alternatively, some Casper networks such as the official Testnet and Mainnet provide a browser-based block explorer that allows account creation. Using the Casper command-line client or a block explorer will also create a cryptographic key-pair.
 
-### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
+### Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
 
 This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](../concepts/accounts-and-keys.md).
 
@@ -116,22 +116,6 @@ After generating keys for the account, you may add funds to the account's purse 
 ```bash
 casper-client account-address --public-key <path-to-public_key.pem/public-key-hex>
 ```
-
-### Option 2: Key generation using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
-
-This option is available on networks that have a block explorer.
-
-For instance, on the official Testnet network, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
-
-Start by creating an Account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html). The Signer will prompt you to download the secret key of your new account by clicking on the `Download` option. The Signer will download the secret key in a file ending in `secret_key.cer`. We recommend securely storing this file. Note that the account is not stored on chain.
-
-<img src={useBaseUrl("/image/workflow/download-prompt.png")} alt="Signer Secret Key Download Prompt" width="200" />
-
-The Signer does not allow you to download the corresponding public key and hexadecimal representation of the public key. But, you can view them if you click the account details.
-
-<img src={useBaseUrl("/image/workflow/account-details.png")} alt="Signer Account Details" width="200" class="inline-img" />
-
-For [ed25519](../concepts/accounts-and-keys.md#eddsa-keys) keys, you can generate the `public_key.pem` and `public_key_hex` using [these commands](https://github.com/casper-network/casper-node/wiki/ed25519-public-keys-from-secret_key.pem).
 
 ## Funding Accounts {#fund-your-account}
 

@@ -238,7 +238,6 @@ module.exports = {
                     items: [
                         "resources/tutorials/beginner/index",
                         "resources/tutorials/beginner/getting-started-tutorial",
-                        "resources/tutorials/beginner/use-javascript-sdk",
                         "resources/tutorials/beginner/querying-network",
                         "resources/tutorials/beginner/upgrade-contract",
                         {
