@@ -223,7 +223,7 @@ pub extern "C" fn call() {
 
 :::tip
 
-We should notice that that runtime and storage appear quite frequently in our code. If you didn't have a chance to check out those modules yet, it would be a perfect time to do so: [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html).
+`runtime` and `storage` appear frequently in our code. If these terms are unfamiliar to you, you should familiarize yourself with the [Contract API Modules]( https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html).
 
 :::
 
