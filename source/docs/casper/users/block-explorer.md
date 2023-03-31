@@ -12,7 +12,7 @@ You can use a block explorer to view the blockchain statistics, list of validato
 
 The following topics link you to detailed instructions on using the [cspr.live](https://cspr.live/) block explorer to access and work with your CSPR tokens.
 
-- Learn how to access your Casper account using the [Signer guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
+- Learn how to access your Casper account using the [Casper Wallet](https://www.casperwallet.io/)
 - Understand the process of [Transferring Tokens using a Block Explorer](./token-transfer.md)
 - Explore the concepts and the process of [Delegating](./delegate-ui.md) and [Undelegating](./undelegate-ui.md) CSPR tokens
 
