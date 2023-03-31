@@ -17,7 +17,7 @@ This tutorial assumes that you have worked through the following examples. If yo
 - [Getting Started with Rust](../../../developers/writing-onchain-code/getting-started.md)
 - [Writing a Basic Smart Contract in Rust](../../../developers/writing-onchain-code/simple-contract.md)
 
-## Outline of the tutorial {#outline}
+## Outline of the Tutorial {#outline}
 
 This tutorial covers some variations of cross-contract communication. Most complex scenarios use cross-contract communication, so it is crucial to understand how this works. It is best explained using the uniswap v2 protocol.
 
