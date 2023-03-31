@@ -311,7 +311,7 @@ pub extern "C" fn call() {
 
 :::info
 
-You can always try out storing different types in the context. There is a distinction between storing data in the context of a smart contract and using dictionaries. The dictionaries can be used to store the data which is dapp centric. Just be sure to remember that the dictionary is not an SQL Database and only what is necessary and should be stored on the blockchain can go into the dictionary. The objects referenced in a contract should only be used as links between contracts/dictionaries in a bigger application.
+There is a distinction between storing data in a contract’s `NamedKeys` and using a dictionary. Dictionaries can be used to store dApp-centric data, but they are not a SQL database and should only be used for data that needs to be stored in global state. Objects referenced in a contract should only be used as links within a bigger application.
 
 :::
 
