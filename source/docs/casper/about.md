@@ -1,7 +1,6 @@
 ---
 id: welcome
 title: Welcome
-tags: ["Must read", "Legal", "Introduction", "CasperLabs", "CSPR"]
 ---
 
 ## What is Casper? {#what-is-casper}
