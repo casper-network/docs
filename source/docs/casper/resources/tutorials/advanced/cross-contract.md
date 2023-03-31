@@ -144,7 +144,7 @@ pub extern "C" fn call() {
 ```
 This will serve as a base for introducing the elements needed for cross-contract communication.
 
-The first thing to be defined in a contract should be the call function. It should be understood as a `constructor` for the contract. Everything that will find itself in the call function will be visible as metadata on the Casper Network in the contracts context. 
+In a contract, you should first define the `call` entry point. It should be understood as a `constructor` for the contract. Everything included in the `call` entry point will be visible as metadata on a Casper network, in the contract's context. 
 You should already be familiar with the call function from the [writing on-chain code](../../../developers/writing-onchain-code/simple-contract.md). If this is not the case be sure to familiarize yourself with it now.
 
 The contract code with changes to the call function should look as shown below: 
