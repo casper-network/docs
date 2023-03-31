@@ -1,7 +1,6 @@
 ---
 id: disclaimer
 title: Disclaimer
-tags: ["Legal", "CasperLabs", "CSPR"]
 ---
 # Disclaimer {#disclaimer}
 
