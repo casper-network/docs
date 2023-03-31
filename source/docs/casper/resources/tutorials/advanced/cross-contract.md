@@ -634,7 +634,7 @@ This is a simple `hello world` string. After invoking the entry point using the 
 
 `--session-hash` - is the contract hash, which is returned from the put-deploy. 
 
-`--session-arg` "hello world_contract:Key= ..."  the hash of the contract which we want to call from within the contract identified by the session-hash.
+`--session-arg` "hello world_contract:Key= ..." - the hash of the contract which we want to call from within the contract identified by the session-hash.
 
 :::
 
