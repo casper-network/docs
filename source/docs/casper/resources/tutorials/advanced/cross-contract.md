@@ -628,7 +628,7 @@ Checking the state of the message in the first contract, we observe the followin
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/cross-contract/HelloWorldBCC.png")} width="600" alt="HelloWorld" />
 
-This is a simple `hello world` string. After invoking the endpoint using the command below this value should change.
+This is a simple `hello world` string. After invoking the entry point using the command below this value should change.
 
 :::info
 
