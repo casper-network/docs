@@ -231,7 +231,7 @@ Each entry point defined within `call` must have a corresponding function with t
 
 In our case, we will define the entry point `update_msg` in the contract code just before `call`. 
 
-Your complete contract should look as below:
+Your complete contract should match the following:
 
 ```bash
 #![no_std]
