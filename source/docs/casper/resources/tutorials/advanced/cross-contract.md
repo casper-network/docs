@@ -398,7 +398,7 @@ An additional tab, `Deploys`, that is currently empty. If our contract included 
 
 This section describes the process of writing an additional contract, which will use an entry point titled `call_contract_2` to invoke the `update_msg` entry point on the previous contract.
 
-In this tutorial we will be passing the contract hash as an argument into the caller method and use this to perform the calls to the destination contract.
+In this tutorial we will be passing the contract hash, as an argument, into the `call` entry point and use this to perform the calls to the destination contract.
 
 Prepare the `call` contract method as described below:
 
