@@ -61,7 +61,7 @@ project-directory/
 └── Makefile
 └── rust-toolchain
 
-After the project directory structure is created use the following commands to go into the project folder and compile the files:
+After creating the project directory structure, use the following commands to go into the project folder and compile the files:
 
 ```bash
 cd cross-contract
