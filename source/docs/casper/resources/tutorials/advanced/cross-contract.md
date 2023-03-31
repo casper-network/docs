@@ -315,7 +315,7 @@ There is a distinction between storing data in a contract’s `NamedKeys` and us
 
 :::
 
-## Deploying the contract {#deploying-contract}
+## Deploying the Contract {#deploying-contract}
 
 There are many different ways to deploy a contract. The simplest method is to use the CLI with the [put_deploy](../../../developers/cli/installing-contracts.md#installing-contract-code).
 If you are doing only blockchain smart contract development and you aren't dealing with full-stack applications, this might be the primary way for you to interface with Casper Network.
