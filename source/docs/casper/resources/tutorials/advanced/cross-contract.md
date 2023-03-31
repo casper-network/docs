@@ -396,7 +396,7 @@ An additional tab, `Deploys`, that is currently empty. If our contract included 
 
 ## Create Another Contract for the Cross-Contract Call {#cross-contract}
 
-Let us write another contract, which we will also deploy on the Casper Network. This smart contract will contain a `call_contract_2` endpoint and after its invocation the previous contracts endpoint `update_msg` will be called.
+This section describes the process of writing an additional contract, which will use an entry point titled `call_contract_2` to invoke the `update_msg` entry point on the previous contract.
 
 In this tutorial we will be passing the contract hash as an argument into the caller method and use this to perform the calls to the destination contract.
 
