@@ -400,7 +400,7 @@ This section describes the process of writing an additional contract, which will
 
 In this tutorial we will be passing the contract hash, as an argument, into the `call` entry point and use this to perform the calls to the destination contract.
 
-Prepare the `call` contract method as described below:
+Prepare the `call` entry point as described below:
 
 ```bash
 
