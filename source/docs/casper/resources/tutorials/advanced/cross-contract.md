@@ -37,7 +37,7 @@ Having this in mind we will be building two contracts which reference each other
 
 ## Creating the Project {#create-project}
 
-In the appropriate folder create the project for the contract as follows:
+In the appropriate folder, create the project for the contract using the following command:
 
 ```bash
 cargo casper cross-contract
