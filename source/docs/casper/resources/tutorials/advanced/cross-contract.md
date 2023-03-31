@@ -227,7 +227,9 @@ pub extern "C" fn call() {
 
 :::
 
-Each entry point in the call function must have a corresponding function with the same name defined in the contract. This means that if you change the key of an entry point, make sure to update the corresponding function name to avoid runtime errors, and vice versa. The compiler will not catch this error for you, so it is important to check this yourself. In our case we will add the function `update_msg` to the contract code just before the call function. 
+Each entry point defined within `call` must have a corresponding function with the same name defined in the contract. This means that if you change the key of an entry point, make sure to update the corresponding function name to avoid runtime errors, and vice versa. The compiler will not catch this error for you, so it is important to check this yourself.
+
+In our case, we will define the entry point `update_msg` in the contract code just before `call`. 
 
 Your complete contract should look as below:
 
