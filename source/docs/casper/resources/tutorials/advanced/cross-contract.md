@@ -443,7 +443,7 @@ pub extern "C" fn call() {
 
 This would be the easiest implementation of the `call` entry point. There is only one entry point which accepts the key `contract2` of type `String` and the key `hello_world_contract` of the type `Key`. There aren't any named keys which will be saved in the contract's context. The contract is then stored in global state and placed as a named key in the account's context.
 
-Now that we have defined the `call_contract_2` endpoint, we must implement the corresponding function. This endpoint will take the second contract hash as an argument and call the endpoint `update_msg` passing as parameter a message which will then be stored in the second contract's context. 
+Now that we have defined the `call_contract_2` entry point, we must implement the corresponding function. This entry point will take the second contract hash as an argument and call the entry point `update_msg`. It will then pass a message to the second contract as a parameter, which will be stored in that contract’s context.
 
 ```bash
 #[no_mangle]
