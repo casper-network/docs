@@ -323,7 +323,7 @@ If you are only developing smart contracts on the blockchain and not dealing wit
 Be sure to go through the prerequisites from the [Installing Smart Contracts and Querying Global State](../../../developers/cli/installing-contracts.md) documentation.
 
 Make sure that after doing this you have:
-1. Valid private key for your account.
+1. A valid private key for your account.
 2. Funded account with 2.000 CSPR on the Testnet, which you can use for testing.
 
 Create the `keys` folder in the main folder of your project and make sure that the private key which you put into the folder is called `secret_key.pem`.
