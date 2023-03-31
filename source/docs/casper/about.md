@@ -16,3 +16,10 @@ Casper also solves the scalability trilemma. Notably, the network is optimized f
 ## How does Casper work? {#how-does-casper-work}
 
 Casper relies on a group of validators to verify transactions and uphold the network. Unlike Proof-of-Work networks, which need to centralize validators for economies of scale, Casper allows for the geographical decentralization of validators. Casper validators verify transactions based on staked tokens and receive CSPR rewards for participating in the PoS consensus mechanism. CSPR is the native token on the Casper Network.
+
+
+## Other Sections
+
+- [FAQ](./faq/index.md): Frequently Asked Questions
+- [Disclaimer](./disclaimer.md): Legal Disclaimer
+
