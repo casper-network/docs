@@ -324,7 +324,7 @@ Be sure to go through the prerequisites from the [Installing Smart Contracts and
 
 Make sure that after doing this you have:
 1. A valid private key for your account.
-2. Funded account with 2.000 CSPR on the Testnet, which you can use for testing.
+2. Funded your account with 2.000 CSPR on the Testnet, which you can use for testing your smart contract.
 
 Create the `keys` folder in the main folder of your project and make sure that the private key which you put into the folder is called `secret_key.pem`.
 
