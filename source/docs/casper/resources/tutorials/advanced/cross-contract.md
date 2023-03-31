@@ -13,7 +13,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Make sure you have installed the software/packages needed for this tutorial.
 
-This tutorial assumes that you have worked through these examples, if you have not already done so then we recommend that you do so now:
+This tutorial assumes that you have worked through the following examples. If you have not already done so, then we recommend that you do so now:
 - [getting started](../../../developers/writing-onchain-code/getting-started.md)
 - [writing on-chain code](../../../developers/writing-onchain-code/simple-contract.md)
 
