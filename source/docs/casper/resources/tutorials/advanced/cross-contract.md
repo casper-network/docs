@@ -669,7 +669,7 @@ The output of the above command is:
 }
 ```
 
-After the deploy finishes successfuly, you should see a similar outcome to the following:
+After the deploy finishes successfully, you should see a similar outcome to the following:
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/cross-contract/FunctionCall2.png")} width="600" alt="FunctionCall2" />
 
