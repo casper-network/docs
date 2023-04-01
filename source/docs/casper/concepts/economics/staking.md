@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Staking
 slug: /staking
 tags: ["finance", "staking", "governance"]
 ---
@@ -7,8 +7,6 @@ tags: ["finance", "staking", "governance"]
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Staking
-
-This page describes key concepts related to the staking process.
 
 A feature of Proof-of-Stake protocols is that token holders can actively participate in the protocol through a mechanism known as **staking** or **delegation**. They can stake their tokens with any validator on a Casper network. Alternatively, it is possible to stake tokens via an exchange or custody provider.
 
