@@ -1,0 +1,22 @@
+@use "../../../assets/scss/variables/media-queries";
+
+.oneColumn {
+    .paragraph {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
+.twoColumns {
+    .paragraph {
+        column-count: 2;
+        column-gap: 33px;
+    }
+}
+@media #{media-queries.$break-sm} {
+    .twoColumns {
+        .paragraph {
+            column-count: 1;
+        }
+    }
+}

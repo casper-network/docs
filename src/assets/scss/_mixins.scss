@@ -1,0 +1,74 @@
+@use "./variables/sizes";
+
+//Gradients lists
+$grad1: 270deg, var(--casperPurple) 68.23%, var(--casperBrightPink) 100%;
+$grad2: 270deg, var(--casperYellow) 0%, var(----casperPinkLight) 100%;
+$grad3: 270deg, var(--casperRed) 57.29%, var(--casperPurple) 100%;
+$grad4: 270deg, #227937 0%, var(--black) 34.9%;
+
+$grad5: 270deg, var(--casperYellow) 49.48%, #ffffff 100%;
+$grad6: 270deg, var(--casperRed) 0.52%, var(--casperBrightPink) 100%;
+$grad7: 270deg, var(--casperBlue) 0%, var(--casperBrightPink) 67.71%, var(--casperPinkLight) 100%;
+$grad8: 270deg, var(--casperBlue) 0%, var(--black) 21.88%;
+
+$grad9: 270deg, var(--casperRed) 0.52%, var(--casperBrightPink) 100%;
+$grad10: 270deg, var(--casperBlue) 27.08%, var(--casperPurple) 48.96%, var(--casperWhite) 100%;
+$grad11: 270deg, var(--casperRed) 47.4%, #ffffff 100%;
+$grad12: 270deg, var(--casperPurple) 0%, var(--black) 33.33%;
+
+/* MIXINS */
+@mixin span-x {
+    @for $i from 1 through sizes.$columns {
+        .span-#{$i} {
+            grid-column: span $i;
+        }
+    }
+}
+
+@mixin gradient($list, $transform: false) {
+    background: -webkit-linear-gradient($list);
+    background: -moz-linear-gradient($list);
+    background: -o-linear-gradient($list);
+    background: linear-gradient($list);
+
+    @if $transform {
+        transform: rotate($transform);
+    }
+}
+// e.g @include mixins.gradient(mixins.$grad1);
+
+//Transition
+@mixin transition($x...) {
+    -webkit-transition: $x;
+    -moz-transition: $x;
+    -ms-transition: $x;
+    -o-transition: $x;
+    transition: $x;
+}
+
+//Scrollbar
+@mixin custom_scrollbar($trackColor: #eee, $thumbColor: #ccc, $size: 8px, $radius: 7px, $buttonDisplay: none) {
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        width: $size;
+        height: $size;
+
+        &-track,
+        &-thumb {
+            border-radius: $radius;
+        }
+
+        &-track {
+            background-color: $trackColor;
+        }
+
+        &-thumb {
+            background-color: $thumbColor;
+        }
+
+        &-button {
+            display: $buttonDisplay;
+        }
+    }
+}

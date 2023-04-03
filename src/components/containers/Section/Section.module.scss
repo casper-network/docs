@@ -1,0 +1,31 @@
+.section {
+    width: 100%;
+    background-color: var(--black);
+    color: var(--casperWhite);
+    padding: 60px 0;
+
+    &_content_text {
+        margin-bottom: 20px;
+
+        > p {
+            margin: 0;
+        }
+
+        @media (max-width: 400px) {
+            > h2 {
+                font-size: 2.2em;
+            }
+        }
+    }
+
+    &_children {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    }
+}
+
+.social_section {
+    background-color: var(--liftedBlack);
+}

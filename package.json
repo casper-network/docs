@@ -3,8 +3,11 @@
     "version": "1.0.4",
     "private": true,
     "scripts": {
+        "prestart": "yarn run buildplugin && yarn link docusaurus-plugin-navdata",
+        "buildplugin": "cd ./src/plugins/docusaurus-plugin-navdata && yarn install && yarn link",
         "start": "docusaurus start --no-open",
-        "build": "docusaurus build",
+        "build": "yarn run buildplugin && yarn link docusaurus-plugin-navdata && docusaurus build",
+        "preinstall": "yarn run buildplugin && yarn link docusaurus-plugin-navdata",
         "swizzle": "docusaurus swizzle",
         "deploy": "docusaurus deploy",
         "clear": "docusaurus clear",
@@ -28,24 +31,27 @@
     "dependencies": {
         "@cmfcmf/docusaurus-search-local": "^0.10.0",
         "@crowdin/cli": "3",
-        "@docusaurus/core": "^2.0.0-beta.17",
-        "@docusaurus/preset-classic": "^2.0.0-beta.17",
+        "@docusaurus/core": "^2.3.1",
+        "@docusaurus/preset-classic": "^2.3.1",
         "@mdx-js/react": "^1.6.21",
         "@svgr/webpack": "^5.5.0",
         "algoliasearch": "^4.1.0",
         "clsx": "^1.1.1",
-        "docusaurus-plugin-sass": "^0.2.2",
-        "docusaurus2-dotenv": "^1.4.0",
+        "dotenv": "^16.0.3",
+        "docusaurus-plugin-sass": "^0.2.3",
+        "dotenv": "^16.0.3",
         "file-loader": "^6.2.0",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
+        "react-instantsearch-hooks-web": "^6.40.1",
+        "react-transition-group": "^4.4.5",
         "sass": "^1.49.0",
         "url-loader": "^4.1.1"
     },
     "devDependencies": {
         "@actions/core": "^1.6.0",
-        "@docusaurus/module-type-aliases": "^2.0.0-beta.17",
-        "@tsconfig/docusaurus": "^1.0.2",
+        "@docusaurus/module-type-aliases": "^2.3.1",
+        "@tsconfig/docusaurus": "^1.0.5",
         "@types/react": "^17.0.15",
         "@types/react-helmet": "^6.1.2",
         "@types/react-router-dom": "^5.1.8",
@@ -76,7 +82,7 @@
         "typescript": "^4.3.5"
     },
     "engines": {
-        "node": ">=14"
+        "node": ">=16.14"
     },
     "engineStrict": true,
     "browserslist": {
@@ -95,5 +101,8 @@
         "*.{js,ts,jsx,tsx}": [
             "yarn run:lint"
         ]
+    },
+    "peerDependencies": {
+        "@docusaurus/theme-common": "^2.3.1"
     }
 }

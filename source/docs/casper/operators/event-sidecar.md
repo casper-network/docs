@@ -128,7 +128,7 @@ Operators will need to update this file according to their needs. GitHub has fur
 It is possible to monitor the Sidecar's event stream using *cURL*, depending on how the HOST and PORT are configured.
 
 ```bash
-curl -sN http://<HOST:PORT>/events/<TYPE>
+curl -s http://<HOST:PORT>/events/<TYPE>
 ```
 
 - `HOST` - The IP address where the Sidecar is running
@@ -143,4 +143,4 @@ Given the default configuration, the command would look like this:
 curl -sN http://127.0.0.1:19999/events/deploys
 ```
 
-For more information on various event types, visit the [Monitoring Node Events](/operators/node-events) page.
+For more information on various event types, visit the [Monitoring Node Events](../operators/node-events.md) page.

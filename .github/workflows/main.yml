@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      selected_node_version: 14
+      selected_node_version: 16.14
 
     steps:
       - uses: actions/checkout@v3
@@ -40,7 +40,7 @@ jobs:
           cache: yarn
 
       - name: Template credentials
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/dev'
         uses: cuchi/jinja2-action@1149b92d9ea6db61d7f71c22e3d5028d8065f140
         with:
           template: .github/templates/.env.production.j2
@@ -52,6 +52,14 @@ jobs:
           GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
           GOOGLE_ANALYTICS_ANONYMIZE_IP: ${{ secrets.GOOGLE_ANALYTICS_ANONYMIZE_IP }}
           GOOGLE_TAG_TRACKING_ID: ${{ secrets.GOOGLE_TAG_TRACKING_ID }}
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_GRAPHQL_URL: ${{ secrets.DIRECTUS_GRAPHQL_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_TOKEN }}
+          SITE_URL: ${{ secrets.SITE_URL }}
+          ALGOLIA_SITE_APP_ID: ${{ secrets.ALGOLIA_SITE_APP_ID }}
+          ALGOLIA_SITE_API_KEY: ${{ secrets.ALGOLIA_SITE_API_KEY }}
+          ALGOLIA_SITE_INDEX_NAME: ${{ secrets.ALGOLIA_SITE_INDEX_NAME }}
+          BASE_URL: ${{ secrets.BASE_URL }}
 
       - name: Yarn install
         run: |
@@ -68,6 +76,8 @@ jobs:
       - name: Build app
         run: |
           yarn build --out-dir ./docs
+        env:
+          NODE_ENV: production
 
       - name: Add CNAME file to the build output payload to keep the custom domain settings of GitHub Pages enabled
         run: |
@@ -128,9 +138,9 @@ jobs:
         echo "Testing if homepage responds correctly"
         curl --fail http://127.0.0.1:4000/
         echo "Testing if a page responds correctly"
-        curl --fail http://127.0.0.1:4000/operators/create/
+        curl --fail http://127.0.0.1:4000/operators/setup-network/chain-spec/
         echo "Testing if a page responds correctly"
-        curl --fail http://127.0.0.1:4000/design/serialization-standard/
+        curl --fail http://127.0.0.1:4000/concepts/serialization-standard/
       working-directory: ./docs
 
   deploy-prod:
@@ -150,6 +160,10 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
 
+    - name: Wait some time to make sure deployment is finished
+      run: |
+        sleep 60
+
   system-tests-postdeployment-prod:
     needs: deploy-prod
     runs-on: ubuntu-latest
@@ -162,11 +176,11 @@ jobs:
       - name: Test a random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail https://$prod_pages_fqdn/operators/create
+          curl --fail https://$prod_pages_fqdn/operators/setup-network/chain-spec
       - name: Test another random page
         run: |
           echo "Testing if a page responds correctly"
-          curl --fail https://$prod_pages_fqdn/design/serialization-standard
+          curl --fail https://$prod_pages_fqdn/concepts/serialization-standard
 
   rollback-if-tests-fail-prod:
     if: ${{ always() && (needs.system-tests-postdeployment-prod.result=='failure') }}
