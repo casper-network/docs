@@ -12,8 +12,6 @@ slug: /design
     -   [Gossiping](./p2p.md#communications-gossiping)
     -   [Requesting missing data](./p2p.md#requesting-missing-data)
     -   [Node Discovery](./p2p.md#node-discovery)
--   [Global State](./casper-design.md#global-state-head)
-    -   [Merkle trie structure](./casper-design.md#global-state-trie)
 -   [Execution Semantics](./casper-design.md#execution-semantics-head)
     -   [Measuring computational work](./casper-design.md#execution-semantics-gas)
     -   [Deploys](./casper-design.md#execution-semantics-deploys)

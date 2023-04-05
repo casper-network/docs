@@ -1,0 +1,85 @@
+.resourcetilecard {
+    position: relative;
+    min-height: 237px;
+    min-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_img {
+        position: relative;
+        min-height: 237px;
+        width: 30%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        overflow: hidden;
+
+        svg {
+            width: 71px;
+            height: 74px;
+
+            path {
+                fill: var(--mainColor);
+            }
+
+            g {
+                path {
+                    fill: var(--mainColor);
+                    stroke: var(--mainColor);
+                }
+            }
+        }
+    }
+
+    &_content {
+        position: relative;
+        min-height: 237px;
+        min-width: 70%;
+        max-width: 70%;
+        padding-right: 14px;
+
+        &_text {
+            min-height: 150px;
+            margin-bottom: 25px;
+            > h4 {
+                max-width: 270px;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                font-size: 32px;
+                letter-spacing: 0.01em;
+            }
+
+            > p {
+                margin-bottom: 24px;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                max-height: 100px;
+                max-width: 270px;
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        min-width: unset;
+    }
+}
+
+@media (max-width: 903px) {
+    .resourcetilecard_content_text {
+        > h4 {
+            display: block;
+            overflow: visible;
+        }
+
+        > p {
+            display: block;
+            overflow: visible;
+            max-height: fit-content;
+        }
+    }
+}

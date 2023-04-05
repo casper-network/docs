@@ -1,0 +1,30 @@
+@import "../../../../assets/scss/mixins";
+
+.navbarMobileTitle {
+    background-color: transparent;
+    border: 0;
+    position: relative;
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+
+    &_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+
+        > svg {
+            transition: transform 0.15s ease;
+        }
+
+        &.docNavbarOpened {
+            > svg {
+                @include transition(0.3s all);
+                transform: rotate(180deg);
+            }
+        }
+    }
+}

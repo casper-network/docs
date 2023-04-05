@@ -14,7 +14,7 @@ You can also [generate an account hash](#generating-an-account-hash) from a publ
 
 ## Creating Accounts and Keys {#creating-accounts-and-keys}
 
-When you create an account on the Casper blockchain, a cryptographic key-pair will be created when using either the [Casper command-line client](#option-1-key-generation-using-the-casper-client) or a [block explorer](#option-2-key-generation-using-a-block-explorer).
+When you create an account on the Casper blockchain, a cryptographic key-pair will be created when using either the [Casper command-line client](#option-1-key-generation-using-the-casper-client) or a block explorer.
 
 :::note
 
@@ -22,7 +22,7 @@ SAVE your keys to a safe place, preferably offline.
 
 :::
 
-### Option 1: Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
+### Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
 
 This option describes how you can use the Casper command-line client to set up an account using either key type.
 
@@ -84,16 +84,6 @@ The public-key-hex for `secp256k1` keys starts with 02 and is 68 bytes long:
 cat secp256k1-keys/public_key_hex
 020287e1a79d0d9f3196391808a8b3e5007895f43cde679e4c960e7e9b92841bb98d
 ```
-
-
-
-### Option 2: Generating Keys using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
-
-This option is available on networks that have a block explorer.
-
-For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
-
-Start by creating an account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html) and download the secret key when prompted. You can choose the key type when creating the account.
 
 ## Funding your Account
 

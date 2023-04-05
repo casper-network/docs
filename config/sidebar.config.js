@@ -6,7 +6,7 @@ module.exports = {
         "concepts/understanding-hash-types",
         "concepts/deploy-and-deploy-lifecycle",
         "concepts/global-state",
-        //"concepts/smart-contracts", // NEW CONTENT WILL BE HERE
+        "concepts/smart-contracts",
         "concepts/callstack",
         "concepts/session-code",
         "concepts/dictionaries",
@@ -18,9 +18,9 @@ module.exports = {
             collapsed: true,
             items: [
                 "concepts/design/index",
+                "concepts/design/casper-design",
                 "concepts/design/p2p",
                 "concepts/design/highway",
-                "concepts/design/casper-design",
                 "concepts/design/reading-and-writing-to-the-blockchain",
             ],
         },
@@ -34,9 +34,9 @@ module.exports = {
                 "concepts/economics/consensus",
                 "concepts/economics/runtime",
                 "concepts/economics/gas-concepts",
-                "concepts/economics/delegation",
                 "concepts/economics/concepts",
                 "concepts/economics/staking",
+                "concepts/economics/delegation",
             ],
         },
         {
@@ -129,6 +129,7 @@ module.exports = {
                     collapsed: true,
                     items: [
                         "developers/dapps/sdk/index",
+                        "developers/dapps/sdk/client-library-usage",
                         "developers/dapps/sdk/script-sdk",
                         "developers/dapps/sdk/csharp-sdk",
                         "developers/dapps/sdk/go-sdk",
@@ -137,11 +138,11 @@ module.exports = {
                     ],
                 },
                 //"developers/dapps/prerequisites", // NEW CONTENT WILL BE HERE
-                //"developers/dapps/technology-stack", // NEW CONTENT WILL BE HERE
+                "developers/dapps/technology-stack",
                 //"developers/dapps/template-frontend", // NEW CONTENT WILL BE HERE
                 "developers/dapps/signing-a-deploy",
                 "developers/dapps/sending-deploys",
-                //"developers/dapps/using-casper-signer", // NEW CONTENT WILL BE HERE
+                "developers/dapps/signer-integration",
                 //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 //"developers/dapps/explanation-session-and-contract", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
@@ -237,7 +238,6 @@ module.exports = {
                     items: [
                         "resources/tutorials/beginner/index",
                         "resources/tutorials/beginner/getting-started-tutorial",
-                        "resources/tutorials/beginner/use-javascript-sdk",
                         "resources/tutorials/beginner/querying-network",
                         "resources/tutorials/beginner/upgrade-contract",
                         {
@@ -279,6 +279,7 @@ module.exports = {
                         "resources/tutorials/advanced/two-party-multi-sig",
                         "resources/tutorials/advanced/return-values-tutorial",
                         "resources/tutorials/advanced/list-cspr",
+                        "resources/tutorials/advanced/storage-workflow",
                     ],
                 },
             ],

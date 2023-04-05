@@ -12,6 +12,7 @@ const prismConfig = require("./prism.config");
 const pwaConfig = require("./pwa.config");
 const sidebarConfig = require("./sidebar.config");
 const siteConfig = require("./site.config");
+const siteNavbarConfig = require("./site.navbar.config");
 
 module.exports = {
     algoliaConfig,
@@ -28,4 +29,5 @@ module.exports = {
     prismConfig,
     sidebarConfig,
     siteConfig,
+    siteNavbarConfig,
 };
