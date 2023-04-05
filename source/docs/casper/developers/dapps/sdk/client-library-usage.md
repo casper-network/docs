@@ -46,11 +46,11 @@ You may use the SDKs to interact with accounts on a Casper network. Accounts can
 
 ```javascript
 const { Keys } = require("casper-js-sdk");
-const keypair = Keys.ED25519.new();
+const keypair = Keys.Ed25519.new();
 const { publicKey, privateKey } = keypair;
 ```
 
-Replace `ED25519` with `SECP256K1` if you wish.
+Replace `Ed25519` with `Secp256K1` if you wish.
 
 </TabItem>
 
@@ -110,10 +110,10 @@ To use a specific account, you should not include the private key in the source 
 
 ```javascript
 const { Keys } = require("casper-js-sdk");
-const keypair = Keys.ED25519.loadKeyPairFromPrivateFile("./secret_key.pem");
+const keypair = Keys.Ed25519.loadKeyPairFromPrivateFile("./secret_key.pem");
 ```
 
-Replace `ED25519` with `SECP256K1` if you wish.
+Replace `Ed25519` with `Secp256K1` if you wish.
 
 </TabItem>
 
