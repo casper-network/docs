@@ -46,11 +46,11 @@ You may use the SDKs to interact with accounts on a Casper network. Accounts can
 
 ```javascript
 const { Keys } = require("casper-js-sdk");
-const keypair = Keys.ED25519.new();
+const keypair = Keys.Ed25519.new();
 const { publicKey, privateKey } = keypair;
 ```
 
-Replace `ED25519` with `SECP256K1` if you wish.
+Replace `Ed25519` with `Secp256K1` if you wish.
 
 </TabItem>
 
@@ -110,10 +110,10 @@ To use a specific account, you should not include the private key in the source 
 
 ```javascript
 const { Keys } = require("casper-js-sdk");
-const keypair = Keys.ED25519.loadKeyPairFromPrivateFile("./secret_key.pem");
+const keypair = Keys.Ed25519.loadKeyPairFromPrivateFile("./secret_key.pem");
 ```
 
-Replace `ED25519` with `SECP256K1` if you wish.
+Replace `Ed25519` with `Secp256K1` if you wish.
 
 </TabItem>
 
@@ -148,7 +148,7 @@ Replace the `NODE_ADDRESS` and corresponding RPC port with an active node on the
 ```javascript
 const { CasperClient, DeployUtil } = require("casper-js-sdk");
 
-const casperClient = new CasperClient("http://NODE_ADDRESS:7777");
+const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc");
 const receipientPublicKeyHex = "01e8c84f4fbb58d37991ef373c08043a45c44cd7f499453fa2bd3e141cc0113b3c"
 
 let deployParams = new DeployUtil.DeployParams(
@@ -216,7 +216,7 @@ Replace the `NODE_ADDRESS` and corresponding RPC port with an active node on the
 ```javascript
 const { CasperClient, Contracts, RuntimeArgs, CLValueBuilder }
 
-const casperClient = new CasperClient("http://NODE_ADDRESS:7777")
+const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc")
 const contract = new Contracts.Contract(client)
 
 const contractWasm = new Uint8Array(fs.readFileSync("/path/to/contract.wasm").buffer)

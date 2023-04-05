@@ -104,7 +104,7 @@ const casperClientSDK = require("casper-js-sdk");
 
 const { Keys, CasperClient, CLPublicKey, DeployUtil } = require("casper-js-sdk");
 
-const RPC_API = "http://159.65.203.12:7777";
+const RPC_API = "http://159.65.203.12:7777/rpc";
 const STATUS_API = "http://159.65.203.12:8888";
 
 const sendTransfer = async ({ from, to, amount }) => {
