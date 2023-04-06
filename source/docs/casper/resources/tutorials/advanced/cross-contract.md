@@ -190,7 +190,7 @@ pub extern "C" fn call() {
     let mut named_keys: BTreeMap<String, Key> = BTreeMap::new();
 
     // insert the new value into the named keys
-    named_keys.insert(String::from("message"),value_ref.into()); // use into to wrap the value to the key
+    named_keys.insert(String::from("message"),value_ref.into()); // use into to wrap the Uref into a casper_types::Key
     // create a new vector 
     let mut vec = Vec::new();
     vec.push(Parameter::new("message", CLType::String));
