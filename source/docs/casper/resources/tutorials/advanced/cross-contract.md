@@ -408,7 +408,7 @@ Prepare the `call` entry point as described below:
 #[no_mangle]
 pub extern "C" fn call() {
     
-    // create a new vector - this will be the signature of the entry point
+    // Create the list of required runtime arguments for the given entry point.
     let mut vec = Vec::new();
     vec.push(Parameter::new("new_message", CLType::String));
     vec.push(Parameter::new("hello_world_contract", CLType::Key));
