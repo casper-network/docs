@@ -450,7 +450,7 @@ Now that we have defined the metadata for the `call_contract_2` entry point, we 
 #[no_mangle]
 pub extern "C" fn call_contract_2() {
 
-    // get the contract hash from the named arguments passed to the call
+    // get the contract hash from the named arguments passed to the `call_contract_2` entry point.
     let contract_hash: ContractHash = runtime::get_named_arg::<Key>(CONTRACT_HASH)
     .into_hash()
     .map(|hash| ContractHash::new(hash))
