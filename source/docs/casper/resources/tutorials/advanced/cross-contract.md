@@ -265,7 +265,7 @@ use casper_contract::{
 pub extern "C" fn update_msg() {
 
     let value: String = runtime::get_named_arg("message");
-    // get the uref of the message stored in the global state
+    // get the uref of the message stored in global state
     let uref = runtime::get_key("message").unwrap_or_revert().into_uref().unwrap_or_revert();
     // write the message to the global state
     storage::write(uref, String::from(value));
