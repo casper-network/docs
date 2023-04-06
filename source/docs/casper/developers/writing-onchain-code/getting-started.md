@@ -158,7 +158,7 @@ There are many IDEs available for Rust development. The most popular IDEs for Ru
 - IntelliJ Idea
 - Vim
 
-You can use whatever IDE you feel the most comfortable using. In all the exercises and tutorials, we will be using Visual Studio Code as it is the most popular one and has a lot of additional extensions, which might prove useful during the development process.
+You can use any IDE you wish. This documentation and examples use [Visual Studio Code (VSC)](https://code.visualstudio.com), a popular IDE with many extensions that might be helpful during development.
 The easiest way of installing the VSC is to get it from the [official site](https://code.visualstudio.com):
 
 <p align="center"><img src={useBaseUrl("/image/introduction/download-vscode.png")} alt="download-vscode" width="400"/></p>
