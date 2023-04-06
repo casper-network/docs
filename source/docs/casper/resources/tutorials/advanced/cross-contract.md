@@ -378,7 +378,7 @@ The output of this command is:
 }
 ```
 
-To verify that the contract was successfully deployed, call `get-deploy`, providing as a parameter the `deploy-hash` received from the `put-deploy` above.
+To verify that the contract was successfully deployed, use the `get-deploy` subcommand, providing as a parameter the `deploy_hash` received from the `put-deploy` above.
 
 ```bash
 casper-client get-deploy \
