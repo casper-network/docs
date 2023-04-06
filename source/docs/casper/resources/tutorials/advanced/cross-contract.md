@@ -419,7 +419,7 @@ pub extern "C" fn call() {
     // create an Entry Point Object
     let mut entry_points = EntryPoints::new();
 
-    // add the entry point to the entry points object
+    // Add the entry point metadata definition.
     entry_points.add_entry_point(EntryPoint::new(
        "call_contract_2",
        vec,
