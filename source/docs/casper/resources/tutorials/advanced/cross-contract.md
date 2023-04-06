@@ -46,7 +46,7 @@ cargo casper cross-contract
 This will create the following structure under your desired smart contract folder:
 
 ```bash
-project-directory/
+cross-contract/
 └── contract/
     ├── .cargo/
         └── config.toml
