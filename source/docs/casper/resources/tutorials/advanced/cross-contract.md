@@ -227,7 +227,9 @@ pub extern "C" fn call() {
 
 :::
 
-Each entry point defined within `call` must have a corresponding function with the same name defined in the contract. This means that if you change the key of an entry point, make sure to update the corresponding function name to avoid runtime errors, and vice versa. The compiler will not catch this error for you, so it is important to check this yourself.
+The metadata for each of the contract's entry points is defined in the `call` entry point. When installing the contract, the system will look for the name of the entry point as specified by the metadata for that entry point. Therefore, each of the entry points defined in the code must share the same name as the `String` value passed when defining the metadata for the entry point.
+
+The #[no_mangle] flag ensures that the compiler does not modify the name of the entry point. The compiler will not enforce the condition that the name of the entry point is the same value present in its metadata definition, therefore the developer must be careful when defining their entry points.
 
 In our case, we will define the entry point `update_msg` in the contract code just before `call`. 
 
