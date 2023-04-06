@@ -179,7 +179,7 @@ use casper_contract::{
 #[no_mangle]
 pub extern "C" fn call() {
 
-    // get the value of a passed parameter with the key "message"
+    // get the value of the runtime argument named "message"
     let value: String = runtime::get_named_arg("message");
 
     // the value will be wraped in a URef
