@@ -320,7 +320,6 @@ There is a distinction between storing data in a contract’s `NamedKeys` and us
 ## Deploying the Contract {#deploying-contract}
 
 There are many tools available to send a deploy to a Casper network. The simplest method is to use the Rust CLI with the subcommand [put_deploy](../../../developers/cli/installing-contracts.md#installing-contract-code).
-If you are only developing smart contracts on the blockchain and not dealing with a full-stack application, this may be the primary way that you interact with a Casper network.
 
 Be sure to go through the prerequisites from the [Installing Smart Contracts and Querying Global State](../../../developers/cli/installing-contracts.md) documentation.
 
