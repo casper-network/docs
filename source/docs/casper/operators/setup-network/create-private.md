@@ -39,7 +39,7 @@ Use the below guides to set up and manage validator nodes.
 - [Set up Mainnet and Testnet validator nodes](https://docs.cspr.community/): A set of guides for Mainnet and Testnet node-operators on setting up and configuring their Casper network validator nodes.
 
 Use these FAQ collections for tips and details for validators.
-- [FAQs for a basic validator node ](../../faq/faq-validator.md)
+- [FAQs for a basic validator node ](https://support.casperlabs.io/hc/en-gb/sections/6960448246683-Node-Operation-FAQ)
 - [External FAQs on Mainnet and Testnet validator node setup](https://docs.cspr.community/docs/faq-validator.html)
 
 ## Step 2. Setting up the Directory

@@ -145,7 +145,7 @@ To interact with a Casper network and install code on-chain, you will need to [c
 
 ## Video Walkthrough
 
-The following video tutorial complements this guide. You can also consult the [FAQ page](../../faq/faq-developer.md) for more details.
+The following video tutorial complements this guide.
 
 <p align="center">
 <iframe width="400" height="225" src="https://www.youtube.com/embed?v=TRmmiFBwPr0&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=2" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
