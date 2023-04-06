@@ -458,7 +458,7 @@ pub extern "C" fn call_contract_2() {
     // get the value of the message from the second parameter  
     let new_value: String = runtime::get_named_arg("new_message");
 
-    // Call the update_msg endpoint on the other contract with the parameter values
+    // Call the update_msg entry point on the other contract with the parameter values
     let _: () = runtime::call_contract(
         contract_hash, 
         "update_msg", 
