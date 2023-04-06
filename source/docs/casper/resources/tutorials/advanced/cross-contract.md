@@ -198,7 +198,7 @@ pub extern "C" fn call() {
     // create an Entry Point Object
     let mut entry_points = EntryPoints::new();
 
-    // add the entry point to the entry points object
+    // describing the metadata for the entry point
     entry_points.add_entry_point(EntryPoint::new(
         "update_msg",                   // the name of the entry point
         vec,                            // the arguments which can be passed into the entry point
