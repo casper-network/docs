@@ -385,7 +385,7 @@ casper-client get-deploy \
     --node-address http://136.243.187.84:7777 af42bc6dbc58f677d138eb968d897f965f1ed118a40980bc16efbcc2a0c71832
 ```
 
-This should return a JSON output containing information such as header data, approvers and payments. Take time to familiarize yourself with the structure of the output. 
+This should return a JSON output containing information such as header data, approvers and payments. You can also receive this information by using the `verbose` flag with the `put-deploy` subcommand. Take time to familiarize yourself with the structure of the output. 
 
 We can use the supplied deploy hash, `af42bc6dbc58f677d138eb968d897f965f1ed118a40980bc16efbcc2a0c71832` to find this contract using a block explorer. When viewed through the explorer, the status of the Deploy should be marked as `Success`.
 
