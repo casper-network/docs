@@ -594,7 +594,7 @@ make build-contract
 
 After the deploy we can check if it was successful and inspect the parameters of the deployed entry points.
 
-The output of the deployment is:
+The result of invoking the `put-deploy` subcommand is:
 
 ```bash
 {
