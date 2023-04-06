@@ -186,7 +186,7 @@ pub extern "C" fn call() {
     let value_ref = storage::new_uref(value);
 
     // creating the new set of named keys
-    // the keys are a Map of Key/Value 
+    // the keys are a Map of String/casper_types::Key
     let mut named_keys: BTreeMap<String, Key> = BTreeMap::new();
 
     // insert the new value into the named keys
