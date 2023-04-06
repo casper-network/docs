@@ -289,7 +289,7 @@ pub extern "C" fn call() {
     // create an Entry Point Object
     let mut entry_points = EntryPoints::new();
 
-    // add the entry point to the entry points object
+    // Define the metadata for the entry point `update_msg`
     entry_points.add_entry_point(EntryPoint::new(
         "update_msg",
         vec,
