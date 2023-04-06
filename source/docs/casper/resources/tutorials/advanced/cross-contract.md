@@ -547,7 +547,7 @@ pub extern "C" fn call() {
        EntryPointType::Contract
     ));
 
-    // the contract is stored in the global state
+    // the contract is stored in global state
     let (stored_contract_hash, _contract_version) = storage::new_contract(
        entry_points,                                        // entry points
        Some(named_keys),                                    // named keys 
