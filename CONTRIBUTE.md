@@ -41,6 +41,8 @@ The Casper Writing and Editing Style Guide aims to establish a set of standards 
 
 * Don't use ‘**etc.**’ except in situations where space is too limited for an alternative.
 
+* Any comments within code blocks should adhere to these guidelines.
+
 ---
 
 ## Grammar {#grammar}
@@ -140,13 +142,15 @@ Verbs have singular and plural forms. Use the verb form that agrees with the sub
 
 ### General {#general-formatting}
 
-* For note, use either one of the following formatting options:
+* For a note, use either one of the following formatting options:
 
 ```
 **Note:**
 
 > To use this example on the Mainnet, replace *chain-name* as casper.
 ```
+
+* When using `:::note`, you must include a blank line before and after the text or the formatting will not work.
 
 ```
 :::note 
@@ -210,6 +214,44 @@ When adding the following types of content, use a template:
 
 * [Overview page](.github/templates/overview-template.md)
 * [Tutorial page](.github/templates/tutorial-template.md)
+
+## Guidelines for Casper Concepts
+
+### Major Structures
+
+When discussing major Casper structures in the context of code, i.e., Account, Block and Deploy, they should be capitalized. When discussing the general concept of an account or block, they do not need to be capitalized.
+
+Examples:
+
+#### Account
+
+•	“The `Account` creation process consists of…”
+
+•	“…provide a browser-based block explorer that allows **account** creation.”
+
+#### Block
+
+•	“…this method returns the bids and validators as of either a specific `Block`”
+
+•	“Since the system state changes with each **block** created…”
+
+#### Deploy
+
+•	“…and its secret key will sign the `Deploy`”
+
+•	“…or a multiple-signature (multi-sig) **deploy** transfer.”
+
+### Casper Components
+
+When discussing [internal components of the Casper platform](./source/docs/casper/concepts/serialization-standard.md), formatting depends on the context with which you are discussing the component. 
+
+As an example, if you are talking directly about the `PublicKey` [CLValue](./source/docs/casper/concepts/serialization-standard.md#publickey-clvalue-publickey) in the context of code, you would use the backtick enclosed `PublicKey` format. If you are talking about public keys in a more general context, you would follow normal sentence conventions.
+
+Examples:
+
+* "...cryptographically signed by the key-pair corresponding to the `PublicKey` used to create..."
+
+* "When a signature is attached to a deploy, it is paired with the **public key** of the signer..."
 
 ## Acronyms and Abbreviations {#acronyms-and-abbreviations}
 
