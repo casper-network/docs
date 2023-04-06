@@ -215,7 +215,7 @@ pub extern "C" fn call() {
         Some("Hello_world_access_uref".to_string())         // access uref
     );
 
-    // to access from the account - named keys of the account
+    // to access the contract hash from the account's named keys
     runtime::put_key("hello_world_contract", stored_contract_hash.into());
 
 }
