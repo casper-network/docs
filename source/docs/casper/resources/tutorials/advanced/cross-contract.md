@@ -203,7 +203,7 @@ pub extern "C" fn call() {
         "update_msg",                   // the name of the entry point
         vec,                            // the arguments which can be passed into the entry point
         CLType::Unit,                   // return type of the entry point
-        EntryPointAccess::Public,       // acces permissions - public can be accessed always
+        EntryPointAccess::Public,       // access permissions - public can be accessed always
         EntryPointType::Contract        // in most cases it will be contract
     ));
 
