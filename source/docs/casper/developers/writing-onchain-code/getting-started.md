@@ -67,7 +67,7 @@ CMake suite maintained and supported by Kitware (kitware.com/cmake).
 
 ### Installing the Casper Crates {#installing-the-casper-crates}
 
-The best and fastest way to set up a Casper Rust Smart Contract project is to use `cargo-casper`. When you use this, it will set the project up with a simple contract, a runtime environment and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or npm/yarn for those coming from Javascript). It is possible to use this configuration in your CI/CD pipeline as well.
+The best and fastest way to set up a Casper Rust project is to use `cargo casper`. Using this will create a simple contract, a runtime environment, and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or _npm_ and _yarn_ for those familiar with Javascript). It is also possible to use this configuration in your CI/CD pipeline.
 
 ```bash
 cargo install cargo-casper
