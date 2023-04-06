@@ -182,7 +182,7 @@ pub extern "C" fn call() {
     // get the value of the runtime argument named "message"
     let value: String = runtime::get_named_arg("message");
 
-    // the value will be wraped in a URef
+    // the value will be written under a URef
     let value_ref = storage::new_uref(value);
 
     // creating the new set of named keys
