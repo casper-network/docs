@@ -33,7 +33,7 @@ The contracts are as follows:
 The Factory contract is generally used to create a token pair. It throws an event that a pair has been created and allows the user to read the pair created. The most important to notice is that the generation of a token pair actually creates a contract of type Pair under a new address hash.
 The Pair smart contract is used to perform operations like mint or burn on a created pair of tokens.
 
-Having this in mind we will be building two contracts which reference each other in some shape or form. We will look at how the keys are deployed in the contracts context and how we can pass the contract hash into a deployed contract so another contract can be called.
+Having this in mind we will be building two contracts which reference each other in some shape or form. We will look at how the keys are deployed in the contract's context and how we can pass the contract hash into a deployed contract so another contract can be called.
 
 ## Creating the Project {#create-project}
 
