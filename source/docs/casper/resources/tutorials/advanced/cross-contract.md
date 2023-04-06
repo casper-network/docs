@@ -300,7 +300,7 @@ pub extern "C" fn call() {
 
     // the contract is stored in the global state
     let (stored_contract_hash, _contract_version) = storage::new_contract(
-        entry_points,                                       // entry points
+        entry_points,                                       // entry points metadata
         Some(named_keys),                                   // named keys 
         Some("Hello_world_package_name".to_string()),       // package name
         Some("Hello_world_access_uref".to_string())         // access uref
