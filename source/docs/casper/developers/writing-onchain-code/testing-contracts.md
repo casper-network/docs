@@ -235,7 +235,7 @@ The following brief video describes testing [sample contract code](https://githu
 
 ## Further Testing {#further-testing}
 
-Unit testing is only one way to test contracts before installing them on a Casper network. After unit testing a contract, you may perform [local network testing](../../dapp-dev-guide/building-dapps/setup-nctl.md) using NCTL. This allows you to set up and control multiple local Casper nodes to perform [testing in an other simulated network environment](../../dapp-dev-guide/building-dapps/nctl-test.md).
+Unit testing is only one way to test contracts before installing them on a Casper network. After unit testing a contract, you may perform [local network testing](../dapps/setup-nctl.md) using NCTL. This allows you to set up and control multiple local Casper nodes to perform [testing in an other simulated network environment](../dapps/nctl-test.md).
 
 You may also wish to test your contracts on the Casper [Testnet](https://testnet.cspr.live/).
 
