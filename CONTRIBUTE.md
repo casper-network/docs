@@ -219,7 +219,7 @@ When adding the following types of content, use a template:
 
 ### Major Structures
 
-When discussing major Casper structures in the context of code, i.e., Account, Block and Deploy, they should be capitalized. When discussing the general concept of an account or block, they do not need to be capitalized.
+When discussing major Casper structures in the context of code, i.e., Account, Block, and Deploy, they should be capitalized. When discussing the general concept of an account or block, they do not need to be capitalized.
 
 Examples:
 

@@ -4,7 +4,7 @@
 
 Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://docs.casper.network/.
 
-Information on writing style guidelines for documentation can be found in [CONTRIBUTE.md](./CONTRIBUTE.md)
+Information on writing style guidelines for documentation can be found in [CONTRIBUTE.md](./CONTRIBUTE.md).
 
 ## Setup
 
