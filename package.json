@@ -37,7 +37,6 @@
         "@svgr/webpack": "^5.5.0",
         "algoliasearch": "^4.1.0",
         "clsx": "^1.1.1",
-        "dotenv": "^16.0.3",
         "docusaurus-plugin-sass": "^0.2.3",
         "dotenv": "^16.0.3",
         "file-loader": "^6.2.0",
