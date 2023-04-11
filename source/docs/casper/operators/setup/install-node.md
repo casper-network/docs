@@ -2,7 +2,7 @@
 
 Ensure the requirements listed in the following sections are met before you start setting up the node on the network, either on Mainnet or Testnet.
 
-## Network Requirements
+## Network Requirements {#network-requirements}
 
 The following ports are used by the node:
 
