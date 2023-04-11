@@ -164,13 +164,11 @@ You can use any IDE you wish. This documentation and examples use [Visual Studio
 
 We advise installing the following extensions to support the development process:
 
-- Better TOML – support for formatting the TOML files
-- CodeLLDB – the Debug Extension – without it, it is impossible to debug the RUST Code from the IDE
-- crates – will help managing the crates
-- Error Lens – enhances the experience during programming and highlights the syntax errors to be more prominent and easily identifiable
-- rust-analyzer – official supported Rust Language extension
-
-During the exercises and tutorials, ways to leverage the extensions will be briefly described.
+- `CodeLLDB` – An important extension for debugging Rust code
+- `rust-analyzer` – The official Rust language extension
+- `Better TOML` – Support for formatting TOML files
+- `crates` – An extension to help manage crates
+- `Error Lens` – Enhances the programming experience by highlighting syntax errors
 
 ### Creating an Account
 
