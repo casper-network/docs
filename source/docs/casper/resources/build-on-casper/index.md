@@ -25,6 +25,7 @@ The Casper Ecosystem is growing every day through the addition of new dApps and 
 - [Tor.us](https://casper.tor.us)
 - [Casper Signer](https://chrome.google.com/webstore/search/casper?hl=en)
 - [Casper Wallet](https://www.casperwallet.io)
+- [Metamask Flask](https://metamask.io/flask/) with [Casper Snap](https://github.com/casperholders/casper-snap)
 
 ### Block Explorers
 - [cspr.live](https://cspr.live)
