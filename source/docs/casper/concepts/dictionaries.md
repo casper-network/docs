@@ -1,4 +1,7 @@
-# Reading and Writing to Dictionaries
+---
+title: Dictionaries
+---
+# Understanding Dictionaries {#dictionaries}
 
 In a Casper network, you can now store sets of data under [`Keys`](./hash-types.md#hash-and-key-explanations). Previously, [URefs](./glossary/U.md#uref) were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within an `Account` or `Contract` context. In the case of Contracts, sustained and continuous use of URefs would result in the expansion of the associated [NamedKeys](./glossary/N.md#namedkeys) structures.
 
@@ -14,7 +17,7 @@ Items within a dictionary exist as individual records stored underneath their un
 
 As each dictionary item exists as a stand-alone entity in global state, regularly used dictionary keys may be used directly without referencing their seed URef.
 
-## Understanding Dictionaries
+## Using Dictionaries
 
 Dictionaries are ideal for storing larger volumes of data for which `NamedKeys` would be less suitable.  
 
