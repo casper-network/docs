@@ -139,6 +139,8 @@ module.exports = {
                 },
                 //"developers/dapps/prerequisites", // NEW CONTENT WILL BE HERE
                 "developers/dapps/technology-stack",
+                "developers/dapps/setup-nctl",
+                "developers/dapps/nctl-test",
                 //"developers/dapps/template-frontend", // NEW CONTENT WILL BE HERE
                 "developers/dapps/signing-a-deploy",
                 "developers/dapps/sending-deploys",
@@ -310,8 +312,6 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/building-dapps/dapp",
-                "dapp-dev-guide/building-dapps/setup-nctl",
-                "dapp-dev-guide/building-dapps/nctl-test",
             ],
         },
     ],*/
