@@ -160,7 +160,6 @@ There are many IDEs available for Rust development. The most popular IDEs for Ru
 
 You can use any IDE you wish. This documentation and examples use [Visual Studio Code (VSC)](https://code.visualstudio.com), a popular IDE with many extensions that might be helpful during development.
 
-<p align="center"><img src={useBaseUrl("/image/introduction/download-vscode.png")} alt="download-vscode" width="400"/></p>
 
 We advise installing the following extensions to support the development process:
 
