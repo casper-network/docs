@@ -74,6 +74,10 @@ jobs:
         run: |
           yarn check:externals
 
+      - name: Clear Docusaurus cache
+        run: |
+          yarn clear
+
       - name: Build app
         run: |
           yarn build --out-dir ./docs
