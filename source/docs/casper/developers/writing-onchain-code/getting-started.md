@@ -33,6 +33,10 @@ Once you finish installing Rust, check your version:
 rustup --version
 ```
 
+You will need the latest nightly toolchain to develop smart contracts in Rust. Please refer to the [Rust Documentation on Channels](https://rust-lang.github.io/rustup/concepts/channels.html) and the [Rust Documentation on Toolchains](https://rust-lang.github.io/rustup/concepts/toolchains.html) for further information.
+
+We recommend setting up the rust-toolchain in the top level directory of your project.
+
 **Casper Rust Packages**
 
 We publish three crates on [crates.io](https://crates.io/) to support smart contract development with Rust:
@@ -147,18 +151,18 @@ As a brief example, open up _my-project/contract/src/main.rs_ in your editor, mo
 
 ### Installing the Casper Client
 
-The [Casper command-line client](../prerequisites.md#the-casper-command-line-client) is a Rust CLI tool that can help you transmit deploys and install code on-chain. It's recommended to install the client as it's used to deploy contracts and session code in other on-chain tutorials.
+The [Casper command-line client](../prerequisites.md#the-casper-command-line-client) is a Rust CLI tool that can help you send deploys and install code on-chain. It's recommended to install the client as it's used to deploy contracts and session code in other on-chain tutorials.
 
 ### Setting up an IDE {#setting-ide}
 
 There are many IDEs available for Rust development. The most popular IDEs for Rust are the following:
 
-- Visual Studio Code
-- CLion
-- IntelliJ Idea
-- Vim
+- [Visual Studio Code](https://code.visualstudio.com)
+- [CLion](https://www.jetbrains.com/clion/)
+- [IntelliJ Idea](https://www.jetbrains.com/idea/)
+- [Vim](https://www.vim.org/)
 
-You can use any IDE you wish. This documentation and examples use [Visual Studio Code (VSC)](https://code.visualstudio.com), a popular IDE with many extensions that might be helpful during development.
+You can use any IDE you wish. This documentation and examples use Visual Studio Code (VSC), a popular IDE with many extensions that might be helpful during development.
 
 
 We advise installing the following extensions to support the development process:
