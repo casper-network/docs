@@ -14,6 +14,6 @@ To request test tokens, follow these steps:
 2. Click **Tools** on the top menu bar and select **Faucet** from the drop-down menu. Or, navigate to the Faucet using this link: https://testnet.cspr.live/tools/faucet.
 3. Click **Request tokens** on the Faucet page. Tokens can be requested **only once** from the faucet.
 
-    <img src={useBaseUrl("/image/workflow/faucet-function.png")} width="500" />
+    <img src={useBaseUrl("/image/faucet-function.png")} width="500" />
 
 4. The Testnet will credit your account with test tokens.
