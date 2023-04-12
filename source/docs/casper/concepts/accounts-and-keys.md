@@ -22,7 +22,7 @@ SAVE your keys to a safe place, preferably offline.
 
 :::
 
-### Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
+### Option 1: Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
 
 This option describes how you can use the Casper command-line client to set up an account using either key type.
 
@@ -84,6 +84,21 @@ The public-key-hex for `secp256k1` keys starts with 02 and is 68 bytes long:
 cat secp256k1-keys/public_key_hex
 020287e1a79d0d9f3196391808a8b3e5007895f43cde679e4c960e7e9b92841bb98d
 ```
+
+### Option 2: Generating Keys using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
+
+This option is available on networks that have a block explorer.
+
+For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
+
+Start by creating an account using the [Casper Wallet](https://www.casperwallet.io/), [Ledger](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?support=true), or [Torus Wallet](https://casper.tor.us/).
+
+:::warning
+
+The Casper Signer has been replaced with the Casper Wallet and will be deprecated. We recommend migrating all your Casper accounts to the Casper Wallet as outlined [here](https://www.casperwallet.io/user-guide/signer-user-start-here).
+
+:::
+
 
 ## Funding your Account
 
