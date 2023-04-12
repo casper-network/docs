@@ -1,10 +1,16 @@
-# Important Commands
+# Casper-Client Commands
 
 ## State Root Hash {#state-root-hash}
 
 ```rust
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
+
+Example:
+```rust
+casper-client get-state-root-hash --node-address http://[IP]:7777
+```
+You can find a list of Testnet IP addresses at [CSPR live](https://testnet.cspr.live/tools/peers).
 
 The first command to cover is the _get-state-root-hash_ command from the _casper-client_ tool. The state root hash is an identifier of the current network state. It is similar to a Git commit ID for commit history. It gives a snapshot of the blockchain state at a moment in time. For this tutorial, it will be used to query the network state after sending deploys.
 
