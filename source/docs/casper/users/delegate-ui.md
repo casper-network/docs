@@ -71,7 +71,7 @@ The following instructions will take you through the delegation process, startin
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/9.wallet-window.png")} alt="Signature Request window"/>
 
-3.  Click **Sign** in the Signature Request window to finalize the transaction. You have completed the delegation.
+3.  Click **Sign** in the Signature Request window to finalize the delegation.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/10.completed-delegation.png")} alt="Completed delegation" width="400"/>
 
