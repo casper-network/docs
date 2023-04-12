@@ -49,25 +49,25 @@ The following instructions will take you through the delegation process, startin
 **Step 1 - Delegation details**
 
 1. Specify the validator's public key if you have reached this screen using the Wallet drop-down menu. Otherwise, verify the pre-populated key in the Validator field.
-2. Enter the amount of CSPR you wish to delegate. Remember to account for the transaction fee.
+2. Enter the amount of CSPR you wish to delegate. Remember to account for the delegation fee.
 3. Click **Next**.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/6.delegation-details.png")} alt="Delegation details" width="400"/>
 
 **Step 2 - Confirm the delegation**
 
-1. Review the details of the transaction.
+1. Review the delegation details.
 2. If everything is correct, click **Confirm and delegate stake**. If you wish to make changes, return to the previous screen.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/7.confirm-delegation.png")} alt="Confirm delegation details" width="400"/>
 
 **Step 3 - Sign the delegation**
 
-1.  Sign the transaction by clicking **Sign with Casper Wallet**.
+1.  Sign the delegation by clicking **Sign with Casper Wallet**.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/8.sign-delegation.png")} alt="Sign delegation" width="400"/>
 
-2.  Once the Casper Wallet opens, **check the deploy hash**. Ensure the deploy hash in the "Signature Request" window matches the deploy hash in the "Sign transaction" window before continuing.
+2.  Once the Casper Wallet opens, **check the deploy hash**. Ensure the deploy hash in the "Signature Request" window matches the deploy hash in the "Sign delegation" window before continuing.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/9.wallet-window.png")} alt="Signature Request window"/>
 
@@ -75,7 +75,7 @@ The following instructions will take you through the delegation process, startin
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/10.completed-delegation.png")} alt="Completed delegation" width="400"/>
 
-The delegation transaction initiates as soon as the corresponding deploy is signed. You can review the details and status of the deploy by clicking the **Deploy Details** highlighted above. 
+The delegation initiates as soon as the corresponding deploy is signed. You can review the details and status of the deploy by clicking the **Deploy Details** highlighted above. 
 
 Remember to [Monitor your Stake](/staking/#monitoring-rewards). Staking rewards are delivered to your account's main purse after each era, which is currently set to 2 hours. Note that it may take up to 2 eras (4 hours) for the first reward to appear after delegation. The rewards are automatically added to your current stake on the corresponding validator. You may view them under the _Rewards_ tab on your account page on <https://cspr.live/>.
 
