@@ -10,9 +10,9 @@ Casper and other Proof-of-Stake protocols allow token holders to earn rewards an
 
 ## Prerequisites
 
-1. To stake tokens with a validator, you must create an account with CSPR tokens in its main purse. One option is to use the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) by following [the Signer Guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html). 
+1. To stake tokens with a validator, you must create an account with CSPR tokens in its main purse. One option is to use the [Casper Wallet](https://www.casperwallet.io/) by following the [Getting Started](https://www.casperwallet.io/user-guide/getting-started) user guide. 
 2. You need to [fund the account's main purse](./funding-from-exchanges.md) to delegate tokens.
-3. Connect to a block explorer to set up the delegation. This guide uses [cspr.live](https://cspr.live/) and the Casper Signer.
+3. Connect to a block explorer to set up the delegation. This guide uses [cspr.live](https://cspr.live/) and the Casper Wallet.
 4. [Review your account](#account-review) before starting the process.
 5. Review the current [delegation fees](/staking#delegation-fees) and ensure you have extra CSPR in your account's main purse apart from the amount you are delegating. Otherwise, the delegation might fail.
 
@@ -63,15 +63,15 @@ The following instructions will take you through the delegation process, startin
 
 **Step 3 - Sign the delegation**
 
-1.  Sign the transaction by clicking **Sign with Casper Signer**.
+1.  Sign the transaction by clicking **Sign with Casper Wallet**.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/8.sign-delegation.png")} alt="Sign delegation" width="400"/>
 
-2.  Once the Signer app window opens, **make sure that the deploy hash in the "Signer window" matches the deploy hash in the "Sign delegation" window before continuing**.
+2.  Once the Casper Wallet opens, **check the deploy hash**. Ensure the deploy hash in the "Signature Request" window matches the deploy hash in the "Sign transaction" window before continuing.
 
-<img class="align-center" src={useBaseUrl("/image/tutorials/staking/9.signer-window.png")} alt="Signer window"/>
+<img class="align-center" src={useBaseUrl("/image/tutorials/staking/9.wallet-window.png")} alt="Signature Request window"/>
 
-3.  Click **Sign** in the Signer window to finalize the transaction. You have completed the delegation.
+3.  Click **Sign** in the Signature Request window to finalize the transaction. You have completed the delegation.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/staking/10.completed-delegation.png")} alt="Completed delegation" width="400"/>
 
