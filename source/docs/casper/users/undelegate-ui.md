@@ -6,7 +6,7 @@ If you want to undelegate tokens from a validator, you can do so at any time. No
 
 ## Prerequisites 
 
-This guide assumes that you have previously delegated tokens] to a validator using a [block explorer](./delegate-ui.md) or the [Casper client](../developers/cli/delegate.md).
+This guide assumes that you have previously delegated tokens to a validator using a [block explorer](./delegate-ui.md) or the [Casper client](../developers/cli/delegate.md).
 
 ## Accessing the Undelegation Feature
 
@@ -45,11 +45,11 @@ The following instructions will take you through the undelegation process, start
 
 **Step 3 - Sign the undelegation**
 
-1.  Click **Sign with Casper Wallet** to sign the transaction.
+1.  Click **Sign with Casper Wallet** to sign the undelegation.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/undelegate/6.sign-undelegation.png")} alt="Sign the undelegation" width="400"/>
 
-2.  Once the Casper Wallet opens, **check the deploy hash**. Ensure the deploy hash in the "Signature Request" window matches the deploy hash in the "Sign transaction" window before continuing.
+2.  Once the Casper Wallet opens, **check the deploy hash**. Ensure the deploy hash in the "Signature Request" window matches the deploy hash in the "Sign undelegation" window before continuing.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/undelegate/7.confirm-hash.png")} alt="Confirm deploy hash" />
 
