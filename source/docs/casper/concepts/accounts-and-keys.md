@@ -85,6 +85,12 @@ cat secp256k1-keys/public_key_hex
 020287e1a79d0d9f3196391808a8b3e5007895f43cde679e4c960e7e9b92841bb98d
 ```
 
+:::note
+
+After generating keys for the account, you may add funds to the account's purse to finish the account creation process.
+
+:::
+
 ### Option 2: Generating Keys using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
 
 This option is available on networks that have a block explorer.
