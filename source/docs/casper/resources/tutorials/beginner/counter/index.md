@@ -10,7 +10,7 @@ This tutorial installs a simple counter contract on a local Casper network with 
 Here is how the tutorial is structured:
 
 - [Tutorial Overview](./overview.md) - Introduction to the process and what will be covered
-- [Important Commands](./commands.md) - A summary of all relevant commands and respective arguments
+- [Casper-Client Commands](./commands.md) - A summary of all relevant commands and respective arguments
 - [Tutorial Walkthrough](./walkthrough.md) - Step-by-step tutorial instructions 
 
 ## Prerequisites {#prerequisites}
