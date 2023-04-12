@@ -155,7 +155,7 @@ Verbs have singular and plural forms. Use the verb form that agrees with the sub
 ```
 :::note 
 
-Alternatively, you can use this link to download the Casper Signer.  
+Alternatively, you can use this link to download the Casper Wallet.  
 
 :::
 ```
@@ -251,7 +251,7 @@ Examples:
 
 * "...cryptographically signed by the key-pair corresponding to the `PublicKey` used to create..."
 
-* "When a signature is attached to a deploy, it is paired with the **public key** of the signer..."
+* "When a signature is attached to a deploy, it is paired with the **public key** of the account..."
 
 ## Acronyms and Abbreviations {#acronyms-and-abbreviations}
 

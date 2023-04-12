@@ -26,7 +26,7 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [Casper PHP SDK](https://github.com/make-software/casper-php-sdk) | PHP SDK to interact with Casper network nodes via RPC. The PHP SDK allows developers to interact with a Casper network using PHP | MAKE Software | PHP | Apache License 2.0 | 2022-06-29 | Client SDK
 [Casper Ruby Client SDK](https://github.com/saitgulmez/casper-ruby-sdk) | Ruby SDK to interact with Casper network nodes via RPC. | Sait Gulmez | Ruby | Apache License 2.0 | 2022-03-08 | Client SDK
 [Casper Scala SDK](https://github.com/abahmanem/casper-scala-sdk) | Casper Scala client SDK  to interact with the Casper  Network nodes via RPC | M.Abahmane | Scala | MIT license | 2022-03-23 | Client SDK
-[Casper Signer](https://github.com/casper-ecosystem/signer) | Browser plugin used to sign transactions for the Casper Mainnet and Testnet | MAKE Software | TypeScript-JavaScript | Apache License 2.0 | 2022-09-13 | Tools
+[Casper Wallet](https://www.casperwallet.io/) | A browser wallet for the Casper Network | MAKE Software | TypeScript-JavaScript | Apache License 2.0 | 2023-04-12 | Wallet
 [Casper SSI Web App](https://github.com/credentia-network/casper-ssi-demo) | Casper SSI Framework in the form of a demo web application. | Credentia Network | TypeScript | MIT license | 2022-06-29 | Tools
 [Casper Storage](https://github.com/CasperDash/casper-storage) | Casper storage - HD wallets | CasperDash | TypeScript | Apache License 2.0 | 2022-09-14 | Wallet
 [Casper Swift SDK](https://github.com/hienbui9999/CasperSDKInSwift) | Casper Client SDK. Casper SDK methods implementation in Swift. | hienbui9999 | Swift | MIT license | 2022-06-08 | Client SDK
