@@ -45,15 +45,15 @@ The following instructions will take you through the undelegation process, start
 
 **Step 3 - Sign the undelegation**
 
-1.  Click **Sign with Casper Signer** to sign the transaction.
+1.  Click **Sign with Casper Wallet** to sign the transaction.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/undelegate/6.sign-undelegation.png")} alt="Sign the undelegation" width="400"/>
 
-2.  Once the Signer app window opens, **make sure that the deploy hash in the "Signer window" matches the deploy hash in the "Sign undelegation" window before continuing**.
+2.  Once the Casper Wallet opens, **check the deploy hash**. Ensure the deploy hash in the "Signature Request" window matches the deploy hash in the "Sign transaction" window before continuing.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/undelegate/7.confirm-hash.png")} alt="Confirm deploy hash" />
 
-3.  Click **Sign** in the Signer window to finalize the undelegation. The stake undelegation initiates as soon as the corresponding deploy is signed. Here is the expected output:
+3.  Click **Sign** in the Signature Request window to finalize the undelegation. The stake undelegation initiates as soon as the corresponding deploy is signed. Here is the expected output:
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/undelegate/8.undelegation-confirmed.png")} alt="Undelegation confirmed" width="400"/>
 
