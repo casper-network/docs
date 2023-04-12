@@ -22,7 +22,7 @@ This section shows you how to write session code and smart contracts in Rust and
 |[Installing Smart Contracts and Querying Global State](../cli/installing-contracts.md)| A guide on installing smart contracts and querying global state        |
 |[Calling Smart Contracts with the Rust Client](../cli/calling-contracts.md)| Steps to call a smart contract with the Rust command-line client|
 |[Upgrading and Maintaining Smart Contracts](./upgrading-contracts.md)| An introduction to versioning smart contracts|
-|[Reading and Writing to Dictionaries](../../concepts/dictionaries.md)]| Information on Dictionaries and how to read and write to them on the Casper Platform.|
+|[Reading and Writing to Dictionaries](../../concepts/dictionaries.md)| Information on Dictionaries and how to read and write to them on the Casper Platform.|
 |[Execution Error Codes](../cli/execution-error-codes.md)|Possible error codes when writing smart contracts.|
 |[Getting Started with AssemblyScript](./assembly-script.md) | An introduction to using AssemblyScript with the Casper Platform |
 
