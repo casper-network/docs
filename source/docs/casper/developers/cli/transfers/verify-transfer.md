@@ -10,16 +10,28 @@ Before verifying a transfer, make sure you have:
 
 ## Query Transfer Details {#query-transfer-details}
 
-Deploys in a Casper network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
+A transfer is a part of a deploy - in the Casper network, deploys can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
 
-We will use the `transfer-` to query more details about the transfer.
+First, we will use the *deploy_hash* to identify the corresponding transfer:
+
+```bash
+casper-client get-deploy \
+--node-address http://<node-ip-address>:7777 \
+[DEPLOY_HASH]
+```
+
+**Important response fields:**
+
+-   `"result"."execution_results"."result"."Success"."transfers"` - List of transfers contained in a successful deploy.
+
+After we have obtained the `transfer-<hex>` identifier, we can query transfer details.
 
 ```bash
 casper-client query-global-state \
 --id 8 \
 --node-address http://<node-ip-address>:7777 \
 --state-root-hash <state-root-hash> \
---key transfer-
+--key transfer-<hex>
 ```
 
 **Request fields:**
@@ -27,7 +39,7 @@ casper-client query-global-state \
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
 -   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
--   `key` - The base key for the query. This must be a properly formatted transfer address; "transfer-"
+-   `key` - The base key for the query. This must be a properly formatted transfer address.
 
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
