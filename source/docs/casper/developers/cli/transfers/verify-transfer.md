@@ -1,6 +1,6 @@
 # Verifying a Transfer
 
-## Prerequisite
+## Prerequisites
 
 Before verifying a transfer, make sure you have:
 
