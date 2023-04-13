@@ -47,7 +47,7 @@ module.exports = {
             },
         },
         /* Optional */
-        // gtag: analyticsConfig.gtag,
+        ...(analyticsConfig["tagTrackingId"] && { gtag: analyticsConfig }),
         // metadatas: metadatasConfig,
         navbar: navbarConfig,
         prism: prismConfig,
