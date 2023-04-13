@@ -138,7 +138,7 @@ module.exports = {
                     ],
                 },
                 //"developers/dapps/prerequisites", // NEW CONTENT WILL BE HERE
-                //"developers/dapps/technology-stack",
+                "developers/dapps/technology-stack",
                 "developers/dapps/setup-nctl",
                 "developers/dapps/nctl-test",
                 //"developers/dapps/template-frontend", // NEW CONTENT WILL BE HERE
