@@ -34,7 +34,6 @@ The [Operators](./operators/index.md) section caters for people who want to run 
 
 ## Other Sections
 
-- [FAQ](./faq/index.md): Frequently Asked Questions
 - [Resources](./resources/index.md): Resources such as setup information, tutorials, further reading, etc.
 - [Tutorials](./resources/tutorials/index.md): All of our tutorials are organized here for easy access.
 - [Glossary](./concepts/glossary/index.md): An aplphabetized list of all terms used within the Casper documentation.

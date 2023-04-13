@@ -1,6 +1,12 @@
 # Block Explorers on Casper Network
 
-The Casper blockchain is available as the Mainnet and Testnet. The Mainnet is the Casper blockchain that utilizes Casper tokens (CSPR). The Testnet is an alternate Casper blockchain used to test applications without spending CSPR tokens on the Casper Mainnet. You can use block explorers such as [cspr.live](https://cspr.live/) and [Casper.info](https://casper-trench.vercel.app/) to explore the Casper blockchain.
+The Casper blockchain is available as the Mainnet and Testnet.
+The Mainnet is the Casper blockchain that utilizes Casper tokens (CSPR).
+The Testnet is an alternate Casper blockchain used to test applications without spending CSPR tokens on the Casper Mainnet.
+You can use block explorers to explore the Casper blockchain such as : 
+- [cspr.live](https://cspr.live/)
+- [Casper.info](https://casper-trench.vercel.app/)
+- [Div3.in](https://div3.in)
 
 ## What is a Block Explorer
 
@@ -18,7 +24,7 @@ The following topics link you to detailed instructions on using the [cspr.live](
 
 :::note
 
-To perform actions using the [cspr.live](https://cspr.live/) block explorer, you must sign in to your Casper account using the Casper Signer.
+To perform actions using the [cspr.live](https://cspr.live/) block explorer, you must sign in to your Casper account using one of the wallets provided.
 
 :::
 

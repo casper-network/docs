@@ -139,6 +139,8 @@ module.exports = {
                 },
                 //"developers/dapps/prerequisites", // NEW CONTENT WILL BE HERE
                 "developers/dapps/technology-stack",
+                "developers/dapps/setup-nctl",
+                "developers/dapps/nctl-test",
                 "developers/dapps/template-frontend",
                 "developers/dapps/signing-a-deploy",
                 "developers/dapps/sending-deploys",
@@ -177,7 +179,6 @@ module.exports = {
     ],
     operators: [
         "operators/index",
-        "operators/table-of-contents",
         {
             type: "category",
             label: "Getting set up",
@@ -298,7 +299,6 @@ module.exports = {
         "users/funding-from-exchanges",
         "users/testnet-faucet",
     ],
-    faq: ["faq/index", "faq/faq-general", "faq/faq-enterpise", "faq/faq-developer", "faq/faq-validator"],
     workflow: ["workflow/ledger-setup"],
     // BELOW ITEMS ARE COMMENTED OUT BECAUSE WE COULD NOT LOCATE PLACE FOR THEM IN THE NEW STRUCTURE:
     /*"dapp-dev-guide": [
@@ -310,8 +310,6 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/building-dapps/dapp",
-                "dapp-dev-guide/building-dapps/setup-nctl",
-                "dapp-dev-guide/building-dapps/nctl-test",
             ],
         },
     ],*/

@@ -20,6 +20,4 @@ Casper relies on a group of validators to verify transactions and uphold the net
 
 ## Other Sections
 
-- [FAQ](./faq/index.md): Frequently Asked Questions
 - [Disclaimer](./disclaimer.md): Legal Disclaimer
-

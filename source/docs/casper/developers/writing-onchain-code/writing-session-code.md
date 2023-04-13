@@ -134,7 +134,7 @@ make build-contract
 
 ## Executing Session Code {#executing-session-code}
 
-Before running session code on a live Casper network, test it as described [here](./testing-session-code.md). You can also set up a local network using [NCTL](../../dapp-dev-guide/building-dapps/setup-nctl.md) for additional tests.
+Before running session code on a live Casper network, test it as described [here](./testing-session-code.md). You can also set up a local network using [NCTL](../dapps/setup-nctl.md) for additional tests.
 
 Session code can execute on a Casper network via a [Deploy](../../concepts/glossary/D.md#deploy). All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the network's global state.
 

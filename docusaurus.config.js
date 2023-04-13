@@ -38,7 +38,7 @@ module.exports = {
             maxHeadingLevel: 6,
         },
         ...(algoliaConfig["apiKey"] && { algolia: algoliaConfig }),
-        announcementBar: announcementConfig,
+        // announcementBar: announcementConfig,
         colorMode: colorConfig,
         footer: footerConfig,
         docs: {
