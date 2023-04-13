@@ -107,9 +107,7 @@ make prepare
 make build-contract
 ```
 
-You can find the compiled contract here:
-
-`my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`
+You can find the compiled contract on this path: `my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`.
 
 **Linting**
 
@@ -165,7 +163,7 @@ There are many IDEs available for Rust development. The most popular IDEs for Ru
 You can use any IDE you wish. This documentation and examples use Visual Studio Code (VSC), a popular IDE with many extensions that might be helpful during development.
 
 
-We advise installing the following extensions to support the development process:
+If you are using VSC, you might find the following extensions useful:
 
 - `CodeLLDB` – An important extension for debugging Rust code
 - `rust-analyzer` – The official Rust language extension
