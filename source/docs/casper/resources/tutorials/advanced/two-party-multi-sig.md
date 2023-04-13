@@ -10,7 +10,11 @@ This workflow describes how a trivial two-party multi-signature scheme for signi
 
 ## Configuring the Main Account {#configuring-the-main-account}
 
-**CAUTION**: Incorrect account configurations could render accounts defunct and unusable. We highly recommend executing any changes to an account in a test environment like Testnet before performing them in a live environment like Mainnet.
+:::caution
+
+Incorrect account configurations could render accounts defunct and unusable. We highly recommend executing any changes to an account in a test environment like Testnet before performing them in a live environment like Mainnet.
+
+:::
 
 Each Account has an `associated_keys` field, which is a list containing account hashes and their corresponding weights. Accounts can be associated by adding the account hash to the `associated_keys` field.
 
