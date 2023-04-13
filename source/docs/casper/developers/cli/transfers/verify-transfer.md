@@ -189,7 +189,7 @@ casper-client get-balance \
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
 -   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
--   `purse-uref` - The URef under which the purse is stored. This must be a properly formatted URef "uref-\-"
+-   `purse-uref` - The URef under which the purse is stored, following the format "uref-<hex_value>".
 
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
