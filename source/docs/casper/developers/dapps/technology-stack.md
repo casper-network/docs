@@ -17,7 +17,7 @@ The signing of transactions will, in many cases, need to be performed by the use
 
 1. The Casper Wallet
 
-   Use the [Casper Wallet](https://www.casperwallet.io/develop) to sign deploys for a Casper using the Casper Signer browser extension. Deploy objects are first converted to JSON, then sent to the Signer to be signed, then must be sent to the backend and forwarded to a node.
+   Use the [Casper Wallet](https://www.casperwallet.io/develop) to sign deploys for a Casper network. Deploy objects are first converted to JSON, then sent to the Wallet to be signed, then must be sent to the backend and forwarded to a node.
 
    :::caution
 
