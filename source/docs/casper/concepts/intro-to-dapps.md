@@ -6,9 +6,9 @@ title: Introduction to dApps
 
 ### What is a dApp?
 
-DApp stands for **Decentralized Application**. Specifically, it refers to an application built on a blockchain network which combines smart contracts and a user interface. 
+DApp stands for **Decentralized Application**. Specifically, it refers to an application built on a blockchain network which combines smart contracts and a user interface.
 
-A decentralized network consists of a group of interchangeable machines (nodes) that can perform as a full system or distributed database. Additional machines strengthen the overall system by adding redundancy and computational power. 
+A decentralized network consists of a group of interchangeable machines (nodes) that can perform as a full system or distributed database. Additional machines strengthen the overall system by adding redundancy and computational power.
 
 A dApp is not just a client-server application where the application can do some work offline, nor is it a web application which can operate in a disconnected mode. A dApp is conceived and built using a distributed architecture where a network of [nodes](../concepts/glossary/N.md#node) does the processing of smart contracts instead of a single central server.
 
@@ -18,7 +18,7 @@ Any dApp will need access to a decentralized network, in one form or another. In
 
 For a dApp to integrate with a Casper network, it must be able to send [Deploys](../concepts/glossary/D.md#deploy) via the [JSON-RPC](../developers/json-rpc/index.md). Business logic specific to the dApp can then be executed on chain via the Deploy. [Sending a Deploy](../developers/dapps/sending-deploys.md) to a node will result in that node [gossiping](../concepts/design/p2p.md#communications-gossiping) that Deploy to other nodes, assuming that the Deploy is valid and accepted. The Deploy will then be enqueued for execution.
 
-A Deploy contains [session code](../concepts/glossary/S.md#session-code) in the form of [Wasm](../concepts/glossary/W.md#webassembly) to be executed in the context of the sending [account](../concepts/glossary/A.md#account). Therefore, developers may use any programming language that can compile to Wasm when building a dApp for a Casper network. This session code may consist of Wasm to be executed once, or Wasm which will install contract code to be stored in global state. If the dApp requires periodic execution of the same Wasm, it is more efficient from both a gas and execution perspective to install the Wasm as a contract to be called later. As gas costs operate on a per-byte basis, smart contracts will incur less gas costs over time when compared against executing the same session code repeatedly. 
+A Deploy contains [session code](../concepts/glossary/S.md#session-code) in the form of [Wasm](../concepts/glossary/W.md#webassembly) to be executed in the context of the sending [account](../concepts/glossary/A.md#account). Therefore, developers may use any programming language that can compile to Wasm when building a dApp for a Casper network. This session code may consist of Wasm to be executed once, or Wasm which will install contract code to be stored in global state. If the dApp requires periodic execution of the same Wasm, it is more efficient from both a gas and execution perspective to install the Wasm as a contract to be called later. As gas costs operate on a per-byte basis, smart contracts will incur less gas costs over time when compared against executing the same session code repeatedly.
 A dApp may send a Deploy simultaneously to each node it is connected to, but can only do so once per node, per Deploy.
 
 #### Updating data in a Casper dApp
@@ -33,9 +33,7 @@ There is an inherent timing consideration when sending a Deploy, from the point 
 
 ### Related reading
 
-  - [Deploys and the Deploy lifecycle](../concepts/deploy-and-deploy-lifecycle.md)
-  - [Global State](../concepts/global-state.md)
-  - [Session Code](../concepts/session-code.md)
-  - [Smart Contracts](../concepts/smart-contracts.md)
-
-
+- [Deploys and the Deploy lifecycle](../concepts/deploy-and-deploy-lifecycle.md)
+- [Global State](../concepts/global-state.md)
+- [Session Code](../concepts/session-code.md)
+- [Smart Contracts](../concepts/smart-contracts.md)

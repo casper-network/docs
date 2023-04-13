@@ -1,6 +1,7 @@
 @use "./variables/fonts-variables";
 @use "./variables/sizes";
 @use "./mixins";
+@use "./variables/media-queries";
 
 body {
     -webkit-font-smoothing: antialiased;
@@ -220,4 +221,25 @@ a {
 //
 html {
     scroll-behavior: smooth;
+}
+
+//
+@media #{media-queries.$break-md} {
+    h1 {
+        font-size: 60px;
+    }
+}
+@media #{media-queries.$break-sm} {
+    h1 {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 26px;
+    }
 }

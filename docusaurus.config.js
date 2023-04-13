@@ -37,8 +37,8 @@ module.exports = {
             minHeadingLevel: 2,
             maxHeadingLevel: 6,
         },
-        // algolia: algoliaConfig,
-        announcementBar: announcementConfig,
+        ...(algoliaConfig["apiKey"] && { algolia: algoliaConfig }),
+        // announcementBar: announcementConfig,
         colorMode: colorConfig,
         footer: footerConfig,
         docs: {
@@ -52,11 +52,6 @@ module.exports = {
         // metadatas: metadatasConfig,
         navbar: navbarConfig,
         prism: prismConfig,
-        algolia: {
-            appId: "KQNX60E7J5",
-            apiKey: "42e859bcdaa94a6c412d933cbaabe2e2",
-            indexName: "casperlabs",
-        },
     },
     presets: [
         [

@@ -46,7 +46,7 @@ Information on these processes can be found at the following locations:
 
 - [Testing Smart Contracts](./testing-contracts.md)
 
-- [Testing Smart Contracts with NCTL](../../dapp-dev-guide/building-dapps/nctl-test.md)
+- [Testing Smart Contracts with NCTL](../dapps/nctl-test.md)
 
 Additionally, the following two tutorials outline sending an example contract using both NCTL and Testnet:
 

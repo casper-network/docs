@@ -1,8 +1,8 @@
-# Installing a Node 
+# Installing a Node
 
 Ensure the requirements listed in the following sections are met before you start setting up the node on the network, either on Mainnet or Testnet.
 
-## Network Requirements
+## Network Requirements {#network-requirements}
 
 The following ports are used by the node:
 
@@ -134,6 +134,3 @@ The community has created a few tools to monitor your node once it is running, s
 
 - Status.py: https://github.com/RapidMark/casper-tools
 - Grafana: https://github.com/matsuro-hadouken/casper-tools
-
-
-

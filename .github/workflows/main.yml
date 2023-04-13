@@ -46,6 +46,7 @@ jobs:
           template: .github/templates/.env.production.j2
           output_file: .env.production
         env:
+          ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
           ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           CROWDIN_PERSONAL_ACCESS_TOKEN: ""
@@ -72,6 +73,10 @@ jobs:
       - name: Validate external links
         run: |
           yarn check:externals
+
+      - name: Clear Docusaurus cache
+        run: |
+          yarn clear
 
       - name: Build app
         run: |

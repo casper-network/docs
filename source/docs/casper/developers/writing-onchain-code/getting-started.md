@@ -1,8 +1,10 @@
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Getting Started with Rust
 
-This guide covers the basic tools you will need to set up your first Casper smart contract. You will also be able to build a sample smart contract and run a few basic tests on it on your local machine.
+This guide covers the basic tools you will need to write your first Casper smart contract. You will also be able to build a sample smart contract and run a few basic tests on it on your local machine.
 
-Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. This guide will walk you through the steps to set up your development environment and build your first contract. 
+Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. This guide will walk you through the steps to set up your development environment and write your first contract.
 
 ## Prerequisites {#prerequisites}
 
@@ -14,6 +16,13 @@ The [official Rust guide](https://www.rust-lang.org/tools/install) recommends in
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+The installation script automatically adds Rust to your system PATH after your next login.
+To start using Rust right away instead of restarting your terminal, run the following command in your shell to add Rust to your system PATH manually:
+
+```bash
+source $HOME/.cargo/env
 ```
 
 You can also use `brew` on MacOS or `apt` on Linux to install Rust.
@@ -49,8 +58,11 @@ Each of the Casper crates comes with API documentation and examples for each fun
 CMake is a popular build tool that we will utilize, and you may very well have it already installed. If you do, make sure that you have the latest version. If you need to install or upgrade it, follow the steps located here: https://cmake.org/install/. Once installed, check your version as shown below.
 
 ```bash
-$ cmake --version
-cmake version 3.20.0
+cmake --version
+```
+Output:
+```
+cmake version 3.20.0 (or above)
 
 CMake suite maintained and supported by Kitware (kitware.com/cmake).
 ```
@@ -59,7 +71,7 @@ CMake suite maintained and supported by Kitware (kitware.com/cmake).
 
 ### Installing the Casper Crates {#installing-the-casper-crates}
 
-The best and fastest way to set up a Casper Rust Smart Contract project is to use `cargo-casper`. When you use this, it will set the project up with a simple contract, a runtime environment and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python). It is possible to use this configuration in your CI/CD pipeline as well.
+The best and fastest way to set up a Casper Rust project is to use `cargo casper`. Using this will create a simple contract, a runtime environment, and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or _npm_ and _yarn_ for those familiar with Javascript). It is also possible to use this configuration in your CI/CD pipeline.
 
 ```bash
 cargo install cargo-casper
@@ -95,7 +107,7 @@ make prepare
 make build-contract
 ```
 
-Inside the _contract_ folder, you will now see a _target_ folder that contains the compiled smart contract named _contract.wasm_ at `my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`.
+You can find the compiled contract on this path: `my-project/contract/target/wasm32-unknown-unknown/release/contract.wasm`.
 
 **Linting**
 
@@ -137,7 +149,27 @@ As a brief example, open up _my-project/contract/src/main.rs_ in your editor, mo
 
 ### Installing the Casper Client
 
-We also provide a [Casper command-line client](../prerequisites.md#the-casper-command-line-client), a Rust CLI tool that can help you transmit deploys and install code on-chain. 
+The [Casper command-line client](../prerequisites.md#the-casper-command-line-client) is a Rust CLI tool that can help you send deploys and install code on-chain. It's recommended to install the client as it's used to deploy contracts and session code in other on-chain tutorials.
+
+### Setting up an IDE {#setting-ide}
+
+There are many IDEs available for Rust development. The most popular IDEs for Rust are the following:
+
+- [Visual Studio Code](https://code.visualstudio.com)
+- [CLion](https://www.jetbrains.com/clion/)
+- [IntelliJ Idea](https://www.jetbrains.com/idea/)
+- [Vim](https://www.vim.org/)
+
+You can use any IDE you wish. This documentation and examples use Visual Studio Code (VSC), a popular IDE with many extensions that might be helpful during development.
+
+
+If you are using VSC, you might find the following extensions useful:
+
+- `CodeLLDB` – An important extension for debugging Rust code
+- `rust-analyzer` – The official Rust language extension
+- `Better TOML` – Support for formatting TOML files
+- `crates` – An extension to help manage crates
+- `Error Lens` – Enhances the programming experience by highlighting syntax errors
 
 ### Creating an Account
 
@@ -145,7 +177,7 @@ To interact with a Casper network and install code on-chain, you will need to [c
 
 ## Video Walkthrough
 
-The following video tutorial complements this guide. You can also consult the [FAQ page](../../faq/faq-developer.md) for more details.
+The following video tutorial complements this guide.
 
 <p align="center">
 <iframe width="400" height="225" src="https://www.youtube.com/embed?v=TRmmiFBwPr0&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=2" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

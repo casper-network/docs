@@ -61,7 +61,7 @@ Import external test support, which includes a variety of default values and hel
     use casper_types::{runtime_args, ContractHash, RuntimeArgs};
 ```
 
-Next, you need to define any global variables or constants for the test. 
+Next, you need to define any global variables or constants for the test.
 
 ```rust
     const COUNTER_V1_WASM: &str = "counter-v1.wasm"; // The first version of the contract
@@ -88,7 +88,7 @@ As part of this process, we use the `DEFAULT_RUN_GENESIS_REQUEST` to install the
     fn install_version1_and_check_entry_points() {
         let mut builder = InMemoryWasmTestBuilder::default();
         builder.run_genesis(&*DEFAULT_RUN_GENESIS_REQUEST).commit();
-        
+
         // See the repository for the full function.
     }
 ```
@@ -149,7 +149,7 @@ Next, we test an entry point that should not exist in the first version of the c
         .commit();
 ```
 
-#### Calling the Contract using Session Code 
+#### Calling the Contract using Session Code
 
 In the counter example, we use the session code included in the [counter-call.wasm](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file. For more details on what session code is and how it differs from contract code, see the [next section](../../concepts/session-code.md).
 
@@ -214,7 +214,7 @@ To run the tests, the counter example uses a `Makefile`.
 make test
 ```
 
-Under the hood, the `Makefile` generates a `tests/wasm` folder, copies the Wasm files to the folder, and runs the tests using `cargo test`. 
+Under the hood, the `Makefile` generates a `tests/wasm` folder, copies the Wasm files to the folder, and runs the tests using `cargo test`.
 
 ```bash
 test: build-contract
@@ -235,7 +235,7 @@ The following brief video describes testing [sample contract code](https://githu
 
 ## Further Testing {#further-testing}
 
-Unit testing is only one way to test contracts before installing them on a Casper network. After unit testing a contract, you may perform [local network testing](../../dapp-dev-guide/building-dapps/setup-nctl.md) using NCTL. This allows you to set up and control multiple local Casper nodes to perform [testing in an other simulated network environment](../../dapp-dev-guide/building-dapps/nctl-test.md).
+Unit testing is only one way to test contracts before installing them on a Casper network. After unit testing a contract, you may perform [local network testing](../dapps/setup-nctl.md) using NCTL. This allows you to set up and control multiple local Casper nodes to perform [testing in an other simulated network environment](../dapps/nctl-test.md).
 
 You may also wish to test your contracts on the Casper [Testnet](https://testnet.cspr.live/).
 
