@@ -8,6 +8,74 @@ Before verifying a transfer, make sure you have:
 2. The *deploy_hash* of the transfer you want to verify
 3. The *public key* hex for the source and target accounts
 
+## Query Transfer Details {#query-transfer-details}
+
+Deploys in a Casper network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
+
+We will use the `transfer-` to query more details about the transfer.
+
+```bash
+casper-client query-global-state \
+--id 8 \
+--node-address http://<node-ip-address>:7777 \
+--state-root-hash <state-root-hash> \
+--key transfer-
+```
+
+**Request fields:**
+
+-   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
+-   `node-address` - An IP address of a node on the network
+-   `state-root-hash` - Hex-encoded hash of the state root
+-   `key` - The base key for the query. This must be a properly formatted transfer address; "transfer-"
+
+<details>
+<summary>Explore the JSON-RPC request and response generated.</summary>
+
+**JSON-RPC Request**:
+
+```json
+{
+    "id": 8,
+    "jsonrpc": "2.0",
+    "method": "state_get_item",
+    "params": {
+        "key": "transfer-8d81f4a1411d9481aed9c68cd700c39d870757b0236987bb6b7c2a7d72049c0e",
+        "path": [],
+        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
+    }
+}
+```
+
+**JSON-RPC Response**:
+
+```json
+{
+    "id": 8,
+    "jsonrpc": "2.0",
+    "result": {
+        "api_version": "1.0.0",
+        "merkle_proof": "924 chars",
+        "stored_value": {
+            "Transfer": {
+                "amount": "2500000000",
+                "deploy_hash": "ec2d477a532e00b08cfa9447b7841a645a27d34ee12ec55318263617e5740713",
+                "from": "account-hash-b0049301811f23aab30260da66927f96bfae7b99a66eb2727da23bf1427a38f5",
+                "gas": "0",
+                "id": null,
+                "source": "uref-9e90f4bbd8f581816e305eb7ea2250ca84c96e43e8735e6aca133e7563c6f527-007",
+                "target": "uref-6f4026262a505d5e1b0e03b1e3b7ab74a927f8f2868120cf1463813c19acb71e-004",
+                "to": "account-hash-8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668"
+            }
+        }
+    }
+}
+```
+
+</details>
+
+The query responds with more information about the transfer we conducted: its deploy hash, the account which executed the transfer, the source and target purses, and the target account. We can verify that our transfer was processed successfully using this additional information.
+
 ## The State Root Hash
 
 The state root hash is an identifier of the current network state. It gives a snapshot of the blockchain state at a moment in time. You can use the state root hash to query the network state after deployments. 
@@ -266,71 +334,3 @@ casper-client get-balance \
 ```
 
 </details>
-
-## Query Transfer Details {#query-transfer-details}
-
-Deploys in a Casper network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
-
-We will use the `transfer-` to query more details about the transfer.
-
-```bash
-casper-client query-global-state \
---id 8 \
---node-address http://<node-ip-address>:7777 \
---state-root-hash <state-root-hash> \
---key transfer-
-```
-
-**Request fields:**
-
--   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - An IP address of a node on the network
--   `state-root-hash` - Hex-encoded hash of the state root
--   `key` - The base key for the query. This must be a properly formatted transfer address; "transfer-"
-
-<details>
-<summary>Explore the JSON-RPC request and response generated.</summary>
-
-**JSON-RPC Request**:
-
-```json
-{
-    "id": 8,
-    "jsonrpc": "2.0",
-    "method": "state_get_item",
-    "params": {
-        "key": "transfer-8d81f4a1411d9481aed9c68cd700c39d870757b0236987bb6b7c2a7d72049c0e",
-        "path": [],
-        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
-    }
-}
-```
-
-**JSON-RPC Response**:
-
-```json
-{
-    "id": 8,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "merkle_proof": "924 chars",
-        "stored_value": {
-            "Transfer": {
-                "amount": "2500000000",
-                "deploy_hash": "ec2d477a532e00b08cfa9447b7841a645a27d34ee12ec55318263617e5740713",
-                "from": "account-hash-b0049301811f23aab30260da66927f96bfae7b99a66eb2727da23bf1427a38f5",
-                "gas": "0",
-                "id": null,
-                "source": "uref-9e90f4bbd8f581816e305eb7ea2250ca84c96e43e8735e6aca133e7563c6f527-007",
-                "target": "uref-6f4026262a505d5e1b0e03b1e3b7ab74a927f8f2868120cf1463813c19acb71e-004",
-                "to": "account-hash-8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668"
-            }
-        }
-    }
-}
-```
-
-</details>
-
-The query responds with more information about the transfer we conducted: its deploy hash, the account which executed the transfer, the source and target purses, and the target account. We can verify that our transfer was processed successfully using this additional information.
