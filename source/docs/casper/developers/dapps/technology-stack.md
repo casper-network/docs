@@ -15,9 +15,15 @@ You will need to choose a Casper-compatible SDK for the language you are using t
 
 The signing of transactions will, in many cases, need to be performed by the user on the front-end, for which you have a couple options:
 
-1. The Casper Signer
+1. The Casper Wallet
 
-   The [Casper JS SDK](https://github.com/casper-ecosystem/casper-js-sdk) has a class `Signer` that, when implemented, allows a user to sign transactions using the Casper Signer browser extension. Deploy objects are first converted to JSON, then sent to the Signer to be signed, then must be sent to the backend and forwarded to a node.
+   Use the [Casper Wallet](https://www.casperwallet.io/develop) to sign deploys for a Casper using the Casper Signer browser extension. Deploy objects are first converted to JSON, then sent to the Signer to be signed, then must be sent to the backend and forwarded to a node.
+
+   :::caution
+
+   The Casper Signer has been deprecated and replaced with the [Casper Wallet](https://www.casperwallet.io). We are in the process of updating this page. Meanwhile, visit the guide on [Building with the Casper Wallet](https://www.casperwallet.io/develop).
+
+   :::
 
 2. Third-party signers
 
