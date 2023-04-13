@@ -1,7 +1,7 @@
-const tagTrackingId = process.env.GOOGLE_TAG_TRACKING_ID;
+const trackingID = process.env.GOOGLE_TAG_TRACKING_ID;
 const anonymizeIP = process.env.GOOGLE_TAG_ANONYMIZE_IP || true;
 
 module.exports = {
-    trackingID: tagTrackingId,
+    trackingID: trackingID,
     anonymizeIP: anonymizeIP,
 };
