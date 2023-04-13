@@ -254,7 +254,7 @@ Make a note of the *deploy_hash* from the `send-deploy` command output to verify
 
 </details>
 
-If you get an account authorization error, you must set up the source account to allow multi-signature deploys using session code. The [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow is an example of how to accomplish this.
+If you encounter an account authorization error, you must set up the source account to allow multi-signature deploys using session code. The [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow is an example of how to accomplish this.
 
 <details>
 <summary>Example of an account authorization error</summary>
