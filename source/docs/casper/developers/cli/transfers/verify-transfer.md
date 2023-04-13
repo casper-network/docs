@@ -37,9 +37,9 @@ After any deploys to the network, you must get the new state root hash to see th
 
 :::
 
-## Query the Source Account {#query-the-source-account}
+## Query Account State {#query-account-state}
 
-Here, we will query for information about the _Source_ account using the `state-root-hash` of the block containing the transfer and the public key of the _Target_ account.
+Here, we will query for information about the _Source_ account, using the `state-root-hash` of the block containing the transfer:
 
 ```bash
 casper-client query-global-state \
@@ -110,9 +110,7 @@ casper-client query-global-state \
 
 </details>
 
-## Query the Target Account {#query-the-target-account}
-
-We will repeat the previous step to query information about the _Target_ account.
+We can repeat the same step to query information about the _Target_ account.
 
 ```bash
 casper-client query-global-state \
@@ -121,13 +119,6 @@ casper-client query-global-state \
 --state-root-hash <state-root-hash> \
 --key <hex-encoded-target-account-public-key>
 ```
-
-**Request fields:**
-
--   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - An IP address of a node on the network
--   `state-root-hash` - Hex-encoded hash of the state root
--   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash, or deploy-info hash.
 
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
