@@ -178,10 +178,10 @@ Now that we have the source purse address, we can verify its balance using the `
 
 ```bash
 casper-client get-balance \
-      --id 6 \
-      --node-address http://<node-ip-address>:7777 \
-      --state-root-hash <state-root-hash> \
-      --purse-uref <source-account-purse-uref>
+--id 6 \
+--node-address http://<node-ip-address>:7777 \
+--state-root-hash <state-root-hash> \
+--purse-uref <source-account-purse-uref>
 ```
 
 **Request fields:**
