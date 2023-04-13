@@ -144,7 +144,7 @@ module.exports = {
                 //"developers/dapps/template-frontend", // NEW CONTENT WILL BE HERE
                 "developers/dapps/signing-a-deploy",
                 "developers/dapps/sending-deploys",
-                "developers/dapps/signer-integration",
+                //"developers/dapps/signer-integration",
                 //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 //"developers/dapps/explanation-session-and-contract", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
@@ -278,7 +278,7 @@ module.exports = {
                         "resources/tutorials/advanced/transfer-token-to-contract",
                         "resources/tutorials/advanced/two-party-multi-sig",
                         "resources/tutorials/advanced/return-values-tutorial",
-                        "resources/tutorials/advanced/list-cspr",
+                        //"resources/tutorials/advanced/list-cspr",
                         "resources/tutorials/advanced/storage-workflow",
                     ],
                 },
