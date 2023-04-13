@@ -47,7 +47,6 @@ module.exports = {
             },
         },
         /* Optional */
-        // googleAnalytics: analyticsConfig.googleAnalytics,
         // gtag: analyticsConfig.gtag,
         // metadatas: metadatasConfig,
         navbar: navbarConfig,
