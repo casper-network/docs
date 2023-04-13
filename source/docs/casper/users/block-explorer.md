@@ -24,7 +24,7 @@ The following topics link you to detailed instructions on using the [cspr.live](
 
 :::note
 
-To perform actions using the [cspr.live](https://cspr.live/) block explorer, you must sign in to your Casper account using the Casper Signer.
+To perform actions using the [cspr.live](https://cspr.live/) block explorer, you must sign in to your Casper account using one of the wallets provided.
 
 :::
 

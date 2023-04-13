@@ -10,11 +10,11 @@ Testnet tokens are independent of the Casper token (CSPR). While test tokens do 
 
 To request test tokens, follow these steps:
 
-1. Sign-in into the Casper Testnet with the Signer. For detailed instructions, see the [Signer Guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html). 
+1. Log into the Casper Testnet with the [Casper Wallet](https://www.casperwallet.io/). See the [Getting Started](https://www.casperwallet.io/user-guide/getting-started) user guide for detailed instructions.
 2. Click **Tools** on the top menu bar and select **Faucet** from the drop-down menu. Or, navigate to the Faucet using this link: https://testnet.cspr.live/tools/faucet.
 3. Click **Request tokens** on the Faucet page:
 
-    <img src={useBaseUrl("/image/workflow/faucet-function.png")} width="500" />
+    <img src={useBaseUrl("/image/faucet-function.png")} width="500" />
 
 :::caution
 

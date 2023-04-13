@@ -23,7 +23,7 @@ The high-level flow to transfer tokens using a deploy file is described in the f
 1. Use the `make-deploy` command to prepare a transfer and save the output in a file
 2. Use the `send-deploy` command to send the deploy to the network through a valid node
 
-<img src={useBaseUrl("/image/workflow/deploy-flow.png")} alt="Deployment flow" width="600" style={{backgroundColor:"#e6e6e6", padding:"0.25em"}} />
+<img src={useBaseUrl("/image/deploy-flow.png")} alt="Deployment flow" width="600" style={{backgroundColor:"#e6e6e6", padding:"0.25em"}} />
 
 ### Preparing the Transfer
 

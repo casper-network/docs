@@ -5,8 +5,8 @@ The Casper blockchain uses an on-chain [account-based model](./design/casper-des
 By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
 The Casper platform supports two types of keys for creating accounts and signing transactions: 
-- [ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
-- [secp256k1](#ethereum-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
+- [Ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
+- [Secp256k1](#ethereum-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
 
 You can generate keys using both formats, and it is also possible to [work with existing Ethereum keys](#working-with-existing-ethereum-keys).
 
@@ -22,7 +22,7 @@ SAVE your keys to a safe place, preferably offline.
 
 :::
 
-### Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
+### Option 1: Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
 
 This option describes how you can use the Casper command-line client to set up an account using either key type.
 
@@ -51,7 +51,7 @@ Here are some details about the files generated:
 2. `public_key_hex` is a hexadecimal-encoded string of the public key
 3. `secret_key.pem` is the *PEM*-encoded secret key
 
-The public-key-hex for `ed25519` keys starts with 01 and is 66 bytes long:
+The public-key-hex for `Ed25519` keys starts with 01 and is 66 bytes long:
 
 ```bash
 cat ed25519-keys/public_key_hex
@@ -60,7 +60,7 @@ cat ed25519-keys/public_key_hex
 
 #### Ethereum Keys {#ethereum-keys}
 
-To create `secp256k1` keys with the Casper command-line client, commonly known as Ethereum keys, follow these steps:
+To create `Secp256k1` keys with the Casper command-line client, commonly known as Ethereum keys, follow these steps:
 
 ```bash
 mkdir secp256k1-keys
@@ -78,12 +78,33 @@ secp256k1-keys/
 0 directories, 3 files
 ```
 
-The public-key-hex for `secp256k1` keys starts with 02 and is 68 bytes long:
+The public-key-hex for `Secp256k1` keys starts with 02 and is 68 bytes long:
 
 ```bash
 cat secp256k1-keys/public_key_hex
 020287e1a79d0d9f3196391808a8b3e5007895f43cde679e4c960e7e9b92841bb98d
 ```
+
+:::note
+
+After generating keys for the account, you may add funds to the account's purse to finish the account creation process.
+
+:::
+
+### Option 2: Generating Keys using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
+
+This option is available on networks that have a block explorer.
+
+For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
+
+Start by creating an account using the [Casper Wallet](https://www.casperwallet.io/), [Ledger](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?support=true), or [Torus Wallet](https://casper.tor.us/).
+
+:::caution
+
+The Casper Signer has been replaced with the Casper Wallet and will be deprecated. We recommend migrating all your Casper accounts to the Casper Wallet as outlined [here](https://www.casperwallet.io/user-guide/signer-user-start-here).
+
+:::
+
 
 ## Funding your Account
 
@@ -105,7 +126,7 @@ Public key:0470fecd1f7ae5c1cd53a52c4ca88cd5b76c2926d7e1d831addaa2a64bea9cc3ede6a
 Private key:29773906aef3ee1f5868371fd7c50f9092205df26f60e660cafacbf2b95fe086
 ```
 
-To use existing Ethereum keys, the Casper virtual machine (VM) needs to know that the key is a `secp256k1` type. To achieve this, we will prefix the public key hex with 02, as shown in the example below.
+To use existing Ethereum keys, the Casper virtual machine (VM) needs to know that the key is a `Secp256k1` type. To achieve this, we will prefix the public key hex with 02, as shown in the example below.
 
 The Casper command-line client provides an example of how this works. 
 
@@ -163,6 +184,26 @@ MHQCAQEEIBjXY+7xZagzTjL4p8bGWS8FPRcW13mgytdu5c3e556MoAcGBSuBBAAK
 oUQDQgAEpV4dVaPeAEaH0VXrQtLzjpGt1pui1q08311em6wDCchGNjzsnOY7stGF
 tlKF2V5RFQn4rzkwipSYnrqaPf1pTA==
 -----END EC PRIVATE KEY-----
+```
+
+### Option 3: Generating Keys using OpenSSL
+
+You can generate keys without the Casper client using the [openssl](https://www.openssl.org/) cryptography toolkit. The commands below are valid only for generating Ed25519 keys on a Linux operating system.
+
+#### Generating the `secret_key.pem` file
+
+```
+openssl genpkey -algorithm ed25519 -out secret_key.pem
+```
+
+#### Generating public keys from the `secret_key.pem` file
+
+For default Ed25519 keys, you can generate the `public_key.pem` and `public_key_hex` using these commands:
+
+```bash
+openssl pkey -in secret_key.pem -pubout -out public_key.pem
+
+{ echo -n 01; openssl pkey -outform DER -pubout -in "secret_key.pem" | tail -c +13 | openssl base64 | openssl base64 -d | hexdump -ve '/1 "%02x" ' | tr -d "/n"; } > public_key_hex
 ```
 
 ## Generating an Account Hash {#generating-an-account-hash}
