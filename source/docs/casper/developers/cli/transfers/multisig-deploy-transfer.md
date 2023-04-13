@@ -14,7 +14,7 @@ You must ensure the following prerequisites are met.
     - The Casper [command-line client](../../prerequisites.md#the-casper-command-line-client)
 2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow
 3. Get the path of the source account's _secret key_ file
-4. Get the path of a target account's _public key_ hex file
+4. Get the target account's _public key_ in hex format
 
 ## Token Transfer Workflow
 
