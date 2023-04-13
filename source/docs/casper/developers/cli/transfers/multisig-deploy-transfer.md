@@ -35,7 +35,7 @@ casper-client make-transfer --amount 2500000000 \
 --chain-name casper-test \
 --target-account [PUBLIC_KEY_HEX] \
 --transfer-id 3 \
---payment-amount 10000 
+--payment-amount 10000 \
 --output transfer.deploy
 ```
 
