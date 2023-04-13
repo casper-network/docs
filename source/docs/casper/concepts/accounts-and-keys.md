@@ -99,7 +99,7 @@ For instance, on the official Testnet, the [CSPR.live](https://testnet.cspr.live
 
 Start by creating an account using the [Casper Wallet](https://www.casperwallet.io/), [Ledger](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?support=true), or [Torus Wallet](https://casper.tor.us/).
 
-:::warning
+:::caution
 
 The Casper Signer has been replaced with the Casper Wallet and will be deprecated. We recommend migrating all your Casper accounts to the Casper Wallet as outlined [here](https://www.casperwallet.io/user-guide/signer-user-start-here).
 
