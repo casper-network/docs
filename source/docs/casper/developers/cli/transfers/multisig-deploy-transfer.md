@@ -27,7 +27,7 @@ The high-level flow to transfer tokens using a deploy file is described in the f
 
 ### Preparing the Transfer
 
-This section explains the `make-transfer` command using an example you can try on the Testnet. For this example, we are transferring 2500000000 motes from the source account (with the secret_key.pem file) to a target account. To use this example on the Mainnet, the _chain-name_ would be `casper` instead of `casper-test`. Note that we are saving the output of the `make-deploy` command in a `transfer.deploy` file.
+This section explains the `make-transfer` command using an example you can try on the Testnet. For this example, we are transferring 2500000000 motes from the source account (with the `secret_key.pem` file) to a target account. To use this example on the Mainnet, the _chain-name_ would be `casper` instead of `casper-test`. Note that we are saving the output of the `make-deploy` command in a `transfer.deploy` file.
 
 ```bash
 casper-client make-transfer --amount 2500000000 \
