@@ -16,7 +16,7 @@ As each dictionary item exists as a stand-alone entity in global state, regularl
 
 ## Understanding Dictionaries
 
-Dictionaries are ideal for storing larger volumes of data for which `NamedKeys` would be less suitable.  
+Dictionaries are ideal for storing larger volumes of data for which `NamedKeys` would be less suitable.
 
 Creating a new dictionary is fairly simple and done within the context of a `Deploy` sent to a Casper network. The associated code is included within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/) crate. Creating a dictionary also stores the associated seed URef within the named keys of the current context.
 
