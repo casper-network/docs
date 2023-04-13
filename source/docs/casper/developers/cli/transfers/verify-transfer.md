@@ -16,6 +16,21 @@ The state root hash is an identifier of the current network state. It gives a sn
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
+<details>
+<summary>Sample output of the get-state-root-hash command</summary>
+
+```json
+{
+  "id": -550641580167406055,
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.4.13",
+    "state_root_hash": "a1f11692c5adc0e8b0a3f83e34d5831593a39ba03c8be73a0ebf7e9d9aadd76b"
+  }
+}
+```
+</details>
+
 :::note
 
 After any deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you will be looking at events in the past.
