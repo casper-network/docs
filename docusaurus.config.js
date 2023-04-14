@@ -5,11 +5,11 @@ require("dotenv").config({
 const {
     algoliaConfig,
     algoliaOfflineConfig,
-    analyticsConfig,
     announcementConfig,
     colorConfig,
     dataConfig,
     footerConfig,
+    gtagConfig,
     i18nConfig,
     metadatasConfig,
     navbarConfig,
@@ -47,8 +47,7 @@ module.exports = {
             },
         },
         /* Optional */
-        // googleAnalytics: analyticsConfig.googleAnalytics,
-        // gtag: analyticsConfig.gtag,
+        ...(gtagConfig["trackingID"] && { gtag: gtagConfig }),
         // metadatas: metadatasConfig,
         navbar: navbarConfig,
         prism: prismConfig,
