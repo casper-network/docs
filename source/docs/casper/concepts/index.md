@@ -35,7 +35,7 @@ Read [this](./session-code.md) to understand the different kinds of code execute
 
 ### [Design](./design/index.md)
 
-An in-depth look at the high-level design and architecture of the Casper eco-system can be found [here](./design/index.md).
+An in-depth look at the high-level design and architecture of the Casper ecosystem can be found [here](./design/index.md).
 
 ### [Economics](./economics/index.md)
 
