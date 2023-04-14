@@ -48,7 +48,7 @@ cd two-party-multi-sig
 make build-contract
 ```
 
-The compiled Wasm will be saved on this path:
+The compiled Wasm will be saved on this path: `contract/target/wasm32-unknown-unknown/release/contract.wasm`.
 
     contract/target/wasm32-unknown-unknown/release/contract.wasm
 
