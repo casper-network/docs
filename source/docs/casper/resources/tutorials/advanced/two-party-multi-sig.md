@@ -50,7 +50,6 @@ make build-contract
 
 The compiled Wasm will be saved on this path: `contract/target/wasm32-unknown-unknown/release/contract.wasm`.
 
-    contract/target/wasm32-unknown-unknown/release/contract.wasm
 
 The Casper command-line client can be used to send the compiled Wasm to the network for execution.
 
