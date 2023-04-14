@@ -19,7 +19,7 @@ The Casper programming model is account-based. An understanding of how Casper ac
 
 ### [Hash Types](./hash-types.md)
 
-Hashes are used everywhere in Casper for keys, addresses, packaging data nd more. Find a description of these hash types [here](./hash-types.md).
+Hashes are used throughout the Casper ecosystem for keys, addresses, packaging data and more. Find a description of these hash types [here](./hash-types.md).
 
 ### [Call Stacks](./callstack.md)
 
