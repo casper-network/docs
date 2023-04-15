@@ -303,6 +303,7 @@ module.exports = {
     // BELOW ITEMS ARE COMMENTED OUT BECAUSE WE COULD NOT LOCATE PLACE FOR THEM IN THE NEW STRUCTURE:
     /*"dapp-dev-guide": [
         "dapp-dev-guide/json-rpc",
+        //"dapp-dev-guide/list-auth-keys"
         {
             type: "category",
             label: "Building dApps",
