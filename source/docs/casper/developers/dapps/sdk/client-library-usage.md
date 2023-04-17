@@ -292,13 +292,7 @@ make setup-rs
 make build-contract-rs/delegate
 ```
 
-Now, assuming that you cloned `casper-node` from your project's root directory, `cd` back into it:
-
-```bash
-cd ../
-```
-
-Now in your dApp's backend (or standalone script), load the *delegate.wasm* file into memory and deploy it with the arguments "amount", "delegator", and "validator" included.
+Now, navigate back to your project's root directory. In your dApp's backend (or standalone script), load the *delegate.wasm* file into memory and deploy it with the arguments "amount", "delegator", and "validator" included.
 
 <Tabs>
 
