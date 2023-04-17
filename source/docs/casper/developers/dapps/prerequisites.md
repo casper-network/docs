@@ -8,7 +8,7 @@ Before trying your hand at dApp development on a Casper network, there are a few
 
    The preferred stack for building on Casper is JavaScript using the [Casper JS SDK](https://github.com/casper-ecosystem/casper-js-sdk), however there are many more SDKs available for a variety of different programming languages. Read about and examine the other available SDKs in [Introduction to SDKs](./sdk/index.md).
 
-2. Familiarize yourself with the fundamentals of the Casper Network
+2. Familiarize yourself with the fundamentals of Casper networks.
 
    Casper networks are Proof-of-Stake smart contract blockchains written in Rust. Their architecture, from how they validates transactions to how they reach consensus, should be well understood before developing dApps that interact with them. Read up on Casper network design principles in the [design section](../../concepts/design/index.md).
 
