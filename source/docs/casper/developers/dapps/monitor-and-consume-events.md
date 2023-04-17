@@ -42,11 +42,23 @@ client.get_events(eventHandler, NodeEventChannel.CHANNEL, NodeEventType.EVENT_NA
 
 </TabItem>
 
+<TabItem value="curl" label="cURL">
+
+```bash
+curl -s http://NODE_ADDRESS:9999/events/CHANNEL
+```
+
+</TabItem>
+
 </Tabs>
 
-*Note: You can find active online peers' `NODE_ADDRESS`es at [cspr.live](https://cspr.live/tools/peers) for mainnet and [testnet.cspr.live](https://testnet.cspr.live/tools/peers) for testnet.*
+:::tip
 
-Where `CHANNEL` is set to;
+You can find active online peers' `NODE_ADDRESS`es at [cspr.live](https://cspr.live/tools/peers) for mainnet and [testnet.cspr.live](https://testnet.cspr.live/tools/peers) for testnet.
+
+:::
+
+Where `CHANNEL` is replaced with;
  `main` for the following event types;
  `ApiVersion`, `BlockAdded`, `DeployExpired`, `DeployProcessed`, `Fault` or `Step`. 
 `deploys` for event types;
@@ -498,3 +510,34 @@ es.stop()
 </TabItem>
 
 </Tabs>
+
+## Replay Event Stream
+
+This command will replay the event stream from an old event onwards. Replace the `NODE_ADDRESS`, `CHANNEL`, and `ID` fields with the values of your scenario.
+
+<Tabs>
+
+<TabItem value="curl" label="cURL">
+
+```bash
+curl -sN http://NODE_ADDRESS:9999/events/CHANNEL?start_from=ID
+```
+
+*Example:*
+
+```bash
+curl -sN http://65.21.235.219:9999/events/main?start_from=29267508
+```
+
+</TabItem>
+
+</Tabs>
+
+Each URL can have a query string added to the form `?start_from=ID`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events.
+
+:::note
+
+The server keeps only a limited number of events cached to allow replaying the stream to clients using the `?start_from=` query string. The cache size can be set differently on each node using the `event_stream_buffer_length` value in the *config.toml*. By default, it is only 5000. 
+The intended use case is to allow a client consuming the event stream that loses its connection to reconnect and hopefully catch up with events that were emitted while it was disconnected.
+
+:::
