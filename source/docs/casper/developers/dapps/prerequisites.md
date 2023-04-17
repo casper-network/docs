@@ -2,7 +2,7 @@
 
 Before trying your hand at dApp development on a Casper network, there are a few things you should do first:
 
-1. Be sure you understand the language(s) you are developing in
+1. Be sure you understand the language(s) you are developing in.
 
    Before beginning with one or more of the SDKs, ensure that you are familiar with the underlying language itself. There are many guides and tutorials available online to help you.
 
