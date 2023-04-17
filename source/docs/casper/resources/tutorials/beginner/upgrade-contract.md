@@ -90,7 +90,7 @@ To add a new contract version in the package, invoke the [add_contract_version](
 
 Explanation of arguments:
 
-  - `contract_package_hash` - This hash directs you to the contract package. See [Hash and Key Explanations](../../../concepts/understanding-hash-types.md#hash-and-key-explanations)
+  - `contract_package_hash` - This hash directs you to the contract package. See [Hash and Key Explanations](../../../concepts/hash-types.md#hash-and-key-explanations)
   - `entry_points` - Entry points of the contract, which can be modified or newly added
   - `named_keys` - Named key pairs of the contract
 

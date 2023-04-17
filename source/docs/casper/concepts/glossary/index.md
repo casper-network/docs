@@ -1,5 +1,5 @@
 ---
-title: Appendix
+title: Glossary
 slug: /glossary
 ---
 
