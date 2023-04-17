@@ -25,7 +25,7 @@ To ensure the highest level of security, consider the following practices:
 1. Code review and auditing: Have your smart contracts and interfaces thoroughly reviewed and audited by experienced professionals. This will help identify any vulnerabilities, bugs, or potential exploits in your code.
 2. Implement best practices: Adhere to industry best practices in smart contract and dApp development. This includes following established design patterns, using secure coding techniques, and staying updated on the latest vulnerabilities and attack vectors.
 3. Testing and simulation: Conduct rigorous testing and simulation of your smart contracts and interfaces. This will help uncover any potential issues or weaknesses before deploying them on the mainnet.
-4. Plan for upgrades and bug fixes: Design your smart contracts to take advantage of Casper Network's support for smart contract upgradability. By doing so, you can ensure that your dApp remains secure and adaptable as the Casper ecosystem evolves, enabling seamless integration of future upgrades and bug fixes.
+4. Plan for upgrades and bug fixes: Design your smart contracts to take advantage of Casper's support for smart contract upgradability. By doing so, you can ensure that your dApp remains secure and adaptable as the Casper ecosystem evolves, enabling seamless integration of future upgrades and bug fixes.
 5. Monitor and maintain: Regularly monitor your dApp's performance and security once it is deployed. This will help you quickly identify and address any potential threats or vulnerabilities.
 6. Educate users: Provide clear documentation and guidance to your dApp users, helping them understand how to use your application securely and effectively.
 
