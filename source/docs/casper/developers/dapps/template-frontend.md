@@ -40,7 +40,6 @@ npm install
 vite dev
 ```
 
-to test the server.
 
 Quit the server by pressing `q`. Install the Casper JS SDK by running:
 
