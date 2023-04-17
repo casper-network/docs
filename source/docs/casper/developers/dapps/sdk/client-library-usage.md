@@ -276,7 +276,7 @@ Once submitted, the above snippet will print the deploy hash in the console.
 
 ## Staking
 
-Token staking is a fundamental aspect of the Casper Network, whereby users lock up tokens as collateral in exchange for the ability to participate in the blockchain's consensus mechanism and earn rewards. This delegated Proof-of-Stake consensus mechanism is crucial for the network's effective operation. With the aid of any of the Casper SDKs, you can delegate your tokens to validators and participate in staking on the network.
+Token staking is a fundamental aspect of a Casper network, whereby users lock up tokens as collateral in exchange for the ability to participate in the blockchain's consensus mechanism and earn rewards. This delegated Proof-of-Stake consensus mechanism is crucial for the network's effective operation. With the aid of any of the Casper SDKs, you can delegate your tokens to validators and participate in staking on the network.
 
 The delegation functionality is available as a smart contract, which can be found in the [casper-node](https://github.com/casper-network/casper-node) repository. To delegate tokens, first clone the repository:
 
