@@ -10,7 +10,7 @@ Before trying your hand at dApp development on a Casper network, there are a few
 
 2. Familiarize yourself with the fundamentals of the Casper Network
 
-   The Casper Network is a Proof-of-Stake smart contract blockchain written in Rust. Its architecture, from how it validates transactions to how it reaches consensus, should be well understood before developing dApps that interact with it. Read up on the Casper Network's design principles in the [design section](../../concepts/design/index.md).
+   Casper networks are Proof-of-Stake smart contract blockchains written in Rust. Their architecture, from how they validates transactions to how they reach consensus, should be well understood before developing dApps that interact with them. Read up on Casper network design principles in the [design section](../../concepts/design/index.md).
 
 3. Read the documentation or source code of your chosen SDK
 
