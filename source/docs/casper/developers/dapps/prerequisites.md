@@ -6,7 +6,7 @@ Before trying your hand at dApp development on a Casper network, there are a few
 
    Before beginning with one or more of the SDKs, ensure that you are familiar with the underlying language itself. There are many guides and tutorials available online to help you.
 
-   The preferred stack for building on Casper is JavaScript using the [Casper JS SDK](https://github.com/casper-ecosystem/casper-js-sdk), however there are many more SDKs available for a variety of different programming languages. Read about and examine the other available SDKs in [Introduction to SDKs](./sdk/index.md).
+   The preferred stack for building on Casper is JavaScript using the [Casper JS SDK](https://github.com/casper-ecosystem/casper-js-sdk), however there are many more SDKs available for a variety of different programming languages. Read about and examine the other available SDKs in the [Introduction to SDKs](./sdk/index.md).
 
 2. Familiarize yourself with the fundamentals of Casper networks.
 
