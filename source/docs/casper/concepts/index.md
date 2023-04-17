@@ -25,6 +25,10 @@ The Casper programming model is account-based. An understanding of how Casper ac
 
 Hashes are used throughout the Casper ecosystem for keys, addresses, packaging data and more. Find a description of these hash types [here](./hash-types.md).
 
+### [Global State](./global-state.md)
+
+Learn about the storage layer for the Casper blockchain. All accounts, contracts, and data are stored in global state.
+
 ### [Call Stacks](./callstack.md)
 
 [This document](./callstack.md) contains a discussion of how Casper manages the calling of a contract, and some essential concepts to understand when running this kind of code.
