@@ -32,7 +32,6 @@ Head into your new project directory, replacing `vite-project` with your project
 cd vite-project/
 ```
 
-replacing `vite-project` with your project name.
 
 Run
 
