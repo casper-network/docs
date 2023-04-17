@@ -26,7 +26,7 @@ npm create vite@latest
 
 Name your project, select "React", then choose JavaScript or TypeScript.
 
-Head into your new project directory:
+Head into your new project directory, replacing `vite-project` with your project name:
 
 ```bash
 cd vite-project/
