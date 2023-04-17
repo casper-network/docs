@@ -14,7 +14,7 @@ Before trying your hand at dApp development on a Casper network, there are a few
 
 3. Read the documentation or source code of your chosen SDK.
 
-   Many of the Casper Network's SDKs have documentation available to help you get a full grasp of the functions and methods within it. In some cases, documentation is written in the source files and rendered using a markup language. Check the repository of your preferred SDK(s) for links to documentation. There are also universal guides to teach you how to perform different functionalities using any of the available SDKs, see [Client Library Usage](./sdk/client-library-usage.md).
+   Many of the Casper SDKs have documentation available to help you get a full grasp of their functions and methods. In some cases, documentation is written in the source files and rendered using a markup language. Check the repository of your preferred SDK(s) for links to documentation. There are also universal guides to teach you how to perform different functionalities using any of the available SDKs, see [Client Library Usage](./sdk/client-library-usage.md).
 
 ## Development Considerations
 
