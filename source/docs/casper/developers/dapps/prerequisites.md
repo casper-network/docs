@@ -18,7 +18,7 @@ Before trying your hand at dApp development on a Casper network, there are a few
 
 ## Development Considerations
 
-When developing a public dApp for the Casper Network, it is important to keep security in mind and write your smart contract(s) and interface(s) with caution and care, especially if your dApp interacts with tokens of value.
+When developing a public dApp for a Casper network, it is important to keep security in mind and write your smart contract(s) and interface(s) with caution and care, especially if your dApp interacts with tokens of value.
 
 To ensure the highest level of security, consider the following practices:
 
