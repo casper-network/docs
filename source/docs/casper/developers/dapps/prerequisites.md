@@ -1,6 +1,6 @@
 # Prerequisites
 
-Before trying your hand at dApp development on the Casper Network, there are a few things you should do first:
+Before trying your hand at dApp development on a Casper network, there are a few things you should do first:
 
 1. Be sure you understand the language(s) you are developing in
 
