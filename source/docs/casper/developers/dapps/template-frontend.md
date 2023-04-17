@@ -33,7 +33,7 @@ cd vite-project/
 ```
 
 
-Run
+Run the following command to test the server:
 
 ```bash
 npm install
