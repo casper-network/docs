@@ -4,7 +4,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 For building web applications, it is most common to use the Casper JS SDK with React. This is a popular solution among developers, but you may use any front-end library or framework, including none at all, to interact with a Casper network via the [Casper JS SDK](https://github.com/casper-ecosystem/casper-js-sdk).
 
-This guide will walk you through setting up and developing a React application with [Vite](https://vitejs.dev/) that communicates with the Casper Network. Experience with Vite is not required, however if you have never built a React app, you should begin by [reading the React documentation](https://reactjs.org/docs/getting-started.html).
+This guide will walk you through setting up and developing a React application with [Vite](https://vitejs.dev/) that communicates with a Casper network. Experience with Vite is not required, however if you have never built a React app, you should begin by [reading the React documentation](https://reactjs.org/docs/getting-started.html).
 
 ## Get Started
 
