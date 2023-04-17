@@ -13,6 +13,10 @@ Once you understand the basic concepts underpinning Casper, here are some furthe
 
 ## Casper Concepts
 
+### [Intro to dApps](./intro-to-dapps.md)
+
+An introduction to developing [Distributed Applications](./intro-to-dapps.md) on the Casper blockchain.
+
 ### [Accounts and Cryptographic Keys](./accounts-and-keys.md)
 
 The Casper programming model is account-based. An understanding of how Casper accounts work, and how they are secured, may be read [here](./accounts-and-keys.md).
@@ -25,13 +29,25 @@ Hashes are used throughout the Casper ecosystem for keys, addresses, packaging d
 
 [This document](./callstack.md) contains a discussion of how Casper manages the calling of a contract, and some essential concepts to understand when running this kind of code.
 
-### [Contracts and Session Code](./session-code.md)
+### [Deploys and the Deploy Lifecycle](./deploy-and-deploy-lifecycle.md)
+
+[Deploys](./deploy-and-deploy-lifecycle.md) are a concept fundamental to the Casper blockchain. Learn about deploys, what they are for, how to create and send them, what happens to them when you do.
+
+### [Smart Contracts](./smart-contracts.md)
+
+Learn how to develop [Smart Contracts](./smart-contracts.md) on Casper. 
+
+### [Smart Contracts and Session Code](./session-code.md)
 
 Read [this](./session-code.md) to understand the different kinds of code executed on the Casper platform, their differences, and why you would use one versus the other.
 
 ### [Dictionaries](./dictionaries.md)
 
 [Dictionaries](./dictionaries.md) are a primary construct for storing and retrieving data on the Casper platform.
+
+### [Serialization](./serialization-standard.md)
+
+Learn about how [serialization](./serialization-standard.md) is done in Casper, the Casper Serialization Standard, and how to roll your own custom serialization. 
 
 ### [Design](./design/index.md)
 
