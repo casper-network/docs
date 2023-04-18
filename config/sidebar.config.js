@@ -122,6 +122,7 @@ module.exports = {
             collapsed: true,
             items: [
                 "developers/dapps/index",
+                "developers/dapps/prerequisites",
                 {
                     type: "category",
                     label: "SDK Client Libraries",
@@ -137,7 +138,6 @@ module.exports = {
                         //"developers/dapps/sdk/additional-libraries", // NEW CONTENT WILL BE HERE
                     ],
                 },
-                //"developers/dapps/prerequisites", // NEW CONTENT WILL BE HERE
                 "developers/dapps/technology-stack",
                 "developers/dapps/setup-nctl",
                 "developers/dapps/nctl-test",
