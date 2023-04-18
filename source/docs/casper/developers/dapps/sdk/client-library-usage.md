@@ -276,7 +276,7 @@ Once submitted, the above snippet will print the deploy hash in the console.
 
 ## Calling Contracts
 
-Smart contracts on the Casper Network are invoked by calling entrypoints. See below how to use Casper's SDKs to interact with these entrypoints and update the global state from a dApp:
+Smart contracts on a Casper network are invoked by calling entry points. See below how to use Casper's SDKs to interact with these entry points and update the global state from a dApp:
 
 <Tabs>
 
