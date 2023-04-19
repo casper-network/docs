@@ -241,6 +241,7 @@ module.exports = {
                         "resources/tutorials/beginner/getting-started-tutorial",
                         "resources/tutorials/beginner/querying-network",
                         "resources/tutorials/beginner/upgrade-contract",
+                        "resources/tutorials/beginner/aws-node",
                         {
                             type: "category",
                             label: "A Counter on the Testnet",
