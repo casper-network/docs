@@ -188,7 +188,7 @@ Emitted when a deploy executes successfully and is accepted on the network.
 
   The hexadecimal-encoded public key of the account submitting the deploy.
 
-* [body_hash](../../concepts/understanding-hash-types.md)
+* [body_hash](../../concepts/hash-types.md)
 
   The blake2b hash of the deploy body.
 
