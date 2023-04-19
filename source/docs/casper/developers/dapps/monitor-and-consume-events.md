@@ -180,7 +180,7 @@ Emitted when a deploy executes successfully and is accepted on the network.
 }
 ```
 
-* [hash](../../concepts/understanding-hash-types.md)
+* [hash](../../concepts/hash-types.md)
 
   The blake2b hash of the deploy.
 
