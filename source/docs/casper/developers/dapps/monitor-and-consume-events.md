@@ -1,6 +1,6 @@
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
-# Monitor and Consume Events
+# Monitoring and Consuming Events
 
 The Casper platform uses event streaming to signal state changes in smart contracts and nodes. Emitted events can be captured by applications that are actively listening for them. Using Casper's client-side SDKs, dApps can consume these events and perform actions based on event data.
 
@@ -129,7 +129,7 @@ Emitted when a new block is added to the blockchain and stored locally in the no
 
 ### DeployAccepted
 
-Emitted when a deploy executes successfully and is accepted on the network. <!--TODO this is not correct. -->
+Emitted when a node on the network receives a deploy.
 
 <details>
 <summary>Expand to view output</summary>
