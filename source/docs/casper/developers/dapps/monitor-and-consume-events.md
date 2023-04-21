@@ -2,11 +2,9 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 # Monitoring and Consuming Events
 
-The Casper platform uses event streaming to signal state changes in smart contracts and nodes. Emitted events can be captured by applications that are actively listening for them. Using Casper's client-side SDKs, dApps can consume these events and perform actions based on event data.
+The Casper platform uses event streaming to signal state changes in smart contracts and nodes. Using Casper's client-side SDKs, dApps actively listening for emitted events can consume these events and perform actions based on event data.
 
-A node on a Casper network streams events through the SSE (Server Sent Event) server. The default configuration of the Casper node provides event streaming via the port specified as the `event_stream_server.address` in the node's *config.toml*. This port is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers).
-
-Casper nodes emit three event streams on their corresponding endpoints.
+Each Casper node streams events through the SSE (Server Sent Event) server via the port specified as the `event_stream_server.address` in the node's *config.toml*. This port is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers).
 
 <!--TODO add the original content back:
 
@@ -26,11 +24,11 @@ All the events other than DeployAccepted and FinalitySignature fall under this t
 
 -->
 
-Refer to the [serialization standard](../../concepts/serialization-standard.md) to get details on required custom serializations and the [types](../json-rpc/types_chain.md) page to find definitions of the terms used in the event stream output.
+This page describes each event type, and how to listen and respond to events. For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
 
 ## Listening to the Event Stream
 
-Set up an event listener in your dApp using the following code:
+To consume the event stream, set up an event listener in your dApp using the following code:
 
 <Tabs>
 
@@ -87,7 +85,8 @@ Replace `CHANNEL` with one of the following event categories:
 
 ### BlockAdded
 
-Emitted when a new block is added to the blockchain and stored locally in the node.
+`BlockAdded` events are emitted when a new block is added to the blockchain and stored locally in the node.
+<!--TODO double check this definition with the design section -->
 
 <details>
 <summary>Expand to view output</summary>
@@ -129,7 +128,7 @@ Emitted when a new block is added to the blockchain and stored locally in the no
 
 ### DeployAccepted
 
-Emitted when a node on the network receives a deploy.
+`DeployAccepted` events are emitted when a node on the network receives a deploy.
 
 <details>
 <summary>Expand to view output</summary>
@@ -199,7 +198,7 @@ Emitted when a node on the network receives a deploy.
 
 ### FinalitySignature
 
-This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/design/casper-design.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. <!-- TODO not sure about the first part of this explanation, need to double check it: "final approvals from validators are signe" -->
+This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. <!-- TODO not sure about the first part of this explanation, need to double check it: "final approvals from validators are signed" -->
 
 <details>
 <summary>Expand to view output</summary>
@@ -224,7 +223,7 @@ This event indicates that the final approvals from validators are signed and fur
 
 ### DeployProcessed
 
-Emitted when a deploy is processed on the blockchain and has not expired. Applications can listen to deploys from a certain account, during a certain time, containing certain data, etc, parse the data and discard what is not needed.
+Emitted when a deploy is processed on the blockchain and has not expired. Applications can listen to deploys for a specific account, during a certain time, containing some data, parse the data and discard what is not needed. <!-- TODO double check this definition -->
 
 <details>
 <summary>Expand to view output</summary>
@@ -394,7 +393,7 @@ The `Shutdown` event is emitted when the node is about to shut down, usually for
 
 ## Reacting to Events
 
-To perform functions upon receiving event data, an application may parse each event needed for its use case and respond accordingly. The dApp may act on some events and not others, or it may act upon them all. Each event type contains additional data that might help in deciding whether or not to take an action. For example, `DeployAccepted` events contain the public key of the account that submitted the deploy, the contract address, and more. This information can be useful in determining how to proceed, or whether not react at all.
+To perform functions upon receiving event data, an application may parse each event needed for its use case and respond accordingly. The dApp may act on some events and not others, or it may act upon them all depending on its use case. Each event type contains additional data that might help in deciding whether or not to take an action. For example, `DeployAccepted` events contain the public key of the account that submitted the deploy, the contract address, and more. This information can be useful in determining how to proceed, or whether not react at all. <!-- TODO simplify this paragraph -->
 
 <Tabs>
 
@@ -424,7 +423,7 @@ def eventHandler(event):
 
 ## Unsubscribing from Events
 
-In many cases, an application may need to unsubscribe after a certain amount of time, or may want to unsubscribe from some events but not others. Casper's SDKs provide this ability with the `unsubscribe` function:
+In many cases, an application may need to unsubscribe after a certain amount of time, or may want to unsubscribe from some events but not others. The Casper SDKs provide this ability with the `unsubscribe` function:
 
 <Tabs>
 
@@ -442,7 +441,7 @@ es.unsubscribe(EventName.EVENT_NAME)
 
 ## Stopping the Event Stream
 
-A dApp may cease listening to events altogether using the `stop` function:
+A dApp may cease listening to all events using the `stop` function:
 
 <Tabs>
 
