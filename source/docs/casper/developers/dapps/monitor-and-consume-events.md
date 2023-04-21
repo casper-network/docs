@@ -6,23 +6,12 @@ The Casper platform uses event streaming to signal state changes in smart contra
 
 Each Casper node streams events through the SSE (Server Sent Event) server via the port specified as the `event_stream_server.address` in the node's *config.toml*. This port is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers).
 
-<!--TODO add the original content back:
-
-There are three types of event streams in our platform categorized based on the emitting endpoint of the nodes. Those are:
-
-Deploy events
-
-These are associated with Deploys on a node. Currently, only DeployAccepted event is emitted . Refer to the Deploys section to discover more about Deploys and their life cycles.
-
-Finality Signature event
-
-This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the consensus reached section and block finality section to learn more about finality signatures.
-
-Main events
-
-All the events other than DeployAccepted and FinalitySignature fall under this type. Those are ApiVersion, BlockAdded, DeployProcessed, DeployExpired, Fault, Step, and Shutdown events.
-
--->
+Events are divided into three categories and streamed on their respective paths:
+<!-- TODO check definitions and add the paths for each stream -->
+- **Deploy events** - Associated with [Deploys](../../concepts/design/casper-design.md#execution-semantics-deploys) on a node. Currently, only a `DeployAccepted` event is emitted.
+- **Finality Signature events** - The block has been finalized and cannot be altered.
+section to learn more about finality signatures.
+- **Main events** - `ApiVersion`, `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events.
 
 This page describes each event type, and how to listen and respond to events. For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
 
@@ -198,7 +187,7 @@ Replace `CHANNEL` with one of the following event categories:
 
 ### FinalitySignature
 
-This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. <!-- TODO not sure about the first part of this explanation, need to double check it: "final approvals from validators are signed" -->
+This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
 
 <details>
 <summary>Expand to view output</summary>
