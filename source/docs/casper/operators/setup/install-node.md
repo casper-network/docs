@@ -52,7 +52,7 @@ sudo apt update
 sudo apt install -y casper-client casper-node-launcher jq
 ```
 
-## Enable bash auto completion for `casper-client` (optional)
+## Enable Bash Auto-Completion for `casper-client` (Optional)
 
 ```bash
 sudo casper-client generate-completion
