@@ -17,7 +17,7 @@ This page describes how to listen and respond to each event type. For details on
 
 ## Listening to the Event Stream
 
-To consume the event stream, set up an event listener in your dApp using the following code:
+Applications can listen for such events for a specific account during a particular era, containing certain data. Then, they can parse the data and discard what is not needed. To consume the event stream, set up an event listener in your dApp using the following code:
 
 <Tabs>
 
@@ -65,7 +65,7 @@ You can find node addresses of active online peers to replace `NODE_ADDRESS`, by
 
 Replace `EVENT_NAME` with one of the event types listed [below](#event-types).
 
-Replace `CHANNEL` with one of the following event categories:
+Replace `CHANNEL` with one of the following event streams:
 - `main` for `ApiVersion`, `BlockAdded`, `DeployExpired`, `DeployProcessed`, `Fault`, or `Step` events.
 - `deploys` for `DeployAccepted` events.
 - `sigs` for `FinalitySignature` events.
@@ -74,8 +74,7 @@ Replace `CHANNEL` with one of the following event categories:
 
 ### BlockAdded
 
-`BlockAdded` events are emitted when a new block is added to the blockchain and stored locally in the node.
-<!--TODO double check this definition with the design section -->
+A `BlockAdded` event is emitted when a new block is added to the blockchain and stored locally in the node.
 
 <details>
 <summary>Expand to view output</summary>
@@ -176,11 +175,11 @@ Replace `CHANNEL` with one of the following event categories:
 }
 ```
 
-* [hash](../../concepts/hash-types.md) - The blake2b hash of the deploy.
-* [account](../../concepts/serialization-standard.md#serialization-standard-account) - The hexadecimal-encoded public key of the account submitting the deploy.
-* [body_hash](../../concepts/hash-types.md) - The blake2b hash of the deploy body.
+* [hash](../../concepts/hash-types.md) - The blake2b hash of the Deploy.
+* [account](../../concepts/serialization-standard.md#serialization-standard-account) - The hexadecimal-encoded public key of the account submitting the Deploy.
+* [body_hash](../../concepts/hash-types.md) - The blake2b hash of the Deploy body.
 * [payment](../../concepts/glossary/P.md#payment-code) - Gas payment information.
-* [session](../../concepts/session-code.md#what-is-session-code) - The session logic defining the deploy's functionality.
+* [session](../../concepts/session-code.md#what-is-session-code) - The session logic defining the Deploy's functionality.
 * [approvals](../json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
 
 </details>
@@ -203,9 +202,8 @@ This event indicates that the final approvals from validators are signed, and fu
 }
 ```
 
-<!-- TODO check definitions -->
-- [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a block.
-- [era_id](../../concepts/serialization-standard.md#eraid) - The period of time used to specify when specific events in a blockchain network occur.
+- [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a Block.
+- [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
 - [signature](../../concepts/serialization-standard.md#signature) - Serialized bytes representing the validator's signature.
 - [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator.
 
@@ -213,7 +211,7 @@ This event indicates that the final approvals from validators are signed, and fu
 
 ### DeployProcessed
 
-These events are emitted when a deploy is processed on the blockchain and has not expired. Applications can listen to deploys for a specific account during a particular time, containing some data, parse the data and discard what is not needed. <!-- TODO double check this definition -->
+A `DeployProcessed` event is emitted when a given Deploy has been executed.
 
 <details>
 <summary>Expand to view output</summary>
@@ -249,11 +247,11 @@ These events are emitted when a deploy is processed on the blockchain and has no
 ```
 
 * [deploy_hash](../../concepts/serialization-standard.md#deploy-hash) - The cryptographic hash of a Deploy.
-* [account](../../concepts/serialization-standard.md#serialization-standard-account) - The hexadecimal-encoded public key of the account submitting the deploy.
+* [account](../../concepts/serialization-standard.md#serialization-standard-account) - The hexadecimal-encoded public key of the account submitting the Deploy.
 * [timestamp](../../concepts/serialization-standard.md#timestamp) - A timestamp type representing a concrete moment in time.
 * [dependencies](../../concepts/serialization-standard.md#deploy-header) - A list of Deploy hashes. 
 * [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a Block.
-* [execution_result](../../concepts/serialization-standard.md#executionresult) - The execution status of the deploy, which is either `Success` or `Failure`.
+* [execution_result](../../concepts/serialization-standard.md#executionresult) - The execution status of the Deploy, which is either `Success` or `Failure`.
 
 </details>
 
@@ -293,7 +291,7 @@ The `Fault` event is emitted if there is a validator error.
 }
 ```
 
-* [era_id](../../concepts/serialization-standard.md#eraid) - The period of time used to specify when specific events in a blockchain network occur.
+* [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
 * [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator that caused the fault.
 * [timestamp](../../concepts/serialization-standard.md#timestamp) - A timestamp representing the moment the validator faulted.
 
@@ -359,10 +357,10 @@ The `Step` event is emitted at the end of every era and contains the execution e
 }
 ```
 
-* [era_id](../../concepts/serialization-standard.md#eraid) - The period of time is used to specify when specific events in a blockchain network will occur.
+* [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
 * [execution_effect](../../concepts/serialization-standard.md#executioneffect) - The journal of execution transforms from a single Deploy.
-* [operations](../../concepts/serialization-standard.md#operation) - Operations performed while executing a deploy.
-* [transform](../../concepts/serialization-standard.md#transform) - The actual transformation performed while executing a deploy.
+* [operations](../../concepts/serialization-standard.md#operation) - Operations performed while executing a Deploy.
+* [transform](../../concepts/serialization-standard.md#transform) - The actual transformation performed while executing a Deploy.
 
 </details>
 
