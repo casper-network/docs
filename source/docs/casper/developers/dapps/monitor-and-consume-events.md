@@ -10,10 +10,9 @@ Events are divided into three categories and streamed on their respective paths:
 <!-- TODO check definitions and add the paths for each stream -->
 - **Deploy events** - Associated with [Deploys](../../concepts/design/casper-design.md#execution-semantics-deploys) on a node. Currently, only a `DeployAccepted` event is emitted.
 - **Finality Signature events** - The block has been finalized and cannot be altered.
-section to learn more about finality signatures.
 - **Main events** - `ApiVersion`, `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events.
 
-This page describes each event type, and how to listen and respond to events. For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
+This page describes how to listen and respond to each event type. For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
 
 ## Listening to the Event Stream
 
@@ -109,7 +108,7 @@ Replace `CHANNEL` with one of the following event categories:
 }
 ```
 
-- [block_hash](../../concepts/serialization-standard.md#block-hash) - The cryptographic hash that is used to identify a block.
+- [block_hash](../../concepts/serialization-standard.md#block-hash) - The cryptographic hash that identifies a block.
 - [block](../../concepts/serialization-standard.md#serialization-standard-block) - The JSON representation of the block.
 - [proposer](../../concepts/serialization-standard.md#body) - The validator selected to propose the block.
 
@@ -181,13 +180,13 @@ Replace `CHANNEL` with one of the following event categories:
 * [body_hash](../../concepts/hash-types.md) - The blake2b hash of the deploy body.
 * [payment](../../concepts/glossary/P.md#payment-code) - Gas payment information.
 * [session](../../concepts/session-code.md#what-is-session-code) - The session logic defining the deploy's functionality.
-* [approvals](../json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key along with its signature.
+* [approvals](../json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
 
 </details>
 
 ### FinalitySignature
 
-This event indicates that the final approvals from validators are signed and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
+This event indicates that the final approvals from validators are signed, and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
 
 <details>
 <summary>Expand to view output</summary>
@@ -203,16 +202,17 @@ This event indicates that the final approvals from validators are signed and fur
 }
 ```
 
-- [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash that is used to identify a block.
+<!-- TODO check definitions -->
+- [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a block.
 - [era_id](../../concepts/serialization-standard.md#eraid) - The period of time used to specify when specific events in a blockchain network occur.
-- [signature](../../concepts/serialization-standard.md#signature) - A serialized byte representation of the validator's signature.
+- [signature](../../concepts/serialization-standard.md#signature) - Serialized bytes representing the validator's signature.
 - [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator.
 
 </details>
 
 ### DeployProcessed
 
-Emitted when a deploy is processed on the blockchain and has not expired. Applications can listen to deploys for a specific account, during a certain time, containing some data, parse the data and discard what is not needed. <!-- TODO double check this definition -->
+These events are emitted when a deploy is processed on the blockchain and has not expired. Applications can listen to deploys for a specific account during a particular time, containing some data, parse the data and discard what is not needed. <!-- TODO double check this definition -->
 
 <details>
 <summary>Expand to view output</summary>
@@ -249,9 +249,9 @@ Emitted when a deploy is processed on the blockchain and has not expired. Applic
 
 * [deploy_hash](../../concepts/serialization-standard.md#deploy-hash) - The cryptographic hash of a Deploy.
 * [account](../../concepts/serialization-standard.md#serialization-standard-account) - The hexadecimal-encoded public key of the account submitting the deploy.
-* [timestamp](../../concepts/serialization-standard.md#timestamp) - A timestamp type, representing a concrete moment in time.
+* [timestamp](../../concepts/serialization-standard.md#timestamp) - A timestamp type representing a concrete moment in time.
 * [dependencies](../../concepts/serialization-standard.md#deploy-header) - A list of Deploy hashes. 
-* [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash that is used to identify a Block.
+* [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a Block.
 * [execution_result](../../concepts/serialization-standard.md#executionresult) - The execution status of the deploy, which is either `Success` or `Failure`.
 
 </details>
@@ -293,7 +293,7 @@ The `Fault` event is emitted if there is a validator error.
 ```
 
 * [era_id](../../concepts/serialization-standard.md#eraid) - The period of time used to specify when specific events in a blockchain network occur.
-* [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator that faulted.
+* [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator that caused the fault.
 * [timestamp](../../concepts/serialization-standard.md#timestamp) - A timestamp representing the moment the validator faulted.
 
 </details>
@@ -367,7 +367,7 @@ The `Step` event is emitted at the end of every era and contains the execution e
 
 ### Shutdown
 
-The `Shutdown` event is emitted when the node is about to shut down, usually for an upgrade. This causes a termination of the event stream.
+The `Shutdown` event is emitted when the node is about to shut down, usually for an upgrade, causing a termination of the event stream.
 
 <details>
 <summary>Expand the below section to view the Shutdown event details:</summary>
@@ -375,14 +375,14 @@ The `Shutdown` event is emitted when the node is about to shut down, usually for
 ```bash
 "Shutdown"
 ```
-* Shutdown - The "Shutdown" text notifies the event listener that a shutdown will be occurring.
+* Shutdown - The "Shutdown" text notifies the event listener that a shutdown will occur.
 
 </details>
 
 
 ## Reacting to Events
 
-To perform functions upon receiving event data, an application may parse each event needed for its use case and respond accordingly. The dApp may act on some events and not others, or it may act upon them all depending on its use case. Each event type contains additional data that might help in deciding whether or not to take an action. For example, `DeployAccepted` events contain the public key of the account that submitted the deploy, the contract address, and more. This information can be useful in determining how to proceed, or whether not react at all. <!-- TODO simplify this paragraph -->
+An application may parse each event needed for its use case and respond accordingly. The dApp may act on some events and not others, or it may act upon them all, depending on its use case. Each event type contains additional data that might help in deciding whether or not to take an action. For example, `DeployAccepted` events contain the account's public key that submitted the deploy, the contract address, and more. This information can help determine how to proceed or whether or not to react.
 
 <Tabs>
 
@@ -412,7 +412,7 @@ def eventHandler(event):
 
 ## Unsubscribing from Events
 
-In many cases, an application may need to unsubscribe after a certain amount of time, or may want to unsubscribe from some events but not others. The Casper SDKs provide this ability with the `unsubscribe` function:
+In many cases, an application may need to unsubscribe after a certain time or may want to unsubscribe from some events but not others. The Casper SDKs provide this ability with the `unsubscribe` function:
 
 <Tabs>
 
@@ -446,7 +446,7 @@ es.stop()
 
 ## Replaying the Event Stream
 
-This command will replay the event stream from an old event onwards. Replace the `NODE_ADDRESS`, `CHANNEL`, and `ID` fields with the values of your scenario.
+This command will replay the event stream from an old event onward. Replace the `NODE_ADDRESS`, `CHANNEL`, and `ID` fields with the values of your scenario.
 
 <Tabs>
 
@@ -466,11 +466,11 @@ curl -sN http://65.21.235.219:9999/events/main?start_from=29267508
 
 </Tabs>
 
-Each URL can have a query string added to the form `?start_from=ID`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onwards. If you specify an event ID that has already been purged from the cache, the server will replay all the cached events.
+Each URL can have a query string added to the form `?start_from=ID`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onward. If you specify an event ID already purged from the cache, the server will replay all the cached events.
 
 :::note
 
 The server keeps only a limited number of events cached to allow replaying the stream to clients using the `?start_from=` query string. The cache size can be set differently on each node using the `event_stream_buffer_length` value in the *config.toml*. By default, it is only 5000. 
-The intended use case is to allow a client consuming the event stream that loses its connection to reconnect and hopefully catch up with events that were emitted while it was disconnected.
+The intended use case is to allow a client consuming the event stream that loses its connection to reconnect and catch up with events that were emitted while it was disconnected.
 
 :::
