@@ -6,14 +6,11 @@ The Casper platform uses event streaming to signal state changes in smart contra
 
 Each Casper node streams events through the SSE (Server Sent Event) server via the port specified as the `event_stream_server.address` in the node's *config.toml*. This port is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers).
 
-
 Events are divided into three categories and streamed on their respective endpoints:
 
 - **Deploy events** - Associated with [Deploys](../../concepts/design/casper-design.md#execution-semantics-deploys) on a node. Currently, only a `DeployAccepted` event is emitted. The URL to consume deploy-related events on Mainnet and Testnet is `http://<HOST>:9999/events/deploys/`.
 - **Finality Signature events** - Emitted when the block has been finalized and cannot be altered. The URL to consume finality signature events on Mainnet and Testnet is `http://<HOST>:9999/events/sigs/`.
 - **Main events** - All other events fall under this type: `ApiVersion`, `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events. The URL to consume these events on Mainnet and Testnet is `http://<HOST>:9999/events/main/`.
-
-This page describes how to listen and respond to each event type. For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
 
 ## Listening to the Event Stream
 
@@ -183,6 +180,8 @@ A `BlockAdded` event is emitted when a new block is added to the blockchain and 
 * [approvals](../json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
 
 </details>
+
+For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
 
 ### FinalitySignature
 
