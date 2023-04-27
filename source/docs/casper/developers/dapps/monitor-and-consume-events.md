@@ -197,31 +197,6 @@ A `BlockAdded` event is emitted when a new block is added to the blockchain and 
 
 For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
 
-### FinalitySignature
-
-This event indicates that the final approvals from validators are signed, and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
-
-<details>
-<summary>Expand to view output</summary>
-
-```json
-{
-  "FinalitySignature": {
-    "block_hash": "eceed827e11f7969a7d3fe91d6fa4ce9749dd79d9f3ea26474fe2014db90e98d",
-    "era_id": 8419,
-    "signature": "0117087ef4b9a786e5a0ea8f198050e9de93dd94f87469b8124c346aeae5f36ad9adf80f670ee9c5887263267ed32cf932dce9b370353c596d59f91fbd57a1a205",
-    "public_key": "01c375b425a36de25dc325c9182861679db2f634abcacd9ae2ee27b84ba62ac1f7"
-  }
-}
-```
-
-- [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a Block.
-- [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
-- [signature](../../concepts/serialization-standard.md#signature) - Serialized bytes representing the validator's signature.
-- [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator.
-
-</details>
-
 ### DeployProcessed
 
 A `DeployProcessed` event is emitted when a given Deploy has been executed.
@@ -307,6 +282,31 @@ The `Fault` event is emitted if there is a validator error.
 * [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
 * [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator that caused the fault.
 * [timestamp](../../concepts/serialization-standard.md#timestamp) - A timestamp representing the moment the validator faulted.
+
+</details>
+
+### FinalitySignature
+
+This event indicates that the final approvals from validators are signed, and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
+
+<details>
+<summary>Expand to view output</summary>
+
+```json
+{
+  "FinalitySignature": {
+    "block_hash": "eceed827e11f7969a7d3fe91d6fa4ce9749dd79d9f3ea26474fe2014db90e98d",
+    "era_id": 8419,
+    "signature": "0117087ef4b9a786e5a0ea8f198050e9de93dd94f87469b8124c346aeae5f36ad9adf80f670ee9c5887263267ed32cf932dce9b370353c596d59f91fbd57a1a205",
+    "public_key": "01c375b425a36de25dc325c9182861679db2f634abcacd9ae2ee27b84ba62ac1f7"
+  }
+}
+```
+
+- [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a Block.
+- [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
+- [signature](../../concepts/serialization-standard.md#signature) - Serialized bytes representing the validator's signature.
+- [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator.
 
 </details>
 
