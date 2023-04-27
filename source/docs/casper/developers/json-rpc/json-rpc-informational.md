@@ -198,7 +198,7 @@ This method returns the era summary at a given [Block](../../concepts/design/cas
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[era_summary](./types_chain.md#erasummary)|Object|The era summary (If found).|
+|[era_summary](./types_chain.md#erasummary)|Object|The era summary (if found).|
 
 ## chain_get_state_root_hash {#chain-get-state-root-hash} 
 
