@@ -187,7 +187,7 @@ This method returns all native transfers within a given [Block](../../concepts/d
 
 ## chain_get_era_summary {#chain-get-era-summary}
 
-This method returns the era summary at a given [Block](../../concepts/design/casper-design.md#block-structure-head). If you do not specify a `block_identifier`, you will receive the highest state root hash.
+This method returns the era summary at a given [Block](../../concepts/design/casper-design.md#block-structure-head). If you do not specify a `block_identifier`, you will receive the era summary at the highest state root hash.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
