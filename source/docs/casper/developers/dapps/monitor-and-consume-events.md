@@ -10,7 +10,13 @@ Events are divided into three categories and streamed on their respective endpoi
 
 - **Deploy events** - Associated with [Deploys](../../concepts/design/casper-design.md#execution-semantics-deploys) on a node. Currently, only a `DeployAccepted` event is emitted. The URL to consume deploy-related events on Mainnet and Testnet is `http://<HOST>:9999/events/deploys/`.
 - **Finality Signature events** - Emitted when the block has been finalized and cannot be altered. The URL to consume finality signature events on Mainnet and Testnet is `http://<HOST>:9999/events/sigs/`.
-- **Main events** - All other events fall under this type: `ApiVersion`, `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events. The URL to consume these events on Mainnet and Testnet is `http://<HOST>:9999/events/main/`.
+- **Main events** - All other events fall under this type, including: `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events. The URL to consume these events on Mainnet and Testnet is `http://<HOST>:9999/events/main/`.
+
+:::note
+
+An `ApiVersion` event is always emitted when a new client connects to a node's SSE server, informing the client of the node's software version.
+
+:::
 
 ## Listening to the Event Stream
 
@@ -68,6 +74,14 @@ Replace `CHANNEL` with one of the following event streams:
 - `sigs` for `FinalitySignature` events.
 
 ## Event Types
+
+### ApiVersion
+
+The `ApiVersion` event is always the first event emitted when a new client connects to a node's SSE server. It specifies the protocol version of a node on the Casper platform. The following example contains the JSON representation of the `ApiVersion` event structure.
+
+```bash
+data:{"ApiVersion":"1.0.0"}
+```
 
 ### BlockAdded
 
