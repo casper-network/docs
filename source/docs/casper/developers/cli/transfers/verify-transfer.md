@@ -97,7 +97,7 @@ casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
 <details>
-<summary>Sample output of the get-state-root-hash command</summary>
+<summary><b>Sample output of the get-state-root-hash command</b></summary>
 
 ```json
 {
