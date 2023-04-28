@@ -38,7 +38,7 @@ casper-client query-global-state \
 
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned.
 -   `node-address` - An IP address of a node on the network.
--   `state-root-hash` - Hex-encoded hash of the state root
+-   `state-root-hash` - The hex-encoded hash of the state root.
 -   `key` - The base key for the query. This must be a properly formatted transfer address.
 
 <details>
