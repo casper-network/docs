@@ -190,7 +190,7 @@ casper-client query-global-state \
 
 </details>
 
-We can repeat the same step to query information about the _Target_ account.
+We can repeat the same step to query information about the _Target_ account:
 
 ```bash
 casper-client query-global-state \
