@@ -42,7 +42,7 @@ casper-client query-global-state \
 -   `key` - The base key for the query. This must be a properly formatted transfer address.
 
 <details>
-<summary>Explore the JSON-RPC request and response generated.</summary>
+<summary><b>Explore the JSON-RPC request and response generated.</b></summary>
 
 **JSON-RPC Request**:
 
