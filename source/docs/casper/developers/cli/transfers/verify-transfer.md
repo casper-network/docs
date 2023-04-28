@@ -86,7 +86,7 @@ casper-client query-global-state \
 
 </details>
 
-The query responds with more information about the transfer we conducted: its deploy hash, the account which executed the transfer, the source and target purses, and the target account. We can verify that our transfer was processed successfully using this additional information.
+The query responds with more information about the transfer we conducted: its deploy hash, the account which executed the transfer, the source and target purses, and the target account. We can verify that our transfer processed successfully using this additional information.
 
 ## The State Root Hash
 
