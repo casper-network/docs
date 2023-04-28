@@ -10,7 +10,7 @@ Before verifying a transfer, make sure you have:
 
 ## Query Transfer Details {#query-transfer-details}
 
-A transfer is a part of a deploy - in the Casper network, deploys can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
+A transfer is a part of a deploy - in a Casper network, deploys can contain multiple transfers. Execution of the deploy includes writing information about each individual transfer to global state. A unique hash known as the `transfer-address` identifies each transfer. The `transfer-address` consists of a formatted string with a `transfer-` prefix.
 
 First, we will use the *deploy_hash* to identify the corresponding transfer:
 
