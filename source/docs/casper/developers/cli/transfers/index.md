@@ -4,7 +4,7 @@ The following topics describe how to use the Casper command-line client to trans
 
 **Transferring Tokens Using Direct Transfer**
 
-You can use the direct method to transfer tokens when you have an account with a single primary key, and it is capable of signing a transaction. To use a direct transfer, see [Transferring Tokens Using Direct Transfer](./direct-token-transfer.md).
+Tokens can be transferred directly when the signing key has enough weight to approve the transaction. This is the most common scenario, applicable by default for accounts with a single primary key. To use a direct transfer, see [Transferring Tokens Using Direct Transfer](./direct-token-transfer.md).
 
 **Transferring Tokens Using Multi-sig Deploy**
 
