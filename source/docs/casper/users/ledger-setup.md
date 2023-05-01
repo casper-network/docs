@@ -163,7 +163,9 @@ To receive tokens, you need to provide the sender with your account's public key
 
 <img src={useBaseUrl("/image/tutorials/ledger/cspr-live/3-transfer-sign.png")} alt="3-transfer-sign" width="500" />
 
-8. Your Ledger hardware wallet will present you with transfer details. Verify the transfer details (txn hash, chain ID, source **account**, fee, target, and amount).
+8. Your Ledger hardware wallet will present you with transfer details. Verify the transfer details (txn hash, chain ID, source **account**, fee, target, and amount). Meanwhile, the block explorer will show this message:
+
+<img src={useBaseUrl("/image/tutorials/ledger/cspr-live/3-transfer-submitted.png")} alt="3-transfer-sign" width="500" />
 
 **Verify the transaction on your Ledger device**
 
