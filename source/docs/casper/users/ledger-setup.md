@@ -197,7 +197,7 @@ The _account_ value continues on a second screen.
 
 <img src={useBaseUrl("/image/tutorials/ledger/device/10-fee.jpg")} alt="10-fee" width="600" />
 
-6. Verify the target. NOTE: This IS NOT a public key of the recipient but the hash of that key. Compare this value with the one in the block explorer.
+6. Verify the target, which is the **hash** of the recipient's public key. Compare this value with the one in the block explorer.
 
 <img src={useBaseUrl("/image/tutorials/ledger/device/11-target-1.jpg")} alt="11-target-1" width="600" />
 
