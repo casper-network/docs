@@ -4,18 +4,22 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 A Ledger device is a hardware wallet considered one of the most secure ways to store your digital assets. Ledger uses an offline, or cold storage, method of generating private keys, making it a preferred method for many crypto users. This guide will help you connect your Ledger device to a Casper account using the [cspr.live](https://cspr.live/) block explorer to send and receive CSPR tokens.
 
-If you need help, contact us on [Twitter](https://twitter.com/Casper_Network), [Discord](https://discord.com/invite/Q38s3Vh), or [Telegram](https://t.me/casperblockchain).
-
 ### Before you begin {#before-you-begin}
 
 1. Configure your Ledger and the Ledger Live application as described in the [Getting Started with Ledger Live](https://support.ledger.com/hc/en-us/articles/4404389503889?docs=true) article.
 2. Install a Chromium-based browser, such as Chrome or Brave, for use with [cspr.live](https://cspr.live/) for the Casper Mainnet.
 
+:::note
+
+If you need help, contact us on [Twitter](https://twitter.com/Casper_Network), [Discord](https://discord.com/invite/Q38s3Vh), or [Telegram](https://t.me/casperblockchain).
+
+:::
+
 ### Installing the Casper app on the Ledger device {#install-the-casper-app-on-the-ledger-device}
 
-Install the Casper app on the Ledger device by following the steps below. You can also find these instructions on the official [Ledger support site](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true).
+Install the Casper app on the Ledger device by following the steps below. You can find similar instructions on the official [Ledger support site](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true).
 
-1. In Ledger Live, open My Ledger at the bottom of the left-hand menu. Do **not** add a Casper account using Ledger Live.
+1. In Ledger Live, open My Ledger at the bottom of the left-hand menu.
 
 <p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/ledger-live/open-my-ledger.png")} alt="Open My Ledger" width="800" />
@@ -23,7 +27,7 @@ Install the Casper app on the Ledger device by following the steps below. You ca
 
 :::important
 
-Casper accounts cannot be added to Ledger Live. Do not use **Add account**. 
+Casper accounts cannot be added to Ledger Live. Do **not** add a Casper account using Ledger Live.
 
 :::
 
@@ -47,7 +51,7 @@ Casper accounts cannot be added to Ledger Live. Do not use **Add account**.
 
 :::important
 
-Having trouble finding the Casper (CSPR) app?
+Having trouble finding the Casper app?
 Please search "Casper," not "CSPR" when searching for the app in the "My Ledger" tab in Ledger Live.
 
 :::
@@ -62,7 +66,7 @@ Please search "Casper," not "CSPR" when searching for the app in the "My Ledger"
 <img src={useBaseUrl("/image/tutorials/ledger/ledger-live/casper-installed.png")} alt="Casper installation confirmed" width="800" />
 </p>
 
-6. Open the Casper App on your Ledger device, and keep it open while doing the next steps.
+6. Open the Casper App on your Ledger device by clicking both buttons on the device, and keep it open while doing the next steps.
 
 <p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/ledger-live/select-casper.png")} alt="Select Casper on Ledger" width="350" />
@@ -76,10 +80,10 @@ Please search "Casper," not "CSPR" when searching for the app in the "My Ledger"
 
 ### Sign in {#sign-in}
 
-You can now use the Ledger device with the [cspr.live](https://cspr.live/) block explorer. Follow these steps:
+To use the Ledger device with the [cspr.live](https://cspr.live/) block explorer, follow these steps:
 
 1. Connect the Ledger device to your computer and unlock it by entering your device PIN.
-2. Open the Casper app on the Ledger device.
+2. Open the Casper app on the Ledger device as shown above.
 3. While keeping the Casper app open, navigate to [cspr.live/sign-in](https://cspr.live/sign-in).
 
 <p align="center">
@@ -104,7 +108,7 @@ You can now use the Ledger device with the [cspr.live](https://cspr.live/) block
 <img src={useBaseUrl("/image/tutorials/ledger/flow/connect-select-account.png")} alt="Choose an account to connect" width="800" />
 </p>
 
-7. Now, your Ledger device is connected to the block explorer.
+7. Your Ledger device is now connected to the block explorer, displaying your account details.
 
 <p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/flow/account-connected.png")} alt="Account connected" width="800" />
@@ -121,27 +125,22 @@ You can now use the Ledger device with the [cspr.live](https://cspr.live/) block
 
 <img src={useBaseUrl("/image/tutorials/ledger/flow/view-account-button.png")} alt="6-view-account-button" width="800" />
 
-4. You are presented with a page displaying details about your account.
+4. You are presented with a page displaying details about your account. Check your account's main purse balance in the **Liquid** row under **Total Balance**.
 
 <img src={useBaseUrl("/image/tutorials/ledger/flow/account-details.png")} alt="4-account-details" width="800" />
-
-5. You can check your account's main purse balance in the **Liquid** row under **Total Balance**.
 
 ### Receiving tokens {#receive-tokens}
 
 To receive tokens, you need to provide the sender with your account's public key. To find it, follow these steps:
 
-1. Open the account details page as described [here](#view-account-details).
-2. Copy the public key in the **Public Key** row.
-3. Alternatively, click on the drop-down menu on your account address.
+1. Open the account details page as described [here](#view-account-details) and copy the public key in the **Public Key** row.
+2. Alternatively, click on the drop-down menu on your account address.
 
 <img src={useBaseUrl("/image/tutorials/ledger/flow/view-account.png")} alt="View account" width="800" />
 
-4.  Click on the **Copy Public Key** button.
+3.  Click on the **Copy Public Key** button and share it with the sender.
 
 <img src={useBaseUrl("/image/tutorials/ledger/flow/copy-public-key.png")} alt="Copy public key" width="800" />
-
-5. Share the public key with the sender.
 
 ### Sending tokens {#send-tokens}
 
@@ -198,7 +197,7 @@ The _account_ value continues on a second screen.
 
 <img src={useBaseUrl("/image/tutorials/ledger/device/10-fee.jpg")} alt="10-fee" width="600" />
 
-6. Verify **target** - **NOTE** this **IS NOT** a public key of the recipient but the hash of that key. Compare the public key with the value in the block explorer, which shows you two fields for the recipient public key and target.
+6. Verify the target. NOTE: This IS NOT a public key of the recipient but the hash of that key. Compare this value with the one in the block explorer.
 
 <img src={useBaseUrl("/image/tutorials/ledger/device/11-target-1.jpg")} alt="11-target-1" width="600" />
 
