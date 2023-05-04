@@ -25,129 +25,35 @@ Follow the steps below to install necessary software for the development environ
 
 ## Install the environment on macOS / Linux
 
-## Step 1.
-
-### Install xcode command line tools on macOS {#install-xcode}
-
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
-```bash
-xcode-select --install
-```
-
-</TabItem>
-</Tabs>
-
-Verify the installation with:
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
-```bash
-xcode-select -p
-```
-
-</TabItem>
-</Tabs>
-
-### Get curl on Linux {#install-curl}
-
 <Tabs>
 <TabItem value="Linux" label="Linux">
+
+### Get curl {#install-curl}
 
 ```bash
 sudo apt install curl
 ```
-</TabItem>
-</Tabs>
 
-## Step 2.
-
-### Install rust {#install-rust}
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
+### Install Rust {#install-rust}
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-
-</TabItem>
-<TabItem value="Linux" label="Linux">
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-</TabItem>
-</Tabs>
-
-Verify the installation with:
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
-```bash
-rustup --version
-```
-
-</TabItem>
-<TabItem value="Linux" label="Linux">
-
-```bash
-rustup --version
-```
-
-</TabItem>
-</Tabs>
 
 The installation script automatically adds Rust to your system PATH after your next login.
 To start using Rust right away instead of restarting your terminal, run the following command in your shell to add Rust to your system PATH manually:
 
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
 ```bash
 source $HOME/.cargo/env
 ```
 
-</TabItem>
-<TabItem value="Linux" label="Linux">
+Verify the installation with:
 
 ```bash
-source $HOME/.cargo/env
+rustup --version
 ```
-
-</TabItem>
-</Tabs>
-
-## Step 3.
-
-### Install brew on macOS {#install-brew}
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-</TabItem>
-</Tabs>
 
 ### Install additional packages to be able to install cargo-casper and casper-client {#install-adds}
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
-```bash
-brew install pkg-config
-brew install openssl
-```
-
-</TabItem>
-<TabItem value="Linux" label="Linux">
 
 ```bash
 sudo apt-get install pkg-config
@@ -155,135 +61,64 @@ sudo apt-get install openssl
 sudo apt-get install libssl-dev
 ```
 
-</TabItem>
-</Tabs>
-
 ### Install cargo on Linux {#install-linux-cargo}
-
-<Tabs>
-<TabItem value="Linux" label="Linux">
 
 ```bash
 sudo apt install cargo
 ```
 
-</TabItem>
-</Tabs>
-
-## Step 4.
-
 ### Install cargo-casper {#install-cargo-casper}
 
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
 ```bash
 cargo install cargo-casper
 ```
-
-</TabItem>
-<TabItem value="Linux" label="Linux">
-
-```bash
-cargo install cargo-casper
-```
-
-</TabItem>
-</Tabs>
 
 Verify the installation with:
 
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
 ```bash
 cargo-casper --version
 ```
-</TabItem>
-<TabItem value="Linux" label="Linux">
-
-```bash
-cargo-casper --version
-```
-</TabItem>
-</Tabs>
 
 ### Install the essentials package so the casper-client can be installed on Linux {#install-linux-essentials}
-
-<Tabs>
-<TabItem value="Linux" label="Linux">
 
 ```bash
 sudo apt install build-essential
 ```
 
-</TabItem>
-</Tabs>
+### Install the Casper client {#install-casper-client-linux}
 
-## Step 5.
-
-### Install the casper client {#install-casper-client}
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
+You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deploys.
 
 ```bash
 cargo install casper-client
 ```
 
-</TabItem>
-<TabItem value="Linux" label="Linux">
-
-```bash
-cargo install casper-client
-```
-
-</TabItem>
-</Tabs>
-
-Verify the installation with
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
+Verify the installation with:
 
 ```bash
 casper-client --version
 ```
 
-</TabItem>
-<TabItem value="Linux" label="Linux">
-
-```bash
-casper-client --version
-```
-
-</TabItem>
-</Tabs>
-
-For more information about supported commands, you can check it with:
+The Casper client can print out help information, which provides an up-to-date list of supported commands. To do so, use the following command:
 
 ```bash
 casper-client --help
 ```
+Important: For each command, you can use help to get the most up-to-date arguments and descriptions.
+
+```bash
+casper-client <command> --help
+```
+
+### Building the Client from Source {#building-client-from-source}
+
+[Instructions](https://github.com/casper-ecosystem/casper-client-rs)
 
 For the compilation to work install the nightly compiler:
 
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
 ```bash
 rustup toolchain install nightly
 ```
-
-</TabItem>
-<TabItem value="Linux" label="Linux">
-
-```bash
-rustup toolchain install nightly
-```
-
-</TabItem>
-</Tabs>
 
 :::info
 
@@ -293,34 +128,121 @@ OPTIONAL: if you are going to run a Casper Network validator install cmake with 
 
 ### Install cmake {#install-cmake}
 
-<Tabs>
+```bash
+sudo apt-get -y install cmake
+```
+
+Verify the installation with
+
+```bash
+cmake --version
+```
+</TabItem>
 <TabItem value="macOS" label="macOS">
+
+### Install Xcode Command Line Tools on macOS {#install-xcode}
+
+```bash
+xcode-select --install
+```
+Verify the installation with:
+
+```bash
+xcode-select -p
+```
+
+### Install Rust {#install-rust-macos}
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Verify the installation with:
+
+```bash
+rustup --version
+```
+
+The installation script automatically adds Rust to your system PATH after your next login.
+To start using Rust right away instead of restarting your terminal, run the following command in your shell to add Rust to your system PATH manually:
+
+```bash
+source $HOME/.cargo/env
+```
+
+### Install brew {#install-brew}
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Install additional packages to be able to install cargo-casper and casper-client {#install-adds-macos}
+
+```bash
+brew install pkg-config
+brew install openssl
+```
+
+### Install cargo-casper {#install-cargo-casper-macos}
+
+```bash
+cargo install cargo-casper
+```
+
+Verify the installation with:
+
+```bash
+cargo-casper --version
+```
+
+### Install the Casper client {#install-casper-client-macos}
+
+You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deploys.
+
+```bash
+cargo install casper-client
+```
+
+The Casper client can print out help information, which provides an up-to-date list of supported commands. To do so, use the following command:
+
+```bash
+casper-client --help
+```
+Important: For each command, you can use help to get the most up-to-date arguments and descriptions.
+
+```bash
+casper-client <command> --help
+```
+
+### Building the Client from Source {#building-client-from-source}
+
+[Instructions](https://github.com/casper-ecosystem/casper-client-rs)
+
+For more information about supported commands, you can check it with:
+
+```bash
+casper-client --help
+```
+
+For the compilation to work install the nightly compiler:
+
+```bash
+rustup toolchain install nightly
+```
+
+:::info
+
+OPTIONAL: if you are going to run a Casper Network validator install cmake with the command below:
+
+:::
+
+### Install cmake {#install-cmake-macos}
 
 ```bash
 brew install cmake
 ```
 
-</TabItem>
-<TabItem value="Linux" label="Linux">
-
-```bash
-sudo apt-get -y install cmake
-```
-
-</TabItem>
-</Tabs>
-
-Verify the installation with
-
-<Tabs>
-<TabItem value="macOS" label="macOS">
-
-```bash
-cmake --version
-```
-
-</TabItem>
-<TabItem value="Linux" label="Linux">
+Verify the installation with:
 
 ```bash
 cmake --version
