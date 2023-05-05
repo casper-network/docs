@@ -4,24 +4,24 @@ import TabItem from '@theme/TabItem';
 
 # Development Prerequisites
 
-This section explains how to fulfill the prerequisites needed to interact with a Casper network.
+This section explains how to fulfill the prerequisites to interact with a Casper network.
 
-This section covers:
+This section covers the following:
 
 1. Setting up a [Rust](#install-rust) development environment
 2. Installing the official Casper [command-line client](#install-casper-client)
 3. [Setting up an Account](#setting-up-an-account) on a Casper network
 4. [Acquiring the IP](#acquire-node-address-from-network-peers) address of a peer on the official Testnet or Mainnet
 
-To be able to develop comfortably on the Casper Network you should use either `macOS` or `Linux Ubuntu 20.04`. Developing on Windows is not advised.
+To develop comfortably for the Casper network, you should use `Linux Ubuntu 20.04` or `macOS`. Developing on Windows is not advised.
 
 :::caution
 
-Casper Network does not officially support `macOS`. If you encounter any problems reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
+Casper Network does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
 
 :::
 
-Follow the steps below to install necessary software for the development environment.
+Follow the steps below to install the necessary software for your development environment.
 
 ## Preparing your Development Environment
 
@@ -63,7 +63,7 @@ sudo apt install cargo
 xcode-select --install
 ```
 
-Verify the installation with:
+Verify the installation:
 
 ```bash
 xcode-select -p
@@ -91,14 +91,13 @@ brew install openssl
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-The installation script automatically adds Rust to your system PATH after your next login.
-To start using Rust right away instead of restarting your terminal, run the following command in your shell to add Rust to your system PATH manually:
+After your next login, the installation script automatically adds Rust to your system PATH. To start using Rust immediately, run the following command in your shell instead of restarting your terminal. The command will add Rust to your system PATH.
 
 ```bash
 source $HOME/.cargo/env
 ```
 
-Verify the installation with:
+Verify the installation:
 
 ```bash
 rustup --version
@@ -110,7 +109,7 @@ rustup --version
 cargo install cargo-casper
 ```
 
-Verify the installation with:
+Verify the installation:
 
 ```bash
 cargo-casper --version
@@ -118,13 +117,13 @@ cargo-casper --version
 
 ## Installing the Casper client {#install-casper-client}
 
-You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deploys.
+The default Casper client is on [crates.io](https://crates.io/crates/casper-client). This client can transmit your deploys to a Casper network.
 
 ```bash
 cargo install casper-client
 ```
 
-Verify the installation with:
+Verify the installation:
 
 ```bash
 casper-client --version
@@ -135,7 +134,8 @@ The Casper client can print out help information, which provides an up-to-date l
 ```bash
 casper-client --help
 ```
-Important: For each command, you can use help to get the most up-to-date arguments and descriptions.
+
+You can use `help` for each command to get the most up-to-date arguments and descriptions.
 
 ```bash
 casper-client <command> --help
@@ -143,7 +143,7 @@ casper-client <command> --help
 
 ### Accessing the Casper client source code {#building-client-from-source}
 
-You can access the Casper client source code [here](https://github.com/casper-ecosystem/casper-client-rs). The `lib` directory contains source for the client library, which may be called directly rather than through the CLI binary. The CLI app casper-client makes use of this library to implement its functionality.
+You can access the Casper client source code [here](https://github.com/casper-ecosystem/casper-client-rs). The `lib` directory contains the source for the client library, which may be called directly rather than through the CLI binary. The CLI app `casper-client` uses this library to implement its functionality.
 
 If you wish to compile it, you will need to install the nightly Rust compiler with this command:
 
@@ -153,7 +153,7 @@ rustup toolchain install nightly
 
 ## Installing `cmake` {#install-cmake}
 
-If you are planning to compile contracts from source, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `cmake` with the commands below.
+If you plan to compile contracts from the source code, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `cmake` with the commands below.
 
 <Tabs>
 <TabItem value="Linux" label="Linux">
@@ -179,7 +179,7 @@ cmake --version
 
 ## Installing an IDE
 
-For the development, we advise using an integrated-development environment such as Visual Studio Code (VSC). Follow these [instructions](./writing-onchain-code/getting-started.md#setting-ide) to set up VSC and install plugins that would be helpful during development.
+We advise using an integrated development environment such as Visual Studio Code (VSC) for development. Follow these [instructions](./writing-onchain-code/getting-started.md#setting-ide) to set up VSC and install plugins that would be helpful during development.
 
 ## Setting up a Casper Account {#setting-up-an-account}
 
@@ -200,11 +200,11 @@ The Casper blockchain uses an on-chain account-based model, uniquely identified 
 
 By default, a transactional interaction with the blockchain takes the form of a `Deploy` cryptographically signed by the key-pair corresponding to the `PublicKey` used to create the account.
 
-Users can create an account through the Casper command-line client. Alternatively, some Casper networks such as the official Testnet and Mainnet provide a browser-based block explorer that allows account creation. Using the Casper command-line client or a block explorer will also create a cryptographic key-pair.
+Users can create an account through the Casper command-line client. Alternatively, some Casper networks, such as the official Testnet and Mainnet, provide a browser-based block explorer that allows account creation. The Casper command-line client or a block explorer will also create a cryptographic key-pair.
 
 #### Option 1: Key generation using the Casper client {#option-1-key-generation-using-the-casper-client}
 
-This option describes how you can use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](../concepts/accounts-and-keys.md).
+This option describes how to use the Casper command-line client to set up your accounts. For more information about cryptographic keys, see [Working with Cryptographic Keys](../concepts/accounts-and-keys.md).
 
 Execute the following command to generate your keys:
 
@@ -234,11 +234,11 @@ This option is available on networks that have a block explorer.
 
 For instance, on the official Testnet network, the [CSPR.live](https://testnet.cspr.live/) block explorer is available, and the following instructions assume you are using it.
 
-Start by creating an Account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html). The Signer will prompt you to download the secret key of your new account by clicking on the `Download` option. The Signer will download the secret key in a file ending in `secret_key.cer`. We recommend securely storing this file. Note that the account is not stored on chain.
+Create an Account using the [Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html). The Signer will prompt you to download the secret key of your new account by clicking on the `Download` option. The Signer will download the secret key in a file ending in `secret_key.cer`. We recommend securely storing this file. Note that the account is not stored on the blockchain.
 
 <img src={useBaseUrl("/image/workflow/download-prompt.png")} alt="Signer Secret Key Download Prompt" width="200" />
 
-The Signer does not allow you to download the corresponding public key and hexadecimal representation of the public key. But, you can view them if you click the account details.
+The Signer does not allow you to download the corresponding public key and hexadecimal representation of the public key. But you can view them if you click the account details.
 
 <img src={useBaseUrl("/image/workflow/account-details.png")} alt="Signer Account Details" width="200" class="inline-img" />
 
@@ -250,7 +250,7 @@ After generating the cryptographic key-pair for an Account, you must fund the ac
 
 On Testnet, you can fund an account by requesting test tokens according to [this guide](../users/testnet-faucet.md). You can request test tokens **only once** for each account.
 
-On Mainnet, a pre-existing account will have to transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
+On Mainnet, a pre-existing account must transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 
 ## Acquiring a Node Address from the Network {#acquire-node-address-from-network-peers}
 
