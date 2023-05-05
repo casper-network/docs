@@ -157,6 +157,8 @@ Then, compile the source code:
 cargo build --release
 ```
 
+You will find the `casper-client` executable in the `target/release` directory.
+
 ## Installing `cmake` {#install-cmake}
 
 If you plan to compile contracts from the source code, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `cmake` with the commands below.
