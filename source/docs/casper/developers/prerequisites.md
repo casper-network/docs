@@ -17,7 +17,7 @@ To be able to develop comfortably on the Casper Network you should use either `m
 
 :::caution
 
-Casper Network does not officially support `macOS`. If you encounter any problems reach out to the community on Telegram or Discord.
+Casper Network does not officially support `macOS`. If you encounter any problems reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
 
 :::
 
