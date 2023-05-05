@@ -47,10 +47,8 @@ module.exports = {
             position: "left",
         },
         {
-            to: `${routePrefix}/faq`,
-            activeBasePath: `${routePrefix}/faq`,
-            label: "FAQ",
-            position: "left",
+            href: "https://support.casperlabs.io/",
+            label: "Support",
         },
         {
             href: "https://discord.com/invite/Q38s3Vh",
@@ -109,7 +107,7 @@ module.exports = {
         //     ],
         // },
         {
-            href: "https://github.com/casper-network/docs-app",
+            href: "https://github.com/casper-network/docs",
             label: "GitHub",
             position: "right",
         },

@@ -1,0 +1,46 @@
+@use "../../../../assets/scss/variables/sizes";
+@use "../../../../assets/scss/mixins";
+
+.sidebar {
+    position: absolute;
+    top: var(--navBarSiteHeight);
+    left: 0;
+    z-index: var(--navBarZIndex);
+    width: 100%;
+    max-width: 100dvw;
+    background-color: var(--liftedBlack);
+    transform: translateX(-996px);
+    @include mixins.transition(0.7s ease-in);
+    padding: 0 var(--navSpacing);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    overflow-x: scroll;
+    height: 90dvh;
+
+    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+
+    &_container {
+        width: 100%;
+        margin-top: 20px;
+        &_search {
+            position: relative;
+            width: 100%;
+        }
+        &_nav {
+            position: relative;
+            width: 100%;
+            margin-top: 52px;
+        }
+    }
+
+    &_social {
+        position: relative;
+        margin: 45px 0;
+    }
+}
+
+.sidebarClose {
+    transform: translateX(0px);
+}

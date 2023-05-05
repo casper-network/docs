@@ -3,7 +3,7 @@ module.exports = {
         "concepts/index",
         "concepts/intro-to-dapps",
         "concepts/accounts-and-keys",
-        "concepts/understanding-hash-types",
+        "concepts/hash-types",
         "concepts/deploy-and-deploy-lifecycle",
         "concepts/global-state",
         "concepts/smart-contracts",
@@ -34,9 +34,9 @@ module.exports = {
                 "concepts/economics/consensus",
                 "concepts/economics/runtime",
                 "concepts/economics/gas-concepts",
-                "concepts/economics/delegation",
                 "concepts/economics/concepts",
                 "concepts/economics/staking",
+                "concepts/economics/delegation",
             ],
         },
         {
@@ -122,6 +122,7 @@ module.exports = {
             collapsed: true,
             items: [
                 "developers/dapps/index",
+                "developers/dapps/prerequisites",
                 {
                     type: "category",
                     label: "SDK Client Libraries",
@@ -129,6 +130,7 @@ module.exports = {
                     collapsed: true,
                     items: [
                         "developers/dapps/sdk/index",
+                        "developers/dapps/sdk/client-library-usage",
                         "developers/dapps/sdk/script-sdk",
                         "developers/dapps/sdk/csharp-sdk",
                         "developers/dapps/sdk/go-sdk",
@@ -136,12 +138,13 @@ module.exports = {
                         //"developers/dapps/sdk/additional-libraries", // NEW CONTENT WILL BE HERE
                     ],
                 },
-                //"developers/dapps/prerequisites", // NEW CONTENT WILL BE HERE
-                //"developers/dapps/technology-stack", // NEW CONTENT WILL BE HERE
+                "developers/dapps/technology-stack",
+                "developers/dapps/setup-nctl",
+                "developers/dapps/nctl-test",
                 //"developers/dapps/template-frontend", // NEW CONTENT WILL BE HERE
                 "developers/dapps/signing-a-deploy",
                 "developers/dapps/sending-deploys",
-                //"developers/dapps/using-casper-signer", // NEW CONTENT WILL BE HERE
+                //"developers/dapps/signer-integration",
                 //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 //"developers/dapps/explanation-session-and-contract", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
@@ -176,7 +179,6 @@ module.exports = {
     ],
     operators: [
         "operators/index",
-        "operators/table-of-contents",
         {
             type: "category",
             label: "Getting set up",
@@ -237,9 +239,9 @@ module.exports = {
                     items: [
                         "resources/tutorials/beginner/index",
                         "resources/tutorials/beginner/getting-started-tutorial",
-                        "resources/tutorials/beginner/use-javascript-sdk",
                         "resources/tutorials/beginner/querying-network",
                         "resources/tutorials/beginner/upgrade-contract",
+                        "resources/tutorials/beginner/aws-node",
                         {
                             type: "category",
                             label: "A Counter on the Testnet",
@@ -274,10 +276,12 @@ module.exports = {
                     collapsed: true,
                     items: [
                         "resources/tutorials/advanced/index",
+                        "resources/tutorials/advanced/cross-contract",
                         "resources/tutorials/advanced/transfer-token-to-contract",
                         "resources/tutorials/advanced/two-party-multi-sig",
                         "resources/tutorials/advanced/return-values-tutorial",
-                        "resources/tutorials/advanced/list-cspr",
+                        //"resources/tutorials/advanced/list-cspr",
+                        "resources/tutorials/advanced/storage-workflow",
                     ],
                 },
             ],
@@ -297,11 +301,11 @@ module.exports = {
         "users/funding-from-exchanges",
         "users/testnet-faucet",
     ],
-    faq: ["faq/index", "faq/faq-general", "faq/faq-enterpise", "faq/faq-developer", "faq/faq-validator"],
     workflow: ["workflow/ledger-setup"],
     // BELOW ITEMS ARE COMMENTED OUT BECAUSE WE COULD NOT LOCATE PLACE FOR THEM IN THE NEW STRUCTURE:
     /*"dapp-dev-guide": [
         "dapp-dev-guide/json-rpc",
+        //"dapp-dev-guide/list-auth-keys"
         {
             type: "category",
             label: "Building dApps",
@@ -309,8 +313,6 @@ module.exports = {
             collapsed: true,
             items: [
                 "dapp-dev-guide/building-dapps/dapp",
-                "dapp-dev-guide/building-dapps/setup-nctl",
-                "dapp-dev-guide/building-dapps/nctl-test",
             ],
         },
     ],*/

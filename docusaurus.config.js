@@ -1,17 +1,22 @@
+require("dotenv").config({
+    path: process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : `.env`,
+});
+
 const {
     algoliaConfig,
     algoliaOfflineConfig,
-    analyticsConfig,
     announcementConfig,
     colorConfig,
     dataConfig,
     footerConfig,
+    gtagConfig,
     i18nConfig,
     metadatasConfig,
     navbarConfig,
     pwaConfig,
     prismConfig,
     siteConfig,
+    siteNavbarConfig,
 } = require("./config");
 const { getEditUrl } = require("./src/utils/docs");
 
@@ -23,14 +28,17 @@ module.exports = {
     i18n: i18nConfig,
     baseUrl: "/",
     /* Optional */
-    // customFields: dataConfig,
+    customFields: {
+        // customFields: dataConfig,
+        ...siteNavbarConfig,
+    },
     themeConfig: {
         tableOfContents: {
             minHeadingLevel: 2,
             maxHeadingLevel: 6,
         },
-        // algolia: algoliaConfig,
-        announcementBar: announcementConfig,
+        ...(algoliaConfig["apiKey"] && { algolia: algoliaConfig }),
+        // announcementBar: announcementConfig,
         colorMode: colorConfig,
         footer: footerConfig,
         docs: {
@@ -39,16 +47,9 @@ module.exports = {
             },
         },
         /* Optional */
-        // googleAnalytics: analyticsConfig.googleAnalytics,
-        // gtag: analyticsConfig.gtag,
         // metadatas: metadatasConfig,
         navbar: navbarConfig,
         prism: prismConfig,
-        algolia: {
-            appId: "KQNX60E7J5",
-            apiKey: "42e859bcdaa94a6c412d933cbaabe2e2",
-            indexName: "casperlabs",
-        },
     },
     presets: [
         [
@@ -68,6 +69,7 @@ module.exports = {
                     // editCurrentVersion: true,
                     // onlyIncludeVersions: process.env.PREVIEW_DEPLOY === "true" ? ["current", ...versions.slice(0, 2)] : undefined,
                 },
+                ...(gtagConfig["trackingID"] && { gtag: gtagConfig }),
                 // IMPORTANT: disable blog feature
                 blog: false,
                 /* Blog config options */
@@ -93,12 +95,13 @@ module.exports = {
         /* Optional */
         // ["@docusaurus/plugin-pwa", pwaConfig],
         [
-            "docusaurus2-dotenv",
+            "docusaurus-plugin-navdata",
             {
-                path: "./.env.production",
-                safe: false,
-                systemvars: false,
-                silent: false,
+                directusUrl: process.env.DIRECTUS_URL,
+                directusGraphqlUrl: process.env.DIRECTUS_GRAPHQL_URL,
+                directusToken: process.env.DIRECTUS_TOKEN,
+                query:
+                    "query { header { translations { languages_code { code } login_text search_placeholder logo { id } nav_items { header_nav_item_id { title columns { header_nav_column_id { groups { header_link_column_id { title links { link_id { title type url open_in_new_tab children { related_link_id { title type url open_in_new_tab }}}}}}}}}}}} social_media { name url icon { id }} footer { translations { title description logo { id title } link_column { footer_link_column_id { title links { link_id { title type url open_in_new_tab } } } } bottom_links { link_id { title type url open_in_new_tab } } languages_code { code } } }}",
             },
         ],
     ],

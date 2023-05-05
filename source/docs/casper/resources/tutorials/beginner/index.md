@@ -17,3 +17,4 @@ The following tutorials present several Casper features in depth:
 |[Interacting with Runtime Return Values](../advanced/return-values-tutorial.md)| Learning how to return a value using contract code |
 |[Safely Transfer Tokens to a Contract](../advanced/transfer-token-to-contract.md) | How to handle tokens via a contract |
 |[Smart Contract Upgrades](./upgrade-contract.md) | Learn how to upgrade smart contracts |
+|[Launching a Casper Node with AWS Marketplace](./aws-node.md) | Learn how to launch a Casper Node through the AWS Marketplace |

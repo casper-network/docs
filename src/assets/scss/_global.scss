@@ -1,0 +1,245 @@
+@use "./variables/fonts-variables";
+@use "./variables/sizes";
+@use "./mixins";
+@use "./variables/media-queries";
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: fonts-variables.$font-casperSans;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    background: var(--black);
+
+    &.dropdownOpen {
+        position: relative;
+        right: calc(var(--scrollbarWidth) / 2);
+    }
+    &.mobileDropdownOpen {
+        position: relative;
+        overflow: hidden;
+    }
+    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+}
+
+.preventScrollDocument {
+    overflow: hidden !important;
+}
+
+h1 {
+    font-family: fonts-variables.$font-casperSans;
+    font-weight: 300;
+    font-size: 94px;
+    line-height: inherit; //identical to box height, or 117%
+    color: var(--casperWhite);
+}
+
+h2 {
+    font-family: fonts-variables.$font-casperSans;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 125%;
+    letter-spacing: 0.02em;
+    color: var(--casperWhite);
+}
+
+h3 {
+    font-family: fonts-variables.$font-casperSans;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: inherit; // identical to box height, or 131%
+    letter-spacing: 0.01em;
+    color: var(--casperWhite);
+}
+
+h4 {
+    font-family: fonts-variables.$font-casperSans;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: inherit; // identical to box height, or 133%
+    letter-spacing: 0.05em;
+    color: var(--casperWhite);
+}
+
+.halfTitleEyebrow {
+    font-family: fonts-variables.$font-casperSans;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px; // or 150%
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--casperWhite);
+}
+
+.snippetMarkdown {
+    font-family: fonts-variables.$font-sourceCodePro;
+    font-size: 16px;
+    line-height: inherit; // identical to box height, or 150%
+    letter-spacing: 0.01em;
+    color: var(--casperWhite);
+}
+
+.primaryParagraph {
+    font-family: fonts-variables.$font-casperSans;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px; // or 150%
+    letter-spacing: 0.05em;
+    color: #ffffff;
+}
+
+.secondaryParagraph {
+    font-family: fonts-variables.$font-casperSans;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px; // or 133%
+    letter-spacing: 0.06em;
+    color: var(--casperWhite);
+}
+
+.noWrap {
+    white-space: nowrap;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+ol[class],
+ul[class] {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration-skip-ink: auto;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.preload-image {
+    position: absolute;
+    opacity: 0;
+    height: 1px;
+    width: 1px;
+    pointer-events: none;
+}
+
+// GRID
+.containerSite {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .navBarSite {
+        width: 100%;
+        max-width: var(--navBoxWidth);
+        padding: 0 var(--navSpacing);
+    }
+
+    .contentBox {
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        //grid-template-columns: repeat(auto-fill, minmax(77px, 1fr));
+        grid-template-columns: repeat(sizes.$columns, 1fr);
+        gap: var(--gapSpacing);
+        padding-left: 20px;
+        padding-right: 20px;
+        @include mixins.span-x;
+        .contentBox {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+}
+
+@media (max-width: 390px) {
+    .containerSite {
+        .contentBox {
+            column-gap: unset;
+        }
+    }
+}
+
+// Color
+.color {
+    &.blue {
+        --mainColor: var(--casperBlue);
+    }
+
+    &.red {
+        --mainColor: var(--casperRed);
+    }
+
+    &.yellow {
+        --mainColor: var(--casperYellow);
+    }
+
+    &.pink {
+        --mainColor: var(--casperBrightPink);
+    }
+
+    &.green {
+        --mainColor: var(--casperGreen);
+    }
+
+    &.purple {
+        --mainColor: var(--casperPurple);
+    }
+
+    &.pinkLight {
+        --mainColor: var(--casperPinkLight);
+    }
+
+    &.brown {
+        --mainColor: var(--casperBrown);
+    }
+
+    &.white {
+        --mainColor: var(--casperWhite);
+    }
+
+    &.brownLight {
+        --mainColor: var(--casperTilesBrownLight);
+    }
+}
+
+// /GRID
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+//
+html {
+    scroll-behavior: smooth;
+}
+
+//
+@media #{media-queries.$break-md} {
+    h1 {
+        font-size: 60px;
+    }
+}
+@media #{media-queries.$break-sm} {
+    h1 {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 26px;
+    }
+}
