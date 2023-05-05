@@ -145,10 +145,16 @@ casper-client <command> --help
 
 You can access the Casper client source code [here](https://github.com/casper-ecosystem/casper-client-rs). The `lib` directory contains the source for the client library, which may be called directly rather than through the CLI binary. The CLI app `casper-client` uses this library to implement its functionality.
 
-If you wish to compile it, you will need to install the nightly Rust compiler with this command:
+If you wish to compile it, you will need to first install the nightly Rust compiler with this command:
 
 ```bash
 rustup toolchain install nightly
+```
+
+Then, compile the source code:
+
+```bash
+cargo build --release
 ```
 
 ## Installing `cmake` {#install-cmake}
