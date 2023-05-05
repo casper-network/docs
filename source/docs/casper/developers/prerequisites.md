@@ -157,17 +157,17 @@ xcode-select -p
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-Verify the installation with:
-
-```bash
-rustup --version
-```
-
 The installation script automatically adds Rust to your system PATH after your next login.
 To start using Rust right away instead of restarting your terminal, run the following command in your shell to add Rust to your system PATH manually:
 
 ```bash
 source $HOME/.cargo/env
+```
+
+Verify the installation with:
+
+```bash
+rustup --version
 ```
 
 ### Install brew {#install-brew}
