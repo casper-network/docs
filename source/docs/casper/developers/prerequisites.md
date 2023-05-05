@@ -85,58 +85,6 @@ cargo-casper --version
 sudo apt install build-essential
 ```
 
-### Install the Casper client {#install-casper-client-linux}
-
-You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deploys.
-
-```bash
-cargo install casper-client
-```
-
-Verify the installation with:
-
-```bash
-casper-client --version
-```
-
-The Casper client can print out help information, which provides an up-to-date list of supported commands. To do so, use the following command:
-
-```bash
-casper-client --help
-```
-Important: For each command, you can use help to get the most up-to-date arguments and descriptions.
-
-```bash
-casper-client <command> --help
-```
-
-### Building the Client from Source {#building-client-from-source}
-
-[Instructions](https://github.com/casper-ecosystem/casper-client-rs)
-
-For the compilation to work install the nightly compiler:
-
-```bash
-rustup toolchain install nightly
-```
-
-:::info
-
-OPTIONAL: if you are going to run a Casper Network validator install cmake with the command below:
-
-:::
-
-### Install cmake {#install-cmake}
-
-```bash
-sudo apt-get -y install cmake
-```
-
-Verify the installation with
-
-```bash
-cmake --version
-```
 </TabItem>
 <TabItem value="macOS" label="macOS">
 
@@ -195,12 +143,21 @@ Verify the installation with:
 cargo-casper --version
 ```
 
-### Install the Casper client {#install-casper-client-macos}
+</TabItem>
+</Tabs>
+
+## Install the Casper client {#install-casper-client}
 
 You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deploys.
 
 ```bash
 cargo install casper-client
+```
+
+Verify the installation with:
+
+```bash
+casper-client --version
 ```
 
 The Casper client can print out help information, which provides an up-to-date list of supported commands. To do so, use the following command:
@@ -218,40 +175,38 @@ casper-client <command> --help
 
 [Instructions](https://github.com/casper-ecosystem/casper-client-rs)
 
-For more information about supported commands, you can check it with:
-
-```bash
-casper-client --help
-```
-
 For the compilation to work install the nightly compiler:
 
 ```bash
 rustup toolchain install nightly
 ```
 
-:::info
 
-OPTIONAL: if you are going to run a Casper Network validator install cmake with the command below:
+## Install cmake {#install-cmake}
 
-:::
+If you are planning to compile contracts from source, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `cmake` with the commands below.
 
-### Install cmake {#install-cmake-macos}
+<Tabs>
+<TabItem value="Linux" label="Linux">
+
+```bash
+sudo apt-get -y install cmake
+```
+
+</TabItem>
+<TabItem value="macOS" label="macOS">
 
 ```bash
 brew install cmake
 ```
+</TabItem>
+</Tabs>
 
-Verify the installation with:
+Verify the installation with
 
 ```bash
 cmake --version
 ```
-
-</TabItem>
-</Tabs>
-
-With all the above steps you should be able to succesfully go through the examples and tutorials in the documentation.
 
 ## Install the IDE
 
