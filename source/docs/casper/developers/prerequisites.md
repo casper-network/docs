@@ -103,7 +103,7 @@ Verify the installation:
 rustup --version
 ```
 
-### Installing `cargo-casper` {#install-cargo-casper}
+## Installing `cargo-casper` {#install-cargo-casper}
 
 ```bash
 cargo install cargo-casper
