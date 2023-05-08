@@ -1,6 +1,6 @@
 # Introduction
 
-The following topics describe how to use the Casper command-line client to transfer tokens between purses on a Casper network. Depending on the account configuration, either a direct transfer or a multiple-signature (multi-sig) deploy transfer can be utilized.
+The following topics describe using the Casper command-line client to transfer tokens between purses on a Casper network. Depending on the account configuration, a direct transfer or a multiple-signature (multi-sig) deploy transfer can be utilized.
 
 **Transferring Tokens Using Direct Transfer**
 
