@@ -17,7 +17,7 @@ To develop comfortably for the Casper network, you should use `Linux Ubuntu 20.0
 
 :::caution
 
-Casper Network does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
+Casper does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
 
 :::
 
