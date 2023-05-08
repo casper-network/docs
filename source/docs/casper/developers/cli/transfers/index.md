@@ -2,7 +2,7 @@
 
 The following topics describe using the Casper command-line client to transfer tokens between purses on a Casper network. Depending on the account configuration, a direct transfer or a multiple-signature (multi-sig) deploy transfer can be utilized.
 
-**Transferring Tokens Using Direct Transfer**
+**Transferring tokens using a direct transfer**
 
 Tokens can be transferred directly when the signing key has enough weight to approve the transaction. This is the most common scenario, applicable by default for accounts with a single primary key. To use a direct transfer, see [Transferring Tokens Using Direct Transfer](./direct-token-transfer.md).
 
