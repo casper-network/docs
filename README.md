@@ -4,6 +4,8 @@
 
 Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://docs.casper.network/.
 
+Information on writing style guidelines for documentation can be found in [CONTRIBUTE.md](./CONTRIBUTE.md).
+
 ## Setup
 
 Follow these steps to run the documentation website locally, displayed in your localhost at http://localhost:3000/.

@@ -6,7 +6,7 @@
     background-color: var(--liftedBlack);
     color: var(--casperWhite);
     border: 0.25px solid var(--casperWhite);
-    height: 264px;
+    min-height: 264px;
     border-radius: 2px;
     padding: 20px 26px;
     min-width: 350px;
@@ -79,8 +79,24 @@
             height: 100%;
         }
     }
-    
+
     @media (max-width: 400px) {
         min-width: unset;
+    }
+}
+
+@media (max-width: 903px) {
+    .socialtilecard_text {
+        > p,
+        h4 {
+            white-space: initial;
+            overflow: visible;
+        }
+
+        > h4,
+        .paragraphsecond,
+        .paragraphfirst {
+            text-overflow: initial;
+        }
     }
 }

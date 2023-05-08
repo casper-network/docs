@@ -14,7 +14,7 @@ You must ensure the following prerequisites are met.
     - The Casper [command-line client](../../prerequisites.md#the-casper-command-line-client)
 2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow
 3. Get the path of the source account's _secret key_ file
-4. Get the path of a target account's _public key_ hex file
+4. Get the target account's _public key_ in hex format
 
 ## Token Transfer Workflow
 
@@ -23,11 +23,11 @@ The high-level flow to transfer tokens using a deploy file is described in the f
 1. Use the `make-deploy` command to prepare a transfer and save the output in a file
 2. Use the `send-deploy` command to send the deploy to the network through a valid node
 
-<img src={useBaseUrl("/image/workflow/deploy-flow.png")} width="600" />
+<img src={useBaseUrl("/image/deploy-flow.png")} alt="Deployment flow" width="600" style={{backgroundColor:"#e6e6e6", padding:"0.25em"}} />
 
 ### Preparing the Transfer
 
-This section explains the `make-transfer` command using an example you can try on the Testnet. For this example, we are transferring 2500000000 motes from the source account (with the secret_key.pem file) to a target account. To use this example on the Mainnet, the _chain-name_ would be `casper` instead of `casper-test`. Note that we are saving the output of the `make-deploy` command in a `transfer.deploy` file.
+This section explains the `make-transfer` command using an example you can try on the Testnet. For this example, we are transferring 2,500,000,000 motes from the source account (with the `secret_key.pem` file) to a target account. To use this example on the Mainnet, the _chain-name_ would be `casper` instead of `casper-test`. Note that we are saving the output of the `make-deploy` command in a `transfer.deploy` file.
 
 ```bash
 casper-client make-transfer --amount 2500000000 \
@@ -35,7 +35,7 @@ casper-client make-transfer --amount 2500000000 \
 --chain-name casper-test \
 --target-account [PUBLIC_KEY_HEX] \
 --transfer-id 3 \
---payment-amount 10000 
+--payment-amount 10000 \
 --output transfer.deploy
 ```
 
@@ -223,10 +223,12 @@ Towards the end of the following output, you can observe that there is an **appr
 
 ### Sending the Deploy
 
-The next step is to send the deploy for processing on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node http://80.92.204.108 from the Testnet; replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
+The next step is to send the deploy for processing on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node `http://65.21.235.219` from the Testnet; replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
 
 ```bash
-casper-client send-deploy --input transfer2.deploy --node-address http://65.21.235.219:7777
+casper-client send-deploy \
+--input transfer2.deploy \
+--node-address http://65.21.235.219:7777
 ```
 
 | Parameter    | Description                                                          |
@@ -252,7 +254,7 @@ Make a note of the *deploy_hash* from the `send-deploy` command output to verify
 
 </details>
 
-If you get an account authorization error, you must set up the source account to allow multi-signature deploys using session code. The [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow is an example of how to accomplish this.
+If you encounter an account authorization error, you must set up the source account to allow multi-signature deploys using session code. The [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow is an example of how to accomplish this.
 
 <details>
 <summary>Example of an account authorization error</summary>

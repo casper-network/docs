@@ -3,7 +3,7 @@
 
 .footer_wrapper {
     padding: 0 20px;
-    
+
     .footer_container {
         display: flex;
         flex-direction: column;
@@ -83,25 +83,29 @@
 }
 
 @media #{media-queries.$break-sm} {
-    .footer_container {
-        &_upperData {
-            justify-content: flex-start;
-            flex-direction: column;
-            padding: 89px 0 45px 0;
-            &_social {
-                width: 100%;
-                &_description {
-                    padding-bottom: 0;
-                    max-width: 100%;
-                }
-                .logoCasper {
-                    display: none;
+    .footer_wrapper {
+        .footer_container {
+            &_upperData {
+                justify-content: flex-start;
+                flex-direction: column;
+                padding: 89px 0 45px 0;
+
+                &_social {
+                    width: 100%;
+                    &_description {
+                        padding-bottom: 0;
+                        max-width: 100%;
+                    }
+                    .logoCasper {
+                        display: none;
+                    }
                 }
             }
-        }
-        &_bottomData {
-            flex-direction: column;
-            align-items: flex-start;
+            &_bottomData {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
         }
     }
 }

@@ -80,6 +80,9 @@ const loadSocialMediaImages = async (
   url: string
 ) => {
   const response = await httpClient.get(`${url}assets/${media.iconId}`);
+  if (response.status != 200) {
+    throw new Error(await response.text());
+  }
   const text = await response.text();
   media.icon = text;
 };
@@ -90,6 +93,9 @@ const loadLogos = async (
   url: string
 ) => {
   const response = await httpClient.get(`${url}assets/${navData.logoId}`);
+  if (response.status != 200) {
+    throw new Error(await response.text());
+  }
   const text = await response.text();
   navData.logo = text;
 };
@@ -100,6 +106,9 @@ const loadFooterLogos = async (
   url: string
 ) => {
   const response = await httpClient.get(`${url}assets/${footerData.logoId}`);
+  if (response.status != 200) {
+    throw new Error(await response.text());
+  }
   const text = await response.text();
   footerData.logo = text;
 };

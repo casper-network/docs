@@ -1,4 +1,5 @@
 @use "../../../../assets/scss/variables/sizes";
+@use "../../../../assets/scss/variables/media-queries";
 @use "../../../../assets/scss/mixins";
 
 .sideBarWrapper {
@@ -23,5 +24,11 @@
         display: flex;
         justify-content: flex-end;
         padding: 15px;
+    }
+}
+
+@media #{media-queries.$mobile} {
+    .sideBarWrapper {
+        height: calc(100dvh - calc(var(--siteNavbarMobileHeight, 0px) + var(--navBarDocHeight, 0px)));
     }
 }

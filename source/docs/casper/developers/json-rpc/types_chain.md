@@ -318,6 +318,10 @@ Era ID newtype.
 
 Auction metadata. Intended to be recorded at each era.
 
+Required Parameters:
+
+* [`seigniorage_allocation`](#seigniorageallocation-seigniorageallocation) Information about a seigniorage allocation.
+
 ## EraSummary {#erasummary}
 
 The summary of an era.
@@ -762,7 +766,7 @@ Represents a collection of arguments passed to a smart contract.
 
 ## SeigniorageAllocation {#seigniorageallocation}
 
-Information about a seignorage allocation.
+Information about a seigniorage allocation.
 
 * `Validator` Info about a seigniorage allocation for a validator.
 

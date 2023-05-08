@@ -12,7 +12,7 @@ An Account is a structure that represents a user on a Casper network. Informatio
 
 ## Account Hash {#account-hash}
 
-The account hash is a 32-byte hash of the public key representing the user account. Information on generating an account hash can be found [here](../../faq/faq-general.md#accounts).
+The account hash is a 32-byte hash of the public key representing the user account. Information on generating an account hash can be found [here](https://support.casperlabs.io/hc/en-gb/articles/13781616975131-How-do-I-generate-an-account-hash-).
 
 ## AssemblyScript {#assemblyscript}
 

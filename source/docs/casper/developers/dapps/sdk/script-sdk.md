@@ -88,7 +88,7 @@ const createAccountKeys = () => {
 const newAccountAddress = createAccountKeys();
 ```
 
-After generating the keys with this code, you can add them to the [Casper Signer Chrome extension](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce?hl=en-US) and use them to sign your transactions.
+After generating the keys with this code, you can add them to the [Casper Wallet Chrome extension](https://www.casperwallet.io/) and use them to sign your transactions.
 
 ### Sending a Transfer {#sending-a-transfer}
 
@@ -104,7 +104,7 @@ const casperClientSDK = require("casper-js-sdk");
 
 const { Keys, CasperClient, CLPublicKey, DeployUtil } = require("casper-js-sdk");
 
-const RPC_API = "http://159.65.203.12:7777";
+const RPC_API = "http://159.65.203.12:7777/rpc";
 const STATUS_API = "http://159.65.203.12:8888";
 
 const sendTransfer = async ({ from, to, amount }) => {

@@ -46,12 +46,12 @@ jobs:
           template: .github/templates/.env.production.j2
           output_file: .env.production
         env:
+          ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
           ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           CROWDIN_PERSONAL_ACCESS_TOKEN: ""
-          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
-          GOOGLE_ANALYTICS_ANONYMIZE_IP: ${{ secrets.GOOGLE_ANALYTICS_ANONYMIZE_IP }}
-          GOOGLE_TAG_TRACKING_ID: ${{ secrets.GOOGLE_TAG_TRACKING_ID }}
+          GOOGLE_TAG_ANONYMIZE_IP: ${{ vars.GOOGLE_TAG_ANONYMIZE_IP }}
+          GOOGLE_TAG_TRACKING_ID: ${{ vars.GOOGLE_TAG_TRACKING_ID }}
           DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
           DIRECTUS_GRAPHQL_URL: ${{ secrets.DIRECTUS_GRAPHQL_URL }}
           DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_TOKEN }}
@@ -72,6 +72,10 @@ jobs:
       - name: Validate external links
         run: |
           yarn check:externals
+
+      - name: Clear Docusaurus cache
+        run: |
+          yarn clear
 
       - name: Build app
         run: |
@@ -144,7 +148,7 @@ jobs:
       working-directory: ./docs
 
   deploy-prod:
-    if: github.ref == 'refs/heads/dev'
+    if: ${{ github.ref == 'refs/heads/dev' && github.repository == 'casper-network/docs' }}
     needs: [backup, system-tests-predeployment]
     runs-on: ubuntu-latest
 

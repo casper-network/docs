@@ -23,12 +23,13 @@ The Casper Ecosystem is growing every day through the addition of new dApps and 
 ### Wallets
 - [Ledger](https://support.ledger.com/hc/en-us/articles/4416379141009-Casper-CSPR-?docs=true)
 - [Tor.us](https://casper.tor.us)
-- [Casper Signer](https://chrome.google.com/webstore/search/casper?hl=en)
 - [Casper Wallet](https://www.casperwallet.io)
+- [Metamask Flask](https://metamask.io/flask/) with [Casper Snap](https://github.com/casperholders/casper-snap)
 
 ### Block Explorers
 - [cspr.live](https://cspr.live)
 - [Casper.info](https://casper-trench.vercel.app/)
+- [Div3.in](https://div3.in/)
 
 ### Developer Tools
 - [casperholders.io](https://casperholders.io)
@@ -67,7 +68,7 @@ The Casper development process strives to be familiar to all developers. You can
 Casper also provides the instrumentation and tooling that seamlessly integrates existing Continuous Integration/Continuous Deployment pipelines. Build servers can run the Casper Virtual Machine without the overhead of a full node, tracking the blockchain internal state and running assertions, thus enabling a solid development pipeline.
 
 ### Local Network Testing {#local-network-testing}
-We also offer a tool to run a [local Casper Network](../../dapp-dev-guide/building-dapps/setup-nctl.md). Even though you don't need a stand-alone node for smart contract development, you can configure your local network to test your deployments and estimate gas costs. A local network is helpful when integrating your dApp into a mobile or web interface.
+We also offer a tool to run a [local Casper Network](../../developers/dapps/setup-nctl.md) Even though you don't need a stand-alone node for smart contract development, you can configure your local network to test your deployments and estimate gas costs. A local network is helpful when integrating your dApp into a mobile or web interface.
 
 ### Public Mainnet and Testnet {#public-mainnet-and-testnet}
 The Casper [Mainnet](https://cspr.live) is a public, open-source, community-driven ecosystem. You can also explore the [Testnet](https://testnet.cspr.live) to test drive your applications and estimate gas costs.

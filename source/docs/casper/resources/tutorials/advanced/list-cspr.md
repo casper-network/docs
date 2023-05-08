@@ -2,6 +2,12 @@
 
 This topic describes how to list Casper token (CSPR) on a cryptocurrency exchange. 
 
+:::caution
+
+The Casper Signer has been deprecated and replaced with the [Casper Wallet](https://www.casperwallet.io). We are in the process of updating this page. Meanwhile, visit the guide on [Building with the Casper Wallet](https://www.casperwallet.io/develop).
+
+:::
+
 CSPR is listed on [many exchanges](https://tokenmarketcaps.com/coins/casper/market) worldwide. It usually takes 1 to 3 days to list CSPR on an exchange.
 
 ## Setting up a Node

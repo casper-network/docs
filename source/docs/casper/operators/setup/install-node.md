@@ -1,8 +1,8 @@
-# Installing a Node 
+# Installing a Node
 
 Ensure the requirements listed in the following sections are met before you start setting up the node on the network, either on Mainnet or Testnet.
 
-## Network Requirements
+## Network Requirements {#network-requirements}
 
 The following ports are used by the node:
 
@@ -51,6 +51,27 @@ sudo apt update
 ```bash
 sudo apt install -y casper-client casper-node-launcher jq
 ```
+
+## Enable Bash Auto-Completion for `casper-client` (Optional)
+
+```bash
+sudo casper-client generate-completion
+```
+
+It defaults to `bash` but can be changed with the `--shell` argument:
+```bash
+--shell <STRING>    The type of shell to generate the completion script for [default: bash]  [possible values:
+                            zsh, bash, fish, powershell, elvish]
+
+sudo casper-client generate-completion --shell powershell
+```
+
+You need to source the new auto completion script or log out and log in again to activate it for the current shell:
+```bash
+source /usr/share/bash-completion/completions/casper-client
+```
+
+Now you can use `casper-client` and press the `tab` key to get auto completion for your commands.
 
 ## Installing All Protocols
 
@@ -134,6 +155,3 @@ The community has created a few tools to monitor your node once it is running, s
 
 - Status.py: https://github.com/RapidMark/casper-tools
 - Grafana: https://github.com/matsuro-hadouken/casper-tools
-
-
-

@@ -47,7 +47,7 @@ export default function SearchBox({ placeholder, locale, siteUrl }: any) {
 
     function resetState() {
         setSearchTerm("");
-        clearInput("inputSearch");
+        clearInput();
     }
 
     useEffect(() => {
@@ -60,9 +60,12 @@ export default function SearchBox({ placeholder, locale, siteUrl }: any) {
 
     useClickOutside(refInput, (isInside: boolean) => setHasFocus(isInside));
 
-    function clearInput(elemId: string) {
+    function clearInput() {
         if (!useWindow()) return;
-        (document.getElementById(elemId) as HTMLInputElement).value = "";
+        const buttons = document.getElementsByClassName(styles.container_input);
+        for (const button of buttons) {
+            (button as HTMLInputElement).value = "";
+        }
         setSearchTerm("");
         setShowResults(false);
     }
@@ -78,7 +81,7 @@ export default function SearchBox({ placeholder, locale, siteUrl }: any) {
             />
             <span className={styles.container_icon_search}>{icons.search}</span>
             {searchTerm && (
-                <button className={styles.container_icon_cancel} onClick={() => clearInput("inputSearch")}>
+                <button className={styles.container_icon_cancel} onClick={() => clearInput()}>
                     {icons.cancel}
                 </button>
             )}

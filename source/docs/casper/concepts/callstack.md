@@ -1,3 +1,7 @@
+---
+title: Call Stacks
+---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Understanding Call Stacks
