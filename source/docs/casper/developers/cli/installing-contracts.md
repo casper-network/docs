@@ -13,7 +13,7 @@ This document details the process of installing [Casper smart contracts](../writ
 - You know how to [send and verify deploys](../dapps/sending-deploys.md)
    - You have installed the [Casper CLI client](../prerequisites.md#installing-the-casper-client-install-casper-clie) to interact with the network
    - You have a [Casper Account](../prerequisites.md#setting-up-an-account) with a public and secret key pair to initiate the deploy
-   - You have enough CSPR tokens in your account's main purse to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](../../users/token-transfer.md#2-the-faucet) to fund your testing account's main purse
+   - You have enough CSPR tokens in your account's main purse to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](../../users/testnet-faucet.md) to fund your testing account's main purse
 - You understand how to [write basic contract code](../writing-onchain-code/index.md) and session code
 - You have a contract Wasm to send to a Casper network
 
