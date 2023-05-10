@@ -17,7 +17,7 @@ This document details the process of installing [Casper smart contracts](../writ
 
 ## Installing a Contract in Global State {#installing-contract-code}
 
-To install a contract in [global state](../../concepts/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command. Remember to [verify the deploy](../dapps/sending-deploys.md#sending-the-deploy) after sending it to the network.
+To install a contract in [global state](../../concepts/glossary/G.md#global-state), you need to send a deploy to the network with the contract Wasm. You can do so by using the `put-deploy` command.
 
 ```bash
 casper-client put-deploy \
@@ -35,7 +35,7 @@ The arguments used above are:
 -   `payment-amount` - The payment for the deploy in motes
 -   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
 
-Once you call this command, it will return a deploy hash. You can use this hash to verify that the deploy successfully took place.
+Once you call this command, it will return a deploy hash. You can use this hash to [verify](../dapps/sending-deploys.md#sending-the-deploy) that the deploy successfully took place.
 
 **Example - Install the contract:**
 
