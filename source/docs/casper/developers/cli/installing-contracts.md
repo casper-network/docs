@@ -15,8 +15,7 @@ This document details the process of installing [Casper smart contracts](../writ
    - You have a [Casper Account](../prerequisites.md#setting-up-an-account) with a public and secret key pair to initiate the deploy
    - You have enough CSPR tokens in your account's main purse to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](../../users/testnet-faucet.md) to fund your testing account's main purse
 - You understand how to [write basic contract code](../writing-onchain-code/index.md) and session code
-- You have a contract Wasm to send to a Casper network
-
+- You have a compiled contract (`.wasm` file) to send to a Casper network
 
 ## Installing a Contract in Global State {#installing-contract-code}
 
