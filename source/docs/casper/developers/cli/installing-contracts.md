@@ -167,7 +167,7 @@ Here is how your account state would look. Notice that the sample response conta
 </details>
 <br></br>
 
-:::note
+:::tip
 
 If you don't know your account hash, you can run this command:
 
