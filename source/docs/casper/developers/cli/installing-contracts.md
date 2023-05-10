@@ -33,7 +33,7 @@ The arguments used above are:
 -   `chain-name` - The chain name to the network where you wish to send the deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
 -   `secret-key` - The file name containing the secret key of the account paying for the deploy
 -   `payment-amount` - The payment for the deploy in motes
--   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (.wasm file) on your computer
+-   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (`.wasm` file) on your computer
 
 Once you call this command, it will return a deploy hash. You can use this hash to [verify](../dapps/sending-deploys.md#sending-the-deploy) that the deploy successfully took place.
 
