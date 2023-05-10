@@ -21,11 +21,11 @@ To install a contract in [global state](../../concepts/glossary/G.md#global-stat
 
 ```bash
 casper-client put-deploy \
-    --node-address [NODE_SERVER_ADDRESS] \
-    --chain-name [CHAIN_NAME] \
-    --secret-key [KEY_PATH]/secret_key.pem \
-    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
+  --node-address [NODE_SERVER_ADDRESS] \
+  --chain-name [CHAIN_NAME] \
+  --secret-key [KEY_PATH]/secret_key.pem \
+  --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+  --session-path [CONTRACT_PATH]/[CONTRACT_NAME].wasm
 ```
 
 The arguments used above are:
@@ -43,18 +43,18 @@ Here we send a `counter-v1.wasm` to a local NCTL network.
 
 ```bash
 casper-client put-deploy \
-    --node-address http://localhost:11101 \
-    --chain-name casper-net-1 \
-    --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
-    --payment-amount 5000000000000 \
-    --session-path ./counter/target/wasm32-unknown-unknown/release/counter-v1.wasm
+  --node-address http://localhost:11101 \
+  --chain-name casper-net-1 \
+  --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
+  --payment-amount 5000000000000 \
+  --session-path ./counter/target/wasm32-unknown-unknown/release/counter-v1.wasm
 ```
 
 To verify the deploy, call `get-deploy` and provide the deploy hash you received from `put-deploy`.
 
 ```bash
 casper-client get-deploy \
-    --node-address http://localhost:11101 [DEPLOY_HASH]
+  --node-address http://localhost:11101 [DEPLOY_HASH]
 ```
 
 **Video - Contract Installation Walkthrough**
@@ -91,10 +91,10 @@ Next, query the state of a Casper network at a given time, specified by the `sta
 
 ```bash
 casper-client query-global-state \
-    --node-address [NODE_SERVER_ADDRESS] \
-    --state-root-hash [STATE_ROOT_HASH] \
-    --key [HASH_STRING] \
-    -q "[SESSION_NAME]/[SESSION_NAMED_KEY]"
+  --node-address [NODE_SERVER_ADDRESS] \
+  --state-root-hash [STATE_ROOT_HASH] \
+  --key [HASH_STRING] \
+  -q "[SESSION_NAME]/[SESSION_NAMED_KEY]"
 ```
 
 The arguments used above are:
@@ -280,10 +280,10 @@ It is also possible to check the state of a specific contract variable in global
 
 ```bash
 casper-client query-global-state \
-    --node-address http://localhost:11101 \
-    --state-root-hash fa968344a2000282686303f1664c474465f9a028f32ec4f51791d9fa64c0bcd7 \
-    --key account-hash-1d17e3fdad268f866a73558d1ae45e1eea3924c247871cb63f67ebf1a116e66d \
-    -q "counter/count"
+  --node-address http://localhost:11101 \
+  --state-root-hash fa968344a2000282686303f1664c474465f9a028f32ec4f51791d9fa64c0bcd7 \
+  --key account-hash-1d17e3fdad268f866a73558d1ae45e1eea3924c247871cb63f67ebf1a116e66d \
+  -q "counter/count"
 ```
 
 The response should be the same as in Example 3, above.
