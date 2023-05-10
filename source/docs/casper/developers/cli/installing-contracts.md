@@ -85,12 +85,6 @@ To get the state root hash, use the `get-state-root-hash` command:
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
-Here is an example with the node address filled in:
-
-```bash
-casper-client get-state-root-hash --node-address http://localhost:11101
-```
-
 ### Query global state {#query-global-state}
 
 Next, query the state of a Casper network at a given time, specified by the `state-root-hash` described above. You can dive into the data stored in global state using the query path argument `q`.
