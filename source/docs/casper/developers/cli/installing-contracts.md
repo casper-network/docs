@@ -100,7 +100,7 @@ casper-client query-global-state \
 The arguments used above are:
 -   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
 -   `state-root-hash` -  Hex-encoded hash of the state root
--   `key` - The identifier for the query. It must be the account public key, account hash, contract package hash, transfer hash, or deploy hash
+-   `key` - The identifier for the query. This must be one of the following: public key, account hash, contract package hash, transfer hash, or deploy hash
 -   `q` - An optional query path argument that allows you to drill into the specifics of a query with respect to the key
 
 **Example - Query the account:**
