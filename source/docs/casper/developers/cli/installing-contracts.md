@@ -87,14 +87,14 @@ casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 
 ### Query global state {#query-global-state}
 
-Next, query the state of a Casper network at a given time, specified by the `state-root-hash` described above. You can dive into the data stored in global state using the query path argument `q`.
+Next, query the state of a Casper network at a given time, specified by the `state-root-hash` described above. You can dive into the data stored in global state using the optional query path argument `-q`.
 
 ```bash
 casper-client query-global-state \
     --node-address [NODE_SERVER_ADDRESS] \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [HASH_STRING] \
-    -q "[SESSION_NAME]/[SESSION_NAMED_KEY]" (OPTIONAL)
+    -q "[SESSION_NAME]/[SESSION_NAMED_KEY]"
 ```
 
 The arguments used above are:
