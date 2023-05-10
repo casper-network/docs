@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Installing Smart Contracts and Querying Global State
 
-This document details the process of installing [Casper smart contracts](../writing-onchain-code/simple-contract.md) using the [Casper command-line client](../prerequisites.md#the-casper-command-line-client) and the `put-deploy` command.
+This document details the process of installing [Casper smart contracts](../writing-onchain-code/simple-contract.md) using the [Casper command-line client](../prerequisites.md#the-casper-command-line-client) and the `put-deploy` command. It further explains how to query the global state after contract deployment.
 
 ## Prerequisites
 
