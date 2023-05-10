@@ -246,7 +246,8 @@ Next, you can query a named key associated with the contract using the `-q` opti
 casper-client query-global-state \
   --node-address http://localhost:11101 \
   --state-root-hash [STATE_ROOT_HASH] \
-  --key [CONTRACT_HASH] -q "count"
+  --key [CONTRACT_HASH] \
+  -q "count"
 ```
 
 <details>
