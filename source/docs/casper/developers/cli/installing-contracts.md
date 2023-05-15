@@ -71,7 +71,7 @@ Here we look at how to query global state to see details about a successfully in
 
 ### Get the state root hash {#get-state-root-hash}
 
-The first step in querying the global state is obtaining the state root hash - it acts as an identifier for the current state of the network (global state). It is much like a Git commit ID for commit history, and it provides a snapshot of the blockchain state at a specific point in time.
+The first step in querying the global state is obtaining the state root hash.  The state root hash acts as an identifier for the current state of the network (global state). It is like a Git commit ID for commit history, and it provides a snapshot of the blockchain state at a specific point in time.
 
 :::note
 
