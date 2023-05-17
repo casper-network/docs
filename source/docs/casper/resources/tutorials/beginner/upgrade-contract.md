@@ -336,9 +336,11 @@ casper-client put-deploy \
 ```
 
 :::note
+
 There are two ways to call versioned contracts:
 1. [Calling Contracts by Package Hash](/developers/writing-onchain-code/calling-contracts/#StoredVersionedContractByHash)
 2. [Calling Contracts by Package Name](/developers/writing-onchain-code/calling-contracts/#StoredVersionedContractByName)
+
 :::
 
 After calling the entry point, the count value should be decremented. You can verify it by querying the network again using the new state root hash.
