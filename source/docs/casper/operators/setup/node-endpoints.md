@@ -63,6 +63,91 @@ You can check the node's status using this command:
 curl -s http://<node_address>:8888/status
 ```
 
+The status endpoint provides a JSON response that can be parsed with `jq`.
+
+```bash
+curl -s http://<node_address>:8888/status | jq
+```
+
+<details>
+<summary><b>Sample response</b></summary>
+
+```json
+{
+  "api_version": "1.4.15",
+  "chainspec_name": "casper-test",
+  "starting_state_root_hash": "4c3856bd6a95b566301b9da61aaf84589a51ee2980f3cc7bbef78e7745386955",
+  "peers": [
+    {
+      "node_id": "tls:007e..e14b",
+      "address": "89.58.52.245:35000"
+    },
+    {
+      "node_id": "tls:00eb..ac11",
+      "address": "65.109.17.120:35000"
+    },
+    ...
+    {
+      "node_id": "tls:ffc0..555b",
+      "address": "95.217.228.224:35000"
+    }
+  ],
+  "last_added_block_info": {
+    "hash": "7acd2f48b573704e96eab54322f7e91a0624252baca3583ad2aae38229fe1715",
+    "timestamp": "2023-05-10T09:20:10.752Z",
+    "era_id": 9085,
+    "height": 1711254,
+    "state_root_hash": "1ac74071c1e76937c372c8d2ae22ea036a77578aad03821ec98021fdc1c5d06b",
+    "creator": "0106ca7c39cd272dbf21a86eeb3b36b7c26e2e9b94af64292419f7862936bca2ca"
+  },
+  "our_public_signing_key": "0107cba5b4826a87ddbe0ba8cda8064881b75882f05094c1a5f95e957512a3450e",
+  "round_length": "32s 768ms",
+  "next_upgrade": null,
+  "build_version": "1.4.15-039d438f2-casper-mainnet",
+  "uptime": "5days 13h 46m 54s 520ms"
+}
+```
+
+</details>
+
+You can filter the result with dot notation, specifying one of the following parameters:
+
+- `api_version` - The RPC API version
+- `chainspec_name` - The chainspec name, used to identify the currently connected network
+- `starting_state_root_hash` - The state root hash used at the start of the current session
+- `peers` - The node ID and network address of each connected peer
+- `last_added_block_info` - The minimal info of the last Block from the linear chain
+- `our_public_signing_key` - Our public signing key
+- `round_length` - The next round length if this node is a validator.
+- `next_upgrade` - Information about the next scheduled upgrade
+- `build_version` - The compiled node version
+- `uptime` - Time that has passed since the node has started.
+
+Here is an example command for retrieving general network information:
+
+```bash
+curl -s http://<node_address>:8888/status | jq -r '.api_version, .last_added_block_info, .build_version, .uptime'
+```
+
+<details>
+<summary><b>Sample response</b></summary>
+
+```json
+"1.4.15"
+{
+  "hash": "dca9959b21df52633f85cd373a8117fe8e89629dd2a0455781484a439f7d9f62",
+  "timestamp": "2023-05-10T09:26:43.968Z",
+  "era_id": 9085,
+  "height": 1711266,
+  "state_root_hash": "5f374529e747a06ec825e07a030df7b9d80d1f7ffac9156779b4466620721872",
+  "creator": "0107cba5b4826a87ddbe0ba8cda8064881b75882f05094c1a5f95e957512a3450e"
+}
+"1.4.15-039d438f2-casper-mainnet"
+"5days 13h 53m 10s 763ms"
+```
+
+</details>
+
 To get information about the next upgrade, use:
 
 ```bash
@@ -78,13 +163,13 @@ curl -s http://<node_address>:8888/status | jq .last_added_block_info
 To monitor the downloading of blocks to your node:
 
 ```bash
-watch -n 15 'curl -s http://<node_address>:8888/status | jq ".peers | length"; curl -s localhost:8888/status | jq .last_added_block_info'
+watch -n 15 'curl -s http://<node_address>:8888/status | jq ".peers | length"; curl -s http://<node_address>:8888/status | jq .last_added_block_info'
 ```
 
 To monitor local block height as well as RPC port status:
 
 ```bash
-watch -n 15 'curl -s http://<node_address>:8888/status | jq ".peers | length"; curl -s localhost:8888/status | jq .last_added_block_info; casper-client get-block'
+watch -n 15 'curl -s http://<node_address>:8888/status | jq ".peers | length"; curl -s http://<node_address>:8888/status | jq .last_added_block_info; casper-client get-block -n http://<node_address>:8888/status'
 ```
 
 ## Default SSE HTTP Event Stream Server Port: 9999 {#9999}

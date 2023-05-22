@@ -12,7 +12,7 @@ When the session code within a Deploy interacts with one or more contracts, this
 
 ## The Caller
 
-In every instance of a call stack, the originating [caller](https://docs.rs/casper-types/latest/casper_types/system/mint/trait.RuntimeProvider.html#tymethod.get_caller) is the session code within the account's context that began the interaction. Contract code cannot spontaneously act without session code to activate it. As such, the session code represents the *zeroth* entity in each call stack.
+In every instance of a call stack, the originating caller is the session code within the account's context that began the interaction. Contract code cannot spontaneously act without session code to activate it. As such, the session code represents the *zeroth* entity in each call stack.
 
 ## The Immediate Caller
 
