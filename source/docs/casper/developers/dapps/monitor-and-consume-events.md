@@ -287,7 +287,7 @@ The `Fault` event is emitted if there is a validator error.
 
 ### FinalitySignature
 
-This event indicates that the final approvals from validators are signed, and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
+This event indicates validators have signed the final approvals and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
 
 <details>
 <summary>Expand to view output</summary>
