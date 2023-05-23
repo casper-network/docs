@@ -20,7 +20,7 @@ An `ApiVersion` event is always emitted when a new client connects to a node's S
 
 ## Listening to the Event Stream
 
-Applications can listen for such events for a specific account during a particular era, containing certain data. Then, they can parse the data and discard what is not needed. To consume the event stream, set up an event listener in your dApp using the following code:
+Applications can listen for such events for a specific account during a particular era, containing certain data. Then, they can parse the data and discard what they do not need. To consume the event stream, set up an event listener in your dApp using the following code:
 
 <Tabs>
 
