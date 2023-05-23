@@ -248,7 +248,7 @@ A `DeployProcessed` event is emitted when a given Deploy has been executed.
 A `DeployExpired` event is emitted when the Deploy is no longer valid for processing or being added to a block due to its time to live (TTL) having expired.
 
 <details>
-  <summary>Expand to view output</summary>
+<summary>Expand to view output</summary>
 
 ```json
 {
