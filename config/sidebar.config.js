@@ -181,7 +181,7 @@ module.exports = {
         "operators/index",
         {
             type: "category",
-            label: "Getting set up",
+            label: "Setting up a Node",
             collapsible: true,
             collapsed: true,
             items: [
@@ -191,6 +191,7 @@ module.exports = {
                 "operators/setup/install-node",
                 "operators/setup/upgrade",
                 "operators/setup/joining",
+                "operators/setup/non-root-user",
             ],
         },
         {
