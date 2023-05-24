@@ -28,7 +28,7 @@ In this example, the first contract would be the `immediate caller` of the secon
 
 Casper networks place a limitation on the maximum height of a call stack. This value can be set within the `chainspec` for the network in question. For the Casper Mainnet, this limit is set at `10` contracts. This does not include the initiating session code, which would still count as the *zeroth* instance within the stack.
 
-As such, a call stack may consist of up to ten consecutive called smart contracts, assuming that the Casper network you are working with is set to the default call stack depth. Smart contract developers should consider it best practice to limit the depth of their call stack as much as practicable. If your contract calls a contract that is not under your direct control, it may call into any number of other contracts. You can best avoid hitting the limitation by being efficient in your own contracts and avoiding superfluous contract separation, if possible.
+As such, a call stack may consist of up to ten consecutive called smart contracts, assuming that the Casper network you are working with is set to the default call stack depth. Smart contract developers should consider it best practice to limit the depth of their call stack as much as practicable. If your contract calls a contract not under your direct control, it may call into any other contracts. You can avoid hitting the limitation by being efficient in your contracts and avoiding superfluous contract separation.
 
 :::note
 
