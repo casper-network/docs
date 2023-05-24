@@ -36,6 +36,7 @@ sudo visudo
 7. Type `<username>  ALL=(ALL:ALL) NOPASSWD:ALL` below the row containing `root    ALL=(ALL:ALL) ALL`.
 
 ```
+# User privilege specification
 root    ALL=(ALL:ALL) ALL
 <username>  ALL=(ALL:ALL) NOPASSWD:ALL
 ```
@@ -44,4 +45,10 @@ root    ALL=(ALL:ALL) ALL
 
 ```
 ssh -i <your ssh private key> <username>@<server ip>
+```
+
+Here is an example command:
+
+```
+ssh -i ~/.ssh/id_rsa casper@10.21.10.200
 ```
