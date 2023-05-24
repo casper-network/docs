@@ -244,6 +244,22 @@ This method returns a state root hash at a given [Block](../../concepts/design/c
 
 This method returns raw bytes for chainspec files.
 
+<details>
+
+<summary><b>Example info_get_chainspec request</b></summary>
+
+```bash
+
+{
+  "jsonrpc": "2.0",
+  "method": "info_get_chainspec",
+  "id": 5510244237763930243
+}
+
+```
+
+</details>
+
 ### `info_get_chainspec_result`
 
 |Parameter|Type|Description|
@@ -253,25 +269,24 @@ This method returns raw bytes for chainspec files.
 
 <details>
 
-<summary><b>Example info_get_chainspec</b></summary>
+<summary><b>Example info_get_chainspec result</b></summary>
+
+Please note that adding a `--vv` flag will return the full chainspec bytes.
 
 ```bash
 
 {
-              "name": "info_get_chainspec_example",
-              "params": [],
-              "result": {
-                "name": "info_get_chainspec_example_result",
-                "value": {
-                  "api_version": "1.4.8",
-                  "chainspec_bytes": {
-                    "chainspec_bytes": "2a2a",
-                    "maybe_genesis_accounts_bytes": null,
-                    "maybe_global_state_bytes": null
-                  }
-                }
-              }
-            }
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.0",
+    "chainspec_bytes": {
+      "chainspec_bytes": "[22040 hex chars]",
+      "maybe_genesis_accounts_bytes": null,
+      "maybe_global_state_bytes": null
+    }
+  },
+  "id": 5510244237763930243
+}
 
 ```
 
