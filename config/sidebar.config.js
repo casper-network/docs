@@ -181,7 +181,7 @@ module.exports = {
         "operators/index",
         {
             type: "category",
-            label: "Getting set up",
+            label: "Setting up a Node",
             collapsible: true,
             collapsed: true,
             items: [
