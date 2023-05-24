@@ -27,6 +27,7 @@ Then, you can follow the node [installation instructions](./setup/install-node.m
   - [Installing a Node](./setup/install-node.md): step-by-step instructions to install a Casper node
   - [Upgrading the Node](./setup/upgrade.md): before joining the network, the node needs to be upgraded
   - [Joining a Running Network](./setup/joining.md): steps to join an existing Casper network
+  - [Setting up a Non-Root User](./setup/non-root-user.md): logging into the node remotely using a key
 - Becoming a Validator
   - [Bonding as a Validator](./becoming-a-validator/bonding.md): a guide about the bonding process and submitting a bid
   - [Unbonding as a Validator](./becoming-a-validator/unbonding.md): the process to withdraw a bid and unbonding
