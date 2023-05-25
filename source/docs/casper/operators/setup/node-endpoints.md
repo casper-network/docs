@@ -183,6 +183,28 @@ address = '0.0.0.0:9999'
 If this port is closed, the requests coming to this port will not be served, but the node remains unaffected. For details and useful commands, see [Monitoring and Consuming Events](../../developers/dapps/monitor-and-consume-events.md).
 
 
+## Setting up Firewall Rules
+
+To limit inbound traffic to the node’s endpoints, you can set firewall rules similar to the `ufw` commands below:
+
+```bash
+sudo apt install ufw -y
+sudo ufw disable
+sudo ufw reset
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw limit ssh
+sudo ufw limit 7777/tcp
+sudo ufw limit 8888/tcp
+sudo ufw limit 35000/tcp
+sudo ufw enable
+```
+
+These commands will limit requests to the available ports of your node. Port 35000 should be left open, although you can limit traffic, as it is crucial for node-to-node communication.
+
+If you have any concerns, questions, or issues, please [submit a request](https://support.casperlabs.io/hc/en-gb/requests/new) to the Casper support team.
+
+
 ## Restricting Access for Private Networks
 
 Any node can join Mainnet and Testnet and communicate with the nodes in the network. Private networks may wish to restrict access for new nodes joining the network as described [here](../setup-network/create-private.md#network-access-control).
