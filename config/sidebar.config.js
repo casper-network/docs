@@ -213,6 +213,13 @@ module.exports = {
             collapsed: true,
             items: ["operators/setup-network/chain-spec", "operators/setup-network/create-private", "operators/setup-network/staging-files-for-new-network"],
         },
+        {
+            type: "category",
+            label: "Advanced Topics",
+            collapsible: true,
+            collapsed: true,
+            items: ["operators/advanced-topics/archiving-and-restoring"],
+        },
     ],
     resources: [
         "resources/index",
