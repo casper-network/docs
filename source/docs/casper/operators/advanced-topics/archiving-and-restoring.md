@@ -128,12 +128,12 @@ curl -s --output - <URL for tar.zstd file>
 If you pipe the output into the previous process, you can decompress the files from `curl` directly into a local directory:
 
 ```bash
-curl -s --output - <tar.zst URL> | zstd -d --long=31 | sudo -u casper tar xv
+curl -s --output - <tar.zst URL> | zstd -d --long=31 | sudo -u casper tar -xv
 ```
 
 ## Starting a New Node with a Decompressed DB
 
-If you are not syncing normally, you will want to tell the node to run at the protocol version of the tip of your DB. You can do this most efficiently with the `node_util.py` script included in the `casper-node-launcher` installation.
+If you are starting a node with a decompressed DB, you must tell the node to run at the protocol version of the tip of your DB. You can do this most efficiently with the `node_util.py` script included in the `casper-node-launcher` installation.
 
 For example, if you are using a DB archive from node version 1.4.5, you would run this command:
 
