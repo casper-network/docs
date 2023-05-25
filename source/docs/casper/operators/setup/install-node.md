@@ -17,9 +17,9 @@ Of these `35000` is the only port required to be open for your node to function,
 
 The recommended OS version is Ubuntu 20.04.
 
-## Specifying the Number of Open Files
+## Required Number of Open Files
 
-Please read through [this page on nofiles configuration](https://github.com/casper-network/casper-node/wiki/Increasing-default-nofile-HARD-limit-for-a-node) to put settings in `/etc/security/limits.conf` for your node to ensure proper operation.
+Before beginning, [update the maximum open files limit](./open-files.md) for your system. Specifically, update your node's `/etc/security/limits.conf` file to ensure proper operation.
 
 ## Required Clean Up
 
