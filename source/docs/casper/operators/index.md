@@ -35,3 +35,6 @@ Then, you can follow the node [installation instructions](./setup/install-node.m
   - [The Chain Specification](./setup-network/chain-spec.md): files needed to create a genesis block
   - [Setting up a Private Casper Network](./setup-network/create-private.md): a step-by-step guide to establishing and configuring a private Casper network
   - [Staging Files for a New Network](./setup-network/staging-files-for-new-network.md): a guide to hosting protocol files for a new Casper network
+- Advanced Topics
+  - [Archiving and Restoring a Database](./advanced-topics/archiving-and-restoring.md): using `zstd` for the compression and decompression of a Casper node database and streaming from a backup location
+   
