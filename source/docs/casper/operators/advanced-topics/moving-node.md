@@ -1,56 +1,94 @@
-This is a description of my backup node cutover tests for an active validator using 1.4.1 casper-node.
+#  Moving a Validating Node
 
-# Setup
+This guide is for active validators who want to move their node to another machine. There are two primary methods to achieve this, outlined below.
 
-Created two nodes and key sets.   We will call these `val` and `backup`.
+## Method One: Copying the Data to a New Location
 
-I copied both keys to /etc/casper/validator_keys/ under val or backup directories.  
+This method is simple but requires downtime. The node needs to download all the blocks generated while it is stopped.
 
- * /etc/casper/validator_keys
-   * public_key_hex
-   * public_key.pem
-   * secret_key.pem
-   * val
-     * public_key_hex
-     * public_key.pem
-     * secret_key.pem
-   * backup
-     * public_key_hex
-     * public_key.pem
-     * secret_key.pem
+1. Stop the node.
+2. Copy the node's data to a new mount:
 
-This allows going into `val` or `backup` and doing a `sudo -u casper cp * ../` to "enable" that node to be that key.
+    ```bash
+    rsync -av --inplace --sparse  /var/lib/casper/ /new_mount
+    ```
 
-Synced both to tip.  Bonded in the val key and waited until rewards were issued.
+3. Change the mount point.
+4. Restart the node.
 
-# Swapping which node is the active validator
+## Method Two: Swapping Keys with a Hot Backup
 
-On the current validator (future backup):
+This method is a safer option, limiting downtime and enabling a smooth transition from the old to the new node, as the node stays in sync with the tip of the chain.
+
+1. Once a node is running (`current_node`), create a second node (`backup_node`) on another machine. These two nodes will run in parallel.
+2. When the `backup_node` is up to date, stop both nodes.
+3. Swap their associated keys.
+4. Restart the `backup_node`.
+
+### Preparation for swapping
+
+Let both nodes synchronize to the tip of the blockchain. Keep the current validating node running with the original validator keyset.
+
+Bond the `backup_node` and wait until rewards are issued.
+
+To swap keys:
+
+1. Create the following folder structure on both nodes under the `/etc/casper/validator_keys/` directory.
+2. Create subdirectories for the `current_node` and `backup_node`.
+3. Copy each node's keyset under the corresponding directories.
+
+```bash
+/etc/casper/validator_keys/
+├── public_key.pem
+├── public_key_hex
+├── secret_key.pem
+├── current_node
+│   ├── public_key.pem
+│   ├── public_key_hex
+│   └── secret_key.pem
+└── backup_node
+|   ├── public_key.pem
+|   ├── public_key_hex
+|   └── secret_key.pem
 ```
-sudo systemctl stop casper-node-launcher on current val
-cd /etc/casper/validator_keys/backup
+
+This setup allows key swapping by running the `sudo -u casper cp * ../` command, as shown below.
+
+### Swapping the nodes
+
+On the `current_node`, run these commands:
+
+```bash
+sudo systemctl stop casper-node-launcher
+cd /etc/casper/validator_keys/backup_node
 sudo -u casper cp * ../
 ```
 
-On the current backup (future validator):
-```
-sudo systemctl stop casper-node-launcher on current backup
-cd /etc/casper/validator_keys/val
+On the `backup_node` (the future validator), run these commands:
+
+```bash
+sudo systemctl stop casper-node-launcher
+cd /etc/casper/validator_keys/current_node
 sudo -u casper cp * ../
-sudo systemctl start casper-node-launcher  (now as val)
+sudo systemctl start casper-node-launcher
 ```
 
-Back on the old validator (new backup):
-```
+Restart the original validator node (`current_node`), which is now the new backup:
+
+```bash
 sudo systemctl start casper-node-launcher 
 ```
 
-# Rewards Cost
+### Understanding rewards impact
 
-I noticed that the validator node shows no round length until an Era transition occurs.  It is not ejected, but it does not continue to receive rewards until the next era.   So if there is a choice for when to do this, you want to time it to just before the era ends.
+After swapping, the new validator node shows no round length until an ear transition occurs and will lose all rewards from the point of the switch until the end of that era. The validator is not ejected but will receive rewards starting with the next era. 
 
-It seems you lose all rewards from the point of the switch till the end of that Era.  Rewards are then normal in the next Era.
+:::tip
 
-# Permissions
+You could time the swap right before the era ends to minimize reward losses.
 
-Make sure permissions are good.  `/etc/casper/node_util.py` has methods to check and fix file permissions after moves.
+:::
+
+### Checking file permissions
+
+After the swap, check and fix file permissions by running the `/etc/casper/node_util.py` utility.
