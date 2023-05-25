@@ -37,4 +37,5 @@ Then, you can follow the node [installation instructions](./setup/install-node.m
   - [Staging Files for a New Network](./setup-network/staging-files-for-new-network.md): a guide to hosting protocol files for a new Casper network
 - Advanced Topics
   - [Archiving and Restoring a Database](./advanced-topics/archiving-and-restoring.md): using `zstd` for the compression and decompression of a Casper node database and streaming from a backup location
-   
+  - [Moving a Validating Node](./advanced-topics/moving-node.md): ways to move a validator node to another machine
+

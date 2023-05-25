@@ -218,7 +218,7 @@ module.exports = {
             label: "Advanced Topics",
             collapsible: true,
             collapsed: true,
-            items: ["operators/advanced-topics/archiving-and-restoring"],
+            items: ["operators/advanced-topics/archiving-and-restoring", "operators/advanced-topics/moving-node"],
         },
     ],
     resources: [
