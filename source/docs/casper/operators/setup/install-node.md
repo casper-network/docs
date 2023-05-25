@@ -19,7 +19,7 @@ The recommended OS version is Ubuntu 20.04.
 
 ## Required Number of Open Files
 
-Before beginning, [update the maximum open files limit](./open-files.md) for your system. Specifically, update your node's `/etc/security/limits.conf` file to ensure proper operation.
+Before beginning, [update the maximum open files limit](./open-files.md) for your system. Specifically, update the node's `/etc/security/limits.conf` file as described [here](./open-files.md#updating-limits-conf), to ensure proper node operation.
 
 ## Required Clean Up
 
