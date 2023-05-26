@@ -125,7 +125,7 @@ If a `.tar.zst` archive is hosted on a website and you will not need the file af
 curl -s --output - <URL for tar.zstd file>
 ```
 
-If you pipe the output into the previous process, you can decompress the files from `curl` directly into a local directory:
+If you use the output along with the previous process, you can decompress the files from `curl` directly into a local directory:
 
 ```bash
 curl -s --output - <tar.zst URL> | zstd -d --long=31 | sudo -u casper tar -xv
