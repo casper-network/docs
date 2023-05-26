@@ -18,7 +18,7 @@ This method is simple but requires downtime. The node needs to download all the 
 
 ## Method Two: Swapping Keys with a Hot Backup
 
-This method is a safer option, limiting downtime and enabling a smooth transition from the old to the new node, as the node stays in sync with the tip of the chain.
+This method is a safer option, limiting downtime and enabling a smooth transition from the old to the new node. It keeps the node in sync with the tip of the chain.
 
 1. Once a node is running (`current_node`), create a second node (`backup_node`) on another machine. These two nodes will run in parallel.
 2. When the `backup_node` is up to date, stop both nodes.
