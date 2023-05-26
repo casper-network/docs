@@ -105,7 +105,7 @@ If `--long=31` is omitted, you might see an error such as this, which also gives
 ./casper.tar.zst : Use --long=31 or --memory=2048MB
 ```
 
-Pipe the `zstd` result into a `tar -xv` command. Also, create the decompressed files using `sudo -u casper`, because the files will be used by the `casper-node`. Run the following command inside an empty DB location:
+You can then use the `zstd` result to populate a `tar -xv` command. Also, create the decompressed files using `sudo -u casper`, because the files will be used by the `casper-node`. Run the following command inside an empty DB location:
 
 ```bash
 zstd -cd --long=31 <.tar.zst file> | sudo -u casper tar -xv
