@@ -73,7 +73,7 @@ The `--long=31` argument is where we see the most space gained by the algorithm 
 
 At compression 19, we see a 30 GB file using the default 128 MB look ahead, and a 13 GB file using 2 GB look ahead. Since all validators should have 16-32 GB of memory, we keep this at `--long=31`.
 
-An important note is that decompression requires a compatible argument. Trying with a different long-distance matching value will throw an error, but the value to be used will be given.
+An important note is that decompression requires a compatible argument. Trying with a different long-distance matching value will result in an error. However, it will also return the necessary value to provide.
 
 ### Summary of commands
 
