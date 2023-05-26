@@ -1,6 +1,6 @@
 # Archiving and Restoring a Database
 
-This article describes processes for the compression and decompression of a Casper node database and streaming from a backup location.
+This documentation describes processes for the compression and decompression of a Casper node database and streaming from a backup location.
 
 [Zstandard](http://facebook.github.io/zstd/) is the best method for compression speed and space for the current LMDB-based database system that the `casper-node` uses. 
 
