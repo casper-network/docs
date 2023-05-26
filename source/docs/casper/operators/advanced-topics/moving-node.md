@@ -81,7 +81,7 @@ sudo systemctl start casper-node-launcher
 
 ### Understanding rewards impact
 
-After swapping, the new validator node shows no round length until an ear transition occurs and will lose all rewards from the point of the switch until the end of that era. The validator is not ejected but will receive rewards starting with the next era. 
+After swapping, the new validator node shows no round length until an era transition occurs and will lose all rewards from the point of the switch until the end of that era. The validator is not ejected but will receive rewards starting with the next era. 
 
 :::tip
 
