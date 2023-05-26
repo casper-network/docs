@@ -25,6 +25,7 @@ Then, you can follow the node [installation instructions](./setup/install-node.m
   - [Recommended Hardware Specifications](./setup/hardware.md): system requirements for the Casper Mainnet and Testnet
   - [Basic Node Configuration](./setup/basic-node-configuration.md): processes and files involved in setting up a Casper node
   - [Installing a Node](./setup/install-node.md): step-by-step instructions to install a Casper node
+  - [Setting the Open Files Limit](./setup/open-files.md): required setting for the Casper node to run correctly
   - [Upgrading the Node](./setup/upgrade.md): before joining the network, the node needs to be upgraded
   - [Joining a Running Network](./setup/joining.md): steps to join an existing Casper network
   - [Setting up a Non-Root User](./setup/non-root-user.md): logging into the node remotely using a key
