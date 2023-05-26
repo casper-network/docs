@@ -69,7 +69,7 @@ The `-T[thread count]` is the number of threads that `zstd` should use for compr
 
 ### Long-distance matching
 
-The `--long=31` argument is where we see the most space gained by the algorithm because it controls the size of the matching window in powers of 2 (2**31 is 2 GB). The downside is that it requires 2.0 GB memory during compression and decompression as it looks ahead and rebuilds ahead. The default is 27 or 128 MB.
+The `--long=31` argument is where we see the most space gained by the algorithm because it controls the size of the matching window in powers of 2 (2**31 is 2 GB). The downside is that it requires 2.0 GB memory during compression and decompression as it looks and rebuilds ahead. The default is 27 or 128 MB.
 
 At compression 19, we see a 30 GB file using the default 128 MB look ahead, and a 13 GB file using 2 GB look ahead. Since all validators should have 16-32 GB of memory, we keep this at `--long=31`.
 
