@@ -1,80 +1,199 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Development Prerequisites
 
-This section explains how to fulfill the prerequisites needed to interact with a Casper network.
+This section explains how to fulfill the prerequisites to interact with a Casper network.
 
-This section covers:
+This section covers the following:
 
-1. Setting up a Rust development environment
-2. Installing the official Casper command-line client
-3. Setting up an Account on a Casper network
-4. Acquiring the IP address of a peer on the official Testnet or Mainnet  
+1. Setting up a [Rust](#install-rust) development environment
+2. Installing the official Casper [command-line client](#install-casper-client)
+3. [Setting up an Account](#setting-up-an-account) on a Casper network
+4. [Acquiring the IP](#acquire-node-address-from-network-peers) address of a peer on the official Testnet or Mainnet
 
-## Installing Rust {#installing-rust}
+To develop comfortably for the Casper network, you should use `Linux Ubuntu 20.04` or `macOS`. Developing on Windows is not advised.
 
-On the Casper platform, developers may write smart contracts in any language that compiles to Wasm. These How To guides focus on code examples that use Rust and a Rust client to interact with a Casper network. While following these guides, we recommend setting up Rust and installing all dependencies. For step-by-step instructions, visit [Getting Started with Rust](./writing-onchain-code/getting-started.md).
+:::caution
 
-## Casper Command-line Client {#the-casper-command-line-client}
+Casper does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
 
-You can find the default Casper client on [crates.io](https://crates.io/crates/casper-client). This client communicates with the network to transmit your deploys.
+:::
 
-Run the commands below to install the Casper client on most flavors of Linux and macOS. You should have [Rust](https://www.rust-lang.org/tools/install) installed, otherwise check the [alternative installation methods](#alternative-installation) below.
+Follow the steps below to install the necessary software for your development environment.
+
+## Preparing your Development Environment
+
+<Tabs>
+<TabItem value="Linux" label="Linux">
+
+### Installing `curl` {#install-curl}
+
+```bash
+sudo apt install curl
+```
+
+### Installing essential Linux packages {#install-essential}
+
+```bash
+sudo apt install build-essential
+```
+
+### Installing packages required for Casper tools {#install-adds}
+
+```bash
+sudo apt-get install pkg-config
+sudo apt-get install openssl
+sudo apt-get install libssl-dev
+```
+
+### Installing `cargo` on Linux {#install-linux-cargo}
+
+```bash
+sudo apt install cargo
+```
+
+</TabItem>
+<TabItem value="macOS" label="macOS">
+
+### Installing Xcode developer tools for macOS {#install-xcode}
+
+```bash
+xcode-select --install
+```
+
+Verify the installation:
+
+```bash
+xcode-select -p
+```
+
+### Installing `brew` {#install-brew}
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### Installing packages required for Casper tools {#install-adds-macos}
+
+```bash
+brew install pkg-config
+brew install openssl
+```
+
+</TabItem>
+</Tabs>
+
+## Installing Rust {#install-rust}
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+After your next login, the installation script automatically adds Rust to your system PATH. To start using Rust immediately, run the following command in your shell instead of restarting your terminal. The command will add Rust to your system PATH.
+
+```bash
+source $HOME/.cargo/env
+```
+
+Verify the installation:
+
+```bash
+rustup --version
+```
+
+## Installing `cargo-casper` {#install-cargo-casper}
+
+```bash
+cargo install cargo-casper
+```
+
+Verify the installation:
+
+```bash
+cargo-casper --version
+```
+
+## Installing the Casper client {#install-casper-client}
+
+The default Casper client is on [crates.io](https://crates.io/crates/casper-client). This client can transmit your deploys to a Casper network.
 
 ```bash
 cargo install casper-client
 ```
 
-The Casper client can print out _help_ information, which provides an up-to-date list of supported commands. To do so, use the following command:
+Verify the installation:
+
+```bash
+casper-client --version
+```
+
+The Casper client can print out help information, which provides an up-to-date list of supported commands. To do so, use the following command:
 
 ```bash
 casper-client --help
 ```
 
-**Important**: For each command, you can use _help_ to get the most up-to-date arguments and descriptions.
+You can use `help` for each command to get the most up-to-date arguments and descriptions.
 
 ```bash
 casper-client <command> --help
 ```
 
-### Alternative Installation Methods {#alternative-installation}
+### Accessing the Casper client source code {#building-client-from-source}
 
-#### Debian / Ubuntu 
+You can access the Casper client source code [here](https://github.com/casper-ecosystem/casper-client-rs). The `lib` directory contains the source for the client library, which may be called directly rather than through the CLI binary. The CLI app `casper-client` uses this library to implement its functionality.
 
-Navigate to <https://repo.casperlabs.io/> and follow the instructions compatible with your distribution.
-
-#### Red Hat / CentOS 
-
-Head to [GitHub](https://github.com/casper-ecosystem/casper-client-rs/releases) and download the `.rpm` file for the latest client release.
-
-Run the following command by replacing the file's name with the one you downloaded.
+If you wish to compile it, you will need to first install the nightly Rust compiler with this command:
 
 ```bash
-sudo yum install casper-client-x-x-x*.rpm
+rustup toolchain install nightly
 ```
 
-In RHEL 5 and previous versions, you need to use the following command:
+Then, compile the source code:
 
 ```bash
-sudo yum localinstall casper-client-x-x-x*.rpm
+cargo build --release
 ```
 
-On Fedora, RedHat 8, and other more recent RPM-based distributions, you can also use `dnf` to install packages:
+You will find the `casper-client` executable in the `target/release` directory.
+
+## Installing `cmake` {#install-cmake}
+
+If you plan to compile contracts from the source code, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `cmake` with the commands below.
+
+<Tabs>
+<TabItem value="Linux" label="Linux">
 
 ```bash
-sudo dnf install casper-client-x-x-x*.rpm
+sudo apt-get -y install cmake
 ```
 
+</TabItem>
+<TabItem value="macOS" label="macOS">
 
-## Building the Client from Source {#building-the-client-from-source}
+```bash
+brew install cmake
+```
+</TabItem>
+</Tabs>
 
-[Instructions](https://github.com/casper-network/casper-node/tree/master/client)
+Verify the installation with
 
-## Setting up an Account {#setting-up-an-account}
+```bash
+cmake --version
+```
+
+## Installing an IDE
+
+We advise using an integrated development environment such as Visual Studio Code (VSC) for development. Follow these [instructions](./writing-onchain-code/getting-started.md#setting-ide) to set up VSC and install plugins that would be helpful during development.
+
+## Setting up a Casper Account {#setting-up-an-account}
 
 The [Account](../concepts/design/casper-design.md#accounts-head) creation process consists of two steps:
 
-1. Creating the Account
+1. Creating an Account
 2. Funding the Account
 
 The following video complements the instructions below, showing you the expected output.
@@ -83,7 +202,7 @@ The following video complements the instructions below, showing you the expected
 <iframe width="400" height="225" src="https://www.youtube.com/embed?v=sA1HTPjV_bc&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=3" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-## Creating an Account {#creating-an-account}
+### Creating an account {#creating-an-account}
 
 The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`.
 
@@ -103,13 +222,13 @@ As a developer, you will often use an account hash, which is a 32-byte hash of t
 casper-client account-address --public-key <path-to-public_key.pem/public-key-hex>
 ```
 
-## Funding Accounts {#fund-your-account}
+## Funding an Account {#fund-your-account}
 
 After generating the cryptographic key-pair for an Account, you must fund the account's main purse to create it on-chain.
 
 On Testnet, you can fund an account by requesting test tokens according to [this guide](../users/testnet-faucet.md). You can request test tokens **only once** for each account.
 
-On Mainnet, a pre-existing account will have to transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
+On Mainnet, a pre-existing account must transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 
 ## Acquiring a Node Address from the Network {#acquire-node-address-from-network-peers}
 

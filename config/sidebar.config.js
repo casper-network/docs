@@ -181,7 +181,7 @@ module.exports = {
         "operators/index",
         {
             type: "category",
-            label: "Getting set up",
+            label: "Setting up a Node",
             collapsible: true,
             collapsed: true,
             items: [
@@ -189,8 +189,10 @@ module.exports = {
                 "operators/setup/basic-node-configuration",
                 "operators/setup/node-endpoints",
                 "operators/setup/install-node",
+                "operators/setup/open-files",
                 "operators/setup/upgrade",
                 "operators/setup/joining",
+                "operators/setup/non-root-user",
             ],
         },
         {
@@ -211,6 +213,13 @@ module.exports = {
             collapsible: true,
             collapsed: true,
             items: ["operators/setup-network/chain-spec", "operators/setup-network/create-private", "operators/setup-network/staging-files-for-new-network"],
+        },
+        {
+            type: "category",
+            label: "Advanced Topics",
+            collapsible: true,
+            collapsed: true,
+            items: ["operators/advanced-topics/archiving-and-restoring", "operators/advanced-topics/moving-node"],
         },
     ],
     resources: [
@@ -241,6 +250,7 @@ module.exports = {
                         "resources/tutorials/beginner/getting-started-tutorial",
                         "resources/tutorials/beginner/querying-network",
                         "resources/tutorials/beginner/upgrade-contract",
+                        "resources/tutorials/beginner/aws-node",
                         {
                             type: "category",
                             label: "A Counter on the Testnet",
