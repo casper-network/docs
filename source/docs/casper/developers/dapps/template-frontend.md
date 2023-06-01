@@ -84,12 +84,12 @@ import React from "react";
 import Connect from "./Connect";
 
 function App() {
-	const [publicKey, setPublicKey] = React.useState(null);
-	return (
-		<>
-			<Connect setPublicKey={ setPublicKey } />
-		</>
-	);
+  const [publicKey, setPublicKey] = React.useState(null);
+  return (
+    <>
+      <Connect setPublicKey={ setPublicKey } />
+    </>
+  );
 }
 
 export default App;
@@ -127,20 +127,20 @@ Write the `connectToSigner` function under the `Connect` function component:
 
 ```javascript
 function connectToWallet(props) {
-	provider.requestConnection().then(connected => {
-		if (!connected) {
-			alert("Couldn't connect to wallet");
-		} else {
-			provider.getActivePublicKey().then(publicKey => {
-				props.setPublicKey(publicKey);
-			}).catch(error => {
-				alert(error.message);
-			});
-		}
-	})
-	.catch(error => {
-		alert(error.message);
-	});
+  provider.requestConnection().then(connected => {
+    if (!connected) {
+      alert("Couldn't connect to wallet");
+    } else {
+      provider.getActivePublicKey().then(publicKey => {
+        props.setPublicKey(publicKey);
+      }).catch(error => {
+        alert(error.message);
+      });
+    }
+  })
+  .catch(error => {
+    alert(error.message);
+  });
 }
 ```
 
@@ -152,7 +152,7 @@ To request that the Casper Wallet disconnect from a website, add the following f
 
 ```javascript
 function disconnect(props) {
-	provider.disconnectFromSite().then(disconnected => {
+  provider.disconnectFromSite().then(disconnected => {
     if (disconnected) {
       props.setPublicKey(null);
       alert("Disconnected");
@@ -199,11 +199,11 @@ import axios from "axios";
 
 function UpdateMessage(props) {
   return (
-		<>
-			<input id="message" type="text">
- 			<button onClick={ () => updateMessage(props) }>Update Message</button>
-		</>
-	);
+    <>
+      <input id="message" type="text">
+      <button onClick={ () => updateMessage(props) }>Update Message</button>
+    </>
+  );
 }
 
 export default UpdateMessage;
@@ -213,32 +213,32 @@ On the front-end you'll need to build the deploy and forward it to the Casper Wa
 
 ```javascript
 function updateMessage(props) {
-	const contract = Contracts.Contract(new CasperClient("http://NODE_ADDRESS:7777/rpc"));
-	contract.setContractHash("hash-75143aa708275b7dead20ac2cc06c1c3eccff4ffcf1eb9aebb8cce7c35cea041");
-	const runtimeArguments = RuntimeArgs.fromMap({
-		"message": CLValueBuilder.string(userInputElement.value)
-	});
-	const deploy = contract.callEntrypoint(
-		"update_message",
-		args,
-		CLPublicKey.fromHex(props.publicKey),
-		"casper", // "casper-test" for testnet
-		"1000000000", // 1 CSPR (10^9 Motes)
-	);
-	const deployJSON = DeployUtil.deployToJson(deploy);
-	provider.sign(deployJSON, props.publicKey).then((signedDeploy) => { // Initiates sign request
-		axios.post("/sendDeploy", signedDeploy, {
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		}).then((response) => {
-			alert(response.data);
-		}).catch((error) => {
-			console.error(error.message);
-		});
-	}).catch((error) => {
-		console.error(error.message);
-	});
+  const contract = Contracts.Contract(new CasperClient("http://NODE_ADDRESS:7777/rpc"));
+  contract.setContractHash("hash-75143aa708275b7dead20ac2cc06c1c3eccff4ffcf1eb9aebb8cce7c35cea041");
+  const runtimeArguments = RuntimeArgs.fromMap({
+    "message": CLValueBuilder.string(userInputElement.value)
+  });
+  const deploy = contract.callEntrypoint(
+    "update_message",
+    args,
+    CLPublicKey.fromHex(props.publicKey),
+    "casper", // "casper-test" for testnet
+    "1000000000", // 1 CSPR (10^9 Motes)
+  );
+  const deployJSON = DeployUtil.deployToJson(deploy);
+  provider.sign(deployJSON, props.publicKey).then((signedDeploy) => { // Initiates sign request
+    axios.post("/sendDeploy", signedDeploy, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      alert(response.data);
+    }).catch((error) => {
+      console.error(error.message);
+    });
+  }).catch((error) => {
+    console.error(error.message);
+  });
 }
 ```
 
@@ -252,13 +252,13 @@ import Connect from "./Connect";
 import UpdateMessage from "./UpdateMessage";
 
 function App() {
-	const [publicKey, setPublicKey] = React.useState(null);
-	return (
-		<>
-			<Connect setPublicKey={ setPublicKey } />
-			<UpdateMessage publicKey={ publicKey } />
-		</>
-	);
+  const [publicKey, setPublicKey] = React.useState(null);
+  return (
+    <>
+      <Connect setPublicKey={ setPublicKey } />
+      <UpdateMessage publicKey={ publicKey } />
+    </>
+  );
 }
 ```
 
@@ -311,14 +311,14 @@ import UpdateMessage from "./UpdateMessage";
 import Query from "./Query";
 
 function App() {
-	const [publicKey, setPublicKey] = React.useState(null);
-	return (
-		<>
-			<Connect setPublicKey={ setPublicKey } />
-			<UpdateMessage publicKey={ publicKey } />
-			<Query publicKey={ publicKey } />
-		</>
-	);
+  const [publicKey, setPublicKey] = React.useState(null);
+  return (
+    <>
+      <Connect setPublicKey={ setPublicKey } />
+      <UpdateMessage publicKey={ publicKey } />
+      <Query publicKey={ publicKey } />
+    </>
+  );
 }
 ```
 
