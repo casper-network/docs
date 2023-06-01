@@ -239,9 +239,14 @@ export default UpdateMessage;
 On the front-end you'll need to build the deploy and forward it to the Casper Wallet to be signed. In most cases you will be calling smart contract entrypoints. This example deploy shows the calling of entrypoint "update_message" which will update the state of the chain to reflect the new data. You'll need the user's active public key to prepare the deploy, and you may retrieve this from the `publicKey` variable passed in as a prop from `src/App.jsx`. Write this function under your `UpdateMessage` component function.
 
 ```javascript
+const NODE_URL = "http://65.108.127.242:7777/rpc";
+const NETWORK_NAME = "casper-test"; // "casper" for mainnet
+const CONTRACT_HASH = "hash-75143aa708275b7dead20ac2cc06c1c3eccff4ffcf1eb9aebb8cce7c35cea041";
+
 function updateMessage(props, message) {
-  const contract = Contracts.Contract(new CasperClient("http://NODE_ADDRESS:7777/rpc"));
-  contract.setContractHash("hash-75143aa708275b7dead20ac2cc06c1c3eccff4ffcf1eb9aebb8cce7c35cea041");
+  const casperClient = new CasperClient(NODE_URL);
+  const contract = Contracts.Contract(casperClient);
+  contract.setContractHash(CONTRACT_HASH);
   const runtimeArguments = RuntimeArgs.fromMap({
     "message": CLValueBuilder.string(message)
   });
@@ -249,7 +254,7 @@ function updateMessage(props, message) {
     "update_message",
     runtimeArguments,
     CLPublicKey.fromHex(props.publicKey),
-    "casper", // "casper-test" for testnet
+    NETWORK_NAME,
     "1000000000", // 1 CSPR (10^9 Motes)
   );
   const deployJSON = DeployUtil.deployToJson(deploy);
