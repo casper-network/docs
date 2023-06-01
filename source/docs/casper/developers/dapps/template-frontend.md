@@ -302,7 +302,7 @@ function App() {
 }
 ```
 
-  ## Query a Smart Contract
+## Query a Smart Contract
 
 Consider that the message written to the chain during the `update_message` entrypoint invocation is stored in the [dictionary](../../concepts/glossary/D.md#dictionary) `messages` in the contract. Further consider that each account may write their own message, and that the messages are stored under the account's [account hash](../../concepts/glossary/A.md#account-hash) as the dictionary key. Querying this kind of data is important in any dApp, here is how to communicate contract data to and from the front-end.
 
@@ -396,4 +396,3 @@ Once this is complete you can preview your production build by running:
 ```bash
 vite preview
 ```
-
