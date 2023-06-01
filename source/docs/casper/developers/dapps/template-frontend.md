@@ -190,7 +190,7 @@ Then connect it to a button:
 function Connect(props) {
     return (
         <>
-            <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
+            <button onClick={ () => connectToWallet(props) }>Connect Wallet</button>
             // highlight-next-line-red
             {/* Place for disconnect button */}
             // highlight-next-line-green
