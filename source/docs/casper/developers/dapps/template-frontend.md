@@ -317,9 +317,6 @@ Open the file and write:
 ```jsx
 import axios from "axios";
 import { CLPublicKey } from "casper-js-sdk";
-import { getProvider } from "./casper-wallet";
-
-const provider = getProvider();
 
 function Query(props) {
   return <button onClick={ () => query(props) }>Query</button>;
