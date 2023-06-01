@@ -48,7 +48,7 @@ Quit the server by pressing `q`. Install the Casper JS SDK by running:
 npm install casper-js-sdk
 ```
 
-This guide will use [axios](https://axios-http.com/) to communicate with the backend, install it by running:
+This guide will use [axios](https://axios-http.com/) to communicate with the backend; install it by running:
 
 ```bash
 npm install axios
