@@ -276,6 +276,14 @@ function updateMessage(props, message) {
 
 In this example, `updateMessage` builds a deploy and forwards it to the Casper Wallet to be signed by the user. Once it's been signed, `signedDeploy` is forwarded to the backend at the `/sendDeploy` endpoint using `axios.post` before being sent off to a Casper node. If an error occurs, or the user rejects the signature request, it will be logged to `stderr`. In this particular example, the result of this deployment will be presented to the user in the form of a JavaScript [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert), however you may do with the response data as you please.
 
+:::info
+
+Backend endpoint `/sendDeploy` should handle signed deployment by simply passing it to one of Casper nodes.
+
+In the short-term future - since Casper node `v1.5.0`, which sets up appropriate CORS headers - it will be also possible to send deployments directly from browser, without relying on backend side. That is useful for prototyping, however we advise to run your own node.
+
+:::
+
 Now that this component is created, render it to the user interface in *src/App.jsx*, passing along the `publicKey` as a prop:
 
 ```jsx
