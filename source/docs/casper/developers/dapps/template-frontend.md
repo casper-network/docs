@@ -154,7 +154,7 @@ To request that the Casper Wallet disconnect from a website, add the following f
 function disconnect(props) {
 	provider.disconnectFromSite().then(disconnected => {
     if (disconnected) {
-      props.setPublicKey(publicKey);
+      props.setPublicKey(null);
       alert("Disconnected");
     } 
   }).catch(error => {
