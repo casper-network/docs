@@ -117,7 +117,7 @@ export default App;
 
 This is an example of *src/App.jsx* that imports and displays the `Connect` component that is described next. The `setPublicKey` function is passed to the `Connect` component as a [prop](https://legacy.reactjs.org/docs/components-and-props.html) so that it may set the public key and make it available to all of *src/App.jsx*. This way when more components are added to *src/App.jsx*, they may utilize the `publicKey` variable.
 
-To connect to the Casper Signer within your React app, create the `Connect` component and import the `Signer` class from the Casper JS SDK.
+To connect to the Casper Wallet within your React app, create the `Connect` component and import the `getProvider` helper.
 
 ```bash
 touch src/Connect.jsx
@@ -133,7 +133,7 @@ const provider = getProvider();
 function Connect(props) {
     return (
         <>
-            <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
+            <button onClick={ () => connectToWallet(props) }>Connect Wallet</button>
             {/* Place for disconnect button */}
         </>
     );
