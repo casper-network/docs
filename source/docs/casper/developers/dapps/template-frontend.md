@@ -82,6 +82,7 @@ To ensure that a user's public key will be available to all necessary components
 ```jsx
 import React from "react";
 import Connect from "./Connect";
+import './App.css'
 
 function App() {
   const [publicKey, setPublicKey] = React.useState(null);
@@ -250,6 +251,7 @@ Now that this component is created, render it to the user interface in *src/App.
 import React from "react";
 import Connect from "./Connect";
 import UpdateMessage from "./UpdateMessage";
+import './App.css'
 
 function App() {
   const [publicKey, setPublicKey] = React.useState(null);
@@ -309,6 +311,7 @@ import React from "react";
 import Connect from "./Connect";
 import UpdateMessage from "./UpdateMessage";
 import Query from "./Query";
+import './App.css'
 
 function App() {
   const [publicKey, setPublicKey] = React.useState(null);
