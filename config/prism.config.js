@@ -15,5 +15,22 @@ module.exports = {
                 end: "highlight-end",
             },
         },
+        // Additional highlight classes.
+        {
+            className: "code-block-highlighted-line-red",
+            line: "highlight-next-line-red",
+            block: {
+                start: "highlight-start-red",
+                end: "highlight-end-red",
+            },
+        },
+        {
+            className: "code-block-highlighted-line-green",
+            line: "highlight-next-line-green",
+            block: {
+                start: "highlight-start-green",
+                end: "highlight-end-green",
+            },
+        },
     ],
 };
