@@ -245,7 +245,7 @@ const CONTRACT_HASH = "hash-75143aa708275b7dead20ac2cc06c1c3eccff4ffcf1eb9aebb8c
 
 function updateMessage(props, message) {
   const casperClient = new CasperClient(NODE_URL);
-  const contract = Contracts.Contract(casperClient);
+  const contract = new Contracts.Contract(casperClient);
   contract.setContractHash(CONTRACT_HASH);
   const runtimeArguments = RuntimeArgs.fromMap({
     "message": CLValueBuilder.string(message)
