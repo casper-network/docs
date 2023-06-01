@@ -215,7 +215,7 @@ touch src/UpdateMessage.jsx
 Open the file and write:
 
 ```jsx
-import { Contracts, CasperClient, RuntimeArgs, CLValueBuilder, DeployUtil } from "casper-js-sdk";
+import { Contracts, CasperClient, RuntimeArgs, CLValueBuilder, CLPublicKey, DeployUtil } from "casper-js-sdk";
 import axios from "axios";
 import { getProvider } from "./casper-wallet";
 
@@ -244,7 +244,7 @@ function updateMessage(props) {
   });
   const deploy = contract.callEntrypoint(
     "update_message",
-    args,
+    runtimeArguments,
     CLPublicKey.fromHex(props.publicKey),
     "casper", // "casper-test" for testnet
     "1000000000", // 1 CSPR (10^9 Motes)
