@@ -142,9 +142,9 @@ function Connect(props) {
 export default Connect;
 ```
 
-Notice that `Connect` accepts props, and forwards them to the `connectToSigner` function described below. This function is called when the button is clicked, and allows it to set the public key within *src/App.jsx* using `props.setPublicKey()`.
+Notice that `Connect` accepts props, and forwards them to the `connectToWallet` function described below. This function is called when the button is clicked, and allows it to set the public key within *src/App.jsx* using `props.setPublicKey()`.
 
-Write the `connectToSigner` function under the `Connect` function component:
+Write the `connectToWallet` function under the `Connect` function component:
 
 ```javascript
 function connectToWallet(props) {
@@ -165,7 +165,7 @@ function connectToWallet(props) {
 }
 ```
 
-The `connectToSigner()` function calls `provider.isConnected()` to check if the Casper Wallet is already connected. If it is, it gets the public key of the selected account, if it's not, it opens up a connection request within the Wallet. `provider.isConnected()` will throw an error if the Wallet is not installed as an extension or if it is locked.
+The `connectToWallet()` function calls `provider.isConnected()` to check if the Casper Wallet is already connected. If it is, it gets the public key of the selected account, if it's not, it opens up a connection request within the Wallet. `provider.isConnected()` will throw an error if the Wallet is not installed as an extension or if it is locked.
 
 ### Disconnect the Casper Wallet
 
