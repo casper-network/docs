@@ -113,7 +113,7 @@ function Connect(props) {
   return (
     <>
       <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
-      <!-- Place for disconnect button -->
+      {/* Place for disconnect button */}
     </>
   );
 }
@@ -171,7 +171,7 @@ function Connect(props) {
     <>
       <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
       // highlight-next-line-red
-      <!-- Place for disconnect button -->
+      {/* Place for disconnect button */}
       // highlight-next-line-green
       <button onClick={ () => disconnect(props) }>Disconnect</button>
     </>
