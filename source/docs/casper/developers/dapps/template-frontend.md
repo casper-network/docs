@@ -105,7 +105,7 @@ function App() {
       <Connect setPublicKey={ setPublicKey } />
       <div>
           {publicKey !== null && (<>
-              Wallet connected: {publicKey}
+              Wallet connected: {publicKey}<br/>
           </>)}
       </div>
     </>
@@ -292,7 +292,7 @@ function App() {
       <Connect setPublicKey={ setPublicKey } />
       <div>
           {publicKey !== null && (<>
-              Wallet connected: {publicKey}
+              Wallet connected: {publicKey}<br/>
               // highlight-next-line-green
               <UpdateMessage publicKey={ publicKey } />
           </>)}
@@ -362,7 +362,7 @@ function App() {
       <Connect setPublicKey={ setPublicKey } />
       <div>
           {publicKey !== null && (<>
-              Wallet connected: {publicKey}
+              Wallet connected: {publicKey}<br/>
               <UpdateMessage publicKey={ publicKey } />
               // highlight-next-line-green
               <Query publicKey={ publicKey } />
