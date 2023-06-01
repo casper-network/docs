@@ -110,7 +110,12 @@ const CasperWalletProvider = window.CasperWalletProvider;
 const provider = CasperWalletProvider();
 
 function Connect(props) {
-  return <button onClick={ () => connectToWallet(props) }>Connect Signer</button>;
+  return (
+    <>
+      <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
+      <!-- Place for disconnect button -->
+    </>
+  );
 }
 
 export default Connect;
@@ -162,12 +167,15 @@ Then connect it to a button:
 
 ```jsx
 function Connect(props) {
-    return (
-      <>
-      	<button onClick={ () => connectToWallet(props) }>Connect Signer</button>;
-      	<button onClick={ () => disconnect(props) }>Disconnect</button>;
-      </>
-    );
+  return (
+    <>
+      <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
+      // highlight-next-line-red
+      <!-- Place for disconnect button -->
+      // highlight-next-line-green
+      <button onClick={ () => disconnect(props) }>Disconnect</button>
+    </>
+  );
 }
 ```
 
