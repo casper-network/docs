@@ -56,26 +56,40 @@ npm install axios
 
 ## Casper Wallet Integration
 
-At present, the Casper Wallet extension content script injects the SDK into your website's global scope. You can access the provider class and event types as follows:
+At present, the Casper Wallet extension content script injects the SDK into your website's global scope. Provider class and event types can be accessed with `window.CasperWalletProvider` and `window.CasperWalletEventTypes`. If the value of these variables is `undefined` the Casper Wallet is not installed.
 
-```javascript
-const CasperWalletProvider = window.CasperWalletProvider;
-const CasperWalletEventTypes = window.CasperWalletEventTypes;
+
+We will start with helper for getting provider instance:
+
+```bash
+touch src/casper-wallet.js
 ```
 
-If the value of these variables is `undefined` the Casper Wallet is not installed.
+Fill the file with the following content:
 
-Instantiate a new `CasperWalletProvider`:
+```js
+// Timeout (in ms) for requests to the extension [DEFAULT: 30 min]
+const REQUESTS_TIMEOUT_MS = 30 * 60 * 1000;
 
-```javascript
-const provider = CasperWalletProvider();
+export const getProvider = () => {
+    let providerConstructor = window.CasperWalletProvider;
+    if (providerConstructor === undefined) {
+      alert("Casper Wallet extension is not installed!");
+      return;
+    }
+    let provider = providerConstructor({
+      timeout: REQUESTS_TIMEOUT_MS
+    });
+    return provider;
+}
+
 ```
 
-You can provide define your own timeout period in milliseconds (default: 30 minutes) by specifying `CasperWalletProviderOptions`.
+:::tip
 
-```javascript
-const provider = CasperWalletProvider({timeout: 10000000});
-```
+For complete integration details refer to [README of Casper Wallet SDK](https://github.com/make-software/casper-wallet-sdk/#readme).
+
+:::
 
 To ensure that a user's public key will be available to all necessary components, create a React state variable in *src/App.jsx* or another parent component that encapsulates the components you'd like the public key to be available to:
 
@@ -112,8 +126,9 @@ touch src/Connect.jsx
 Open the file and write:
 
 ```jsx
-const CasperWalletProvider = window.CasperWalletProvider;
-const provider = CasperWalletProvider();
+import { getProvider } from "./casper-wallet";
+
+const provider = getProvider();
 
 function Connect(props) {
   return (
@@ -202,6 +217,9 @@ Open the file and write:
 ```jsx
 import { Contracts, CasperClient, RuntimeArgs, CLValueBuilder, DeployUtil } from "casper-js-sdk";
 import axios from "axios";
+import { getProvider } from "./casper-wallet";
+
+const provider = getProvider();
 
 function UpdateMessage(props) {
   return (
@@ -291,6 +309,9 @@ Open the file and write:
 ```jsx
 import axios from "axios";
 import { CLPublicKey } from "casper-js-sdk";
+import { getProvider } from "./casper-wallet";
+
+const provider = getProvider();
 
 function Query(props) {
   return <button onClick={ () => query(props) }>Query</button>;
