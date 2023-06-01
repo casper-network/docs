@@ -74,11 +74,11 @@ const REQUESTS_TIMEOUT_MS = 30 * 60 * 1000;
 export const getProvider = () => {
     let providerConstructor = window.CasperWalletProvider;
     if (providerConstructor === undefined) {
-      alert("Casper Wallet extension is not installed!");
-      return;
+        alert("Casper Wallet extension is not installed!");
+        return;
     }
     let provider = providerConstructor({
-      timeout: REQUESTS_TIMEOUT_MS
+        timeout: REQUESTS_TIMEOUT_MS
     });
     return provider;
 }
@@ -99,17 +99,17 @@ import Connect from "./Connect";
 import './App.css'
 
 function App() {
-  const [publicKey, setPublicKey] = React.useState(null);
-  return (
-    <>
-      <Connect setPublicKey={ setPublicKey } />
-      <div>
-          {publicKey !== null && (<>
-              Wallet connected: {publicKey}<br/>
-          </>)}
-      </div>
-    </>
-  );
+    const [publicKey, setPublicKey] = React.useState(null);
+    return (
+        <>
+            <Connect setPublicKey={ setPublicKey } />
+            <div>
+                {publicKey !== null && (<>
+                    Wallet connected: {publicKey}<br/>
+                </>)}
+            </div>
+        </>
+    );
 }
 
 export default App;
@@ -131,12 +131,12 @@ import { getProvider } from "./casper-wallet";
 const provider = getProvider();
 
 function Connect(props) {
-  return (
-    <>
-      <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
-      {/* Place for disconnect button */}
-    </>
-  );
+    return (
+        <>
+            <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
+            {/* Place for disconnect button */}
+        </>
+    );
 }
 
 export default Connect;
@@ -148,20 +148,20 @@ Write the `connectToSigner` function under the `Connect` function component:
 
 ```javascript
 function connectToWallet(props) {
-  provider.requestConnection().then(connected => {
-    if (!connected) {
-      alert("Couldn't connect to wallet");
-    } else {
-      provider.getActivePublicKey().then(publicKey => {
-        props.setPublicKey(publicKey);
-      }).catch(error => {
+    provider.requestConnection().then(connected => {
+        if (!connected) {
+            alert("Couldn't connect to wallet");
+        } else {
+            provider.getActivePublicKey().then(publicKey => {
+                props.setPublicKey(publicKey);
+            }).catch(error => {
+                alert(error.message);
+            });
+        }
+    })
+    .catch(error => {
         alert(error.message);
-      });
-    }
-  })
-  .catch(error => {
-    alert(error.message);
-  });
+    });
 }
 ```
 
@@ -173,14 +173,14 @@ To request that the Casper Wallet disconnect from a website, add the following f
 
 ```javascript
 function disconnect(props) {
-  provider.disconnectFromSite().then(disconnected => {
-    if (disconnected) {
-      props.setPublicKey(null);
-      alert("Disconnected");
-    } 
-  }).catch(error => {
-    alert(error.message);
-  });
+    provider.disconnectFromSite().then(disconnected => {
+        if (disconnected) {
+            props.setPublicKey(null);
+            alert("Disconnected");
+        } 
+    }).catch(error => {
+        alert(error.message);
+    });
 }
 ```
 
@@ -188,15 +188,15 @@ Then connect it to a button:
 
 ```jsx
 function Connect(props) {
-  return (
-    <>
-      <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
-      // highlight-next-line-red
-      {/* Place for disconnect button */}
-      // highlight-next-line-green
-      <button onClick={ () => disconnect(props) }>Disconnect</button>
-    </>
-  );
+    return (
+        <>
+            <button onClick={ () => connectToWallet(props) }>Connect Signer</button>
+            // highlight-next-line-red
+            {/* Place for disconnect button */}
+            // highlight-next-line-green
+            <button onClick={ () => disconnect(props) }>Disconnect</button>
+        </>
+    );
 }
 ```
 
@@ -223,14 +223,14 @@ import { getProvider } from "./casper-wallet";
 const provider = getProvider();
 
 function UpdateMessage(props) {
-  const [message, setMessage] = useState("");
+    const [message, setMessage] = useState("");
 
-  return (
-    <>
-      <input id="message" type="text" value={message} onChange={(e) => {setMessage(e.target.value)}} />
-      <button onClick={ () => updateMessage(props, message) }>Update Message</button>
-    </>
-  );
+    return (
+        <>
+            <input id="message" type="text" value={message} onChange={(e) => {setMessage(e.target.value)}} />
+            <button onClick={ () => updateMessage(props, message) }>Update Message</button>
+        </>
+    );
 }
 
 export default UpdateMessage;
@@ -244,33 +244,33 @@ const NETWORK_NAME = "casper-test"; // "casper" for mainnet
 const CONTRACT_HASH = "hash-75143aa708275b7dead20ac2cc06c1c3eccff4ffcf1eb9aebb8cce7c35cea041";
 
 function updateMessage(props, message) {
-  const casperClient = new CasperClient(NODE_URL);
-  const contract = new Contracts.Contract(casperClient);
-  contract.setContractHash(CONTRACT_HASH);
-  const runtimeArguments = RuntimeArgs.fromMap({
-    "message": CLValueBuilder.string(message)
-  });
-  const deploy = contract.callEntrypoint(
-    "update_message",
-    runtimeArguments,
-    CLPublicKey.fromHex(props.publicKey),
-    NETWORK_NAME,
-    "1000000000", // 1 CSPR (10^9 Motes)
-  );
-  const deployJSON = DeployUtil.deployToJson(deploy);
-  provider.sign(JSON.stringify(deployJSON), props.publicKey).then((signedDeploy) => { // Initiates sign request
-    axios.post("/sendDeploy", signedDeploy, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then((response) => {
-      alert(response.data);
-    }).catch((error) => {
-      console.error(error.message);
+    const casperClient = new CasperClient(NODE_URL);
+    const contract = new Contracts.Contract(casperClient);
+    contract.setContractHash(CONTRACT_HASH);
+    const runtimeArguments = RuntimeArgs.fromMap({
+        "message": CLValueBuilder.string(message)
     });
-  }).catch((error) => {
-    console.error(error.message);
-  });
+    const deploy = contract.callEntrypoint(
+        "update_message",
+        runtimeArguments,
+        CLPublicKey.fromHex(props.publicKey),
+        NETWORK_NAME,
+        "1000000000", // 1 CSPR (10^9 Motes)
+    );
+    const deployJSON = DeployUtil.deployToJson(deploy);
+    provider.sign(JSON.stringify(deployJSON), props.publicKey).then((signedDeploy) => { // Initiates sign request
+        axios.post("/sendDeploy", signedDeploy, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            alert(response.data);
+        }).catch((error) => {
+            console.error(error.message);
+        });
+    }).catch((error) => {
+        console.error(error.message);
+    });
 }
 ```
 
@@ -286,19 +286,19 @@ import UpdateMessage from "./UpdateMessage";
 import './App.css'
 
 function App() {
-  const [publicKey, setPublicKey] = React.useState(null);
-  return (
-    <>
-      <Connect setPublicKey={ setPublicKey } />
-      <div>
-          {publicKey !== null && (<>
-              Wallet connected: {publicKey}<br/>
-              // highlight-next-line-green
-              <UpdateMessage publicKey={ publicKey } />
-          </>)}
-      </div>
-    </>
-  );
+    const [publicKey, setPublicKey] = React.useState(null);
+    return (
+        <>
+            <Connect setPublicKey={ setPublicKey } />
+            <div>
+                {publicKey !== null && (<>
+                    Wallet connected: {publicKey}<br/>
+                    // highlight-next-line-green
+                    <UpdateMessage publicKey={ publicKey } />
+                </>)}
+            </div>
+        </>
+    );
 }
 ```
 
@@ -356,20 +356,20 @@ import Query from "./Query";
 import './App.css'
 
 function App() {
-  const [publicKey, setPublicKey] = React.useState(null);
-  return (
-    <>
-      <Connect setPublicKey={ setPublicKey } />
-      <div>
-          {publicKey !== null && (<>
-              Wallet connected: {publicKey}<br/>
-              <UpdateMessage publicKey={ publicKey } />
-              // highlight-next-line-green
-              <Query publicKey={ publicKey } />
-          </>)}
-      </div>
-    </>
-  );
+    const [publicKey, setPublicKey] = React.useState(null);
+    return (
+        <>
+            <Connect setPublicKey={ setPublicKey } />
+            <div>
+                {publicKey !== null && (<>
+                    Wallet connected: {publicKey}<br/>
+                    <UpdateMessage publicKey={ publicKey } />
+                    // highlight-next-line-green
+                    <Query publicKey={ publicKey } />
+                </>)}
+            </div>
+        </>
+    );
 }
 ```
 
