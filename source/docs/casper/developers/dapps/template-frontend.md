@@ -258,7 +258,7 @@ function updateMessage(props, message) {
     "1000000000", // 1 CSPR (10^9 Motes)
   );
   const deployJSON = DeployUtil.deployToJson(deploy);
-  provider.sign(deployJSON, props.publicKey).then((signedDeploy) => { // Initiates sign request
+  provider.sign(JSON.stringify(deployJSON), props.publicKey).then((signedDeploy) => { // Initiates sign request
     axios.post("/sendDeploy", signedDeploy, {
       headers: {
         'Content-Type': 'application/json'
