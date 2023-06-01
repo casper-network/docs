@@ -224,7 +224,7 @@ const provider = getProvider();
 function UpdateMessage(props) {
   return (
     <>
-      <input id="message" type="text">
+      <input id="message" type="text" />
       <button onClick={ () => updateMessage(props) }>Update Message</button>
     </>
   );
