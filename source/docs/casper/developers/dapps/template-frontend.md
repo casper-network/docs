@@ -215,6 +215,7 @@ touch src/UpdateMessage.jsx
 Open the file and write:
 
 ```jsx
+import { useState } from 'react';
 import { Contracts, CasperClient, RuntimeArgs, CLValueBuilder, CLPublicKey, DeployUtil } from "casper-js-sdk";
 import axios from "axios";
 import { getProvider } from "./casper-wallet";
@@ -222,10 +223,12 @@ import { getProvider } from "./casper-wallet";
 const provider = getProvider();
 
 function UpdateMessage(props) {
+  const [message, setMessage] = useState("");
+
   return (
     <>
-      <input id="message" type="text" />
-      <button onClick={ () => updateMessage(props) }>Update Message</button>
+      <input id="message" type="text" value={message} onChange={(e) => {setMessage(e.target.value)}} />
+      <button onClick={ () => updateMessage(props, message) }>Update Message</button>
     </>
   );
 }
@@ -236,11 +239,11 @@ export default UpdateMessage;
 On the front-end you'll need to build the deploy and forward it to the Casper Wallet to be signed. In most cases you will be calling smart contract entrypoints. This example deploy shows the calling of entrypoint "update_message" which will update the state of the chain to reflect the new data. You'll need the user's active public key to prepare the deploy, and you may retrieve this from the `publicKey` variable passed in as a prop from `src/App.jsx`. Write this function under your `UpdateMessage` component function.
 
 ```javascript
-function updateMessage(props) {
+function updateMessage(props, message) {
   const contract = Contracts.Contract(new CasperClient("http://NODE_ADDRESS:7777/rpc"));
   contract.setContractHash("hash-75143aa708275b7dead20ac2cc06c1c3eccff4ffcf1eb9aebb8cce7c35cea041");
   const runtimeArguments = RuntimeArgs.fromMap({
-    "message": CLValueBuilder.string(userInputElement.value)
+    "message": CLValueBuilder.string(message)
   });
   const deploy = contract.callEntrypoint(
     "update_message",
