@@ -25,7 +25,7 @@ npm install -g vite
 npm create vite@latest
 ```
 
-Name your project, select "React", then choose JavaScript or TypeScript.
+Name your project, select "React", then choose your preferred language - in this example we will use JavaScript.
 
 Head into your new project directory, replacing `vite-project` with your project name:
 
