@@ -1,10 +1,10 @@
 const algoliaConfig = require("./algolia.config");
 const algoliaOfflineConfig = require("./algolia-offline.config");
-const analyticsConfig = require("./analytics.config");
 const announcementConfig = require("./announcement.config");
 const colorConfig = require("./color.config");
 const dataConfig = require("./data.config");
 const footerConfig = require("./footer.config");
+const gtagConfig = require("./gtag.config");
 const i18nConfig = require("./i18n.config");
 const metadatasConfig = require("./metadatas.config");
 const navbarConfig = require("./navbar.config");
@@ -17,11 +17,11 @@ const siteNavbarConfig = require("./site.navbar.config");
 module.exports = {
     algoliaConfig,
     algoliaOfflineConfig,
-    analyticsConfig,
     announcementConfig,
     colorConfig,
     dataConfig,
     footerConfig,
+    gtagConfig,
     i18nConfig,
     metadatasConfig,
     navbarConfig,

@@ -1,5 +1,9 @@
-
 # Listing Authorization Keys
+
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+</head>
+
 This topic explains the difference between associated keys and authorization keys, and how to access authorization keys from a smart contract.
 
 ## Associated Keys and Authorization Keys

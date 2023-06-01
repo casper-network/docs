@@ -5,11 +5,11 @@ require("dotenv").config({
 const {
     algoliaConfig,
     algoliaOfflineConfig,
-    analyticsConfig,
     announcementConfig,
     colorConfig,
     dataConfig,
     footerConfig,
+    gtagConfig,
     i18nConfig,
     metadatasConfig,
     navbarConfig,
@@ -47,8 +47,6 @@ module.exports = {
             },
         },
         /* Optional */
-        // googleAnalytics: analyticsConfig.googleAnalytics,
-        // gtag: analyticsConfig.gtag,
         // metadatas: metadatasConfig,
         navbar: navbarConfig,
         prism: prismConfig,
@@ -71,6 +69,7 @@ module.exports = {
                     // editCurrentVersion: true,
                     // onlyIncludeVersions: process.env.PREVIEW_DEPLOY === "true" ? ["current", ...versions.slice(0, 2)] : undefined,
                 },
+                ...(gtagConfig["trackingID"] && { gtag: gtagConfig }),
                 // IMPORTANT: disable blog feature
                 blog: false,
                 /* Blog config options */

@@ -72,4 +72,4 @@ casper-client get-auction-info --node-address http://<HOST:PORT>
 
 ## Unbonding Wait Period {#unbonding-wait-period}
 
-In order to prevent 'long range attacks', requests to unbond must go through a mandatory wait period. This wait period is presently set to 15 eras.
+In order to prevent 'long range attacks', requests to unbond must go through a mandatory wait period. This wait period is presently set to 7 full eras (~14-16 hours).
