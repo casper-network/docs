@@ -255,6 +255,7 @@ Now that this component is created, render it to the user interface in *src/App.
 ```jsx
 import React from "react";
 import Connect from "./Connect";
+// highlight-next-line-green
 import UpdateMessage from "./UpdateMessage";
 import './App.css'
 
@@ -266,6 +267,7 @@ function App() {
       <div>
           {publicKey !== null && (<>
               Wallet connected: {publicKey}
+              // highlight-next-line-green
               <UpdateMessage publicKey={ publicKey } />
           </>)}
       </div>
@@ -320,6 +322,7 @@ Now add this component to *src/App.jsx*, making available the `publicKey` state 
 import React from "react";
 import Connect from "./Connect";
 import UpdateMessage from "./UpdateMessage";
+// highlight-next-line-green
 import Query from "./Query";
 import './App.css'
 
@@ -328,12 +331,11 @@ function App() {
   return (
     <>
       <Connect setPublicKey={ setPublicKey } />
-      <UpdateMessage publicKey={ publicKey } />
-      <Query publicKey={ publicKey } />
       <div>
           {publicKey !== null && (<>
               Wallet connected: {publicKey}
               <UpdateMessage publicKey={ publicKey } />
+              // highlight-next-line-green
               <Query publicKey={ publicKey } />
           </>)}
       </div>
