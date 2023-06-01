@@ -77,7 +77,7 @@ You can provide define your own timeout period in milliseconds (default: 30 minu
 const provider = CasperWalletProvider({timeout: 10000000});
 ```
 
-To ensure that a user's public key will be available to all necessary components, create a React state variable in *src/App.js* or another parent component that encapsulates the components you'd like the public key to be available to:
+To ensure that a user's public key will be available to all necessary components, create a React state variable in *src/App.jsx* or another parent component that encapsulates the components you'd like the public key to be available to:
 
 ```jsx
 import React from "react";
@@ -95,12 +95,12 @@ function App() {
 export default App;
 ```
 
-This is an example of *src/App.js* that imports and displays the `Connect` component that is described next. The `setPublicKey` function is passed to the `Connect` component as a [prop](https://legacy.reactjs.org/docs/components-and-props.html) so that it may set the public key and make it available to all of *src/App.js*. This way when more components are added to *src/App.js*, they may utilize the `publicKey` variable.
+This is an example of *src/App.jsx* that imports and displays the `Connect` component that is described next. The `setPublicKey` function is passed to the `Connect` component as a [prop](https://legacy.reactjs.org/docs/components-and-props.html) so that it may set the public key and make it available to all of *src/App.jsx*. This way when more components are added to *src/App.jsx*, they may utilize the `publicKey` variable.
 
 To connect to the Casper Signer within your React app, create the `Connect` component and import the `Signer` class from the Casper JS SDK.
 
 ```bash
-touch src/Connect.js
+touch src/Connect.jsx
 ```
 
 Open the file and write:
@@ -121,7 +121,7 @@ function Connect(props) {
 export default Connect;
 ```
 
-Notice that `Connect` accepts props, and forwards them to the `connectToSigner` function described below. This function is called when the button is clicked, and allows it to set the public key within *src/App.js* using `props.setPublicKey()`.
+Notice that `Connect` accepts props, and forwards them to the `connectToSigner` function described below. This function is called when the button is clicked, and allows it to set the public key within *src/App.jsx* using `props.setPublicKey()`.
 
 Write the `connectToSigner` function under the `Connect` function component:
 
@@ -148,7 +148,7 @@ The `connectToSigner()` function calls `provider.isConnected()` to check if the 
 
 ### Disconnect the Casper Wallet
 
-To request that the Casper Wallet disconnect from a website, add the following function call to *src/Connect.js*:
+To request that the Casper Wallet disconnect from a website, add the following function call to *src/Connect.jsx*:
 
 ```javascript
 function disconnect(props) {
@@ -188,7 +188,7 @@ When calling smart contracts from React, you'll need to implement the logic with
 Create a new component:
 
 ```bash
-touch src/UpdateMessage.js
+touch src/UpdateMessage.jsx
 ```
 
 Open the file and write:
@@ -209,7 +209,7 @@ function UpdateMessage(props) {
 export default UpdateMessage;
 ```
 
-On the front-end you'll need to build the deploy and forward it to the Casper Wallet to be signed. In most cases you will be calling smart contract entrypoints. This example deploy shows the calling of entrypoint "update_message" which will update the state of the chain to reflect the new data. You'll need the user's active public key to prepare the deploy, and you may retrieve this from the `publicKey` variable passed in as a prop from `src/App.js`. Write this function under your `UpdateMessage` component function.
+On the front-end you'll need to build the deploy and forward it to the Casper Wallet to be signed. In most cases you will be calling smart contract entrypoints. This example deploy shows the calling of entrypoint "update_message" which will update the state of the chain to reflect the new data. You'll need the user's active public key to prepare the deploy, and you may retrieve this from the `publicKey` variable passed in as a prop from `src/App.jsx`. Write this function under your `UpdateMessage` component function.
 
 ```javascript
 function updateMessage(props) {
@@ -244,7 +244,7 @@ function updateMessage(props) {
 
 In this example, `updateMessage` builds a deploy and forwards it to the Casper Wallet to be signed by the user. Once it's been signed, `signedDeploy` is forwarded to the backend at the `/sendDeploy` endpoint using `axios.post` before being sent off to a Casper node. If an error occurs, or the user rejects the signature request, it will be logged to `stderr`. In this particular example, the result of this deployment will be presented to the user in the form of a JavaScript [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert), however you may do with the response data as you please.
 
-Now that this component is created, render it to the user interface in *src/App.js*, passing along the `publicKey` as a prop:
+Now that this component is created, render it to the user interface in *src/App.jsx*, passing along the `publicKey` as a prop:
 
 ```jsx
 import React from "react";
@@ -269,7 +269,7 @@ Consider that the message written to the chain during the `update_message` entry
 Create a new component:
 
 ```bash
-touch src/Query.js
+touch src/Query.jsx
 ```
 
 Open the file and write:
@@ -302,7 +302,7 @@ The `toAccountHashStr` method produces a string that is prepended by the text "a
 
 :::
 
-Now add this component to *src/App.js*, making available the `publicKey` state variable via a prop:
+Now add this component to *src/App.jsx*, making available the `publicKey` state variable via a prop:
 
 ```jsx
 import React from "react";
