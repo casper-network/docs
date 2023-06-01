@@ -89,6 +89,11 @@ function App() {
   return (
     <>
       <Connect setPublicKey={ setPublicKey } />
+      <div>
+          {publicKey !== null && (<>
+              Wallet connected: {publicKey}
+          </>)}
+      </div>
     </>
   );
 }
@@ -258,7 +263,12 @@ function App() {
   return (
     <>
       <Connect setPublicKey={ setPublicKey } />
-      <UpdateMessage publicKey={ publicKey } />
+      <div>
+          {publicKey !== null && (<>
+              Wallet connected: {publicKey}
+              <UpdateMessage publicKey={ publicKey } />
+          </>)}
+      </div>
     </>
   );
 }
@@ -320,6 +330,13 @@ function App() {
       <Connect setPublicKey={ setPublicKey } />
       <UpdateMessage publicKey={ publicKey } />
       <Query publicKey={ publicKey } />
+      <div>
+          {publicKey !== null && (<>
+              Wallet connected: {publicKey}
+              <UpdateMessage publicKey={ publicKey } />
+              <Query publicKey={ publicKey } />
+          </>)}
+      </div>
     </>
   );
 }
