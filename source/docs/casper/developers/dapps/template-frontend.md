@@ -350,6 +350,12 @@ The `toAccountHashStr` method produces a string that is prepended by the text "a
 
 :::
 
+:::info
+
+This functionality relies on `/queryMessage` endpoint, which should be implemented in your backend.
+
+:::
+
 Now add this component to *src/App.jsx*, making available the `publicKey` state variable via a prop:
 
 ```jsx
