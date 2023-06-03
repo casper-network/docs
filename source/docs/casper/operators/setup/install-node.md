@@ -1,8 +1,8 @@
-# Installing a Node 
+# Installing a Node
 
 Ensure the requirements listed in the following sections are met before you start setting up the node on the network, either on Mainnet or Testnet.
 
-## Network Requirements
+## Network Requirements {#network-requirements}
 
 The following ports are used by the node:
 
@@ -17,9 +17,9 @@ Of these `35000` is the only port required to be open for your node to function,
 
 The recommended OS version is Ubuntu 20.04.
 
-## Specifying the Number of Open Files
+## Required Number of Open Files
 
-Please read through [this page on nofiles configuration](https://github.com/casper-network/casper-node/wiki/Increasing-default-nofile-HARD-limit-for-a-node) to put settings in `/etc/security/limits.conf` for your node to ensure proper operation.
+Before beginning, [update the maximum open files limit](./open-files.md) for your system. Specifically, update the node's `/etc/security/limits.conf` file as described [here](./open-files.md#updating-limits-conf), to ensure proper node operation.
 
 ## Required Clean Up
 
@@ -51,6 +51,27 @@ sudo apt update
 ```bash
 sudo apt install -y casper-client casper-node-launcher jq
 ```
+
+## Enable Bash Auto-Completion for `casper-client` (Optional)
+
+```bash
+sudo casper-client generate-completion
+```
+
+It defaults to `bash` but can be changed with the `--shell` argument:
+```bash
+--shell <STRING>    The type of shell to generate the completion script for [default: bash]  [possible values:
+                            zsh, bash, fish, powershell, elvish]
+
+sudo casper-client generate-completion --shell powershell
+```
+
+You need to source the new auto completion script or log out and log in again to activate it for the current shell:
+```bash
+source /usr/share/bash-completion/completions/casper-client
+```
+
+Now you can use `casper-client` and press the `tab` key to get auto completion for your commands.
 
 ## Installing All Protocols
 
@@ -134,6 +155,3 @@ The community has created a few tools to monitor your node once it is running, s
 
 - Status.py: https://github.com/RapidMark/casper-tools
 - Grafana: https://github.com/matsuro-hadouken/casper-tools
-
-
-

@@ -1,5 +1,11 @@
 # Using the Casper Signer in dApp Development
 
+:::caution
+
+The Casper Signer has been deprecated and replaced with the [Casper Wallet](https://www.casperwallet.io). We are in the process of updating this page. Meanwhile, visit the guide on [Building with the Casper Wallet](https://www.casperwallet.io/develop).
+
+:::
+
 The [Casper Signer](https://github.com/casper-ecosystem/signer) is a browser plugin for interfacing with Casper accounts. You can interact with the Casper Signer using the `Signer` class in the [Casper JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk/).
 
 ## Integrating with the Casper Signer
