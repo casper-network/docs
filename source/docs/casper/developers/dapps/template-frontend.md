@@ -59,7 +59,7 @@ npm install axios
 At present, the Casper Wallet extension content script injects the SDK into your website's global scope. Provider class and event types can be accessed with `window.CasperWalletProvider` and `window.CasperWalletEventTypes`. If the value of these variables is `undefined` the Casper Wallet is not installed.
 
 
-We will start with helper for getting provider instance:
+Start with a helper for getting the provider instance:
 
 ```bash
 touch src/casper-wallet.js
@@ -191,8 +191,6 @@ function Connect(props) {
     return (
         <>
             <button onClick={ () => connectToWallet(props) }>Connect Wallet</button>
-            // highlight-next-line-red
-            {/* Place for disconnect button */}
             // highlight-next-line-green
             <button onClick={ () => disconnect(props) }>Disconnect</button>
         </>
@@ -278,9 +276,9 @@ In this example, `updateMessage` builds a deploy and forwards it to the Casper W
 
 :::info
 
-Backend endpoint `/sendDeploy` should handle signed deployment by simply passing it to one of Casper nodes.
+The backend endpoint `/sendDeploy` should handle signed deployment by simply passing it to a Casper node.
 
-In the short-term future - since Casper node `v1.5.0`, which sets up appropriate CORS headers - it will be also possible to send deployments directly from browser, without relying on backend side. That is useful for prototyping, however we advise to run your own node.
+In Casper node `v1.5.0`, which sets up appropriate CORS headers, it will be also possible to send deployments directly from the browser, without relying on a backend server. This is useful for prototyping, however it is advised that you operate your own node.
 
 :::
 
@@ -352,7 +350,7 @@ The `toAccountHashStr` method produces a string that is prepended by the text "a
 
 :::info
 
-This functionality relies on `/queryMessage` endpoint, which should be implemented in your backend.
+This functionality relies on the `/queryMessage` endpoint, which should be implemented in your backend.
 
 :::
 
