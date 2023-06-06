@@ -7,12 +7,12 @@ Once a bid is placed, it will remain in the state of the auction contract, even 
 To withdraw a bid, compile the contract and submit a deploy:
 
 ```bash
-sudo casper-client put-deploy \
+sudo -u casper-client put-deploy \
 --chain-name <CHAIN_NAME> \
 --node-address http://<HOST>:<PORT> \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
 --session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
---payment-amount 300000000 \
+--payment-amount 4000000000 \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" \
 --session-arg="unbond_purse:opt_uref=null"
@@ -43,9 +43,9 @@ sudo -u casper casper-client put-deploy \
  --node-address http://65.21.235.219:7777 \
  --secret-key /etc/casper/validator_keys/secret_key.pem \
  --session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
- --payment-amount 3000000000 \
+ --payment-amount 4000000000 \
  --session-arg="public_key:public_key='01da0e438afc74181beb2afae798e9e6851bdf897117a306eb32caafe46c1c0bc8'" \
- --session-arg="amount:u512='5000000000000'" \
+ --session-arg="amount:u512='1000000000000'" \
  --session-arg="unbond_purse:opt_uref=null"
 ```
 
