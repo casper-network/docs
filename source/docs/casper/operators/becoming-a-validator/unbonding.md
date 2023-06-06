@@ -15,8 +15,7 @@ sudo -u casper casper-client put-deploy \
 --session-hash <SESSION_HASH> \
 --session-entry-point withdraw_bid \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
---session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" \
---session-arg="unbond_purse:opt_uref=<PURSE_UREF>"
+--session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'"
 ```
 
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
@@ -34,7 +33,6 @@ The `withdraw_bid` entry point expects two arguments, while the third one is opt
 
 7. `public key`: The hexadecimal public key of the account's purse to withdraw. This key must match the secret key that signs the deploy and has to match the public key of a bid in the auction contract
 8. `amount`: The amount being withdrawn
-9. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided. Find more details about the main purse [here](../../concepts/accounts-and-keys.md#purse-uref)
 
 The command will return a deploy hash, which is needed to verify the deploy's processing results.
 
@@ -57,8 +55,7 @@ sudo -u casper casper-client put-deploy \
 --session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
 --session-entry-point withdraw_bid \
 --session-arg "public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
---session-arg "amount:U512='$[5 * 1000000000]'" \
---session-arg="unbond_purse:opt_uref=null"
+--session-arg "amount:U512='$[5 * 1000000000]'"
 ```
 
 Below is the same command with the optional purse set to a different purse where the amount will be returned. **Adjust all the values to your use case.**
@@ -72,8 +69,7 @@ sudo -u casper casper-client put-deploy \
 --session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
 --session-entry-point withdraw_bid \
 --session-arg "public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
---session-arg "amount:U512='$[5 * 1000000000]'" \
---session-arg "unbond_purse:opt_uref='uref-974019c976b5f26412ce486158d2431967af35d91387dae8cbcd43c20fce6452-007'"
+--session-arg "amount:U512='$[5 * 1000000000]'"
 ```
 
 ## Method 2: Unbonding with Compiled Wasm {#withdraw-compiled-wasm}
@@ -88,8 +84,7 @@ sudo -u casper casper-client put-deploy \
 --payment-amount 4000000000 \
 --session-path <PATH>/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
---session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" \
---session-arg="unbond_purse:opt_uref=<PURSE_UREF>"
+--session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'"
 ```
 
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
@@ -102,7 +97,6 @@ The `withdraw_bid.wasm` expects two arguments, while the third one is optional:
 
 6. `public key`: The hexadecimal public key of the account's purse to withdraw. This key must match the secret key that signs the deploy and has to match the public key of a bid in the auction contract
 7. `amount`: The amount being withdrawn
-8. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided. Find more details about the main purse [here](../../concepts/accounts-and-keys.md#purse-uref)
 
 The command will return a deploy hash, which is needed to verify the deploy's processing results.
 
@@ -124,8 +118,7 @@ sudo -u casper casper-client put-deploy \
 --session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
 --payment-amount 4000000000 \
 --session-arg="public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
---session-arg="amount:u512='1000000000000'" \
---session-arg="unbond_purse:opt_uref=null"
+--session-arg="amount:u512='1000000000000'"
 ```
 
 
