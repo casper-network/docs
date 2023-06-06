@@ -4,7 +4,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 For building web applications, it is most common to use the Casper JS SDK with React. This is a popular solution among developers, but you may use any front-end library or framework, including none at all, to interact with a Casper network via the [Casper JS SDK](https://github.com/casper-ecosystem/casper-js-sdk).
 
-This guide will walk you through setting up and developing a React application with [Vite](https://vitejs.dev/) that communicates with a Casper network. Experience with Vite is not required, however if you have never built a React app, you should begin by [reading the React documentation](https://reactjs.org/docs/getting-started.html).
+This guide will walk you through setting up and developing a React application with [Vite](https://vitejs.dev/) that communicates with a Casper network. Experience with Vite is not required; however, if you have never built a React app, you should begin by [reading the React documentation](https://reactjs.org/docs/getting-started.html).
 
 ## Get Started
 
@@ -16,7 +16,7 @@ node -v
 
 To get your Node.js version.
 
-To ensure compatibility, you should be running Node.js version 18 or above. If you are running an earlier version, upgrade to version 18 using the [Node Version Manager](https://github.com/nvm-sh/nvm) or another tool.
+To ensure compatibility, you should be running Node.js version 18 or above. Upgrade to version 18 using the [Node Version Manager](https://github.com/nvm-sh/nvm) or another tool if you are running an earlier version.
 
 Using [npm](https://www.npmjs.com/), create a new Vite project by running:
 
@@ -25,7 +25,7 @@ npm install -g vite
 npm create vite@latest
 ```
 
-Name your project, select "React", then choose your preferred language - in this example we will use JavaScript.
+Name your project, select "React", then choose your preferred language. In this example, we will use JavaScript.
 
 Head into your new project directory, replacing `vite-project` with your project name:
 
@@ -42,7 +42,7 @@ vite dev
 ```
 
 
-Quit the server by pressing `q`. Install the Casper JS SDK by running:
+Quit the server by pressing `q`. Install the Casper JS SDK by running the following:
 
 ```bash
 npm install casper-js-sdk
@@ -56,7 +56,7 @@ npm install axios
 
 ## Casper Wallet Integration
 
-At present, the Casper Wallet extension content script injects the SDK into your website's global scope. Provider class and event types can be accessed with `window.CasperWalletProvider` and `window.CasperWalletEventTypes`. If the value of these variables is `undefined` the Casper Wallet is not installed.
+The Casper Wallet extension content script injects the SDK into your website's global scope. Provider class and event types can be accessed with `window.CasperWalletProvider` and `window.CasperWalletEventTypes`. If the value of these variables is `undefined` the Casper Wallet is not installed.
 
 
 Start with a helper for getting the provider instance:
@@ -87,11 +87,11 @@ export const getProvider = () => {
 
 :::tip
 
-For complete integration details refer to [README of Casper Wallet SDK](https://github.com/make-software/casper-wallet-sdk/#readme).
+For complete integration details, refer to [README of Casper Wallet SDK](https://github.com/make-software/casper-wallet-sdk/#readme).
 
 :::
 
-To ensure that a user's public key will be available to all necessary components, create a React state variable in *src/App.jsx* or another parent component that encapsulates the components you'd like the public key to be available to:
+To ensure that a user's public key will be available to all necessary components, create a React state variable in *src/App.jsx* or another parent component that encapsulates the components that should have access to this public key:
 
 ```jsx
 import React from "react";
@@ -115,7 +115,7 @@ function App() {
 export default App;
 ```
 
-This is an example of *src/App.jsx* that imports and displays the `Connect` component that is described next. The `setPublicKey` function is passed to the `Connect` component as a [prop](https://legacy.reactjs.org/docs/components-and-props.html) so that it may set the public key and make it available to all of *src/App.jsx*. This way when more components are added to *src/App.jsx*, they may utilize the `publicKey` variable.
+This is an example of *src/App.jsx* that imports and displays the `Connect` component that is described next. The `setPublicKey` function is passed to the `Connect` component as a [prop](https://legacy.reactjs.org/docs/components-and-props.html) so that it may set the public key and make it available to all of *src/App.jsx*. This way, when more components are added to *src/App.jsx*, they may utilize the `publicKey` variable.
 
 To connect to the Casper Wallet within your React app, create the `Connect` component and import the `getProvider` helper.
 
@@ -142,7 +142,7 @@ function Connect(props) {
 export default Connect;
 ```
 
-Notice that `Connect` accepts props, and forwards them to the `connectToWallet` function described below. This function is called when the button is clicked, and allows it to set the public key within *src/App.jsx* using `props.setPublicKey()`.
+Notice that `Connect` accepts props, and forwards them to the `connectToWallet` function described below. This function is called when the button is clicked, allowing it to set the public key within *src/App.jsx* using `props.setPublicKey()`.
 
 Write the `connectToWallet` function under the `Connect` function component:
 
@@ -165,7 +165,7 @@ function connectToWallet(props) {
 }
 ```
 
-The `connectToWallet()` function calls `provider.isConnected()` to check if the Casper Wallet is already connected. If it is, it gets the public key of the selected account, if it's not, it opens up a connection request within the Wallet. `provider.isConnected()` will throw an error if the Wallet is not installed as an extension or if it is locked.
+The `connectToWallet()` function calls `provider.isConnected()` to check if the Casper Wallet is already connected. If it is, it gets the public key of the selected account; if it's not, it opens up a connection request within the Wallet. `provider.isConnected()` will throw an error if the Wallet is not installed as an extension or if it is locked.
 
 ### Disconnect the Casper Wallet
 
@@ -200,7 +200,7 @@ function Connect(props) {
 
 ## Call a Smart Contract
 
-For this example we'll be calling a hypothetical "hello world" contract that contains a single entrypoint "update_message". We'll call the "update_message" entrypoint with text entered by the user in an HTML `input` field.
+For this example, we'll call a hypothetical "hello world" contract containing a single entrypoint "update_message". We'll call the "update_message" entrypoint with text entered by the user in an HTML `input` field.
 
 When calling smart contracts from React, you'll need to implement the logic within a function accessible from a React component. You can obtain user-entered data from the DOM using elements like `input`, then grab the value within the smart-contract-calling function.
 
@@ -234,7 +234,7 @@ function UpdateMessage(props) {
 export default UpdateMessage;
 ```
 
-On the front-end you'll need to build the deploy and forward it to the Casper Wallet to be signed. In most cases you will be calling smart contract entrypoints. This example deploy shows the calling of entrypoint "update_message" which will update the state of the chain to reflect the new data. You'll need the user's active public key to prepare the deploy, and you may retrieve this from the `publicKey` variable passed in as a prop from `src/App.jsx`. Write this function under your `UpdateMessage` component function.
+On the front-end you'll need to build the deploy and forward it to the Casper Wallet to be signed. In most cases, you will be calling smart contract entrypoints. This example deploy shows the calling of entrypoint "update_message" which will update the chain's global state to reflect the new data. You'll need the user's active public key to prepare the deploy, and you may retrieve this from the `publicKey` variable passed in as a prop from `src/App.jsx`. Write this function under your `UpdateMessage` component function.
 
 ```javascript
 const NODE_URL = "http://65.108.127.242:7777/rpc";
@@ -272,13 +272,13 @@ function updateMessage(props, message) {
 }
 ```
 
-In this example, `updateMessage` builds a deploy and forwards it to the Casper Wallet to be signed by the user. Once it's been signed, `signedDeploy` is forwarded to the backend at the `/sendDeploy` endpoint using `axios.post` before being sent off to a Casper node. If an error occurs, or the user rejects the signature request, it will be logged to `stderr`. In this particular example, the result of this deployment will be presented to the user in the form of a JavaScript [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert), however you may do with the response data as you please.
+In this example, `updateMessage` builds a deploy and forwards it to the Casper Wallet to be signed by the user. Once it's been signed, `signedDeploy` is forwarded to the backend at the `/sendDeploy` endpoint using `axios.post` before being sent off to a Casper node. If an error occurs, or the user rejects the signature request, it will be logged to `stderr`. In this particular example, the result of this deployment will be presented to the user in the form of a JavaScript [alert](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert); however, you may do with the response data as you wish.
 
 :::info
 
 The backend endpoint `/sendDeploy` should handle signed deployment by simply passing it to a Casper node.
 
-In Casper node `v1.5.0`, which sets up appropriate CORS headers, it will be also possible to send deployments directly from the browser, without relying on a backend server. This is useful for prototyping, however it is advised that you operate your own node.
+In Casper node `v1.5.0`, which sets up appropriate CORS headers, it will also be possible to send deployments directly from the browser, without relying on a backend server. This is useful for prototyping, however it is advised that you operate your own node.
 
 :::
 
@@ -310,7 +310,7 @@ function App() {
 
 ## Query a Smart Contract
 
-Consider that the message written to the chain during the `update_message` entrypoint invocation is stored in the [dictionary](../../concepts/glossary/D.md#dictionary) `messages` in the contract. Further consider that each account may write their own message, and that the messages are stored under the account's [account hash](../../concepts/glossary/A.md#account-hash) as the dictionary key. Querying this kind of data is important in any dApp, here is how to communicate contract data to and from the front-end.
+Consider that the message written to the chain during the `update_message` entrypoint invocation is stored in the [dictionary](../../concepts/glossary/D.md#dictionary) `messages` in the contract. Further consider that each account may write its own message and that the messages are stored under the account's [account hash](../../concepts/glossary/A.md#account-hash) as the dictionary key. Querying this kind of data is essential in any dApp; here is how to communicate contract data to and from the front-end.
 
 Create a new component:
 
@@ -340,11 +340,11 @@ function query(props) {
 export default Query;
 ```
 
-All this component does is render an HTML `button` element that, when pressed, performs a `GET` request to the backend that includes the user's active account hash. The account hash is derived from the active public key, and is used to lookup the message stored by the current user.
+All this component does is render an HTML `button` element that, when pressed, performs a `GET` request to the backend that includes the user's active account hash. The account hash is derived from the active public key, and is used to look up the message stored by the current user.
 
 :::tip
 
-The `toAccountHashStr` method produces a string that is prepended by the text "account-hash-". In this case this text is not needed, so it is discarded by chaining on the `substring(13)` method.
+The `toAccountHashStr` method produces a string that is prepended by the text "account-hash-". In this case, this text is not needed, so it is discarded by chaining on the `substring(13)` method.
 
 :::
 
@@ -384,13 +384,13 @@ function App() {
 
 ## Test Application
 
-Test your application by running:
+Test your application by running the following:
 
 ```bash
 vite dev
 ```
 
-Your application will start locally and a URL will be shown where you can visit your application. Alternatively, press `h`, then `o` to open the app in a browser.
+Your application will start locally, and a URL will be shown where you can visit your application. Alternatively, press `h`, then `o` to open the app in a browser.
 
 ## Build for Production
 
@@ -400,7 +400,7 @@ When you're ready to release your application, you'll want to compile it to pure
 vite build
 ```
 
-Once this is complete you can preview your production build by running:
+Once this is completem you can preview your production build by running:
 
 ```bash
 vite preview
