@@ -12,7 +12,7 @@ sudo -u casper casper-client put-deploy \
 --secret-key <PATH> \
 --chain-name <CHAIN_NAME> \
 --payment-amount 2500000000 \
---session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
+--session-hash <SESSION_HASH> \
 --session-entry-point withdraw_bid \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" \
@@ -23,7 +23,11 @@ sudo -u casper casper-client put-deploy \
 2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
 3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
 4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR
-5. `session-hash` - Hex-encoded hash of the stored auction contract
+5. `session-hash` - Hex-encoded hash of the stored auction contract, which depends on the network you are using. For Casper's Mainnet and Testnet, the hashes are as follows:
+
+- Testnet: `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`
+- Mainnet: `hash-ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea`
+
 6. `session-entry-point` - Name of the entrypoint that will be used when calling the contract
 
 The `withdraw_bid` entry point expects two arguments, while the third one is optional:
@@ -33,6 +37,12 @@ The `withdraw_bid` entry point expects two arguments, while the third one is opt
 9. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided
 
 The command will return a deploy hash, which is needed to verify the deploy's processing results.
+
+:::note
+
+Calling the `withdraw_bid` entry point on the auction contract has a fixed cost of 2.5 CSPR.
+
+:::
 
 **Example:**
 
@@ -83,7 +93,7 @@ The command will return a deploy hash, which is needed to verify the deploy's pr
 
 :::note
 
-This method is more expensive than calling the entrypoint in the system auction contract.
+This method is more expensive than calling the entrypoint in the system auction contract, which has a fixed cost of 2.5 CSPR.
 
 :::
 
