@@ -34,7 +34,7 @@ The `withdraw_bid` entry point expects two arguments, while the third one is opt
 
 7. `public key`: The hexadecimal public key of the account's purse to withdraw. This key must match the secret key that signs the deploy and has to match the public key of a bid in the auction contract
 8. `amount`: The amount being withdrawn
-9. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided
+9. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided. Find more details [here](../../concepts/accounts-and-keys.md#purse-uref)
 
 The command will return a deploy hash, which is needed to verify the deploy's processing results.
 
@@ -87,7 +87,7 @@ The `withdraw_bid.wasm` expects two arguments, while the third one is optional:
 
 6. `public key`: The hexadecimal public key of the account's purse to withdraw. This key must match the secret key that signs the deploy and has to match the public key of a bid in the auction contract
 7. `amount`: The amount being withdrawn
-8. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided
+8. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided. Find more details [here](../../concepts/accounts-and-keys.md#purse-uref)
 
 The command will return a deploy hash, which is needed to verify the deploy's processing results.
 
