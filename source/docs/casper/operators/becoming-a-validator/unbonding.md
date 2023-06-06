@@ -16,7 +16,7 @@ sudo -u casper casper-client put-deploy \
 --session-entry-point withdraw_bid \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" \
---session-arg="unbond_purse:opt_uref=null"
+--session-arg="unbond_purse:opt_uref=<PURSE_UREF>"
 ```
 
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
@@ -48,7 +48,7 @@ sudo -u casper casper-client put-deploy \
 --session-entry-point withdraw_bid \
 --session-arg "public_key:public_key='<PUBLIC_KEY>'" \
 --session-arg "amount:U512='$[5 * 1000000000]'" \
---session-arg "unbond_purse:opt_uref=null"
+--session-arg="unbond_purse:opt_uref=null"
 ```
 
 ## Method 2: Using a Compiled Wasm {#withdraw-compiled-wasm}
@@ -64,7 +64,7 @@ sudo -u casper casper-client put-deploy \
 --session-path <PATH>/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'" \
---session-arg="unbond_purse:opt_uref=null"
+--session-arg="unbond_purse:opt_uref=<PURSE_UREF>"
 ```
 
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
