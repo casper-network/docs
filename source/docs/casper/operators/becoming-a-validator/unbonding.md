@@ -34,7 +34,7 @@ The `withdraw_bid` entry point expects two arguments, while the third one is opt
 
 7. `public key`: The hexadecimal public key of the account's purse to withdraw. This key must match the secret key that signs the deploy and has to match the public key of a bid in the auction contract
 8. `amount`: The amount being withdrawn
-9. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided. Find more details [here](../../concepts/accounts-and-keys.md#purse-uref)
+9. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided. Find more details about the main purse [here](../../concepts/accounts-and-keys.md#purse-uref)
 
 The command will return a deploy hash, which is needed to verify the deploy's processing results.
 
@@ -56,9 +56,24 @@ sudo -u casper casper-client put-deploy \
 --payment-amount 2500000000 \
 --session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
 --session-entry-point withdraw_bid \
---session-arg "public_key:public_key='<PUBLIC_KEY>'" \
+--session-arg "public_key:public_key='01b104040a2943be225476e47724071e9ed00ea4b19ad88dec51884708c083395d'" \
 --session-arg "amount:U512='$[5 * 1000000000]'" \
 --session-arg="unbond_purse:opt_uref=null"
+```
+
+Below is the same command with the optional purse set to a different purse where the amount will be returned. **Adjust all the values to your use case.**
+
+```bash
+sudo -u casper casper-client put-deploy \
+--node-address http://localhost:7777/rpc \
+--secret-key /etc/casper/validator_keys/secret_key.pem \
+--chain-name casper-test \
+--payment-amount 2500000000 \
+--session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
+--session-entry-point withdraw_bid \
+--session-arg "public_key:public_key='01b104040a2943be225476e47724071e9ed00ea4b19ad88dec51884708c083395d'" \
+--session-arg "amount:U512='$[5 * 1000000000]'" \
+--session-arg "unbond_purse:opt_uref='uref-ca175ff5f21148e3fb600d393d28dbc73caf195aed93c05e8c8df8a78b30a922-007'"
 ```
 
 ## Method 2: Using a Compiled Wasm {#withdraw-compiled-wasm}
@@ -87,7 +102,7 @@ The `withdraw_bid.wasm` expects two arguments, while the third one is optional:
 
 6. `public key`: The hexadecimal public key of the account's purse to withdraw. This key must match the secret key that signs the deploy and has to match the public key of a bid in the auction contract
 7. `amount`: The amount being withdrawn
-8. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided. Find more details [here](../../concepts/accounts-and-keys.md#purse-uref)
+8. `unbond_purse` (optional): The purse to which the withdrawal amount will be remitted. Defaults to the main purse for the account if not provided. Find more details about the main purse [here](../../concepts/accounts-and-keys.md#purse-uref)
 
 The command will return a deploy hash, which is needed to verify the deploy's processing results.
 
