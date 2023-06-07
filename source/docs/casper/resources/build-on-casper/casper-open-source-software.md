@@ -15,7 +15,7 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [Casper Contract Upgrade](https://github.com/casper-ecosystem/contract-upgrade-example) | Example contract to demonstrate the general way of upgrading a contract and the necessary steps | Casper Labs | Rust | Apache-2.0 license | 2022-06-21 | Example Contracts
 [Casper Dart SDK](https://github.com/cdolaz/casper_dart_sdk) | Casper Dart SDK is for interacting with the Casper Blockchain using RPC. | Temiltas | Dart | Apache-2.0 license | 2022-06-26 | Client SDK
 [Friendly Market's Casper variant of ERC20](https://github.com/FriendlyMarket/casper-erc20) | Implementation of the ERC20 standard for Casper networks | Friendly Market | Rust | Apache-2.0 license | 2022-08-10 | Tokens
-[Casper Go SDK](https://github.com/casper-ecosystem/casper-golang-sdk) | Casper Go SDK | Yaroslav Panasenko | Go | Apache-2.0 license | 2022-01-31 | Client SDK
+[Casper Go SDK](https://github.com/make-software/casper-go-sdk) | Casper Go SDK | Ilya Koltsov | Go | Apache-2.0 license | 2023-06-01 | Client SDK
 [Casper Hello World Contract](https://github.com/casper-ecosystem/hello-world) | This example demonstrates the session code that accepts a message string and stores it in the calling account under the special_value NamedKey | Casper Labs | Rust | NA | 2022-07-13 | Example contracts
 [Casper JavaScript SDK](https://github.com/casper-ecosystem/casper-js-sdk) | Casper Client JavaScript SDK | Casper Labs | TypeScript-JavaScript | Apache-2.0 license | 2022-09-13 | Client SDK
 [Casper Kotlin SDK](https://github.com/tqhuy2018/Casper-Kotlin-sdk) | Casper Kotlin Client SDK to interact with a Casper network. | tqhuy2018 | Kotlin | MIT license | 2022-07-21 | Client SDK

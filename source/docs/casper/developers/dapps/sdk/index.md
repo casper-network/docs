@@ -16,7 +16,7 @@ Each such third party is solely responsible for the SDK it provides, any warrant
 |[JavaScript/TypeScript](./script-sdk.md) | [casper-js-sdk](https://github.com/casper-ecosystem/casper-js-sdk/)| [Casper Ecosystem](https://github.com/casper-ecosystem) |
 |Java SDK | [casper-java-sdk](https://github.com/casper-network/casper-java-sdk/)| [Casper Association](https://github.com/casper-network)|
 |[C# SDK](./csharp-sdk.md)|[casper-net-sdk](https://github.com/make-software/casper-net-sdk)| [MAKE](https://github.com/make-software) |
-|[Golang SDK](./go-sdk.md) |[casper-golang-sdk](https://github.com/casper-ecosystem/casper-golang-sdk/)| [Casper Ecosystem](https://github.com/casper-ecosystem) |
+|[Go SDK](./go-sdk.md) | [casper-go-sdk](https://github.com/make-software/casper-go-sdk) | [MAKE](https://github.com/make-software) |
 |[Python SDK](./python-sdk.md) |[casper-python-sdk](https://github.com/casper-network/casper-python-sdk/)| [Casper Association](https://github.com/casper-network) |
 |PHP SDK|[casper-php-sdk](https://github.com/make-software/casper-php-sdk)| [MAKE](https://github.com/make-software) |
 | Scala SDK | [casper-scala-sdk](https://github.com/abahmanem/casper-scala-sdk) | [M. Abahmane](https://github.com/abahmanem) |
