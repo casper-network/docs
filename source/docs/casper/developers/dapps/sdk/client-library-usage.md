@@ -219,7 +219,7 @@ const { CasperClient, Contracts, RuntimeArgs, CLValueBuilder } = require("casper
 const fs = require("fs")
 
 const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc")
-const contract = new Contracts.Contract(client)
+const contract = new Contracts.Contract(casperClient)
 
 const contractWasm = new Uint8Array(fs.readFileSync("/path/to/contract.wasm").buffer)
 
