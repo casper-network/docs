@@ -5,8 +5,8 @@
 This section includes some examples of how to use Go SDK:
 
 -   [Get a _Deploy_ from the Network](#get-a-deploy-from-the-network)
--   [Handle the deploy processed event](#handle-the-deploy-processed-event)
--   [Sending a transfer](#sending-a-transfer)
+-   [Handle the Deploy Processed Event](#handle-the-deploy-processed-event)
+-   [Sending a Transfer](#sending-a-transfer)
 
 ### Get a Deploy from the Network
 
@@ -33,7 +33,7 @@ func main() {
 }
 ```
 
-### Handle the deploy processed event
+### Handle the Deploy Processed Event
 
 ```go
 package main
@@ -63,7 +63,7 @@ func main() {
 }
 ```
 
-### Sending a transfer
+### Sending a Transfer
 
 ```go
 package main
