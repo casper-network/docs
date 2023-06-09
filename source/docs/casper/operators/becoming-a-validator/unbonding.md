@@ -81,7 +81,7 @@ sudo -u casper casper-client put-deploy \
 --node-address <HOST:PORT> \
 --secret-key <PATH> \
 --chain-name <CHAIN_NAME> \
---payment-amount 4000000000 \
+--payment-amount <PAYMENT_AMOUNT> \
 --session-path <PATH>/casper-node/target/wasm32-unknown-unknown/release/withdraw_bid.wasm \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<AMOUNT_TO_WITHDRAW>'"
@@ -90,7 +90,7 @@ sudo -u casper casper-client put-deploy \
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
 3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
-4. `payment-amount` - The payment for the Deploy in motes estimated. This example uses 4 CSPR
+4. `payment-amount` - The payment for the Deploy in motes estimated
 5. `session-path` - The path to the compiled Wasm on your computer
 
 The `withdraw_bid.wasm` expects two arguments, while the third one is optional:
@@ -108,7 +108,7 @@ This method is more expensive than calling the `withdraw_bid` entrypoint in the 
 
 **Example:**
 
-Here is an example request to unbond stake using the `withdraw_bid.wasm`:
+Here is an example request to unbond stake using the `withdraw_bid.wasm`. The payment amount specified is 4 CSPR. You must modify the payment and other values in the deploy based on the network's [chainspec.toml](../../concepts/glossary/C.md#chainspec).
 
 ```bash
 sudo -u casper casper-client put-deploy \

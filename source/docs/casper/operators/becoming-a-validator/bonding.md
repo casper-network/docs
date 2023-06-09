@@ -24,7 +24,7 @@ sudo -u casper casper-client put-deploy \
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
 3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
-4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 3 CSPR
+4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR
 5. `session-hash` - Hex-encoded hash of the stored auction contract, which depends on the network you are using. For Casper's Mainnet and Testnet, the hashes are as follows:
 
 - **Testnet**: `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`
@@ -104,7 +104,7 @@ sudo -u casper casper-client put-deploy \
 --node-address http://<HOST:PORT> \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
 --chain-name <CHAIN_NAME> \
---payment-amount 3000000000 \
+--payment-amount <PAYMENT_AMOUNT> \
 --session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/add_bid.wasm \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<BID-AMOUNT>'" \
@@ -114,7 +114,7 @@ sudo -u casper casper-client put-deploy \
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
 3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
-4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 3 CSPR
+4. `payment-amount` - The payment for the Deploy in motes
 5. `session-path` - The path to the compiled Wasm on your computer
 
 The `add_bid.wasm` expects three arguments:
@@ -133,7 +133,7 @@ This method is more expensive than calling the `add_bid` entrypoint in the syste
 
 **Example:**
 
-Here is an example request to bond using the `add_bid.wasm`:
+Here is an example request to bond using the `add_bid.wasm`. The payment amount specified is 3 CSPR. You must modify the payment and other values in the deploy based on the network's [chainspec.toml](../../concepts/glossary/C.md#chainspec).
 
 ```bash
 sudo -u casper casper-client put-deploy \
