@@ -217,3 +217,68 @@ To generate the account hash for a public key, use the *account-address* option 
 ```bash
 casper-client account-address --public-key <FORMATTED STRING or PATH>
 ```
+
+## Finding the Main Purse URef {#purse-uref}
+
+You can use the Casper CLI client or a block explorer to find the URef identifying an account's main purse.
+
+### Using the Casper CLI client
+
+With the `casper-client`, use the `get-account-info` subcommand.
+
+```bash
+casper-client get-account-info \
+--node-address <HOST:PORT>  \
+--public-key <FORMATTED STRING or PATH>
+```
+
+1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
+2. `public-key` - This must be a properly formatted public key. The public key may instead be read in from a file, in which case, enter the path to the file as the argument. The file should be one of the two public key files generated via the `keygen` subcommand; "public_key_hex" or "public_key.pem"
+
+<details>
+<summary>Sample command and output</summary>
+
+```bash
+casper-client get-account-info --node-address http://65.21.75.254:7777  --public-key 0202ceafc0aa35f5a7bdda22f65c046b9b30b858459e18d3670f035839ad887fe5db
+{
+  "id": -2018234245556346849,
+  "jsonrpc": "2.0",
+  "result": {
+    "account": {
+      "account_hash": "account-hash-0ea7998b2822afe5b62b08a21d54c941ad791279b089f3f7ede0d72b477eca34",
+      "action_thresholds": {
+        "deployment": 1,
+        "key_management": 1
+      },
+      "associated_keys": [
+        {
+          "account_hash": "account-hash-0ea7998b2822afe5b62b08a21d54c941ad791279b089f3f7ede0d72b477eca34",
+          "weight": 1
+        }
+      ],
+      "main_purse": "uref-974019c976b5f26412ce486158d2431967af35d91387dae8cbcd43c20fce6452-007",
+      "named_keys": []
+    },
+    "api_version": "1.4.15",
+    "merkle_proof": "[29712 hex chars]"
+  }
+}
+
+```
+
+</details>
+
+Run the following help command for more details:
+
+```bash
+casper-client get-account-info --help
+```
+
+### Using a block explorer
+
+Using the [cspr.live](http://cspr.live) block explorer, open the Account in question, and expand the `Raw Data` section. Look for the `main_purse` field and find the corresponding URef. If you do not see data in the `Raw Data` section, then the account has not been funded yet.
+
+<p align="center">
+<img src={"/image/design/main_purse_uref.png"} alt="Image showing an account's main purse" width="500"/>
+</p>
+
