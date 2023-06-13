@@ -1,6 +1,12 @@
 # Working with Authorization Keys
 
-This tutorial demonstrates retrieving and using the authorization keys associated with a deploy using the `list_authorization_keys` function. <!-- TODO add link to docs.rs when 1.5 ships. --> 
+:::caution
+
+These examples should not be used in a production environment. They are intended only for teaching and must be tested and adapted for production use.
+
+:::
+
+This tutorial demonstrates retrieving and using the authorization keys associated with a deploy using the [list_authorization_keys](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.list_authorization_keys.html) function.
 
 ```rust
 let authorization_keys = runtime::list_authorization_keys();
@@ -19,9 +25,6 @@ Remember that authorization keys are listed under a Deploy's [approvals](../../.
 
 The contract code in this example retrieves the set of authorization keys for a given deploy by calling the `runtime::list_authorization_keys` function. In other words, `list_authorization_keys` returns the set of account hashes representing the keys used to sign a deploy. Upon installation, the contract code stores the authorization keys for the installer deploy into a NamedKey. The contract also contains an entry point that returns the intersection of the caller deploy's, and installer deploy's authorization keys. The tests in this repository verify different scenarios and check the resulting intersection. 
 
-**Note**: This tutorial highlights certain lines of code, but for a full working version of the code, visit GitHub. <!-- TODO add a link to casper-ecosystem/tutorials-example-wasm/tree/dev/authorization-keys-example when it becomes public. -->
-
-
 ## Prerequisites
 
 - You meet the [development prerequisites](../../../developers/prerequisites.md) and are familiar with [writing and testing on-chain code](../../../developers/writing-onchain-code/index.md)
@@ -35,29 +38,32 @@ The contract code in this example retrieves the set of authorization keys for a 
 
 ## Workflow
 
-<!-- TODO add a link to casper-ecosystem/tutorials-example-wasm when it becomes public.-->
-To start, clone the `tutorials-example-wasm` repository from GitHub. Then, open the `authorization-keys-example` directory, prepare your Rust environment, and build the tests with the following commands.
+To start, clone the [tutorials-example-wasm](https://github.com/casper-ecosystem/tutorials-example-wasm) repository. Then, open the `authorization-keys-example` directory, prepare your Rust environment, and build the tests with the following commands.
 
-<!-- TODO add the full link for git clone when the repo is public.-->
 ```bash
-git clone casper-ecosystem/tutorials-example-wasm
+git clone https://github.com/casper-ecosystem/tutorials-example-wasm
 cd tutorials-example-wasm/authorization-keys-example
 make prepare
 make test
 ```
 
-<!-- TODO add a link to each folder -->
 Review the repository's structure:
-- `client` - A client folder containing two Wasm files
+- [client](https://github.com/casper-ecosystem/tutorials-example-wasm/tree/dev/authorization-keys-example/client) - A client folder containing two Wasm files
    - `add_keys.wasm` - Session code that adds an associated key to the calling account
    - `contract_call.wasm` - Session code that calls the contract's entry point and stores the result into a named key
-- `contract` - A simple contract that demonstrates the usage of authorization keys and compiles into a `contract.wasm` file
-- `tests` - Tests and supporting utilities to verify and demonstrate the contract's expected behavior
+- [contract](https://github.com/casper-ecosystem/tutorials-example-wasm/tree/dev/authorization-keys-example/contract) - A simple contract that demonstrates the usage of authorization keys and compiles into a `contract.wasm` file
+- [tests](https://github.com/casper-ecosystem/tutorials-example-wasm/tree/dev/authorization-keys-example/tests) - Tests and supporting utilities to verify and demonstrate the contract's expected behavior
+
+:::note
+
+This tutorial highlights certain lines of code found in [GitHub](https://github.com/casper-ecosystem/tutorials-example-wasm/tree/dev/authorization-keys-example).
+
+:::
 
 
 ### The example contract
 
-Upon installation, the contract in this example stores the authorization keys that signed the installer deploy into a named key. <!-- TODO link installation to contract/src/main.rs#L75 -->
+Upon [installation](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/contract/src/main.rs#L75), the contract in this example stores the authorization keys that signed the installer deploy into a named key.
 
 ```rust
 #[no_mangle]
@@ -72,7 +78,7 @@ pub extern "C" fn init() {
 }
 ```
 
-The contract contains an entry point that returns the intersection of the caller deploy's authorization keys and the installer deploy's authorization keys saved during contract installation. The following usage of `runtime::list_authorization_keys` retrieves the set of account hashes representing the keys signing the caller deploy. <!-- TODO link usage to contract/src/main.rs#L52 -->
+The contract contains an entry point that returns the intersection of the caller deploy's authorization keys and the installer deploy's authorization keys saved during contract installation. The following [usage](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/contract/src/main.rs#L52) of `runtime::list_authorization_keys` retrieves the set of account hashes representing the keys signing the caller deploy.
 
 ```rust
 let authorization_keys_caller: Vec<AccountHash> =
@@ -119,8 +125,7 @@ These tests focus on testing the contract installation.
 |---|---|
 | `DEFAULT_ACCOUNT_ADDR` |  Successful contract installation |
 
-This test signs the installer deploy with an authorization key `DEFAULT_ACCOUNT_ADDR` that belongs to the calling accounts's associated keys. In other words, since the caller is the default account, `DEFAULT_ACCOUNT_ADDR` can be used to sign the deploy.
-<!-- TODO add link to Github integration_tests.rs#L28 -->
+This [test](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L28) signs the installer deploy with an authorization key `DEFAULT_ACCOUNT_ADDR` that belongs to the calling accounts's associated keys. In other words, since the caller is the default account, `DEFAULT_ACCOUNT_ADDR` can be used to sign the deploy.
 
 ```rust
 let session_code = PathBuf::from(CONTRACT_WASM);
@@ -142,8 +147,7 @@ let deploy_item = DeployItemBuilder::new()
 |---|---|
 | `DEFAULT_ACCOUNT_ADDR`, `account_addr_1` | Failed contract installation |
 
-This test tries to sign the installer deploy with an authorization key that is not part of the caller's associated keys. This is not allowed because the authorization keys used to sign a deploy need to be a subset of the caller's associated keys. So, the installer deploy fails as expected.
-<!-- TODO add link to Github integration_tests.rs#L57 -->
+This [test](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L57) tries to sign the installer deploy with an authorization key that is not part of the caller's associated keys. This is not allowed because the authorization keys used to sign a deploy need to be a subset of the caller's associated keys. So, the installer deploy fails as expected.
 
 ```rust
 let session_code = PathBuf::from(CONTRACT_WASM);
@@ -169,7 +173,7 @@ assert_eq!(error.to_string(), "Authorization failure: not authorized.");
 |---|---|
 | `DEFAULT_ACCOUNT_ADDR`, `account_addr_1` |  Successful contract installation |
 
-This test demonstrates a successful installer deploy using an added authorization key. After the initial test framework setup, the test calls session code to add the associated account `account_addr_1` to the default account's associated keys. <!-- TODO add link to GitHub integration_tests.rs#L83 -->
+This [test](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L83) demonstrates a successful installer deploy using an added authorization key. After the initial test framework setup, the test calls session code to add the associated account `account_addr_1` to the default account's associated keys.
 
 ```rust
 // Add account_addr_1 to the default account's associated keys
@@ -194,7 +198,7 @@ builder
     .expect_success();
 ```
 
-Since the deploy threshold is now 2, the installer deploy is signed with the default account hash and with `account_addr_1`. <!-- TODO link to integration_tests.rs#L191 -->
+Since the deploy threshold is now 2, the installer deploy is signed with the default account hash and with `account_addr_1`. See [GitHub](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L191).
 
 ```rust
 let session_code = PathBuf::from(CONTRACT_WASM);
@@ -218,9 +222,7 @@ The next tests exercise the contract's unique entry point to calculate the inter
 |---|---|---|
 | `DEFAULT_ACCOUNT_ADDR` | `account_addr_1`, `DEFAULT_ACCOUNT_ADDR` | `account_addr_1` |
 
-<!-- TODO add link to Github integration_tests.rs#L144 -->
-This test builds upon the previous test, which adds an associated account to the default account's associated keys and installs the contract using these two keys. Additionally, on line 201, the test invokes the contract's entry point using a deploy that runs under `ACCOUNT_USER_1` signed only with `account_addr_1`. This is possible because the deploy action threshold for `ACCOUNT_USER_1` is 1.
-<!-- TODO add link to GitHub integration_tests.rs#L201 -->
+This [test](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L144) builds upon the previous test, which adds an associated account to the default account's associated keys and installs the contract using these two keys. Additionally, on line 201, the test invokes the contract's entry point using a deploy that runs under `ACCOUNT_USER_1` signed only with `account_addr_1`. This is possible because the deploy action threshold for `ACCOUNT_USER_1` is 1 as you can see [here](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L201).
 
 ```rust
 let contract_hash = builder
@@ -254,8 +256,7 @@ The entry point returns the intersection of the caller deploy's authorization ke
 |---|---|---|
 | `DEFAULT_ACCOUNT_ADDR` | `account_addr_1`, `DEFAULT_ACCOUNT_ADDR` | `DEFAULT_ACCOUNT_ADDR` |
 
-<!-- TODO add link to GitHub integration_tests.rs#L224 -->
-This is the main test in this example repository. After installing the contract using the default account, the test adds the default account hash to `ACCOUNT_USER_1` as an associated key. 
+This is the [main test](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L224) in this example repository. After installing the contract using the default account, the test adds the default account hash to `ACCOUNT_USER_1` as an associated key. 
 
 ```rust
 let session_code = PathBuf::from(ADD_KEYS_WASM);
@@ -294,8 +295,7 @@ builder.exec(entry_point_request).expect_success().commit();
 |---|---|---|
 | `DEFAULT_ACCOUNT_ADDR` | `account_addr_2` | None |
 
-<!-- TODO add link to GitHub integration_tests.rs#L304 -->
-This test verifies that the entry point returns an error when there is no intersection between the caller deploy's authorization keys and the installer deploy's authorization keys. 
+This [test](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L304) verifies that the entry point returns an error when there is no intersection between the caller deploy's authorization keys and the installer deploy's authorization keys. 
 
 The default account hash is used to sign the installer deploy.
 
@@ -343,9 +343,7 @@ The following tests exercise the entry point using a [contract call](#contract_c
 |---|---|---|
 | `DEFAULT_ACCOUNT_ADDR` | `account_addr_1`, `DEFAULT_ACCOUNT_ADDR` | `DEFAULT_ACCOUNT_ADDR` |
 
-<!-- TODO add link to Github integration_tests.rs#L403 -->
-
-This test validates the contract's entry point using a client contract call. The contract is installed using the default account hash in the deploy's authorization keys.
+This [test](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L403) validates the contract's entry point using a client contract call. The contract is installed using the default account hash in the deploy's authorization keys.
 
 ```rust
 let session_code = PathBuf::from(CONTRACT_WASM);
@@ -404,9 +402,7 @@ assert_eq!(actual_intersection, expected_intersection);
 |---|---|---|
 | `DEFAULT_ACCOUNT_ADDR` | `account_addr_1`, `account_addr_2` | None |
 
-<!-- TODO add link to Github integration_tests.rs#L509 -->
-
-The final test in this tutorial checks that when there is no intersection between the caller deploy's authorization keys (`account_addr_1`, `account_addr_2`) and the installer deploy's authorization keys (`DEFAULT_ACCOUNT_ADDR`), the entry point returns an error.
+The [final test](https://github.com/casper-ecosystem/tutorials-example-wasm/blob/6810ac3d6d65e252770561ddac9b33bf40aadc03/authorization-keys-example/tests/src/integration_tests.rs#L509) in this tutorial checks that when there is no intersection between the caller deploy's authorization keys (`account_addr_1`, `account_addr_2`) and the installer deploy's authorization keys (`DEFAULT_ACCOUNT_ADDR`), the entry point returns an error.
 
 ```rust
  let session_code = PathBuf::from(CONTRACT_CALL_WASM);
