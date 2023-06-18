@@ -366,6 +366,12 @@ casper-client put-deploy \
     --session-arg "message:string='hello world'"
 ```
 
+:::tip
+
+The parameters used in this command need to be adjusted based on your use case. For details, see [querying a node](../../../developers/prerequisites.md#acquire-node-address-from-network-peers) and [installing contracts](../../../developers/cli/installing-contracts.md). The payment amount may also need to be adjusted based on the latest Testnet [chainspec](../../concepts/glossary/C.md#chainspec).
+
+:::
+
 The output of this command is:
 
 ```bash

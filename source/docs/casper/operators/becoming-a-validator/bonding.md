@@ -13,7 +13,7 @@ sudo -u casper casper-client put-deploy \
 --node-address <HOST:PORT> \
 --secret-key <PATH> \
 --chain-name <CHAIN_NAME> \
---payment-amount 2500000000 \
+--payment-amount <PAYMENT_AMOUNT_IN_MOTES> \
 --session-hash <SESSION_HASH> \
 --session-entry-point add_bid \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
@@ -24,7 +24,7 @@ sudo -u casper casper-client put-deploy \
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
 3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
-4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR
+4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR for node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml)
 5. `session-hash` - Hex-encoded hash of the stored auction contract, which depends on the network you are using. For Casper's Mainnet and Testnet, the hashes are as follows:
 
 - **Testnet**: `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`

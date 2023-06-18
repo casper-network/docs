@@ -151,7 +151,7 @@ casper-client transfer \
 
 :::tip
 
-The payment amount varies based on each deploy and the network's [chainspec](../../concepts/glossary/C.md#chainspec).
+The payment amount varies based on each deploy and network [chainspec](../concepts/glossary/C.md#chainspec).
 
 :::
 

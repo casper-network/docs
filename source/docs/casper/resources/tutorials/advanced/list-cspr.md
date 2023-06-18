@@ -127,8 +127,10 @@ casper-client transfer \
 --secret-key <accountA-secret-key>.pem \
 --chain-name casper \
 --target-account <accountB-hex-encoded-public-key> \
---payment-amount 10000
+--payment-amount <payment-in-motes>
 ```
+
+The payment amount varies based on the deploy and network [chainspec](../../concepts/glossary/C.md#chainspec). For node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), wasmless transfers cost 10^8 motes.
 
 ### Bulk or batched Wasm transfer
 
@@ -350,7 +352,7 @@ casperService.deploy(signedDeploy)
 
 ### Costs and Minimums
 
-The following are costs and minimum amounts for version 1.4.8, but up-to-date values should be pulled from the network `chainspec`.
+The following are costs and minimum amounts for version 1.5.1, but up-to-date values should be pulled from the network [chainspec](../../../concepts/glossary/C.md#chainspec).
 
 Transfer Cost: 100,000,000 motes or 0.1 **CSPR**
 

@@ -19,7 +19,7 @@ casper-client put-deploy \
 --node-address http://<peer-ip-addres>:7777 \
 --chain-name casper-test \
 --session-path <path-to-wasm>/undelegate.wasm \
---payment-amount 2500000000 \
+--payment-amount <payment-in-motes> \
 --session-arg "validator:public_key='<hex-encoded-validator-public-key>'" \
 --session-arg "amount:u512='<amount-to-delegate>'"
 --session-arg "delegator:public_key='<hex-encoded-public-key>'" \
