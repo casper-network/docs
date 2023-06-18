@@ -65,7 +65,7 @@ Here is a list of commands for developers who already meet the prerequisites and
 
    `make test`
 
-12. Install the contract on Testnet using the `casper-client`'s `put-deploy` command. Replace the secret key with your path. Record the deploy hash from the output. This example uses 30 CSPR to pay for contract installation on chain. You may need to adjust this value based on the latest Testnet [chainspec](../../concepts/glossary/C.md#chainspec).
+12. Install the contract on Testnet using the `casper-client`'s `put-deploy` command. Replace the secret key with your path. Record the deploy hash from the output. This example uses 30 CSPR to pay for contract installation on chain. You may need to adjust this value based on the latest Testnet [chainspec](../concepts/glossary/C.md#chainspec).
 
    ```bash
    casper-client put-deploy \

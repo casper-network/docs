@@ -66,7 +66,7 @@ casper-client put-deploy \
 1. `node-address` - An IP address of a node on the network
 2. `secret-key` - The file name containing the secret key of the main account
 3. `chain-name` - The chain-name to the network where you wish to send the deploy (this example uses the Testnet)
-4. `payment-amount` - The cost of the deploy. This example uses 2.5 CSPR, which may need to be adjusted based on the network [chainspec](../../concepts/glossary/C.md#chainspec).
+4. `payment-amount` - The cost of the deploy. This example uses 2.5 CSPR, which may need to be adjusted based on the network [chainspec](../../../concepts/glossary/C.md#chainspec).
 5. `session-path` - The path to the contract Wasm
 6. `session-arg` - The contract takes the account hash of the associated account as an argument labeled `deployment-account`. You can pass this argument using the `--session-arg` flag in the command line client
 

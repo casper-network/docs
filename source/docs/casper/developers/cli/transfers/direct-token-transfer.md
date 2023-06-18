@@ -49,7 +49,7 @@ casper-client transfer \
 
 -   `target-account` - Hex-encoded public key of the account from which the main purse will be used as the target
 
--   `payment-amount` - The payment for the transfer in motes. The payment amount varies based on each deploy and network [chainspec](../../concepts/glossary/C.md#chainspec). For Testnet node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), you can specify 10^8 motes
+-   `payment-amount` - The payment for the transfer in motes. The payment amount varies based on each deploy and network [chainspec](../../../concepts/glossary/C.md#chainspec). For Testnet node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), you can specify 10^8 motes
 
 **Important response fields:**
 

@@ -130,7 +130,7 @@ casper-client transfer \
 --payment-amount <payment-in-motes>
 ```
 
-The payment amount varies based on the deploy and network [chainspec](../../concepts/glossary/C.md#chainspec). For node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), wasmless transfers cost 10^8 motes.
+The payment amount varies based on the deploy and network [chainspec](../../../concepts/glossary/C.md#chainspec). For node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), wasmless transfers cost 10^8 motes.
 
 ### Bulk or batched Wasm transfer
 
