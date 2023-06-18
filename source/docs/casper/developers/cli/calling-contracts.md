@@ -57,9 +57,11 @@ casper-client put-deploy \
     --session-entry-point "counter-inc"
 ```
 
-:::note
-
 This `put-deploy` command is nearly identical to the command used to [install the contract](./installing-contracts.md#installing-contract-code). Here, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated entry point. No Wasm file is needed in this example since the contract is already on the blockchain, and the entry point doesn’t return a value. If an entry point returns a value, use code to [interact with runtime return values](../../resources/tutorials/advanced/return-values-tutorial.md).
+
+:::tip
+
+The payment amount varies based on each deploy and the network's [chainspec](../../concepts/glossary/C.md#chainspec).
 
 :::
 
