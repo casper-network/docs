@@ -149,6 +149,12 @@ casper-client transfer \
 --payment-amount 100000000
 ```
 
+:::tip
+
+The payment amount varies based on each deploy and the network's [chainspec](../../concepts/glossary/C.md#chainspec).
+
+:::
+
 The Casper command-line client requires the secret key in *PEM* format to send a Deploy from this account. If you want to use existing Ethereum keys with the command-line client, a conversion to *PEM* format is needed.
 
 The following example is a JS script that generates a *PEM* file, using a [key encoder](https://github.com/stacks-network/key-encoder-js) and Node.js. To install these components, do the following:
