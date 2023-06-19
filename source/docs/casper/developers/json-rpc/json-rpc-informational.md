@@ -371,6 +371,58 @@ This method returns a state root hash at a given [Block](../../concepts/design/c
 
 </details>
 
+## info_get_chainspec {#info-get-chainspec}
+
+This method returns raw bytes for chainspec files.
+
+<details>
+
+<summary><b>Example info_get_chainspec request</b></summary>
+
+```bash
+
+{
+  "jsonrpc": "2.0",
+  "method": "info_get_chainspec",
+  "id": 5510244237763930243
+}
+
+```
+
+</details>
+
+### `info_get_chainspec_result`
+
+|Parameter|Type|Description|
+|---------|----|-----------| 
+|api_version|String|The RPC API version.|
+|[chainspec_bytes](./types_chain.md#ChainspecRawBytes)|Object|The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.|
+
+<details>
+
+<summary><b>Example info_get_chainspec result</b></summary>
+
+Please note that adding a `--vv` flag will return the full chainspec bytes.
+
+```bash
+
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.0",
+    "chainspec_bytes": {
+      "chainspec_bytes": "[22040 hex chars]",
+      "maybe_genesis_accounts_bytes": null,
+      "maybe_global_state_bytes": null
+    }
+  },
+  "id": 5510244237763930243
+}
+
+```
+
+</details>
+
 ## info_get_deploy {#info-get-deploy}
 
 This method retrieves a [Deploy](../../concepts/design/casper-design.md#execution-semantics-deploys) from a network. It requires a `deploy_hash` to query the Deploy.
