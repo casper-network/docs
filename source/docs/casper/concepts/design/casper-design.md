@@ -154,7 +154,7 @@ A Wasm module is not natively able to create any effects outside of reading or w
 
 ![Casper Network Runtime](/image/design/casper-runtime.png)
 
-All these features are accessible via functions in the [Casper External FFI](https://docs.rs/casper-contract/1.4.4/casper_contract/ext_ffi/index.html).
+All these features are accessible via functions in the [Casper External FFI](https://docs.rs/casper-contract/latest/casper_contract/ext_ffi/index.html).
 
 #### Generating `URef`s {#execution-semantics-urefs}
 

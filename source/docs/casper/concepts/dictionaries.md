@@ -89,7 +89,7 @@ fn update_ledger_record(dictionary_item_key: String) {
 
 ```
 
-The second section uses [`dictionary_get`](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/storage/fn.dictionary_get.html) to read an entry within the `LEDGER` dictionary. If the entry does not exist on global state, it will create the entry. If it already exists, the entry is updated with the current value using a [`dictionary_put`](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/storage/fn.dictionary_put.html) operation. As stated above, regardless of the size of the change within the entry, the entire dictionary entry will need to be overwritten and will incur the associated cost.
+The second section uses [`dictionary_get`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.dictionary_get.html) to read an entry within the `LEDGER` dictionary. If the entry does not exist on global state, it will create the entry. If it already exists, the entry is updated with the current value using a [`dictionary_put`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.dictionary_put.html) operation. As stated above, regardless of the size of the change within the entry, the entire dictionary entry will need to be overwritten and will incur the associated cost.
 
 ```rust
 
