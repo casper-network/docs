@@ -251,6 +251,7 @@ module.exports = {
                         "resources/tutorials/beginner/querying-network",
                         "resources/tutorials/beginner/upgrade-contract",
                         "resources/tutorials/beginner/aws-node",
+                        "resources/tutorials/beginner/cep18",
                         {
                             type: "category",
                             label: "A Counter on the Testnet",
