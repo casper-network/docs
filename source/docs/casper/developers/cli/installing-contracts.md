@@ -50,6 +50,12 @@ casper-client put-deploy \
   --session-path ./counter/target/wasm32-unknown-unknown/release/counter-v1.wasm
 ```
 
+:::tip
+
+The payment amount varies based on each contract and network [chainspec](../../concepts/glossary/C.md#chainspec).
+
+:::
+
 To verify the deploy, call `get-deploy` and provide the deploy hash you received from `put-deploy`.
 
 ```bash

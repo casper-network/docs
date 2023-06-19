@@ -100,7 +100,7 @@ This command will return information pertaining to the account, including the `N
 
 * The **chain name**, entered in this instance using `--chain-name "casper-net-1"`
 
-* The **payment amount** for this `Deploy` in motes, which may need to be adjusted depending on cost. In this instance, we will use `--payment-amount 500000000`
+* The **payment amount** for this `Deploy` in motes, which may need to be adjusted depending on cost and network [chainspec](../../concepts/glossary/C.md#chainspec). In this instance, we will use `--payment-amount 500000000`
 
 * The **session path**, defining the location of the Wasm bearing file for the `Deploy`. It appears in our example as `--session-path <PATH>` but you must define the path to your specific file.
 

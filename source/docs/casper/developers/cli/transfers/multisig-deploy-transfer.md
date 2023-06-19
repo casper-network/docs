@@ -35,7 +35,7 @@ casper-client make-transfer --amount 2500000000 \
 --chain-name casper-test \
 --target-account [PUBLIC_KEY_HEX] \
 --transfer-id 3 \
---payment-amount 10000 \
+--payment-amount 100000000 \
 --output transfer.deploy
 ```
 
@@ -48,7 +48,7 @@ The following table explains the parameters used in the `make-transfer` command.
 | chain-name | The name of the chain, to avoid the deploy from being accidentally or maliciously included in a different chain <ul><li>For Testnet use **casper-test**</li><li>For Mainnet use **casper**</li></ul> |
 | target-account | Hex-encoded public key of the target account from which the main purse will be used |
 | transfer-id | A user-defined identifier permanently associated with the transfer |
-| payment-amount | The amount used to pay for executing the code on the network |
+| payment-amount | The payment for the transfer in motes. The payment amount varies based on the deploy and network [chainspec](../../../concepts/glossary/C.md#chainspec). For Testnet node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), wasmless transfers cost 10^8 motes |
 
 In the output, you will see a section named **approvals**. This is where a signature from the source account is added to the Deploy.
 

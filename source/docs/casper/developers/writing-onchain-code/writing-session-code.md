@@ -153,7 +153,7 @@ casper-client put-deploy \
 -   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777.
 -   `secret-key` - The file name containing the secret key of the account paying for the deploy.
 -   `chain-name` - The network where the deploy should be sent. For Mainnet, use *casper*. For Testnet, use *casper-test*. 
--   `payment-amount` - Payment for the deploy in motes.  
+-   `payment-amount` - Payment for the deploy in motes. The payment amount varies based on the deploy and network [chainspec](../../concepts/glossary/C.md#chainspec).
 -   `session-path` - Path to the contract Wasm, pointing to the compiled contract.
 -   `session-arg` - A named and typed argument passed to the Wasm code.
 
