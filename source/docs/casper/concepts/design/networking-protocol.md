@@ -63,7 +63,7 @@ A node receiving a message length header that exceeds the maximum message size s
 
 ## Encoding
 
-The node uses three encoding schemes: Handshakes (see below) are encoded using [MessagePack](https://msgpack.org), while regular messages are encoded using [bincode](https://docs.rs/bincode). Many (but not all) data objects use [`bytesrepr`](https://docs.rs/casper-types/1.5.0/casper_types/bytesrepr/index.html) for serialization.
+The node uses three encoding schemes: Handshakes (see below) are encoded using [MessagePack](https://msgpack.org), while regular messages are encoded using [bincode](https://docs.rs/bincode). Many (but not all) data objects use [`bytesrepr`](https://docs.rs/casper-types/latest/casper_types/bytesrepr/index.html) for serialization.
 
 The node uses the [`rmp-serde`](https://docs.rs/rmp-serde/0.14.4/rmp_serde/index.html) crate, version `0.14.4`, which is kept fixed to ensure handshake compatibility with protocol version 1.0 of the node.
 
@@ -83,7 +83,7 @@ Any other use of `bincode` encoding (e.g. for GetRequest payloads, see below) MU
 
 Unless noted otherwise, any structure encoded as MessagePack or bincode is serialized using the standard  [`serde`](https://serde.rs)-derived encoding. For `bytesrepr` serialization refer to the specific implementations in the `bytesrepr` crate.
 
-Any data types given from here on out are described using simplified [Rust](https://rust-lang.org/) structure definitions.
+Any data types given from here on out are described using simplified [Rust](https://www.rust-lang.org/) structure definitions.
 
 ## The `Message` Type
 
@@ -114,7 +114,7 @@ struct ConsensusCertificate {
 struct Digest([u8; 32]);
 ```
 
-For [`String`](https://doc.rust-lang.org/std/string/struct.String.html), [`SocketAddr`](https://doc.rust-lang.org/std/net/enum.SocketAddr.html), [`ProtocolVersion`](https://docs.rs/casper-types/1.5.0/casper_types/struct.ProtocolVersion.html), [`Option`](https://doc.rust-lang.org/std/option/enum.Option.html), [`PublicKey`](https://docs.rs/casper-types/1.5.0/casper_types/crypto/enum.PublicKey.html), [`Signature`](https://docs.rs/casper-types/1.5.0/casper_types/crypto/enum.Signature.html) see the respective docs and details below.
+For [`String`](https://doc.rust-lang.org/std/string/struct.String.html), [`SocketAddr`](https://doc.rust-lang.org/std/net/enum.SocketAddr.html), [`ProtocolVersion`](https://docs.rs/casper-types/latest/casper_types/struct.ProtocolVersion.html), [`Option`](https://doc.rust-lang.org/std/option/enum.Option.html), [`PublicKey`](https://docs.rs/casper-types/latest/casper_types/crypto/enum.PublicKey.html), [`Signature`](https://docs.rs/casper-types/latest/casper_types/crypto/enum.Signature.html) see the respective docs and details below.
 
 ## Handshake Behavior
 

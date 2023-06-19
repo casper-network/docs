@@ -57,7 +57,7 @@ Here is a sample JSON representation of a Deploy's authorization keys:
 
 ## Accessing Authorization Keys from a Smart Contract
 
-Contract code can retrieve the set of authorization keys for a given deploy by calling the `runtime::list_authorization_keys` function, which returns the set of account hashes representing the keys used to sign the deploy. <!-- TODO add a link to docs.rs when it is available as part of 1.5.-->
+Contract code can retrieve the set of authorization keys for a given deploy by calling the [contract_api::runtime::list_authorization_keys](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.list_authorization_keys.html) function, which returns the set of account hashes representing the keys used to sign the deploy.
 
 ## When to Use Authorization Keys
 

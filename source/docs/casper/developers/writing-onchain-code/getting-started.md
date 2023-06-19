@@ -40,7 +40,7 @@ A crate is a compilation unit, which can be compiled into a binary or a library.
 
 **API Documentation for Smart Contracts**
 
-Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The contract API documentation is specific for a given version. For example, you can find documentation for version **0.7.6** at <https://docs.rs/casper-contract/0.7.6>.
+Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The contract API documentation is specific for a given version. For example, you can find documentation for version **3.0.0** at <https://docs.rs/casper-contract/3.0.0/casper_contract/index.html>.
 
 ### Installing Dependencies {#installing-dependencies}
 
