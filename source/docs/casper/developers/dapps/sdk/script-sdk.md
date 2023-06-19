@@ -12,7 +12,6 @@ We provide you with a repository that will help you create clients for Casper co
 
 The two primary clients in this repository are:
 
--   The [Casper ERC-20 Client](https://github.com/casper-network/casper-contracts-js-clients/tree/master/packages/erc20-client) (casper-erc20-js-client)
 -   The [Casper CEP-47 (NFT) Client](https://github.com/casper-network/casper-contracts-js-clients/blob/master/packages/cep47-client/README.md) (casper-cep47-js-client)
 
 These packages give you an easy way to install and interact with the corresponding Casper contract.
