@@ -83,7 +83,7 @@ Any other use of `bincode` encoding (e.g. for GetRequest payloads, see below) MU
 
 Unless noted otherwise, any structure encoded as MessagePack or bincode is serialized using the standard  [`serde`](https://serde.rs)-derived encoding. For `bytesrepr` serialization refer to the specific implementations in the `bytesrepr` crate.
 
-Any data types given from here on out are described using simplified [Rust](https://rust-lang.org/) structure definitions.
+Any data types given from here on out are described using simplified [Rust](https://www.rust-lang.org/) structure definitions.
 
 ## The `Message` Type
 
