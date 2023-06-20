@@ -18,7 +18,7 @@ The active validator set constantly rotates; therefore, when delegating to a val
 
 ## Sending the Delegation Request {#sending-the-delegation-request}
 
-There are two ways to delegate CSPR to a validator. The recommended and cheaper method is to call the `delegate` entry point in the system auction contract. The second method involves building the `delegate.wasm` file from the `casper-node` repository and installing it on the network.
+There are two ways to delegate CSPR to a validator. The recommended and cheaper method is to call the `delegate` entry point from the system auction contract. The second method involves building the `delegate.wasm` from the `casper-node` repository and installing it on the network.
 
 We recommend testing the following steps on the official Testnet before performing them in a live environment like the Casper Mainnet.
 
