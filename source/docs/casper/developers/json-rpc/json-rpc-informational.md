@@ -576,8 +576,8 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[purse_identifier](/types_chain.md#purseidentifier)|Object|The identifier to obtain the purse corresponding to balance query.|
-|[state_identifier](/types_chain#globalstateidentifier)|Object|The state identifier used for the query; if none is passed the tip of the chain will be used.|
+|[purse_identifier](./types_chain.md#purseidentifier)|Object|The identifier to obtain the purse corresponding to balance query.|
+|[state_identifier](./types_chain#globalstateidentifier)|Object|The state identifier used for the query; if none is passed the tip of the chain will be used.|
 
 <details>
 
@@ -614,7 +614,7 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 |Parameter|Type|Description|
 |---------|----|-----------|     
 |api_version|String|The RPC API version.|
-|[balance](/types_chain#u512)|Object|The balance represented in motes.|
+|[balance](./types_chain#u512)|Object|The balance represented in motes.|
 
 <details>
 
