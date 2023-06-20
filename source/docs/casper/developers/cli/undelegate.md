@@ -61,11 +61,11 @@ This example shows an account delegating 100 CSPR:
 
 ```bash
 casper-client put-deploy \
---node-address http://65.21.235.219:7777  \
+--node-address http://65.21.75.254:7777  \
 --chain-name casper-test \
---secret-key ~/KEYS/Test_secret_key.pem \
+--secret-key ~/KEYS/secret_key.pem \
 --payment-amount 2500000000 \
---session-hash hash-e22d38bcf3454a93face78a353feaccbf1d637d1ef9ef2e061a655728ff59bbe \
+--session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
 --session-entry-point undelegate \
 --session-arg "validator:public_key='01aa17f7b9889480b1bd34c3f94f263b229c7a9b01dd4dda19c2dd1d38d176c7a0'" \
 --session-arg "amount:u512='100000000000'" \
@@ -113,7 +113,7 @@ This example command uses the Casper Testnet to undelegate 100 CSPR:
 
 ```bash
 casper-client put-deploy \
---node-address http://65.21.235.219:7777 \
+--node-address http://65.21.75.254:7777  \
 --chain-name casper-test \
 --secret-key ~/KEYS/secret_key.pem \
 --payment-amount 20000000000 \
