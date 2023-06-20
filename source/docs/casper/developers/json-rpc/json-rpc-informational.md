@@ -576,7 +576,7 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[purse_identifier](types_chain.md#purseidentifier)|Object|The identifier to obtain the purse corresponding to balance query.|
+|[purse_identifier](types_chain.md#purseidentifier)|Object|The identifier to obtain the purse corresponding to the balance query.|
 |[state_identifier](types_chain.md#globalstateidentifier)|Object|The state identifier used for the query; if none is passed the tip of the chain will be used.|
 
 <details>
