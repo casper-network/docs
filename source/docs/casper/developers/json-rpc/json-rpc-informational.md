@@ -11,7 +11,7 @@ This method returns the JSON representation of a [Block](../../concepts/design/c
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
-|[block_identifier](../types_chain.md#blockidentifier)|Object|The Block hash or the Block height.|
+|[block_identifier](types_chain.md#blockidentifier)|Object|The Block hash or the Block height.|
 
 <details>
 
@@ -41,7 +41,7 @@ The result from `chain_get_block` depends on block availability from a given nod
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[block](../types_chain.md#jsonblock)|Object|The Block, if found. (Not required)|
+|[block](types_chain.md#jsonblock)|Object|The Block, if found. (Not required)|
 
 <details>
 
@@ -124,7 +124,7 @@ This method returns all native transfers within a given [Block](../../concepts/d
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
-|[block_identifier](../types_chain.md#blockidentifier)|Object|The Block hash.|
+|[block_identifier](types_chain.md#blockidentifier)|Object|The Block hash.|
 
 <details>
 
@@ -151,8 +151,8 @@ This method returns all native transfers within a given [Block](../../concepts/d
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[block_hash](../types_chain.md#blockhash)|Object|The Block hash, if found.|
-|[transfers](../types_chain.md#transfer)|Array|The Block's transfers, if found.|
+|[block_hash](types_chain.md#blockhash)|Object|The Block hash, if found.|
+|[transfers](types_chain.md#transfer)|Array|The Block's transfers, if found.|
 
 <details>
 
@@ -191,7 +191,7 @@ This method returns the era summary at a given [Block](../../concepts/design/cas
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[block_identifier](../types_chain.md#blockidentifier)|Object|The Block hash. (Optional)|
+|[block_identifier](types_chain.md#blockidentifier)|Object|The Block hash. (Optional)|
 
 <details>
 
@@ -219,7 +219,7 @@ This method returns the era summary at a given [Block](../../concepts/design/cas
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[era_summary](../types_chain.md#erasummary)|Object|The era summary (if found).|
+|[era_summary](types_chain.md#erasummary)|Object|The era summary (if found).|
 
 <details>
 
@@ -322,7 +322,7 @@ This method returns a state root hash at a given [Block](../../concepts/design/c
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[block_identifier](../types_chain.md#blockidentifier)|Object|The Block hash. (Optional)|
+|[block_identifier](types_chain.md#blockidentifier)|Object|The Block hash. (Optional)|
 
 <details>
 
@@ -350,7 +350,7 @@ This method returns a state root hash at a given [Block](../../concepts/design/c
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[state_root_hash](../types_chain.md#digest)|String| Hex-encoded hash of the state root.|
+|[state_root_hash](types_chain.md#digest)|String| Hex-encoded hash of the state root.|
 
 <details>
 
@@ -396,7 +396,7 @@ This method returns raw bytes for chainspec files.
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[chainspec_bytes](../types_chain.md#ChainspecRawBytes)|Object|The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.|
+|[chainspec_bytes](types_chain.md#ChainspecRawBytes)|Object|The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.|
 
 <details>
 
@@ -429,8 +429,8 @@ This method retrieves a [Deploy](../../concepts/design/casper-design.md#executio
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[deploy_hash](../types_chain.md#deployhash)|String|The Deploy hash.|
-|[finalized_approvals](../types_chain.md#finalizedapprovals)|Boolean|Determines whether to return the Deploy with the finalized approvals substituted. (Optional)|
+|[deploy_hash](types_chain.md#deployhash)|String|The Deploy hash.|
+|[finalized_approvals](types_chain.md#finalizedapprovals)|Boolean|Determines whether to return the Deploy with the finalized approvals substituted. (Optional)|
 
 <details>
 
@@ -461,8 +461,8 @@ If the `execution_results` field is empty, it means that the network processed t
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
-|[deploy](../types_chain.md#deploy)|Object|The Deploy.|
-|[execution_results](../types_chain.md#jsonexecutionresult)|Object|The map of Block hash to execution result.|
+|[deploy](types_chain.md#deploy)|Object|The Deploy.|
+|[execution_results](types_chain.md#jsonexecutionresult)|Object|The map of Block hash to execution result.|
 
 <details>
 
@@ -576,8 +576,8 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[purse_identifier](../types_chain.md#purseidentifier)|Object|The identifier to obtain the purse corresponding to balance query.|
-|[state_identifier](../types_chain#globalstateidentifier)|Object|The state identifier used for the query; if none is passed the tip of the chain will be used.|
+|[purse_identifier](types_chain.md#purseidentifier)|Object|The identifier to obtain the purse corresponding to balance query.|
+|[state_identifier](types_chain#globalstateidentifier)|Object|The state identifier used for the query; if none is passed the tip of the chain will be used.|
 
 <details>
 
@@ -614,7 +614,7 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 |Parameter|Type|Description|
 |---------|----|-----------|     
 |api_version|String|The RPC API version.|
-|[balance](../types_chain#u512)|Object|The balance represented in motes.|
+|[balance](types_chain#u512)|Object|The balance represented in motes.|
 
 <details>
 
@@ -643,7 +643,7 @@ This method allows for you to query for a value stored under certain keys in glo
 
 |Parameter|Type|Description|
 |---------|----|-----------|   
-|[state_identifier](../types_chain.md#globalstateidentifier)|Object|The identifier used for the query.|
+|[state_identifier](types_chain.md#globalstateidentifier)|Object|The identifier used for the query.|
 |key|String|`casper_types::Key` as a formatted string.|
 |path|Array|The path components starting from the key as base.|
 
@@ -675,9 +675,9 @@ This method allows for you to query for a value stored under certain keys in glo
 |Parameter|Type|Description|
 |---------|----|-----------|     
 |api_version|String|The RPC API version.|
-|[block_header](../types_chain.md#jsonblockheader)|Object|The Block header if a Block hash was provided. (Not required)|
-|[stored_value](../types_chain.md#storedvalue)|Object|The stored value.|
-|[merkle_proof](../types_chain.md#merkle-proof)|String|The merkle proof.|
+|[block_header](types_chain.md#jsonblockheader)|Object|The Block header if a Block hash was provided. (Not required)|
+|[stored_value](types_chain.md#storedvalue)|Object|The stored value.|
+|[merkle_proof](types_chain.md#merkle-proof)|String|The merkle proof.|
 
 <details>
 
@@ -762,8 +762,8 @@ This method returns a JSON representation of an [Account](../../concepts/design/
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[public_key](../types_chain.md#publickey)|String|The public key of the Account.|
-|[block_identifier](../types_chain.md#blockidentifier)|Object|The Block identifier.|
+|[public_key](types_chain.md#publickey)|String|The public key of the Account.|
+|[block_identifier](types_chain.md#blockidentifier)|Object|The Block identifier.|
 
 <details>
 
@@ -792,8 +792,8 @@ This method returns a JSON representation of an [Account](../../concepts/design/
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
-|[account](../types_chain.md#account)|Object|A JSON representation of the Account structure.| 
-|[merkle_proof](../types_chain.md#merkleproof)|String|The merkle proof.|
+|[account](types_chain.md#account)|Object|A JSON representation of the Account structure.| 
+|[merkle_proof](types_chain.md#merkleproof)|String|The merkle proof.|
 
 <details>
 
@@ -839,7 +839,7 @@ For instance, one native layer-1 token of the Casper Mainnet [CSPR](../../concep
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[state_root_hash](../types_chain.md#digest)|String|The hash of state root.|
+|[state_root_hash](types_chain.md#digest)|String|The hash of state root.|
 |purse_uref|String|Formatted URef.|
 
 <details>
@@ -866,8 +866,8 @@ For instance, one native layer-1 token of the Casper Mainnet [CSPR](../../concep
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[balance_value](../types_chain.md#u512)|String|The balance value in motes.|
-|[merkle_proof](../types_chain.md#merkle-proof)|String|The merkle proof.|
+|[balance_value](types_chain.md#u512)|String|The balance value in motes.|
+|[merkle_proof](types_chain.md#merkle-proof)|String|The merkle proof.|
 
 <details>
 <summary><b>Example state_get_balance result</b></summary>
@@ -896,8 +896,8 @@ You may query a stored value directly using the dictionary address.
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[state_root_hash](../types_chain.md#digest)|String|Hash of the state root.|
-|[dictionary_identifier](../types_chain.md#dictionaryidentifier)|Object|The Dictionary query identifier.|
+|[state_root_hash](types_chain.md#digest)|String|Hash of the state root.|
+|[dictionary_identifier](types_chain.md#dictionaryidentifier)|Object|The Dictionary query identifier.|
 
 <details>
 
@@ -930,8 +930,8 @@ You may query a stored value directly using the dictionary address.
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
 |dictionary_key|String|The key under which the value is stored.|
-|[stored_value](../types_chain.md#storedvalue)|Object|The stored value.|
-|[merkle_proof](../types_chain.md#merkle-proof)|String|The merkle proof.|
+|[stored_value](types_chain.md#storedvalue)|Object|The stored value.|
+|[merkle_proof](types_chain.md#merkle-proof)|String|The merkle proof.|
 
 <details>
 
@@ -995,7 +995,7 @@ This method returns a list of peers connected to the node.
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[peers](../types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
+|[peers](types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
 
 <details>
 
@@ -1047,19 +1047,19 @@ This method returns the current status of a node.
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[available_block_range](../types_chain.md#AvailableBlockRange)|Object|The available block range in storage.|
-|[block_sync](../types_chain.md#BlockSynchronizerStatus)|Object|The status of the block synchronizer builders.|
+|[available_block_range](types_chain.md#AvailableBlockRange)|Object|The available block range in storage.|
+|[block_sync](types_chain.md#BlockSynchronizerStatus)|Object|The status of the block synchronizer builders.|
 |build_version|String|The compiled node version.|
 |chainspec_name|String|The chainspec name, used to identify the currently connected network.|
-|[last_added_block_info](../types_chain.md#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
-|[last_progress](../types_chain.md#timestamp)|String|Timestamp of the last recorded progress in the reactor.|
-|[next_upgrade](../types_chain.md#nextupgrade)|Object|Information about the next scheduled upgrade.|
-|[our_public_signing_key](../types_chain.md#publickey)|String|Our public signing key.|
-|[peers](../types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
-|[reactor_state](../types_chain.md#reactorstate)|String|The current state of the node reactor.|
-|[round_length](../types_chain.md#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
-|[starting_state_root_hash](../types_chain.md#digest)|String|The state root hash used at the start of the current session.|
-|[uptime](../types_chain.md#timediff)|Integer|Time that passed since the node has started.|
+|[last_added_block_info](types_chain.md#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
+|[last_progress](types_chain.md#timestamp)|String|Timestamp of the last recorded progress in the reactor.|
+|[next_upgrade](types_chain.md#nextupgrade)|Object|Information about the next scheduled upgrade.|
+|[our_public_signing_key](types_chain.md#publickey)|String|Our public signing key.|
+|[peers](types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
+|[reactor_state](types_chain.md#reactorstate)|String|The current state of the node reactor.|
+|[round_length](types_chain.md#timediff)|Integer|The next round length if this node is a validator. A round length is the amount of time it takes to reach consensus on proposing a Block.|
+|[starting_state_root_hash](types_chain.md#digest)|String|The state root hash used at the start of the current session.|
+|[uptime](types_chain.md#timediff)|Integer|Time that passed since the node has started.|
 
 <details>
 
