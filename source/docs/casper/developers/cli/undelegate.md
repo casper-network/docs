@@ -13,7 +13,7 @@ There are two ways to undelegate CSPR from a validator. The recommended and chea
 
 We recommend testing the following steps on the official Testnet before performing them in a live environment like the Casper Mainnet.
 
-## Method 1: Undelegating with the System Auction Contract {#undelegating-system-auction}
+### Method 1: Undelegating with the System Auction Contract {#undelegating-system-auction}
 
 This method calls the existing `undelegate` entry point from the system auction contract. Using this method, you do not need to build any contracts, reducing costs and complexity.
 
@@ -74,7 +74,7 @@ casper-client put-deploy \
 
 Next, [confirm the undelegation](#verifying-the-undelegation).
 
-## Method 2: Undelegating with Compiled Wasm {#undelegating-compiled-wasm}
+### Method 2: Undelegating with Compiled Wasm {#undelegating-compiled-wasm}
 
 As part of this process, you need to [build the casper-node contracts](./delegate.md#building-the-delegation-wasm) that produce the undelegation Wasm.
 

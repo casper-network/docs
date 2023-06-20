@@ -28,7 +28,7 @@ The minimum amount to delegate is 500 CSPR (500,000,000,000 motes).
 
 :::
 
-## Method 1: Delegating with the System Auction Contract {#delegating-system-auction}
+### Method 1: Delegating with the System Auction Contract {#delegating-system-auction}
 
 This method calls the existing `delegate` entry point from the system auction contract. Using this method, you do not need to build any contracts, reducing costs and complexity.
 
@@ -89,11 +89,11 @@ casper-client put-deploy \
 
 Next, [confirm the delegation](#confirming-the-delegation).
 
-## Method 2: Delegating with Compiled Wasm {#delegating-compiled-wasm}
+### Method 2: Delegating with Compiled Wasm {#delegating-compiled-wasm}
 
 Another way to send a delegation is to compile the `delegate.wasm` and send it to the network via a deploy. Here are the steps to compile the contract yourself.
 
-### Building The Delegation Wasm {#building-the-delegation-wasm}
+#### Building the delegation Wasm {#building-the-delegation-wasm}
 
 Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository.
 
@@ -114,6 +114,8 @@ Once you build the contracts, you can use the `delegate.wasm` to create a deploy
 ```bash
 ls target/wasm32-unknown-unknown/release/delegate.wasm
 ```
+
+#### Sending the delegation request {#sending-the-delegation-wasm-request}
 
 In this example, we use the Casper client to send a deploy containing the `delegate.wasm` to the network to initiate the delegation process.
 
@@ -162,7 +164,7 @@ casper-client put-deploy \
 Next, [confirm the delegation](#confirming-the-delegation).
 
 
-### Confirming the Delegation {#confirming-the-delegation}
+## Confirming the Delegation {#confirming-the-delegation}
 
 A Casper network maintains an _auction_ where validators _bid_ on slots to become part of the active validator set. Delegation rewards are only earned for a validator who has won the auction and is part of the active set. Thus to ensure the delegated tokens can earn rewards, you must first check the foloowing:
 
