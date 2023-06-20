@@ -109,14 +109,14 @@ The command will return a deploy hash, which is needed to verify the deploy's pr
 
 **Example:**
 
-This example command uses the Casper Testnet to undelegate 100 CSPR:
+This example command uses the Casper Testnet to undelegate 100 CSPR, and the payment amount is 6 CSPR. The payment amount varies based on each deploy and network [chainspec](../concepts/glossary/C.md#chainspec). However, notice that this method is more expensive than the previous one that calls the undelegate entry point.
 
 ```bash
 casper-client put-deploy \
 --node-address http://65.21.75.254:7777  \
 --chain-name casper-test \
 --secret-key ~/KEYS/secret_key.pem \
---payment-amount 20000000000 \
+--payment-amount 6000000000 \
 --session-path ~/undelegate.wasm \
 --session-arg "validator:public_key='01aa17f7b9889480b1bd34c3f94f263b229c7a9b01dd4dda19c2dd1d38d176c7a0'" \
 --session-arg "amount:u512='100000000000'" \

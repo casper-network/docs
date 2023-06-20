@@ -147,7 +147,7 @@ The command will return a deploy hash, which is needed to verify the deploy's pr
 
 **Example:**
 
-This example command uses the Casper Testnet to delegate 500 CSPR:
+This example command uses the Casper Testnet to delegate 500 CSPR, and the payment amount is 6 CSPR. The payment amount varies based on each deploy and network [chainspec](../concepts/glossary/C.md#chainspec). However, notice that this method is more expensive than the previous one that calls the delegate entry point.
 
 ```bash
 casper-client put-deploy \
