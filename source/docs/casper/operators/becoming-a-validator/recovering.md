@@ -58,20 +58,6 @@ curl -s localhost:8888/status | jq .last_added_block_info
 
 If you cannot figure out the issue, ask for help in the node-tech-support channel on [Discord](https://discord.com/invite/Q38s3Vh).
 
-## Re-building the Contracts for Bonding
-
-Next, you need to re-build the smart contracts required for [bonding](./bonding.md) by following these steps:
-
-1. Navigate to the `casper-node` directory 
-2. Check out the current default release branch
-3. Re-build the contracts required for bonding
-
-```bash
-cd casper-node
-git checkout <replace with current default branch>
-make setup-rs
-make build-client-contracts 
-```
 
 ## Activating the Bid
 
