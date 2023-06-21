@@ -65,7 +65,7 @@ Once your node is in sync and ready to validate again, you must activate your in
 
 Run the following transaction to re-activate your bid and rejoin the network. You will require a balance of at least 5 CSPR for this contract. 
 
-<!-- TODO We are seeing some variability with this gas cost as of 1.4.9 and will dive into this and try to get better docs on this. -->
+<!-- TODO We are seeing some variability with this gas cost as of 1.4.9 and will dive into this and try to get better docs on this. Update by ipopescu 6/24/23: it is best to use the activate_bid entrypoint in the system auction, which is much cheaper and has fixed cost. So this TODO does not need to be completed and will be removed. -->
 
 ```bash
 casper-client put-deploy \
