@@ -41,6 +41,7 @@
         "docusaurus-plugin-sass": "^0.2.3",
         "dotenv": "^16.0.3",
         "file-loader": "^6.2.0",
+        "js-cookie": "^3.0.5",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-instantsearch-hooks-web": "^6.40.1",
