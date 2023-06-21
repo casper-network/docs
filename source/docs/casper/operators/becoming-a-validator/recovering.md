@@ -65,10 +65,8 @@ Once your node is in sync and ready to validate again, you must activate your in
 
 Run the following transaction to re-activate your bid and rejoin the network. You will require a balance of at least 5 CSPR for this contract. 
 
-<!-- TODO We are seeing some variability with this gas cost as of 1.4.9 and will dive into this and try to get better docs on this. Update by ipopescu 6/24/23: it is best to use the activate_bid entrypoint in the system auction, which is much cheaper and has fixed cost. So this TODO does not need to be completed and will be removed. -->
 
-```bash
-casper-client put-deploy \
+sudo -u casper casper-client put-deploy \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
 --chain-name casper \
 --session-path "$HOME/casper-node/target/wasm32-unknown-unknown/release/activate_bid.wasm" \
@@ -76,7 +74,7 @@ casper-client put-deploy \
 --session-arg "validator_public_key:public_key='$(cat /etc/casper/validator_keys/public_key_hex)'"
 ```
 
-Check that the deploy was successful with the `casper-client get-deploy <deploy_hash>` or by searching for the deploy hash on [https://cspr.live/](https://cspr.live/).
+Check that the deploy was successful with the `casper-client get-deploy <deploy_hash>` or by searching for the deploy hash on [https://cspr.live/](https://cspr.live/). Next, check the bid activation status.
 
 ## Checking the Bid Activation
 
