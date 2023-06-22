@@ -119,7 +119,7 @@ sudo -u casper casper-client put-deploy \
 
 The `add_bid.wasm` expects three arguments:
 
-7. `public key`: The hexadecimal public key of the account's purse submitting the bid. This key must match the secret key that signs the bid
+7. `public_key`: The hexadecimal public key of the account's purse submitting the bid. This key must match the secret key that signs the bid
 8. `amount`: The bidding amount
 9. `delegation_rate`: Percentage of the rewards that the node operator retains for their services
 
