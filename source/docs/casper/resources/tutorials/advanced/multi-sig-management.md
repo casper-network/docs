@@ -25,7 +25,7 @@ The following prerequisites are required for this workflow:
 
 ## Session Code Required for Key Management
 
-To manage the associated keys and thresholds for an account, you must run session code that executes within the account's context. Note that the session code provided in this workflow is not a general-purpose program and needs to be modified for each use case.
+To manage an account's associated keys and thresholds, you must run session code that executes within the account's context. Note that the session code provided in this workflow is not a general-purpose program and needs to be modified for each use case.
 
 :::caution
 
@@ -122,7 +122,7 @@ casper-client put-deploy \
 --session-path contracts/update_thresholds/target/wasm32-unknown-unknown/release/update_thresholds.wasm
 ```
 
-The account’s action thresholds would look like this:
+The account's action thresholds would look like this:
 
 ```json
 "action_thresholds": {
@@ -131,7 +131,7 @@ The account’s action thresholds would look like this:
 },
 ```
 
-This configuration requires a cumulative weight of 3 to manage keys and 2 to send deploys as part of this account context. For example, if two associated keys have weight 1, they must both sign deploys that can run as part of this account context. The cumulative weight of these two keys would need to be higher for key management.
+This configuration requires a cumulative weight of 3 to manage keys and 2 to send deploys as part of this account context. For example, if two associated keys have weight 1, they must both sign deploys that can run as part of this account context. The cumulative weight of these two keys would not meet the threshold for key management.
 
 
 ### Step 5: Add associated keys to the primary account
@@ -331,7 +331,7 @@ The `hello_world.wasm` will run and add a named key to the account.
 
 ### Step 8: Send a multi-signature deploy from an associated key
 
-To initiate a multi-sig deploy from an associated account, instead of the primary account, use the `--session-account` argument, which requires the hex-encoded public key of the account context under which the session code will be executed. The process is very similar to the previous step:
+To initiate a multi-sig deploy from an associated account instead of the primary account, use the `--session-account` argument, which requires the hex-encoded public key of the account context under which the session code will be executed. The process is very similar to the previous step:
 
 1. The `make-deploy` command creates and signs a deploy, saving the output to a file
 2. The `sign-deploy` command adds additional signatures for a multi-signature deploy
@@ -376,7 +376,7 @@ The `hello_world.wasm` will run and add a named key to the account.
 
 This example shows how to remove a key from the account if it becomes compromised. The example adds a fourth associated key with `account-hash-77ea2e433c94c9cb8303942335da458672249d38c1fa5d1d7a7500b862ff52a4`, and then removes it using the `remove_account.wasm` session code.
 
-If one of the existing keys were removed without adding the fourth associated key, the account would become unusable since it would not meet the required weight for key management. Thus, changing weights or adding new associated keys would be impossible.
+If you remove one of the existing keys without adding the fourth associated key, the account will become unusable since none of the remaining keys will meet the required weight for key management. Thus, changing weights or adding new associated keys would be impossible.
 
 :::caution
 
