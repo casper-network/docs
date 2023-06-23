@@ -15,17 +15,17 @@ Test any changes to an account in a test environment like Testnet before perform
 
 ## Prerequisites
 
-You must meet the following prerequisites before starting this tutorial:
+The following prerequisites are required for this workflow:
 
-1. Set up all the prerequisites listed [here](../../../developers/prerequisites.md), including a funded [Account](../../../developers/prerequisites.md#setting-up-an-account) and the [Casper CLI client](../../../developers/prerequisites.md#the-casper-command-line-client)
+1. Set up all the prerequisites listed [here](../../../developers/prerequisites.md), including a [funded account](../../../developers/prerequisites.md#setting-up-an-account) and the [Casper CLI client](../../../developers/prerequisites.md#the-casper-command-line-client)
 2. Complete the [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow and set up the source account for multi-signature deploys
-3. Learn how to use the `make-deploy` and `send-deploy` Casper CLI client commands as outlined in [Transferring Tokens using a Multi-Sig Deploy](../../../developers/cli/transfers/multisig-deploy-transfer.md)
+3. Learn how to use the `make-deploy`, `sign-deploy`, and `send-deploy` Casper CLI client commands
 4. Understand the Casper [account-based model](../../../concepts/design/casper-design.md#accounts-head) before proceeding
 
 
 ## Session Code Required for Key Management
 
-To manage the associated keys and thresholds for an Account, you must run session code that executes within the account's context. Note that the session code provided in this workflow is not a general-purpose program and needs to be modified for each use case.
+To manage the associated keys and thresholds for an account, you must run session code that executes within the account's context. Note that the session code provided in this workflow is not a general-purpose program and needs to be modified for each use case.
 
 :::caution
 
@@ -42,7 +42,7 @@ This GitHub repository contains session code that can be used for learning how t
 git clone https://github.com/cryofracture/multi-sig && cd multi-sig
 ```
 
-### Step 2: Build the samples provided
+### Step 2: Build the sample Wasm provided
 
 Prepare your environment and build the session code provided with the following commands.
 
@@ -53,17 +53,17 @@ make prepare
 make build-contracts
 ```
 
-### Step 3: Update primary key weight to set thresholds
+### Step 3: Increase the primary key's weight to set thresholds
 
-The included Wasm will set account weights to 1, requiring all accounts to multi-sign for deploys or key management controls. Initially, we have to set the weight of the primary key high enough to increase the key_management threshold.
+This workflow starts by increasing the weight of the primary key to update the `key_management` threshold. It is recommended to have more weight on the primary account than is needed to ensure the primary account can meet the `key_management` threshold and make any account updates. Additional associated accounts will have weight 1, and they will all need to participate in signing deploys or managing keys.
 
-First, retrieve the account-hash of the key you are working with, via cspr.live or `casper-client account-address –public-key XXX`
+First, retrieve the account hash of the primary key you are working with using a block explorer or the Casper CLI client.
 
 ```bash
 casper-client account-address --public-key <INSERT_PUBLIC_KEY_HEX>
 ```
 
-Once the account-hash is obtained, you can update the weight of the primary key by calling the update_keys session code:
+Update the weight of the primary key to 3 by calling the `update_associated_keys.wasm`.
 
 :::caution
 
@@ -81,7 +81,7 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 --session-arg "new_weight:u8='3'"
 ```
 
-Which results in the main key now showing weight “3”:
+The primary key in this account should now have weight 3.
 
 ```json
 "Account": {
@@ -103,9 +103,9 @@ Which results in the main key now showing weight “3”:
 ```
 
 
-### Step 4: Update the thresholds
+### Step 4: Update the account's action thresholds
 
-After the primary key has had its weight increased, you can set the `deployment` and `key_management` thresholds for the account to set up a multi-sign environment. To add a new key to the account, call the `add_account.wasm`. The session code included will set `deployment` threshold to 2 (hard coded), and key_management to 3. It is recommended to have more weight on the account than is needed, by a small amount, to ensure the primary account can meet the `key_management` needs.
+To set up a multi-signature scheme for the account, set the `deployment` and `key_management` thresholds. The `update_thresholds.wasm` included will set `deployment` threshold to 2 and the `key_management` threshold to 3. These values are hard coded in the session code example.
 
 :::caution
 
@@ -122,13 +122,25 @@ casper-client put-deploy \
 --session-path contracts/update_thresholds/target/wasm32-unknown-unknown/release/update_thresholds.wasm
 ```
 
-### Step 5: Add a new associated key to the primary account
+The account’s action thresholds would look like this:
 
-To add `account-hash-e2d00525cac31ae2756fb155f289d276c6945b6914923fe275de0cb127bffee7`, for example, to the account to set up multi-signature, you would issue a deploy command like:
+```json
+"action_thresholds": {
+  "deployment": 2,
+  "key_management": 3
+},
+```
+
+This configuration requires a cumulative weight of 3 to manage keys and 2 to send deploys as part of this account context. For example, if two associated keys have weight 1, they must both sign deploys that can run as part of this account context. The cumulative weight of these two keys would need to be higher for key management.
+
+
+### Step 5: Add associated keys to the primary account
+
+To add an associated key to the primary account, use the `add_account.wasm` provided. The example below starts by adding the following account as an associated key: `account-hash-e2d00525cac31ae2756fb155f289d276c6945b6914923fe275de0cb127bffee7`.
 
 :::caution
 
-Do not run this example on Mainnet. Update the command for your environment.
+Do not run this example on Mainnet. Update all commands for your environment.
 
 :::
 
@@ -144,29 +156,37 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 
 :::note
 
-1. The `key_management` threshold cannot be changed before the `deployment` threshold can be changed. 
+1. The `deployment` threshold must be changed before the `key_management` threshold can be updated.
 2. The primary key on the account can lower its weight if it has enough weight to meet the `key_mangement` threshold.
-3. All associated keys should be be kept incredibly secure to ensure robustness of the integrity of the account.
+3. All associated keys should be kept incredibly secure to ensure the security and integrity of the account.
 
 :::
 
 
-The above configuration assumes 3 keys to an account to manage keys, but only 2 to deploy using the account. This will result in the account’s action_thresholds now looking like:
+Next, add a second and third account as associated keys with weight 1.
 
-```json
-"action_thresholds": {
-  "deployment": 2,
-  "key_management": 3
-},
+```bash
+casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
+--chain-name "casper-test" \
+--payment-amount 50000000000 \
+--secret-key /path/to/keys_dir/secret_key.pem \
+--session-path contracts/add_account/target/wasm32-unknown-unknown/release/add_account.wasm \
+--session-arg "new_key:account_hash='account-hash-04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759fd3ca043d916ea02f" \
+--session-arg "weight:u8='1'"
+
+casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
+--chain-name "casper-test" \
+--payment-amount 50000000000 \
+--secret-key /path/to/keys_dir/secret_key.pem \
+--session-path contracts/add_account/target/wasm32-unknown-unknown/release/add_account.wasm \
+--session-arg "new_key:account_hash='account-hash-1fed34baa6807a7868bb18f91b161d99ebf21763810fe4c92e39775d10bbf1f8" \
+--session-arg "weight:u8='1'"
 ```
 
-### Step 6: Add and remove a “compromised” key to the Account
-
-In this scenario, `account-hash-04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759fd3ca043d916ea02f` has become compromised and should no longer have write access to the account.
+The account would now have one primary key with weight 3, and three associated accounts, each with weight 1.
 
 <details>
 <summary>Account details</summary>
-
 
 ```json
 "Account": {
@@ -200,60 +220,9 @@ In this scenario, `account-hash-04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759f
 
 </details>
 
-To remove this account, call the `remove_account.wasm` as shown below.
+### Step 6: Lower the primary key's weight after the multi-signature setup
 
-:::caution
-
-Do not run this example on Mainnet. Update the command for your environment.
-
-:::
-
-```bash
-casper-client put-deploy \
---node-address https://rpc.testnet.casperlabs.io \
---chain-name casper-test \
-payment-amount 5000000000 \
---secret-key /path/to/keys_dir/secret_key.pem \
---session-path contracts/remove_account/target/wasm32-unknown-unknown/release/remove_account.wasm \
---session-arg "remove_key:account_hash='account-hash-04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759fd3ca043d916ea02f'"
-```
-
-The resulting account should not contain the associated key that was just removed, i.e. `account-hash-04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759fd3ca043d916ea02f`.
-
-<details>
-<summary>New account details</summary>
-
-```json
-"Account": {
-      "account_hash": "account-hash-d89c49f7e03f418dc285e94e254d53574db878665271f366bb3aeddded7ab757",
-      "action_thresholds": {
-        "deployment": 2,
-        "key_management": 3
-      },
-      "associated_keys": [
-        {
-          "account_hash": "account-hash-1fed34baa6807a7868bb18f91b161d99ebf21763810fe4c92e39775d10bbf1f8",
-          "weight": 1
-        },
-        {
-          "account_hash": "account-hash-d89c49f7e03f418dc285e94e254d53574db878665271f366bb3aeddded7ab757",
-          "weight": 3
-        },
-        {
-          "account_hash": "account-hash-e2d00525cac31ae2756fb155f289d276c6945b6914923fe275de0cb127bffee7",
-          "weight": 1
-        }
-      ],
-      "main_purse": "uref-b4532f30031b9deb8b2879a91ac185577dcba763de9d48753385e0ef41235dfa-007",
-      "named_keys": []
-    }
-```
-
-</details>
-
-### Step 7: Lower the primary key weight after set-up
-
-After all associated keys and action_thresholds have been set on the account to the desired points, you can lower the weight of the original key and set it to 0, allowing proper multi-signature setup (again requiring 2 signatures to deploy, 3 weight for key_management). To lower the key’s weight, call the `update_associated_keys.wasm`:
+After all associated keys and action thresholds have been set to the desired multi-signature scheme, the weight of the original primary key can be set to 0. This setup allows the primary key to originate all deploys, but the rest of the associated keys will need to sign the deploys. Remember, this multi-signature setup requires a cumulative weight of 2 for deploys and 3 for key management. To lower the primary key's weight, call the `update_associated_keys.wasm`. Since this key's weight is 3, it can lower its weight to 0 without requiring other keys to sign. Be careful with this step. Given this setup, the account will require multiple signatures for the following key management operation.
 
 :::caution
 
@@ -268,11 +237,12 @@ casper-client put-deploy \
 --payment-amount 5000000000 \
 --secret-key /path/to/keys_dir/secret_key.pem \
 --session-path contracts/update_keys/target/wasm32-unknown-unknown/release/update_associated_keys.wasm \
---session-arg "associated_key:account_hash='account-hash-<PRIMARY_ACCOUNT_HASH_HEX_HERE>'" \
+--session-arg "associated_key:account_hash='account-hash-d89c49f7e03f418dc285e94e254d53574db878665271f366bb3aeddded7ab757'" \
 --session-arg "new_weight:u8='0'"
 ```
 
-The account will now look like this:
+<details>
+<summary>Account details</summary>
 
 ```json
 "Account": {
@@ -282,6 +252,10 @@ The account will now look like this:
         "key_management": 3
       },
       "associated_keys": [
+        {
+          "account_hash": "account-hash-04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759fd3ca043d916ea02f",
+          "weight": 1
+        },
         {
           "account_hash": "account-hash-1fed34baa6807a7868bb18f91b161d99ebf21763810fe4c92e39775d10bbf1f8",
           "weight": 1
@@ -300,17 +274,26 @@ The account will now look like this:
     }
 ```
 
-### Step 8: Set up a multi-sign deploy from the primary account
+</details>
 
-After the action thresholds are set and keys are on the account in a way that will allow multi-signature deploys, you can easily sign deploys for sending to the network using the “casper-client make-deploy” command. Enough weight against the account must sign the deploy to meet the `deployment` threshold, in this case 2 signatures. Either party can then send the deploy to the network when ready.
 
-To start signing a deploy, we will start with a simple “hello, world” named key contract.
+### Step 7: Send a multi-signature deploy from the primary account
+
+After setting up the account with a multi-signature scheme, use the following commands to sign a deploy with multiple keys and send it to the network:
+
+1. The `make-deploy` command creates and signs a deploy, saving the output to a file
+2. The `sign-deploy` command adds additional signatures for a multi-signature deploy
+3. The `send-deploy` command sends the deploy to the network
+
+The following example sends a multi-sig deploy containing Wasm (`hello_world.wasm`) that adds a named key to the account. The deploy originates from the primary account and needs two signatures to meet the `deployment` weight set to 2. Once both keys sign the deploy, either can send it to the network.
 
 :::caution
 
-Do not run this example on Mainnet. Update the command for your environment.
+Do not run these examples on Mainnet. Update the commands for your environment.
 
 :::
+
+The first associated key creates and signs the deploy with the `make-deploy` command.
 
 ```bash
 casper-client make-deploy --chain-name casper-test \
@@ -322,25 +305,20 @@ casper-client make-deploy --chain-name casper-test \
 --output hello_world_one_signature
 ```
 
-And then any associated key can sign the deploy to meet the action threshold for the account:
-
-:::caution
-
-Do not run this example on Mainnet. Update the command for your environment.
-
-:::
+The second associated key signs the deploy with `sign-deploy` to meet the deployment threshold for the account.
 
 ```bash
-casper-client sign-deploy -i hello_world_one_signature -k ~/cspr_nctl/user-2.pem -o hello_world_ready
+casper-client sign-deploy -i hello_world_one_signature -k ~/cspr_nctl/user-2.pem -o hello_world_two_signatures
+
 ```
 
-And you can now send the deploy to the network:
+Now the deploy can be sent to the network with the `send-deploy` command:
 
 ```bash
-casper-client send-deploy --node-address https://rpc.testnet.casperlabs.io -i hello_world_ready
+casper-client send-deploy --node-address https://rpc.testnet.casperlabs.io -i hello_world_two_signatures
 ```
 
-Which will deploy to the account and create a named_key:
+The `hello_world.wasm` will run and add a named key to the account.
 
 ```json
 "named_keys": [
@@ -351,9 +329,21 @@ Which will deploy to the account and create a named_key:
       ]
 ```
 
-### Step 9: Set-up a multi-sign deploy from an associated key
+### Step 8: Send a multi-signature deploy from an associated key
 
-To initiate a deploy signature from the primary account, the same steps for signing can be followed. However, on the `make-deploy` command you must add the `–session-account` argument to tell the execution engine the account context in which to run the contract. The `--session-account` parameter requires a public key in hexadecimal format.
+To initiate a multi-sig deploy from an associated account, instead of the primary account, use the `--session-account` argument, which requires the hex-encoded public key of the account context under which the session code will be executed. The process is very similar to the previous step:
+
+1. The `make-deploy` command creates and signs a deploy, saving the output to a file
+2. The `sign-deploy` command adds additional signatures for a multi-signature deploy
+3. The `send-deploy` command sends the deploy to the network
+
+:::caution
+
+Do not run these examples on Mainnet. Update the commands for your environment.
+
+:::
+
+One associated key creates and signs the deploy with the `make-deploy` command, indicating the account context under which the session code will be executed.
 
 ```bash
 casper-client make-deploy --chain-name casper-test \
@@ -362,6 +352,142 @@ casper-client make-deploy --chain-name casper-test \
 --secret-key /path/to/keys_dir/secret_key.pem \
 --session-arg "my-key-name:string='user_1_key'" \
 --session-arg "message:string='Hello, World'" \
---session-account 017fac40914593d00bc7e6a8f4a0d758d6a12e4e036f1473ae50d124ffd91b103b
+--session-account 04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759fd3ca043d916ea02f
 --output hello_world_one_signature
 ```
+
+The second associated key signs the deploy with `sign-deploy` to meet the deployment threshold for the account.
+
+```bash
+casper-client sign-deploy -i hello_world_one_signature -k ~/cspr_nctl/user-2.pem -o hello_world_two_signatures
+
+```
+
+The deploy can be sent to the network using the `send-deploy` command:
+
+```bash
+casper-client send-deploy --node-address https://rpc.testnet.casperlabs.io -i hello_world_two_signatures
+```
+
+The `hello_world.wasm` will run and add a named key to the account.
+
+
+### Step 9: Remove a key from the account
+
+This example shows how to remove a key from the account if it becomes compromised. The example adds a fourth associated key with `account-hash-77ea2e433c94c9cb8303942335da458672249d38c1fa5d1d7a7500b862ff52a4`, and then removes it using the `remove_account.wasm` session code.
+
+If one of the existing keys were removed without adding the fourth associated key, the account would become unusable since it would not meet the required weight for key management. Thus, changing weights or adding new associated keys would be impossible.
+
+:::caution
+
+Remove keys with caution! Do not run this example on Mainnet.
+
+:::
+
+Given the current setup, the three associated keys need to sign the deploy to add a fourth associated key.
+
+<!-- TODO show 3-signature deploy -->
+
+The `add_account.wasm` will add a new associated account with weight 1.
+
+```bash
+casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
+--chain-name "casper-test" \
+--payment-amount 50000000000 \
+--secret-key /path/to/keys_dir/secret_key.pem \
+--session-path contracts/add_account/target/wasm32-unknown-unknown/release/add_account.wasm \
+--session-arg "new_key:account_hash='account-hash-77ea2e433c94c9cb8303942335da458672249d38c1fa5d1d7a7500b862ff52a4" \
+--session-arg "weight:u8='1'"
+```
+
+The account should now have four associated keys with weight 1 and the primary key (from which all deploys originate) with weight 0.
+
+<details>
+<summary>Account details</summary>
+
+```json
+"Account": {
+      "account_hash": "account-hash-d89c49f7e03f418dc285e94e254d53574db878665271f366bb3aeddded7ab757",
+      "action_thresholds": {
+        "deployment": 2,
+        "key_management": 3
+      },
+      "associated_keys": [
+        {
+          "account_hash": "account-hash-04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759fd3ca043d916ea02f",
+          "weight": 1
+        },
+        {
+          "account_hash": "account-hash-1fed34baa6807a7868bb18f91b161d99ebf21763810fe4c92e39775d10bbf1f8",
+          "weight": 1
+        },
+        {
+          "account_hash": "account-hash-77ea2e433c94c9cb8303942335da458672249d38c1fa5d1d7a7500b862ff52a4",
+          "weight": 1
+        },
+        {
+          "account_hash": "account-hash-d89c49f7e03f418dc285e94e254d53574db878665271f366bb3aeddded7ab757",
+          "weight": 0
+        },
+        {
+          "account_hash": "account-hash-e2d00525cac31ae2756fb155f289d276c6945b6914923fe275de0cb127bffee7",
+          "weight": 1
+        }
+      ],
+      "main_purse": "uref-b4532f30031b9deb8b2879a91ac185577dcba763de9d48753385e0ef41235dfa-007",
+      "named_keys": []
+    }
+```
+
+</details>
+
+The `remove_account.wasm` will remove the newly added account to demonstrate the possibility of removing associated keys that may have been compromised. This deploy needs to be signed by three associated keys.
+
+<!-- TODO show 3-signature deploy -->
+
+```bash
+casper-client put-deploy \
+--node-address https://rpc.testnet.casperlabs.io \
+--chain-name casper-test \
+payment-amount 5000000000 \
+--secret-key /path/to/keys_dir/secret_key.pem \
+--session-path contracts/remove_account/target/wasm32-unknown-unknown/release/remove_account.wasm \
+--session-arg "remove_key:account_hash='account-hash-77ea2e433c94c9cb8303942335da458672249d38c1fa5d1d7a7500b862ff52a4'"
+```
+
+The resulting account should not contain the associated key that was removed.
+
+<details>
+<summary>Account details</summary>
+
+```json
+"Account": {
+      "account_hash": "account-hash-d89c49f7e03f418dc285e94e254d53574db878665271f366bb3aeddded7ab757",
+      "action_thresholds": {
+        "deployment": 2,
+        "key_management": 3
+      },
+      "associated_keys": [
+        {
+          "account_hash": "account-hash-04a9691a9f8f05a0f08bd686f188b27c7dbcd644b415759fd3ca043d916ea02f",
+          "weight": 1
+        },
+        {
+          "account_hash": "account-hash-1fed34baa6807a7868bb18f91b161d99ebf21763810fe4c92e39775d10bbf1f8",
+          "weight": 1
+        },
+        {
+          "account_hash": "account-hash-d89c49f7e03f418dc285e94e254d53574db878665271f366bb3aeddded7ab757",
+          "weight": 0
+        },
+        {
+          "account_hash": "account-hash-e2d00525cac31ae2756fb155f289d276c6945b6914923fe275de0cb127bffee7",
+          "weight": 1
+        }
+      ],
+      "main_purse": "uref-b4532f30031b9deb8b2879a91ac185577dcba763de9d48753385e0ef41235dfa-007",
+      "named_keys": []
+    }
+```
+
+</details>
