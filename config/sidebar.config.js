@@ -288,6 +288,7 @@ module.exports = {
                         "resources/tutorials/advanced/cross-contract",
                         "resources/tutorials/advanced/transfer-token-to-contract",
                         "resources/tutorials/advanced/two-party-multi-sig",
+                        "resources/tutorials/advanced/multi-sig-management",
                         "resources/tutorials/advanced/return-values-tutorial",
                         //"resources/tutorials/advanced/list-cspr",
                         "resources/tutorials/advanced/storage-workflow",
