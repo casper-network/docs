@@ -185,7 +185,7 @@ casper-client put-deploy \
 Always be mindful of the `--secret-key` and `--session-path` arguments.
 Path provided to the arguments should always be with regard to the current folder, where the command is executed.
 
-The `keys` folder is not a part of the CEP18 folder structure. Optionaly you should provide a folder where your keys are stored.
+The `keys` folder is not a part of the CEP18 folder structure. Optionally you should provide a folder where your keys are stored.
 
 :::
 
