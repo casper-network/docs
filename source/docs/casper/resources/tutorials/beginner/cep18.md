@@ -19,7 +19,7 @@ This tutorial assumes that you have worked through the following examples. If yo
 
 ## Outline of the Tutorial {#outline}
 
-This tutorial explains the purpose of the ERC-20 standard and its Casper CEP-18 implementation. It explains the implications of not adhering to the standard and why it is important to base DApps on one common standard implementation supported by the underlying Blockchain Protocol.
+This tutorial explains the purpose of the ERC-20 standard and the Casper CEP-18 Fungible Token implementation, which serves the same purpose for Casper blockchains. It explains the implications of not adhering to the standard and why it is important to base dApps on one common standard implementation supported by the underlying blockchain protocol.
 
 ## ERC-20 standard {#erc20-standard}
 
