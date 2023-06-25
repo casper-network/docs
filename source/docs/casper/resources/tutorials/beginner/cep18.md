@@ -64,7 +64,7 @@ The following considerations should be applied when trying to create an ERC-20 T
 
 -	Ecosystem – The longer a blockchain network exists, the more widespread a standard implementation like ERC-20 becomes. Using a different implementation may limit availability of supported projects and require additional effort for integration.
 
-It is generally advisable to use a single well-established implementation of the standard and for this purpose the CEP-18 Standard was created.
+The CEP-18 Casper Fungible Token Standard establishes a single implementation of the ERC-20 Standard for Casper networks to avoid disparities and incompatibilities.
 
 ## CEP-18 Standard {#cep18-standard}
 
