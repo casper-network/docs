@@ -80,7 +80,7 @@ The CEP-18 Token Standard is a Casper network compliant implementation of ERC-20
  - `transfer` - Transfers an amount of tokens from the direct caller to a recipient
  - `transfer_from` - Transfers an amount of tokens from the owner to a recipient, if the direct caller has been previously approved to spend the specified amount on behalf of the owner
 
-To understand how the methods work in detail, it is advisable to check the reference implementation on the [GitHub](https://github.com/casper-ecosystem/cep18). 
+For more detail on these methods, there is a reference implementation available on [GitHub](https://github.com/casper-ecosystem/cep18). 
 
 ## Creating a CEP-18 Token on the test-net {#cep18-testnet}
 
