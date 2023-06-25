@@ -47,7 +47,7 @@ Uniswap V2 uses ERC-20 tokens in the following scenarios:
 -	Liquidity Pools – any two pairs of ERC-20 tokens can be used to create a liquidity pool.
 -	Uniswap V2 uses the ERC-20 standard `transfer()` function to allow an exchange of tokens within the liquidity pools.
 
-## ERC-20 implementations on Casper and implications for DEXes {#erc20-implications}
+## ERC-20 Implementations on Casper and Implications for Decentralized Exchanges {#erc20-implications}
 
 There exist at least two different implementations of ERC-20 Standard on the Casper Network.
 
