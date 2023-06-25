@@ -35,7 +35,7 @@ Some key points of the ERC-20 standard include:
 - A common set of rules for token developers to follow concerning security and consistency. This helps prevent potential vulnerabilities and ensures that tokens behave predictably across different platforms and wallets.
 By adhering to the ERC-20 standard, token developers can leverage the existing infrastructure, wallets, and exchanges that support ERC-20 tokens.
 
-Each Blockchain protocol should have one official supported implementation of the ERC-20 Standard as to allow the interoperability of the assets between the protocols.
+Each blockchain protocol should have one official supported implementation of the ERC-20 Standard as to allow the interoperability of the assets between the protocols.
 
 ## Interaction of ERC-20 based tokens with the Uniswap standard {#erc20-uniswap}
 
