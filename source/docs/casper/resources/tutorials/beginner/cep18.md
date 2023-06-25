@@ -58,7 +58,7 @@ While both implement the ERC-20 specification using a common set of rules devise
 
 The following considerations should be applied when trying to create an ERC-20 Token:
 
--	Interoperability – different implementations of the ERC-20 standard can hinder seamless integration between tokens, dApp, or wallets.
+-	Interoperability – Different implementations of the ERC-20 standard can hinder seamless integration between tokens, dApps or wallets.
 
 -	Project Security Audits – well-established standards usually undergo a thorough security audit. This ensures a higher level of security and reduces the risk of vulnerabilities.
 
