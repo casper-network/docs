@@ -124,7 +124,7 @@ If the `build-contract` finishes with an error `wasm-strip: command not found`, 
 	make test
 ```
 
-### Install the CEP-18 contract {#cep18-contract-install}
+### Install the CEP-18 Contract {#cep18-contract-install}
 
 It is important to understand the costs related with performing the deploys. You should try doing few deploys on the Testnet to familiarize yourself, what costs should be expected.
 
