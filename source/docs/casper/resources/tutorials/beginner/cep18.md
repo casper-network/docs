@@ -41,7 +41,7 @@ Each blockchain protocol should have one official supported implementation of th
 
 By conforming to the ERC-20 specification it is possible to leverage the functionality of DEX implementations like Uniswap V2.
 
-Uniswap V2 utilizes ERC-20 tokens in the following scenarios:
+Uniswap V2 uses ERC-20 tokens in the following scenarios:
 
 -	Listing Tokens – Any ERC-20 token can be listed on Uniswap V2 if it complies with the ERC-20 standard.
 -	Liquidity Pools – any two pairs of ERC-20 tokens can be used to create a liquidity pool.
