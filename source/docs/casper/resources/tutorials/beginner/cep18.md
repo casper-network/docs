@@ -45,7 +45,7 @@ Uniswap V2 uses ERC-20 tokens in the following scenarios:
 
 -	Listing Tokens – Any ERC-20 token can be listed on Uniswap V2 if it complies with the ERC-20 standard.
 -	Liquidity Pools – any two pairs of ERC-20 tokens can be used to create a liquidity pool.
--	Uniswap V2 uses the ERC-20 standard transfer() function to allow an exchange of tokens within the liquidity pools.
+-	Uniswap V2 uses the ERC-20 standard `transfer()` function to allow an exchange of tokens within the liquidity pools.
 
 ## ERC-20 implementations on Casper and implications for DEXes {#erc20-implications}
 
