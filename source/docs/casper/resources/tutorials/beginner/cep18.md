@@ -84,7 +84,7 @@ For more detail on these methods, there is a reference implementation available 
 
 ## Creating a CEP-18 Token on the Testnet {#cep18-testnet}
 
-### Clone and Compile the CEP-18 contract {#cep18-contract-clone}
+### Clone and Compile the CEP-18 Contract {#cep18-contract-clone}
 
 Since we already understand how the CEP-18 standard is constructed, we will be installing our own token contract in the Global State.
 
