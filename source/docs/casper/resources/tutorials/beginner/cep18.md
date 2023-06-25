@@ -62,7 +62,7 @@ The following considerations should be applied when trying to create an ERC-20 T
 
 -	Project Security Audits – Well-established standards usually undergo a thorough security audit. This ensures a higher level of security and reduces the risk of vulnerabilities.
 
--	Ecosystem – The longer a Blockchain network exists, the more widespread a standard implementation like ERC-20 is. Using a different implementation may limit availability of supported projects and may require additional effort for integration.
+-	Ecosystem – The longer a blockchain network exists, the more widespread a standard implementation like ERC-20 becomes. Using a different implementation may limit availability of supported projects and require additional effort for integration.
 
 It is generally advisable to use a single well-established implementation of the standard and for this purpose the CEP-18 Standard was created.
 
