@@ -290,7 +290,7 @@ Try to query the contract for other Named Keys and check how the contract behave
 ## Summary {#summary}
 
 In this tutorial, we:
-- Explained the ERC20 standard and what the implications for not using the standard implementations are.
+- Explained the ERC20 standard and what the implications are for not using the standard implementations.
 - Developed a CEP18 Rust contract on a Casper network and defined the proper arguments for the deploy.
 - Installed the contract on the Testnet
 - Called an entry point on the contract to get the value of the Named Key `name`.
