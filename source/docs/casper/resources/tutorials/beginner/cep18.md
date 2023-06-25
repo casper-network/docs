@@ -30,7 +30,7 @@ Some key points of the ERC-20 standard include:
 
 - A set of functions and events that a token contract must implement to enable basic functionalities such as transferring tokens between addresses, checking token balances, and approving third-party spending of tokens. These functions include transfer(), balanceOf(), approve(), transferFrom(), and others. The tokens are not sent between wallet addresses. Instead, the token contract creates an owner list to track how many tokens are owned by which owner address.
 
-- Optional metadata functions like name(), symbol(), and decimals(), which provide additional information about the Token. These functions allow for the retrieval of token name, ticker symbol, and decimal places for proper display and identification purposes.
+- Optional metadata functions like `name()`, `symbol()`, and `decimals()`, which provide additional information about the token. These functions allow for the retrieval of token name, ticker symbol, and decimal places for proper display and identification purposes.
 
 - A common set of rules for token developers to follow concerning security and consistency. This helps prevent potential vulnerabilities and ensures that tokens behave predictably across different platforms and wallets.
 By adhering to the ERC-20 standard, token developers can leverage the existing infrastructure, wallets, and exchanges that support ERC-20 tokens.
