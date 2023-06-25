@@ -28,7 +28,7 @@ The ERC-20 (Ethereum Request for Comment 20) standard is a technical specificati
 It outlines a set of rules and interfaces that tokens must adhere to in order to be compatible with the broader Ethereum ecosystem. ERC-20 tokens have become the most widely adopted and recognized token standard on Ethereum network and other Blockchain protocols like NEAR or Solana.
 Some key points of the ERC-20 standard include:
 
-- A set of functions and events that a token contract must implement to enable basic functionalities such as transferring tokens between addresses, checking token balances, and approving third-party spending of tokens. These functions include transfer(), balanceOf(), approve(), transferFrom(), and others. The Tokens aren’t really sent between wallet addresses. Instead, an owner list is created in the Token contract to track how many tokens are owned by which owner address.
+- A set of functions and events that a token contract must implement to enable basic functionalities such as transferring tokens between addresses, checking token balances, and approving third-party spending of tokens. These functions include transfer(), balanceOf(), approve(), transferFrom(), and others. The tokens are not sent between wallet addresses. Instead, the token contract creates an owner list to track how many tokens are owned by which owner address.
 
 - Optional metadata functions like name(), symbol(), and decimals(), which provide additional information about the Token. These functions allow for the retrieval of token name, ticker symbol, and decimal places for proper display and identification purposes.
 
