@@ -37,7 +37,7 @@ By adhering to the ERC-20 standard, token developers can leverage the existing i
 
 Each blockchain protocol should have one official supported implementation of the ERC-20 Standard as to allow the interoperability of the assets between the protocols.
 
-## Interaction of ERC-20 based tokens with the Uniswap standard {#erc20-uniswap}
+## Interaction of ERC-20 Based Tokens with the Uniswap Standard {#erc20-uniswap}
 
 By conforming to the ERC-20 specification it is possible to leverage the functionality of DEX implementations like Uniswap V2.
 
