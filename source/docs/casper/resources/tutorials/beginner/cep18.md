@@ -82,7 +82,7 @@ The CEP-18 Token Standard is a Casper network compliant implementation of ERC-20
 
 For more detail on these methods, there is a reference implementation available on [GitHub](https://github.com/casper-ecosystem/cep18). 
 
-## Creating a CEP-18 Token on the test-net {#cep18-testnet}
+## Creating a CEP-18 Token on the Testnet {#cep18-testnet}
 
 ### Clone and Compile the CEP-18 contract {#cep18-contract-clone}
 
