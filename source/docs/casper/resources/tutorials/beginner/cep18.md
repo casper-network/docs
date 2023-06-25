@@ -68,7 +68,7 @@ The CEP-18 Casper Fungible Token Standard establishes a single implementation of
 
 ## CEP-18 Standard {#cep18-standard}
 
-The CEP-18 Token Standard is the Casper Network compliant implementation and provides the following contract methods to interact with the token contract:
+The CEP-18 Token Standard is a Casper network compliant implementation of ERC-20 that provides the following contract methods to interact with the token contract:
 
  - allowance - Returns the amount of owner’s tokens allowed to be spent by the spender
  - approve - Allows a spender to transfer up to an amount of the direct caller’s tokens
