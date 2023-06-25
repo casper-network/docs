@@ -76,7 +76,7 @@ The CEP-18 Token Standard is a Casper network compliant implementation of ERC-20
  - `decimals` - Returns the decimal places applied to the balance of the token
  - `name` - Returns the name of the token
  - `symbol` - Returns the symbol of the token
- - total_supply - Returns the total supply of the token
+ - `total_supply` - Returns the total supply of the token
  - transfer - Transfers an amount of tokens from the direct caller to a recipient
  - transfer_from - Transfers an amount of tokens from the owner to a recipient, if the direct caller has been previously approved to spend the specified amount on behalf of the owner
 
