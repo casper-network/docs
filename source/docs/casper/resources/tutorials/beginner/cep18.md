@@ -90,7 +90,7 @@ Building on the construction of a CEP-18 token as explained above, we will be in
 
 If you are unsure how to interact with Casper Contracts please refer to the following tutorial: [Writing a Basic Smart Contract in Rust](../../../developers/writing-onchain-code/simple-contract.md).
 
-We will clone the token repository and prepare the token contract for the deployment.
+We will clone the token repository and prepare the token contract for sending in a Deploy.
 
 1.	Clone the Fungible Token contract from the repository.
 
