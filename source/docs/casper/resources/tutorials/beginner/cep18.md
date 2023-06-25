@@ -49,7 +49,7 @@ Uniswap V2 uses ERC-20 tokens in the following scenarios:
 
 ## ERC-20 Implementations on Casper and Implications for Decentralized Exchanges {#erc20-implications}
 
-There exist at least two different implementations of ERC-20 Standard on the Casper Network.
+There exist at least two different implementations of the ERC-20 Standard on Casper networks.
 
 - [Rengo-Labs implementation](https://github.com/Rengo-Labs/casper-erc20).
 - [Friendly Market implementation](https://github.com/FriendlyMarket/casper-erc20).
