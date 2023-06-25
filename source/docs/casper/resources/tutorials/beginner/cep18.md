@@ -86,7 +86,7 @@ For more detail on these methods, there is a reference implementation available 
 
 ### Clone and Compile the CEP-18 Contract {#cep18-contract-clone}
 
-Since we already understand how the CEP-18 standard is constructed, we will be installing our own token contract in the Global State.
+Building on the construction of a CEP-18 token as explained above, we will be installing our own token contract in global state.
 
 If you are unsure how to interact with Casper Contracts please refer to the following tutorial: [Writing a Basic Smart Contract in Rust](../../../developers/writing-onchain-code/simple-contract.md).
 
