@@ -60,7 +60,7 @@ The following considerations should be applied when trying to create an ERC-20 T
 
 -	Interoperability – Different implementations of the ERC-20 standard can hinder seamless integration between tokens, dApps or wallets.
 
--	Project Security Audits – well-established standards usually undergo a thorough security audit. This ensures a higher level of security and reduces the risk of vulnerabilities.
+-	Project Security Audits – Well-established standards usually undergo a thorough security audit. This ensures a higher level of security and reduces the risk of vulnerabilities.
 
 -	Ecosystem – The longer a Blockchain network exists, the more widespread a standard implementation like ERC-20 is. Using a different implementation may limit availability of supported projects and may require additional effort for integration.
 
