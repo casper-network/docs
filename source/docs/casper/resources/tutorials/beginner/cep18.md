@@ -189,7 +189,7 @@ The `keys` folder is not a part of the CEP18 folder structure. Optionally you sh
 
 :::
 
-The response from the `put-deploy` command is as follows:
+The response from the `put-deploy` command should look like this:
 
 ```bash
 
