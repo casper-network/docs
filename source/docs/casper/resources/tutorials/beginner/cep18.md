@@ -21,7 +21,7 @@ This tutorial assumes that you have worked through the following examples. If yo
 
 This tutorial explains the purpose of the ERC-20 standard and the Casper CEP-18 Fungible Token implementation, which serves the same purpose for Casper blockchains. It explains the implications of not adhering to the standard and why it is important to base dApps on one common standard implementation supported by the underlying blockchain protocol.
 
-## ERC-20 standard {#erc20-standard}
+## ERC-20 Standard {#erc20-standard}
 
 The ERC-20 (Ethereum Request for Comment 20) standard is a technical specification used for creating and implementing tokens on the Ethereum blockchain. 
 
