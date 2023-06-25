@@ -1,5 +1,5 @@
 ---
-title: ERC-20 standard and CEP-18 implementation and usage
+title: ERC-20 Standard and CEP-18 Implementation and Usage
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
