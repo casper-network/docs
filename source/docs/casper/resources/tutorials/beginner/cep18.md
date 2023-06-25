@@ -230,7 +230,7 @@ In the execution results we can see, that the deploy was successful:
 
 ```
 
-Be always mindful of the payment amount during the deploy process. If the amount is to small, then the deploy will fail with `Out of gas error`.
+Be always mindful of the payment amount during the deploy process. If the amount is too small, then the deploy will fail with `Out of gas error`.
 
 ### Query the Entry Points in the CEP-18 contract {#cep18-contract-clone}
 
