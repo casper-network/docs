@@ -232,6 +232,7 @@ module.exports = {
             items: ["resources/build-on-casper/index", "resources/build-on-casper/casper-open-source-software"],
         },
         "resources/quick-start",
+        "resources/migrate",
         //"resources/sample-projects", // NEW CONTENT WILL BE HERE
         {
             type: "category",
