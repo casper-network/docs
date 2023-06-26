@@ -11,7 +11,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 | Level: | `Beginner` |
 | Time to complete: | `30 Minutes`|
 
-Make sure you have installed the software/packages needed for this tutorial.
+Make sure you have installed the [software/packages](../../../developers/prerequisites.md) needed for this tutorial.
 
 This tutorial assumes that you have worked through the following examples. If you have not already done so, then we recommend that you do so now:
 - [Getting Started with Rust](../../../developers/writing-onchain-code/getting-started.md)
@@ -110,7 +110,7 @@ We will clone the token repository and prepare the token contract for sending in
 
 :::tip
 
-If the `build-contract` finishes with an error `wasm-strip: command not found`, make sure you install an additional package: 
+If the `build-contract` finishes with an error `wasm-strip: command not found`, make sure you install an additional package on MacOS: 
 
 ```bash
     brew install wabt
