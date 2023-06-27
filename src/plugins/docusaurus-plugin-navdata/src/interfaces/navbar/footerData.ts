@@ -9,4 +9,5 @@ export default interface IFooterData {
   logo: string;
   title: string;
   description: string;
+  manage_cookies_text: string;
 }

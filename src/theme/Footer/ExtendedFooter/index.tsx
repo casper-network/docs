@@ -7,9 +7,10 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useLocaleMap from "../../../hooks/useLocaleMap";
 import { useLocation } from "@docusaurus/router";
 import styles from "./ExtendedFooter.module.scss";
-import React from "react";
+import React, { useContext } from "react";
 import Link from "@docusaurus/Link";
 import SocialMedia from "../../SocialMedia";
+import { ModalContext } from "../../Modals/CookieModal";
 
 export default function ExtendedFooter() {
     const location = useLocation();
@@ -20,14 +21,14 @@ export default function ExtendedFooter() {
     const siteUrl = customFields.siteUrl as string;
     // -- Remove the base url from the location
     const path = location.pathname.replace(baseUrl, "");
-
+    const { setShowCookieModal } = useContext(ModalContext);
     // -- Take the locale, if the locale isn't part of the path, the mapper is going to return the default external locale
     const internalLocale = path.split("/")[0];
 
     const externalLocale = useLocaleMap(internalLocale);
     const data = usePluginData("docusaurus-plugin-navdata") as { socialMedia: Array<ISocialMedia>; navData: Array<INavData>; footerData: Array<IFooterData> };
     const footerData =
-        data.footerData.find((x) => x.languageCode === externalLocale) || data.footerData.find((x) => x.languageCode === customFields.defaultExternalLocales);
+        data?.footerData.find((x) => x.languageCode === externalLocale) || data?.footerData.find((x) => x.languageCode === customFields.defaultExternalLocales);
 
     const getExternalLink = (path: string) => {
         const url = siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl;
@@ -78,7 +79,7 @@ export default function ExtendedFooter() {
                         <div className={styles.footer_container_upperData}>
                             <div className={styles.footer_container_upperData_social}>
                                 {footerData && footerData.title && <h2>{footerData.title}</h2>}
-                                <SocialMedia socialMedia={data.socialMedia} />
+                                <SocialMedia socialMedia={data?.socialMedia} />
                                 {footerData && footerData.description && (
                                     <p className={`${styles.footer_container_upperData_social_description} primaryParagraph`}>{footerData.description}</p>
                                 )}
@@ -97,6 +98,14 @@ export default function ExtendedFooter() {
                                 {footerData.bottomLinks.map((link, i) => {
                                     return <span key={`${link.title}_${i}`}>{renderLink(link.type, link.title, link.url, link.openInNewTab)}</span>;
                                 })}
+                                <button
+                                    onClick={() => {
+                                        setShowCookieModal(true);
+                                    }}
+                                    className={`${styles.button_modal_cookie} primaryParagraph`}
+                                >
+                                    {footerData?.manage_cookies_text}
+                                </button>
                             </div>
                         )}
                     </div>

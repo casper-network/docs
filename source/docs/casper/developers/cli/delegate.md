@@ -5,14 +5,95 @@ This document details a workflow where an account holder on a Casper network can
 ## Prerequisites
 
 1. You meet all prerequisites listed [here](../prerequisites.md), including having a valid `node-address` and the Casper command-line client
-2. You have previously [deployed a smart contract](../dapps/sending-deploys.md) to a Casper network
+2. You have previously [installed a smart contract](../dapps/sending-deploys.md) to a Casper network
+3. [Acquiring a Validator's Public Key](#acquiring-a-validators-public-key)
 
-The workflow will take you through two additional prerequisites before sending the [delegation request](./delegate.md#sending-the-delegation-request):
+### Acquiring a Validator's Public Key {#acquiring-a-validators-public-key}
 
-3. Building the delegation Wasm to execute on the network
-4. Getting the public key of a validator on the network
+This workflow will take you through the additional prerequisite to acquire a validator's public key before sending the [delegation request](./delegate.md#sending-the-delegation-request).
 
-### Building The Delegation Wasm {#building-the-delegation-wasm}
+Any rewards earned are also redelegated by default to the validator from the initial delegation request. Therefore at the time of undelegation, you should consider undelegating the initial amount plus any additional rewards earned through the delegation process.
+
+The active validator set constantly rotates; therefore, when delegating to a validator, remember that the validator you selected may have been rotated out of the set.
+
+## Sending the Delegation Request {#sending-the-delegation-request}
+
+There are two ways to delegate CSPR to a validator. The recommended and cheaper method is to call the `delegate` entry point from the system auction contract. The second method involves building the `delegate.wasm` from the `casper-node` repository and installing it on the network.
+
+We recommend testing the following steps on the official Testnet before performing them in a live environment like the Casper Mainnet.
+
+:::note
+
+The minimum amount to delegate is 500 CSPR (500,000,000,000 motes).
+
+:::
+
+### Method 1: Delegating with the System Auction Contract {#delegating-system-auction}
+
+This method calls the existing `delegate` entry point from the system auction contract. Using this method, you do not need to build any contracts, reducing costs and complexity.
+
+```bash
+casper-client put-deploy \
+--node-address <HOST:PORT> \
+--secret-key <PATH> \
+--chain-name <CHAIN_NAME> \
+--payment-amount <PAYMENT_AMOUNT_IN_MOTES> \
+--session-hash <SESSION_HASH> \
+--session-entry-point delegate \
+--session-arg "validator:public_key='<HEX_ENCODED_VALIDATOR_PULIC_KEY>'" \
+--session-arg "amount:u512='<AMOUNT_TO_DELEGATE>'" \
+--session-arg "delegator:public_key='<HEX_ENCODED_DELEGATOR_PULIC_KEY>'"
+```
+
+1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
+2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
+3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR for node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml)
+5. `session-hash` - Hex-encoded hash of the stored auction contract, which depends on the network you are using. For Casper's Mainnet and Testnet, the hashes are as follows:
+
+- **Testnet**: `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`
+- **Mainnet**: `hash-ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea`
+
+6. `session-entry-point` - Name of the entry point that will be used when calling the contract
+
+The `delegate` entry point expects three arguments:
+
+7. `validator`: The hexadecimal public key of the validator receiving the delegated tokens
+8. `amount`: The number of tokens to be delegated
+9. `delegator`: The hexadecimal public key of the account delegating tokens to a validator. **This key must match the secret key that signs the delegation**
+
+The command will return a deploy hash, which is needed to verify the deploy's processing results. Refer to the [Deploy Status](../../resources/tutorials/beginner/querying-network.md#deploy-status) section for more details.
+
+:::note
+
+Calling the `delegate` entry point on the auction contract has a fixed cost of 2.5 CSPR.
+
+:::
+
+**Example:**
+
+This example shows an account delegating 500 CSPR:
+
+```bash
+casper-client put-deploy \
+--node-address http://65.21.75.254:7777  \
+--chain-name casper-test \
+--secret-key ~/KEYS/secret_key.pem \
+--payment-amount 2500000000 \
+--session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
+--session-entry-point delegate \
+--session-arg "validator:public_key='01aa17f7b9889480b1bd34c3f94f263b229c7a9b01dd4dda19c2dd1d38d176c7a0'" \
+--session-arg "amount:u512='500000000000'" \
+--session-arg "delegator:public_key='01e3d3392c2e0b943abe709b25de5c353e5e1e9d95c7a76e3dd343d8aa1aa08d51'"
+```
+
+Next, [confirm the delegation](#confirming-the-delegation).
+
+### Method 2: Delegating with Compiled Wasm {#delegating-compiled-wasm}
+
+Another way to send a delegation is to compile the `delegate.wasm` and send it to the network via a deploy. Here are the steps to compile the contract yourself.
+
+#### Building the delegation Wasm {#building-the-delegation-wasm}
 
 Obtain the `delegate.wasm` by cloning the [casper-node](https://github.com/casper-network/casper-node) repository.
 
@@ -34,82 +115,63 @@ Once you build the contracts, you can use the `delegate.wasm` to create a deploy
 ls target/wasm32-unknown-unknown/release/delegate.wasm
 ```
 
-### Acquiring a Validator's Public Key {#acquiring-a-validators-public-key}
-
-The official Casper Testnet and Mainnet provide a browser-based block explorer to look up the list of validators:
-
-1.  [Validators on Mainnet](https://cspr.live/validators)
-2.  [Validators on Testnet](https://testnet.cspr.live/validators)
-
-You will see a list of validators present on the network and their total stake (including tokens from other delegators).
-
-You can click on any validator listed to see more information about the validator, including the validator's personal stake.
-
-As a prospective delegator, selecting a trustworthy validator with a favorable rate is essential. Each validator shows the delegation rate, which is a percentage of **your** reward share that the validator will retain. Thus, a 10% rate implies that the validator will retain 10% of your reward share. Please do your due diligence before staking your tokens with a validator.
-
-Note the `PublicKey` of the validator you have selected to delegate your tokens.
-
-Suppose you observe your delegation request in the bid structure but do not see the associated validator key in the `era_validators` structure. In that case, the validator you selected is not part of the current validator set. In this event, your tokens will only be earning rewards if you un-delegate, wait through the unbonding period, and re-delegate to another validator.
-
-Additionally, any rewards earned are re-delegated by default to the validator from the initial delegation request. Therefore at the time of un-delegation, you should consider un-delegating the initial amount plus any additional rewards earned through the delegation process.
-
-The active validator set constantly rotates; therefore, when delegating to a validator, remember that the validator you selected may have been rotated out of the set.
-
-## Sending the Delegation Request {#sending-the-delegation-request}
-
-We recommend testing the following steps on the official Testnet before performing them in a live environment like the Casper Mainnet.
+#### Sending the delegation request {#sending-the-delegation-wasm-request}
 
 In this example, we use the Casper client to send a deploy containing the `delegate.wasm` to the network to initiate the delegation process.
 
-```rust
+```bash
 casper-client put-deploy \
---node-address http://<peer-ip-address>:7777 \
---chain-name casper-test \
---session-path <path-to-wasm>/delegate.wasm \
---payment-amount 5000000000 \
---session-arg "validator:public_key='<hex-encoded-validator-public-key>'" \
---session-arg "amount:u512='<amount-to-delegate>'" \
---session-arg "delegator:public_key='<hex-encoded-public-key>'" \
---secret-key <delegator-secret-key>.pem
+--node-address <HOST:PORT> \
+--secret-key <PATH> \
+--chain-name <CHAIN_NAME> \
+--payment-amount <PAYMENT_AMOUNT_IN_MOTES> \
+--session-path <PATH_TO_WASM>/delegate.wasm \
+--session-arg "validator:public_key='<HEX_ENCODED_VALIDATOR_PULIC_KEY>'" \
+--session-arg "amount:u512='<AMOUNT_TO_DELEGATE>'" \
+--session-arg "delegator:public_key='<HEX_ENCODED_DELEGATOR_PULIC_KEY>'"
 ```
 
-**Note** The delegator's public key and the secret key that signs the deploy must be part of the same account key pair.
+1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
+2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
+3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR for node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml)
+5. `session-path` - The path to where the `delegate.wasm` is located
 
-**Request fields:**
+The `delegate` entry point expects three arguments:
 
--   `node-address` - An IP address of a node on the network
+6. `validator`: The hexadecimal public key of the validator receiving the delegated tokens
+7. `amount`: The number of tokens to be delegated
+8. `delegator`: The hexadecimal public key of the account delegating tokens to a validator. **This key must match the secret key that signs the delegation**
 
--   `secret-key` - Path to the secret key file
+The command will return a deploy hash, which is needed to verify the deploy's processing results. Refer to the [Deploy Status](../../resources/tutorials/beginner/querying-network.md#deploy-status) section for more details.
 
--   `chain-name` - Name of the chain, to avoid the deploy from being accidentally or maliciously included in a different chain
+**Example:**
 
-    -   The _chain-name_ for Testnet is **casper-test**
-    -   The _chain-name_ for Mainnet is **casper**
+This example command uses the Casper Testnet to delegate 500 CSPR, and the payment amount is 6 CSPR. The payment amount varies based on each deploy and network [chainspec](../../concepts/glossary/C.md#chainspec). However, notice that this method is more expensive than the previous one that calls the delegate entry point.
 
--   `session-path` - The path to where the `delegate.wasm` is located
+```bash
+casper-client put-deploy \
+--node-address http://65.21.75.254:7777  \
+--chain-name casper-test \
+--secret-key ~/KEYS/secret_key.pem \
+--payment-amount 20000000000 \
+--session-path ~/delegate.wasm \
+--session-arg "validator:public_key='01aa17f7b9889480b1bd34c3f94f263b229c7a9b01dd4dda19c2dd1d38d176c7a0'" \
+--session-arg "amount:u512='500000000000'" \
+--session-arg "delegator:public_key='01e3d3392c2e0b943abe709b25de5c353e5e1e9d95c7a76e3dd343d8aa1aa08d51'"
+```
 
--   `session-arg` - The arguments to the `delegate` request
+Next, [confirm the delegation](#confirming-the-delegation).
 
-    -   The argument `validator` is the public key of the validator to whom the tokens will be delegated
-    -   The argument `amount` is the number of tokens to be delegated
-    -   The argument `delegator` is the public key of the account delegating tokens to a validator
 
-**Important response fields:**
+## Confirming the Delegation {#confirming-the-delegation}
 
--   `"result"."deploy_hash"` - the address of the executed delegation request.
+A Casper network maintains an _auction_ where validators _bid_ on slots to become part of the active validator set. Delegation rewards are only earned for a validator who has won the auction and is part of the active set. Thus to ensure the delegated tokens can earn rewards, you must first check the foloowing:
 
-Save the returned _deploy_hash_ from the output to query information about the delegation deploy later.
+1. Your delegation is part of the _bid_ to the _auction_
+2. The validator is part of the _active_ validator set
 
-Refer to the [Deploy Status](../../resources/tutorials/beginner/querying-network.md#deploy-status) section to learn how to confirm that your deploy was executed successfully.
-
-### Confirming the Delegation {#confirming-the-delegation}
-
-A Casper network maintains an _auction_ where validators _bid_ on slots to become part of the active validator set. Delegation rewards are only earned for a validator who has won the auction and is part of the active set. Thus to ensure the delegated tokens can earn rewards, we must first check that:
-
-1.  Our delegation is part of the _bid_ to the _auction_
-2.  The validator is part of the _active_ validator set
-
-Once the deploy has been processed, we can query the auction for information to confirm our delegation. We can use the Casper command-line client to create an RPC request with the following query:
+Once the deploy has been processed, you can query the auction for information to confirm our delegation. Use the Casper command-line client to create an RPC request with the following query:
 
 ```bash
 casper-client get-auction-info \
