@@ -32,6 +32,7 @@ module.exports = {
         // customFields: dataConfig,
         ...siteNavbarConfig,
     },
+    scripts: [{ src: "/js/loadtags.js", async: true, type: "module" }],
     themeConfig: {
         tableOfContents: {
             minHeadingLevel: 2,
