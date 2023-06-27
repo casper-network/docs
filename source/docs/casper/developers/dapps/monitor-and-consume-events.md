@@ -401,7 +401,7 @@ An application may parse each event needed for its use case and respond accordin
 <TabItem value="js" label="JavaScript">
 
 ```javascript
-function eventHandler(event) {
+const eventHandler = (event) => {
   if (event.body.DeployAccepted.header.account == "012481699f9231e36ecf002675cd7186b48e6a735d10ec1b30f587ca716937752c") {
     // Perform an action
   }
