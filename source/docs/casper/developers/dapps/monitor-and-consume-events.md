@@ -33,7 +33,7 @@ const es = new EventStream("http://NODE_ADDRESS:9999/events/" + CHANNEL)
 es.start()
 es.subscribe(EventName.EVENT_NAME, eventHandler)
 
-function eventHandler(event) {
+const eventHandler = (event) => {
     console.log(event)
 }
 ```
