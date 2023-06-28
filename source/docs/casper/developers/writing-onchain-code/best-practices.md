@@ -36,6 +36,10 @@ Computations occurring on-chain come with associated [gas costs](../../concepts/
 
 Further, there is a set cost of 2.5 CSPR to create a new purse. If possible, the [reuse of purses](../../resources/tutorials/advanced/transfer-token-to-contract.md#scenario2) should be considered to reduce this cost. If reusing purses, proper access management must be maintained to prevent lapses in security. Ultimately, any choices made in regards to security and contract safeguards rely on the smart contract author.
 
+## Inlining
+
+As often as practicable, developers should inline functions by including the body of the function within their code rather than making `call` or `call_indirect` to the function. In the context of coding for Casper blockchain purposes, this reduces the overhead of executed Wasm and prevents unexpected errors due to exceeding resource tolerances.
+
 ## Testing
 
 Testing all Deploys prior to committing them to [Mainnet](https://cspr.live/) can assist authors in detecting bugs and inefficiencies prior to incurring gas fees. Casper provides several methods of testing, including unit testing, testing using NCTL and sending Deploys to [Testnet](https://testnet.cspr.live/).
