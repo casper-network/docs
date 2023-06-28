@@ -13,7 +13,7 @@ sudo -u casper casper-client put-deploy \
 --node-address <HOST:PORT> \
 --secret-key <PATH> \
 --chain-name <CHAIN_NAME> \
---payment-amount 2500000000 \
+--payment-amount <PAYMENT_AMOUNT_IN_MOTES> \
 --session-hash <SESSION_HASH> \
 --session-entry-point add_bid \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
@@ -24,7 +24,7 @@ sudo -u casper casper-client put-deploy \
 1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
 2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
 3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
-4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR
+4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR for node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml)
 5. `session-hash` - Hex-encoded hash of the stored auction contract, which depends on the network you are using. For Casper's Mainnet and Testnet, the hashes are as follows:
 
 - **Testnet**: `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`
@@ -67,35 +67,7 @@ Next, [check the status of the auction](#check-the-status-of-the-bid-in-the-auct
 
 ## Method 2: Bonding with Compiled Wasm {#bonding-compiled-wasm}
 
-Another way to send a bonding transaction is to compile the `add_bid.wasm` and send it to the network via a deploy. Here are the steps to compile the contract yourself:
-
-1. Clone the [`casper-node` repository](https://github.com/casper-network/casper-node)
-2. Install these prerequisites, which are also listed [here](https://github.com/casper-network/casper-node#pre-requisites-for-building).
-
-- [Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust)
-- [CMake](https://cgold.readthedocs.io/en/latest/first-step/installation.html)
-- `pkg-config` - On Ubuntu, use `sudo apt-get install pkg-config`
-- `openssl` - On Ubuntu, use `sudo apt-get install openssl`
-- `libssl-dev` - On Ubuntu, use `sudo apt-get install libssl-dev`
-
-3. Install the [Rust casper-client](../../developers/prerequisites.md#the-casper-command-line-client) and fund the [keys](../setup/basic-node-configuration.md#create-fund-keys) you will use for bonding 
-4. [Build the contracts](#build-contracts)
-5. [Send the bonding request](#example-bonding-transaction)
-6. [Check the status of the auction](#check-the-status-of-the-bid-in-the-auction) to see if you have won a validator slot
-
-### Building the contracts {#build-contracts}
-
-Using this method, you must build the contract that submits the bid. Build the following client contracts in release mode:
-
-```bash
-cd casper-node
-make setup-rs
-make build-client-contracts
-```
-
-These commands build all the necessary contracts, including `add_bid.wasm` for placing a bid. 
-
-### Submitting the bonding request {#example-bonding-request}
+Another way to send a bonding transaction to the network is via a deploy containing the compiled `add_bid.wasm`. For details, refer to [Building the Required Contracts](../setup/joining.md#step-3-build-contracts).
 
 The following deploy is a template for sending a bonding request:
 
@@ -119,7 +91,7 @@ sudo -u casper casper-client put-deploy \
 
 The `add_bid.wasm` expects three arguments:
 
-7. `public key`: The hexadecimal public key of the account's purse submitting the bid. This key must match the secret key that signs the bid
+7. `public_key`: The hexadecimal public key of the account's purse submitting the bid. This key must match the secret key that signs the bid
 8. `amount`: The bidding amount
 9. `delegation_rate`: Percentage of the rewards that the node operator retains for their services
 
@@ -146,6 +118,8 @@ sudo -u casper casper-client put-deploy \
 --session-arg "amount:U512='$[10000 * 1000000000]'" \
 --session-arg="delegation_rate:u8='10'"
 ```
+
+Next, check the bid status to see if you have won a validator slot.
 
 ## Checking the Bid Status {#check-the-status-of-the-bid-in-the-auction}
 

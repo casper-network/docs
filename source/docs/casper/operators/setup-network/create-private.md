@@ -334,6 +334,11 @@ casper-client get-account-info -n $NODE_ADDR
 ### Adding a bid as Alice
 The following command attempts to add an auction bid on the network. It should return `ApiError::AuctionError(AuctionBidsDisabled) [64559]`.
 
+:::tip
+
+All payment amounts in these examples must be adjusted based on the network [chainspec](../../concepts/glossary/C.md#chainspec).
+
+:::
 
 ```sh
 casper-client \

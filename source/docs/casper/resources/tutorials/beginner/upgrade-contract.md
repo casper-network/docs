@@ -108,7 +108,7 @@ make build-contract
 
 ### Step 4. Install the contract
 
-[Install the contract](../../../developers/dapps/sending-deploys.md#sending-the-deploy) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../../../developers/dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
+[Install the contract](../../../developers/cli/installing-contracts.md) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../../../developers/dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
 To observe the upgrade workflow, you can install the second contract version on the chain. This version contains the `counter_decrement` entry point.
 
@@ -121,10 +121,10 @@ Installing the first version of the contract, as shown in the [Counter tutorial]
 ```bash
 casper-client put-deploy \
     --node-address http://[NODE_IP]:7777 \
-    --chain-name casper-test \
+    --chain-name [CHAIN_NAME] \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
-    --payment-amount 5000000000000 \
-    --session-path ./contract-v2/target/wasm32-unknown-unknown/release/counter-v2.wasm
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-path [PATH]/contract-v2/target/wasm32-unknown-unknown/release/counter-v2.wasm
 ```
 
 ### Step 5. Verify your changes 
@@ -315,9 +315,9 @@ Call the new entry point, _counter_decrement_, using the package name and check 
 ```bash
 casper-client put-deploy \
     --node-address http://[NODE_IP]:7777 \
-    --chain-name casper-test \
+    --chain-name [CHAIN_NAME] \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
-    --payment-amount 5000000000000 \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-package-name "counter_package_name" \
     --session-entry-point "counter_decrement"
 ```

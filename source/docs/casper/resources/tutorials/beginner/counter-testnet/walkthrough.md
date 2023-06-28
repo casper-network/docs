@@ -84,7 +84,7 @@ casper-client put-deploy \
     --node-address http://[NODE_IP]:7777 \
     --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
-    --payment-amount 5000000000000 \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-path ./contract-v1/target/wasm32-unknown-unknown/release/counter-v1.wasm
 ```
 
@@ -161,7 +161,7 @@ casper-client put-deploy \
     --node-address http://[NODE_IP]:7777 \
     --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
-    --payment-amount 5000000000000 \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-name "counter" \
     --session-entry-point "counter_inc"
 ```
@@ -199,7 +199,7 @@ casper-client put-deploy \
     --node-address http://[NODE_IP]:7777 \
     --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
-    --payment-amount 5000000000000 \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-path ./counter/target/wasm32-unknown-unknown/release/counter-call.wasm
 ```
 
