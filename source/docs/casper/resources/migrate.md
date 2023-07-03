@@ -10,11 +10,11 @@ import TabItem from '@theme/TabItem';
 
 This page covers various considerations for moving to Casper from another blockchain by comparing Casper to Ethereum, Near, Aptos, and Solana in these aspects:
 
-- [Contract Lifecycle](#contract-lifecycle)
-- [Variable Storage](#variable-storage)
-- [Public Methods](#public-methods)
-- [Passing Arguments](#passing-arguments)
-- [State Management](#state-management)
+1. [Contract Lifecycle](#contract-lifecycle)
+2. [Variable Storage](#variable-storage)
+3. [Public Methods](#public-methods)
+4. [Passing Arguments](#passing-arguments)
+5. [State Management](#state-management)
 
 Since other blockchain projects use different technologies, it is essential to consider how those technologies serve your use case.
 
