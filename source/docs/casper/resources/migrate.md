@@ -47,9 +47,13 @@ Solidity smart contracts adhere to object-oriented programming principles and su
 </TabItem>
 <TabItem value="Near" label="Near">
 
-Near smart contracts can be written in either JavaScript or Rust. Regardless of the chosen language, the Near SDK compiles the code to WebAssembly. In the Near ecosystem, smart contracts function as classes. The constructor, referred to as the "init" method, can receive attributes required for initializing the contract's initial state.
+Near smart contracts can be written in JavaScript or Rust, and the Near SDK compiles the code to WebAssembly. 
 
-All public methods defined within the contract serve as the contract's interface, exposing its functionalities. In the Near blockchain, there are various capabilities for versioning. Examples of how updates are handled include state migrations, state versioning, and contract self-updates.
+In the Near ecosystem, smart contracts function as classes. The constructor, referred to as the "init" method, can receive attributes required for initializing the contract's initial state.
+
+All public methods defined within the contract serve as its interface, exposing its functionality. 
+
+The Near blockchain provides various capabilities for versioning, including state migrations, state versioning, and contract self-updates.
 
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
