@@ -25,9 +25,13 @@ When choosing a blockchain, it is also essential to compare consensus mechanisms
 <Tabs>
 <TabItem value="Casper" label="Casper">
 
-Casper smart contracts are written in Rust. In Casper, variables defined within the smart contract can be stored as either Named Keys or [Dictionaries](../concepts/dictionaries.md). The `call` function serves as the constructor of the smart contract on the Casper network. It automatically executes when the smart contract is deployed, setting the initial state of the contract and defining all entry points.
+Casper smart contracts are written in Rust. 
 
-It's worth noting that Casper only supports public entry points for [contracts](../developers/writing-onchain-code/simple-contract.md). Additionally, contracts can be defined as either immutable or upgradable.
+Variables defined within the smart contract can be stored as either [Named Keys](../developers/json-rpc/types_chain.md#namedkey) or [Dictionaries](../concepts/dictionaries.md) as described in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
+
+The `call` function serves as the main entry point of the [smart contract](../developers/writing-onchain-code/simple-contract.md). It automatically executes when the smart contract is installed, setting the initial state of the contract and defining all other entry points.
+
+It's worth noting that Casper only supports public entry points for contracts. Additionally, contracts can be defined as upgradable or immutable as described [here](../developers/writing-onchain-code/upgrading-contracts.md).
 
 </TabItem>
 <TabItem value="Ethereum" label="Ethereum">
