@@ -164,11 +164,9 @@ It is worth noting that public view methods on Ethereum, which solely retrieve d
 
 In the Near blockchain, there are three types of public functions:
 
-`Init Methods`: These are used as the class constructors to initialize the state of the contract.
-
-`View Methods`: These functions are used to read the state of the contract variables.
-
-`Call Methods`: These methods can mutate the state of the contract and perform specific actions, such as calling another contract.
+- **Init Methods** - These are used as the class constructors to initialize the state of the contract.
+- **View Methods** - These functions are used to read the state of the contract variables.
+- **Call Methods** - These methods can mutate the state of the contract and perform specific actions, such as calling another contract.
 
 The definition of public methods in Near is as follows:
 
@@ -182,7 +180,7 @@ For public methods that return variables, the definition would be:
 pub fn get_messages(&self, from_index: Option<U128>, limit: Option<u64>) -> Vec<PostedMessage> { }
 ```
 
-The actual implementation of the functions may include the necessary parameters and logic based on the specific requirements of the contract.
+The actual implementation of the functions may include the necessary parameters and logic based on the contract's specific requirements.
 
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
@@ -199,7 +197,7 @@ For public functions that return variables, the definition would be as follows:
 public fun max(a: u8, b: u8): (u8, bool) {}
 ```
 
-In the Aptos Blockchain, it is possible to return one or more values from a function.
+In the Aptos blockchain, it is possible to return one or more values from a function.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
