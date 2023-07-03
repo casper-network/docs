@@ -81,8 +81,9 @@ It is worth noting that Solana programs can be updated using an authority known 
 <Tabs>
 <TabItem value="Casper" label="Casper">
 
+Variables can be stored as Named Keys or Dictionaries as described in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
 
-The variables can be stored either as Named Keys or [Dictionaries](../concepts/dictionaries.md). Additionally, local variables are available within the entry points and can be utilized to perform necessary actions or computations within the scope of each entry point.
+Additionally, local variables are available within the entry points and can be utilized to perform necessary actions or computations within the scope of each entry point.
 
 </TabItem>
 <TabItem value="Ethereum" label="Ethereum">
@@ -92,17 +93,19 @@ The variables within the contract are responsible for storing the state of the c
 </TabItem>
 <TabItem value="Near" label="Near">
 
-The variables in the contract can be stored as native types, SDK collections, or internal structures. It is recommended to use SDK collections whenever feasible, as they offer advantages over native types. Additionally, there is a distinction between class attributes and local variables. Class attributes represent the state of the contract, while local variables are specific to the invocation of a function and have no impact on the contract's overall state.
+The variables in the contract can be stored as native types, SDK collections, or internal structures. SDK collections offer advantages over native types. 
+
+Additionally, there is a distinction between class attributes and local variables. Class attributes represent the state of the contract, while local variables are specific to the invocation of a function and have no impact on the contract's overall state.
 
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
 
-Aptos employs primitive types, such as integers, booleans, and addresses, to represent variables. These elementary types can be combined to create structures, but it's important to note that struct definitions are only permitted within Modules. For storing important or relevant data, Aptos encourages the use of Resources. Resources serve as a specialized type for managing and storing significant data in an efficient manner.
+Aptos employs primitive types, such as integers, booleans, and addresses, to represent variables. These elementary types can be combined to create structures, but it's important to note that struct definitions are only permitted within Modules. For storing important or relevant data, Aptos encourages using Resources, which are specialized types for managing and storing important data efficiently.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
 
-Variables can be utilized locally within the context of a specific entry point being executed. They are limited to the scope of that entry point and not accessible outside of it. These variables can be defined as elementary types such as bool, String, int, and so on.
+Variables can be utilized locally within the execution context of a specific entry point. They are limited to the scope of that entry point and not accessible outside of it. These variables can be defined as elementary types such as bool, String, int, etc.
 
 In terms of storage, the actual data is stored in the Account. It is organized as a struct comprising related variables, allowing for efficient management and retrieval of the stored information.
 
