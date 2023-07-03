@@ -1,12 +1,12 @@
 ---
-title: Moving to Casper from another Blockchain
+title: Moving to Casper
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Moving to Casper {#moving-to-casper}
+# Moving to Casper from another Blockchain {#moving-to-casper}
 
 This page covers various considerations for moving to Casper from another blockchain by comparing Casper to Ethereum, Near, Aptos, and Solana in these aspects:
 
