@@ -118,27 +118,25 @@ In terms of storage, the actual data is stored in the Account. It is organized a
 <Tabs>
 <TabItem value="Casper" label="Casper">
 
-Entry points are declared within the 'call' routine. To declare a public entry point, the following format is used:
+For Casper smart contracts, public methods are called entry points. To declare them, the following format is used:
 
 ```rust
 #[no_mangle]
 pub extern "C" fn counter_inc() {
-    let uref: URef = runtime::get_key(COUNT_KEY)
-        .unwrap_or_revert_with(ApiError::MissingKey)
-        .into_uref()
-        .unwrap_or_revert_with(ApiError::UnexpectedKeyVariant);
     
-    storage::add(uref, 1); // Increment the count by 1.
+    // Entry point body
 }
 ```
 
-It's important to note that entry points do not inherently have input arguments in their definition. If a return value is needed, it should be declared using the following syntax:
+It's important to note that entry points do not have input arguments in their definition, but the arguments can be accessed using the [RuntimeArgs](https://docs.rs/casper-types/latest/casper_types/struct.RuntimeArgs.html) passed to the contract. Entry points are instantiated within the `call` entry point.
+
+If a return value is needed, it should be declared using the following syntax described in the [Interacting with Runtime Return Values](../resources/tutorials/advanced/return-values-tutorial.md) tutorial.
 
 ```rust
 runtime::ret(value);
 ```
 
-In the Casper networks, each call to an entry point is treated as a [Deploy](../concepts/deploy-and-deploy-lifecycle.md) to the network, and therefore, each call incurs a certain amount of mots (the network's native currency).
+Each call to an entry point is treated as a [Deploy](../concepts/deploy-and-deploy-lifecycle.md) to the network, and therefore, each call incurs a cost paid in motes (the network's native accounting unit).
 
 </TabItem>
 <TabItem value="Ethereum" label="Ethereum">
