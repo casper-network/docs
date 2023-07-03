@@ -105,7 +105,6 @@ In terms of storage, the actual data is stored in the Account. It is organized a
 Entry points are declared within the 'call' routine. To declare a public entry point, the following format is used:
 
 ```rust
-
 #[no_mangle]
 pub extern "C" fn counter_inc() {
     let uref: URef = runtime::get_key(COUNT_KEY)
@@ -115,7 +114,6 @@ pub extern "C" fn counter_inc() {
     
     storage::add(uref, 1); // Increment the count by 1.
 }
-
 ```
 
 It's important to note that entry points do not inherently have input arguments in their definition. If a return value is needed, it should be declared using the following syntax:
@@ -134,19 +132,15 @@ On Ethereum, public methods serve two purposes: they can be used to execute cont
 The declaration of public methods in Ethereum follows the format:
 
 ```bash
-
 function update_name(string value) public {
     dapp_name = value;
 }
-
 ```
 
 In cases where a public method only returns a value without modifying the state, it should be defined as follows:
 
 ```bash
-
 function balanceOf(address _owner) public view returns (uint256 return_parameter) { }
-
 ```
 
 It is worth noting that public view methods on Ethereum, which solely retrieve data without making state changes, do not consume gas.
@@ -165,17 +159,13 @@ In the Near blockchain, there are three types of public functions:
 The definition of public methods in Near is as follows:
 
 ```rust
-
 pub fn add_message(&mut self, ...) { }
-
 ```
 
 For public methods that return variables, the definition would be:
 
 ```rust
-
 pub fn get_messages(&self, from_index: Option<U128>, limit: Option<u64>) -> Vec<PostedMessage> { }
-
 ```
 
 The actual implementation of the functions may include the necessary parameters and logic based on the specific requirements of the contract.
@@ -186,17 +176,13 @@ The actual implementation of the functions may include the necessary parameters 
 Public functions in Aptos are similar to public methods or functions found in other blockchain networks. The definition of a public function in Aptos appears as follows:
 
 ```rust
-
 public fun start_collection(account: &signer) {}
-
 ```
 
 For public functions that return variables, the definition would be as follows:
 
 ```rust
-
 public fun max(a: u8, b: u8): (u8, bool) {}
-
 ```
 
 In the Aptos Blockchain, it is possible to return one or more values from a function.
@@ -207,9 +193,7 @@ In the Aptos Blockchain, it is possible to return one or more values from a func
 In Solana, functions are defined as public entry points that act as interfaces visible to the network. The declaration of an entry point follows this format:
 
 ```rust
-
 entrypoint!(process_instruction);
-
 ```
 
 The implementation of the entry point may resemble the following:
@@ -220,7 +204,6 @@ pub fn process_instruction(
     accounts: &[AccountInfo],
     _instruction_data: &[u8],
 ) -> ProgramResult {}
-
 ```
 
 Within the entry point function, the necessary parameters are specified, such as `program_id`, which represents the program's identifier, `accounts`, an array of `AccountInfo` providing account details, and `_instruction_data`, representing the instruction data received. The function returns a `ProgramResult`, which indicates the success or failure of the instruction execution.
@@ -237,7 +220,6 @@ Within the entry point function, the necessary parameters are specified, such as
 Named arguments are passed as strings with type specifiers. To provide session arguments to the entry point during a Deploy, you can utilize the following approach:
 
 ```bash
-
 casper-client put-deploy \
   --node-address http://65.21.235.219:7777 \
   --chain-name casper-test \
@@ -248,15 +230,12 @@ casper-client put-deploy \
   --session-arg "validator:public_key='0145fb72c75e1b459839555d70356a5e6172e706efa204d86c86050e2f7878960f'" \
   --session-arg "amount:u512='500000000000'" \
   --session-arg "delegator:public_key='0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf'"
-
 ```
 
 In the contract, you can access the session arguments as follows:
 
 ```bash
-
 let uref: URef = runtime::get_key(Key_Name)
-
 ```
 
 The `get_key` function can be used to retrieve the desired session argument by specifying its name or key.
