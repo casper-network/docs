@@ -58,14 +58,20 @@ The Near blockchain provides various capabilities for versioning, including stat
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
 
-The Aptos programming language is known as Move. Its primary concepts revolve around scripts and modules. Scripts enable developers to incorporate additional logic into transactions, while modules allow them to expand blockchain functionality or create custom smart contracts. A distinctive feature of Move is the concept of Resources, which are specialized structures representing assets. This design allows resources to be managed similarly to other data types in Aptos, such as vectors or structs.
+The Aptos programming language is known as Move. Its primary concepts revolve around scripts and modules. Scripts enable developers to incorporate additional logic into transactions, while modules allow them to expand blockchain functionality or create custom smart contracts. 
+
+A distinctive feature of Move is the concept of Resources, which are specialized structures representing assets. This design allows resources to be managed similarly to other data types in Aptos, such as vectors or structs.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
 
-Solana smart contracts are primarily written in Rust. Unlike some other blockchain platforms, Solana's smart contracts are stateless and solely focus on program logic. The management of the contract state is handled at the account level. This means that there is a clear separation between the state stored within the account and the contract logic defined in the programs.
+Solana smart contracts are primarily written in Rust. 
 
-In Solana, smart contracts are commonly referred to as on-chain programs. These programs expose their interface as a public entry point, allowing external interaction. It is worth noting that Solana programs can be updated through the use of an authority known as the "update authority," which holds the necessary permissions for making modifications to the program.
+Unlike other blockchain platforms, Solana's smart contracts are stateless and solely focus on program logic. The management of the contract state is handled at the account level, separating the state stored within the account and the contract logic defined in the programs.
+
+Smart contracts are commonly referred to as on-chain programs. These programs expose their interface as a public entry point, allowing external interaction. 
+
+It is worth noting that Solana programs can be updated using an authority known as the "update authority," which holds the necessary permissions for making modifications to the program.
 
 </TabItem>
 </Tabs>
