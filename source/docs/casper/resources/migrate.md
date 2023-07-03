@@ -38,12 +38,11 @@ It's worth noting that Casper only supports public entry points for contracts. A
 
 Ethereum smart contracts are primarily written in Solidity, a programming language specifically designed for this purpose. These contracts comprise a collection of global variables that persist on the blockchain and define the contract's state.
 
-Furthermore, Ethereum smart contracts feature a constructor that allows for the specification of an initial state after deployment on the blockchain. Public functions declared within the contract can be invoked from outside the blockchain.
+Furthermore, Ethereum smart contracts feature a constructor that specifies an initial state after deployment on the blockchain. Public functions declared within the contract can be invoked from outside the blockchain.
 
-In terms of immutability, Ethereum smart contracts are inherently immutable once deployed. However, there are design patterns available, such as "Proxy" or "Diamond," that facilitate versioning of contracts on the Ethereum blockchain.
+In terms of immutability, Ethereum smart contracts are inherently immutable once deployed. However, design patterns such as "Proxy" or "Diamond" facilitate versioning contracts on the Ethereum blockchain.
 
-Smart contracts written in Solidity adhere to object-oriented programming principles and support features such as inheritance and libraries.
-
+Solidity smart contracts adhere to object-oriented programming principles and support features such as inheritance and libraries.
 
 </TabItem>
 <TabItem value="Near" label="Near">
