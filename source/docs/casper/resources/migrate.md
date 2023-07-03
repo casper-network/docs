@@ -18,7 +18,9 @@ This page covers various considerations for moving to Casper from another blockc
 
 Since other blockchain projects use different technologies, it is essential to consider how those technologies serve your use case.
 
-## Contract Lifecycle{#contract-lifecycle}
+When choosing a blockchain, it is also essential to compare consensus mechanisms, tokenomics, cross-contract capabilities, contract upgradability, and software development kits (SDKs) as described [here](#additional-considerations).
+
+## Contract Lifecycle {#contract-lifecycle}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
@@ -61,7 +63,7 @@ In Solana, smart contracts are commonly referred to as on-chain programs. These 
 </TabItem>
 </Tabs>
 
-## Variable Storage{#variable-storage}
+## Variable Storage {#variable-storage}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
@@ -95,7 +97,7 @@ In terms of storage, the actual data is stored in the Account. It is organized a
 </Tabs>
 
 
-## Public Methods{#public-methods}
+## Public Methods {#public-methods}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
@@ -226,7 +228,7 @@ Within the entry point function, the necessary parameters are specified, such as
 </TabItem>
 </Tabs>
 
-## Passing Arguments{#passing-arguments}
+## Passing Arguments {#passing-arguments}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
@@ -292,7 +294,7 @@ By enforcing strong typing, the programming language ensures that the arguments 
 </TabItem>
 </Tabs>
 
-## State Management{#state-management}
+## State Management {#state-management}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
@@ -324,21 +326,20 @@ Data is stored in structs within the account. These structs should be serialized
 </TabItem>
 </Tabs>
 
-## Summary{#summary}
+## Additional Considerations {#additional-considerations}
 
-While choosing a blockchain, there are additional aspects that need to be considered. These include consensus mechanisms, tokenomics, cross-contract capabilities, contract upgradability, and the availability of software development kits (SDKs).
+When choosing a blockchain, you may also look into the network's consensus mechanism, the tokenomics or economic model, cross-contract communication, smart contract upgrades, and the available software development kits (SDKs).
 
-`Consensus mechanism` refers to the algorithm used by the blockchain network to achieve agreement on the validity and ordering of transactions. Different blockchains employ various consensus mechanisms such as Proof of Work (PoW), Proof of Stake (PoS), or Delegated Proof of Stake (DPoS). The choice of consensus mechanism impacts factors like security, scalability, and energy efficiency.
+1. **Consensus mechanism** refers to the algorithm the blockchain network uses to achieve agreement on the validity and ordering of transactions. Different blockchains employ various consensus mechanisms such as Proof-of-Work (PoW), Proof-of-Stake (PoS), or Delegated Proof-of-Stake (DPoS). The choice of consensus mechanism impacts factors like security, scalability, and energy efficiency.
 
-`Tokenomics` relates to the economic model of the blockchain network and its native tokens. It involves aspects such as token distribution, inflation, utility, and governance. Understanding the tokenomics is crucial for evaluating the long-term viability and potential value of the blockchain ecosystem.
+2. **Tokenomics** relates to the economic model of the blockchain network and its native tokens, involving token distribution, inflation, utility, and governance. Understanding the tokenomics of the network is crucial for evaluating the ecosystem's long-term viability and potential value.
 
-`Cross-contract` capabilities refer to the ability of smart contracts to interact and communicate with each other within the blockchain network. This feature is essential for building complex decentralized applications (DApps) and implementing inter-contract functionality.
+3. **Cross-contract capabilities** refer to the ability of smart contracts to interact and communicate within the blockchain network. This feature is essential for building complex decentralized applications (dApps) and implementing inter-contract functionality.
 
-`Contract upgradability` determines whether the deployed smart contracts can be modified or updated after deployment. It is important to assess the flexibility of the chosen blockchain in terms of contract maintenance, bug fixes, and incorporating new features or improvements without disrupting the existing ecosystem.
+4. **Contract upgradability** determines whether the smart contracts installed on the network can be modified or updated after installation. It is essential to assess the flexibility of the chosen blockchain in terms of contract maintenance, bug fixes, and incorporating new features or improvements without disrupting the existing ecosystem.
 
-Lastly, the availability of software `development kits (SDKs)` plays a significant role in the development process. SDKs provide tools, libraries, and documentation to simplify the creation of applications and smart contracts on the blockchain. Evaluating the maturity, community support, and compatibility of the available SDKs is crucial for developers.
+5. **SDK availability** also plays a significant role in the development process. SDKs provide tools, libraries, and documentation to simplify the creation of applications and smart contracts on the blockchain. Evaluating the maturity, community support, and compatibility of the available SDKs is crucial for developers.
 
-Considering these aspects helps in making an informed decision when selecting a blockchain that aligns with the specific requirements and goals of the project or application.
+Considering these aspects helps when selecting a blockchain that aligns with a project or application's specific requirements and goals. 
 
-Since all of these aspects are the focus of `Casper` ecosystem, it is also a perfect choice even for Enterprise grade projects.
-
+The Casper ecosystem aims to fulfill all of these aspects, including supporting enterprise-grade projects.
