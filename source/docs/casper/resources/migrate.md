@@ -250,37 +250,29 @@ In the contract, you can access the session arguments as follows:
 let uref: URef = runtime::get_key(Key_Name)
 ```
 
-The `get_key` function can be used to retrieve the desired session argument by specifying its name or key.
+Use the `get_key` function to retrieve the desired session argument by specifying the key's name. 
 
 </TabItem>
 <TabItem value="Ethereum" label="Ethereum">
 
-Strongly typed function arguments, where both the input and return variables need to be explicitly defined. The compiler checks the correctness of the arguments passed to the functions during runtime.
-
-This means that the types of the function arguments, as well as the return types, must be explicitly specified in the function signature. The compiler ensures that the provided arguments adhere to the specified types, helping to catch type-related errors and ensure type safety.
+Ethereum uses strongly typed function arguments, and developers must explicitly define the input and return variables. The compiler checks the correctness of the arguments passed to the functions during runtime. As a result, developers must explicitly specify the argument and return types in the function signature. The compiler ensures that the provided arguments adhere to the specified types, helping to catch type-related errors and ensure type safety.
 
 By enforcing strong typing, the compiler helps prevent potential runtime errors and enhances code reliability by verifying the compatibility of the passed arguments and expected return types.
 
 </TabItem>
 <TabItem value="Near" label="Near">
 
-Strongly typed function arguments require explicit definition of both the input and return variables.
-
-By enforcing strong typing, the programming language ensures that the arguments passed to a function match the expected types, preventing type-related errors and promoting code correctness. Strong typing provides additional clarity and safety by explicitly stating the data types of the function's inputs and outputs.
+Strongly typed function arguments require explicitly defining the input and return variables. By enforcing strong typing, the programming language ensures that the arguments passed to a function match the expected types, preventing type-related errors and promoting code correctness. Strong typing provides additional clarity and safety by explicitly stating the data types of the function's inputs and outputs.
 
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
 
-Strongly typed function arguments require explicit definition of both the input and return variables.
-
-By enforcing strong typing, the programming language ensures that the arguments passed to a function match the expected types, preventing type-related errors and promoting code correctness. Strong typing provides additional clarity and safety by explicitly stating the data types of the function's inputs and outputs.
+Like Near, Aptos requires strongly typed function arguments, thus, preventing type-related errors and promoting code correctness.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
 
-Strongly typed function arguments require explicit definition of both the input and return variables.
-
-By enforcing strong typing, the programming language ensures that the arguments passed to a function match the expected types, preventing type-related errors and promoting code correctness. Strong typing provides additional clarity and safety by explicitly stating the data types of the function's inputs and outputs.
+Like Near and Aptos, Solana requires strongly typed function arguments, thus, preventing type-related errors and promoting code correctness.
 
 </TabItem>
 </Tabs>
@@ -313,63 +305,8 @@ Aptos advises developers to cluster related data into Resources for efficient da
 Data persists in structs within the account. The Binary Object Representation Serializer for Hashing (Borsh) facilitates the serialization and deserialization of these structs. The process involves reading the data from the account, deserializing it to obtain the values it contains, updating the values, and then serializing the modified data to save the new values back into the account.
 
 </TabItem>
-</Tabs>## State Management {#state-management}
-
-<Tabs>
-<TabItem value="Casper" label="Casper">
-
-Data persists in Named Keys and Dictionaries in a contract or an account's context. See more details in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
- 
-</TabItem>
-<TabItem value="Ethereum" label="Ethereum">
-
-Data persists in state variables within the smart contract. These state variables must be strongly typed so that the smart contract compiler can enforce type consistency and ensure the storage space aligns with the declared data types. Strong typing promotes code correctness and prevents potential data corruption or memory-related issues related to the contract's state variables.
-
-</TabItem>
-<TabItem value="Near" label="Near">
-
-SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Utilizing SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
-
-</TabItem>
-<TabItem value="Aptos" label="Aptos">
-
-Aptos advises developers to cluster related data into Resources for efficient data management and organization. Resources represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve the readability and maintainability of the code.
-
-</TabItem>
-<TabItem value="Solana" label="Solana">
-
-Data persists in structs within the account. The Binary Object Representation Serializer for Hashing (Borsh) facilitates the serialization and deserialization of these structs. The process involves reading the data from the account, deserializing it to obtain the values it contains, updating the values, and then serializing the modified data to save the new values back into the account.
-
-</TabItem>
-</Tabs>## State Management {#state-management}
-
-<Tabs>
-<TabItem value="Casper" label="Casper">
-
-Data persists in Named Keys and Dictionaries in a contract or an account's context. See more details in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
- 
-</TabItem>
-<TabItem value="Ethereum" label="Ethereum">
-
-Data persists in state variables within the smart contract. These state variables must be strongly typed so that the smart contract compiler can enforce type consistency and ensure the storage space aligns with the declared data types. Strong typing promotes code correctness and prevents potential data corruption or memory-related issues related to the contract's state variables.
-
-</TabItem>
-<TabItem value="Near" label="Near">
-
-SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Utilizing SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
-
-</TabItem>
-<TabItem value="Aptos" label="Aptos">
-
-Aptos advises developers to cluster related data into Resources for efficient data management and organization. Resources represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve the readability and maintainability of the code.
-
-</TabItem>
-<TabItem value="Solana" label="Solana">
-
-Data persists in structs within the account. The Binary Object Representation Serializer for Hashing (Borsh) facilitates the serialization and deserialization of these structs. The process involves reading the data from the account, deserializing it to obtain the values it contains, updating the values, and then serializing the modified data to save the new values back into the account.
-
-</TabItem>
 </Tabs>
+
 
 ## Additional Considerations {#additional-considerations}
 
