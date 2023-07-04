@@ -290,29 +290,83 @@ By enforcing strong typing, the programming language ensures that the arguments 
 <Tabs>
 <TabItem value="Casper" label="Casper">
 
-Data is persisted in Named Keys and [Dictionaries](../concepts/dictionaries.md) in the context of a contract or an account.
+Data persists in Named Keys and Dictionaries in a contract or an account's context. See more details in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
  
 </TabItem>
 <TabItem value="Ethereum" label="Ethereum">
 
-Data is persisted in a storage represented by state variables within the smart contract. These state variables need to be strongly typed to allocate the appropriate amount of space for them in the storage.
-
-By using strong typing, the smart contract compiler can enforce type consistency and ensure that the allocated storage space aligns with the declared data types. This promotes code correctness and prevents potential data corruption or memory-related issues when interacting with the contract's state variables.
+Data persists in state variables within the smart contract. These state variables must be strongly typed so that the smart contract compiler can enforce type consistency and ensure the storage space aligns with the declared data types. Strong typing promotes code correctness and prevents potential data corruption or memory-related issues related to the contract's state variables.
 
 </TabItem>
 <TabItem value="Near" label="Near">
 
-When creating state variables, it is advisable to use SDK Collections. SDK Collections provide convenient data structures, such as lists, maps, and sets, which can be used to organize and manage complex data within the contract's storage. Utilizing SDK Collections ensures efficient storage management and facilitates easier access and manipulation of data in the smart contract.
+SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Utilizing SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
 
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
 
-To facilitate efficient data management and organization, it is advisable to cluster related data into Resources. Resources are a special type of structure that represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve readability and maintainability of the code.
+Aptos advises developers to cluster related data into Resources for efficient data management and organization. Resources represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve the readability and maintainability of the code.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
 
-Data is stored in structs within the account. These structs should be serialized and deserialized using Borsh. The process involves reading the data from the account, deserializing it to obtain the values, updating the values, and then serializing the modified data to save the new values back into the account.
+Data persists in structs within the account. The Binary Object Representation Serializer for Hashing (Borsh) facilitates the serialization and deserialization of these structs. The process involves reading the data from the account, deserializing it to obtain the values it contains, updating the values, and then serializing the modified data to save the new values back into the account.
+
+</TabItem>
+</Tabs>## State Management {#state-management}
+
+<Tabs>
+<TabItem value="Casper" label="Casper">
+
+Data persists in Named Keys and Dictionaries in a contract or an account's context. See more details in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
+ 
+</TabItem>
+<TabItem value="Ethereum" label="Ethereum">
+
+Data persists in state variables within the smart contract. These state variables must be strongly typed so that the smart contract compiler can enforce type consistency and ensure the storage space aligns with the declared data types. Strong typing promotes code correctness and prevents potential data corruption or memory-related issues related to the contract's state variables.
+
+</TabItem>
+<TabItem value="Near" label="Near">
+
+SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Utilizing SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
+
+</TabItem>
+<TabItem value="Aptos" label="Aptos">
+
+Aptos advises developers to cluster related data into Resources for efficient data management and organization. Resources represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve the readability and maintainability of the code.
+
+</TabItem>
+<TabItem value="Solana" label="Solana">
+
+Data persists in structs within the account. The Binary Object Representation Serializer for Hashing (Borsh) facilitates the serialization and deserialization of these structs. The process involves reading the data from the account, deserializing it to obtain the values it contains, updating the values, and then serializing the modified data to save the new values back into the account.
+
+</TabItem>
+</Tabs>## State Management {#state-management}
+
+<Tabs>
+<TabItem value="Casper" label="Casper">
+
+Data persists in Named Keys and Dictionaries in a contract or an account's context. See more details in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
+ 
+</TabItem>
+<TabItem value="Ethereum" label="Ethereum">
+
+Data persists in state variables within the smart contract. These state variables must be strongly typed so that the smart contract compiler can enforce type consistency and ensure the storage space aligns with the declared data types. Strong typing promotes code correctness and prevents potential data corruption or memory-related issues related to the contract's state variables.
+
+</TabItem>
+<TabItem value="Near" label="Near">
+
+SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Utilizing SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
+
+</TabItem>
+<TabItem value="Aptos" label="Aptos">
+
+Aptos advises developers to cluster related data into Resources for efficient data management and organization. Resources represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve the readability and maintainability of the code.
+
+</TabItem>
+<TabItem value="Solana" label="Solana">
+
+Data persists in structs within the account. The Binary Object Representation Serializer for Hashing (Borsh) facilitates the serialization and deserialization of these structs. The process involves reading the data from the account, deserializing it to obtain the values it contains, updating the values, and then serializing the modified data to save the new values back into the account.
 
 </TabItem>
 </Tabs>
