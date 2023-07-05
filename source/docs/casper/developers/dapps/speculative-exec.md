@@ -2,7 +2,7 @@
 
 Version 1.5 of the Casper Node includes a new JSON RPC endpoint called [`speculative_exec`](../json-rpc/json-rpc-transactional.md#speculative_exec-speculative_exec). This endpoint allows developers to send a [Deploy](../../concepts/glossary/D.md#deploy-deploy) to a single node, which will execute the Deploy without committing the results to global state and, therefore, not incurring the associated costs. Observing the execution results of the Deploy gives a rough estimate of the potential cost for sending the Deploy without speculative execution.
 
-In addition to the Deploy in question, `speculative_exec` also accepts a [`block_identifier`] for a specific block height or hash to speculate on.
+In addition to the Deploy in question, `speculative_exec` also accepts a [`block_identifier`] for a specific block height or hash to speculate on. If you do not provide a block identifier, the Deploy will be executed on the most recent block.
 
 ## Sending a Speculative Execution Deploy using the Rust CLI Casper Client
 
