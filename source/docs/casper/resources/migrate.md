@@ -83,7 +83,7 @@ It is worth noting that Solana programs can be updated using an authority known 
 
 Variables can be stored as Named Keys or Dictionaries as described in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
 
-Additionally, local variables are available within the entry points and can be utilized to perform necessary actions or computations within the scope of each entry point.
+Additionally, local variables are available within the entry points and can be used to perform necessary actions or computations within the scope of each entry point.
 
 </TabItem>
 <TabItem value="Ethereum" label="Ethereum">
