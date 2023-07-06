@@ -292,7 +292,7 @@ Data persists in state variables within the smart contract. These state variable
 </TabItem>
 <TabItem value="Near" label="Near">
 
-SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Utilizing SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
+SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Using SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
 
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
