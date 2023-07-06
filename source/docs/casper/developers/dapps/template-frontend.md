@@ -130,7 +130,7 @@ import { getProvider } from "./casper-wallet";
 
 const provider = getProvider();
 
-function Connect(props) {
+const Connect = (props) => {
     return (
         <>
             <button onClick={ () => connectToWallet(props) }>Connect Wallet</button>
@@ -147,7 +147,7 @@ Notice that `Connect` accepts props, and forwards them to the `connectToWallet` 
 Write the `connectToWallet` function under the `Connect` function component:
 
 ```javascript
-function connectToWallet(props) {
+const connectToWallet = (props) => {
     provider.requestConnection().then(connected => {
         if (!connected) {
             alert("Couldn't connect to wallet");
@@ -172,7 +172,7 @@ The `connectToWallet()` function calls `provider.isConnected()` to check if the 
 To request that the Casper Wallet disconnect from a website, add the following function call to *src/Connect.jsx*:
 
 ```javascript
-function disconnect(props) {
+const disconnect = (props) => {
     provider.disconnectFromSite().then(disconnected => {
         if (disconnected) {
             props.setPublicKey(null);
@@ -187,7 +187,7 @@ function disconnect(props) {
 Then connect it to a button:
 
 ```jsx
-function Connect(props) {
+const Connect = (props) => {
     return (
         <>
             <button onClick={ () => connectToWallet(props) }>Connect Wallet</button>
@@ -220,7 +220,7 @@ import { getProvider } from "./casper-wallet";
 
 const provider = getProvider();
 
-function UpdateMessage(props) {
+const UpdateMessage = (props) => {
     const [message, setMessage] = useState("");
 
     return (
@@ -241,7 +241,7 @@ const NODE_URL = "http://65.108.127.242:7777/rpc";
 const NETWORK_NAME = "casper-test"; // "casper" for mainnet
 const CONTRACT_HASH = "hash-75143aa708275b7dead20ac2cc06c1c3eccff4ffcf1eb9aebb8cce7c35cea041";
 
-function updateMessage(props, message) {
+const updateMessage = (props, message) => {
     const casperClient = new CasperClient(NODE_URL);
     const contract = new Contracts.Contract(casperClient);
     contract.setContractHash(CONTRACT_HASH);
@@ -324,11 +324,11 @@ Open the file and write:
 import axios from "axios";
 import { CLPublicKey } from "casper-js-sdk";
 
-function Query(props) {
+const Query = (props) => {
   return <button onClick={ () => query(props) }>Query</button>;
 }
 
-function query(props) {
+const query = (props) => {
   const accountHash = CLPublicKey.fromHex(props.publicKey).toAccountHashStr().substring(13);
   axios.get("/queryMessage?accountHash=" + accountHash).then((response) => {
     alert(response.data)
