@@ -93,7 +93,7 @@ The variables within the contract are responsible for storing the state of the c
 </TabItem>
 <TabItem value="Near" label="Near">
 
-The variables in the contract can be stored as native types, SDK collections, or internal structures. SDK collections offer advantages over native types. 
+Variables in the contract can be stored as native types, SDK collections, or internal structures. SDK collections offer advantages over native types. 
 
 Additionally, there is a distinction between class attributes and local variables. Class attributes represent the state of the contract, while local variables are specific to the invocation of a function and have no impact on the contract's overall state.
 
