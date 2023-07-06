@@ -295,8 +295,8 @@ module.exports = {
                             collapsed: true,
                             items: [
                                 "resources/tutorials/advanced/multi-sig/index",
-                                "resources/tutorials/advanced/multi-sig/multi-sig-examples",
                                 "resources/tutorials/advanced/multi-sig/multi-sig-management",
+                                "resources/tutorials/advanced/multi-sig/other-scenarios",
                             ],
                         },
                         "resources/tutorials/advanced/return-values-tutorial",
