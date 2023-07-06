@@ -58,7 +58,7 @@ make build-contracts
 
 ### Step 3: Increase the primary key's weight to set thresholds
 
-This workflow starts by increasing the weight of the primary key from 1 to 3. To make account updates, a key's weight must equal or exceed the `key_management` threshold. In step 5, you will add associated accounts that will participate in signing deploys.
+This workflow starts by increasing the weight of the primary key from 1 to 3. To make account updates, a key's weight must equal or exceed the `key_management` threshold. In a later step, you will add the associated accounts that will participate in signing deploys.
 
 Retrieve the account hash of the primary key you are working with using a block explorer or the Casper CLI client.
 
@@ -110,6 +110,13 @@ The primary key in this account should now have weight 3.
 
 </details>
 
+The table below summarizes the updates.
+
+|Threshold / Key        | Previous weight | Current weight |
+|-----------------------|-----------------|----------------|
+| `deployment`          | 1               | 1              |
+| `key_management`      | 1               | 1              |
+| Primary key (d89c...) | 1               | 3              |
 
 ### Step 4: Update the account's action thresholds
 
@@ -140,6 +147,14 @@ The account's action thresholds would look like this:
 ```
 
 This configuration requires a cumulative weight of 3 to manage keys and 2 to send deploys as part of this account context. For example, if two associated keys have weight 1, they must both sign deploys that can run as part of this account context. The cumulative weight of these two keys would not meet the threshold for key management.
+
+The table below summarizes the updates.
+
+|Threshold / Key        | Previous weight | Current weight |
+|-----------------------|-----------------|----------------|
+| `deployment`          | 1               | 2              |
+| `key_management`      | 1               | 3              |
+| Primary key (d89c...) | 1               | 3              |
 
 
 ### Step 5: Add associated keys to the primary account
@@ -229,7 +244,16 @@ The account would now have one primary key with weight 3, and three associated a
 
 </details>
 
+The table below summarizes the updates.
 
+|Threshold / Key           | Previous weight | Current weight |
+|--------------------------|-----------------|----------------|
+| `deployment`             | 1               | 2              |
+| `key_management`         | 1               | 3              |
+| Primary key (d89c...)    | 1               | 3              |
+| Associated key (04a9...) | N/A             | 1              |
+| Associated key (1fed...) | N/A             | 1              |
+| Associated key (e2d0...) | N/A             | 1              |
 
 ### Step 6: Send a multi-signature deploy from the primary account
 
@@ -398,6 +422,18 @@ The account should now have four associated keys with weight 1 and the primary k
 
 </details>
 
+The table below summarizes the updates after calling the `add_account.wasm`.
+
+|Threshold / Key           | Previous weight | Current weight |
+|--------------------------|-----------------|----------------|
+| `deployment`             | 1               | 2              |
+| `key_management`         | 1               | 3              |
+| Primary key (d89c...)    | 1               | 3              |
+| Associated key (04a9...) | 1               | 1              |
+| Associated key (1fed...) | 1               | 1              |
+| Associated key (e2d0...) | 1               | 1              |
+| Associated key (77ea...) | N/A             | 1              |
+
 The `remove_account.wasm` will remove the newly added account to demonstrate the possibility of removing associated keys that may have been compromised. This deploy needs to be signed by three associated keys to meet the key management threshold.
 
 One associated key creates and signs the deploy with the `make-deploy` command.
@@ -461,3 +497,15 @@ The resulting account should not contain the associated key that was removed.
 ```
 
 </details>
+
+The table below summarizes the updates after calling the `remove_account.wasm`.
+
+|Threshold / Key           | Previous weight | Current weight |
+|--------------------------|-----------------|----------------|
+| `deployment`             | 1               | 2              |
+| `key_management`         | 1               | 3              |
+| Primary key (d89c...)    | 1               | 3              |
+| Associated key (04a9...) | 1               | 1              |
+| Associated key (1fed...) | 1               | 1              |
+| Associated key (e2d0...) | 1               | 1              |
+| Associated key (77ea...) | 1               | N/A (Removed)  |
