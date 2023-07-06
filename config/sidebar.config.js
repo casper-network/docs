@@ -288,7 +288,17 @@ module.exports = {
                         "resources/tutorials/advanced/cross-contract",
                         "resources/tutorials/advanced/transfer-token-to-contract",
                         "resources/tutorials/advanced/two-party-multi-sig",
-                        "resources/tutorials/advanced/multi-sig-management",
+                        {
+                            type: "category",
+                            label: "Multi-Sig Management",
+                            collapsible: true,
+                            collapsed: true,
+                            items: [
+                                "resources/tutorials/advanced/multi-sig/index",
+                                "resources/tutorials/advanced/multi-sig/multi-sig-examples",
+                                "resources/tutorials/advanced/multi-sig/multi-sig-management",
+                            ],
+                        },
                         "resources/tutorials/advanced/return-values-tutorial",
                         //"resources/tutorials/advanced/list-cspr",
                         "resources/tutorials/advanced/storage-workflow",
