@@ -322,14 +322,6 @@ The `hello_world.wasm` will run and add another named key to the account.
 
 This example shows how to remove a key from the account if it becomes compromised. The example adds a fourth associated key with `account-hash-77ea2e433c94c9cb8303942335da458672249d38c1fa5d1d7a7500b862ff52a4`, and then removes it using the `remove_account.wasm` session code.
 
-If you remove one of the existing keys without adding the fourth associated key, the account will become unusable since none of the remaining keys will meet the required weight for key management. Thus, changing weights or adding new associated keys would be impossible.
-
-:::caution
-
-Remove keys with caution! Do not run this example on Mainnet.
-
-:::
-
 Given the current setup, three associated keys need to sign the deploy to add a fourth associated key. One associated key creates and signs the deploy with the `make-deploy` command.
 
 ```bash
@@ -398,7 +390,7 @@ The account should now have four associated keys with weight 1 and the primary k
 
 The `remove_account.wasm` will remove the newly added account to demonstrate the possibility of removing associated keys that may have been compromised. This deploy needs to be signed by three associated keys to meet the key management threshold.
 
-Given the current setup, three associated keys need to sign the deploy to add a fourth associated key. One associated key creates and signs the deploy with the `make-deploy` command.
+One associated key creates and signs the deploy with the `make-deploy` command.
 
 ```bash
 casper-client make-deploy --chain-name casper-test \
@@ -417,7 +409,15 @@ casper-client sign-deploy -i remove_account_one_signature -k ~/cspr_nctl/user-2.
 casper-client sign-deploy -i remove_account_two_signatures -k ~/cspr_nctl/user-3.pem -o remove_account_three_signatures
 ```
 
-And you can now send the deploy to the network:
+Send the deploy to the network to remove an associated key.
+
+:::caution
+
+Remove keys with caution! Do not run this example on Mainnet.
+
+If you remove one of the existing keys without adding the fourth associated key, the account will become unusable since none of the remaining keys will meet the required weight for key management. Changing weights or adding new associated keys would become impossible.
+
+:::
 
 ```bash
 casper-client send-deploy --node-address https://rpc.testnet.casperlabs.io -i remove_account_three_signatures
