@@ -70,8 +70,8 @@ module.exports = {
                     // editCurrentVersion: true,
                     // onlyIncludeVersions: process.env.PREVIEW_DEPLOY === "true" ? ["current", ...versions.slice(0, 2)] : undefined,
                 },
-                ...(gtmConfig["containerId"] && { googleTagManager: gtmConfig }),
                 ...(gtagConfig["trackingID"] && { gtag: gtagConfig }),
+                ...(gtmConfig["containerId"] && { googleTagManager: gtmConfig }),
                 // IMPORTANT: disable blog feature
                 blog: false,
                 /* Blog config options */
