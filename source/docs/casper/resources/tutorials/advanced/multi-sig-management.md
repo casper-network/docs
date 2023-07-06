@@ -259,7 +259,6 @@ The second associated key signs the deploy with `sign-deploy` to meet the deploy
 
 ```bash
 casper-client sign-deploy -i hello_world_one_signature -k ~/cspr_nctl/user-2.pem -o hello_world_two_signatures
-
 ```
 
 Now the deploy can be sent to the network with the `send-deploy` command:
@@ -306,7 +305,6 @@ The second associated key signs the deploy with `sign-deploy` to meet the deploy
 
 ```bash
 casper-client sign-deploy -i hello_world_one_signature -k ~/cspr_nctl/user-2.pem -o hello_world_two_signatures
-
 ```
 
 The deploy can be sent to the network using the `send-deploy` command:
@@ -321,6 +319,14 @@ The `hello_world.wasm` will run and add another named key to the account.
 ### Step 8: Remove a key from the account
 
 This example shows how to remove a key from the account if it becomes compromised. The example adds a fourth associated key with `account-hash-77ea2e433c94c9cb8303942335da458672249d38c1fa5d1d7a7500b862ff52a4`, and then removes it using the `remove_account.wasm` session code.
+
+:::caution
+
+Remove keys with caution! Do not run this example on Mainnet.
+
+If you remove one of the existing keys without adding the fourth associated key, the account will become unusable since none of the remaining keys will meet the required weight for key management. Changing weights or adding new associated keys would become impossible.
+
+:::
 
 Given the current setup, three associated keys need to sign the deploy to add a fourth associated key. One associated key creates and signs the deploy with the `make-deploy` command.
 
@@ -410,14 +416,6 @@ casper-client sign-deploy -i remove_account_two_signatures -k ~/cspr_nctl/user-3
 ```
 
 Send the deploy to the network to remove an associated key.
-
-:::caution
-
-Remove keys with caution! Do not run this example on Mainnet.
-
-If you remove one of the existing keys without adding the fourth associated key, the account will become unusable since none of the remaining keys will meet the required weight for key management. Changing weights or adding new associated keys would become impossible.
-
-:::
 
 ```bash
 casper-client send-deploy --node-address https://rpc.testnet.casperlabs.io -i remove_account_three_signatures
