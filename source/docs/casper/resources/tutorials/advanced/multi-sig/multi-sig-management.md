@@ -68,12 +68,6 @@ casper-client account-address --public-key <INSERT_PUBLIC_KEY_HEX>
 
 Update the weight of the primary key to 3 by calling the `update_associated_keys.wasm`.
 
-:::caution
-
-Do not run this example on Mainnet. Update the command for your environment.
-
-:::
-
 ```bash
 casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 --chain-name "casper-test" \
@@ -122,12 +116,6 @@ The table below summarizes the updates.
 
 Set up a multi-signature scheme for the account, by updating the `deployment` and `key_management` thresholds. The `update_thresholds.wasm` included will set `deployment` threshold to 2 and the `key_management` threshold to 3.
 
-:::caution
-
-Do not run this example on Mainnet. Update the command for your environment.
-
-:::
-
 ```bash
 casper-client put-deploy \
 --node-address https://rpc.testnet.casperlabs.io \
@@ -160,12 +148,6 @@ The table below summarizes the updates.
 ### Step 5: Add associated keys to the primary account
 
 To add an associated key to the primary account, use the `add_account.wasm` provided. The example below starts by adding the following account as an associated key: `account-hash-e2d00525cac31ae2756fb155f289d276c6945b6914923fe275de0cb127bffee7`.
-
-:::caution
-
-Do not run this example on Mainnet. Update all commands for your environment.
-
-:::
 
 ```bash
 casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
@@ -265,12 +247,6 @@ After setting up the account with a multi-signature scheme, use the following co
 
 The following example sends a multi-sig deploy containing Wasm (`hello_world.wasm`) that adds a named key to the account. The deploy originates from the primary account and needs two signatures to meet the `deployment` weight set to 2. Once both keys sign the deploy, either can send it to the network.  The Wasm used here can be found in the [hello-world](https://github.com/casper-ecosystem/hello-world) repository.
 
-:::caution
-
-Do not run these examples on Mainnet. Update the commands for your environment.
-
-:::
-
 The first associated key creates and signs the deploy with the `make-deploy` command.
 
 ```bash
@@ -309,12 +285,6 @@ The `hello_world.wasm` will run and add a named key to the account.
 ### Step 7: Send a multi-signature deploy from an associated key
 
 To initiate a multi-sig deploy from an associated account instead of the primary account, use the --session-account argument, which requires the hex-encoded public key of the account context under which the session code will be executed. The process is very similar to the previous step.
-
-:::caution
-
-Do not run these examples on Mainnet. Update the commands for your environment.
-
-:::
 
 One associated key creates and signs the deploy with the `make-deploy` command, indicating the account context under which the session code will be executed.
 
