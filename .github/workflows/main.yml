@@ -1,7 +1,7 @@
 name: Docusaurus CICD
 
 env:
-  prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
+  prod_pages_fqdn: ${{ vars.PROD_PAGES_FQDN }}
 
 on:
   push:
