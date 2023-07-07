@@ -2,7 +2,7 @@
 
 Operators may log into their servers remotely using a key. The following steps explain how to create a non-root user and log in using a private key instead of the root user. Replace `<username>` in the instructions below with your username.
 
-1. Use [ssh-keygen](https://www.ssh.com/ssh/keygen/) to generate a new SSH key.
+1. Use [ssh-keygen](https://www.ssh.com/ssh/keygen/) to generate a new SSH key. The Casper protocol supports the `ed25519` and `secp256k1` (ECDSA keys with the P-256 curve) algorithms. You can find more details [here](../../concepts/accounts-and-keys.md).
 
 2. Create the user with no password, as the key is your password.
 
