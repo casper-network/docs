@@ -10,7 +10,7 @@ By default, a transactional interaction with the blockchain takes the form of a 
 
 The Casper platform supports two types of keys for creating accounts and signing transactions: 
 - [Ed25519](#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
-- [Secp256k1](#ethereum-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
+- [Secp256k1](#ecdsa-keys) keys, which use the  Elliptic Curve Digital Signature Algorithm (ECDSA) with the P-256 curve; they are 68 bytes long and are also found on the Ethereum blockchain
 
 You can generate keys using both formats, and it is also possible to [work with existing Ethereum keys](#working-with-existing-ethereum-keys).
 
@@ -26,7 +26,7 @@ SAVE your keys to a safe place, preferably offline.
 
 :::
 
-### Option 1: Generating Keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
+### Option 1: Generating keys using the Casper Client {#option-1-key-generation-using-the-casper-client}
 
 This option describes how you can use the Casper command-line client to set up an account using either key type.
 
@@ -62,9 +62,9 @@ cat ed25519-keys/public_key_hex
 011724c5c8e2404ca01c872e1bbd9202a0114e5d143760f685086a5cffe261dabd
 ```
 
-#### Ethereum Keys {#ethereum-keys}
+#### ECDSA Keys {#ecdsa-keys}
 
-To create `Secp256k1` keys with the Casper command-line client, commonly known as Ethereum keys, follow these steps:
+To create `secp256k1` keys, which use the ECDSA algorithm with the P-256 curve, follow these steps:
 
 ```bash
 mkdir secp256k1-keys
@@ -95,7 +95,7 @@ After generating keys for the account, you may add funds to the account's purse 
 
 :::
 
-### Option 2: Generating Keys using a Block Explorer {#option-2-key-generation-using-a-block-explorer}
+### Option 2: Generating keys using a block explorer {#option-2-key-generation-using-a-block-explorer}
 
 This option is available on networks that have a block explorer.
 
@@ -196,7 +196,7 @@ tlKF2V5RFQn4rzkwipSYnrqaPf1pTA==
 -----END EC PRIVATE KEY-----
 ```
 
-### Option 3: Generating Keys using OpenSSL
+### Option 3: Generating keys using OpenSSL
 
 You can generate keys without the Casper client using the [openssl](https://www.openssl.org/) cryptography toolkit. The commands below are valid only for generating Ed25519 keys on a Linux operating system.
 
