@@ -4,24 +4,13 @@ import TabItem from '@theme/TabItem';
 
 # Development Prerequisites
 
-This section explains how to fulfill the prerequisites to interact with a Casper network.
-
-This section covers the following:
-
-1. Setting up a [Rust](#install-rust) development environment
-2. Installing the official Casper [command-line client](#install-casper-client)
-3. [Setting up an Account](#setting-up-an-account) on a Casper network
-4. [Acquiring the IP](#acquire-node-address-from-network-peers) address of a peer on the official Testnet or Mainnet
-
-To develop comfortably for the Casper network, you should use `Linux Ubuntu 20.04` or `macOS`. Developing on Windows is not advised.
+This page covers the necessary software for your Casper development environment. To develop comfortably, you should use `Linux Ubuntu 20.04` or `macOS`. Developing on Windows is not advised.
 
 :::caution
 
 Casper does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
 
 :::
-
-Follow the steps below to install the necessary software for your development environment.
 
 ## Preparing your Development Environment
 
