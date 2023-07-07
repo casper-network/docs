@@ -86,7 +86,6 @@ module.exports = {
             collapsed: true,
             items: [
                 "developers/writing-onchain-code/index",
-                //"developers/writing-onchain-code/prerequisites", // NEW CONTENT WILL BE HERE
                 "developers/writing-onchain-code/getting-started",
                 "developers/writing-onchain-code/assembly-script",
                 "developers/writing-onchain-code/simple-contract",
