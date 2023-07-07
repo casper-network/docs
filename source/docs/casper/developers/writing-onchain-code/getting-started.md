@@ -1,8 +1,8 @@
-import useBaseUrl from '@docusaurus/useBaseUrl';
-
 ---
 title: Getting Started with Rust
 ---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Getting Started with Rust Casper Contracts
 
@@ -32,6 +32,12 @@ Having the latest nightly toolchain to develop smart contracts in Rust would be 
 
 As shown in this example, we recommend setting up the `rust-toolchain` file in your project's top-level directory.
 
+You can also install the nightly Rust toolchain with this command:
+
+```bash
+rustup toolchain install nightly
+```
+
 ### Available Casper Rust crates
 
 To support smart contract development with Rust, the following crates are published: 
@@ -42,7 +48,7 @@ To support smart contract development with Rust, the following crates are publis
 
 A crate is a compilation unit that can be compiled into a binary or a library.
 
-### Available API documentation for Casper contracts
+### Available API documentation
 
 Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The latest contract API documentation can be found [here](https://docs.rs/casper-contract/latest/casper_contract/).
 
