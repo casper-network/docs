@@ -47,7 +47,7 @@ casper-client put-deploy \
     --node-address [NODE_SERVER_ADDRESS] \
     --chain-name casper-net-1 \
     --secret-key [KEY_PATH]/secret_key.pem \
-    --payment-amount 5000000000000 \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-path [CONTRACT_PATH]/counter-v1.wasm
 ```
 
@@ -64,7 +64,7 @@ casper-client put-deploy \
     --node-address [NODE_SERVER_ADDRESS] \
     --chain-name casper-net-1 \
     --secret-key [KEY_PATH]/secret_key.pem \
-    --payment-amount 5000000000000 \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
     --session-name "counter" \
     --session-entry-point "counter_inc"
 ```

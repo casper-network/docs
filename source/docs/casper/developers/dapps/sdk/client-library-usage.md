@@ -219,7 +219,7 @@ const { CasperClient, Contracts, RuntimeArgs, CLValueBuilder } = require("casper
 const fs = require("fs")
 
 const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc")
-const contract = new Contracts.Contract(client)
+const contract = new Contracts.Contract(casperClient)
 
 const contractWasm = new Uint8Array(fs.readFileSync("/path/to/contract.wasm").buffer)
 
@@ -273,6 +273,71 @@ print(deploy.hash.hex())
 </Tabs>
 
 Once submitted, the above snippet will print the deploy hash in the console.
+
+---
+
+## Calling Contracts
+
+Smart contracts on a Casper network are invoked by calling entry points. See below how to use Casper's SDKs to interact with these entry points and update the global state from a dApp:
+
+<Tabs>
+
+<TabItem value="js" label="JavaScript">
+
+```javascript
+const casperClient = new CasperClient("http://NODE_ADDRESS:7777/rpc");
+const contract = new Contracts.Contract(casperClient);
+contract.setContractHash(
+	"hash-a3cac24aec9de1bbdb87083587b14d8aeffba5dfed27686512b7bb5dee60445d"
+);
+const runtimeArguments = RuntimeArgs.fromMap({
+  "message": CLValueBuilder.string("Hello world!")
+})
+const deploy = contract.callEntrypoint(
+  "update_msg",
+  runtimeArguments,
+  keypair.publicKey,
+  "casper", // or "casper-test" for Testnet
+  "1000000000", // 1 CSPR (10^9 Motes)
+  [keypair]
+);
+(async () => {
+  console.log(await casperClient.putDeploy(deploy))
+})();
+```
+
+</TabItem>
+
+<TabItem value="python" label="Python">
+
+```python
+import pycspr
+client = NodeClient(NodeConnection(host = "NODE_ADDRESS", port_rpc = 7777))
+deployParams = pycspr.create_deploy_parameters(
+    account = keypair,
+    chain_name = "casper-test"
+)
+payment = pycspr.create_standard_payment(10_000_000_000)
+session = pycspr.types.StoredContractByHash(
+    entry_point = "update_msg",
+    hash = bytes.fromhex("a3cac24aec9de1bbdb87083587b14d8aeffba5dfed27686512b7bb5dee60445d"),
+    args = {
+        "message": pycspr.types.CL_String("Hello world!"),
+    }
+)
+deploy = pycspr.create_deploy(deployParams, payment, session)
+deploy.approve(keypair)
+client.send_deploy(deploy)
+print(deploy.hash.hex())
+```
+
+</TabItem>
+
+</Tabs>
+
+Once submitted, the above snippet will print the deploy hash in the console.
+
+---
 
 ## Staking
 
