@@ -141,7 +141,7 @@ module.exports = {
                 "developers/dapps/technology-stack",
                 "developers/dapps/setup-nctl",
                 "developers/dapps/nctl-test",
-                //"developers/dapps/template-frontend", // NEW CONTENT WILL BE HERE
+                "developers/dapps/template-frontend",
                 "developers/dapps/signing-a-deploy",
                 "developers/dapps/sending-deploys",
                 //"developers/dapps/signer-integration",
