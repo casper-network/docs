@@ -1,43 +1,24 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Getting Started with Rust
+---
+title: Getting Started with Rust
+---
 
-This guide covers the basic tools you will need to write your first Casper smart contract. You will also be able to build a sample smart contract and run a few basic tests on it on your local machine.
+# Getting Started with Rust Casper Contracts
 
-Casper's blockchain is built upon the Rust programming language and compiles down to WebAssembly. This guide will walk you through the steps to set up your development environment and write your first contract.
+This guide covers additional prerequisites for writing your first Casper smart contract. You will also build a sample smart contract and run a few basic tests on it on your local machine.
+
+Casper's blockchain is built upon the Rust programming language and compiles to WebAssembly. This guide will walk you through the steps to write your first contract, assuming you have already set up your development environment as described [here](../prerequisites.md).
 
 ## Prerequisites {#prerequisites}
 
-### Installing Rust {#installing-rust}
-
-Install the [Rust programming language](https://www.rust-lang.org) if you don't already have it on your computer.
-
-The [official Rust guide](https://www.rust-lang.org/tools/install) recommends installing Rust by using `curl`:
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-The installation script automatically adds Rust to your system PATH after your next login.
-To start using Rust right away instead of restarting your terminal, run the following command in your shell to add Rust to your system PATH manually:
-
-```bash
-source $HOME/.cargo/env
-```
-
-You can also use `brew` on MacOS or `apt` on Linux to install Rust.
-
-Once you finish installing Rust, check your version:
-
-```bash
-rustup --version
-```
+### The latest nightly toolchain
 
 You will need the latest nightly toolchain to develop smart contracts in Rust. Please refer to the [Rust Documentation on Channels](https://rust-lang.github.io/rustup/concepts/channels.html) and the [Rust Documentation on Toolchains](https://rust-lang.github.io/rustup/concepts/toolchains.html) for further information.
 
 We recommend setting up the rust-toolchain in the top level directory of your project.
 
-**Casper Rust Packages**
+### Casper Rust Packages
 
 We publish three crates on [crates.io](https://crates.io/) to support smart contract development with Rust:
 
@@ -47,25 +28,10 @@ We publish three crates on [crates.io](https://crates.io/) to support smart cont
 
 A crate is a compilation unit, which can be compiled into a binary or a library.
 
-**API Documentation for Smart Contracts**
+### API Documentation for Smart Contracts
 
 Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The contract API documentation is specific for a given version. For example, you can find documentation for version **0.7.6** at <https://docs.rs/casper-contract/0.7.6>.
 
-### Installing Dependencies {#installing-dependencies}
-
-**1. CMake**
-
-CMake is a popular build tool that we will utilize, and you may very well have it already installed. If you do, make sure that you have the latest version. If you need to install or upgrade it, follow the steps located here: https://cmake.org/install/. Once installed, check your version as shown below.
-
-```bash
-cmake --version
-```
-Output:
-```
-cmake version 3.20.0 (or above)
-
-CMake suite maintained and supported by Kitware (kitware.com/cmake).
-```
 
 ## Development Environment Setup {#development-environment-setup}
 

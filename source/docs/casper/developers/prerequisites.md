@@ -76,6 +76,10 @@ brew install openssl
 
 ## Installing Rust {#install-rust}
 
+Install the [Rust programming language](https://www.rust-lang.org) if you don't already have it on your computer.
+
+The [official Rust guide](https://www.rust-lang.org/tools/install) recommends installing Rust by using `curl`:
+
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
@@ -91,6 +95,8 @@ Verify the installation:
 ```bash
 rustup --version
 ```
+
+Note: You can also use `brew` on MacOS or `apt` on Linux to install Rust.
 
 ## Installing `cargo-casper` {#install-cargo-casper}
 
@@ -152,6 +158,8 @@ You will find the `casper-client` executable in the `target/release` directory.
 
 If you plan to compile contracts from the source code, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `cmake` with the commands below.
 
+[CMake](https://cmake.org/) is a popular build tool that we will utilize, and you may very well have it already installed. If you do, make sure that you have the latest version. If you need to install or upgrade it, follow the steps below or on the [Cmake website](https://cmake.org/install/). Once installed, check your version as shown below.
+
 <Tabs>
 <TabItem value="Linux" label="Linux">
 
@@ -168,10 +176,17 @@ brew install cmake
 </TabItem>
 </Tabs>
 
-Verify the installation with
+Check your version:
 
 ```bash
 cmake --version
+```
+
+Sample output:
+```
+cmake version 3.20.0 (or above)
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
 ```
 
 ## Installing an IDE
