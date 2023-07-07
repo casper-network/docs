@@ -10,8 +10,6 @@ This guide covers additional prerequisites for writing your first Casper smart c
 
 Casper's blockchain is built upon the Rust programming language and compiles to WebAssembly. This guide will walk you through the steps to write your first contract, assuming you have already set up your development environment as described [here](../prerequisites.md).
 
-## Prerequisites {#prerequisites}
-
 ### The latest nightly toolchain
 
 You will need the latest nightly toolchain to develop smart contracts in Rust. Please refer to the [Rust Documentation on Channels](https://rust-lang.github.io/rustup/concepts/channels.html) and the [Rust Documentation on Toolchains](https://rust-lang.github.io/rustup/concepts/toolchains.html) for further information.
@@ -22,36 +20,19 @@ We recommend setting up the rust-toolchain in the top level directory of your pr
 
 We publish three crates on [crates.io](https://crates.io/) to support smart contract development with Rust:
 
--   [Casper Contract](https://crates.io/crates/casper-contract) - a library supporting communication with the blockchain. This is the main library you will need to write smart contracts.
--   [Casper Test Support](https://crates.io/crates/casper-engine-test-support) - a virtual machine against which you can test your smart contracts.
--   [Casper Types](https://crates.io/crates/casper-types) - a library with types we use across the Rust ecosystem.
+- [Casper Contract](https://crates.io/crates/casper-contract) - a library supporting communication with the blockchain. This is the main library you will need to write smart contracts.
+- [Casper Test Support](https://crates.io/crates/casper-engine-test-support) - a virtual machine against which you can test your smart contracts.
+- [Casper Types](https://crates.io/crates/casper-types) - a library with types we use across the Rust ecosystem.
 
 A crate is a compilation unit, which can be compiled into a binary or a library.
 
 ### API Documentation for Smart Contracts
 
-Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The contract API documentation is specific for a given version. For example, you can find documentation for version **0.7.6** at <https://docs.rs/casper-contract/0.7.6>.
-
-
-## Development Environment Setup {#development-environment-setup}
-
-### Installing the Casper Crates {#installing-the-casper-crates}
-
-The best and fastest way to set up a Casper Rust project is to use `cargo casper`. Using this will create a simple contract, a runtime environment, and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or _npm_ and _yarn_ for those familiar with Javascript). It is also possible to use this configuration in your CI/CD pipeline.
-
-```bash
-cargo install cargo-casper
-```
-
-If you run into any issues with this command and you have not recently installed Rust from scratch, please make sure to update your Rust version with this command:
-
-```bash
-rustup update
-```
+Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The latest contract API documentation can be found [here](https://docs.rs/casper-contract/latest/casper_contract/).
 
 ### Creating a Project {#creating-a-project}
 
-You can create a new sample project very easily with the Casper crate. For example, let's say that I want to create a project named **my-project** for this tutorial (you can choose a different name if you wish), then I can simply run the command:
+You can create a new sample project very easily with the `cargo casper` crate. For example, let's say that I want to create a project named **my-project** for this tutorial (you can choose a different name if you wish), then I can simply run the command:
 
 ```bash
 cargo casper my-project
@@ -113,33 +94,6 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 As a brief example, open up _my-project/contract/src/main.rs_ in your editor, modify the _KEY_NAME_ value in the contract, and then rerun the `make test` command. You should observe that the smart contract recompiles and the test fails now.
 
-### Installing the Casper Client
-
-The [Casper command-line client](../prerequisites.md#the-casper-command-line-client) is a Rust CLI tool that can help you send deploys and install code on-chain. It's recommended to install the client as it's used to deploy contracts and session code in other on-chain tutorials.
-
-### Setting up an IDE {#setting-ide}
-
-There are many IDEs available for Rust development. The most popular IDEs for Rust are the following:
-
-- [Visual Studio Code](https://code.visualstudio.com)
-- [CLion](https://www.jetbrains.com/clion/)
-- [IntelliJ Idea](https://www.jetbrains.com/idea/)
-- [Vim](https://www.vim.org/)
-
-You can use any IDE you wish. This documentation and examples use Visual Studio Code (VSC), a popular IDE with many extensions that might be helpful during development.
-
-
-If you are using VSC, you might find the following extensions useful:
-
-- `CodeLLDB` – An important extension for debugging Rust code
-- `rust-analyzer` – The official Rust language extension
-- `Better TOML` – Support for formatting TOML files
-- `crates` – An extension to help manage crates
-- `Error Lens` – Enhances the programming experience by highlighting syntax errors
-
-### Creating an Account
-
-To interact with a Casper network and install code on-chain, you will need to [create a Casper Account](../prerequisites.md#setting-up-an-account) with a public and secret key pair.
 
 ## Video Walkthrough
 

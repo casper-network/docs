@@ -98,10 +98,18 @@ rustup --version
 
 Note: You can also use `brew` on MacOS or `apt` on Linux to install Rust.
 
-## Installing `cargo-casper` {#install-cargo-casper}
+## Installing the Casper Crates {#installing-the-casper-crates}
+
+The best and fastest way to set up a Casper Rust project is to use `cargo casper`. Using this will create a simple contract, a runtime environment, and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or _npm_ and _yarn_ for those familiar with Javascript). It is also possible to use this configuration in your CI/CD pipeline.
 
 ```bash
 cargo install cargo-casper
+```
+
+If you run into any issues with this command and you have not recently installed Rust from scratch, please make sure to update your Rust version with this command:
+
+```bash
+rustup update
 ```
 
 Verify the installation:
@@ -110,7 +118,7 @@ Verify the installation:
 cargo-casper --version
 ```
 
-## Installing the Casper client {#install-casper-client}
+## Installing the Casper Client {#install-casper-client}
 
 The default Casper client is on [crates.io](https://crates.io/crates/casper-client). This client can transmit your deploys to a Casper network.
 
@@ -192,7 +200,22 @@ CMake suite maintained and supported by Kitware (kitware.com/cmake).
 
 ## Installing an IDE
 
-We advise using an integrated development environment such as Visual Studio Code (VSC) for development. Follow these [instructions](./writing-onchain-code/getting-started.md#setting-ide) to set up VSC and install plugins that would be helpful during development.
+We advise using an integrated development environment such as Visual Studio Code (VSC) for development. There are many IDEs available for Rust development. The most popular IDEs for Rust are the following:
+
+- [Visual Studio Code](https://code.visualstudio.com)
+- [CLion](https://www.jetbrains.com/clion/)
+- [IntelliJ Idea](https://www.jetbrains.com/idea/)
+- [Vim](https://www.vim.org/)
+
+You can use any IDE you wish. Most of our documentation and examples use Visual Studio Code (VSC), a popular IDE with many extensions that might be helpful during development.
+
+If you are using VSC, you might find the following extensions useful:
+
+- `CodeLLDB` – An important extension for debugging Rust code
+- `rust-analyzer` – The official Rust language extension
+- `Better TOML` – Support for formatting TOML files
+- `crates` – An extension to help manage crates
+- `Error Lens` – Enhances the programming experience by highlighting syntax errors
 
 ## Setting up a Casper Account {#setting-up-an-account}
 
