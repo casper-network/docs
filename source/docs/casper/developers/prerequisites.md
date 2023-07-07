@@ -154,11 +154,11 @@ cargo build --release
 
 You will find the `casper-client` executable in the `target/release` directory.
 
-## Installing `cmake` {#install-cmake}
+## Installing CMake {#install-cmake}
 
-If you plan to compile contracts from the source code, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `cmake` with the commands below.
+If you plan to compile contracts from the source code, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `CMake` with the commands below.
 
-[CMake](https://cmake.org/) is a popular build tool that we will utilize, and you may very well have it already installed. If you do, make sure that you have the latest version. If you need to install or upgrade it, follow the steps below or on the [Cmake website](https://cmake.org/install/). Once installed, check your version as shown below.
+[CMake](https://cmake.org/) is a popular build tool that we will utilize, and you may very well have it already installed. If you do, make sure that you have the latest version. If you need to install or upgrade it, follow the steps below or on the [CMake website](https://cmake.org/install/). Once installed, check your version as shown below.
 
 <Tabs>
 <TabItem value="Linux" label="Linux">
@@ -183,7 +183,8 @@ cmake --version
 ```
 
 Sample output:
-```
+
+```bash
 cmake version 3.20.0 (or above)
 
 CMake suite maintained and supported by Kitware (kitware.com/cmake).
