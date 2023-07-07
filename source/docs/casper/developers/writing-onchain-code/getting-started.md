@@ -10,27 +10,7 @@ This guide covers additional prerequisites for writing your first Casper smart c
 
 Casper's blockchain is built upon the Rust programming language and compiles to WebAssembly. This guide will walk you through the steps to write your first contract, assuming you have already set up your development environment as described [here](../prerequisites.md).
 
-### The latest nightly toolchain
-
-You will need the latest nightly toolchain to develop smart contracts in Rust. Please refer to the [Rust Documentation on Channels](https://rust-lang.github.io/rustup/concepts/channels.html) and the [Rust Documentation on Toolchains](https://rust-lang.github.io/rustup/concepts/toolchains.html) for further information.
-
-We recommend setting up the rust-toolchain in the top level directory of your project.
-
-### Casper Rust Packages
-
-We publish three crates on [crates.io](https://crates.io/) to support smart contract development with Rust:
-
-- [Casper Contract](https://crates.io/crates/casper-contract) - a library supporting communication with the blockchain. This is the main library you will need to write smart contracts.
-- [Casper Test Support](https://crates.io/crates/casper-engine-test-support) - a virtual machine against which you can test your smart contracts.
-- [Casper Types](https://crates.io/crates/casper-types) - a library with types we use across the Rust ecosystem.
-
-A crate is a compilation unit, which can be compiled into a binary or a library.
-
-### API Documentation for Smart Contracts
-
-Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The latest contract API documentation can be found [here](https://docs.rs/casper-contract/latest/casper_contract/).
-
-### Creating a Project {#creating-a-project}
+## Creating a Project {#creating-a-project}
 
 You can create a new sample project very easily with the `cargo casper` crate. For example, let's say that I want to create a project named **my-project** for this tutorial (you can choose a different name if you wish), then I can simply run the command:
 
@@ -40,7 +20,33 @@ cargo casper my-project
 
 If you look inside the newly-created _my-project_ folder, you will find two crates: `contract` and `tests`. This is a complete basic smart contract that saves a value, passed as an argument, on the blockchain. The `tests` crate provides a runtime environment of the Casper virtual machine, and a basic smart contract test.
 
-### Compiling to Wasm {#compiling-to-wasm}
+### Using the nightly toolchain
+
+Navigate to the `my-project` folder and open the `rust-toolchain` file. You will notice that the file's contents specify a nightly version of Rust. Here is an example:
+
+```bash
+nightly-2022-08-03
+```
+
+Having the latest nightly toolchain to develop smart contracts in Rust would be best. Please refer to the [Rust Documentation on Channels](https://rust-lang.github.io/rustup/concepts/channels.html) and the [Rust Documentation on Toolchains](https://rust-lang.github.io/rustup/concepts/toolchains.html) for further information.
+
+As shown in this example, we recommend setting up the `rust-toolchain` file in your project's top-level directory.
+
+### Available Casper Rust crates
+
+To support smart contract development with Rust, the following crates are published: 
+
+- [Casper Contract](https://crates.io/crates/casper-contract) - a library supporting communication with the blockchain. This is the main library you will need to write smart contracts.
+- [Casper Test Support](https://crates.io/crates/casper-engine-test-support) - a virtual machine against which you can test your smart contracts.
+- [Casper Types](https://crates.io/crates/casper-types) - a library with types we use across the Rust ecosystem.
+
+A crate is a compilation unit that can be compiled into a binary or a library.
+
+### Available API documentation for Casper contracts
+
+Each of the Casper crates comes with API documentation and examples for each function, located at [https://docs.rs](https://docs.rs/releases/search?query=casper). The latest contract API documentation can be found [here](https://docs.rs/casper-contract/latest/casper_contract/).
+
+## Compiling to Wasm {#compiling-to-wasm}
 
 The Casper blockchain uses WebAssembly (Wasm) in its runtime environment. Compilation targets for Wasm are available for Rust, giving developers access to all the Rust ecosystem tools when developing smart contracts.
 
@@ -64,7 +70,7 @@ Casper contracts support Rust tooling such as `clippy` for linting contracts. Fe
 make check-lint
 ```
 
-### Test the Contract {#test-the-contract}
+## Testing the Contract {#test-the-contract}
 
 In addition to creating the contract, the Casper crate also automatically created sample tests in the _my-project/tests_ folder.
 
