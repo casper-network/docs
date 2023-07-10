@@ -400,7 +400,7 @@ When you're ready to release your application, you'll want to compile it to pure
 vite build
 ```
 
-Once this is completem you can preview your production build by running:
+Once this is complete, you can preview your production build by running:
 
 ```bash
 vite preview
