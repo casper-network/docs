@@ -17,6 +17,7 @@ This section shows you how to write session code and smart contracts in Rust and
 |[Best Practices for Casper Smart Contract Authors](./best-practices.md)| An outline of best practices when developing smart contracts on a Casper network|
 |[Writing a Basic Smart Contract in Rust](./simple-contract.md)   | An example of a smart contract built in Rust|
 |[Unit Testing Smart Contracts](./testing-contracts.md)      | Steps to test contract code using the unit testing framework|
+|[Smart Contracts and Session Code](./session-code.md)       | Understand what session code is and when you would use it over contract code |
 |[Writing Session Code](./writing-session-code.md)      | An introduction to writing session code|
 |[Unit Testing Session Code](./testing-session-code.md)      | Steps to test session code using the unit testing framework|
 |[Installing Smart Contracts and Querying Global State](../cli/installing-contracts.md)| A guide on installing smart contracts and querying global state        |
