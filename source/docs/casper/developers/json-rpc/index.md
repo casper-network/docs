@@ -8,15 +8,15 @@ Users looking to interact with the JSON-RPC API of a Casper network have several
 
 ## Using a Casper SDK
 
-The [Casper Association](https://casper.network/en-us/) provides a [JavaScript SDK](../../developers/dapps/sdk/script-sdk.md) for use with Casper networks. A list of additional SDKs maintained by third parties can be found [here](../dapps/sdk/index.md).
+The [Casper Association](https://casper.network/en-us/) provides a [JavaScript SDK](../../developers/dapps/sdk/script-sdk.md) for use with Casper networks. A list of additional SDKs maintained by third parties can be found [here](../../developers/dapps/sdk/index.md).
 
 These SDKs offer a means to build decentralized applications by interacting with the JSON-RPC API through your programming language of choice.
 
 ## Creating a Casper SDK
 
-The [Casper SDK Standard](../json-rpc/index.md) outlines the JSON-RPC API endpoints and types definitions for developers crafting an SDK for Casper networks. Guidance for Casper SDK developers can be found [here](../developers/json-rpc/guidance.md).
+The [Casper SDK Standard](../json-rpc/minimal-compliance.md) outlines the JSON-RPC API endpoints and types definitions for developers crafting an SDK for Casper networks. Guidance for Casper SDK developers can be found [here](../developers/json-rpc/guidance.md).
 
-Developers preferring SDKs in languages other than those available in the [SDK Client Libraries](../dapps/sdk/index.md) may build their own compliant SDK. Most programming languages that compile to [WebAssembly (Wasm)](../../concepts/glossary/W.md#webassembly) are compatible with Casper.
+Developers preferring SDKs in languages other than those available in the [SDK Client Libraries](../../developers/dapps/sdk/index.md) may build their own compliant SDK. Most programming languages that compile to [WebAssembly (Wasm)](../../concepts/glossary/W.md#webassembly) are compatible with Casper.
 
 ### Serialization
 
@@ -44,7 +44,7 @@ casper-client list-rpcs --node-address <HOST:PORT>
 
 -------
 
-## SDK Standard Index
+## Casper JSON-RPC API Index
 
 |Page                                                                       |Description                                                               |
 |---------------------------------------------------------------------------|--------------------------------------------------------------------------|
