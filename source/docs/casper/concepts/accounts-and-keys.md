@@ -64,7 +64,7 @@ cat ed25519-keys/public_key_hex
 
 #### ECDSA Keys {#ecdsa-keys}
 
-To create `secp256k1` keys, which use the ECDSA algorithm with the P-256 curve, follow these steps:
+To create `` keys, which use the ECDSA algorithm with the P-256 curve, follow these steps:
 
 ```bash
 mkdir secp256k1-keys
