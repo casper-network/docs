@@ -14,7 +14,7 @@ These SDKs offer a means to build decentralized applications by interacting with
 
 ## Creating a Casper SDK
 
-The [Casper SDK Standard](../json-rpc/minimal-compliance.md) outlines the JSON-RPC API endpoints and types definitions for developers crafting an SDK for Casper networks. Guidance for Casper SDK developers can be found [here](../developers/json-rpc/guidance.md).
+The [Casper SDK Standard](../json-rpc/minimal-compliance.md) outlines the JSON-RPC API endpoints and types definitions for developers crafting an SDK for Casper networks. Guidance for Casper SDK developers can be found [here](./guidance.md).
 
 Developers preferring SDKs in languages other than those available in the [SDK Client Libraries](../../developers/dapps/sdk/index.md) may build their own compliant SDK. Most programming languages that compile to [WebAssembly (Wasm)](../../concepts/glossary/W.md#webassembly) are compatible with Casper.
 
@@ -34,7 +34,7 @@ Casper nodes provide the RPC schema on port `8888`, followed by `rpc-schema`:
 <HOST:8888>/rpc-schema 
 ```
 
-To see an example, navigate to a node's RPC schema using a browser: <HOST>:8888/rpc-schema.
+To see an example, navigate to a node's RPC schema using a browser.
 
 The Casper client subcommand `list-rpcs` provides all currently supported RPCs. Here is an example of running the Casper client to list RPCs:
 
