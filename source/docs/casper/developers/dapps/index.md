@@ -1,5 +1,6 @@
 # Overview
 
+- [Introducing dApps](./dapp.md)
 - [SDK Client Libraries](./sdk/index.md)
 - [dApp Technology Stack](./technology-stack.md)
 - [Setting up a Local Network with NCTL](./setup-nctl.md)

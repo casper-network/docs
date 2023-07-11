@@ -121,6 +121,7 @@ module.exports = {
             collapsed: true,
             items: [
                 "developers/dapps/index",
+                "developers/dapps/dapp",
                 "developers/dapps/prerequisites",
                 {
                     type: "category",
@@ -314,15 +315,5 @@ module.exports = {
     // BELOW ITEMS ARE COMMENTED OUT BECAUSE WE COULD NOT LOCATE PLACE FOR THEM IN THE NEW STRUCTURE:
     /*"dapp-dev-guide": [
         "dapp-dev-guide/json-rpc",
-        //"dapp-dev-guide/list-auth-keys"
-        {
-            type: "category",
-            label: "Building dApps",
-            collapsible: true,
-            collapsed: true,
-            items: [
-                "dapp-dev-guide/building-dapps/dapp",
-            ],
-        },
     ],*/
 };
