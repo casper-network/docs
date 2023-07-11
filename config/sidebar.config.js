@@ -313,8 +313,4 @@ module.exports = {
         "users/testnet-faucet",
     ],
     workflow: ["workflow/ledger-setup"],
-    // BELOW ITEMS ARE COMMENTED OUT BECAUSE WE COULD NOT LOCATE PLACE FOR THEM IN THE NEW STRUCTURE:
-    /*"dapp-dev-guide": [
-        "dapp-dev-guide/json-rpc",
-    ],*/
 };
