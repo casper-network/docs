@@ -92,7 +92,6 @@ module.exports = {
                 "developers/writing-onchain-code/testing-contracts",
                 "developers/writing-onchain-code/upgrading-contracts",
                 "developers/writing-onchain-code/calling-contracts",
-                //"developers/writing-onchain-code/contracts-and-session-code", // NEW CONTENT WILL BE HERE
                 "developers/writing-onchain-code/writing-session-code",
                 "developers/writing-onchain-code/testing-session-code",
                 "developers/writing-onchain-code/best-practices",
@@ -147,7 +146,6 @@ module.exports = {
                 "developers/dapps/sending-deploys",
                 //"developers/dapps/signer-integration",
                 //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
-                //"developers/dapps/explanation-session-and-contract", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
             ],
         },
