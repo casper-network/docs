@@ -280,12 +280,12 @@ module.exports = {
                 id: "resources/advanced/index",
             },
             items: [
-                "resources/advanced/cross-contract",
-                "resources/advanced/transfer-token-to-contract",
                 "resources/advanced/two-party-multi-sig",
                 "resources/advanced/return-values-tutorial",
-                //"resources/advanced/list-cspr",
+                "resources/advanced/transfer-token-to-contract",
                 "resources/advanced/storage-workflow",
+                "resources/advanced/cross-contract",
+                //"resources/advanced/list-cspr",
             ],
         },
         //"resources/contribute-to-docs", // NEW CONTENT WILL BE HERE
