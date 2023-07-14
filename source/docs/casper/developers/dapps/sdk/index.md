@@ -11,7 +11,13 @@ Each of these SDKs can be used to build dApps. For browser interaction, you can 
 
 Each such third party is solely responsible for the SDK it provides, any warranties (to the extent that such warranties have not been disclaimed), and for any claims you may have relating to your access or use thereof. We do not approve or endorse any such SDKs by providing a link thereto, and assume no responsibility for your access or use thereof. The SDKs may be subject to additional licenses and disclaimers as set out in the relevant GitHub repositories.
 
-Developers can also interact directly with the [Casper JSON-RPC API](../../json-rpc/index.md).
+## Serialization Standard
+
+The Casper platform uses a custom serialization format. To this end, we've established a [Serialization Standard](../../concepts/serialization-standard.md), which must be followed when building a Casper SDK.
+
+## JSON-RPC API
+
+Developers can interact directly with the [Casper JSON-RPC API](../../json-rpc/index.md) instead of using an SDK.
 
 ## Table of Contents
 
