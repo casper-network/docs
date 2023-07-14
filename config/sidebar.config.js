@@ -1,6 +1,6 @@
 module.exports = {
     concepts: [
-        "concepts/index",
+        "concepts/index", // TODO show concepts in breadcrumbs
         "concepts/intro-to-dapps",
         "concepts/accounts-and-keys",
         "concepts/hash-types",
@@ -80,7 +80,7 @@ module.exports = {
         },
     ],
     developers: [
-        "developers/index",
+        "developers/index", // TODO show developers in breadcrumbs
         "developers/table-of-contents",
         "developers/prerequisites",
         {
@@ -198,7 +198,7 @@ module.exports = {
         },
     ],
     operators: [
-        "operators/index",
+        "operators/index", // TODO show operators in breadcrumbs
         {
             type: "category",
             label: "Node Setup",
@@ -259,7 +259,7 @@ module.exports = {
         },
     ],
     resources: [
-        "resources/index",
+        "resources/index", // TODO show resources in breadcrumbs
         {
             type: "category",
             label: "Why Build on Casper",
@@ -352,7 +352,7 @@ module.exports = {
         //"resources/support", // NEW CONTENT WILL BE HERE
     ],
     users: [
-        "users/index",
+        "users/index", // TODO show users in breadcrumbs
         "users/block-explorer",
         "users/delegate-ui",
         "users/undelegate-ui",
