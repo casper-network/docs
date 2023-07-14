@@ -1,11 +1,4 @@
----
-title: Introduction
-slug: /tutorials
----
-
-# Tutorials
-
-The following tutorials present several Casper features in depth:
+# Beginner Tutorials
 
 | Title                                                       | Description                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |

@@ -14,8 +14,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Make sure you have installed the software/packages needed for this tutorial.
 
 This tutorial assumes that you have worked through the following examples. If you have not already done so, then we recommend that you do so now:
-- [Getting Started with Rust](../../../developers/writing-onchain-code/getting-started.md)
-- [Writing a Basic Smart Contract in Rust](../../../developers/writing-onchain-code/simple-contract.md)
+- [Getting Started with Rust](../../developers/writing-onchain-code/getting-started.md)
+- [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md)
 
 ## Outline of the Tutorial {#outline}
 
@@ -146,7 +146,7 @@ pub extern "C" fn call() {
 This will serve as a base for introducing the elements needed for cross-contract communication.
 
 In a contract, you should first define the `call` entry point. It should be understood as a `constructor` for the contract. Everything included in the `call` entry point will be visible as metadata on a Casper network, in the contract's context. 
-You should already be familiar with the `call` entry point from the [Writing a Basic Smart Contract in Rust](../../../developers/writing-onchain-code/simple-contract.md) document. If this is not the case, be sure to familiarize yourself with it now.
+You should already be familiar with the `call` entry point from the [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md) document. If this is not the case, be sure to familiarize yourself with it now.
 
 The contract code, with changes to the `call` entry point, should look as shown below: 
 
@@ -314,15 +314,15 @@ pub extern "C" fn call() {
 
 :::info
 
-There is a distinction between storing data in a contract’s `NamedKeys` and using a dictionary. [Dictionaries](../../../concepts/dictionaries.md) can be used to store dApp-centric data, but they are not a SQL database and should only be used for data that needs to be stored in global state. Objects referenced in a contract should only be used as links within a bigger application.
+There is a distinction between storing data in a contract’s `NamedKeys` and using a dictionary. [Dictionaries](../../concepts/dictionaries.md) can be used to store dApp-centric data, but they are not a SQL database and should only be used for data that needs to be stored in global state. Objects referenced in a contract should only be used as links within a bigger application.
 
 :::
 
 ## Deploying the Contract {#deploying-contract}
 
-There are many tools available to send a deploy to a Casper network. The simplest method is to use the Rust CLI with the subcommand [put_deploy](../../../developers/cli/installing-contracts.md#installing-contract-code).
+There are many tools available to send a deploy to a Casper network. The simplest method is to use the Rust CLI with the subcommand [put_deploy](../../developers/cli/installing-contracts.md#installing-contract-code).
 
-Be sure to go through the prerequisites from the [Installing Smart Contracts and Querying Global State](../../../developers/cli/installing-contracts.md) documentation.
+Be sure to go through the prerequisites from the [Installing Smart Contracts and Querying Global State](../../developers/cli/installing-contracts.md) documentation.
 
 Make sure that after doing this you have:
 1. A valid private key for your account.
@@ -368,7 +368,7 @@ casper-client put-deploy \
 
 :::tip
 
-The parameters used in this command need to be adjusted based on your use case. For details, see [querying a node](../../../developers/prerequisites.md#acquire-node-address-from-network-peers) and [installing contracts](../../../developers/cli/installing-contracts.md). The payment amount may also need to be adjusted based on the latest Testnet [chainspec](../../../concepts/glossary/C.md#chainspec).
+The parameters used in this command need to be adjusted based on your use case. For details, see [querying a node](../../developers/prerequisites.md#acquire-node-address-from-network-peers) and [installing contracts](../../developers/cli/installing-contracts.md). The payment amount may also need to be adjusted based on the latest Testnet [chainspec](../../concepts/glossary/C.md#chainspec).
 
 :::
 

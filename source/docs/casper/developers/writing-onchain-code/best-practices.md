@@ -34,7 +34,7 @@ Bear in mind, the host node will not enforce this. The smart contract author mus
 
 Computations occurring on-chain come with associated [gas costs](../../concepts/economics/gas-concepts.md). Efficient coding can help to minimize gas costs, through the reduction of overall Wasm sent to global state. Beginning with 1.5.0, even invalid Wasm will incur gas costs when sent to global state. As such, proper testing prior to sending a Deploy is critical.
 
-Further, there is a set cost of 2.5 CSPR to create a new purse. If possible, the [reuse of purses](../../resources/tutorials/advanced/transfer-token-to-contract.md#scenario2) should be considered to reduce this cost. If reusing purses, proper access management must be maintained to prevent lapses in security. Ultimately, any choices made in regards to security and contract safeguards rely on the smart contract author.
+Further, there is a set cost of 2.5 CSPR to create a new purse. If possible, the [reuse of purses](../../resources/advanced/transfer-token-to-contract.md#scenario2) should be considered to reduce this cost. If reusing purses, proper access management must be maintained to prevent lapses in security. Ultimately, any choices made in regards to security and contract safeguards rely on the smart contract author.
 
 ### Tips to reduce WASM size
 

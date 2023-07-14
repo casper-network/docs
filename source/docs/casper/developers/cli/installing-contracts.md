@@ -246,7 +246,7 @@ Here is how the sample contract would look and would contain details such as the
 
 **Example - Query a value using its key and the contract hash:**
 
-Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](../../resources/tutorials/beginner/counter/index.md), where a "count" variable is incremented and stored under a named key.
+Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](../../resources/beginner/counter/index.md), where a "count" variable is incremented and stored under a named key.
 
 ```bash
 casper-client query-global-state \

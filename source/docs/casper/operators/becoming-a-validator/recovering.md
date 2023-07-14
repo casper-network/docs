@@ -95,7 +95,7 @@ The `activate_bid` entry point expects one argument:
 
 7. `validator_public_key`: The hexadecimal public key of the validator reactivating its bid. **This key must match the secret key that signs the bid activation request**
 
-The command will return a deploy hash, which is needed to verify the deploy's processing results. Refer to the [Deploy Status](../../resources/tutorials/beginner/querying-network.md#deploy-status) section for more details.
+The command will return a deploy hash, which is needed to verify the deploy's processing results. Refer to the [Deploy Status](../../resources/beginner/querying-network.md#deploy-status) section for more details.
 
 :::tip
 

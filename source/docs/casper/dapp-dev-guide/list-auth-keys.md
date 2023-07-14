@@ -9,7 +9,7 @@ This topic explains the difference between associated keys and authorization key
 ## Associated Keys and Authorization Keys
 Let's understand the relation between associated keys and authorization keys.
 
-- Associated keys are public keys which are associated with a given account.  To understand more about associated keys and how they are linked to an account, see the [Two-Party Multi-Signature workflow](../resources/tutorials/advanced/two-party-multi-sig.md).
+- Associated keys are public keys which are associated with a given account.  To understand more about associated keys and how they are linked to an account, see the [Two-Party Multi-Signature workflow](../resources/advanced/two-party-multi-sig.md).
 - Authorization keys are public keys which are used to sign a given deploy and are used by the node to check that the deploy has permission to be executed.
 - Different executions of the same smart contract can have different authorization keys.
 - Authorization keys are always a subset of the associated keys of the account under which the deploy is executed.

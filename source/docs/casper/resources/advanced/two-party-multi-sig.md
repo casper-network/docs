@@ -1,12 +1,12 @@
 # Two-Party Multi-Signature Deploys
 
-[Accounts](../../../concepts/design/casper-design.md#accounts-head) on a Casper network can associate other accounts to allow or require a multiple-signature scheme for deploys.
+[Accounts](../../concepts/design/casper-design.md#accounts-head) on a Casper network can associate other accounts to allow or require a multiple-signature scheme for deploys.
 
 This workflow describes how a trivial two-party multi-signature scheme for signing and sending deploys can be enforced for an account on a Casper network. This workflow assumes:
 
-1. You meet the [prerequisites](../../../developers/prerequisites.md), including having the Casper command-line client and a valid node address
+1. You meet the [prerequisites](../../developers/prerequisites.md), including having the Casper command-line client and a valid node address
 2. You have the main account's `PublicKey` hex (**MA**) and another `PublicKey` hex to associate (**AA**)
-3.  You have previously [sent deploys](../../../developers/dapps/sending-deploys.md) to a Casper network
+3.  You have previously [sent deploys](../../developers/dapps/sending-deploys.md) to a Casper network
 
 ## Configuring the Main Account {#configuring-the-main-account}
 
@@ -66,7 +66,7 @@ casper-client put-deploy \
 1. `node-address` - An IP address of a node on the network
 2. `secret-key` - The file name containing the secret key of the main account
 3. `chain-name` - The chain-name to the network where you wish to send the deploy (this example uses the Testnet)
-4. `payment-amount` - The cost of the deploy. This example uses 2.5 CSPR, which may need to be adjusted based on the network [chainspec](../../../concepts/glossary/C.md#chainspec).
+4. `payment-amount` - The cost of the deploy. This example uses 2.5 CSPR, which may need to be adjusted based on the network [chainspec](../../concepts/glossary/C.md#chainspec).
 5. `session-path` - The path to the contract Wasm
 6. `session-arg` - The contract takes the account hash of the associated account as an argument labeled `deployment-account`. You can pass this argument using the `--session-arg` flag in the command line client
 
@@ -78,7 +78,7 @@ casper-client put-deploy \
 
 ### Confirming Processing and Account Status {#confirming-execution-and-account-status}
 
-Account configuration on a Casper blockchain is stored in a [Merkle Tree](../../../concepts/glossary/M.md#merkle-tree) and is a snapshot of the blockchain's [Global State](../../../concepts/design/casper-design.md#global-state-head). The representation of global state for a given block can be computed by executing the deploys (including transfers) within the block and its ancestors. The root node of the Merkle Tree identifying a particular state is called the `state-root-hash` and is stored in every executed block.
+Account configuration on a Casper blockchain is stored in a [Merkle Tree](../../concepts/glossary/M.md#merkle-tree) and is a snapshot of the blockchain's [Global State](../../concepts/design/casper-design.md#global-state-head). The representation of global state for a given block can be computed by executing the deploys (including transfers) within the block and its ancestors. The root node of the Merkle Tree identifying a particular state is called the `state-root-hash` and is stored in every executed block.
 
 To check that the account was configured correctly, you need the `state-root-hash` corresponding to the block that contains your deploy. To obtain the `state-root-hash`, you need to:
 

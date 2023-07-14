@@ -11,11 +11,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 | Level: | `Beginner` |
 | Time to complete: | `30 Minutes`|
 
-Make sure you have installed the [software/packages](../../../developers/prerequisites.md) needed for this tutorial.
+Make sure you have installed the [software/packages](../../developers/prerequisites.md) needed for this tutorial.
 
 This tutorial assumes that you have worked through the following examples. If you have not already done so, then we recommend that you do so now:
-- [Getting Started with Rust](../../../developers/writing-onchain-code/getting-started.md)
-- [Writing a Basic Smart Contract in Rust](../../../developers/writing-onchain-code/simple-contract.md)
+- [Getting Started with Rust](../../developers/writing-onchain-code/getting-started.md)
+- [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md)
 
 ## Outline of the Tutorial {#outline}
 
@@ -88,7 +88,7 @@ For more detail on these methods, there is a reference implementation available 
 
 Building on the construction of a CEP-18 token as explained above, we will be installing our own token contract in global state.
 
-If you are unsure how to interact with Casper Contracts please refer to the following tutorial: [Writing a Basic Smart Contract in Rust](../../../developers/writing-onchain-code/simple-contract.md).
+If you are unsure how to interact with Casper Contracts please refer to the following tutorial: [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md).
 
 We will clone the token repository and prepare the token contract for sending in a Deploy.
 
