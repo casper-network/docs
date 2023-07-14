@@ -310,5 +310,4 @@ module.exports = {
         "users/funding-from-exchanges",
         "users/testnet-faucet",
     ],
-    workflow: ["workflow/ledger-setup"],
 };
