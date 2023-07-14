@@ -1,5 +1,5 @@
 ---
-title: Funding Accounts
+title: Funding Mainnet Accounts
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

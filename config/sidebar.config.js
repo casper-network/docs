@@ -301,13 +301,29 @@ module.exports = {
     users: [
         "users/index",
         "users/block-explorer",
-        "users/delegate-ui",
-        "users/undelegate-ui",
-        "users/ledger-setup",
-        "users/staking-ledger",
-        "users/token-transfer",
         "users/funding-from-exchanges",
-        "users/testnet-faucet",
+        {
+            type: "category",
+            label: "Using CSPR.live",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "users/csprlive/testnet-faucet",
+            },
+            items: ["users/csprlive/testnet-faucet", "users/csprlive/delegate-ui", "users/csprlive/undelegate-ui", "users/csprlive/token-transfer"],
+        },
+        {
+            type: "category",
+            label: "Ledger Devices",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "users/ledger/ledger-setup",
+            },
+            items: ["users/ledger/ledger-setup", "users/ledger/staking-ledger"],
+        },
     ],
     workflow: ["workflow/ledger-setup"],
     // BELOW ITEMS ARE COMMENTED OUT BECAUSE WE COULD NOT LOCATE PLACE FOR THEM IN THE NEW STRUCTURE:

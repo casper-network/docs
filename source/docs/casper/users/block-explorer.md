@@ -2,7 +2,7 @@
 title: Block Explorers
 ---
 
-# Running Networks and Block Explorers
+# Block Explorers
 
 The Casper blockchain is available as the Mainnet and Testnet.
 The Mainnet is the Casper blockchain that utilizes Casper tokens (CSPR).
@@ -24,8 +24,8 @@ You can use a block explorer to view the blockchain statistics, list of validato
 The following topics link you to detailed instructions on using the [cspr.live](https://cspr.live/) block explorer to access and work with your CSPR tokens.
 
 - Learn how to access your Casper account using the [Casper Wallet](https://www.casperwallet.io/)
-- Understand the process of [Transferring Tokens using a Block Explorer](./token-transfer.md)
-- Explore the concepts and the process of [Delegating](./delegate-ui.md) and [Undelegating](./undelegate-ui.md) CSPR tokens
+- Understand the process of [Transferring Tokens using a Block Explorer](./csprlive/token-transfer.md)
+- Explore the concepts and the process of [Delegating](./csprlive/delegate-ui.md) and [Undelegating](./csprlive/undelegate-ui.md) CSPR tokens
 
 :::note
 
