@@ -13,7 +13,7 @@ Each such third party is solely responsible for the SDK it provides, any warrant
 
 ## Serialization Standard
 
-The Casper platform uses a custom serialization format. To this end, we've established a [Serialization Standard](../../concepts/serialization-standard.md), which must be followed when building a Casper SDK.
+The Casper platform uses a custom serialization format. To this end, we've established a [Serialization Standard](../../../concepts/serialization-standard.md), which must be followed when building a Casper SDK.
 
 ## JSON-RPC API
 

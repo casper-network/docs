@@ -10,7 +10,7 @@ Casper smart contracts can be implemented in any programming language that compi
 
 ## Session Code
 
-Session code is the simplest logic one can execute on a Casper network. It is essential because it is often used to trigger contract logic stored on-chain. Entry points in a contract provide access to the contract code installed in global state. Either [session code](./contract-vs-session.md#what-is-session-code) or another smart contract may call these entry points. Understand when you would use session code over contract code [here](../developers/writing-onchain-code/contract-vs-session.md).
+Session code is the simplest logic one can execute on a Casper network. It is essential because it is often used to trigger contract logic stored on-chain. Entry points in a contract provide access to the contract code installed in global state. Either [session code](../developers/writing-onchain-code/contract-vs-session.md#what-is-session-code) or another smart contract may call these entry points. Understand when you would use session code over contract code [here](../developers/writing-onchain-code/contract-vs-session.md).
 
 ### Further Reading
 
