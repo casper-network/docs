@@ -7,11 +7,11 @@
 |[Getting Started Video](./getting-started-tutorial.md) | Step-by-step video tutorial for setting up the Casper development environment |
 |[A Counter on an NCTL Network](./counter/index.md) | An example contract that maintains a counter variable on a local Casper Network with NCTL |
 |[A Counter on the Testnet](./counter-testnet/index.md) | An example contract that maintains a counter variable on the Casper Testnet |
-|[Interacting with Runtime Return Values](../advanced/return-values-tutorial.md)| Learning how to return a value using contract code |
-|[Safely Transfer Tokens to a Contract](../advanced/transfer-token-to-contract.md) | How to handle tokens via a contract |
+|[Querying a Casper Network](./querying-network.md) | Queries for users and developers to obtain information stored on the blockchain |
 |[Smart Contract Upgrades](./upgrade-contract.md) | Learn how to upgrade smart contracts |
+<!--|[Using the JavaScript SDK](./use-javascript-sdk.md)| Use the JavaScript SDK by connecting the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) to a website|-->
+|[The Casper Fungible Token Standard (CEP-18)](./cep18.md) | Fungible Token Standard (CEP-18) Implementation and Usage |
 |[Launching a Casper Node with AWS Marketplace](./aws-node.md) | Learn how to launch a Casper Node through the AWS Marketplace |
-
 
 ## GitHub Tutorials
 

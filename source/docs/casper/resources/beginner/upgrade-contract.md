@@ -1,3 +1,7 @@
+---
+title: Contract Upgrades
+---
+
 # Upgrading a Contract
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

@@ -1,3 +1,7 @@
+---
+title: Getting Started
+---
+
 # Getting Started Video
 
 This video guide is a step-by-step tutorial for setting up your Casper development environment and a sample project. You can follow along and also consult the corresponding [Getting Started documentation](../../developers/writing-onchain-code/getting-started.md).

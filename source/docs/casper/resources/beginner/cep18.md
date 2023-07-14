@@ -1,19 +1,14 @@
 ---
-title: ERC-20 Standard and CEP-18 Implementation and Usage
+title: Fungible Tokens
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Tutorial: ERC-20 Standard and CEP-18 Implementation and Usage
-
-|                    |                    |
-| ------------------ | ------------------------------- |
-| Level: | `Beginner` |
-| Time to complete: | `30 Minutes`|
-
-Make sure you have installed the [software/packages](../../developers/prerequisites.md) needed for this tutorial.
+# Fungible Tokens (CEP-18) Implementation and Usage
 
 This tutorial assumes that you have worked through the following examples. If you have not already done so, then we recommend that you do so now:
+
+- [Developer Prerequisites](../../developers/prerequisites.md)
 - [Getting Started with Rust](../../developers/writing-onchain-code/getting-started.md)
 - [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md)
 
@@ -66,7 +61,7 @@ The following considerations should be applied when trying to create an ERC-20 T
 
 The CEP-18 Casper Fungible Token Standard establishes a single implementation of the ERC-20 Standard for Casper networks to avoid disparities and incompatibilities.
 
-## CEP-18 Standard {#cep18-standard}
+## The Casper CEP-18 Standard {#cep18-standard}
 
 The CEP-18 Token Standard is a Casper network compliant implementation of ERC-20 that provides the following contract methods to interact with the token contract:
 

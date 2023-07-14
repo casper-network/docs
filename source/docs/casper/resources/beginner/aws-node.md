@@ -1,3 +1,7 @@
+---
+title: AWS Casper Nodes
+---
+
 # Launching a Casper Node with AWS Marketplace
 
 The following tutorial outlines the process for launching a [Casper Node through the Amazon AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-d7xpciuetjq5u).

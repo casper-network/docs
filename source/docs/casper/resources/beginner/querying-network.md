@@ -1,4 +1,8 @@
-# Querying a Casper Network
+---
+title: Querying a Node
+---
+
+# Querying a Casper Node
 
 The Casper node supports queries for users and developers to obtain information stored on the blockchain.
 
