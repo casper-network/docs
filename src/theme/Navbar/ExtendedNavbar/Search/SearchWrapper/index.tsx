@@ -1,12 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import icons from "../../../../../icons";
 import useEventListener from "../../../../../hooks/useEventListener";
+import icons from "../../../../../icons";
 import SearchResult from "../SearchResult";
 import useClickOutside from "../UseClickOutside";
 import styles from "./styles.module.scss";
-import useWindow from "../../../../../hooks/useWindow";
 
-export default function SearchWrapper({ searchIndexes, locale, placeholder, hitsPerIndex = 20, siteUrl }) {
+interface ISearchWrapperProps {
+    searchIndexes: any[];
+    locale: string;
+    siteUrl: string;
+    placeholder: string;
+    hitsPerIndex: number;
+}
+
+export default function SearchWrapper({ searchIndexes, locale, siteUrl, placeholder, hitsPerIndex = 20 }: ISearchWrapperProps) {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const refInput = useRef<HTMLInputElement>(null);
     const [hasFocus, setHasFocus] = useState<boolean>(false);
@@ -25,15 +32,14 @@ export default function SearchWrapper({ searchIndexes, locale, placeholder, hits
 
     function triggerSearchIndexes(val: string) {
         let promiseArr = [];
+
         for (let index of searchIndexes) {
             promiseArr.push(
                 index.client.search(val, {
-                    filters: `locale:'${locale}'`,
                     hitsPerPage: hitsPerIndex,
                 }),
             );
         }
-
         Promise.allSettled(promiseArr)
             .then((results: any) => {
                 let parsedHits: any[] = [];
@@ -42,9 +48,11 @@ export default function SearchWrapper({ searchIndexes, locale, placeholder, hits
                     const result = results[i];
                     if (result.status === "fulfilled") {
                         let parsedRes = result.value.hits;
+
                         parsedRes = parsedRes.map((element: any) => {
                             return { ...element, basePath: basePath, path: basePath ? basePath + element.path : element.path };
                         });
+
                         parsedHits = [...parsedHits, ...parsedRes];
                     } else {
                         console.log(`${result.reason.name} ${result.reason.message}`);
@@ -84,7 +92,6 @@ export default function SearchWrapper({ searchIndexes, locale, placeholder, hits
     useClickOutside(refInput, (isInside: boolean) => setHasFocus(isInside));
 
     function clearInput() {
-        if (!useWindow()) return;
         const buttons = document.getElementsByClassName(styles.container_input);
         for (const button of buttons) {
             (button as HTMLInputElement).value = "";
@@ -111,7 +118,11 @@ export default function SearchWrapper({ searchIndexes, locale, placeholder, hits
                     </button>
                 )}
             </>
-            {hasFocus && showResults && <SearchResult locale={locale} siteUrl={siteUrl} hits={hits} setHasFocus={setHasFocus}></SearchResult>}
+            {hasFocus && showResults && (
+                <>
+                    <SearchResult hits={hits} setHasFocus={setHasFocus} locale={locale} siteUrl={siteUrl}></SearchResult>
+                </>
+            )}
         </div>
     );
 }

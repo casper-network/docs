@@ -1,9 +1,7 @@
-@use "../../../../stylesheets/variables/media-queries";
-
 .container {
     position: relative;
     margin: 0;
-    width: 30%;
+    width: 45%;
     min-width: 15%;
 
     .container_icon_search {
@@ -47,7 +45,7 @@
 
             outline: none;
 
-            +.container_icon_search {
+            + .container_icon_search {
                 svg {
                     path {
                         fill: var(--casperYellow);
@@ -55,7 +53,7 @@
                 }
             }
 
-            +.container_icon_search+.container_icon_cancel {
+            + .container_icon_search + .container_icon_cancel {
                 &:hover {
                     svg {
                         path {
@@ -68,7 +66,7 @@
     }
 }
 
-@media #{media-queries.$mobile} {
+@media (max-width: 996px) {
     .container {
         width: 100%;
     }
