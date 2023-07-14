@@ -1,3 +1,7 @@
+---
+title: Non-Root Users
+---
+
 # Setting up a Non-Root User
 
 Operators may log into their servers remotely using a key. The following steps explain how to create a non-root user and log in using a private key instead of the root user. Replace `<username>` in the instructions below with your username.

@@ -1,0 +1,8 @@
+# Becoming a Validator 
+
+| Title                                                                           | Description                 |
+| ----------------------------------------------------------- | ----------------------------------------------- |
+|[Bonding as a Validator](./bonding.md) | A guide about the bonding process and submitting a bid |
+|[Unbonding as a Validator](./unbonding.md) | The process to withdraw a bid and unbonding |
+|[Recovering from Validator Eviction](./recovering.md) | Steps a validator needs to take if it is evicted from the validator set |
+|[Inactive vs. Faulty Nodes](./inactive-vs-faulty.md) | The differences between inactive and faulty nodes |

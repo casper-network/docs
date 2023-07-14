@@ -201,9 +201,13 @@ module.exports = {
         "operators/index",
         {
             type: "category",
-            label: "Setting up a Node",
+            label: "Node Setup",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "operators/setup/index",
+            },
             items: [
                 "operators/setup/hardware",
                 "operators/setup/basic-node-configuration",
@@ -217,29 +221,41 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Becoming a Validator",
+            label: "Validators",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "operators/becoming-a-validator/index",
+            },
             items: [
                 "operators/becoming-a-validator/bonding",
+                "operators/becoming-a-validator/unbonding",
                 "operators/becoming-a-validator/recovering",
                 "operators/becoming-a-validator/inactive-vs-faulty",
-                "operators/becoming-a-validator/unbonding",
             ],
         },
         {
             type: "category",
-            label: "Setting up a Network",
+            label: "Private Networks",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "operators/setup-network/index",
+            },
             items: ["operators/setup-network/chain-spec", "operators/setup-network/create-private", "operators/setup-network/staging-files-for-new-network"],
         },
         {
             type: "category",
-            label: "Node Maintenance",
+            label: "Maintenance",
             collapsible: true,
             collapsed: true,
-            items: ["operators/advanced-topics/archiving-and-restoring", "operators/advanced-topics/moving-node"],
+            link: {
+                type: "doc",
+                id: "operators/maintenance/index",
+            },
+            items: ["operators/maintenance/archiving-and-restoring", "operators/maintenance/moving-node"],
         },
     ],
     resources: [

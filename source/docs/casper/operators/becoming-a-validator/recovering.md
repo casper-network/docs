@@ -1,3 +1,7 @@
+---
+title: Recovery
+---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Recovering from Validator Eviction

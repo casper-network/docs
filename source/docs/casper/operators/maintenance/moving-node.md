@@ -1,3 +1,7 @@
+---
+title: Move a Node
+---
+
 #  Moving a Validating Node
 
 This guide is for active validators who want to move their node to another machine. There are two primary methods to achieve this, outlined below.
