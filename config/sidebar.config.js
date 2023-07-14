@@ -268,6 +268,7 @@ module.exports = {
                 "resources/beginner/upgrade-contract",
                 "resources/beginner/cep18",
                 "resources/beginner/aws-node",
+                // TODO link external tutorials if possible, to show them in sidebar navigation
                 //"resources/beginner/use-javascript-sdk" TODO remove or replace
             ],
         },
