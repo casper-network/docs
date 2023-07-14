@@ -284,7 +284,7 @@ module.exports = {
                 "resources/advanced/transfer-token-to-contract",
                 "resources/advanced/two-party-multi-sig",
                 "resources/advanced/return-values-tutorial",
-                "resources/advanced/list-cspr",
+                //"resources/advanced/list-cspr",
                 "resources/advanced/storage-workflow",
             ],
         },
