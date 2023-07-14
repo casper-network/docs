@@ -17,7 +17,7 @@ Review the [node's configuration](./setup/basic-node-configuration.md) first. Th
 
 | Topic                                                                           | Description                 |
 | ----------------------------------------------------------- | ----------------------------------------------- |
-|[Node Setup](./setup/index.md) | ... |
-|[Becoming a Validator](./becoming-a-validator/index.md) | ... |
-|[Private Network Setup](./setup-network/index.md) | ... |
-|[Maintenance](./maintenance/index.md) | ... |
+|[Node Setup](./setup/index.md) | How to set up a Casper node |
+|[Becoming a Validator](./becoming-a-validator/index.md) | How to join a network and become a validator |
+|[Private Network Setup](./setup-network/index.md) | How to set up a private Casper network |
+|[Maintenance](./maintenance/index.md) | Topics related to node maintenance |
