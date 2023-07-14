@@ -1,4 +1,8 @@
-# Transferring Tokens using a Block Explorer
+---
+title: Transfer Tokens
+---
+
+# Transferring Tokens
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 

@@ -1,3 +1,7 @@
+---
+title: Set up Ledger
+---
+
 # Ledger Setup with Casper
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

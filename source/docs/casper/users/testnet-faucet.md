@@ -1,3 +1,7 @@
+---
+title: Testnet Funding
+---
+
 # Funding Testnet Accounts
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

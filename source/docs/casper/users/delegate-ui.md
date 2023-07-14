@@ -1,3 +1,7 @@
+---
+title: Delegate Tokens
+---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Delegating Tokens with a Block Explorer
