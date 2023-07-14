@@ -1,3 +1,8 @@
+---
+title: Runtime Return Values
+---
+
+
 # Interacting with Runtime Return Values
 
 Users interacting with a Casper network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.

@@ -1,3 +1,8 @@
+---
+title: Storage Workflow
+---
+
+
 # Reading and Writing to Global State using Rust
 
 The following examples outline methods to read and write data to global state on a Casper network using the Rust programming language.

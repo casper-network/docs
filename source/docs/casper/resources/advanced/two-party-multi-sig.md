@@ -1,3 +1,7 @@
+---
+title: Two-Party Multi-Sig
+---
+
 # Two-Party Multi-Signature Deploys
 
 [Accounts](../../concepts/design/casper-design.md#accounts-head) on a Casper network can associate other accounts to allow or require a multiple-signature scheme for deploys.
