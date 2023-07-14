@@ -104,7 +104,6 @@ module.exports = {
             collapsed: true,
             items: [
                 "developers/json-rpc/index",
-                "developers/json-rpc/introduction",
                 "developers/json-rpc/guidance",
                 "developers/json-rpc/minimal-compliance",
                 "developers/json-rpc/json-rpc-transactional",
