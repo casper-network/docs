@@ -237,10 +237,18 @@ module.exports = {
             },
             items: [
                 "resources/beginner/getting-started-tutorial",
-                "resources/beginner/querying-network",
-                "resources/beginner/upgrade-contract",
-                "resources/beginner/aws-node",
-                "resources/beginner/cep18",
+                {
+                    type: "category",
+                    label: "A Counter with NCTL",
+                    collapsible: true,
+                    collapsed: true,
+                    className: "text_transform_reset",
+                    link: {
+                        type: "doc",
+                        id: "resources/beginner/counter/index",
+                    },
+                    items: ["resources/beginner/counter/overview", "resources/beginner/counter/commands", "resources/beginner/counter/walkthrough"],
+                },
                 {
                     type: "category",
                     label: "A Counter on the Testnet",
@@ -256,18 +264,11 @@ module.exports = {
                         "resources/beginner/counter-testnet/walkthrough",
                     ],
                 },
-                {
-                    type: "category",
-                    label: "A Counter on an NCTL Network",
-                    collapsible: true,
-                    collapsed: true,
-                    className: "text_transform_reset",
-                    link: {
-                        type: "doc",
-                        id: "resources/beginner/counter/index",
-                    },
-                    items: ["resources/beginner/counter/overview", "resources/beginner/counter/commands", "resources/beginner/counter/walkthrough"],
-                },
+                "resources/beginner/querying-network",
+                "resources/beginner/upgrade-contract",
+                "resources/beginner/cep18",
+                "resources/beginner/aws-node",
+                //"resources/beginner/use-javascript-sdk" TODO remove or replace
             ],
         },
         {
