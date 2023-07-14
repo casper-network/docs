@@ -4,20 +4,14 @@ title: Cross-Contract Communication
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Tutorial: Cross-Contract Communication
-
-|                    |                    |
-| ------------------ | ------------------------------- |
-| Level: | `Advanced` |
-| Time to complete: | `45 - 60 Minutes`|
-
-Make sure you have installed the software/packages needed for this tutorial.
+# Cross-Contract Communication
 
 This tutorial assumes that you have worked through the following examples. If you have not already done so, then we recommend that you do so now:
+- [Developer Prerequisites](../../developers/prerequisites.md)
 - [Getting Started with Rust](../../developers/writing-onchain-code/getting-started.md)
 - [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md)
 
-## Outline of the Tutorial {#outline}
+## Tutorial Outline {#outline}
 
 This tutorial covers some variations of cross-contract communication. Most complex scenarios use cross-contract communication, so it is crucial to understand how this works. It is best explained using the uniswap v2 protocol.
 
