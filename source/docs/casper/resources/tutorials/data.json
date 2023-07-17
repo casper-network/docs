@@ -1,0 +1,280 @@
+{
+    "tags": [
+        {
+            "text": "Video",
+            "color": "red",
+            "url": "https://docs.casperlabs.io/"
+        },
+        {
+            "text": "NFT",
+            "color": "yellow",
+            "url": "https://docs.casperlabs.io/"
+        },
+        {
+            "text": "ERC20",
+            "color": "blue",
+            "url": "https://docs.casperlabs.io/"
+        },
+        {
+            "text": "CLI",
+            "color": "purple",
+            "url": "https://docs.casperlabs.io/"
+        },
+        {
+            "text": "Rust",
+            "color": "green",
+            "url": "https://docs.casperlabs.io/"
+        },
+        {
+            "text": "Dapp",
+            "color": "pinkLight",
+            "url": "https://docs.casperlabs.io/"
+        }
+    ],
+    "beginnerTutorials": {
+        "header": "Tutorials",
+        "subheader": "The following tutorials present several beginner Casper features in depth:",
+        "tiles": [
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Apps_Red.png",
+                "category": "Beginner",
+                "title": "Getting Started Video",
+                "url": "/resources/tutorials/beginner/getting-started-tutorial/",
+                "linkText": "Source",
+                "paragraph": "Step-by-step video tutorial for setting up the Casper development environment.",
+                "tags": [
+                    {
+                        "text": "Video",
+                        "color": "red",
+                        "url": "https://www.youtube.com/watch?v=PoiJEZkpocI&list=PL8oWxbJ-csEogSV-M0IPiofWP5I_dLji6&t=1s"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Decentralization_White.png",
+                "category": "Beginner",
+                "title": "NFTs on Casper with the CEP-78 NFT Standard",
+                "url": "https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/README.md",
+                "linkText": "source",
+                "paragraph": "Implementing the Casper CEP-78 NFT standard.",
+                "tags": [
+                    {
+                        "text": "NFT",
+                        "color": "yellow"
+                    },
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Apps_Red.png",
+                "category": "Beginner",
+                "title": "A Counter on an NCTL Network",
+                "url": "/counter/",
+                "linkText": "source",
+                "paragraph": "An example contract that maintains a counter variable on a local Casper Network with NCTL.",
+                "tags": [
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Decentralization_White.png",
+                "category": "Beginner",
+                "title": "A Counter on the Testnet",
+                "url": "/counter-testnet/",
+                "linkText": "source",
+                "paragraph": "An example contract that maintains a counter variable on the Casper Testnet.",
+                "tags": [
+                    {
+                        "text": "Video",
+                        "color": "red"
+                    },
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Apps_Red.png",
+                "category": "Beginner",
+                "title": "Fungible Tokens on Casper",
+                "url": "https://github.com/casper-ecosystem/cep18/blob/master/docs/full-tutorial.md",
+                "linkText": "source",
+                "paragraph": "Implement the Casper Fungible Token standard.",
+                "tags": [
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    },
+                    {
+                        "text": "ERC20",
+                        "color": "blue"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Apps_Red.png",
+                "category": "Beginner",
+                "title": "Smart Contract Upgrades",
+                "url": "/resources/tutorials/beginner/upgrade-contract/",
+                "linkText": "source",
+                "paragraph": "Learn how to upgrade smart contracts.",
+                "tags": [
+                    {
+                        "text": "Video",
+                        "color": "red"
+                    },
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Technology_White.png",
+                "category": "Beginner",
+                "title": "Launching a Casper Node with AWS Marketplace",
+                "url": "/resources/tutorials/beginner/aws-node/",
+                "linkText": "source",
+                "paragraph": "Learn how to launch a Casper Node through the AWS Marketplace.",
+                "tags": []
+            }
+        ]
+    },
+    "advancedTutorials": {
+        "header": "Tutorials",
+        "subheader": "The following tutorials present several advanced Casper features in depth:",
+        "tiles": [
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Interoperability_White.png",
+                "category": "Advanced",
+                "title": "Safely Transfer Tokens to a Contract",
+                "url": "/resources/tutorials/advanced/transfer-token-to-contract/",
+                "linkText": "Source",
+                "paragraph": "Tutorial covers two methods to handle tokens via a contract.",
+                "tags": [
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Technology_White.png",
+                "category": "Advanced",
+                "title": "Two-Party Multi-Signature Deploys",
+                "url": "/resources/tutorials/advanced/two-party-multi-sig/",
+                "linkText": "source",
+                "paragraph": "Setting up Two-Party Multi-Signature Deploys.",
+                "tags": [
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Decentralization_White.png",
+                "category": "Advanced",
+                "title": "Interacting with Runtime Return Values",
+                "url": "/resources/tutorials/advanced/return-values-tutorial/",
+                "linkText": "source",
+                "paragraph": "Learning how to return a value using contract code.",
+                "tags": [
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Interoperability_White.png",
+                "category": "Advanced",
+                "title": "Listing CSPR on Your Exchange",
+                "url": "/resources/tutorials/advanced/list-cspr/",
+                "linkText": "source",
+                "paragraph": "This topic describes how to list Casper token (CSPR) on a cryptocurrency exchange.",
+                "tags": [
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    },
+                    {
+                        "text": "Dapp",
+                        "color": "pinkLight"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Technology_White.png",
+                "category": "Advanced",
+                "title": "Reading and Writing to Global State using Rust",
+                "url": "/resources/tutorials/advanced/storage-workflow/",
+                "linkText": "source",
+                "paragraph": "The following examples outline methods to read and write data to global state on a Casper network using the Rust programming language.",
+                "tags": [
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    }
+                ]
+            },
+            {
+                "image": "/image/tutorials/tiles/Casper_Icons_Interoperability_White.png",
+                "category": "Advanced",
+                "title": "Cross Contract Communication",
+                "url": "/resources/tutorials/advanced/cross-contract/",
+                "linkText": "source",
+                "paragraph": "This tutorial covers some variations of cross-contract communication.",
+                "tags": [
+                    {
+                        "text": "Rust",
+                        "color": "green"
+                    },
+                    {
+                        "text": "CLI",
+                        "color": "purple"
+                    }
+                ]
+            }
+        ]
+    }
+}
