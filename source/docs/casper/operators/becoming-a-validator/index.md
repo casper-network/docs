@@ -1,6 +1,6 @@
 # Becoming a Validator 
 
-After setting up a node, the operator can submit a bid to win a validating slot and bond to the network. This section also covers unbonding from the network, recovering from eviction, and the differences between inactive and faulty nodes.
+After [setting up a node](../setup/index.md), the operator can submit a bid to win a validating slot and bond to the network. This section also covers unbonding from the network, recovering from eviction, and the differences between inactive and faulty nodes.
 
 | Title                                                                           | Description                 |
 | ----------------------------------------------------------- | ----------------------------------------------- |
