@@ -1,4 +1,4 @@
-const documentationRepoUrl = "https://github.com/casper-network/docs/tree/main/source";
+const documentationRepoUrl = "https://github.com/casper-network/docs/tree/dev/source";
 
 const getEditUrl = ({ versionDocsDirPath, docPath }) => {
     const segments = versionDocsDirPath.split("/");
