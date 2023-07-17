@@ -22,7 +22,9 @@ The following table summarizes the key differences between session code and cont
 
 The following image depicts the comparison presented in the table.
 
-<p align="center"><img src={useBaseUrl("/image/dApp/contract-vs-session.png")} alt="Comparing Session and Contract Code" /></p>
+<!-- TODO make sure the diagram is moved over with the latest restructuring PRs -->
+
+<p align="center"><img src={useBaseUrl("/image/design/session-contract-context.png")} alt="Comparing Session and Contract Code" /></p>
 
 ## What's Next? {#whats-next}
 
