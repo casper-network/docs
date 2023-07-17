@@ -1,5 +1,7 @@
 # Setting up Private Networks
 
+Some projects may require a private Casper network or a hybrid setup involving a private and public Casper network. This section covers the requirements for creating a private network.
+
 | Title                                                                           | Description                 |
 | ----------------------------------------------------------- | ----------------------------------------------- |
 |[The Chain Specification](./chain-spec.md) | Files needed to create a genesis block              |

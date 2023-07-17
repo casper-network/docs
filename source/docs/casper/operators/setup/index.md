@@ -1,5 +1,7 @@
 # Setting up a Node
 
+The prerequisite for becoming a validator is to set up a node as described here.
+
 | Title                                                                           | Description                 |
 | ----------------------------------------------------------- | ----------------------------------------------- |
 |[Recommended Hardware Specifications](./hardware.md) | System requirements for the Casper Mainnet and Testnet |
