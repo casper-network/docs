@@ -1,6 +1,6 @@
 # Setting up a Node
 
-The prerequisite for becoming a validator is to set up a node as described here.
+The prerequisite for becoming a validator is to set up a node and join a network as described here.
 
 | Title                                                                           | Description                 |
 | ----------------------------------------------------------- | ----------------------------------------------- |
