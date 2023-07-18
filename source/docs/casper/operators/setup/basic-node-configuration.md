@@ -160,6 +160,14 @@ The following default values are specified in the file if you want to change the
 - The port used for networking
 - Known_addresses - these are the bootstrap nodes (there is no need to change these)
 
+### Enabling Speculative Execution
+
+The `speculative_exec` endpoint provides a method to execute a Deploy without committing its execution effects to global state. This can be used by developers to roughly estimate the gas costs of sending the Deploy in question. By default, speculative_exec is disabled on a node.
+
+`speculative_exec` can be enabled within *config.toml* by changing `enable_server` to `true` under the configuration options for the speculative execution JSON-RPC HTTP server.
+
+Node operators may also change the incoming request port for speculative execution, which defaults to `7778`. Further, you can choose to alter the `qps_limit` and `max_body_bytes`, which limit the amount and size of requests to the speculative execution server.
+
 ## Rust Client Installation {#client-installation}
 
 The [Prerequisites](../../developers/prerequisites.md#the-casper-command-line-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
