@@ -114,5 +114,12 @@ module.exports = {
                     "query { cookie_banner { translations {  languages_code { code } items { cookie_item_id { required parameter title description } } manage_body manage_title notice_body notice_title manage_button_text accept_all_button_text confirm_button_text } } }",
             },
         ],
+        [
+            "@docusaurus/plugin-ideal-image",
+            {
+                disableInDev: false,
+                sizes: [400, 800, 1200, 1600],
+            },
+        ],
     ],
 };
