@@ -1,3 +1,7 @@
+---
+title: Hardware
+---
+
 # Recommended Hardware Specifications
 
 ## System Requirements {#system-requirements}

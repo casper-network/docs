@@ -1,3 +1,7 @@
+---
+title: Join a Network
+---
+
 # Joining a Running Network
 
 Each Casper network is permissionless, enabling new validators to join the network and provide additional security to the system. This page outlines the sequence of recommended steps to spin up a validating node and join an existing network.
