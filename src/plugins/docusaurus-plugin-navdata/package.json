@@ -60,6 +60,7 @@
     },
     "dependencies": {
         "@docusaurus/types": "^2.0.0-alpha.65",
-        "@miracledevs/paradigm-web-fetch": "^1.0.3"
+        "@miracledevs/paradigm-web-fetch": "^1.0.3",
+        "@rollup/plugin-replace": "^5.0.2"
     }
 }
