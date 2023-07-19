@@ -2,6 +2,8 @@
 title: Accounts and Keys
 ---
 
+import Image from '@theme/IdealImage';
+
 # Accounts and Cryptographic Keys
 
 The Casper blockchain uses an on-chain [account-based model](./design/casper-design.md#accounts-head), uniquely identified by an `AccountHash` derived from a specific `PublicKey`. The `AccountHash` is a 32-byte hash derived from any of the supported `PublicKey` variants below to standardize keys that can vary in length.
@@ -284,7 +286,4 @@ casper-client get-account-info --help
 
 Using the [cspr.live](http://cspr.live) block explorer, open the Account in question, and expand the `Raw Data` section. Look for the `main_purse` field and find the corresponding URef. If you do not see data in the `Raw Data` section, then the account has not been funded yet.
 
-<p align="center">
-<img src={"/image/design/main_purse_uref.png"} alt="Image showing an account's main purse" width="500"/>
-</p>
-
+<Image img={require("/image/design/main_purse_uref.png")} />
