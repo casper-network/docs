@@ -1,3 +1,7 @@
+---
+title: Unbonding
+---
+
 # Unbonding as a Validator
 
 Once a bid is placed, it will remain in the state of the auction contract, even if the bid fails to win a slot immediately. New slots may become available if bonded validators leave the network or reduce their bond amounts. Therefore, a bid must be explicitly withdrawn to remove it from the auction.

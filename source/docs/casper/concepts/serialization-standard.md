@@ -2,7 +2,7 @@
 
 We provide a custom implementation to serialize data structures used by the Casper node to their byte representation. This document details how this custom serialization is implemented, allowing developers to build a library that implements the custom serialization.
 
-(In your own smart contracts you can implement serialization using cltype-any)
+In your smart contracts, you can implement serialization using `cltype-any`.
 
 ## Account {#serialization-standard-account}
 
