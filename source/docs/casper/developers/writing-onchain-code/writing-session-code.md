@@ -1,6 +1,6 @@
 # Writing Session Code
 
-This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](../../concepts/session-code.md). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
+This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](./contract-vs-session.md#what-is-session-code). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
 
 ## Creating the Directory Structure {#directory-structure}
 
