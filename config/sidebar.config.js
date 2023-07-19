@@ -8,7 +8,6 @@ module.exports = {
         "concepts/global-state",
         "concepts/smart-contracts",
         "concepts/callstack",
-        "concepts/session-code",
         "concepts/dictionaries",
         "concepts/serialization-standard",
         {
@@ -99,7 +98,7 @@ module.exports = {
                 "developers/writing-onchain-code/testing-contracts",
                 "developers/writing-onchain-code/upgrading-contracts",
                 "developers/writing-onchain-code/calling-contracts",
-                //"developers/writing-onchain-code/contracts-and-session-code", // NEW CONTENT WILL BE HERE
+                "developers/writing-onchain-code/contract-vs-session",
                 "developers/writing-onchain-code/writing-session-code",
                 "developers/writing-onchain-code/testing-session-code",
                 "developers/writing-onchain-code/best-practices",
@@ -134,6 +133,7 @@ module.exports = {
                 id: "developers/dapps/index",
             },
             items: [
+                "developers/dapps/dapp",
                 "developers/dapps/prerequisites",
                 {
                     type: "category",
@@ -362,18 +362,4 @@ module.exports = {
         "users/funding-from-exchanges",
         "users/testnet-faucet",
     ],
-    // BELOW ITEMS ARE COMMENTED OUT BECAUSE WE COULD NOT LOCATE PLACE FOR THEM IN THE NEW STRUCTURE:
-    /*"dapp-dev-guide": [
-        "dapp-dev-guide/json-rpc",
-        //"dapp-dev-guide/list-auth-keys"
-        {
-            type: "category",
-            label: "Building dApps",
-            collapsible: true,
-            collapsed: true,
-            items: [
-                "dapp-dev-guide/building-dapps/dapp",
-            ],
-        },
-    ],*/
 };
