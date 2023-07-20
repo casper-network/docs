@@ -140,5 +140,14 @@ function useEnhancedSidebarBreadcrumbs(): PropSidebarBreadcrumbsItem[] | null {
     };
     breadcrumbs.unshift(topLevelBreadcrumb);
 
+    // Remove last breadcrumb if we detect index-like page.
+    //
+    // NOTE: Detection is based on assumption that index page will be a first link in the sidebar.
+    const firstSidebarItem = sidebar.items[0];
+    const lastBreadcrumb = breadcrumbs.at(-1);
+    if (firstSidebarItem.type === "link" && lastBreadcrumb.type === "link" && firstSidebarItem.docId === lastBreadcrumb.docId) {
+        breadcrumbs.pop();
+    }
+
     return breadcrumbs;
 }
