@@ -1,3 +1,7 @@
+---
+title: The Chainspec
+---
+
 # The Chain Specification {#the-chain-specification}
 
 The Casper node software creates a genesis block from the following input files:

@@ -1,3 +1,7 @@
+---
+title: Open Files Limit
+---
+
 # Setting the Open Files Limit
 
 When the `casper-node` launches, it tries to set the maximum open files limit (`nofile`) for the process to `64000`. With some systems, this limit will be larger than the default hard limit of `4096`. 

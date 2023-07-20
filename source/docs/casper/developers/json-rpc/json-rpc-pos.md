@@ -1,4 +1,4 @@
-# Proof of Stake JSON-RPC Methods {#proof-of-stake}
+# Proof-of-Stake JSON-RPC Methods {#proof-of-stake}
 
 The following methods pertain to the Proof-of-Stake functionality of a Casper network. They return information related to auctions, bids and validators. This information is necessary for users involved with node operations and validation.
 

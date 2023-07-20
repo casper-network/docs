@@ -1,5 +1,6 @@
 ---
 title: Set up Ledger
+slug: /workflow/ledger-setup/
 ---
 
 # Ledger Setup with Casper
