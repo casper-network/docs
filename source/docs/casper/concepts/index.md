@@ -39,11 +39,7 @@ Learn about the storage layer for the Casper blockchain. All accounts, contracts
 
 ### [Smart Contracts](./smart-contracts.md)
 
-Learn how to develop [Smart Contracts](./smart-contracts.md) on Casper. 
-
-### [Smart Contracts and Session Code](./session-code.md)
-
-Read [this](./session-code.md) to understand the different kinds of code executed on the Casper platform, their differences, and why you would use one versus the other.
+Learn how to develop [Smart Contracts](./smart-contracts.md) on Casper.
 
 ### [Dictionaries](./dictionaries.md)
 

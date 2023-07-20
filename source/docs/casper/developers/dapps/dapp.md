@@ -1,3 +1,7 @@
+---
+title: Introduction
+---
+
 # What is a dApp?
 
 A decentralized application (dApp) is an application with some data on a blockchain or similar peer-to-peer network.

@@ -1,3 +1,7 @@
+---
+title: Archive and Restore a DB
+---
+
 # Archiving and Restoring a Database
 
 This documentation describes processes for the compression and decompression of a Casper node database and streaming from a backup location.

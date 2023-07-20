@@ -10,10 +10,10 @@ As the `DeployHash` contains a hash of the deploy's body within, any variation t
 
 ## Public Key Cryptography
 
-Casper networks are compatible with both `Ed25519` and `secp256k1` public key cryptography. When [serialized](../../concepts/serialization-standard.md), public keys and signatures are prefixed with a single byte, used as a tag to denote the applicable algorithm. Ed25519 public keys and signatures are prefixed with `1`, whereas secp256k1 are prefixed with `2`.
+Casper networks are compatible with both `Ed25519` and `Secp256k1` public key cryptography. When [serialized](../../concepts/serialization-standard.md), public keys and signatures are prefixed with a single byte, used as a tag to denote the applicable algorithm. Ed25519 public keys and signatures are prefixed with `1`, whereas Secp256k1 are prefixed with `2`.
 
 Casper uses `blake2b` hashing within our [serialization](../../concepts/serialization-standard.md). However, these hashed values will be hashed once again when they are signed over. The type of hashing depends on the associated keypair algorithm as follows:
 
 * Ed25519 signs over a SHA-512 digest.
 
-* secp256k1 signs over a SHA-256 digest.
+* Secp256k1 signs over a SHA-256 digest.

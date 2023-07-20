@@ -1,3 +1,7 @@
+---
+slug: /workflow/ledger-setup/
+---
+
 # Ledger Setup with Casper
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

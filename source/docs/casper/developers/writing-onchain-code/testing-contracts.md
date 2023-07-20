@@ -151,7 +151,7 @@ Next, we test an entry point that should not exist in the first version of the c
 
 #### Calling the Contract using Session Code
 
-In the counter example, we use the session code included in the [counter-call.wasm](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file. For more details on what session code is and how it differs from contract code, see the [next section](../../concepts/session-code.md).
+In the counter example, we use the session code included in the [counter-call.wasm](https://github.com/casper-ecosystem/counter/blob/master/counter-call/src/main.rs) file. For more details on what session code is and how it differs from contract code, see the [next section](./contract-vs-session.md#what-is-session-code).
 
 The following session code uses the contract hash to identify the contract, the account for sending the deploy (`DEFAULT_ACCOUNT_ADDR`), the deploy to be sent (`COUNTER_CALL_WASM`), and the runtime arguments required. Once again, the `ExecuteRequestBuilder` simulates the execution of session code and calls the `counter-inc` entry point.
 
@@ -241,5 +241,5 @@ You may also wish to test your contracts on the Casper [Testnet](https://testnet
 
 ## What's Next? {#whats-next}
 
-- Understand [session code](../../concepts/session-code.md) and how it triggers a smart contract.
+- Understand [session code](./contract-vs-session.md#what-is-session-code) and how it triggers a smart contract.
 - Learn to [install a contract and query global state](../cli/installing-contracts.md) with the Casper command-line client.
