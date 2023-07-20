@@ -12,7 +12,7 @@
 import React, { ReactNode } from "react";
 import clsx from "clsx";
 import { ThemeClassNames } from "@docusaurus/theme-common";
-import { useSidebarBreadcrumbs, useHomePageRoute, useDoc } from "@docusaurus/theme-common/internal";
+import { useSidebarBreadcrumbs, useHomePageRoute, useDoc, useDocsSidebar } from "@docusaurus/theme-common/internal";
 import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import HomeBreadcrumbItem from "@theme/DocBreadcrumbs/Items/Home";
@@ -74,35 +74,11 @@ function BreadcrumbsItem({
 }
 
 export default function DocBreadcrumbs(): JSX.Element | null {
-    let breadcrumbs = useSidebarBreadcrumbs();
+    const breadcrumbs = useEnhancedSidebarBreadcrumbs();
     const homePageRoute = useHomePageRoute();
-    const { metadata } = useDoc();
 
     if (!breadcrumbs) {
         return null;
-    }
-
-    // Workaround for https://github.com/facebook/docusaurus/issues/6953.
-    //
-    // NOTE: Sidebar is not connected directly with navbar items, so we
-    // make simple assumption that for sidebar named "foo_bar" we get:
-    // - label: "Foo_bar"
-    // - URL: "/foo_bar"
-    // We hope it points to the correct navbar item.
-    //
-    const sidebar = metadata.sidebar;
-    if (sidebar !== undefined) {
-        const label = sidebar.charAt(0).toUpperCase() + sidebar.slice(1);
-        const href = "/" + sidebar;
-        const topLevelBreadcrumb: PropSidebarBreadcrumbsItem = {
-            collapsed: true,
-            collapsible: true,
-            href,
-            items: [],
-            label,
-            type: "category",
-        };
-        breadcrumbs.unshift(topLevelBreadcrumb);
     }
 
     return (
@@ -129,4 +105,40 @@ export default function DocBreadcrumbs(): JSX.Element | null {
             </ul>
         </nav>
     );
+}
+
+// Workaround for https://github.com/facebook/docusaurus/issues/6953.
+//
+function useEnhancedSidebarBreadcrumbs(): PropSidebarBreadcrumbsItem[] | null {
+    let breadcrumbs = useSidebarBreadcrumbs();
+    const sidebar = useDocsSidebar();
+
+    if (breadcrumbs === null) {
+        return null;
+    }
+
+    if (sidebar === null || sidebar.items.length === 0) {
+        return breadcrumbs;
+    }
+
+    // Add breadcrumb with top-level section.
+    //
+    // NOTE: Sidebar is not connected directly with navbar items, so we make simple assumption that for sidebar named "foo_bar" we get:
+    // - Label: "Foo_bar"
+    // - URL: "/foo_bar"
+    // We hope it points to the correct navbar item.
+    const sidebarName = sidebar.name;
+    const label = sidebarName.charAt(0).toUpperCase() + sidebarName.slice(1);
+    const href = "/" + sidebarName;
+    const topLevelBreadcrumb: PropSidebarBreadcrumbsItem = {
+        collapsed: true,
+        collapsible: true,
+        href,
+        items: [],
+        label,
+        type: "category",
+    };
+    breadcrumbs.unshift(topLevelBreadcrumb);
+
+    return breadcrumbs;
 }
