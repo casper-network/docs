@@ -172,7 +172,6 @@ Node operators may also change the incoming request port for speculative executi
 <summary><b>Example Config.toml configuration with speculative execution enabled</b>b></summary>
     
 ```
-
 # ========================================================================
 # Configuration options for the speculative execution JSON-RPC HTTP server
 # ========================================================================
@@ -204,7 +203,6 @@ max_body_bytes = 2_621_440
 # If set to '*', any origin is allowed.
 # Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
 cors_origin = ''
-
 ```
 
 </details>
