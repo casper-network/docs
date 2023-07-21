@@ -1,3 +1,7 @@
+---
+title: Delegate with Ledger
+---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Delegating with Ledger Devices

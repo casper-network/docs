@@ -1,12 +1,16 @@
+---
+title: Undelegate Tokens
+---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Undelegating with a Block Explorer
+# Undelegating Tokens
 
 If you want to undelegate tokens from a validator, you can do so at any time. Note that undelegation costs approximately 0.5 CSPR. 
 
 ## Prerequisites 
 
-This guide assumes that you have previously delegated tokens to a validator using a [block explorer](./delegate-ui.md) or the [Casper client](../developers/cli/delegate.md).
+This guide assumes that you have previously delegated tokens to a validator using a [block explorer](./delegate-ui.md) or the [Casper client](../../developers/cli/delegate.md).
 
 ## Accessing the Undelegation Feature
 

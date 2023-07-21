@@ -1,4 +1,5 @@
 ---
+title: Set up Ledger
 slug: /workflow/ledger-setup/
 ---
 

@@ -1,3 +1,7 @@
+---
+title: Testnet Funding
+---
+
 # Funding Testnet Accounts
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -20,7 +24,7 @@ To request test tokens, follow these steps:
 
 Tokens can be requested **only once per account**. Otherwise, the [deploy will fail](https://testnet.cspr.live/deploy/f0f6b25db767d1a6c2244324661d853ad7d4766f8489d81c36b5e2c9d982891e) with status `User error: 1`.
 
-If you have already exhausted your test funds, you can always [create a new account](../developers/prerequisites.md#creating-an-account).
+If you have already exhausted your test funds, you can always [create a new account](../../developers/prerequisites.md#creating-an-account).
 
 :::
 
