@@ -1,3 +1,7 @@
+---
+title: Network Overview
+---
+
 # Overview of a Casper Network
 
 ## Introduction

@@ -1,4 +1,8 @@
-# Reading and Writing Data to the Blockchain
+---
+title: Reading and Writing Data
+---
+
+# Reading and Writing Data to Global State
 
 Casper features several means of reading and writing data to global state, depending on user needs and complexity. Reading data from global state can be done by dApps off-chain or by smart contracts on-chain. Writing data requires on-chain interactions due to the nature of the system. Storage in global state can be accomplished using [Dictionaries](../dictionaries.md) or [`NamedKeys`](../../developers/json-rpc/types_chain.md#namedkey).
 

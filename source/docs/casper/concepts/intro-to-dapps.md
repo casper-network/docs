@@ -2,7 +2,7 @@
 title: Introduction to dApps
 ---
 
-# Introduction to dApps (Distributed Applications) on the Casper network
+# Introduction to dApps
 
 ### What is a dApp?
 
