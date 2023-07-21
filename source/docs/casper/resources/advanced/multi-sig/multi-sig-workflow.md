@@ -2,7 +2,7 @@
 title: Multi-Sig Workflow
 ---
 
-# Multi-Signature Management Workflow
+# Multi-Signature Workflow
 
 The purpose of this tutorial is to provide an example of how to integrate key management on Casper accounts. This guide assumes previous completion of the [Two-Party Multi-Signature Deploys](https://docs.casper.network/resources/tutorials/advanced/two-party-multi-sig/) tutorial, among other prerequisites. You will also need the Casper CLI client to use the `make-deploy`, `sign-deploy`, and `send-deploy` Casper CLI client commands.
 
@@ -38,11 +38,10 @@ Do not run these examples on Mainnet. Update each command for your environment.
 
 ### Step 1: Clone the example Wasm for this workflow
 
-This GitHub repository contains session code that can be used for learning how to configure Casper accounts using associated keys and multi-signature deploys. Clone the repository and navigate to the corresponding folder.
-<!-- TODO update the GitHub repository.-->
+The [multi-sig GitHub repository](https://github.com/casper-ecosystem/tutorials-example-wasm/tree/dev/multi-sig) contains session code that can be used for learning how to configure Casper accounts using associated keys and multi-signature deploys. Clone the repository and navigate to the corresponding folder.
 
 ```bash
-git clone https://github.com/cryofracture/multi-sig && cd multi-sig
+git clone https://github.com/casper-ecosystem/tutorials-example-wasm/ && cd multi-sig
 ```
 
 ### Step 2: Build the sample Wasm provided

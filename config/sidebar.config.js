@@ -328,7 +328,7 @@ module.exports = {
                     collapsed: true,
                     items: [
                         "resources/advanced/multi-sig/index",
-                        "resources/advanced/multi-sig/multi-sig-management",
+                        "resources/advanced/multi-sig/multi-sig-workflow",
                         "resources/advanced/multi-sig/other-scenarios",
                     ],
                 },
