@@ -1,3 +1,8 @@
+---
+title: Runtime Return Values
+---
+
+
 # Interacting with Runtime Return Values
 
 Users interacting with a Casper network must keep in mind the differences between session and contract code. Session code executes entirely within the context of the initiating account, while contract code executes within the context of its own state. Any action undertaken by a contract must initiate through an outside call, usually via session code.
@@ -66,7 +71,7 @@ pub extern "C" fn call() {
 
 ```
 
-This session code calls into a contract's entry point by using `runtime::call_contract`, supplying the `contract_hash` to identify the contract to be called, and the name of the entry point to be invoked, in this case `donate`. It supplies the `donating_account_key`, which in this case is the account key of the caller. The contract will then provide a return value, in this case `donating_purse_uref`. To call an entry point, you will need to know the [CLType](../../../developers/json-rpc/types_cl.md) of the return value and identify it within the code.
+This session code calls into a contract's entry point by using `runtime::call_contract`, supplying the `contract_hash` to identify the contract to be called, and the name of the entry point to be invoked, in this case `donate`. It supplies the `donating_account_key`, which in this case is the account key of the caller. The contract will then provide a return value, in this case `donating_purse_uref`. To call an entry point, you will need to know the [CLType](../../developers/json-rpc/types_cl.md) of the return value and identify it within the code.
 
 You can determine the type of the return value by [querying the contract object](../beginner/querying-network.md#querying-an-account) in global state. To query a contract rather than an account, replace the key parameter with the formatted string representation of the contract hash.
 

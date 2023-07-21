@@ -1,11 +1,15 @@
-# Querying a Casper Network
+---
+title: Querying a Node
+---
+
+# Querying a Casper Node
 
 The Casper node supports queries for users and developers to obtain information stored on the blockchain.
 
 This document assumes:
 
-1.  You have met the [prerequisites](../../../developers/prerequisites.md)
-2.  You are familiar with the structure of the [Global State and the Blockchain Design](../../../concepts/design/index.md) to query data from the network
+1.  You have met the [prerequisites](../../developers/prerequisites.md)
+2.  You are familiar with the structure of the [Global State and the Blockchain Design](../../concepts/design/index.md) to query data from the network
 
 When sending a query, it is important to note that the request will be routed to a single node in the network. You can request several types of data from a node:
 
@@ -61,7 +65,7 @@ casper-client get-state-root-hash \
 
 ## Querying an Account {#querying-an-account}
 
-[Accounts](../../../concepts/design/casper-design.md#accounts-head) are stored in the global state and can be queried using the `query-global-state` command:
+[Accounts](../../concepts/design/casper-design.md#accounts-head) are stored in the global state and can be queried using the `query-global-state` command:
 
 ```bash
 casper-client query-global-state \

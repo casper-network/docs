@@ -259,92 +259,73 @@ module.exports = {
         },
     ],
     resources: [
-        "resources/index", // TODO show resources in breadcrumbs
-        {
-            type: "category",
-            label: "Why Build on Casper",
-            collapsible: true,
-            collapsed: true,
-            items: ["resources/build-on-casper/index", "resources/build-on-casper/casper-open-source-software"],
-        },
+        "resources/index",
+        "resources/build-on-casper",
+        "resources/casper-open-source-software",
         "resources/quick-start",
         //"resources/sample-projects", // NEW CONTENT WILL BE HERE
         {
             type: "category",
-            label: "Tutorials",
+            label: "Beginner Tutorials",
             collapsible: true,
             collapsed: true,
             link: {
                 type: "doc",
-                id: "resources/tutorials/index",
+                id: "resources/beginner/index",
             },
             items: [
+                "resources/beginner/getting-started-tutorial",
                 {
                     type: "category",
-                    label: "Beginner Tutorials",
+                    label: "A Counter with NCTL",
+                    collapsible: true,
+                    collapsed: true,
+                    className: "text_transform_reset",
+                    link: {
+                        type: "doc",
+                        id: "resources/beginner/counter/index",
+                    },
+                    items: ["resources/beginner/counter/overview", "resources/beginner/counter/commands", "resources/beginner/counter/walkthrough"],
+                },
+                {
+                    type: "category",
+                    label: "A Counter on the Testnet",
                     collapsible: true,
                     collapsed: true,
                     link: {
                         type: "doc",
-                        id: "resources/tutorials/beginner/index",
+                        id: "resources/beginner/counter-testnet/index",
                     },
                     items: [
-                        "resources/tutorials/beginner/getting-started-tutorial",
-                        "resources/tutorials/beginner/querying-network",
-                        "resources/tutorials/beginner/upgrade-contract",
-                        "resources/tutorials/beginner/aws-node",
-                        "resources/tutorials/beginner/cep18",
-                        {
-                            type: "category",
-                            label: "A Counter on the Testnet",
-                            collapsible: true,
-                            collapsed: true,
-                            link: {
-                                type: "doc",
-                                id: "resources/tutorials/beginner/counter-testnet/index",
-                            },
-                            items: [
-                                "resources/tutorials/beginner/counter-testnet/overview",
-                                "resources/tutorials/beginner/counter-testnet/commands",
-                                "resources/tutorials/beginner/counter-testnet/walkthrough",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "A Counter on an NCTL Network",
-                            collapsible: true,
-                            collapsed: true,
-                            className: "text_transform_reset",
-                            link: {
-                                type: "doc",
-                                id: "resources/tutorials/beginner/counter/index",
-                            },
-                            items: [
-                                "resources/tutorials/beginner/counter/overview",
-                                "resources/tutorials/beginner/counter/commands",
-                                "resources/tutorials/beginner/counter/walkthrough",
-                            ],
-                        },
+                        "resources/beginner/counter-testnet/overview",
+                        "resources/beginner/counter-testnet/commands",
+                        "resources/beginner/counter-testnet/walkthrough",
                     ],
                 },
-                {
-                    type: "category",
-                    label: "Advanced Tutorials",
-                    collapsible: true,
-                    collapsed: true,
-                    link: {
-                        type: "doc",
-                        id: "resources/tutorials/advanced/index",
-                    },
-                    items: [
-                        "resources/tutorials/advanced/cross-contract",
-                        "resources/tutorials/advanced/transfer-token-to-contract",
-                        "resources/tutorials/advanced/two-party-multi-sig",
-                        "resources/tutorials/advanced/return-values-tutorial",
-                        //"resources/tutorials/advanced/list-cspr",
-                        "resources/tutorials/advanced/storage-workflow",
-                    ],
-                },
+                "resources/beginner/querying-network",
+                "resources/beginner/upgrade-contract",
+                "resources/beginner/cep18",
+                "resources/beginner/aws-node",
+                // TODO link external tutorials if possible, to show them in sidebar navigation
+                //"resources/beginner/use-javascript-sdk" TODO remove or replace
+            ],
+        },
+        {
+            type: "category",
+            label: "Advanced Tutorials",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "resources/advanced/index",
+            },
+            items: [
+                "resources/advanced/two-party-multi-sig",
+                "resources/advanced/return-values-tutorial",
+                "resources/advanced/transfer-token-to-contract",
+                "resources/advanced/storage-workflow",
+                "resources/advanced/cross-contract",
+                //"resources/advanced/list-cspr",
             ],
         },
         //"resources/contribute-to-docs", // NEW CONTENT WILL BE HERE
