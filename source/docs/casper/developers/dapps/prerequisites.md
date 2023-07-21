@@ -2,17 +2,19 @@
 
 Before trying your hand at dApp development on a Casper network, there are a few things you should do first:
 
-1. Be sure you understand the language(s) you are developing in.
+1. Set up your [development environment](../prerequisites.md).
+
+2. Be sure you understand the language(s) you are developing in.
 
    Before beginning with one or more of the SDKs, ensure that you are familiar with the underlying language itself. There are many guides and tutorials available online to help you.
 
    The preferred stack for building on Casper is JavaScript using the [Casper JS SDK](https://github.com/casper-ecosystem/casper-js-sdk), however there are many more SDKs available for a variety of different programming languages. Read about and examine the other available SDKs in the [Introduction to SDKs](./sdk/index.md).
 
-2. Familiarize yourself with the fundamentals of Casper networks.
+3. Familiarize yourself with the fundamentals of Casper networks.
 
    Casper networks are Proof-of-Stake smart contract blockchains written in Rust. Their architecture, from how they validates transactions to how they reach consensus, should be well understood before developing dApps that interact with them. Read up on Casper network design principles in the [design section](../../concepts/design/index.md).
 
-3. Read the documentation or source code of your chosen SDK.
+4. Read the documentation or source code of your chosen SDK.
 
    Many of the Casper SDKs have documentation available to help you get a full grasp of their functions and methods. In some cases, documentation is written in the source files and rendered using a markup language. Check the repository of your preferred SDK(s) for links to documentation. There are also universal guides to teach you how to perform different functionalities using any of the available SDKs, see [Client Library Usage](./sdk/client-library-usage.md).
 

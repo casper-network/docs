@@ -4,24 +4,13 @@ import TabItem from '@theme/TabItem';
 
 # Development Prerequisites
 
-This section explains how to fulfill the prerequisites to interact with a Casper network.
-
-This section covers the following:
-
-1. Setting up a [Rust](#install-rust) development environment
-2. Installing the official Casper [command-line client](#install-casper-client)
-3. [Setting up an Account](#setting-up-an-account) on a Casper network
-4. [Acquiring the IP](#acquire-node-address-from-network-peers) address of a peer on the official Testnet or Mainnet
-
-To develop comfortably for the Casper network, you should use `Linux Ubuntu 20.04` or `macOS`. Developing on Windows is not advised.
+This page covers the necessary software for your Casper development environment. To develop comfortably, you should use `Linux Ubuntu 20.04` or `macOS`. Developing on Windows is not advised.
 
 :::caution
 
 Casper does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
 
 :::
-
-Follow the steps below to install the necessary software for your development environment.
 
 ## Preparing your Development Environment
 
@@ -87,6 +76,10 @@ brew install openssl
 
 ## Installing Rust {#install-rust}
 
+Install the [Rust programming language](https://www.rust-lang.org) if you don't already have it on your computer.
+
+The [official Rust guide](https://www.rust-lang.org/tools/install) recommends installing Rust by using `curl`:
+
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
@@ -103,10 +96,20 @@ Verify the installation:
 rustup --version
 ```
 
-## Installing `cargo-casper` {#install-cargo-casper}
+Note: You can also use `brew` on MacOS or `apt` on Linux to install Rust.
+
+## Installing the Casper Crates {#installing-the-casper-crates}
+
+The best and fastest way to set up a Casper Rust project is to use `cargo casper`. Using this will create a simple contract, a runtime environment, and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or _npm_ and _yarn_ for those familiar with Javascript). It is also possible to use this configuration in your CI/CD pipeline.
 
 ```bash
 cargo install cargo-casper
+```
+
+If you run into any issues with this command and you have not recently installed Rust from scratch, please make sure to update your Rust version with this command:
+
+```bash
+rustup update
 ```
 
 Verify the installation:
@@ -115,7 +118,7 @@ Verify the installation:
 cargo-casper --version
 ```
 
-## Installing the Casper client {#install-casper-client}
+## Installing the Casper Client {#install-casper-client}
 
 The default Casper client is on [crates.io](https://crates.io/crates/casper-client). This client can transmit your deploys to a Casper network.
 
@@ -145,7 +148,7 @@ casper-client <command> --help
 
 You can access the Casper client source code [here](https://github.com/casper-ecosystem/casper-client-rs). The `lib` directory contains the source for the client library, which may be called directly rather than through the CLI binary. The CLI app `casper-client` uses this library to implement its functionality.
 
-If you wish to compile it, you will need to first install the nightly Rust compiler with this command:
+If you wish to compile it, you will need to first install the nightly Rust toolchain with this command:
 
 ```bash
 rustup toolchain install nightly
@@ -159,9 +162,11 @@ cargo build --release
 
 You will find the `casper-client` executable in the `target/release` directory.
 
-## Installing `cmake` {#install-cmake}
+## Installing CMake {#install-cmake}
 
-If you plan to compile contracts from the source code, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `cmake` with the commands below.
+If you plan to compile contracts from the source code, including those provided in the [casper-node](https://github.com/casper-network/casper-node) repository, install `CMake` with the commands below.
+
+[CMake](https://cmake.org/) is a popular build tool that we will use, and you may have it installed. If you do, make sure that you have the latest version. If you need to install or upgrade it, follow the steps below or on the [CMake website](https://cmake.org/install/). Once installed, check your version as shown below.
 
 <Tabs>
 <TabItem value="Linux" label="Linux">
@@ -179,15 +184,38 @@ brew install cmake
 </TabItem>
 </Tabs>
 
-Verify the installation with
+Check your version:
 
 ```bash
 cmake --version
 ```
 
+Sample output:
+
+```bash
+cmake version 3.20.0 (or above)
+
+CMake suite maintained and supported by Kitware (kitware.com/cmake).
+```
+
 ## Installing an IDE
 
-We advise using an integrated development environment such as Visual Studio Code (VSC) for development. Follow these [instructions](./writing-onchain-code/getting-started.md#setting-ide) to set up VSC and install plugins that would be helpful during development.
+We advise using an integrated development environment such as Visual Studio Code (VSC) for development. There are many IDEs available for Rust development. The most popular IDEs for Rust are the following:
+
+- [Visual Studio Code](https://code.visualstudio.com)
+- [CLion](https://www.jetbrains.com/clion/)
+- [IntelliJ Idea](https://www.jetbrains.com/idea/)
+- [Vim](https://www.vim.org/)
+
+You can use any IDE you wish. Most of our documentation and examples use Visual Studio Code (VSC), a popular IDE with many extensions that might be helpful during development.
+
+If you are using VSC, you might find the following extensions useful:
+
+- `CodeLLDB` – An important extension for debugging Rust code
+- `rust-analyzer` – The official Rust language extension
+- `Better TOML` – Support for formatting TOML files
+- `crates` – An extension to help manage crates
+- `Error Lens` – Enhances the programming experience by highlighting syntax errors
 
 ## Setting up a Casper Account {#setting-up-an-account}
 
@@ -226,7 +254,7 @@ casper-client account-address --public-key <path-to-public_key.pem/public-key-he
 
 After generating the cryptographic key-pair for an Account, you must fund the account's main purse to create it on-chain.
 
-On Testnet, you can fund an account by requesting test tokens according to [this guide](../users/testnet-faucet.md). You can request test tokens **only once** for each account.
+On Testnet, you can fund an account by requesting test tokens according to [this guide](../users/csprlive/testnet-faucet.md). You can request test tokens **only once** for each account.
 
 On Mainnet, a pre-existing account must transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 

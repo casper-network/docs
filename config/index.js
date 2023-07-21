@@ -5,6 +5,7 @@ const colorConfig = require("./color.config");
 const dataConfig = require("./data.config");
 const footerConfig = require("./footer.config");
 const gtagConfig = require("./gtag.config");
+const gtmConfig = require("./gtm.config");
 const i18nConfig = require("./i18n.config");
 const metadatasConfig = require("./metadatas.config");
 const navbarConfig = require("./navbar.config");
@@ -22,6 +23,7 @@ module.exports = {
     dataConfig,
     footerConfig,
     gtagConfig,
+    gtmConfig,
     i18nConfig,
     metadatasConfig,
     navbarConfig,
