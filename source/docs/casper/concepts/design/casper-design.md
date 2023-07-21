@@ -1,8 +1,8 @@
 ---
-title: Network Overview
+title: Network Design
 ---
 
-# Overview of a Casper Network
+# Casper Network Design
 
 ## Introduction
 

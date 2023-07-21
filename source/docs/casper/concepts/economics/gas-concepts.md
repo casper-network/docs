@@ -1,4 +1,8 @@
-# Gas and the Casper Blockchain
+---
+title: Gas Cost
+---
+
+# Gas and Resources
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 

@@ -1,6 +1,10 @@
+---
+title: Consensus
+---
+
 # Consensus Economics
 
-Highway consensus is a continuous, trust-less process where a fixed set of validators engage in scheduled communication to advance the linear chain of finalized blocks, representing the history of changes to the global state of the blockchain. The fixed set of validators may change at each era boundary. The economics of this layer revolve around validator selection and incentivization of participation according to the schedule.
+[Highway consensus](../design/highway.md) is a continuous, trust-less process where a fixed set of validators engage in scheduled communication to advance the linear chain of finalized blocks, representing the history of changes to the global state of the blockchain. The fixed set of validators may change at each era boundary. The economics of this layer revolve around validator selection and incentivization of participation according to the schedule.
 
 ## Entry {#entry}
 
