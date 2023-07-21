@@ -21,9 +21,9 @@ Test any changes to an account in a test environment like Testnet before perform
 
 The following prerequisites are required for this workflow:
 
-1. Set up all the [development environment prerequisites](../../../../developers/prerequisites.md), including a [funded account](../../../../developers/prerequisites.md#setting-up-an-account) and the [Casper CLI client](../../../../developers/prerequisites.md#the-casper-command-line-client)
-2. Complete the [Two-Party Multi-Signature Deploys](../../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow and set up the source account for multi-signature deploys
-3. Understand the Casper [account-based model](../../../../concepts/design/casper-design.md#accounts-head) before proceeding
+1. Set up all the [development environment prerequisites](../../../developers/prerequisites.md), including a [funded account](../../../developers/prerequisites.md#setting-up-an-account) and the [Casper CLI client](../../../developers/prerequisites.md#the-casper-command-line-client)
+2. Complete the [Two-Party Multi-Signature Deploys](../../../resources/advanced/two-party-multi-sig.md) workflow and set up the source account for multi-signature deploys
+3. Understand the Casper [account-based model](../../../concepts/design/casper-design.md#accounts-head) before proceeding
 
 
 ## Session Code Required for Key Management
