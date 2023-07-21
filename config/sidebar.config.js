@@ -323,7 +323,7 @@ module.exports = {
                 "resources/advanced/two-party-multi-sig",
                 {
                     type: "category",
-                    label: "Multi-Sig Permissions Management",
+                    label: "Multi-Sig Management",
                     collapsible: true,
                     collapsed: true,
                     items: [
