@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 
 This page covers various considerations for moving to Casper from another blockchain by comparing Casper to Ethereum, Near, Aptos, and Solana in these aspects:
 
-1. [Contract Lifecycle](#contract-lifecycle)
+1. [Smart Contract Platform Overview](#contract-overview)
 2. [Variable Storage](#variable-storage)
-3. [Public Methods](#public-methods)
+3. [Contract Functions](#contract-functions)
 4. [Passing Arguments](#passing-arguments)
 5. [State Management](#state-management)
 
@@ -20,7 +20,7 @@ Since other blockchain projects use different technologies, it is essential to c
 
 When choosing a blockchain, it is also essential to compare consensus mechanisms, tokenomics, cross-contract capabilities, contract upgradability, and software development kits (SDKs) as described [here](#additional-considerations).
 
-## Contract Lifecycle {#contract-lifecycle}
+## Contract Lifecycle {#contract-overview}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
@@ -47,7 +47,7 @@ Solidity smart contracts adhere to object-oriented programming principles and su
 </TabItem>
 <TabItem value="Near" label="Near">
 
-Near smart contracts can be written in JavaScript or Rust, and the Near SDK compiles the code to WebAssembly. 
+Near smart contracts can be written in JavaScript or Rust, and the Near SDK can pack the code with lightweight runtime. This can be compiled into a single WebAssembly file and deployed on the NEAR network. 
 
 In the Near ecosystem, smart contracts function as classes. The constructor, referred to as the "init" method, can receive attributes required for initializing the contract's initial state.
 
@@ -113,12 +113,12 @@ In terms of storage, the actual data is stored in the Account. It is organized a
 </Tabs>
 
 
-## Public Methods {#public-methods}
+## Contract Functions {#contract-functions}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
 
-For Casper smart contracts, public methods are called entry points. To declare them, the following format is used:
+For Casper smart contracts, public functions are called entry points. To declare them, the following format is used:
 
 ```rust
 #[no_mangle]
@@ -244,13 +244,17 @@ casper-client put-deploy \
   --session-arg "delegator:public_key='0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf'"
 ```
 
+To understand the context of this example please refer to: [Delegating with the Casper Client](../developers/cli/delegate.md).
+
 In the contract, you can access the session arguments as follows:
 
 ```bash
 let uref: URef = runtime::get_key(Key_Name)
 ```
 
-Use the `get_key` function to retrieve the desired session argument by specifying the key's name. 
+Use the `get_key` function to retrieve the desired session argument by specifying the key's name.
+
+If you are uncertain, how to use the `get_key` function to obtain a specific session argument, check how to [write a basic smart contract on Casper](../developers/writing-onchain-code/simple-contract.md).
 
 </TabItem>
 <TabItem value="Ethereum" label="Ethereum">
