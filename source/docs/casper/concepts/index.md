@@ -7,8 +7,8 @@ This section is intended for the developer or user who has had little or no expo
 
 Once you understand the basic concepts underpinning Casper, here are some further learning paths you may wish to pursue:
 
-- If you are just getting started and looking for help building your first Casper-based app, we recommend the [beginner tutorials](../resources/tutorials/beginner/index.md) section.
-- If you have already started your Casper education and want to continue with more advanced tutorials, try our [advanced tutorials](../resources/tutorials/advanced/index.md) section.
+- If you are just getting started and looking for help building your first Casper-based app, we recommend the [beginner tutorials](../resources/beginner/index.md) section.
+- If you have already started your Casper education and want to continue with more advanced tutorials, try our [advanced tutorials](../resources/advanced/index.md) section.
 - If you already have experience with or know of the Casper platform and are looking for specific information about a development topic, head over to the [development](../developers/index.md) area.
 
 ## Casper Concepts

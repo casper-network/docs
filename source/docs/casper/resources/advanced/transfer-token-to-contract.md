@@ -1,3 +1,7 @@
+---
+title: Token Transfers
+---
+
 # Safely Transfer Tokens to a Contract
 
 This tutorial covers two methods to handle tokens via a contract. This is not a native process to a Casper network and will require the use of custom code. The following two scenarios provide a framework for developers and the pros and cons of each example. Developers should choose the option that best suits their individual needs.

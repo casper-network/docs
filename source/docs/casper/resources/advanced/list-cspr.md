@@ -1,6 +1,11 @@
-# Listing CSPR on Your Exchange
+---
+title: Listing CSPR
+---
 
-This topic describes how to list Casper token (CSPR) on a cryptocurrency exchange. 
+
+# Listing CSPR on an Exchange
+
+This topic describes how to list the Casper token (CSPR) on a cryptocurrency [exchange](https://tokenmarketcaps.com/coins/casper/market). 
 
 :::caution
 
@@ -8,17 +13,15 @@ The Casper Signer has been deprecated and replaced with the [Casper Wallet](http
 
 :::
 
-CSPR is listed on [many exchanges](https://tokenmarketcaps.com/coins/casper/market) worldwide. It usually takes 1 to 3 days to list CSPR on an exchange.
-
 ## Setting up a Node
 
-While it is not necessary for an exchange to operate their own node on the Casper Mainnet, we recommend that they do so if they expect to handle moderate to high volumes of transaction activity. A node operated by an exchange does not have to be a validating node, it can be read-only. For setup instructions, see [Basic Node Setup](../../../operators/setup/basic-node-configuration.md).
+While it is not necessary for an exchange to operate their own node on the Casper Mainnet, we recommend that they do so if they expect to handle moderate to high volumes of transaction activity. A node operated by an exchange does not have to be a validating node, it can be read-only. For setup instructions, see [Basic Node Setup](../../operators/setup/basic-node-configuration.md).
 
 This setup enables you to have a self-administered gateway to the Casper Mainnet to get data and submit transactions.
 
 ## Casper Account
 
-You will need a Casper Account to handle the transactions on an exchange. Casper has an [Account model](../../../concepts/design/casper-design.md#accounts-head) and instructions on how to [create an Account](../../../concepts/design/casper-design.md#accounts-creating). 
+You will need a Casper Account to handle the transactions on an exchange. Casper has an [Account model](../../concepts/design/casper-design.md#accounts-head) and instructions on how to [create an Account](../../concepts/design/casper-design.md#accounts-creating). 
 
 For your exchange, you need at least one Account. Each Casper network uses an Account model that holds onto general resources and purses with tokens and provides an on-chain identity. As an exchange, if you are dealing with high volumes of transaction activity, you might need a main account for the exchange platform and sub-accounts for other users.
 
@@ -116,7 +119,7 @@ You can accomplish a native transfer by sending a native transfer deploy, withou
 </details>
 
 
-Native transfers are the simplest method to transfer tokens between two purses. For details about the native transfer command, see [Direct Token Transfer](../../../developers/cli/transfers/direct-token-transfer.md). The following command transfers 10 CSPR from *account A's main purse* to *account B's main purse*.
+Native transfers are the simplest method to transfer tokens between two purses. For details about the native transfer command, see [Direct Token Transfer](../../developers/cli/transfers/direct-token-transfer.md). The following command transfers 10 CSPR from *account A's main purse* to *account B's main purse*.
 
 ```bash
 casper-client transfer \
@@ -130,7 +133,7 @@ casper-client transfer \
 --payment-amount <payment-in-motes>
 ```
 
-The payment amount varies based on the deploy and network [chainspec](../../../concepts/glossary/C.md#chainspec). For node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), wasmless transfers cost 10^8 motes.
+The payment amount varies based on the deploy and network [chainspec](../../concepts/glossary/C.md#chainspec). For node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), wasmless transfers cost 10^8 motes.
 
 ### Bulk or batched Wasm transfer
 
@@ -142,13 +145,13 @@ Bulk or batched Wasm transfers allow you to apply some logic before or after the
 -   `transfer_from_purse_to_public_key`: Transfers amount of motes from source to the main purse of target. If the account referenced by the target does not exist, the transfer will create it.
 -   `transfer_from_purse_to_account`: Transfers amount of motes from source purse to target account's purse. If the target account does not exist, the transfer creates a new account.
 
-For more information on how to write session code, see [Writing Session Code](../../../developers/writing-onchain-code/writing-session-code.md). There are equivalent [assembly script](https://github.com/casper-network/casper-node/blob/e01b528db64f96fc1d3eac8b3b8e58e1337b398d/smart_contracts/contract_as/assembly/purse.ts#L135-L305) methods available. Alternatively, you can program directly against the [ext-FFI](https://github.com/casper-network/casper-node/blob/e01b528db64f96fc1d3eac8b3b8e58e1337b398d/smart_contracts/contract/src/ext_ffi.rs#L283-L370) methods. 
+For more information on how to write session code, see [Writing Session Code](../../developers/writing-onchain-code/writing-session-code.md). There are equivalent [assembly script](https://github.com/casper-network/casper-node/blob/e01b528db64f96fc1d3eac8b3b8e58e1337b398d/smart_contracts/contract_as/assembly/purse.ts#L135-L305) methods available. Alternatively, you can program directly against the [ext-FFI](https://github.com/casper-network/casper-node/blob/e01b528db64f96fc1d3eac8b3b8e58e1337b398d/smart_contracts/contract/src/ext_ffi.rs#L283-L370) methods. 
 
 ## Integrating CSPR
 
-You can integrate with the [JSON-RPC API](../../../developers/json-rpc/index.md) of a node on the Casper Mainnet. 
-You can program directly against the RPC or if you prefer you can choose from the variety of SDK libraries that are available to use on a Casper network see [SDK Libraries](../../../developers/dapps/sdk/index.md). 
-Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node. Use of the stream is optional. You might want to use this feature as it notifies you of events instead of requiring you to ask periodically. For more information about various events, see [Monitoring and Consuming Events](../../../developers/dapps/monitor-and-consume-events.md).
+You can integrate with the [JSON-RPC API](../../developers/json-rpc/index.md) of a node on the Casper Mainnet. 
+You can program directly against the RPC or if you prefer you can choose from the variety of SDK libraries that are available to use on a Casper network see [SDK Libraries](../../developers/dapps/sdk/index.md). 
+Casper also provides a stream server that gives you real-time information about a variety of events occurring on a node. Use of the stream is optional. You might want to use this feature as it notifies you of events instead of requiring you to ask periodically. For more information about various events, see [Monitoring and Consuming Events](../../developers/dapps/monitor-and-consume-events.md).
 
 ## Testing the Integration
 
@@ -159,8 +162,8 @@ If you are not going to do a Testnet integration, then we suggest you create som
 ## The Casper Protocol
 
 -   Casper is integrated with BitGo for enterprise grade custody. If your exchange uses BitGo, support for Casper is available already.
--   Casper has an execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../../../concepts/design/casper-design.md#execution-semantics-head).
--   Exchanges can check finality signatures. Validators send finality signatures after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../../../developers/dapps/monitor-and-consume-events.md).
+-   Casper has an execution after consensus model, which means that transactions are executed after they are finalized. Transactions are not orphaned or uncle’d on Casper and neither does chain reorganization happen on it. For more information on the execution process, see [Execution Semantics](../../concepts/design/casper-design.md#execution-semantics-head).
+-   Exchanges can check finality signatures. Validators send finality signatures after the finalized block is executed and global state is updated. The Casper node streams execution effects and finality signatures through an SSE architecture. For more information about various events, see [Monitoring and Consuming Events](../../developers/dapps/monitor-and-consume-events.md).
 
 
 ## Staking Integration for Exchanges
@@ -171,9 +174,9 @@ Exchanges seeking to integrate CSPR staking mechanisms will need to understand t
 
 Staking operations consists of two parts:
 
-1) [Creating a deploy object](../../../developers/dapps/sending-deploys.md)
+1) [Creating a deploy object](../../developers/dapps/sending-deploys.md)
     
-2) [Signing the deploy](../../../developers/dapps/signing-a-deploy.md)
+2) [Signing the deploy](../../developers/dapps/signing-a-deploy.md)
 
 The staking deploy requires the following information:
 - The delegator's public key
@@ -352,7 +355,7 @@ casperService.deploy(signedDeploy)
 
 ### Costs and Minimums
 
-The following are costs and minimum amounts for version 1.5.1, but up-to-date values should be pulled from the network [chainspec](../../../concepts/glossary/C.md#chainspec).
+The following are costs and minimum amounts for version 1.5.1, but up-to-date values should be pulled from the network [chainspec](../../concepts/glossary/C.md#chainspec).
 
 Transfer Cost: 100,000,000 motes or 0.1 **CSPR**
 

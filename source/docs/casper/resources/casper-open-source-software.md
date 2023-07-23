@@ -1,3 +1,8 @@
+---
+title: Open-Source Software
+slug: build-on-casper/casper-open-source-software
+---
+
 # Ecosystem Open-Source Software
 
 This page lists open-source software available within the Casper ecosystem. Developers and the community may use the listed software as a basis for new projects and solutions.

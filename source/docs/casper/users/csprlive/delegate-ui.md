@@ -1,3 +1,7 @@
+---
+title: Delegate Tokens
+---
+
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Delegating Tokens with a Block Explorer
@@ -11,7 +15,7 @@ Casper and other Proof-of-Stake protocols allow token holders to earn rewards an
 ## Prerequisites
 
 1. To stake tokens with a validator, you must create an account with CSPR tokens in its main purse. One option is to use the [Casper Wallet](https://www.casperwallet.io/) by following the [Getting Started](https://www.casperwallet.io/user-guide/getting-started) user guide. 
-2. You need to [fund the account's main purse](./funding-from-exchanges.md) to delegate tokens.
+2. You need to [fund the account's main purse](../funding-from-exchanges.md) to delegate tokens.
 3. Connect to a block explorer to set up the delegation. This guide uses [cspr.live](https://cspr.live/) and the Casper Wallet.
 4. [Review your account](#account-review) before starting the process.
 5. Review the current [delegation fees](/staking#delegation-fees) and ensure you have extra CSPR in your account's main purse apart from the amount you are delegating. Otherwise, the delegation might fail.
