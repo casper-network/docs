@@ -321,6 +321,17 @@ module.exports = {
             },
             items: [
                 "resources/advanced/two-party-multi-sig",
+                {
+                    type: "category",
+                    label: "Multi-Sig Management",
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        "resources/advanced/multi-sig/index",
+                        "resources/advanced/multi-sig/multi-sig-workflow",
+                        "resources/advanced/multi-sig/other-scenarios",
+                    ],
+                },
                 "resources/advanced/return-values-tutorial",
                 "resources/advanced/transfer-token-to-contract",
                 "resources/advanced/storage-workflow",
