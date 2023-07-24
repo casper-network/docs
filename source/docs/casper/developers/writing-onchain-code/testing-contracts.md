@@ -195,7 +195,7 @@ For more test examples, visit the [casper-node](https://github.com/casper-networ
 
 If the code to be tested involves multiple contracts, they must be installed within the test. The exceptions are system contracts installed as part of the `DEFAULT_RUN_GENESIS_REQUEST`. The testing framework exists independently of any Casper network, so you will need access to the original contract installation code or the Wasm you wish to include.
 
-Each contract installation will require an additional Wasm file installed through a `Deploy` using `ExecuteRequestBuilder`. Depending on your requirements as a smart contract author, you may need to use [return values](../../resources/tutorials/advanced/return-values-tutorial.md) to interact with stacks of contracts. Interaction between contracts will require session code to initiate the process, as contracts will not execute actions autonomously.
+Each contract installation will require an additional Wasm file installed through a `Deploy` using `ExecuteRequestBuilder`. Depending on your requirements as a smart contract author, you may need to use [return values](../../resources/advanced/return-values-tutorial.md) to interact with stacks of contracts. Interaction between contracts will require session code to initiate the process, as contracts will not execute actions autonomously.
 
 The major difference between calling a contract from session code versus contract code is the ability to use non-standard dependencies for the `ExecuteRequestBuilder`. Where session code must designate a Wasm file within the standard dependencies, contract code can use one of the four available options for calling other contracts, namely:
 

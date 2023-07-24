@@ -1,3 +1,7 @@
+---
+title: Installation
+---
+
 # Installing a Node
 
 Ensure the requirements listed in the following sections are met before you start setting up the node on the network, either on Mainnet or Testnet.
