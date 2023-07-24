@@ -227,11 +227,11 @@ sudo -u casper casper-client keygen --help
 
 More about keys and key generation can also be found in `/etc/casper/validator_keys/README.md` if the `casper-node-launcher` was installed from the Debian package.
 
-To submit a bonding request, you will need to [fund your account](../../developers/prerequisites.md#fund-your-account) as well.
-
 :::note
 
 Save your keys in a secure location, preferably offline.
 
 :::
+
+To submit a bonding request, you will need to [fund your account](../../developers/prerequisites.md#fund-your-account) as well.
 
