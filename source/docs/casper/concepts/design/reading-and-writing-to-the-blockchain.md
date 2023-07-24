@@ -10,7 +10,7 @@ Due to the nature of Casper's serialization standard, `NamedKeys` should be used
 
 ## Using the Casper JSON-RPC
 
-The [`query_global_state`](../../developers/json-rpc/json-rpc-informational.md#query-global-state) method available through the JSON-RPC allows users to read data from global state without performing on-chain actions. For more details, see the [Querying a Casper Network](../../resources/tutorials/beginner/querying-network.md) tutorial.
+The [`query_global_state`](../../developers/json-rpc/json-rpc-informational.md#query-global-state) method available through the JSON-RPC allows users to read data from global state without performing on-chain actions. For more details, see the [Querying a Casper Network](../../resources/beginner/querying-network.md) tutorial.
 
 ## Using the Casper Rust API
 
@@ -24,4 +24,4 @@ The Casper API includes the following functions for reading and writing to globa
 * [dictionary_put](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.dictionary_put.html) - Writes the given value under the given `dictionary_item_key`
 * [dictionary_get](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.dictionary_get.html) - Retrieves the value stored under a `dictionary_item_key`
 
-For more details, see the [Reading and Writing to Global State using Rust](../../resources/tutorials/advanced/storage-workflow.md) tutorial.
+For more details, see the [Reading and Writing to Global State using Rust](../../resources/advanced/storage-workflow.md) tutorial.

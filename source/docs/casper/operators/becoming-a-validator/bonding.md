@@ -1,3 +1,7 @@
+---
+title: Bonding
+---
+
 # Bonding as a Validator
 
 It is recommended that a bonding request be sent once the node has completed the synchronization process. In a Casper network, bonding takes place through the auction contract via the `add_bid.wasm` contract. The auction runs for a future era, every era. The `chainspec.toml` specifies the number of slots available, and the auction will take the top N slots and create the validator set for the future era. 
@@ -67,35 +71,7 @@ Next, [check the status of the auction](#check-the-status-of-the-bid-in-the-auct
 
 ## Method 2: Bonding with Compiled Wasm {#bonding-compiled-wasm}
 
-Another way to send a bonding transaction is to compile the `add_bid.wasm` and send it to the network via a deploy. Here are the steps to compile the contract yourself:
-
-1. Clone the [`casper-node` repository](https://github.com/casper-network/casper-node)
-2. Install these prerequisites, which are also listed [here](https://github.com/casper-network/casper-node#pre-requisites-for-building).
-
-- [Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust)
-- [CMake](https://cgold.readthedocs.io/en/latest/first-step/installation.html)
-- `pkg-config` - On Ubuntu, use `sudo apt-get install pkg-config`
-- `openssl` - On Ubuntu, use `sudo apt-get install openssl`
-- `libssl-dev` - On Ubuntu, use `sudo apt-get install libssl-dev`
-
-3. Install the [Rust casper-client](../../developers/prerequisites.md#the-casper-command-line-client) and fund the [keys](../setup/basic-node-configuration.md#create-fund-keys) you will use for bonding 
-4. [Build the contracts](#build-contracts)
-5. [Send the bonding request](#example-bonding-transaction)
-6. [Check the status of the auction](#check-the-status-of-the-bid-in-the-auction) to see if you have won a validator slot
-
-### Building the contracts {#build-contracts}
-
-Using this method, you must build the contract that submits the bid. Build the following client contracts in release mode:
-
-```bash
-cd casper-node
-make setup-rs
-make build-client-contracts
-```
-
-These commands build all the necessary contracts, including `add_bid.wasm` for placing a bid. 
-
-### Submitting the bonding request {#example-bonding-request}
+Another way to send a bonding transaction to the network is via a deploy containing the compiled `add_bid.wasm`. For details, refer to [Building the Required Contracts](../setup/joining.md#step-3-build-contracts).
 
 The following deploy is a template for sending a bonding request:
 
@@ -146,6 +122,8 @@ sudo -u casper casper-client put-deploy \
 --session-arg "amount:U512='$[10000 * 1000000000]'" \
 --session-arg="delegation_rate:u8='10'"
 ```
+
+Next, check the bid status to see if you have won a validator slot.
 
 ## Checking the Bid Status {#check-the-status-of-the-bid-in-the-auction}
 

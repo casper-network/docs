@@ -1,3 +1,7 @@
+---
+title: Staging Files
+---
+
 # Staging Files for a New Network
 
 :::important

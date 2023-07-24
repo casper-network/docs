@@ -1,7 +1,7 @@
 name: Docusaurus CICD
 
 env:
-  prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
+  prod_pages_fqdn: ${{ vars.PROD_PAGES_FQDN }}
 
 on:
   push:
@@ -47,19 +47,20 @@ jobs:
           output_file: .env.production
         env:
           ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
-          ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
-          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          ALGOLIA_INDEX_NAME: ${{ vars.ALGOLIA_INDEX_NAME }}
+          ALGOLIA_API_KEY: ${{ vars.ALGOLIA_API_KEY }}
           CROWDIN_PERSONAL_ACCESS_TOKEN: ""
           GOOGLE_TAG_ANONYMIZE_IP: ${{ vars.GOOGLE_TAG_ANONYMIZE_IP }}
           GOOGLE_TAG_TRACKING_ID: ${{ vars.GOOGLE_TAG_TRACKING_ID }}
+          GOOGLE_TAG_MANAGER_ID: ${{ vars.GOOGLE_TAG_MANAGER_ID }}
           DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
           DIRECTUS_GRAPHQL_URL: ${{ secrets.DIRECTUS_GRAPHQL_URL }}
           DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_TOKEN }}
-          SITE_URL: ${{ secrets.SITE_URL }}
-          ALGOLIA_SITE_APP_ID: ${{ secrets.ALGOLIA_SITE_APP_ID }}
-          ALGOLIA_SITE_API_KEY: ${{ secrets.ALGOLIA_SITE_API_KEY }}
-          ALGOLIA_SITE_INDEX_NAME: ${{ secrets.ALGOLIA_SITE_INDEX_NAME }}
-          BASE_URL: ${{ secrets.BASE_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          ALGOLIA_SITE_APP_ID: ${{ vars.ALGOLIA_SITE_APP_ID }}
+          ALGOLIA_SITE_API_KEY: ${{ vars.ALGOLIA_SITE_API_KEY }}
+          ALGOLIA_SITE_INDEX_NAME: ${{ vars.ALGOLIA_SITE_INDEX_NAME }}
+          BASE_URL: ${{ vars.BASE_URL }}
 
       - name: Yarn install
         run: |

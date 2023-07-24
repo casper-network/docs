@@ -11,9 +11,9 @@ To install smart contracts on the blockchain, you can send your Wasm to the netw
 CSPR tokens are used to pay for deploys on the Casper Mainnet and Testnet. There are several ways to fund your account:
 
 - You may want to [transfer tokens from an exchange](../../users/funding-from-exchanges.md)
-- You can use a [block explorer to transfer tokens](../../users/token-transfer.md) between accounts' purses
+- You can use a [block explorer to transfer tokens](../../users/csprlive/token-transfer.md) between accounts' purses
 - You can also [transfer tokens using the default Casper client](../cli/transfers/index.md)
-- On the Testnet, you can use the [faucet functionality](../../users/testnet-faucet.md) for testing your smart contracts
+- On the Testnet, you can use the [faucet functionality](../../users/csprlive/testnet-faucet.md) for testing your smart contracts
 - If running a network locally using [NCTL](./nctl-test.md), the tool provides several funded accounts
 
 ## Monitoring the Event Stream for Deploys

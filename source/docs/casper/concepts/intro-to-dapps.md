@@ -35,5 +35,5 @@ There is an inherent timing consideration when sending a Deploy, from the point 
 
 - [Deploys and the Deploy lifecycle](../concepts/deploy-and-deploy-lifecycle.md)
 - [Global State](../concepts/global-state.md)
-- [Session Code](../concepts/session-code.md)
 - [Smart Contracts](../concepts/smart-contracts.md)
+- [Session Code](../developers/writing-onchain-code/contract-vs-session.md#what-is-session-code)

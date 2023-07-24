@@ -60,8 +60,8 @@ Navigate to these pages for step-by-step tutorials on creating an account and de
 
 - [Creating an account with the Casper Wallet](https://www.casperwallet.io/)
 - [Funding an account from an exchange](../../users/funding-from-exchanges.md)
-- [Delegating tokens using a block explorer](../../users/delegate-ui.md)
-- [Delegating with Ledger devices](../../users/staking-ledger.md)
+- [Delegating tokens using a block explorer](../../users/csprlive/delegate-ui.md)
+- [Delegating with Ledger devices](../../users/ledger/staking-ledger.md)
 - [Delegating with the Casper client](../../developers/cli/delegate.md)
-- [Undelegating tokens using a block explorer](../../users/undelegate-ui.md)
+- [Undelegating tokens using a block explorer](../../users/csprlive/undelegate-ui.md)
 
