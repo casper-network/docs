@@ -2,7 +2,9 @@
 
 ## Overview
 
-Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://docs.casperlabs.io/.
+Welcome to the documentation website for the [Casper Network](https://casper.network/). The documentation lives at this address: https://docs.casper.network/.
+
+Information on writing style guidelines for documentation can be found in [CONTRIBUTE.md](./CONTRIBUTE.md).
 
 ## Setup
 
@@ -183,6 +185,21 @@ To change an existing theme, modify the `config/color.config.js` file.
 -   Open the `config/i18n.config.js` file to change the default language or add more languages. You can customize the `scripts/setup-i18n-json.sh` and `setup-i18n-md.sh` modules to add more localization scripts.
 -   Next, replace the `crowdin.yml` file, or insert the Crowdin API key (CROWDIN_PERSONAL_ACCESS_TOKEN) into the `.env` file. Then run `yarn run:crowdin` to update the translated files using Crowdin.
 
+
+Configure the next variables in ```config/site.navbar.config.js``` to match the languages between the site and the docs site
+
+
+```
+module.exports = {
+    ...
+    'locales': [
+      { internal: 'es', external: 'es-es' },
+      { internal: 'en', external: 'en-us' }
+    ],
+    'defaultExternalLocales': 'en-us'
+  },
+```
+
 ### reStructuredText to Markdown Conversion
 
 To migrate reStructuredText (.rst) files to markdown (.md) files, follow these steps:
@@ -210,6 +227,25 @@ You can add icons and images in the [static](https://github.com/casper-network/d
 Open the `config/algolia.config.js` file and replace the `api_key`, `index_name`. Customize the search box or create a new style using the `src/assets/scss/theme.scss` file.
 
 ---
+
+### Custom header
+
+If the docusaurus version is updated, the navbar, footer and side bar could stop working!.
+In that case run the command ```npm run swizzle @docusaurus/theme-classic Navbar -- --eject``` and restructure the navbar again.
+
+For more information about this: https://docusaurus.io/docs/swizzling
+
+Complete the following enviroment variables to enable the navbar.
+
+```    
+DIRECTUS_URL=REPLACE_WITH_YOUR_DIRECTUS_URL
+DIRECTUS_GRAPHQL_URL=REPLACE_WITH_YOUR_DIRECTUS_GRAPH_URL
+DIRECTUS_TOKEN=REPLACE_WITH_YOUR_DIRECTUS_TOKEN
+SITE_URL=REPLACE_WITH_YOUR_SITE_URL
+ALGOLIA_SITE_APP_ID=REPLACE_WITH_YOUR_ALGOLIA_SITE_APP_ID
+ALGOLIA_SITE_API_KEY=REPLACE_WITH_YOUR_ALGOLIA_SITE_API_KEY
+ALGOLIA_SITE_INDEX_NAME=REPLACE_WITH_YOUR_ALGOLIA_SITE_INDEX_NAME
+```
 
 ## Troubleshooting
 

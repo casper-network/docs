@@ -108,7 +108,7 @@ The `redelegate.wasm` expects four arguments:
 8. `amount`: The amount to be redelegated to the new validator
 9. `new_validator:public_key`: The hexadecimal public key of the validator to whom the tokens will be delegated
 
-Save the returned _deploy_hash_ from the output to [query information](../../resources/tutorials/beginner/querying-network.md#querying-deploys) about the redelegation Deploy.
+Save the returned _deploy_hash_ from the output to [query information](../../resources/beginner/querying-network.md#querying-deploys) about the redelegation Deploy.
 
 :::note
 

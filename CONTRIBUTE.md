@@ -41,6 +41,8 @@ The Casper Writing and Editing Style Guide aims to establish a set of standards 
 
 * Don't use ‘**etc.**’ except in situations where space is too limited for an alternative.
 
+* Any comments within code blocks should adhere to these guidelines.
+
 ---
 
 ## Grammar {#grammar}
@@ -140,7 +142,7 @@ Verbs have singular and plural forms. Use the verb form that agrees with the sub
 
 ### General {#general-formatting}
 
-* For note, use either one of the following formatting options:
+* For a note, use either one of the following formatting options:
 
 ```
 **Note:**
@@ -148,10 +150,12 @@ Verbs have singular and plural forms. Use the verb form that agrees with the sub
 > To use this example on the Mainnet, replace *chain-name* as casper.
 ```
 
+* When using `:::note`, you must include a blank line before and after the text or the formatting will not work.
+
 ```
 :::note 
 
-Alternatively, you can use this link to download the Casper Signer.  
+Alternatively, you can use this link to download the Casper Wallet.  
 
 :::
 ```
@@ -165,7 +169,7 @@ casper-client make-transfer --amount 2500000000 \
 --chain-name casper-test \
 --target-account 019a33f123ae936ccd29d8fa5438f03a86b6e34fe4346219e571d5ac42cbff5be6 \
 --transfer-id 3 \
---payment-amount 10000
+--payment-amount 100000000
 ```
 ~~~
 
@@ -211,6 +215,44 @@ When adding the following types of content, use a template:
 * [Overview page](.github/templates/overview-template.md)
 * [Tutorial page](.github/templates/tutorial-template.md)
 
+## Guidelines for Casper Concepts
+
+### Major Structures
+
+When discussing major Casper structures in the context of code, i.e., Account, Block, and Deploy, they should be capitalized. When discussing the general concept of an account or block, they do not need to be capitalized.
+
+Examples:
+
+#### Account
+
+•	“The `Account` creation process consists of…”
+
+•	“…provide a browser-based block explorer that allows **account** creation.”
+
+#### Block
+
+•	“…this method returns the bids and validators as of either a specific `Block`”
+
+•	“Since the system state changes with each **block** created…”
+
+#### Deploy
+
+•	“…and its secret key will sign the `Deploy`”
+
+•	“…or a multiple-signature (multi-sig) **deploy** transfer.”
+
+### Casper Components
+
+When discussing [internal components of the Casper platform](./source/docs/casper/concepts/serialization-standard.md), formatting depends on the context with which you are discussing the component. 
+
+As an example, if you are talking directly about the `PublicKey` [CLValue](./source/docs/casper/concepts/serialization-standard.md#publickey-clvalue-publickey) in the context of code, you would use the backtick enclosed `PublicKey` format. If you are talking about public keys in a more general context, you would follow normal sentence conventions.
+
+Examples:
+
+* "...cryptographically signed by the key-pair corresponding to the `PublicKey` used to create..."
+
+* "When a signature is attached to a deploy, it is paired with the **public key** of the account..."
+
 ## Acronyms and Abbreviations {#acronyms-and-abbreviations}
 
 |Acronym/Abbreviation|Definition|
@@ -218,3 +260,24 @@ When adding the following types of content, use a template:
 |CSPR|Casper token|
 |dApp|Decentralized application|
 |ERC|Ethereum request for comment|
+
+## Sample Code
+
+In addition to the [code formatting](#general-formatting) recommendations described above, try to avoid hard-coded values in code samples or CLI commands when possible. 
+
+```bash
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-path [PATH]/[FILE_NAME].wasm
+```
+
+If values are required for illustration purposes, remind readers in the first example that they need to check the chainspec of the Casper network with which they are working.
+
+>**Note**: The payment amount varies based on each deploy and network [chainspec](../../concepts/glossary/C.md#chainspec).
+
+You can find more examples in [this document](./source/docs/casper/developers/cli/calling-contracts.md).
+
+

@@ -11,10 +11,10 @@ To install smart contracts on the blockchain, you can send your Wasm to the netw
 CSPR tokens are used to pay for deploys on the Casper Mainnet and Testnet. There are several ways to fund your account:
 
 - You may want to [transfer tokens from an exchange](../../users/funding-from-exchanges.md)
-- You can use a [block explorer to transfer tokens](../../users/token-transfer.md) between accounts' purses
+- You can use a [block explorer to transfer tokens](../../users/csprlive/token-transfer.md) between accounts' purses
 - You can also [transfer tokens using the default Casper client](../cli/transfers/index.md)
-- On the Testnet, you can use the [faucet functionality](../../users/testnet-faucet.md) for testing your smart contracts
-- If running a network locally using [NCTL](../../dapp-dev-guide/building-dapps/nctl-test.md), the tool provides several funded accounts
+- On the Testnet, you can use the [faucet functionality](../../users/csprlive/testnet-faucet.md) for testing your smart contracts
+- If running a network locally using [NCTL](./nctl-test.md), the tool provides several funded accounts
 
 ## Monitoring the Event Stream for Deploys
 
@@ -383,3 +383,7 @@ We recommend installing your contracts in a test environment, making sure the co
 If your test configuration matches your production [chainspec](../../concepts/glossary/C.md#chainspec), you can check the deploy status and roughly see how much it would cost. You can estimate the costs in this way and then add a small buffer to be sure. Refer to the [runtime economics](../../concepts/economics/runtime.md#gas-allocation) section for more details about gas usage and fees.
 
 Please be aware that sending a deploy always requires payment. This is true regardless of the validity of included Wasm.
+
+If the deploy failure occurs after session execution begins, the penalty payment of 2.5 CSPR is included in the gas costs of the [failed execution](../../concepts/serialization-standard.md#executionresult-executionresult).
+
+However, if the failure occurs prior to session execution, the penalty payment will not appear within the gas cost of the deploy. Instead, the system automatically deducts the 2.5 CSPR from the sending account's main purse.

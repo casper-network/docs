@@ -1,7 +1,7 @@
 name: Docusaurus CICD
 
 env:
-  prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
+  prod_pages_fqdn: ${{ vars.PROD_PAGES_FQDN }}
 
 on:
   push:
@@ -40,18 +40,27 @@ jobs:
           cache: yarn
 
       - name: Template credentials
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/dev'
         uses: cuchi/jinja2-action@1149b92d9ea6db61d7f71c22e3d5028d8065f140
         with:
           template: .github/templates/.env.production.j2
           output_file: .env.production
         env:
-          ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
-          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
+          ALGOLIA_INDEX_NAME: ${{ vars.ALGOLIA_INDEX_NAME }}
+          ALGOLIA_API_KEY: ${{ vars.ALGOLIA_API_KEY }}
           CROWDIN_PERSONAL_ACCESS_TOKEN: ""
-          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
-          GOOGLE_ANALYTICS_ANONYMIZE_IP: ${{ secrets.GOOGLE_ANALYTICS_ANONYMIZE_IP }}
-          GOOGLE_TAG_TRACKING_ID: ${{ secrets.GOOGLE_TAG_TRACKING_ID }}
+          GOOGLE_TAG_ANONYMIZE_IP: ${{ vars.GOOGLE_TAG_ANONYMIZE_IP }}
+          GOOGLE_TAG_TRACKING_ID: ${{ vars.GOOGLE_TAG_TRACKING_ID }}
+          GOOGLE_TAG_MANAGER_ID: ${{ vars.GOOGLE_TAG_MANAGER_ID }}
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_GRAPHQL_URL: ${{ secrets.DIRECTUS_GRAPHQL_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          ALGOLIA_SITE_APP_ID: ${{ vars.ALGOLIA_SITE_APP_ID }}
+          ALGOLIA_SITE_API_KEY: ${{ vars.ALGOLIA_SITE_API_KEY }}
+          ALGOLIA_SITE_INDEX_NAME: ${{ vars.ALGOLIA_SITE_INDEX_NAME }}
+          BASE_URL: ${{ vars.BASE_URL }}
 
       - name: Yarn install
         run: |
@@ -65,9 +74,15 @@ jobs:
         run: |
           yarn check:externals
 
+      - name: Clear Docusaurus cache
+        run: |
+          yarn clear
+
       - name: Build app
         run: |
           yarn build --out-dir ./docs
+        env:
+          NODE_ENV: production
 
       - name: Add CNAME file to the build output payload to keep the custom domain settings of GitHub Pages enabled
         run: |
@@ -134,7 +149,7 @@ jobs:
       working-directory: ./docs
 
   deploy-prod:
-    if: github.ref == 'refs/heads/dev'
+    if: ${{ github.ref == 'refs/heads/dev' && github.repository == 'casper-network/docs' }}
     needs: [backup, system-tests-predeployment]
     runs-on: ubuntu-latest
 

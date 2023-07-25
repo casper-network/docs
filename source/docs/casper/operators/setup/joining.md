@@ -1,16 +1,20 @@
+---
+title: Join a Network
+---
+
 # Joining a Running Network
 
 Each Casper network is permissionless, enabling new validators to join the network and provide additional security to the system. This page outlines the sequence of recommended steps to spin up a validating node and join an existing network.
 
-## Step 1: Provision Hardware {#step-1-provision-hardware}
+## Step 1: Provisioning Hardware {#step-1-provision-hardware}
 
 Visit the [Hardware Specifications](./hardware.md) section and provision your node hardware.
 
-## Step 2: Set Up the Node {#step-2-set-up-the-node}
+## Step 2: Setting Up the Node {#step-2-set-up-the-node}
 
 Follow the instructions on the [Node Setup](./install-node.md) page. 
 
-## Step 3: Build the Required Contracts {#step-3-build-contracts}
+## Step 3: Building the Required Contracts {#step-3-build-contracts}
 
 Use the commands below to build all the necessary contracts for bonding, retrieving rewards, and unbonding.
 
@@ -20,7 +24,17 @@ Use the commands below to build all the necessary contracts for bonding, retriev
 git clone https://github.com/casper-network/casper-node
 ```
 
-2. Use the following commands to build the contracts in release mode. Make sure you have [installed Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust).
+2. Install these prerequisites, which are also listed [here](https://github.com/casper-network/casper-node#pre-requisites-for-building).
+
+- [Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust)
+- [CMake](https://cgold.readthedocs.io/en/latest/first-step/installation.html)
+- `pkg-config` - On Ubuntu, use `sudo apt-get install pkg-config`
+- `openssl` - On Ubuntu, use `sudo apt-get install openssl`
+- `libssl-dev` - On Ubuntu, use `sudo apt-get install libssl-dev`
+
+3. Install the [Rust casper-client](../../developers/prerequisites.md#the-casper-command-line-client) and fund the [keys](../setup/basic-node-configuration.md#create-fund-keys) you will use for bonding.
+
+4. Use the following commands to build the contracts in release mode. Make sure you have [installed Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust).
 
 ```bash
 cd casper-node
@@ -35,17 +49,17 @@ These commands will build all the necessary Wasm contracts for operating as a va
 - `undelegate.wasm` - Undelegates stake
 - `withdraw_bid.wasm` - Enables unbonding for validator stake
 
-## Step 4: Create and Fund Keys for Bonding {#step-4-create--fund-keys-for-bonding}
+## Step 4: Creating and Fund Keys for Bonding {#step-4-create--fund-keys-for-bonding}
 
 See the [Node Setup](./basic-node-configuration.md#create-fund-keys) instructions if you have not generated and funded your validator keys.
 
-## Step 5: Update the Trusted Hash {#step-5-update-the-trusted-hash}
+## Step 5: Updating the Trusted Hash {#step-5-update-the-trusted-hash}
 
 The node's `config.toml` needs to be updated with a recent trusted hash. 
 
 See the [Trusted Hash for Synchronizing](./basic-node-configuration.md#trusted-hash-for-synchronizing) instructions if you have not set up a trusted hash during node installation.
 
-## Step 6: Start the Node {#step-6-start-the-node}
+## Step 6: Starting the Node {#step-6-start-the-node}
 
 Start the node with the `casper-node-launcher`:
 
@@ -57,7 +71,7 @@ The above Debian package installs a casper-node service for systemd.
 
 For more information, visit [GitHub](https://github.com/casper-network/casper-node/wiki#node-operators).
 
-## Step 7: Confirm the Node is Synchronized {#step-7-confirm-the-node-is-synchronized}
+## Step 7: Confirming the Node is Synchronized {#step-7-confirm-the-node-is-synchronized}
 
 While the node is synchronizing, the `/status` endpoint is available. You will be able to compare this to another node's status endpoint `era_id` and `height` to determine if you are caught up. You will not be able to perform any `casper-client` calls to your `7777` RPC port until your node is fully caught up.
 
@@ -101,7 +115,7 @@ Towards the end of the following output, notice the `era_id` and `height` that y
 ```
 </details>
 
-## Step 8: Send the Bonding Request {#step-7-send-the-bonding-request}
+## Step 8: Sending the Bonding Request {#step-7-send-the-bonding-request}
 
 You can submit a [bonding request](../becoming-a-validator/bonding.md) to change your synchronized node to a validating node.
 

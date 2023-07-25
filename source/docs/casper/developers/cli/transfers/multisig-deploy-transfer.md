@@ -12,22 +12,23 @@ You must ensure the following prerequisites are met.
     - A funded [Account](../../prerequisites.md#setting-up-an-account) on Testnet or Mainnet
     - A valid _node address_ from the [Testnet peers](https://testnet.cspr.live/tools/peers) or [Mainnet peers](https://cspr.live/tools/peers)
     - The Casper [command-line client](../../prerequisites.md#the-casper-command-line-client)
-2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow
+2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](../../../resources/advanced/two-party-multi-sig.md) workflow
 3. Get the path of the source account's _secret key_ file
-4. Get the path of a target account's _public key_ hex file
+4. Get the target account's _public key_ in hex format
 
-## Token Transfer Workflow
+## Token Transfer Workflow with the Casper Client {#token-transfer-workflow}
 
-The high-level flow to transfer tokens using a deploy file is described in the following steps:
+The high-level flow to transfer tokens using the Casper CLI client and a deploy file is described in the following steps:
 
-1. Use the `make-deploy` command to prepare a transfer and save the output in a file
-2. Use the `send-deploy` command to send the deploy to the network through a valid node
+1. The `make-transfer` command creates and signs a transfer, saving the output to a file
+2. The `sign-transfer` command adds additional signatures for a multi-signature transfer
+3. The `send-deploy` command sends the deploy containing the transfer to the network
 
-<img src={useBaseUrl("/image/workflow/deploy-flow.png")} width="600" />
+<img src={useBaseUrl("/image/deploy-flow.png")} alt="Deployment flow" width="600" style={{backgroundColor:"#e6e6e6", padding:"0.25em"}} />
 
-### Preparing the Transfer
+### Creating the transfer {#creating-the-transfer}
 
-This section explains the `make-transfer` command using an example you can try on the Testnet. For this example, we are transferring 2500000000 motes from the source account (with the secret_key.pem file) to a target account. To use this example on the Mainnet, the _chain-name_ would be `casper` instead of `casper-test`. Note that we are saving the output of the `make-deploy` command in a `transfer.deploy` file.
+This section explains the `make-transfer` command using an example you can try on the Testnet. For this example, we are transferring 2,500,000,000 motes from the source account (with the `secret_key.pem` file) to a target account. To use this example on the Mainnet, the _chain-name_ would be `casper` instead of `casper-test`. Note that we are saving the output of the `make-transfer` command in a `transfer.deploy` file.
 
 ```bash
 casper-client make-transfer --amount 2500000000 \
@@ -35,7 +36,7 @@ casper-client make-transfer --amount 2500000000 \
 --chain-name casper-test \
 --target-account [PUBLIC_KEY_HEX] \
 --transfer-id 3 \
---payment-amount 10000 
+--payment-amount 100000000 \
 --output transfer.deploy
 ```
 
@@ -48,7 +49,7 @@ The following table explains the parameters used in the `make-transfer` command.
 | chain-name | The name of the chain, to avoid the deploy from being accidentally or maliciously included in a different chain <ul><li>For Testnet use **casper-test**</li><li>For Mainnet use **casper**</li></ul> |
 | target-account | Hex-encoded public key of the target account from which the main purse will be used |
 | transfer-id | A user-defined identifier permanently associated with the transfer |
-| payment-amount | The amount used to pay for executing the code on the network |
+| payment-amount | The payment for the transfer in motes. The payment amount varies based on the deploy and network [chainspec](../../../concepts/glossary/C.md#chainspec). For Testnet node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), wasmless transfers cost 10^8 motes |
 
 In the output, you will see a section named **approvals**. This is where a signature from the source account is added to the Deploy.
 
@@ -125,7 +126,7 @@ In the output, you will see a section named **approvals**. This is where a signa
 
 </details>
 
-### Signing the Deploy using the Casper Client
+### Signing the transfer {#signing-the-transfer}
 
 Once the deploy file is created, you can sign the deploy using other designated accounts. For this example, we are signing the deploy with a second secret key and saving the output in a `transfer2.deploy` file.
 
@@ -221,12 +222,14 @@ Towards the end of the following output, you can observe that there is an **appr
 
 </details>
 
-### Sending the Deploy
+### Sending the deploy {#sending-the-deploy}
 
-The next step is to send the deploy for processing on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node http://80.92.204.108 from the Testnet; replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
+The next step is to send the deploy for processing on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node `http://65.21.235.219` from the Testnet; replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
 
 ```bash
-casper-client send-deploy --input transfer2.deploy --node-address http://65.21.235.219:7777
+casper-client send-deploy \
+--input transfer2.deploy \
+--node-address http://65.21.235.219:7777
 ```
 
 | Parameter    | Description                                                          |
@@ -252,7 +255,7 @@ Make a note of the *deploy_hash* from the `send-deploy` command output to verify
 
 </details>
 
-If you get an account authorization error, you must set up the source account to allow multi-signature deploys using session code. The [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow is an example of how to accomplish this.
+If you encounter an account authorization error, you must set up the source account to allow multi-signature deploys using session code. The [Two-Party Multi-Signature Deploys](../../../resources/advanced/two-party-multi-sig.md) workflow is an example of how to accomplish this.
 
 <details>
 <summary>Example of an account authorization error</summary>
@@ -267,7 +270,7 @@ If you get an account authorization error, you must set up the source account to
 </details>
 
 
-## Verifying the Transfer
+## Verifying the Transfer {#verifying-the-transfer}
 
 To verify the transfer status, see [Verifying a Transfer](./verify-transfer.md).
 

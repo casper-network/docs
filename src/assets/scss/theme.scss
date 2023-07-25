@@ -1,3 +1,24 @@
+// Variables
+@use "./variables/custom-properties";
+@use "./variables/fonts-variables";
+@use "./variables/media-queries";
+@use "./variables/sizes";
+
+// Base
+@use "./mixins";
+@use "./animations";
+@use "./fonts";
+
+// Reboot
+@use "./reboot";
+
+// Third parties
+// @use "./vendor";
+
+// Common
+@use "./global";
+@use "./utilities";
+
 :root {
     --h1-font-size: 32px;
     --h2-font-size: 28px;
@@ -23,14 +44,60 @@
     --color-footer: #23262a;
     --casper-font-headlines: Inter, sans-serif;
     --casper-font-body: Inter, sans-serif;
+
+    --ifm-color-primary: var(--casperRed);
+    --ifm-menu-color-background-hover: var(--black);
+    --ifm-menu-color-background-active: var(--black);
+    --ifm-card-background-color: var(--liftedBlack);
+    --ifm-menu-color: var(--casperWhite);
+    --ifm-toc-link-color: var(--casperWhite);
+    --ifm-code-font-size: 95%;
+    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+    --ifm-background-color: var(--black) !important;
+    --ifm-navbar-sidebar-width: 100vw;
+    --ifm-container-width-xl: var(--maxContentWidth);
+    --ifm-container-width: var(--maxContentWidth);
+    --ifm-navbar-height: calc(var(--navBarSiteHeight) + var(--navBarDocHeight));
+    --navBarDocHeight: 44px;
+    --navBarSiteHeight: 126px;
+    --maxContentWidth: 1600px;
+
+    // Boxes
+    --navBoxWidth: var(--maxContentWidth);
+    --contentBoxWidth: 1280px;
+
+    // Spacing
+    --navSpacing: 50px;
+    --gapSpacing: 32px;
+
+    //NavBar z-index
+    --navBarZIndex: 10;
+
+    @media (min-width: 997px) {
+        --doc-sidebar-hidden-width: 50px !important;
+    }
+
+    @media (max-width: 997px) {
+        --navBarSiteHeight: 10vh;
+    }
 }
 
 .navbar__logo img {
     margin: 0;
 }
 
+.navbar-sidebar__item {
+    padding: 15px var(--navSpacing);
+}
+
+.navbar__inner {
+    max-width: var(--maxContentWidth);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 nav.menu {
-    padding: 35px 0px 0px 0px;
+    padding: 15px 0px 15px 0px;
     margin: 0px;
 
     * {
@@ -89,12 +156,42 @@ nav.menu {
     }
 }
 
+.navbar__items {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.navbar__items--right {
+    > [class*="searchBox"] {
+        @media #{media-queries.$mobile} {
+            display: none;
+        }
+    }
+}
+
+.navbar__links {
+    white-space: nowrap;
+}
+
+
+.main-wrapper {
+    align-items: center;
+}
+
 footer.footer {
     padding: 30px 0;
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
     background-color: var(--casper-color-dark-purple);
+    display: flex;
+    justify-content: center;
+
+    .container,
+    .container-fluid {
+        margin: 0 20px;
+        max-width: var(--maxContentWidth);
+    }
 
     ul {
         list-style: none;
@@ -120,10 +217,11 @@ footer.footer {
 
         .items {
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            column-gap: 10px;
 
             li {
-                padding: 0 45px 0 0;
                 margin: 10px 0;
 
                 a {
@@ -172,31 +270,15 @@ main > .container {
 
         & > div:nth-child(1) {
             width: 80%;
-            margin: auto;
+            margin: auto auto auto 20px;
         }
     }
-}
-
-button[aria-label="Collapse sidebar"] {
-    border: none;
-    background: transparent;
 }
 
 @media (max-width: 1399px) {
     .DocSearch-Button-Keys,
     .DocSearch-Button-Placeholder {
         display: none !important;
-    }
-}
-
-@media (min-width: 997px) and (max-width: 1399px) {
-    .navbar__item {
-        padding: 5px;
-        font-size: 15px;
-    }
-
-    .navbar__brand {
-        margin-right: 5px;
     }
 }
 
@@ -238,9 +320,8 @@ img {
         margin-left: auto;
         margin-right: auto;
     }
-	&.inline-img {
-	display: inline-block;
-	margin: 0px 0px;
-	}
+    &.inline-img {
+        display: inline-block;
+        margin: 0px 0px;
+    }
 }
-

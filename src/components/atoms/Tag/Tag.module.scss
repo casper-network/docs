@@ -1,0 +1,59 @@
+@import "../../../assets/scss/mixins";
+
+.tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    padding: 2px 10px;
+    max-width: 100%;
+    background-color: var(--black);
+    border: 1px solid var(--mainColor);
+    @include transition(0.3s all);
+
+    > p {
+        color: var(--casperWhite);
+        font-weight: 500px;
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        max-width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .span {
+        background: var(--mainColor);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    &:hover,
+    &:focus {
+        outline: none;
+        border: 1px solid var(--mainColor);
+        background-color: var(--mainColor);
+
+        --hoverColor: var(--black);
+
+        &:global(.blue),
+        &:global(.brown),
+        &:global(.purple) {
+            --hoverColor: var(--casperWhite);
+        }
+
+        .span {
+            background: var(--hoverColor);
+        }
+
+        > p {
+            color: var(--hoverColor);
+        }
+    }
+}

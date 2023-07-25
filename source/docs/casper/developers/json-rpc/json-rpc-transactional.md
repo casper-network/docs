@@ -1,4 +1,4 @@
-# Transactional JSON-RPC Method {#transactional}
+# Transactional JSON-RPC Methods {#transactional}
 
 ---
 

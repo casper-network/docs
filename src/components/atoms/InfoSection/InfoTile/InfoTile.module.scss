@@ -1,0 +1,46 @@
+@use "../../../../assets/scss/mixins";
+
+.infoTileWrapper {
+    .title,
+    .paragraph {
+        margin-top: 30px;
+    }
+
+    .title {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .paragraph {
+        height: 120px;
+        overflow-y: auto;
+        padding-right: 10px;
+        @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+    }
+
+    .image {
+        width: 100%;
+        height: 290px;
+        border-bottom: 4px solid red;
+        background-color: var(--liftedBlack);
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .buttonWrapper {
+        margin: 20px 0px;
+    }
+
+    @media (max-width: 1024px) {
+
+        &[class*='span'] {
+            grid-column: unset !important;
+        }
+
+    }
+}
