@@ -3,7 +3,6 @@ module.exports = {
         "concepts/index",
         "concepts/intro-to-dapps",
         "concepts/accounts-and-keys",
-        "concepts/understanding-hash-types",
         "concepts/hash-types",
         "concepts/deploy-and-deploy-lifecycle",
         "concepts/global-state",

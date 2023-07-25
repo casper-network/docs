@@ -1,3 +1,7 @@
+---
+title: Authorization Keys
+---
+
 # Working with Authorization Keys
 
 :::caution
@@ -12,7 +16,7 @@ This tutorial demonstrates retrieving and using the authorization keys associate
 let authorization_keys = runtime::list_authorization_keys();
 ```
 
-Remember that authorization keys are listed under a Deploy's [approvals](../../../concepts/serialization-standard.md#serialization-standard-deploy) section, which lists the signatures and the public keys of the signers, also called authorizing keys. Here is an example of a deploy's approvals:
+Remember that authorization keys are listed under a Deploy's [approvals](../../concepts/serialization-standard.md#serialization-standard-deploy) section, which lists the signatures and the public keys of the signers, also called authorizing keys. Here is an example of a deploy's approvals:
 
 ```json
 "approvals": [
@@ -27,13 +31,13 @@ The contract code in this example retrieves the set of authorization keys for a 
 
 ## Prerequisites
 
-- You meet the [development prerequisites](../../../developers/prerequisites.md) and are familiar with [writing and testing on-chain code](../../../developers/writing-onchain-code/index.md)
-- You know how to [send and verify deploys](../../../developers/dapps/sending-deploys.md)
+- You meet the [development prerequisites](../../developers/prerequisites.md) and are familiar with [writing and testing on-chain code](../../developers/writing-onchain-code/index.md)
+- You know how to [send and verify deploys](../../developers/dapps/sending-deploys.md)
 - You are familiar with these concepts:
-   - [Casper Accounts](../../../concepts/serialization-standard.md#serialization-standard-account) 
-   - [Deploys](../../../concepts/serialization-standard.md#serialization-standard-deploy)
-   - [Associated Keys](../../../concepts/serialization-standard.md#associatedkey)
-   - [Approvals](../../../concepts/serialization-standard.md#approval), also known as authorization keys
+   - [Casper Accounts](../../concepts/serialization-standard.md#serialization-standard-account) 
+   - [Deploys](../../concepts/serialization-standard.md#serialization-standard-deploy)
+   - [Associated Keys](../../concepts/serialization-standard.md#associatedkey)
+   - [Approvals](../../concepts/serialization-standard.md#approval), also known as authorization keys
 
 
 ## Workflow
