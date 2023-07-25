@@ -1,4 +1,8 @@
-# Introducing Fast-sync
+---
+title: Fast-Sync
+---
+
+# Introducing Fast-Sync
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 

@@ -1,0 +1,102 @@
+.socialtilecard {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--liftedBlack);
+    color: var(--casperWhite);
+    border: 0.25px solid var(--casperWhite);
+    min-height: 264px;
+    border-radius: 2px;
+    padding: 20px 26px;
+    min-width: 350px;
+    width: 100%;
+
+    &_text {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 70%;
+        height: 100%;
+        overflow: hidden;
+
+        .text_svg {
+            svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        > p,
+        h4 {
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .paragraphfirst {
+            font-weight: 500;
+            margin-top: 14px;
+            text-transform: uppercase;
+            max-width: 240px;
+            text-overflow: ellipsis;
+        }
+
+        > h4 {
+            margin: 12px 0;
+            max-width: 250px;
+            text-overflow: ellipsis;
+        }
+
+        .paragraphsecond {
+            margin-bottom: 27px;
+            max-width: 240px;
+            text-overflow: ellipsis;
+        }
+
+        @media (max-width: 400px) {
+            .paragraphsecond,
+            > h4,
+            .paragraphfirst {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &_img {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 30%;
+        height: 100%;
+
+        img {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media (max-width: 400px) {
+        min-width: unset;
+    }
+}
+
+@media (max-width: 903px) {
+    .socialtilecard_text {
+        > p,
+        h4 {
+            white-space: initial;
+            overflow: visible;
+        }
+
+        > h4,
+        .paragraphsecond,
+        .paragraphfirst {
+            text-overflow: initial;
+        }
+    }
+}

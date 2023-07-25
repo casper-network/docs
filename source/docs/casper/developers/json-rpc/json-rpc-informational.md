@@ -219,7 +219,7 @@ This method returns the era summary at a given [Block](../../concepts/design/cas
 |Parameter|Type|Description|
 |---------|----|-----------|
 |api_version|String|The RPC API version.|
-|[era_summary](types_chain.md#erasummary)|Object|The era summary (if found).|
+|[era_summary](./types_chain.md#erasummary)|Object|The era summary (if found).|
 
 <details>
 

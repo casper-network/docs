@@ -1,6 +1,6 @@
 # Writing Session Code
 
-This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](../../concepts/session-code.md). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
+This section explains how to write session code. To review the definition of session code and the differences between session code and contract code, see [Comparing Session Code and Contract Code](./contract-vs-session.md#what-is-session-code). Session code can be written in any programming language that compiles to Wasm. However, the examples in this topic use Rust.
 
 ## Creating the Directory Structure {#directory-structure}
 
@@ -134,7 +134,7 @@ make build-contract
 
 ## Executing Session Code {#executing-session-code}
 
-Before running session code on a live Casper network, test it as described [here](./testing-session-code.md). You can also set up a local network using [NCTL](../../dapp-dev-guide/building-dapps/setup-nctl.md) for additional tests.
+Before running session code on a live Casper network, test it as described [here](./testing-session-code.md). You can also set up a local network using [NCTL](../dapps/setup-nctl.md) for additional tests.
 
 Session code can execute on a Casper network via a [Deploy](../../concepts/glossary/D.md#deploy). All deploys can be broadly categorized as some unit of work that, when executed and committed, affects change to the network's global state.
 
@@ -153,7 +153,7 @@ casper-client put-deploy \
 -   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777.
 -   `secret-key` - The file name containing the secret key of the account paying for the deploy.
 -   `chain-name` - The network where the deploy should be sent. For Mainnet, use *casper*. For Testnet, use *casper-test*. 
--   `payment-amount` - Payment for the deploy in motes.  
+-   `payment-amount` - Payment for the deploy in motes. The payment amount varies based on the deploy and network [chainspec](../../concepts/glossary/C.md#chainspec).
 -   `session-path` - Path to the contract Wasm, pointing to the compiled contract.
 -   `session-arg` - A named and typed argument passed to the Wasm code.
 

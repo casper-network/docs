@@ -1,0 +1,65 @@
+{
+    "version": "0.1.0",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": ">=10"
+    },
+    "scripts": {
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "test": "tsdx test --passWithNoTests",
+        "lint": "tsdx lint",
+        "prepare": "tsdx build",
+        "size": "size-limit",
+        "analyze": "size-limit --why"
+    },
+    "peerDependencies": {
+        "react": ">=16"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "tsdx lint"
+        }
+    },
+    "prettier": {
+        "printWidth": 80,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5"
+    },
+    "name": "docusaurus-plugin-navdata",
+    "author": "miracledevs",
+    "module": "dist/docusaurus-plugin-navdata.esm.js",
+    "size-limit": [
+        {
+            "path": "dist/docusaurus-plugin-navdata.cjs.production.min.js",
+            "limit": "10 KB"
+        },
+        {
+            "path": "dist/docusaurus-plugin-navdata.esm.js",
+            "limit": "10 KB"
+        }
+    ],
+    "devDependencies": {
+        "@size-limit/preset-small-lib": "^8.1.2",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.10",
+        "husky": "^8.0.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "size-limit": "^8.1.2",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.5.0",
+        "typescript": "^3.9.10"
+    },
+    "dependencies": {
+        "@docusaurus/types": "^2.0.0-alpha.65",
+        "@miracledevs/paradigm-web-fetch": "^1.0.3"
+    }
+}

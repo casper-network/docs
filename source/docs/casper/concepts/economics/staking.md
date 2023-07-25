@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Staking
 slug: /staking
 tags: ["finance", "staking", "governance"]
 ---
@@ -7,8 +7,6 @@ tags: ["finance", "staking", "governance"]
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Staking
-
-This page describes key concepts related to the staking process.
 
 A feature of Proof-of-Stake protocols is that token holders can actively participate in the protocol through a mechanism known as **staking** or **delegation**. They can stake their tokens with any validator on a Casper network. Alternatively, it is possible to stake tokens via an exchange or custody provider.
 
@@ -60,10 +58,10 @@ For security purposes, whenever tokens are un-delegated, the protocol will conti
 
 Navigate to these pages for step-by-step tutorials on creating an account and delegating and undelegating tokens.
 
-- [Creating an account with the Casper Signer](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
+- [Creating an account with the Casper Wallet](https://www.casperwallet.io/)
 - [Funding an account from an exchange](../../users/funding-from-exchanges.md)
-- [Delegating tokens using a block explorer](../../users/delegate-ui.md)
-- [Delegating with Ledger devices](../../users/staking-ledger.md)
+- [Delegating tokens using a block explorer](../../users/csprlive/delegate-ui.md)
+- [Delegating with Ledger devices](../../users/ledger/staking-ledger.md)
 - [Delegating with the Casper client](../../developers/cli/delegate.md)
-- [Undelegating tokens using a block explorer](../../users/undelegate-ui.md)
+- [Undelegating tokens using a block explorer](../../users/csprlive/undelegate-ui.md)
 

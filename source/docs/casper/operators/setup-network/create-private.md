@@ -1,5 +1,8 @@
-# Set Up a Private Casper Network
+---
+title: Private Network Setup
+---
 
+# Setting Up a Private Casper Network
 
 Casper private networks operate in a similar way to the Casper public network. The significant difference in private networks is a closed validator set and having administrator account(s) which can control regular accounts. Hence, there are specific configurations when setting up the genesis block and administrator accounts. Besides the main configuration options that the Casper platform provides, each customer may add other configuration options when setting up a private network.
 
@@ -39,7 +42,7 @@ Use the below guides to set up and manage validator nodes.
 - [Set up Mainnet and Testnet validator nodes](https://docs.cspr.community/): A set of guides for Mainnet and Testnet node-operators on setting up and configuring their Casper network validator nodes.
 
 Use these FAQ collections for tips and details for validators.
-- [FAQs for a basic validator node ](../../faq/faq-validator.md)
+- [FAQs for a basic validator node ](https://support.casperlabs.io/hc/en-gb/sections/6960448246683-Node-Operation-FAQ)
 - [External FAQs on Mainnet and Testnet validator node setup](https://docs.cspr.community/docs/faq-validator.html)
 
 ## Step 2. Setting up the Directory
@@ -334,6 +337,11 @@ casper-client get-account-info -n $NODE_ADDR
 ### Adding a bid as Alice
 The following command attempts to add an auction bid on the network. It should return `ApiError::AuctionError(AuctionBidsDisabled) [64559]`.
 
+:::tip
+
+All payment amounts in these examples must be adjusted based on the network [chainspec](../../concepts/glossary/C.md#chainspec).
+
+:::
 
 ```sh
 casper-client \
