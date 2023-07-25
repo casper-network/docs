@@ -10,15 +10,15 @@ The blockchain specification, or `chainspec`, is a collection of configuration s
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-|version | Protocol version. | '1.5.2'|
-|hard_reset | Whether we need to clear latest blocks back to the switch block just before the activation point or not. | true|
-|activation_point | This protocol version becomes active at this point. If it is a timestamp string, it represents the timestamp for the genesis block. This is the beginning of era 0. By this time, a sufficient majority (> 50% + F/2 — see finality_threshold_fraction below) of validator nodes must be up and running to start the blockchain. This timestamp is also used in seeding the pseudo-random number generator used in contract-runtime for computing genesis post-state hash. If it is an integer, it represents an era ID, meaning the protocol version becomes active at the start of this era. | 9100|
+|version          | Protocol version. | '1.5.2'|
+|hard_reset       | Whether or not we need to clear the latest blocks back to the switch block just before the activation point. | true|
+|activation_point | This protocol version becomes active at this point. <br /><br />If it is a timestamp string, it represents the timestamp for the genesis block. This is the beginning of Era 0. By this time, a sufficient majority (> 50% + F/2 — see finality_threshold_fraction below) of validator nodes must be up and running to start the blockchain. This timestamp is also used in seeding the pseudo-random number generator used in the contract-runtime for computing genesis post-state hash. <br /><br />If it is an integer, it represents an era ID, meaning the protocol version becomes active at the start of this era. | 9100|
 
 ## network
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-|name | Human readable name for convenience; the genesis_hash is the true identifier. The name influences the genesis hash by contributing to the seeding of the pseudo-random number generator used in contract-runtime for computing genesis post-state hash. | 'casper'|
+|name | Human readable name for convenience; the genesis_hash is the true identifier. The name influences the genesis hash by contributing to seeding the pseudo-random number generator used in the contract runtime for computing the genesis post-state hash. | 'casper'|
 |maximum_net_message_size | The maximum size of an acceptable networking message in bytes. Any message larger than this will be rejected at the networking level. | 25_165_824|
 
 ## core
@@ -29,19 +29,19 @@ The blockchain specification, or `chainspec`, is a collection of configuration s
 |minimum_era_height | Minimum number of blocks per era. An era will take longer than `era_duration` if that is necessary to reach the minimum height. | 20 | 
 |minimum_block_time | Minimum difference between a block's and its child's timestamp. | '32768ms'|
 |validator_slots | Number of slots available in validator auction. | 100|
-|finality_threshold_fraction | A number between 0 and 1 representing the fault tolerance threshold as a fraction, used by the internal finalizer. It is the fraction of validators that would need to equivocate to make two honest nodes see two conflicting blocks as finalized: A higher value F makes it safer to rely on finalized blocks. It also makes it more difficult to finalize blocks, however, and requires strictly more than (F + 1)/2 validators to be working correctly. | [1, 3]|
-|start_protocol_version_with_strict_finality_signatures_required |Protocol version from which nodes are required to hold strict finality signatures.| '1.5.0'|
-|legacy_required_finality|Which finality is required for legacy blocks. Options are 'Strict', 'Weak' and 'Any'. Used to determine finality sufficiency for new joiners syncing blocks created in a protocol version before `start_protocol_version_with_strict_finality_signatures_required`. |'Strict'|
-|auction_delay | Number of eras before an auction actually defines the set of validators. If you bond with a sufficient bid in era N, you will be a validator in era N + auction_delay + 1. | 1|
+|finality_threshold_fraction | A number between 0 and 1 representing the fault tolerance threshold as a fraction used by the internal finalizer.<br />It is the fraction of validators that would need to equivocate to make two honest nodes see two conflicting blocks as finalized.<br />A higher value F makes it safer to rely on finalized blocks. It also makes it more difficult to finalize blocks, however, and requires strictly more than (F + 1)/2 validators to be working correctly. | [1, 3]|
+|start_protocol_version_with_strict<br />_finality_signatures_required |Protocol version from which nodes are required to hold strict finality signatures.| '1.5.0'|
+|legacy_required_finality|Which finality is required for legacy blocks. Options are 'Strict', 'Weak', and 'Any'. <br />Used to determine finality sufficiency for new joiners syncing blocks created in a protocol version before the start protocol version with strict finality signatures. |'Strict'|
+|auction_delay | Number of eras before an auction defines the set of validators. If you bond with a sufficient bid in era N, you will be a validator in era N + auction_delay + 1. | 1|
 |locked_funds_period | The period after genesis during which a genesis validator's bid is locked. | '90days'|
-|vesting_schedule_period | The period in which genesis validator's bid is released over time after it's unlocked. | '13 weeks'|
+|vesting_schedule_period | The period in which the genesis validator's bid is released over time after it's unlocked. | '13 weeks'|
 |unbonding_delay | Default number of eras that need to pass to be able to withdraw unbonded funds. | 7|
-|round_seigniorage_rate | Round seigniorage rate represented as a fraction of the total supply. Annual issuance: 8%. Minimum block time: 2^15 milliseconds. Ticks per year: 31536000000. (1+0.08)^((2^15)/31536000000)-1 is expressed as a fractional number below. Python: Fraction((1 + 0.08)**((2**15)/31536000000) - 1).limit_denominator(1000000000) | [7, 87535408]|
+|round_seigniorage_rate | Round seigniorage rate represented as a fraction of the total supply.<br />- Annual issuance: 8%.<br />- Minimum block time: 2^15 milliseconds.<br />- Ticks per year: 31536000000.<br /><br />(1+0.08)^((2^15)/31536000000)-1 is expressed as a fractional number below in Python:<br />`Fraction((1 + 0.08)**((2**15)/31536000000) - 1).limit_denominator(1000000000)` | [7, 87535408]|
 |max_associated_keys | Maximum number of associated keys for a single account. | 100|
 |max_runtime_call_stack_height | Maximum height of contract runtime call stack. | 12|
 |minimum_delegation_amount | Minimum allowed delegation amount in motes | 500_000_000_000|
 |prune_batch_size | Global state prune batch size (0 = this feature is off) | 0|
-|strict_argument_checking | Enables strict arguments checking when calling a contract; i.e. that all non-optional args are provided and of the correct `CLType`. | false|
+|strict_argument_checking | Enables strict arguments checking when calling a contract; i.e., all non-optional args are provided and of the correct `CLType`. | false|
 |simultaneous_peer_requests | Number of simultaneous peer requests. | 5|
 |consensus_protocol | The consensus protocol to use. Options are "Zug" and "Highway". | 'Highway'|
 |max_delegators_per_validator | The maximum amount of delegators per validator. if the value is 0, there is no maximum capacity. | 1200|
@@ -50,8 +50,8 @@ The blockchain specification, or `chainspec`, is a collection of configuration s
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-|maximum_round_length | Highway dynamically chooses its round length, between minimum_block_time and maximum_round_length. | '132seconds'|
-|reduced_reward_multiplier | The factor by which rewards for a round are multiplied if the greatest summit has ≤50% quorum, i.e. no finality. Expressed as a fraction (1/5 by default). | [1, 5]|
+|maximum_round_length | Highway dynamically chooses its round length between minimum_block_time and maximum_round_length. | '132seconds'|
+|reduced_reward_multiplier | The factor by which rewards for a round are multiplied if the greatest summit has ≤50% quorum, i.e., no finality. Expressed as a fraction (1/5 by default). | [1, 5]|
 
 ## deploys
 
@@ -60,12 +60,12 @@ The blockchain specification, or `chainspec`, is a collection of configuration s
 |max_payment_cost | The maximum number of Motes allowed to be spent during payment. 0 means unlimited. | '0'|
 |max_ttl | The duration after the deploy timestamp that it can be included in a block. | '18hours'|
 |max_dependencies | The maximum number of other deploys a deploy can depend on (require to have been executed before it can execute). | 10|
-|max_block_size | Maximum block size in bytes including deploys contained by the block. 0 means unlimited. | 10_485_760|
+|max_block_size | Maximum block size in bytes, including deploys contained by the block. 0 means unlimited. | 10_485_760|
 |max_deploy_size | Maximum deploy size in bytes. Size is of the deploy when serialized via ToBytes. | 1_048_576|
 |block_max_deploy_count | The maximum number of non-transfer deploys permitted in a single block. | 50|
 |block_max_transfer_count | The maximum number of wasm-less transfer deploys permitted in a single block. | 1250|
 |block_max_approval_count | The maximum number of approvals permitted in a single block. | 2600|
-|block_gas_limit | The upper limit of total gas of all deploys in a block. | 10_000_000_000_000|
+|block_gas_limit | The upper limit of the total gas of all deploys in a block. | 10_000_000_000_000|
 |payment_args_max_length | The limit of length of serialized payment code arguments. | 1024|
 |session_args_max_length | The limit of length of serialized session code arguments. | 1024|
 |native_transfer_minimum_motes | The minimum amount in motes for a valid native transfer. | 2_500_000_000|
@@ -100,8 +100,8 @@ The blockchain specification, or `chainspec`, is a collection of configuration s
 |conversion | Conversion operations multiplier. | 420|
 |unreachable | Unreachable operation multiplier. | 270|
 |nop | Nop operation multiplier. | 200|
-|current_memory | Get current memory operation multiplier. | 290|
-|grow_memory | Grow memory cost, per page (64kb). | 240_000|
+|current_memory | Get the current memory operation multiplier. | 290|
+|grow_memory | Grow memory cost per page (64kb). | 240_000|
 
 ## wasm.opcode_costs.control_flow
 
@@ -206,13 +206,13 @@ Host function declarations are located in smart_contracts/contract/src/ext_ffi.r
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-| mint | TBD | 2_500_000_000
-reduce_total_supply | TBD | 10_000
-create | TBD | 2_500_000_000
-balance | TBD | 10_000
-transfer | TBD | 10_000
-read_base_round_reward | TBD | 10_000
-mint_into_existing_purse | TBD | 2_500_000_000
+| mint | TBD | 2_500_000_000|
+|reduce_total_supply | TBD | 10_000|
+|create | TBD | 2_500_000_000|
+|balance | TBD | 10_000|
+|transfer | TBD | 10_000|
+|read_base_round_reward | TBD | 10_000|
+|mint_into_existing_purse | TBD | 2_500_000_000|
 
 
 ## system_costs.handle_payment_costs
@@ -229,5 +229,3 @@ mint_into_existing_purse | TBD | 2_500_000_000
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
 |pay  | TBD |10_000|
-
-
