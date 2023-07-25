@@ -1,6 +1,6 @@
 module.exports = {
     concepts: [
-        "concepts/index", // TODO show concepts in breadcrumbs
+        "concepts/index",
         "concepts/intro-to-dapps",
         "concepts/accounts-and-keys",
         "concepts/hash-types",
@@ -87,7 +87,7 @@ module.exports = {
         },
     ],
     developers: [
-        "developers/index", // TODO show developers in breadcrumbs
+        "developers/index",
         "developers/table-of-contents",
         "developers/prerequisites",
         {
@@ -206,7 +206,7 @@ module.exports = {
         },
     ],
     operators: [
-        "operators/index", // TODO show operators in breadcrumbs
+        "operators/index",
         {
             type: "category",
             label: "Node Setup",
@@ -329,6 +329,17 @@ module.exports = {
             },
             items: [
                 "resources/advanced/two-party-multi-sig",
+                {
+                    type: "category",
+                    label: "Multi-Sig Management",
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        "resources/advanced/multi-sig/index",
+                        "resources/advanced/multi-sig/multi-sig-workflow",
+                        "resources/advanced/multi-sig/other-scenarios",
+                    ],
+                },
                 "resources/advanced/return-values-tutorial",
                 "resources/advanced/transfer-token-to-contract",
                 "resources/advanced/storage-workflow",
@@ -341,7 +352,7 @@ module.exports = {
         //"resources/support", // NEW CONTENT WILL BE HERE
     ],
     users: [
-        "users/index", // TODO show users in breadcrumbs
+        "users/index",
         "users/block-explorer",
         "users/funding-from-exchanges",
         {
