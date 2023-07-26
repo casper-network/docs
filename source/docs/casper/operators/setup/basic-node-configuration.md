@@ -168,8 +168,7 @@ The `speculative_exec` endpoint provides a method to execute a Deploy without co
 
 Node operators may also change the incoming request port for speculative execution, which defaults to `7778`. Further, you can choose to alter the `qps_limit` and `max_body_bytes`, which limit the amount and size of requests to the speculative execution server.
 
-<details>
-<summary><b>Example Config.toml configuration with speculative execution enabled</b></summary>
+#### Example Config.toml configuration with speculative execution enabled
     
 ```
 # ========================================================================
@@ -203,9 +202,8 @@ max_body_bytes = 2_621_440
 # If set to '*', any origin is allowed.
 # Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
 cors_origin = ''
-```
 
-</details>
+```
 
 ## Rust Client Installation {#client-installation}
 
