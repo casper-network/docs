@@ -1,3 +1,7 @@
+---
+slug: /resources/tutorials/beginner/
+---
+
 # Overview
 
 ## Beginner Tutorials

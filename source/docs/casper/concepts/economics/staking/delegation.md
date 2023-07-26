@@ -1,3 +1,7 @@
+---
+slug: /concepts/economics/delegation
+---
+
 # Delegation Details
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

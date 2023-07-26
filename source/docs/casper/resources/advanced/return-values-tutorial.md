@@ -1,5 +1,6 @@
 ---
 title: Runtime Return Values
+slug: /resources/tutorials/advanced/return-values-tutorial
 ---
 
 

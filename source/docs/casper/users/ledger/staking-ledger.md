@@ -1,5 +1,6 @@
 ---
 title: Delegate with Ledger
+slug: /users/staking-ledger
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

@@ -1,5 +1,6 @@
 ---
 title: Storage Workflow
+slug: /resources/tutorials/advanced/storage-workflow
 ---
 
 

@@ -1,3 +1,7 @@
+---
+slug: /resources/tutorials/advanced/
+---
+
 # Advanced Tutorials
 
 | Title                                                       | Description                                                      |

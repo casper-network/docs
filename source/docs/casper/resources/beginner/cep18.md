@@ -1,5 +1,6 @@
 ---
 title: Fungible Tokens
+slug: /resources/tutorials/beginner/cep18
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

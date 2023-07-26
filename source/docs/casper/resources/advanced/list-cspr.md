@@ -1,5 +1,6 @@
 ---
 title: Listing CSPR
+slug: /resources/tutorials/advanced/list-cspr
 ---
 
 

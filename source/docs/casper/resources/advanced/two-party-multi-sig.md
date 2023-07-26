@@ -1,5 +1,6 @@
 ---
 title: Two-Party Multi-Sig
+slug: /resources/tutorials/advanced/two-party-multi-sig
 ---
 
 # Two-Party Multi-Signature Deploys
