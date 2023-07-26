@@ -11,14 +11,14 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## Using CSPR.live
 
-Interact with the Casper blockchain using the [cspr.live](http://cspr.live/) block explorer.
+Interact with the Casper blockchain using the [cspr.live](https://cspr.live/) block explorer.
 
 |Topic|Description|
 |----|-----------|
 |[Funding Testnet Accounts](./csprlive/testnet-faucet.md)| Funding your Testnet account using the Faucet |
-|[Delegating Tokens](./csprlive/delegate-ui.md)| Staking your Casper tokens with [cspr.live](http://cspr.live/) |
+|[Delegating Tokens](./csprlive/delegate-ui.md)| Staking your Casper tokens with [cspr.live](https://cspr.live/) |
 |[Undelegating Tokens](./csprlive/undelegate-ui.md)| Un-staking your Casper tokens |
-|[Transferring Tokens](./csprlive/token-transfer.md)| Transferring your Casper tokens using [cspr.live](http://cspr.live/) |
+|[Transferring Tokens](./csprlive/token-transfer.md)| Transferring your Casper tokens using [cspr.live](https://cspr.live/) |
 
 ## Using Ledger Devices
 

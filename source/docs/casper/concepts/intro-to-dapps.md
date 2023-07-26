@@ -1,5 +1,5 @@
 ---
-title: Introduction to dApps
+title: dApps
 ---
 
 # Introduction to dApps

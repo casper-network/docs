@@ -19,4 +19,4 @@
 | Title                                                       | Description                                                      |
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |
 |[NFTs on Casper with the CEP-78 NFT Standard](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/README.md) | Implementing the Casper CEP-78 NFT standard |
-|[Fungible Tokens on Casper](https://github.com/casper-ecosystem/cep18/blob/master/docs/TUTORIAL.md) | Implement the Casper Fungible Token standard |
+|[Fungible Tokens on Casper](https://github.com/casper-ecosystem/cep18/blob/master/docs/full-tutorial.md) | Implement the Casper Fungible Token standard |
