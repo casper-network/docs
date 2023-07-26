@@ -13,10 +13,9 @@ These settings describe the active protocol version.
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
 |version          | The Casper node protocol version. | '1.5.2'|
-|hard_reset       | Whether or not the latest blocks will be cleared back to the switch block just before the activation point. | true|
+|hard_reset       | When set to true, clear blocks and deploys back to the switch block (the end of the last era) just before the activation point. Used during the upgrade process to reset the network progress. In most cases, this setting should be true.| true|
 |activation_point | The protocol version that should become active. <br /><br />If it is a timestamp string, it represents the timestamp for the genesis block. This is the beginning of Era 0. By this time, a sufficient majority (> 50% + F/2 — see the `finality_threshold_fraction` below) of validator nodes must be running to start the blockchain. This timestamp is also used in seeding the pseudo-random number generator used in the contract runtime for computing the genesis post-state hash. <br /><br />If it is an integer, it represents an era ID, meaning the protocol version becomes active at the start of this era. | 9100|
 
-<!-- TODO: Can we add: "Specifies whether or not the latest blocks will be cleared back to the switch block just before the activation point in case of network reset"? -->
 
 ## network
 
@@ -24,10 +23,8 @@ The following settings configure the networking layer.
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-|name | Human readable network name for convenience; the `genesis_hash` is the true identifier. The name influences the genesis hash by contributing to seeding the pseudo-random number generator used in the contract runtime for computing the genesis post-state hash. | 'casper'|
+|name | Human readable network name for convenience. The state_root_hash of the genesis block is the true identifier. The name influences the genesis hash by contributing to seeding the pseudo-random number generator used in the contract runtime for computing the genesis post-state hash. | 'casper'|
 |maximum_net_message_size | The maximum size of an acceptable networking message in bytes. Any message larger than this will be rejected at the networking level. | 25_165_824|
-
-<!-- TODO: where can I find the genesis_hash?-->
 
 ## core
 
@@ -49,15 +46,12 @@ These settings manage the core protocol behavior.
 |round_seigniorage_rate | Round seigniorage rate represented as a fraction of the total supply.<br />- Annual issuance: 8%.<br />- Minimum block time: 2^15 milliseconds.<br />- Ticks per year: 31536000000.<br /><br />(1+0.08)^((2^15)/31536000000)-1 is expressed as a fractional number below in Python:<br />`Fraction((1 + 0.08)**((2**15)/31536000000) - 1).limit_denominator(1000000000)` | [7, 87535408]|
 |max_associated_keys | Maximum number of associated keys for a single account. | 100|
 |max_runtime_call_stack_height | Maximum height of the contract runtime call stack. | 12|
-|minimum_delegation_amount | Minimum allowed delegation amount in motes | 500_000_000_000|
-|prune_batch_size | Global state prune batch size (0 = this feature is off) | 0|
+|minimum_delegation_amount | Minimum allowed delegation amount in motes. | 500_000_000_000|
+|prune_batch_size | Global state prune batch size for tip pruning in version 1.4.15. Possible values:<br />- 0 when the feature is OFF<br />- Integer if the feature is ON, representing the number of eras to process per block.| 0|
 |strict_argument_checking | Enables strict arguments checking when calling a contract; i.e., all non-optional args are provided and they are of the correct `CLType`. | false|
 |simultaneous_peer_requests | Number of simultaneous peer requests. | 5|
 |consensus_protocol | The consensus protocol to use. Options are 'Zug' or 'Highway'. | 'Highway'|
 |max_delegators_per_validator | The maximum amount of delegators per validator. If the value is 0, there is no maximum capacity. | 1200|
-
-<!-- TODO for prune_batch_size=1 means it is ON? Do we support it? If so, I will add it above. -->
-<!-- For true/false or 0/1 booleans, add information about each option.-->
 
 ## highway
 
@@ -67,8 +61,6 @@ These settings configure the Highway Consensus protocol.
 |----------------- |-----------------------------------------------|-----------------|
 |maximum_round_length | Highway dynamically chooses its round length between `minimum_block_time` and `maximum_round_length`. | '132seconds'|
 |reduced_reward_multiplier | The factor by which rewards for a round are multiplied if the greatest summit has ≤50% quorum, i.e., no finality. Expressed as a fraction (1/5 by default on Mainnet). | [1, 5]|
-
-<!--TODO are there similar settings for Zug? -->
 
 ## deploys
 
@@ -153,8 +145,8 @@ The following settings manage `br_table` Wasm opcodes.
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-|cost | Fixed cost per `br_table` opcode | 440_000|
-|size_multiplier |  Size of target labels in the `br_table` opcode will be multiplied by `size_multiplier` | 100|
+|cost | Fixed cost per `br_table` opcode. | 440_000|
+|size_multiplier |  Size of target labels in the `br_table` opcode will be multiplied by `size_multiplier`. | 100|
 
 ### wasm.host_function_costs
 
