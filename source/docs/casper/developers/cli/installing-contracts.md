@@ -35,7 +35,7 @@ The arguments used above are:
 -   `payment-amount` - The payment for the deploy in motes
 -   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (`.wasm` file) on your computer
 
-Once you call this command, it will return a deploy hash. You can use this hash to [verify](../dapps/sending-deploys.md#sending-the-deploy) successful execution of the deploy.
+Once you call this command, it will return a deploy hash. You can use this hash to [verify](./sending-deploys.md#sending-the-deploy) successful execution of the deploy.
 
 **Example - Install the contract:**
 
