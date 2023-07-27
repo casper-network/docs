@@ -10,7 +10,7 @@ This section supports developers getting started with the Casper blockchain by w
 | Topic                    | Description                         |
 | ------------------------ | ----------------------------------- |
 | [Development Prerequisites](./prerequisites.md) | Setup needed for various workflows |
-| [Writing On-chain Code](./writing-onchain-code/index.md) | Writing contracts in Rust and Wasm for a Casper network |
+| [Writing On-Chain Code](./writing-onchain-code/index.md) | Writing contracts in Rust and Wasm for a Casper network |
 | [Casper JSON-RPC API](./json-rpc/index.md) | Endpoints for developers wishing to interact directly with a Casper node's JSON-RPC API |
 | [Building dApps](./dapps/index.md) | Useful information for dApp developers |
 | [Interacting with the Blockchain Using CLI](./cli/index.md) | Using a Rust command-line client to install and call contracts; transfer, delegate, and undelegate tokens. |
