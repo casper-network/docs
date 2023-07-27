@@ -2,7 +2,7 @@
 title: Interacting with the Blockchain
 ---
 
-# Interacting with the Blockchain using CLI
+# Using the Casper CLI Client
 
 This section explains how to interact with a Casper network using the Casper command-line client written in Rust.
 
