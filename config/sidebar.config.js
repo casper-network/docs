@@ -173,7 +173,7 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Interacting with the Blockchain using CLI",
+            label: "Interacting with the Blockchain",
             collapsible: true,
             collapsed: true,
             link: {
@@ -199,6 +199,7 @@ module.exports = {
                 "developers/cli/delegate",
                 "developers/cli/undelegate",
                 "developers/cli/installing-contracts",
+                "developers/cli/querying-global-state",
                 "developers/cli/calling-contracts",
                 "developers/cli/execution-error-codes",
             ],
