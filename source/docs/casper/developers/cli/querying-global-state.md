@@ -1,6 +1,5 @@
 ---
 title: Querying Global State
-tags: ["smart contract developers","rust","put-deploy"]
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

@@ -2,7 +2,6 @@
 id: welcome
 title: Welcome
 slug: /
-tags: ["Must read", "Legal", "Introduction", "CasperLabs", "CSPR"]
 ---
 
 # Welcome to the Casper Network Documentation
