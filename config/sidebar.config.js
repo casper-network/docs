@@ -88,7 +88,6 @@ module.exports = {
     ],
     developers: [
         "developers/index",
-        "developers/table-of-contents",
         "developers/prerequisites",
         {
             type: "category",
