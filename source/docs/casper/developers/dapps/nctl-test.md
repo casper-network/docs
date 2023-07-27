@@ -1,3 +1,7 @@
+---
+title: Local Network Testing
+---
+
 # Testing Smart Contracts with NCTL
 
 NCTL effectively simulates a live Casper network. The process for sending a `Deploy` to an NCTL-based network is therefore similar to doing so on a live network.

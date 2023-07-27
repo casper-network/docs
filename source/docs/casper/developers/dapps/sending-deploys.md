@@ -1,3 +1,7 @@
+---
+title: Sending Deploys to the Network
+---
+
 # Sending Deploys to a Casper network using the Rust Client
 
 To install smart contracts on the blockchain, you can send your Wasm to the network via a [Deploy](../../concepts/design/casper-design.md#execution-semantics-deploys). To do this, you will need to meet a few prerequisites:
