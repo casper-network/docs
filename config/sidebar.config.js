@@ -161,11 +161,11 @@ module.exports = {
                     ],
                 },
                 "developers/dapps/technology-stack",
-                "developers/dapps/setup-nctl",
-                "developers/dapps/nctl-test",
                 "developers/dapps/template-frontend",
                 "developers/dapps/signing-a-deploy",
                 "developers/dapps/sending-deploys",
+                "developers/dapps/setup-nctl",
+                "developers/dapps/nctl-test",
                 //"developers/dapps/signer-integration",
                 //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",

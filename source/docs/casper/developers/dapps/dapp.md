@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: What is a dApp?
 ---
 
 # What is a dApp?
