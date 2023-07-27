@@ -1,5 +1,5 @@
 ---
-tags: ["smart contract developers","rust","put-deploy"]
+title: Calling Contracts
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

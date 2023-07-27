@@ -1,3 +1,7 @@
+---
+title: Delegating Tokens
+---
+
 # Delegating with the Casper Client
 
 This document details a workflow where an account holder on a Casper network can delegate tokens to a validator.
