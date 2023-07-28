@@ -410,7 +410,7 @@ If the `execution_results` field is empty, it means that the network processed t
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
 |[deploy](./types_chain.md#deploy)|Object|The Deploy.|
-|[execution_results](./types_chain.md#jsonexecutionresult)|Object|The map of Block hash to execution result.|
+|[execution_results](./types_chain.md#jsonexecutionresult)|Array|An array of execution results with Block hashes.|
 
 <details>
 
