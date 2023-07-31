@@ -2,7 +2,7 @@
 title: Overview
 ---
 
-# Overview
+# Concepts Overview
 
 This section is intended for the developer or user who has had little or no exposure to Casper and wants to understand the concepts underpinning the platform. Working with the Casper blockchain requires an understanding of some core concepts. These concepts generally apply to blockchain technology, although some are Casper-specific. If you are new to Casper, we recommend you familiarize yourself with these concepts to ensure a proper foundation for your Casper education.
 
@@ -27,4 +27,4 @@ Once you understand the basic concepts underpinning Casper, here are some furthe
 
 - If you are just getting started and looking for help building your first Casper-based app, we recommend the [beginner tutorials](../resources/beginner/index.md) section.
 - If you have already started your Casper education and want to continue with more advanced tutorials, try our [advanced tutorials](../resources/advanced/index.md) section.
-- If you already have experience with or know of the Casper platform and are looking for specific information about a development topic, head over to the [development](../developers/index.md) area.
+- If you have prior experience with the Casper platform and you are looking for specific information about a development topic, head over to the [development](../developers/index.md) area.
