@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[5642],{6875:function(e){e.exports=JSON.parse('{"label":"Must read","permalink":"/tags/must-read","allTagsPath":"/tags","count":1,"items":[{"id":"welcome","title":"Welcome","description":"What is Casper?","permalink":"/welcome"}]}')}}]);

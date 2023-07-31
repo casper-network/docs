@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocusaurus=self.webpackChunkdocusaurus||[]).push([[1087],{1241:function(s){s.exports=JSON.parse('{"label":"staking","permalink":"/tags/staking","allTagsPath":"/tags","count":1,"items":[{"id":"concepts/economics/staking/staking","title":"Staking vs. Delegating","description":"staking-vs-delegating}","permalink":"/staking"}]}')}}]);
