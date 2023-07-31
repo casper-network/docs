@@ -1,5 +1,6 @@
 ---
 title: Contract Upgrades
+slug: /resources/tutorials/beginner/upgrade-contract
 ---
 
 # Upgrading a Contract

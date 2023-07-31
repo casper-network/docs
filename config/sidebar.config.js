@@ -34,9 +34,17 @@ module.exports = {
                 "concepts/economics/consensus",
                 "concepts/economics/runtime",
                 "concepts/economics/gas-concepts",
-                "concepts/economics/concepts",
-                "concepts/economics/staking",
-                "concepts/economics/delegation",
+                {
+                    type: "category",
+                    label: "Staking",
+                    collapsible: true,
+                    collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "concepts/economics/staking/concepts",
+                    },
+                    items: ["concepts/economics/staking/staking", "concepts/economics/staking/delegation"],
+                },
             ],
         },
         {

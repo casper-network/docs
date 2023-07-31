@@ -1,5 +1,6 @@
 ---
 title: Testnet Funding
+slug: /users/testnet-faucet
 ---
 
 # Funding Testnet Accounts

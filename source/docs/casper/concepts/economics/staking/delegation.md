@@ -1,3 +1,7 @@
+---
+slug: /concepts/economics/delegation
+---
+
 # Delegation Details
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -5,8 +9,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 This section provides a detailed explanation of the delegation cost mechanism, how the gas cost relates with delegations, where to find the details etc. Please note that the cost amounts are likely to change with time and you may have to check the latest release details to get the most up-to-date and accurate details.
 
 ## Delegation Cost
-
-**How much does delegation cost?**
 
 The delegation cost is defined in the chainspec.toml file for each Casper network. In this [example chainspec](https://github.com/casper-network/casper-node/blob/release-1.3.2/resources/production/chainspec.toml), the delegation is set to cost 2.5 CSPR. However, `when you perform the delegation, you see that it costs a little more` than what is specified in the chainspec. Let’s discuss why this happens.
 
@@ -22,13 +24,11 @@ For example, the chainspec file in release 1.3.2 will contain the following info
 
 </p>
 
-### Delegation Fees
-
 Delegation fees may change over time, so, it is essential to stay up to date. To do so, select the latest release in [Github](https://github.com/casper-network/casper-node), and navigate to the chainspec.toml file.
 
 If you are unsure about anything, please join the [Discord channel](https://discord.com/invite/PjAQVXRx4Y) to ask us questions.
 
-### First-time Delegation
+## First-time Delegation
 
 If you perform the delegation for the first time, the system charges some gas to create a purse to hold the delegated tokens.
 
@@ -36,9 +36,7 @@ _Example:_ The system can charge 0.5 CSPR in addition to the base delegation fee
 
 It is essential to have enough funds in your account's main purse when you set up a delegation transaction. Otherwise, the transaction will fail, and you will lose the transfer cost. For example, if you have 200 CSPR in your purse, delegate at most 197 CSPR and leave at least 3 CSPR for the delegation cost. Another option is to delegate 195 CSPR and leave some additional buffer.
 
-**Transaction Fee**
-
-As a result, when performing a [delegation using the command line](../../developers/cli/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
+As a result, when performing a [delegation using the command line](../../../developers/cli/delegate.md), we recommend you specify a little more than the base transaction payment to ensure that the transaction will go through without failure.
 
 <p align="center"><img src={useBaseUrl("/image/economic-delegationDetails.png")}  alt="details" width="400" /> </p>
 

@@ -1,5 +1,6 @@
 ---
 title: AWS Casper Nodes
+slug: /resources/tutorials/beginner/aws-node
 ---
 
 # Launching a Casper Node with AWS Marketplace

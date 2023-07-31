@@ -1,5 +1,6 @@
 ---
 title: Querying a Node
+slug: /resources/tutorials/beginner/querying-network
 ---
 
 # Querying a Casper Node

@@ -1,3 +1,7 @@
+---
+title: Highway Consensus
+---
+
 # The Highway Consensus Protocol
 
 ## What is Consensus?
