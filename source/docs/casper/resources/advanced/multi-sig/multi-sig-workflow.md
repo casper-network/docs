@@ -4,7 +4,7 @@ title: Multi-Sig Workflow
 
 # Multi-Signature Workflow
 
-The purpose of this tutorial is to provide an example of how to integrate key management on Casper accounts. This guide assumes previous completion of the [Two-Party Multi-Signature Deploys](https://docs.casper.network/resources/advanced/two-party-multi-sig/) tutorial, among other prerequisites. You will also need the Casper CLI client to use the `make-deploy`, `sign-deploy`, and `send-deploy` Casper CLI client commands.
+The purpose of this tutorial is to provide an example of how to integrate key management on Casper accounts. This guide assumes previous completion of the [Two-Party Multi-Signature Deploys](../two-party-multi-sig.md) tutorial, among other prerequisites. You will also need the Casper CLI client to use the `make-deploy`, `sign-deploy`, and `send-deploy` Casper CLI client commands.
 
 :::warning
 
