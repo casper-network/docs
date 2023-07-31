@@ -4,7 +4,7 @@ title: The Chainspec
 
 # The Blockchain Specification {#the-chain-specification}
 
-The blockchain specification, or `chainspec`, is a collection of configuration settings describing the network state at genesis and upgrades to basic system functionality (including system contracts and gas costs) occurring after genesis. This page describes each field in the chainspec, based on the [version 1.5.2](https://github.com/casper-network/casper-node/blob/release-1.5.2/resources/production/chainspec.toml) of the Casper node. The chainspec can and should be customized for private networks. The chainspec attributes are divided into categories based on what they are configuring.
+The blockchain specification, or `chainspec`, is a collection of configuration settings describing the network state at genesis and upgrades to basic system functionality (including system contracts and gas costs) occurring after genesis. This page describes each field in the chainspec, based on [version 1.5.2](https://github.com/casper-network/casper-node/blob/release-1.5.2/resources/production/chainspec.toml) of the Casper node. The chainspec can and should be customized for private networks. The chainspec attributes are divided into categories based on what they are configuring.
 
 ## protocol
 
@@ -68,7 +68,7 @@ These settings manage deploys and their lifecycle.
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-|max_payment_cost | The maximum number of Motes allowed to be spent during payment. 0 means unlimited. | '0'|
+|max_payment_cost | The maximum number of motes allowed to be spent during payment. 0 means unlimited. | '0'|
 |max_ttl | The duration after the deploy timestamp during which the deploy can be included in a block. | '18hours'|
 |max_dependencies | The maximum number of other deploys a deploy can depend on (requiring them to have been executed before it can execute). | 10|
 |max_block_size | Maximum block size in bytes, including deploys contained by the block. 0 means unlimited. | 10_485_760|
@@ -87,7 +87,7 @@ The following are Wasm-related settings.
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-|max_memory | Amount of free memory (in 64kB pages) each contract can use for its stack. | 64|
+|max_memory | Amount of free memory (in 64 kB pages) each contract can use for its stack. | 64|
 |max_stack_height | Max stack height (native WebAssembly stack limiter). | 500|
 
 ### wasm.storage_costs
@@ -118,7 +118,7 @@ The following settings manage the cost table for Wasm opcodes.
 |unreachable | Unreachable operation multiplier. | 270|
 |nop | Nop operation multiplier. | 200|
 |current_memory | Get the current memory operation multiplier. | 290|
-|grow_memory | Grow memory cost per page (64kb). | 240_000|
+|grow_memory | Grow memory cost per page (64 kB). | 240_000|
 
 ### wasm.opcode_costs.control_flow
 
