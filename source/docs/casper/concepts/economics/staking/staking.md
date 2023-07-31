@@ -1,7 +1,6 @@
 ---
 title: Staking vs. Delegating
 slug: /staking
-tags: ["finance", "staking", "governance"]
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

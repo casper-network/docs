@@ -46,7 +46,7 @@ Here is an [example](https://cspr.live/deploy/afeb43036c41e667af8bc34782c48a66cf
 
 ## How do I determine the gas cost for a transaction?
 
-Currently, we are hard at work to create tools to help you estimate gas costs. Meanwhile, we recommend using the NCTL tool on your local machine or the [Testnet](https://testnet.cspr.live/) to [deploy your contracts](../../developers/dapps/sending-deploys.md) in a test environment. You can check a deploy status and roughly see how much it would actually cost when deployed. You can estimate the costs in this way and then add a small buffer if the network state has changed. Note that when estimating gas cost locally or on the Testnet, the blockchain specification needs to match the specification of the Mainnet, where you will need to pay for the transaction with actual Casper (CSPR) tokens.
+Currently, we are hard at work to create tools to help you estimate gas costs. Meanwhile, we recommend using the NCTL tool on your local machine or the [Testnet](https://testnet.cspr.live/) to [deploy your contracts](../../developers/cli/sending-deploys.md) in a test environment. You can check a deploy status and roughly see how much it would actually cost when deployed. You can estimate the costs in this way and then add a small buffer if the network state has changed. Note that when estimating gas cost locally or on the Testnet, the blockchain specification needs to match the specification of the Mainnet, where you will need to pay for the transaction with actual Casper (CSPR) tokens.
 
 ## Why do I see a gas limit error?
 
