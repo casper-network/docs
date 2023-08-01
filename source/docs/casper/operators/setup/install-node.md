@@ -44,7 +44,7 @@ sudo rm -rf /var/lib/casper/*
 The following commands will set up the Casper Labs repository for packages:
 
 ```bash
-echo "deb https://repo.casperlabs.io/releases" bionic main | sudo tee -a /etc/apt/sources.list.d/casper.list
+echo "deb [arch=amd64] https://repo.casperlabs.io/releases" bionic main | sudo tee -a /etc/apt/sources.list.d/casper.list
 curl -O https://repo.casperlabs.io/casper-repo-pubkey.asc
 sudo apt-key add casper-repo-pubkey.asc
 sudo apt update
