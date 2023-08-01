@@ -1,6 +1,7 @@
 module.exports = {
     concepts: [
         "concepts/index",
+        "concepts/about",
         "concepts/intro-to-dapps",
         "concepts/accounts-and-keys",
         "concepts/hash-types",
