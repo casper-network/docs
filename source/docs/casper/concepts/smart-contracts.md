@@ -15,7 +15,7 @@ Session code is the simplest logic one can execute on a Casper network. It is es
 ### Further Reading
 
 - [Writing Contracts](../../casper/developers/writing-onchain-code/simple-contract.md)
-- [Sending a Deploy](../developers/dapps/sending-deploys.md)
+- [Sending a Deploy](../developers/cli/sending-deploys.md)
 - [Installing Smart Contracts](../developers/cli/installing-contracts.md)
 - [Calling Smart Contracts](../developers/writing-onchain-code/calling-contracts.md)
 - [Calling Smart Contracts using the Casper Client](../developers/cli/calling-contracts.md)

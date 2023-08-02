@@ -1,14 +1,30 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Table of Contents
+# Users Overview
 
-These user guides contain step-by-step instructions for interacting with the Casper blockchain.
+## General Topics
 
-- [Block Explorers on Casper Network](./block-explorer.md): a guide to understanding block explorers
-- [Delegating Tokens with a Block Explorer](./delegate-ui.md): a guide to staking your Casper tokens
-- [Undelegating with a Block Explorer](./undelegate-ui.md): a guide to un-staking your Casper tokens
-- [Ledger Setup](./ledger-setup.md): a guide to setting up your Ledger device
-- [Delegating with Ledger Devices](./staking-ledger.md): a guide to delegating tokens using your Ledger device
-- [Transferring Tokens using a Block Explorer](./token-transfer.md): a guide to transferring your Casper tokens 
-- [Funding Mainnet Accounts from an Exchange](./funding-from-exchanges.md): funding Mainnet accounts from an exchange
-- [Funding Testnet Accounts](./testnet-faucet.md): a guide to funding your Testnet account
+|Topic|Description|
+|----|-----------|
+|[Block Explorers](./block-explorer.md)| A guide to understanding block explorers |
+|[Funding Mainnet Accounts](./funding-from-exchanges.md)| Funding Mainnet accounts from an exchange |
+
+## Using CSPR.live
+
+Interact with the Casper blockchain using the [cspr.live](https://cspr.live/) block explorer.
+
+|Topic|Description|
+|----|-----------|
+|[Funding Testnet Accounts](./csprlive/testnet-faucet.md)| Funding your Testnet account using the Faucet |
+|[Delegating Tokens](./csprlive/delegate-ui.md)| Staking your Casper tokens with [cspr.live](https://cspr.live/) |
+|[Undelegating Tokens](./csprlive/undelegate-ui.md)| Un-staking your Casper tokens |
+|[Transferring Tokens](./csprlive/token-transfer.md)| Transferring your Casper tokens using [cspr.live](https://cspr.live/) |
+
+## Using Ledger Devices
+
+Interact with the Casper blockchain using a Ledger device.
+
+|Topic|Description|
+|----|-----------|
+|[Ledger Setup](./ledger/ledger-setup.md)| A guide to setting up your Ledger device |
+|[Delegating with Ledger Devices](./ledger/staking-ledger.md)| Delegating tokens using your Ledger device |

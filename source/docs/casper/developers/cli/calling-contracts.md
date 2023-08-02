@@ -1,5 +1,5 @@
 ---
-tags: ["smart contract developers","rust","put-deploy"]
+title: Calling Contracts
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -16,7 +16,7 @@ The following examples use two contracts on [Testnet](https://testnet.cspr.live/
 
 ## Prerequisites {#prerequisites}
 
-- You know how to [send and verify deploys](../dapps/sending-deploys.md)
+- You know how to [send and verify deploys](../cli/sending-deploys.md)
 - You know how to [install contracts and query global state](./installing-contracts.md) using the [default Casper client](../prerequisites.md#the-casper-command-line-client)
 - Install the [Counter contract](https://github.com/casper-ecosystem/counter/blob/master/contract-v1/src/main.rs) on Testnet if you have not done so already
 - Review the [system Auction contract](https://testnet.cspr.live/contract-package/e375d42c29c0e4b2baefa63cf2d70af34439eda851e08129d8515515d63bd6a9) on Testnet
@@ -57,7 +57,7 @@ casper-client put-deploy \
     --session-entry-point "counter-inc"
 ```
 
-This `put-deploy` command is nearly identical to the command used to [install the contract](./installing-contracts.md#installing-contract-code). Here, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated entry point. No Wasm file is needed in this example since the contract is already on the blockchain, and the entry point doesn’t return a value. If an entry point returns a value, use code to [interact with runtime return values](../../resources/tutorials/advanced/return-values-tutorial.md).
+This `put-deploy` command is nearly identical to the command used to [install the contract](./installing-contracts.md#installing-contract-code). Here, instead of `session-path` pointing to the Wasm binary, we have `session-hash` and `session-entry-point` identifying the on-chain contract and its associated entry point. No Wasm file is needed in this example since the contract is already on the blockchain, and the entry point doesn’t return a value. If an entry point returns a value, use code to [interact with runtime return values](../../resources/advanced/return-values-tutorial.md).
 
 :::tip
 
@@ -373,7 +373,7 @@ The argument of interest is:
 
 **Example - Session code acting on a contract:**
 
-The [Counter Contract Tutorial](../../resources/tutorials/beginner/counter/index.md) shows how to change the state of a contract (counter-v1.wasm) using session code (counter-call.wasm).
+The [Counter Contract Tutorial](../../resources/beginner/counter/index.md) shows how to change the state of a contract (counter-v1.wasm) using session code (counter-call.wasm).
 
 ```rust
 
@@ -395,11 +395,11 @@ casper-client put-deploy \
 
 ## Calling Contracts that Return a Value
 
-Visit the [Interacting with Runtime Return Values](../../resources/tutorials/advanced/return-values-tutorial.md) tutorial to learn how to call a contract that returns a value using session code or contract code.
+Visit the [Interacting with Runtime Return Values](../../resources/advanced/return-values-tutorial.md) tutorial to learn how to call a contract that returns a value using session code or contract code.
 
 ## What's Next? {#whats-next}
 
-- The [Counter Contract Tutorial](../../resources/tutorials/beginner/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
+- The [Counter Contract Tutorial](../../resources/beginner/counter/index.md) takes you through a detailed walkthrough on how to query global state to verify a contract's state
 - Learn more about [Delegating with the Casper Client](./delegate.md)
-- Look into the [Tutorials for Smart Contract Authors](/tutorials/)
+- Look into the [Resources for Smart Contract Authors](/resources/)
 - See the [Developer How To Guides](/developers)

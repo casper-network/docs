@@ -1,3 +1,7 @@
+---
+title: Upgrades
+---
+
 # Upgrading the Node
 
 The [`chainspec.toml`](../../concepts/glossary/C.md#chainspec) contains a section to indicate from which era the given `casper-node` version should start running.

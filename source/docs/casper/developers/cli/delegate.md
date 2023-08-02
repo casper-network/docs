@@ -1,3 +1,7 @@
+---
+title: Delegating Tokens
+---
+
 # Delegating with the Casper Client
 
 This document details a workflow where an account holder on a Casper network can delegate tokens to a validator.
@@ -5,7 +9,7 @@ This document details a workflow where an account holder on a Casper network can
 ## Prerequisites
 
 1. You meet all prerequisites listed [here](../prerequisites.md), including having a valid `node-address` and the Casper command-line client
-2. You have previously [installed a smart contract](../dapps/sending-deploys.md) to a Casper network
+2. You have previously [installed a smart contract](../cli/sending-deploys.md) to a Casper network
 3. [Acquiring a Validator's Public Key](#acquiring-a-validators-public-key)
 
 ### Acquiring a Validator's Public Key {#acquiring-a-validators-public-key}
@@ -62,7 +66,7 @@ The `delegate` entry point expects three arguments:
 8. `amount`: The number of tokens to be delegated
 9. `delegator`: The hexadecimal public key of the account delegating tokens to a validator. **This key must match the secret key that signs the delegation**
 
-The command will return a deploy hash, which is needed to verify the deploy's processing results. Refer to the [Deploy Status](../../resources/tutorials/beginner/querying-network.md#deploy-status) section for more details.
+The command will return a deploy hash, which is needed to verify the deploy's processing results. Refer to the [Deploy Status](../../resources/beginner/querying-network.md#deploy-status) section for more details.
 
 :::note
 
@@ -143,7 +147,7 @@ The `delegate` entry point expects three arguments:
 7. `amount`: The number of tokens to be delegated
 8. `delegator`: The hexadecimal public key of the account delegating tokens to a validator. **This key must match the secret key that signs the delegation**
 
-The command will return a deploy hash, which is needed to verify the deploy's processing results. Refer to the [Deploy Status](../../resources/tutorials/beginner/querying-network.md#deploy-status) section for more details.
+The command will return a deploy hash, which is needed to verify the deploy's processing results. Refer to the [Deploy Status](../../resources/beginner/querying-network.md#deploy-status) section for more details.
 
 **Example:**
 

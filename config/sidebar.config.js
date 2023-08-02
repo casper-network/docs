@@ -15,27 +15,36 @@ module.exports = {
             label: "Design",
             collapsible: true,
             collapsed: true,
-            items: [
-                "concepts/design/index",
-                "concepts/design/casper-design",
-                "concepts/design/p2p",
-                "concepts/design/highway",
-                "concepts/design/reading-and-writing-to-the-blockchain",
-            ],
+            link: {
+                type: "doc",
+                id: "concepts/design/index",
+            },
+            items: ["concepts/design/casper-design", "concepts/design/p2p", "concepts/design/highway", "concepts/design/reading-and-writing-to-the-blockchain"],
         },
         {
             type: "category",
             label: "Economics",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "concepts/economics/index",
+            },
             items: [
-                "concepts/economics/index",
                 "concepts/economics/consensus",
                 "concepts/economics/runtime",
                 "concepts/economics/gas-concepts",
-                "concepts/economics/concepts",
-                "concepts/economics/staking",
-                "concepts/economics/delegation",
+                {
+                    type: "category",
+                    label: "Staking",
+                    collapsible: true,
+                    collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "concepts/economics/staking/concepts",
+                    },
+                    items: ["concepts/economics/staking/staking", "concepts/economics/staking/delegation"],
+                },
             ],
         },
         {
@@ -43,8 +52,11 @@ module.exports = {
             label: "Glossary",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "concepts/glossary/index",
+            },
             items: [
-                "concepts/glossary/index",
                 "concepts/glossary/A",
                 "concepts/glossary/B",
                 "concepts/glossary/C",
@@ -76,15 +88,17 @@ module.exports = {
     ],
     developers: [
         "developers/index",
-        "developers/table-of-contents",
         "developers/prerequisites",
         {
             type: "category",
             label: "Writing On-Chain Code",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "developers/writing-onchain-code/index",
+            },
             items: [
-                "developers/writing-onchain-code/index",
                 "developers/writing-onchain-code/getting-started",
                 "developers/writing-onchain-code/assembly-script",
                 "developers/writing-onchain-code/simple-contract",
@@ -102,8 +116,11 @@ module.exports = {
             label: "Casper JSON-RPC API",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "developers/json-rpc/index",
+            },
             items: [
-                "developers/json-rpc/index",
                 "developers/json-rpc/guidance",
                 "developers/json-rpc/minimal-compliance",
                 "developers/json-rpc/json-rpc-transactional",
@@ -118,8 +135,11 @@ module.exports = {
             label: "Building dApps",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "developers/dapps/index",
+            },
             items: [
-                "developers/dapps/index",
                 "developers/dapps/dapp",
                 "developers/dapps/prerequisites",
                 {
@@ -127,8 +147,11 @@ module.exports = {
                     label: "SDK Client Libraries",
                     collapsible: true,
                     collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "developers/dapps/sdk/index",
+                    },
                     items: [
-                        "developers/dapps/sdk/index",
                         "developers/dapps/sdk/client-library-usage",
                         "developers/dapps/sdk/script-sdk",
                         "developers/dapps/sdk/csharp-sdk",
@@ -138,11 +161,10 @@ module.exports = {
                     ],
                 },
                 "developers/dapps/technology-stack",
-                "developers/dapps/setup-nctl",
-                "developers/dapps/nctl-test",
                 "developers/dapps/template-frontend",
                 "developers/dapps/signing-a-deploy",
-                "developers/dapps/sending-deploys",
+                "developers/dapps/setup-nctl",
+                "developers/dapps/nctl-test",
                 //"developers/dapps/signer-integration",
                 //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
@@ -150,18 +172,24 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Interacting with the Blockchain using CLI",
+            label: "Interacting with the Blockchain",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "developers/cli/index",
+            },
             items: [
-                "developers/cli/index",
                 {
                     type: "category",
                     label: "Transferring Tokens",
                     collapsible: true,
                     collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "developers/cli/transfers/index",
+                    },
                     items: [
-                        "developers/cli/transfers/index",
                         "developers/cli/transfers/direct-token-transfer",
                         "developers/cli/transfers/multisig-deploy-transfer",
                         "developers/cli/transfers/verify-transfer",
@@ -169,7 +197,9 @@ module.exports = {
                 },
                 "developers/cli/delegate",
                 "developers/cli/undelegate",
+                "developers/cli/sending-deploys",
                 "developers/cli/installing-contracts",
+                "developers/cli/querying-global-state",
                 "developers/cli/calling-contracts",
                 "developers/cli/execution-error-codes",
             ],
@@ -179,9 +209,13 @@ module.exports = {
         "operators/index",
         {
             type: "category",
-            label: "Setting up a Node",
+            label: "Node Setup",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "operators/setup/index",
+            },
             items: [
                 "operators/setup/hardware",
                 "operators/setup/basic-node-configuration",
@@ -195,103 +229,122 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Becoming a Validator",
+            label: "Validators",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "operators/becoming-a-validator/index",
+            },
             items: [
                 "operators/becoming-a-validator/bonding",
+                "operators/becoming-a-validator/unbonding",
                 "operators/becoming-a-validator/recovering",
                 "operators/becoming-a-validator/inactive-vs-faulty",
-                "operators/becoming-a-validator/unbonding",
             ],
         },
         {
             type: "category",
-            label: "Setting up a Network",
+            label: "Private Networks",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "operators/setup-network/index",
+            },
             items: ["operators/setup-network/chain-spec", "operators/setup-network/create-private", "operators/setup-network/staging-files-for-new-network"],
         },
         {
             type: "category",
-            label: "Advanced Topics",
+            label: "Maintenance",
             collapsible: true,
             collapsed: true,
-            items: ["operators/advanced-topics/archiving-and-restoring", "operators/advanced-topics/moving-node"],
+            link: {
+                type: "doc",
+                id: "operators/maintenance/index",
+            },
+            items: ["operators/maintenance/archiving-and-restoring", "operators/maintenance/moving-node"],
         },
     ],
     resources: [
         "resources/index",
-        {
-            type: "category",
-            label: "Why Build on Casper",
-            collapsible: true,
-            collapsed: true,
-            items: ["resources/build-on-casper/index", "resources/build-on-casper/casper-open-source-software"],
-        },
+        "resources/build-on-casper",
+        "resources/casper-open-source-software",
         "resources/quick-start",
         //"resources/sample-projects", // NEW CONTENT WILL BE HERE
         {
             type: "category",
-            label: "Tutorials",
+            label: "Beginner Tutorials",
             collapsible: true,
             collapsed: true,
+            link: {
+                type: "doc",
+                id: "resources/beginner/index",
+            },
             items: [
-                "resources/tutorials/index",
+                "resources/beginner/getting-started-tutorial",
                 {
                     type: "category",
-                    label: "Beginner Tutorials",
+                    label: "A Counter with NCTL",
                     collapsible: true,
                     collapsed: true,
-                    items: [
-                        "resources/tutorials/beginner/index",
-                        "resources/tutorials/beginner/getting-started-tutorial",
-                        "resources/tutorials/beginner/querying-network",
-                        "resources/tutorials/beginner/upgrade-contract",
-                        "resources/tutorials/beginner/aws-node",
-                        "resources/tutorials/beginner/cep18",
-                        {
-                            type: "category",
-                            label: "A Counter on the Testnet",
-                            collapsible: true,
-                            collapsed: true,
-                            items: [
-                                "resources/tutorials/beginner/counter-testnet/index",
-                                "resources/tutorials/beginner/counter-testnet/overview",
-                                "resources/tutorials/beginner/counter-testnet/commands",
-                                "resources/tutorials/beginner/counter-testnet/walkthrough",
-                            ],
-                        },
-                        {
-                            type: "category",
-                            label: "A Counter on an NCTL Network",
-                            collapsible: true,
-                            collapsed: true,
-                            className: "text_transform_reset",
-                            items: [
-                                "resources/tutorials/beginner/counter/index",
-                                "resources/tutorials/beginner/counter/overview",
-                                "resources/tutorials/beginner/counter/commands",
-                                "resources/tutorials/beginner/counter/walkthrough",
-                            ],
-                        },
-                    ],
+                    className: "text_transform_reset",
+                    link: {
+                        type: "doc",
+                        id: "resources/beginner/counter/index",
+                    },
+                    items: ["resources/beginner/counter/overview", "resources/beginner/counter/commands", "resources/beginner/counter/walkthrough"],
                 },
                 {
                     type: "category",
-                    label: "Advanced Tutorials",
+                    label: "A Counter on the Testnet",
+                    collapsible: true,
+                    collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "resources/beginner/counter-testnet/index",
+                    },
+                    items: [
+                        "resources/beginner/counter-testnet/overview",
+                        "resources/beginner/counter-testnet/commands",
+                        "resources/beginner/counter-testnet/walkthrough",
+                    ],
+                },
+                "resources/beginner/querying-network",
+                "resources/beginner/upgrade-contract",
+                "resources/beginner/cep18",
+                "resources/beginner/aws-node",
+                // TODO link external tutorials if possible, to show them in sidebar navigation
+                //"resources/beginner/use-javascript-sdk" TODO remove or replace
+            ],
+        },
+        {
+            type: "category",
+            label: "Advanced Tutorials",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "resources/advanced/index",
+            },
+            items: [
+                "resources/advanced/two-party-multi-sig",
+                {
+                    type: "category",
+                    label: "Multi-Sig Management",
                     collapsible: true,
                     collapsed: true,
                     items: [
-                        "resources/tutorials/advanced/index",
-                        "resources/tutorials/advanced/cross-contract",
-                        "resources/tutorials/advanced/transfer-token-to-contract",
-                        "resources/tutorials/advanced/two-party-multi-sig",
-                        "resources/tutorials/advanced/return-values-tutorial",
-                        //"resources/tutorials/advanced/list-cspr",
-                        "resources/tutorials/advanced/storage-workflow",
+                        "resources/advanced/multi-sig/index",
+                        "resources/advanced/multi-sig/multi-sig-workflow",
+                        "resources/advanced/multi-sig/other-scenarios",
                     ],
                 },
+                "resources/advanced/return-values-tutorial",
+                "resources/advanced/transfer-token-to-contract",
+                "resources/advanced/storage-workflow",
+                "resources/advanced/cross-contract",
+                //"resources/advanced/list-cspr",
             ],
         },
         //"resources/contribute-to-docs", // NEW CONTENT WILL BE HERE
@@ -301,12 +354,28 @@ module.exports = {
     users: [
         "users/index",
         "users/block-explorer",
-        "users/delegate-ui",
-        "users/undelegate-ui",
-        "users/ledger-setup",
-        "users/staking-ledger",
-        "users/token-transfer",
         "users/funding-from-exchanges",
-        "users/testnet-faucet",
+        {
+            type: "category",
+            label: "Using CSPR.live",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "users/csprlive/testnet-faucet",
+            },
+            items: ["users/csprlive/testnet-faucet", "users/csprlive/delegate-ui", "users/csprlive/undelegate-ui", "users/csprlive/token-transfer"],
+        },
+        {
+            type: "category",
+            label: "Ledger Devices",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "users/ledger/ledger-setup",
+            },
+            items: ["users/ledger/ledger-setup", "users/ledger/staking-ledger"],
+        },
     ],
 };

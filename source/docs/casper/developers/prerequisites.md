@@ -254,7 +254,7 @@ casper-client account-address --public-key <path-to-public_key.pem/public-key-he
 
 After generating the cryptographic key-pair for an Account, you must fund the account's main purse to create it on-chain.
 
-On Testnet, you can fund an account by requesting test tokens according to [this guide](../users/testnet-faucet.md). You can request test tokens **only once** for each account.
+On Testnet, you can fund an account by requesting test tokens according to [this guide](../users/csprlive/testnet-faucet.md). You can request test tokens **only once** for each account.
 
 On Mainnet, a pre-existing account must transfer CSPR tokens to the newly created account's main purse to finalize the setup. The source account needs to transfer CSPR tokens to the hexadecimal-encoded public key of the target account. This transfer will automatically create the target account if it does not exist. Currently, this is the only way to create an account on Mainnet.
 

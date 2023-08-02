@@ -20,6 +20,10 @@ The following table summarizes the key differences between session code and cont
 | When a `put_key` call is made within the body of the session code, the key is added to the account's named keys. | When a `put_key` call is made within the smart contract's context, the contract's record is modified to have a new named_key entry. |
 | For more information on how to write session code, see [Writing Session Code](./writing-session-code.md). | For more information on writing contracts, see [Writing a Basic Smart Contract in Rust](./simple-contract.md). |
 
+The following image depicts the comparison presented in the table.
+
+<p align="center"><img src={useBaseUrl("/image/design/session-contract-context.png")} alt="Comparing Session and Contract Code" /></p>
+
 ## What's Next? {#whats-next}
 
 - Learn to [write session code](./writing-session-code.md)

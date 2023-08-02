@@ -1,5 +1,5 @@
 ---
-title: Deploys and the Deploy Lifecycle
+title: Deploy Lifecycle
 slug: /deploy-and-deploy-lifecycle
 ---
 
@@ -77,3 +77,11 @@ The user-defined logic of a deploy can be specified in a number of ways:
 - a name corresponding to a named key in the account, where a contract is stored under the key
 
 Payment and session code can be independently specified, so different methods of specifying them may be used (e.g. payment could be specified by a hash key, while the session is explicitly provided as a Wasm module).
+
+## Summary
+
+The following diagram summarizes the deploy lifecycle.
+
+<p align="center">
+<img src={"/image/design/deploy-lifecycle.png"} alt="Image showing the deploy lifecycle" /> 
+</p>

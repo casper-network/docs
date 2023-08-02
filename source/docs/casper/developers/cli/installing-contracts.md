@@ -1,19 +1,19 @@
 ---
-tags: ["smart contract developers","rust","put-deploy"]
+title: Installing Contracts
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Installing Smart Contracts and Querying Global State
+# Installing Smart Contracts
 
-This document details the process of installing [Casper smart contracts](../writing-onchain-code/simple-contract.md) using the [Casper command-line client](../prerequisites.md#the-casper-command-line-client) and the `put-deploy` command. It further explains how to query the global state after contract installation.
+This document details the process of installing [Casper smart contracts](../writing-onchain-code/simple-contract.md) using the [Casper command-line client](../prerequisites.md#the-casper-command-line-client) and the `put-deploy` command.
 
 ## Prerequisites
 
 - You have a compiled contract (`.wasm` file) to send to a Casper network
 - You have installed the [Casper CLI client](../prerequisites.md#installing-the-casper-client-install-casper-clie) to interact with the network
 - You have a [Casper Account](../prerequisites.md#setting-up-an-account) with a public and secret key pair to initiate the deploy
-- You have enough CSPR tokens in your account's main purse to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](../../users/testnet-faucet.md) to fund your testing account's main purse
+- You have enough CSPR tokens in your account's main purse to pay for deploys. If you plan to use the Casper Testnet, learn about the [faucet](../../users/csprlive/testnet-faucet.md) to fund your testing account's main purse
 
 ## Installing a Contract in Global State {#installing-contract-code}
 
@@ -35,7 +35,7 @@ The arguments used above are:
 -   `payment-amount` - The payment for the deploy in motes
 -   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (`.wasm` file) on your computer
 
-Once you call this command, it will return a deploy hash. You can use this hash to [verify](../dapps/sending-deploys.md#sending-the-deploy) successful execution of the deploy.
+Once you call this command, it will return a deploy hash. You can use this hash to [verify](./sending-deploys.md#sending-the-deploy) successful execution of the deploy.
 
 **Example - Install the contract:**
 
@@ -246,7 +246,7 @@ Here is how the sample contract would look and would contain details such as the
 
 **Example - Query a value using its key and the contract hash:**
 
-Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](../../resources/tutorials/beginner/counter/index.md), where a "count" variable is incremented and stored under a named key.
+Next, you can query a named key associated with the contract using the `-q` option. This example comes from the [Counter Contract Tutorial](../../resources/beginner/counter/index.md), where a "count" variable is incremented and stored under a named key.
 
 ```bash
 casper-client query-global-state \
