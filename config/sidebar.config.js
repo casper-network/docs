@@ -247,7 +247,12 @@ module.exports = {
                 type: "doc",
                 id: "operators/setup-network/index",
             },
-            items: ["operators/setup-network/chain-spec", "operators/setup-network/create-private", "operators/setup-network/staging-files-for-new-network"],
+            items: [
+                "operators/setup-network/genesis",
+                "operators/setup-network/chain-spec",
+                "operators/setup-network/create-private",
+                "operators/setup-network/staging-files-for-new-network",
+            ],
         },
         {
             type: "category",
