@@ -89,7 +89,6 @@ module.exports = {
     ],
     developers: [
         "developers/index",
-        "developers/table-of-contents",
         "developers/prerequisites",
         {
             type: "category",
@@ -163,11 +162,10 @@ module.exports = {
                     ],
                 },
                 "developers/dapps/technology-stack",
-                "developers/dapps/setup-nctl",
-                "developers/dapps/nctl-test",
                 "developers/dapps/template-frontend",
                 "developers/dapps/signing-a-deploy",
-                "developers/dapps/sending-deploys",
+                "developers/dapps/setup-nctl",
+                "developers/dapps/nctl-test",
                 //"developers/dapps/signer-integration",
                 //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
@@ -175,7 +173,7 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Interacting with the Blockchain using CLI",
+            label: "Interacting with the Blockchain",
             collapsible: true,
             collapsed: true,
             link: {
@@ -200,7 +198,9 @@ module.exports = {
                 },
                 "developers/cli/delegate",
                 "developers/cli/undelegate",
+                "developers/cli/sending-deploys",
                 "developers/cli/installing-contracts",
+                "developers/cli/querying-global-state",
                 "developers/cli/calling-contracts",
                 "developers/cli/execution-error-codes",
             ],
