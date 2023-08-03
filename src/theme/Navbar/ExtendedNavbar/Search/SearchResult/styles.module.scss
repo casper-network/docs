@@ -1,93 +1,88 @@
 @use "../../../../../assets/scss/mixins";
 
-.results_wrapper {
-    position: absolute;
-    width: 100%;
-    border: 1px solid var(--casperYellow);
-    .results_portal_title {
-        background-color: var(--liftedBlack);
-        margin-bottom: 0;
-        padding: 10px;
+.results_portal_title {
+    background-color: var(--liftedBlack);
+    margin-bottom: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 32px;
+}
+.results_container {
+    background-color: var(--black);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 27px;
+    padding: 20px 15px;
+    max-height: 381px;
+    overflow-y: scroll;
+
+    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+
+    .results_container_hit {
         display: flex;
-        justify-content: flex-start;
+        flex-direction: row;
         align-items: center;
-        height: 32px;
-    }
-    .results_container {
-        background-color: var(--black);
-        border-radius: 2px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 27px;
-        padding: 20px 15px;
-        max-height: 381px;
-        overflow-y: scroll;
+        justify-content: space-between;
+        width: 100%;
+        color: #ffffff;
+        text-decoration: none;
+        max-height: 50px;
 
-        @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
-
-        .results_container_hit {
+        svg {
+            path {
+                fill: #6d6d6d;
+            }
+        }
+        &:hover {
+            @include mixins.transition(0.3s all);
+            color: var(--casperYellow);
+        }
+        .results_container_hit_link {
             display: flex;
             flex-direction: row;
+            gap: 10px;
+            justify-content: flex-start;
             align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            color: #ffffff;
-            text-decoration: none;
-            max-height: 50px;
+            width: 90%;
 
-            svg {
-                path {
-                    fill: #6d6d6d;
-                }
-            }
-            &:hover {
-                @include mixins.transition(0.3s all);
-                color: var(--casperYellow);
-            }
-            .results_container_hit_link {
+            .hitContent {
                 display: flex;
-                flex-direction: row;
-                gap: 10px;
+                flex-direction: column;
+                gap: 3px;
+                width: 100%;
                 justify-content: flex-start;
-                align-items: center;
-                width: 90%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 16px;
 
-                .hitContent {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 3px;
-                    width: 100%;
-                    justify-content: flex-start;
+                > small {
+                    max-width: 100%;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    font-size: 16px;
-
-                    > small {
-                        max-width: 100%;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        color: #c3c3c3;
-                    }
-                }
-                .docElement {
-                    font-size: 16px;
                     color: #c3c3c3;
-                    > :first-child {
-                        color: var(--casperWhite);
-                        font-size: 18px;
-                    }
                 }
-                em {
+            }
+            .docElement {
+                font-size: 16px;
+                color: #c3c3c3;
+                > :first-child {
+                    color: var(--casperWhite);
+                    font-size: 18px;
+                }
+            }
+            em {
+                color: var(--casperYellow);
+                background-color: transparent;
+                font-style: normal;
+            }
+            :global {
+                .algolia-docsearch-suggestion--highlight {
                     color: var(--casperYellow);
-                    background-color: transparent;
-                    font-style: normal;
-                }
-                :global {
-                    .algolia-docsearch-suggestion--highlight {
-                        color: var(--casperYellow);
-                    }
                 }
             }
         }

@@ -4,6 +4,12 @@
     width: 45%;
     min-width: 15%;
 
+    .results_wrapper {
+        position: absolute;
+        width: 100%;
+        border: 1px solid var(--casperYellow);
+    }
+
     .container_icon_search {
         position: absolute;
         left: 10px;
