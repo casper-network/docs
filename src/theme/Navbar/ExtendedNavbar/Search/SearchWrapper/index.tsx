@@ -123,6 +123,9 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
                     <div className={styles.results_wrapper}>
                         <SearchResult hits={hits} searchTitle={"Portal Results"} setHasFocus={setHasFocus} locale={locale} siteUrl={siteUrl}></SearchResult>
                         <SearchResult hits={hits} searchTitle={"Documents Results"} setHasFocus={setHasFocus} locale={locale} siteUrl={siteUrl}></SearchResult>
+                        <div className={`${styles.search_link} halfTitleEyebrow`}>
+                            <a href={`https://docs.casper.network/search?q=${searchTerm}`}>Show all documentation results</a>
+                        </div>
                     </div>
                 </>
             )}

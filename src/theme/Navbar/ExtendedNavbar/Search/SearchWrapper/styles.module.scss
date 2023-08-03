@@ -10,6 +10,17 @@
         border: 1px solid var(--casperYellow);
     }
 
+    .search_link {
+        background-color: var(--black);
+        padding: 10px;
+        border-top: 1px solid var(--casperWhite);
+        a {
+            color: var(--casperYellow);
+            background-color: transparent;
+            font-style: normal;
+        }
+    }
+
     .container_icon_search {
         position: absolute;
         left: 10px;
