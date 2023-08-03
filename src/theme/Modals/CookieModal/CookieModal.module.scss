@@ -31,10 +31,12 @@
         @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
 
         h2 {
+            color: var(--casperWhite);
             margin-bottom: 12px;
         }
 
         p {
+            color: var(--casperWhite);
             font-weight: 300;
         }
         a {

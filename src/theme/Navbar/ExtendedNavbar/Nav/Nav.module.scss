@@ -60,11 +60,11 @@
                 .navbar_list_item {
                     @include transition(0.3s all);
                     color: var(--casperRed);
-                }
-                svg {
-                    path {
-                        @include transition(0.3s all);
-                        fill: var(--casperRed);
+                    > svg {
+                        path {
+                            @include transition(0.3s all);
+                            fill: var(--casperRed) !important;
+                        }
                     }
                 }
             }
@@ -88,7 +88,6 @@
                 .navbar_list_item {
                     width: 100%;
                     justify-content: space-between;
-                    background-color: var(--liftedBlack);
                     z-index: 5;
                 }
             }
