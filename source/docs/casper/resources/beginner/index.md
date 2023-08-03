@@ -1,5 +1,5 @@
 ---
-slug: /resources/tutorials/beginner/
+slug: /resources/beginner/
 ---
 
 # Overview
