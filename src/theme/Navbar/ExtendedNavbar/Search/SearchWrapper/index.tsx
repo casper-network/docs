@@ -84,7 +84,7 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
     useEffect(() => {
         // -- Only true if search term has a value
         // -- Avoid to show the empty results
-        setShowResults(searchTerm && hits.length > 0 ? true : false);
+        setShowResults(searchTerm || hits.length > 0 ? true : false);
     }, [searchTerm, hits]);
 
     useEventListener("keydown", handleKeyClose);
