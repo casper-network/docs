@@ -1,5 +1,6 @@
 ---
 title: What is Casper?
+slug: /
 ---
 
 ## What is Casper? {#what-is-casper}
