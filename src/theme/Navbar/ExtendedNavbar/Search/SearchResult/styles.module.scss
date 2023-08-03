@@ -8,6 +8,10 @@
         background-color: var(--liftedBlack);
         margin-bottom: 0;
         padding: 10px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 32px;
     }
     .results_container {
         background-color: var(--black);
