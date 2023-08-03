@@ -10,7 +10,7 @@ const fs = require("fs");
 // Constants
 //----------------------------------
 const excludedFolders = ["./source/blog/**/*", "./source/i18n/**/*"];
-const excludedFiles = {};
+const excludedFiles = ["./source/docs/casper/concepts/about.md"];
 
 //----------------------------------
 //  Private Vars
