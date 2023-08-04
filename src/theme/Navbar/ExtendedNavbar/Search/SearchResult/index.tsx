@@ -1,6 +1,7 @@
 import * as React from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./styles.module.scss";
+import { useEffect, useState } from "react";
 
 interface ISearchResultProps {
     locale: string;
@@ -13,6 +14,13 @@ interface ISearchResultProps {
 export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHasFocus }: ISearchResultProps) {
     const { siteConfig } = useDocusaurusContext();
     const { customFields } = siteConfig;
+    const [hitsDisplayed, setHitsDisplayed] = useState<any>([]);
+
+    useEffect(() => {
+        if (hits) {
+            setHitsDisplayed(hits.slice(0, 4));
+        }
+    }, [hits]);
 
     const getLink = (hit) => {
         const url = siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl;
@@ -61,13 +69,17 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
             return elemArr;
         }
     }
+    function loadMoreHits(e: any) {
+        e.stopPropagation();
+        setHitsDisplayed(hits);
+    }
 
     return (
         <>
             <p className={`${styles.results_portal_title} halfTitleEyebrow`}>{searchTitle}</p>
             <div className={styles.results_container} onClick={() => setHasFocus(false)}>
                 {hits && hits.length > 0 ? (
-                    hits.map((hit: any, i: number) => {
+                    hitsDisplayed.map((hit: any, i: number) => {
                         if (hit._highlightResult?.title?.matchedWords?.length > 0 || hit._highlightResult?.internal?.content?.matchedWords?.length > 0) {
                             return (
                                 <a key={`${hit.objectID}-${i}`} href={getLink(hit)} className={styles.results_container_hit}>
@@ -113,6 +125,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 ) : (
                     <span>No results found</span>
                 )}
+                {hits && hits.length > 4 && hits.length !== hitsDisplayed.length && <button onClick={loadMoreHits}>Show more</button>}
             </div>
         </>
     );
