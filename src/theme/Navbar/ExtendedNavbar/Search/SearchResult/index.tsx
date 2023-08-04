@@ -125,8 +125,12 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 ) : (
                     <span>No results found</span>
                 )}
-                {hits && hits.length > 4 && hits.length !== hitsDisplayed.length && <button onClick={loadMoreHits}>Show more</button>}
             </div>
+            {hits && hits.length > 4 && hits.length !== hitsDisplayed.length && (
+                <button className={`halfTitleEyebrow ${styles.showMore}`} onClick={loadMoreHits}>
+                    Show more
+                </button>
+            )}
         </>
     );
 }
