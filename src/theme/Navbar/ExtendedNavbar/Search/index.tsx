@@ -51,9 +51,8 @@ export default function Search({ index, placeholder, locale, siteUrl }: ISearchP
 
         const docIndex = {
             base: null,
-            client: searchDocClient.initIndex((siteConfig.themeConfig.algolia.indexName as string) ?? "casperlabs"),
+            client: searchDocClient.initIndex((siteConfig.themeConfig.algolia?.indexName as string) ?? "casperlabs"),
         };
-
         indexesArray.push(docIndex);
     }
     let searchAppClient: SearchClient;

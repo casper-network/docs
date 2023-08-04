@@ -58,7 +58,6 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
             for (const key in element) {
                 elemArr.push(<div dangerouslySetInnerHTML={{ __html: element[key].value }}></div>);
             }
-
             return elemArr;
         }
     }
@@ -71,7 +70,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                     hits.map((hit: any, i: number) => {
                         if (hit._highlightResult?.title?.matchedWords?.length > 0 || hit._highlightResult?.internal?.content?.matchedWords?.length > 0) {
                             return (
-                                <a key={`result_${i}`} href={getLink(hit)} className={styles.results_container_hit}>
+                                <a key={`${hit.objectID}`} href={getLink(hit)} className={styles.results_container_hit}>
                                     <div className={styles.results_container_hit_link}>
                                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -91,7 +90,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                             );
                         } else if (hit._highlightResult?.hierarchy) {
                             return (
-                                <a href={hit.url} className={styles.results_container_hit} key={`hit-${i}`}>
+                                <a href={hit.url} className={styles.results_container_hit} key={`${hit.objectID}`}>
                                     <div className={styles.results_container_hit_link}>
                                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -99,7 +98,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                                                 fill="#F4F4F4"
                                             />
                                         </svg>
-                                        <div className={styles.docElement}>{highlightDoc(hit)?.map((hit) => hit)}</div>
+                                        <div className={styles.docElement}>{highlightDoc(hit)?.map((parsedHit) => parsedHit)}</div>
                                     </div>
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path

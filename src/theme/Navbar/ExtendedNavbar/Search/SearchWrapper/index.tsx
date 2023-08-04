@@ -4,7 +4,7 @@ import icons from "../../../../../icons";
 import SearchResult from "../SearchResult";
 import useClickOutside from "../UseClickOutside";
 import styles from "./styles.module.scss";
-
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 interface ISearchWrapperProps {
     searchIndexes: any[];
     locale: string;
@@ -14,11 +14,15 @@ interface ISearchWrapperProps {
 }
 
 export default function SearchWrapper({ searchIndexes, locale, siteUrl, placeholder, hitsPerIndex = 20 }: ISearchWrapperProps) {
+    const { siteConfig } = useDocusaurusContext();
     const [searchTerm, setSearchTerm] = useState<string>("");
     const refInput = useRef<HTMLInputElement>(null);
     const [hasFocus, setHasFocus] = useState<boolean>(false);
     const [showResults, setShowResults] = useState<boolean>(false);
-    const [hits, setHits] = useState<any[]>([]);
+    const [hits, setHits] = useState<any>({});
+    const docsIndexName = (siteConfig.themeConfig.algolia?.indexName as string) ?? "casperlabs";
+    const siteIndexName = (siteConfig.customFields.siteAlgoliaIndexName as string) ?? "casper";
+
     let delayDebounceFn: NodeJS.Timeout;
 
     const handleKeyClose = (e: KeyboardEvent): void => {
@@ -40,10 +44,12 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
                 }),
             );
         }
+
         Promise.allSettled(promiseArr)
             .then((results: any) => {
-                let parsedHits: any[] = [];
-                for (var i = 0; i < results.length; i++) {
+                const hits = {};
+                for (let i = 0; i < results.length; i++) {
+                    let parsedHits: any[] = [];
                     const basePath = searchIndexes[i].base;
                     const result = results[i];
                     if (result.status === "fulfilled") {
@@ -54,11 +60,12 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
                         });
 
                         parsedHits = [...parsedHits, ...parsedRes];
+                        hits[`${searchIndexes[i].client.indexName}`] = parsedHits;
                     } else {
                         console.log(`${result.reason.name} ${result.reason.message}`);
                     }
                 }
-                setHits(parsedHits);
+                setHits(hits);
             })
             .catch((err) => console.log(err));
     }
@@ -121,8 +128,20 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
             {hasFocus && showResults && (
                 <>
                     <div className={styles.results_wrapper}>
-                        <SearchResult hits={hits} searchTitle={"Portal Results"} setHasFocus={setHasFocus} locale={locale} siteUrl={siteUrl}></SearchResult>
-                        <SearchResult hits={hits} searchTitle={"Documents Results"} setHasFocus={setHasFocus} locale={locale} siteUrl={siteUrl}></SearchResult>
+                        <SearchResult
+                            hits={hits[siteIndexName]}
+                            searchTitle={"Portal Results"}
+                            setHasFocus={setHasFocus}
+                            locale={locale}
+                            siteUrl={siteUrl}
+                        ></SearchResult>
+                        <SearchResult
+                            hits={hits[docsIndexName]}
+                            searchTitle={"Documents Results"}
+                            setHasFocus={setHasFocus}
+                            locale={locale}
+                            siteUrl={siteUrl}
+                        ></SearchResult>
                         <div className={`${styles.search_link} halfTitleEyebrow`}>
                             <a href={`https://docs.casper.network/search?q=${searchTerm}`}>Show all documentation results</a>
                         </div>
