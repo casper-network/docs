@@ -82,6 +82,10 @@
                     -webkit-line-clamp: 1;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
+                    &:hover {
+                        @include mixins.transition(0.3s all);
+                        color: var(--casperYellow);
+                    }
                 }
             }
             em {
