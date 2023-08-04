@@ -40,7 +40,7 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
         for (let index of searchIndexes) {
             promiseArr.push(
                 index.client.search(val, {
-                    hitsPerPage: hitsPerIndex,
+                    hitsPerPage: index.client.indexName === docsIndexName ? 4 : hitsPerIndex,
                 }),
             );
         }
