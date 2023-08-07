@@ -23,6 +23,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
             const slicedHits = hits.slice(0, 4);
             if (searchTitle === "Portal Results") {
                 setHitsDisplayed(slicedHits);
+                console.log(slicedHits);
             } else {
                 const newGroupHits = groupHits(hits);
                 setHitsDisplayed(newGroupHits);
@@ -40,7 +41,6 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     };
 
     function groupHits(hits: any[]) {
-        console.log(hits);
         const newHits = hits.map((hit) => {
             if (hit._highlightResult?.hierarchy) {
                 const hitCopy = JSON.parse(JSON.stringify(hit));
@@ -60,8 +60,6 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                     groupedHits.push(hitCopy);
                     lastHit = hitCopy;
                 } else {
-                    console.log(hitCopy, "hitcopy");
-                    console.log(lastHit, "lastHits");
                     const longerArr = Object.keys(hitCopy).length > Object.keys(lastHit).length ? Object.keys(hitCopy) : Object.keys(lastHit);
 
                     const keyFound = longerArr.find((key, i) => {
@@ -75,7 +73,6 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 }
             }
         });
-        console.log(groupedHits);
         return groupedHits;
     }
 
@@ -109,14 +106,21 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
 
     function highlightDoc(hit: any) {
         let elemArr = [];
-
         for (const key in hit) {
             if (Array.isArray(hit[key])) {
-                hit[key].forEach((element) => elemArr.push(<a href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>));
+                hit[key].forEach((element) => {
+                    if (element) {
+                        if (element.url) {
+                            elemArr.push(<a key={element.value} href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>);
+                        } else {
+                            elemArr.push(<div key={element.value} dangerouslySetInnerHTML={{ __html: element.value }}></div>);
+                        }
+                    }
+                });
             } else if (hit[key].url) {
-                elemArr.push(<a href={hit[key].url} dangerouslySetInnerHTML={{ __html: hit[key].value }}></a>);
+                elemArr.push(<a key={hit[key].value} href={hit[key].url} dangerouslySetInnerHTML={{ __html: hit[key].value }}></a>);
             } else {
-                elemArr.push(<div dangerouslySetInnerHTML={{ __html: hit[key].value }}></div>);
+                elemArr.push(<div key={hit[key].value} dangerouslySetInnerHTML={{ __html: hit[key].value }}></div>);
             }
         }
         return elemArr;
