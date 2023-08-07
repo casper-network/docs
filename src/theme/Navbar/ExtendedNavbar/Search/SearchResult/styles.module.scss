@@ -31,7 +31,7 @@
     padding: 10px 15px;
     max-height: 300px;
     overflow-y: scroll;
-    transition: max-height 500ms;
+    transition: all 500ms;
 
     @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
 
