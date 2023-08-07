@@ -40,6 +40,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     };
 
     function groupHits(hits: any[]) {
+        console.log(hits);
         const newHits = hits.map((hit) => {
             if (hit._highlightResult?.hierarchy) {
                 const hitCopy = JSON.parse(JSON.stringify(hit));
@@ -50,16 +51,22 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         });
         const groupedHits = [];
         let lastHit = {};
+
         newHits.forEach((hit, i) => {
             if (hit) {
                 const hitCopy = JSON.parse(JSON.stringify(hit));
                 const isValueRepeated = Object.keys(hitCopy).every((key) => hitCopy[key].value !== lastHit[key]?.value);
-
                 if (isValueRepeated) {
                     groupedHits.push(hitCopy);
                     lastHit = hitCopy;
                 } else {
-                    const keyFound = Object.keys(hitCopy).find((key) => hitCopy[key].value !== lastHit[key].value);
+                    console.log(hitCopy, "hitcopy");
+                    console.log(lastHit, "lastHits");
+                    const longerArr = Object.keys(hitCopy).length > Object.keys(lastHit).length ? Object.keys(hitCopy) : Object.keys(lastHit);
+
+                    const keyFound = longerArr.find((key, i) => {
+                        return (hitCopy[key]?.value ?? "") !== (lastHit[key]?.value ?? "");
+                    });
                     if (Array.isArray(groupedHits[groupedHits.length - 1][keyFound])) {
                         groupedHits[groupedHits.length - 1][keyFound].push(hitCopy[keyFound]);
                     } else {
@@ -68,6 +75,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 }
             }
         });
+        console.log(groupedHits);
         return groupedHits;
     }
 
