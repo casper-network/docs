@@ -23,7 +23,6 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
             const slicedHits = hits.slice(0, 4);
             if (searchTitle === "Portal Results") {
                 setHitsDisplayed(slicedHits);
-                console.log(slicedHits);
             } else {
                 const newGroupHits = groupHits(hits);
                 setHitsDisplayed(newGroupHits);
