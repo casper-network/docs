@@ -21,7 +21,6 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     useEffect(() => {
         if (hits) {
             setHitsDisplayed(hits.slice(0, 4));
-
             groupHits(hits);
         }
     }, [hits]);
@@ -36,28 +35,35 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     };
 
     function groupHits(hits: any[]) {
-        console.log(hits);
         const newHits = hits.map((hit) => {
             if (hit._highlightResult?.hierarchy) {
-                const lastKey = Object.keys(hit._highlightResult?.hierarchy)[Object.keys(hit._highlightResult?.hierarchy).length - 1];
-                hit._highlightResult.hierarchy[lastKey].url = hit.url;
-                return hit._highlightResult.hierarchy;
+                const hitCopy = JSON.parse(JSON.stringify(hit));
+                const lastKey = Object.keys(hitCopy._highlightResult?.hierarchy)[Object.keys(hitCopy._highlightResult?.hierarchy).length - 1];
+                hitCopy._highlightResult.hierarchy[lastKey].url = hitCopy.url;
+                return hitCopy._highlightResult.hierarchy;
             }
         });
         const groupedHits = [];
         let lastHit = {};
-        newHits.forEach((hit) => {
+        newHits.forEach((hit, i) => {
             if (hit) {
-                // console.log(hit);
-                if (groupedHits.length === 0 || Object.keys(hit).every((key) => hit[key].value !== lastHit[key]?.value)) {
-                    groupedHits.push(hit);
-                    lastHit = hit;
+                const hitCopy = JSON.parse(JSON.stringify(hit));
+                const isValueRepeated = Object.keys(hitCopy).every((key) => hitCopy[key].value !== lastHit[key]?.value);
+
+                if (isValueRepeated) {
+                    groupedHits.push(hitCopy);
+                    lastHit = hitCopy;
                 } else {
-                    const keyFound = Object.keys(hit).find((key) => hit[key].value !== lastHit[key].value);
-                    groupedHits[groupedHits.length - 1][keyFound] = [...Array.from(groupedHits[groupedHits.length - 1][keyFound]), hit[keyFound]];
+                    const keyFound = Object.keys(hitCopy).find((key) => hitCopy[key].value !== lastHit[key].value);
+                    if (Array.isArray(groupedHits[groupedHits.length - 1][keyFound])) {
+                        groupedHits[groupedHits.length - 1][keyFound].push(hitCopy[keyFound]);
+                    } else {
+                        groupedHits[groupedHits.length - 1][keyFound] = [groupedHits[groupedHits.length - 1][keyFound], hitCopy[keyFound]];
+                    }
                 }
             }
         });
+        console.log(groupedHits);
     }
 
     function handleContentHit(contentHit: string) {
