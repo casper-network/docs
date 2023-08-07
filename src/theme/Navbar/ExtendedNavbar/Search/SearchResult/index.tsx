@@ -19,6 +19,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     useEffect(() => {
         if (hits) {
             setHitsDisplayed(hits.slice(0, 4));
+            groupHits(hits);
         }
     }, [hits]);
 
@@ -30,6 +31,31 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
             return `${url}${locale}${hit.path}`;
         }
     };
+
+    function groupHits(hits: any[]) {
+        console.log(hits);
+        const newHits = hits.map((hit) => {
+            if (hit._highlightResult?.hierarchy) {
+                const lastKey = Object.keys(hit._highlightResult?.hierarchy)[Object.keys(hit._highlightResult?.hierarchy).length - 1];
+                hit._highlightResult.hierarchy[lastKey].url = hit.url;
+                return hit._highlightResult.hierarchy;
+            }
+        });
+        const groupedHits = [];
+        let lastHit = {};
+        newHits.forEach((hit) => {
+            if (hit) {
+                // console.log(hit);
+                if (groupedHits.length === 0 || Object.keys(hit).every((key) => hit[key].value !== lastHit[key]?.value)) {
+                    groupedHits.push(hit);
+                    lastHit = hit;
+                } else {
+                    const keyFound = Object.keys(hit).find((key) => hit[key].value !== lastHit[key].value);
+                    groupedHits[groupedHits.length - 1][keyFound] = [...Array.from(groupedHits[groupedHits.length - 1][keyFound]), hit[keyFound]];
+                }
+            }
+        });
+    }
 
     function handleContentHit(contentHit: string) {
         const previousWordsToShow = 4;
