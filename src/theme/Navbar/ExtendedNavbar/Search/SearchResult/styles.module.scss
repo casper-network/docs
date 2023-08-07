@@ -3,11 +3,22 @@
 .results_portal_title {
     background-color: var(--liftedBlack);
     margin-bottom: 0;
-    padding: 10px;
+    padding: 10px 20px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     height: 32px;
+    cursor: pointer;
+
+    svg {
+        pointer-events: none;
+        path {
+            fill: var(--casperWhite);
+        }
+    }
+    > p {
+        margin: 0px;
+    }
 }
 .results_container {
     background-color: var(--black);
@@ -20,6 +31,7 @@
     padding: 10px 15px;
     max-height: 300px;
     overflow-y: scroll;
+    transition: max-height 500ms;
 
     @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
 
@@ -101,6 +113,7 @@
         }
     }
 }
+
 .showMore {
     width: 100%;
     display: flex;
@@ -112,8 +125,20 @@
     border: none;
 }
 
-.centerSpinner{
+.centerSpinner {
     margin: auto;
+}
+
+.hiddenResults {
+    overflow: hidden;
+    transition: all 500ms;
+    max-height: 0px;
+    padding: 0px 15px;
+    width: 100%;
+}
+
+.rotateSvg {
+    transform: rotate(180deg);
 }
 
 @media (max-width: 996px) {

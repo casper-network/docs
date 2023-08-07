@@ -1,3 +1,5 @@
+@use "../../../../../assets/scss/mixins";
+
 .container {
     position: relative;
     margin: 0;
@@ -9,6 +11,8 @@
         width: 100%;
         border: 1px solid var(--casperYellow);
         z-index: 6;
+        @include mixins.transition(0.3s all);
+
     }
 
     .search_link {

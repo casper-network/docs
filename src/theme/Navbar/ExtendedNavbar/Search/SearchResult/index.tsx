@@ -2,6 +2,7 @@ import * as React from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./styles.module.scss";
 import { useEffect, useState } from "react";
+import icons from "../../../../../icons";
 
 interface ISearchResultProps {
     locale: string;
@@ -15,10 +16,12 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     const { siteConfig } = useDocusaurusContext();
     const { customFields } = siteConfig;
     const [hitsDisplayed, setHitsDisplayed] = useState<any>([]);
+    const [hideResults, setHideResults] = useState<boolean>(false);
 
     useEffect(() => {
         if (hits) {
             setHitsDisplayed(hits.slice(0, 4));
+            groupHits();
         }
     }, [hits]);
 
@@ -31,6 +34,25 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         }
     };
 
+    function groupHits() {
+        const newHits = [];
+        hits.forEach((hit) => {
+            if (hit._highlightResult.hierarchy) {
+                if (hit._highlightResult.hierarchy["lvl0"].value !== newHits[newHits.length - 1]?.content?.title.value) {
+                    let newHit = {};
+                    newHit["content"] = { title: hit._highlightResult.hierarchy["lvl0"], url: hit.url };
+                    newHit["children"] = [];
+                    newHits.push(newHit);
+                } else {
+                    let newHit = {};
+                    newHit["content"] = { title: hit._highlightResult.hierarchy["lvl1"], url: hit.url };
+                    newHit["children"] = [];
+                    newHits[newHits.length - 1].children.push(newHit);
+                }
+            }
+        });
+        console.log(newHits);
+    }
     function handleContentHit(contentHit: string) {
         const previousWordsToShow = 4;
         const markOpenIndex = contentHit.indexOf("<em>");
@@ -75,10 +97,16 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         setHitsDisplayed(hits);
     }
 
+    function hiddenResults(): void {
+        setHideResults((current) => !current);
+    }
+
     return (
         <>
-            <p className={`${styles.results_portal_title} halfTitleEyebrow`}>{searchTitle}</p>
-            <div className={styles.results_container} onClick={() => setHasFocus(false)}>
+            <p className={`${styles.results_portal_title} halfTitleEyebrow`} onClick={() => hiddenResults()}>
+                {searchTitle} <p className={`${hideResults && styles.rotateSvg} ${styles.nonStyle}`}>{icons.chevronDown}</p>
+            </p>
+            <div className={`${styles.results_container} ${hideResults && styles.hiddenResults} `} onClick={() => setHasFocus(false)}>
                 {hits ? (
                     hits.length > 0 ? (
                         hitsDisplayed.map((hit: any, i: number) => {
@@ -132,7 +160,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 )}
             </div>
             {hits && hits.length > 4 && hits.length !== hitsDisplayed.length && (
-                <button className={`halfTitleEyebrow ${styles.showMore}`} onClick={loadMoreHits}>
+                <button className={`halfTitleEyebrow ${styles.showMore} ${hideResults && styles.hiddenResults}`} onClick={loadMoreHits}>
                     Show more
                 </button>
             )}
