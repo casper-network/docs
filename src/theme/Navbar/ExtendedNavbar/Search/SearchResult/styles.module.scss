@@ -165,6 +165,10 @@
     transform: rotate(180deg);
 }
 
+.hitWeighTitle{
+    font-weight: 500;
+}
+
 @media (max-width: 996px) {
     .results_container {
         z-index: 6;

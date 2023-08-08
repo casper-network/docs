@@ -90,7 +90,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
 
     function highlight(hit: any) {
         if (hit._highlightResult?.title?.matchedWords?.length > 0) {
-            return <span className="noWrap" dangerouslySetInnerHTML={{ __html: hit._highlightResult?.title?.value }} />;
+            return <span className={`noWrap ${styles.hitWeighTitle}`} dangerouslySetInnerHTML={{ __html: hit._highlightResult?.title?.value }} />;
         } else if (hit._highlightResult?.internal?.content?.matchedWords?.length > 0) {
             return (
                 <span className={`${styles.hitContent} noWrap`}>
