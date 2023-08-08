@@ -144,7 +144,7 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
                         ></SearchResult>
                         {hits[docsIndexName] && hits[docsIndexName].length > 0 && (
                             <div className={`${styles.search_link} halfTitleEyebrow`}>
-                                <a href={`https://docs.casper.network/search?q=${searchTerm}`}>Show all documentation results</a>
+                                <a href={`/search?q=${searchTerm}`}>Show all documentation results</a>
                             </div>
                         )}
                     </div>
