@@ -17,13 +17,26 @@
 
     .search_link {
         background-color: var(--black);
-        padding: 10px;
         border-top: 1px solid var(--casperWhite);
+        cursor: pointer;
+        display: flex;
         a {
+            padding: 10px;
+            width: 100%;
+            height: 100%;
             color: var(--casperYellow);
             background-color: transparent;
             font-style: normal;
             text-decoration: none;
+        }
+        &:hover{
+            background-color: var(--casperYellow);
+            a{
+
+                color: var(--black);
+            }
+            @include mixins.transition(0.3s all);
+
         }
     }
 

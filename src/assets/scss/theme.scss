@@ -296,6 +296,22 @@ html[data-theme="light"] {
         }
     }
 
+    [class*="SearchWrapper"] {
+        > input {
+            background-color: #fff;
+        }
+        > p {
+            background-color: #f4f4f4;
+        }
+        > [class*="SearchResult"] {
+            a {
+                color: black;
+                small {
+                    color: black !important;
+                }
+            }
+        }
+    }
     [class*="container_search"] {
         --casperYellow: var(--casperBlue);
         > input {
