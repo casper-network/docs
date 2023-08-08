@@ -94,7 +94,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         } else if (hit._highlightResult?.internal?.content?.matchedWords?.length > 0) {
             return (
                 <span className={`${styles.hitContent} noWrap`}>
-                    {hit._highlightResult?.title?.value}
+                    <p>{hit._highlightResult?.title?.value}</p>
                     <small className="noWrap" dangerouslySetInnerHTML={{ __html: handleContentHit(hit._highlightResult?.internal?.content?.value) }} />
                 </span>
             );

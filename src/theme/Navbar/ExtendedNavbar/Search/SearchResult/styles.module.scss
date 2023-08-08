@@ -80,6 +80,10 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 font-size: 16px;
+                p {
+                    font-weight: 500;
+                    margin-bottom: 0px;
+                }
 
                 > small {
                     max-width: 100%;
@@ -136,7 +140,8 @@
     justify-content: flex-start;
     align-items: center;
     padding-left: 45px;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
+    padding-top: 6px;
     background-color: var(--black);
     border: none;
     &:hover {
