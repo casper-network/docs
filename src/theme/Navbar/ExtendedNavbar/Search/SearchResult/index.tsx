@@ -112,7 +112,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 hit[key].forEach((element) => {
                     if (element?.url) {
                         elemArr.push(<a key={`${element.value}-${key}`} href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>);
-                    } else if (key === "lvl0") {
+                    } else if (hit?.[key] === "lvl0") {
                         elemArr.push(<div key={`${element.value}-${key}`} dangerouslySetInnerHTML={{ __html: element.lvl0.value }}></div>);
                     }
                 });
