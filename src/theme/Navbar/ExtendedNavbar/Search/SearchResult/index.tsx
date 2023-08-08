@@ -50,24 +50,23 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         });
         const groupedHits = [];
         let lastHit = {};
-
         newHits.forEach((hit, i) => {
             if (hit) {
                 const hitCopy = JSON.parse(JSON.stringify(hit));
-                const isValueRepeated = Object.keys(hitCopy).every((key) => hitCopy[key].value !== lastHit[key]?.value);
+                const isValueRepeated = Object.keys(hitCopy).every((key) => hitCopy[key]?.value !== lastHit[key]?.value);
                 if (isValueRepeated) {
                     groupedHits.push(hitCopy);
                     lastHit = hitCopy;
                 } else {
-                    const longerArr = Object.keys(hitCopy).length > Object.keys(lastHit).length ? Object.keys(hitCopy) : Object.keys(lastHit);
-
-                    const keyFound = longerArr.find((key, i) => {
+                    const keyFound = Object.keys(hitCopy).find((key) => {
                         return (hitCopy[key]?.value ?? "") !== (lastHit[key]?.value ?? "");
                     });
                     if (Array.isArray(groupedHits[groupedHits.length - 1][keyFound])) {
                         groupedHits[groupedHits.length - 1][keyFound].push(hitCopy[keyFound]);
                     } else {
-                        groupedHits[groupedHits.length - 1][keyFound] = [groupedHits[groupedHits.length - 1][keyFound], hitCopy[keyFound]];
+                        groupedHits[groupedHits.length - 1][keyFound] = groupedHits[groupedHits.length - 1][keyFound]
+                            ? [groupedHits[groupedHits.length - 1][keyFound], hitCopy[keyFound]]
+                            : [hitCopy[keyFound]];
                     }
                 }
             }
@@ -92,15 +91,18 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     }
 
     function highlight(hit: any) {
-        if (hit._highlightResult?.title?.matchedWords?.length > 0)
+        if (hit._highlightResult?.title?.matchedWords?.length > 0) {
             return <span className="noWrap" dangerouslySetInnerHTML={{ __html: hit._highlightResult?.title?.value }} />;
-        else if (hit._highlightResult?.internal?.content?.matchedWords?.length > 0)
+        } else if (hit._highlightResult?.internal?.content?.matchedWords?.length > 0) {
             return (
                 <span className={`${styles.hitContent} noWrap`}>
                     {hit._highlightResult?.title?.value}
                     <small className="noWrap" dangerouslySetInnerHTML={{ __html: handleContentHit(hit._highlightResult?.internal?.content?.value) }} />
                 </span>
             );
+        } else {
+            return <span className={`${styles.hitContent} noWrap`}>{hit._highlightResult?.title?.value}</span>;
+        }
     }
 
     function highlightDoc(hit: any) {
@@ -109,16 +111,16 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
             if (Array.isArray(hit[key])) {
                 hit[key].forEach((element) => {
                     if (element) {
-                        if (element.url) {
+                        if (element?.url) {
                             elemArr.push(<a key={element.value} href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>);
                         } else {
                             elemArr.push(<div key={element.value} dangerouslySetInnerHTML={{ __html: element.value }}></div>);
                         }
                     }
                 });
-            } else if (hit[key].url) {
+            } else if (hit[key]?.url) {
                 elemArr.push(<a key={hit[key].value} href={hit[key].url} dangerouslySetInnerHTML={{ __html: hit[key].value }}></a>);
-            } else {
+            } else if (hit[key]?.value) {
                 elemArr.push(<div key={hit[key].value} dangerouslySetInnerHTML={{ __html: hit[key].value }}></div>);
             }
         }
@@ -137,13 +139,16 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     return (
         <>
             <p className={`${styles.results_portal_title} halfTitleEyebrow`} onClick={() => hiddenResults()}>
-                {searchTitle} <p className={`${hideResults && styles.rotateSvg} ${styles.nonStyle}`}>{icons.chevronDown}</p>
+                {searchTitle} <span className={`${hideResults && styles.rotateSvg} ${styles.nonStyle}`}>{icons.chevronDown}</span>
             </p>
             <div className={`${styles.results_container} ${hideResults && styles.hiddenResults} `} onClick={() => setHasFocus(false)}>
                 {hits ? (
                     hits.length > 0 ? (
                         hitsDisplayed.map((hit: any, i: number) => {
-                            if (searchTitle === "Portal Results") {
+                            if (
+                                searchTitle === "Portal Results" &&
+                                (hit._highlightResult?.title?.matchedWords?.length > 0 || hit._highlightResult?.internal?.content?.matchedWords?.length > 0)
+                            ) {
                                 return (
                                     <a key={`${hit.objectID}-${i}`} href={getLink(hit)} className={styles.results_container_hit}>
                                         <div className={styles.results_container_hit_link}>
