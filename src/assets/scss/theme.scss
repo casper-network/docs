@@ -299,14 +299,23 @@ html[data-theme="light"] {
     [class*="SearchWrapper"] {
         > input {
             background-color: #fff;
+
         }
+        span, button {
+           > svg {
+               fill: var(--liftedBlack);
+               path {
+                   fill: var(--liftedBlack);
+               }
+           }
+       }
         > p {
             background-color: #f4f4f4;
         }
         > [class*="SearchResult"] {
             a {
                 color: black;
-                &:hover{
+                &:hover {
                     color: var(--casperBlue) !important;
                 }
                 small {
