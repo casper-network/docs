@@ -306,6 +306,9 @@ html[data-theme="light"] {
         > [class*="SearchResult"] {
             a {
                 color: black;
+                &:hover{
+                    color: var(--casperBlue) !important;
+                }
                 small {
                     color: black !important;
                 }

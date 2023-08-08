@@ -12,7 +12,6 @@
         border: 1px solid var(--casperYellow);
         z-index: 6;
         @include mixins.transition(0.3s all);
-
     }
 
     .search_link {
@@ -29,14 +28,12 @@
             font-style: normal;
             text-decoration: none;
         }
-        &:hover{
+        &:hover {
             background-color: var(--casperYellow);
-            a{
-
+            a {
                 color: var(--black);
             }
             @include mixins.transition(0.3s all);
-
         }
     }
 
