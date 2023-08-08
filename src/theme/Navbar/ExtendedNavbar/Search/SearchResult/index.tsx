@@ -17,11 +17,12 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     const { customFields } = siteConfig;
     const [hitsDisplayed, setHitsDisplayed] = useState<any>([]);
     const [hideResults, setHideResults] = useState<boolean>(false);
+    const portalSearchTitle = "Portal Results";
 
     useEffect(() => {
         if (hits) {
             const slicedHits = hits.slice(0, 4);
-            if (searchTitle === "Portal Results") {
+            if (searchTitle === portalSearchTitle) {
                 setHitsDisplayed(slicedHits);
             } else {
                 const newGroupHits = groupHits(hits);
