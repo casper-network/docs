@@ -110,18 +110,16 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         for (const key in hit) {
             if (Array.isArray(hit[key])) {
                 hit[key].forEach((element) => {
-                    if (element) {
-                        if (element?.url) {
-                            elemArr.push(<a key={element.value} href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>);
-                        } else {
-                            elemArr.push(<div key={element.value} dangerouslySetInnerHTML={{ __html: element.value }}></div>);
-                        }
+                    if (element?.url) {
+                        elemArr.push(<a key={`${element.value}-${key}`} href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>);
+                    } else {
+                        elemArr.push(<div key={`${element.value}-${key}`} dangerouslySetInnerHTML={{ __html: element.value }}></div>);
                     }
                 });
             } else if (hit[key]?.url) {
-                elemArr.push(<a key={hit[key].value} href={hit[key].url} dangerouslySetInnerHTML={{ __html: hit[key].value }}></a>);
+                elemArr.push(<a key={`${hit[key].value}-${key}`} href={hit[key].url} dangerouslySetInnerHTML={{ __html: hit[key].value }}></a>);
             } else if (hit[key]?.value) {
-                elemArr.push(<div key={hit[key].value} dangerouslySetInnerHTML={{ __html: hit[key].value }}></div>);
+                elemArr.push(<div key={`${hit[key].value}-${key}`} dangerouslySetInnerHTML={{ __html: hit[key].value }}></div>);
             }
         }
         return elemArr;
@@ -145,10 +143,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 {hits ? (
                     hits.length > 0 ? (
                         hitsDisplayed.map((hit: any, i: number) => {
-                            if (
-                                searchTitle === "Portal Results" &&
-                                (hit._highlightResult?.title?.matchedWords?.length > 0 || hit._highlightResult?.internal?.content?.matchedWords?.length > 0)
-                            ) {
+                            if (hit._highlightResult?.title?.matchedWords?.length > 0 || hit._highlightResult?.internal?.content?.matchedWords?.length > 0) {
                                 return (
                                     <a key={`${hit.objectID}-${i}`} href={getLink(hit)} className={styles.results_container_hit}>
                                         <div className={styles.results_container_hit_link}>
@@ -168,7 +163,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                                         </svg>
                                     </a>
                                 );
-                            } else {
+                            } else if (hit.lvl0) {
                                 return (
                                     <div className={styles.results_container_hit} key={`${hit.objectID}-${i}`}>
                                         <div className={styles.results_container_hit_link}>
