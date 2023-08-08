@@ -41,33 +41,30 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
 
     function groupHits(hits: any[]) {
         const newHits = hits.map((hit) => {
-            if (hit._highlightResult?.hierarchy) {
-                const hitCopy = JSON.parse(JSON.stringify(hit));
-                const lastKey = Object.keys(hitCopy._highlightResult?.hierarchy)[Object.keys(hitCopy._highlightResult?.hierarchy).length - 1];
-                hitCopy._highlightResult.hierarchy[lastKey].url = hitCopy.url;
-                return hitCopy._highlightResult.hierarchy;
-            }
+            const lastKey = Object.keys(hit._highlightResult?.hierarchy).pop()!;
+            hit._highlightResult.hierarchy[lastKey].url = hit.url;
+            return hit._highlightResult.hierarchy;
         });
-        const groupedHits = [];
-        let lastHit = {};
-        newHits.forEach((hit, i) => {
-            if (hit) {
-                const hitCopy = JSON.parse(JSON.stringify(hit));
-                const isValueRepeated = Object.keys(hitCopy).every((key) => hitCopy[key]?.value !== lastHit[key]?.value);
-                if (isValueRepeated) {
-                    groupedHits.push(hitCopy);
-                    lastHit = hitCopy;
+
+        const groupedHits: any = [];
+        let lastHit: any = {};
+        newHits.forEach((hit) => {
+            const hitCopy = JSON.parse(JSON.stringify(hit));
+            const hitKeys = Object.keys(hitCopy);
+            const isValueRepeated = hitKeys.every((key) => hitCopy[key]?.value !== lastHit[key]?.value);
+            if (isValueRepeated) {
+                groupedHits.push(hitCopy);
+                lastHit = hitCopy;
+            } else {
+                const keyFound: any = hitKeys.find((key) => {
+                    return hitCopy[key]?.value !== lastHit[key]?.value && key !== "lvl0";
+                });
+                const lastHitFound = groupedHits[groupedHits.length - 1][keyFound];
+
+                if (Array.isArray(lastHitFound)) {
+                    groupedHits[groupedHits.length - 1][keyFound].push(hitCopy[keyFound]);
                 } else {
-                    const keyFound = Object.keys(hitCopy).find((key) => {
-                        return (hitCopy[key]?.value ?? "") !== (lastHit[key]?.value ?? "");
-                    });
-                    if (Array.isArray(groupedHits[groupedHits.length - 1][keyFound])) {
-                        groupedHits[groupedHits.length - 1][keyFound].push(hitCopy[keyFound]);
-                    } else {
-                        groupedHits[groupedHits.length - 1][keyFound] = groupedHits[groupedHits.length - 1][keyFound]
-                            ? [groupedHits[groupedHits.length - 1][keyFound], hitCopy[keyFound]]
-                            : [hitCopy[keyFound]];
-                    }
+                    groupedHits[groupedHits.length - 1][keyFound] = lastHitFound ? [lastHitFound, hitCopy[keyFound]] : [hitCopy[keyFound]];
                 }
             }
         });
@@ -105,21 +102,22 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         }
     }
 
+    function renderLinkOrTitle(element: any, key: string) {
+        if (element?.url) {
+            return <a key={`${element.value}-${key}`} href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>;
+        } else if (key === "lvl0") {
+            return <div key={`${element.value}-${key}`} dangerouslySetInnerHTML={{ __html: element.value }}></div>;
+        }
+    }
     function highlightDoc(hit: any) {
         let elemArr = [];
         for (const key in hit) {
             if (Array.isArray(hit[key])) {
-                hit[key].forEach((element) => {
-                    if (element?.url) {
-                        elemArr.push(<a key={`${element.value}-${key}`} href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>);
-                    } else if (hit?.[key] === "lvl0") {
-                        elemArr.push(<div key={`${element.value}-${key}`} dangerouslySetInnerHTML={{ __html: element.lvl0.value }}></div>);
-                    }
+                hit[key].forEach((element: any) => {
+                    elemArr.push(renderLinkOrTitle(element, key));
                 });
-            } else if (hit[key]?.url) {
-                elemArr.push(<a key={`${hit[key].value}-${key}`} href={hit[key].url} dangerouslySetInnerHTML={{ __html: hit[key].value }}></a>);
-            } else if (hit[key]?.value && key === "lvl0") {
-                elemArr.push(<div key={`${hit[key].value}-${key}`} dangerouslySetInnerHTML={{ __html: hit.lvl0.value }}></div>);
+            } else {
+                elemArr.push(renderLinkOrTitle(hit[key], key));
             }
         }
         return elemArr;
