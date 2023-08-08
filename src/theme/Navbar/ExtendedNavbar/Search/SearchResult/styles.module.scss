@@ -29,7 +29,7 @@
     justify-content: flex-start;
     gap: 27px;
     padding: 10px 15px;
-    max-height: 390px;
+    max-height: 265px;
     overflow-y: scroll;
     transition: all 500ms;
 
@@ -139,9 +139,8 @@
     padding-bottom: 5px;
     background-color: var(--black);
     border: none;
-    &:hover{
-       text-decoration:underline;
-
+    &:hover {
+        text-decoration: underline;
     }
 }
 
