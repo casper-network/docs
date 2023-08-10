@@ -44,6 +44,13 @@
         color: #ffffff;
         text-decoration: none;
         cursor: pointer;
+
+        span,
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 90%;
+        }
         a {
             margin-left: 5px;
             color: var(--casperWhite);
@@ -165,7 +172,7 @@
     transform: rotate(180deg);
 }
 
-.hitWeighTitle{
+.hitWeighTitle {
     font-weight: 500;
 }
 
