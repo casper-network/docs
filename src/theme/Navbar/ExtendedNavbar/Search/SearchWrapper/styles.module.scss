@@ -12,6 +12,8 @@
         border: 1px solid var(--casperYellow);
         z-index: 6;
         @include mixins.transition(0.3s all);
+        min-width: 375px;
+        right: 0;
     }
 
     .search_link {
