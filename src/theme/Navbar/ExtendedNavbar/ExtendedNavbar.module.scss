@@ -26,23 +26,14 @@
         color: var(--casperWhite);
         margin: 0;
         align-items: unset;
+        padding: 0 30px;
 
         .navbar {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            gap: 4%;
+            gap: 3%;
             align-items: center;
-
-            .navBarSectionBeginning,
-            .navBarSectionEnd {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                gap: 4%;
-                width: 45%;
-            }
 
             .navbar_logo_container {
                 width: 163px;
@@ -56,14 +47,23 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                cursor: pointer;
+
                 &_cancel,
                 &_menu {
                     position: absolute;
                     transform: scale(all);
-                    @include transition(0.3s ease-in);
+                    @include transition(transform 0.3s ease-in);
                     > svg {
                         path {
                             fill: var(--casperWhite);
+                        }
+                    }
+                    &:hover {
+                        > svg {
+                            path {
+                                fill: var(--casperRed);
+                            }
                         }
                     }
                 }

@@ -19,6 +19,7 @@ import Nav from "./Nav";
 import Sidebar from "./SideBar";
 import useWindow from "../../../hooks/useWindow";
 import styles from "./ExtendedNavbar.module.scss";
+import ThemeSwitch from "../ThemeSwitch";
 
 export default function ExtendedNavbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -128,40 +129,37 @@ export default function ExtendedNavbar() {
                     <header ref={navBarRef} className={styles.navbar_wrapper}>
                         <div className={`${styles.container} containerSite`}>
                             <div className={`${styles.navbar} ${styles.desktop} navBar`}>
-                                <div className={styles.navBarSectionBeginning}>
-                                    {navData?.logo && (
-                                        <div className={styles.navbar_logo_container}>
-                                            <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
-                                                <div dangerouslySetInnerHTML={{ __html: navData.logo }}></div>
-                                            </Link>
-                                        </div>
-                                    )}
-                                    {navData && navData.navItems && (
-                                        <Nav
-                                            dropdownParentRef={dropdownParentRef}
-                                            header={navData}
-                                            handleClick={handleClick}
-                                            dropdownOpen={dropdownOpen}
-                                            current={current}
-                                            locale={externalLocale}
-                                            closeNavBarHandler={closeNavBarHandler}
-                                        />
-                                    )}
-                                </div>
-                                <div className={styles.navBarSectionEnd}>
-                                    {navData && navData.searchPlaceholder && (
-                                        <Search
-                                            index={{
-                                                name: `${siteConfig.customFields.siteAlgoliaIndexName}`,
-                                                title: `${siteConfig.customFields.siteAlgoliaIndexName}`,
-                                            }}
-                                            locale={externalLocale}
-                                            placeholder={navData.searchPlaceholder}
-                                            siteUrl={siteConfig.customFields.siteUrl as string}
-                                        />
-                                    )}
-                                    {data && data.socialMedia && <SocialMedia socialMedia={data.socialMedia} />}
-                                </div>
+                                {navData?.logo && (
+                                    <div className={styles.navbar_logo_container}>
+                                        <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
+                                            <div dangerouslySetInnerHTML={{ __html: navData.logo }}></div>
+                                        </Link>
+                                    </div>
+                                )}
+                                {navData && navData.navItems && (
+                                    <Nav
+                                        dropdownParentRef={dropdownParentRef}
+                                        header={navData}
+                                        handleClick={handleClick}
+                                        dropdownOpen={dropdownOpen}
+                                        current={current}
+                                        locale={externalLocale}
+                                        closeNavBarHandler={closeNavBarHandler}
+                                    />
+                                )}
+                                {navData && navData.searchPlaceholder && (
+                                    <Search
+                                        index={{
+                                            name: `${siteConfig.customFields.siteAlgoliaIndexName}`,
+                                            title: `${siteConfig.customFields.siteAlgoliaIndexName}`,
+                                        }}
+                                        locale={externalLocale}
+                                        placeholder={navData.searchPlaceholder}
+                                        siteUrl={siteConfig.customFields.siteUrl as string}
+                                    />
+                                )}
+                                {data && data.socialMedia && <SocialMedia socialMedia={data.socialMedia} />}
+                                <ThemeSwitch />
                             </div>
                             <div className={`${styles.navbar} ${styles.mobile} navBar`}>
                                 {navData && navData.logo && (
