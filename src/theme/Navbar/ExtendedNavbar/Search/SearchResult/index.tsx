@@ -113,6 +113,8 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         for (const key in hit) {
             if (Array.isArray(hit[key])) {
                 hit[key].forEach((element) => elemArr.push(<a href={element.url} dangerouslySetInnerHTML={{ __html: element.value }}></a>));
+            } else if (hit[key].url) {
+                elemArr.push(<a href={hit[key].url} dangerouslySetInnerHTML={{ __html: hit[key].value }}></a>);
             } else {
                 elemArr.push(<div dangerouslySetInnerHTML={{ __html: hit[key].value }}></div>);
             }
