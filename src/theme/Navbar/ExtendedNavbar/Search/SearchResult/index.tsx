@@ -118,8 +118,8 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 });
             } else if (hit[key]?.url) {
                 elemArr.push(<a key={`${hit[key].value}-${key}`} href={hit[key].url} dangerouslySetInnerHTML={{ __html: hit[key].value }}></a>);
-            } else if (hit[key]?.value) {
-                elemArr.push(<div key={`${hit[key].value}-${key}`} dangerouslySetInnerHTML={{ __html: hit[key].value }}></div>);
+            } else if (hit[key]?.value && key === "lvl0") {
+                elemArr.push(<div key={`${hit[key].value}-${key}`} dangerouslySetInnerHTML={{ __html: hit.lvl0.value }}></div>);
             }
         }
         return elemArr;
@@ -200,11 +200,3 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
         </>
     );
 }
-/* 
-<>
-    {hits.map((hit, i) => (
-        <div key={`linkwrapper-${i}`}>
-            <a href={getLink(hit)}>{hit.title as string}</a>
-        </div>
-    ))}
-</>; */
