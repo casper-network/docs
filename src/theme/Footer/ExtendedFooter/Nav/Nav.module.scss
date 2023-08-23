@@ -36,7 +36,11 @@
 
             a:hover {
                 @include transition(0.3s all);
-                color: var(--casperRed);
+                color: var(--casperRed) !important;
+            }
+
+            a:not(:hover) {
+                transition: none;
             }
         }
     }

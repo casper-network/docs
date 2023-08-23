@@ -1,3 +1,6 @@
+---
+title: Local Network Setup
+---
 
 # Setting up a Local Network with NCTL
 

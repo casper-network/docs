@@ -1,5 +1,6 @@
 ---
 title: Transfer Tokens
+slug: /users/token-transfer
 ---
 
 # Transferring Tokens

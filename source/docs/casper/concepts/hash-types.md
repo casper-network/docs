@@ -1,5 +1,5 @@
 ---
-title: Understanding Hash Types
+title: Hash Types
 ---
 
 # Understanding Hash Types

@@ -1,5 +1,6 @@
 ---
 title: Undelegate Tokens
+slug: /users/undelegate-ui
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

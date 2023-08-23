@@ -1,5 +1,6 @@
 ---
 title: Two-Party Multi-Sig
+slug: /resources/tutorials/advanced/two-party-multi-sig
 ---
 
 # Two-Party Multi-Signature Deploys
@@ -10,7 +11,7 @@ This workflow describes how a trivial two-party multi-signature scheme for signi
 
 1. You meet the [prerequisites](../../developers/prerequisites.md), including having the Casper command-line client and a valid node address
 2. You have the main account's `PublicKey` hex (**MA**) and another `PublicKey` hex to associate (**AA**)
-3.  You have previously [sent deploys](../../developers/dapps/sending-deploys.md) to a Casper network
+3.  You have previously [sent deploys](../../developers/cli/sending-deploys.md) to a Casper network
 
 ## Configuring the Main Account {#configuring-the-main-account}
 
