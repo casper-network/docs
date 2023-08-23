@@ -6,7 +6,7 @@ In addition to the Deploy in question, `speculative_exec` also accepts a [`block
 
 ## Sending a Speculative Execution Deploy using the Rust CLI Casper Client
 
-The [Rust CLI Casper client](../dapps/sending-deploys.md) includes a `speculative-exec` option that will flag a normal `put-deploy` for execution but not commitment to global state. The following command shows an example:
+The [Rust CLI Casper client](../cli/sending-deploys.md) includes a `speculative-exec` option that will flag a normal `put-deploy` for execution but not commitment to global state. The following command shows an example:
 
 ```bash
 
