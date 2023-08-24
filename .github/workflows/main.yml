@@ -39,7 +39,7 @@ jobs:
           node-version: ${{ env.selected_node_version }}
           cache: yarn
 
-      - name: Template credentials
+      - name: Template credentials - production
         if: github.ref == 'refs/heads/dev'
         uses: cuchi/jinja2-action@1149b92d9ea6db61d7f71c22e3d5028d8065f140
         with:
@@ -60,6 +60,19 @@ jobs:
           ALGOLIA_SITE_APP_ID: ${{ vars.ALGOLIA_SITE_APP_ID }}
           ALGOLIA_SITE_API_KEY: ${{ vars.ALGOLIA_SITE_API_KEY }}
           ALGOLIA_SITE_INDEX_NAME: ${{ vars.ALGOLIA_SITE_INDEX_NAME }}
+          BASE_URL: ${{ vars.BASE_URL }}
+
+      - name: Template credentials - preview
+        if: github.event_name == 'pull_request'
+        uses: cuchi/jinja2-action@1149b92d9ea6db61d7f71c22e3d5028d8065f140
+        with:
+          template: .github/templates/.env.production.j2
+          output_file: .env.production
+        env:
+          DIRECTUS_URL: ${{ secrets.PREVIEW_DIRECTUS_URL }}
+          DIRECTUS_GRAPHQL_URL: ${{ secrets.PREVIEW_DIRECTUS_GRAPHQL_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.PREVIEW_DIRECTUS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
           BASE_URL: ${{ vars.BASE_URL }}
 
       - name: Yarn install
