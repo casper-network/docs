@@ -148,6 +148,32 @@ jobs:
         curl --fail http://127.0.0.1:4000/concepts/serialization-standard/
       working-directory: ./docs
 
+  deploy-preview:
+    if: github.event_name == 'pull_request'
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-depl-payload
+        path: ./docs
+
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v2.1
+      with:
+        publish-dir: 'docs'
+        production-deploy: false
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: ${{ github.event.pull_request.title }}
+        enable-pull-request-comment: true
+        enable-commit-comment: false
+        enable-github-deployment: false
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.PREVIEW_NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.PREVIEW_NETLIFY_SITE_ID }}
+      timeout-minutes: 1
+
   deploy-prod:
     if: ${{ github.ref == 'refs/heads/dev' && github.repository == 'casper-network/docs' }}
     needs: [backup, system-tests-predeployment]
@@ -203,5 +229,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
-
-
