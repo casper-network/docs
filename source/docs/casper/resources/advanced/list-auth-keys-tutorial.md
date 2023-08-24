@@ -32,7 +32,7 @@ The contract code in this example retrieves the set of authorization keys for a 
 ## Prerequisites
 
 - You meet the [development prerequisites](../../developers/prerequisites.md) and are familiar with [writing and testing on-chain code](../../developers/writing-onchain-code/index.md)
-- You know how to [send and verify deploys](../cli/sending-deploys.md)
+- You know how to [send and verify deploys](../../developers/cli/sending-deploys.md)
 - You are familiar with these concepts:
    - [Casper Accounts](../../concepts/serialization-standard.md#serialization-standard-account) 
    - [Deploys](../../concepts/serialization-standard.md#serialization-standard-deploy)
