@@ -1,5 +1,6 @@
 ---
 title: Delegate Tokens
+slug: /users/delegate-ui
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';

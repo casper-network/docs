@@ -1,18 +1,15 @@
 ---
-title: Staking
+title: Staking vs. Delegating
 slug: /staking
-tags: ["finance", "staking", "governance"]
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Staking
+# Staking vs. Delegating {#staking-vs-delegating}
 
 A feature of Proof-of-Stake protocols is that token holders can actively participate in the protocol through a mechanism known as **staking** or **delegation**. They can stake their tokens with any validator on a Casper network. Alternatively, it is possible to stake tokens via an exchange or custody provider.
 
 Here are a few common topics related to staking, but we also encourage you to do your own research.
-
-## Staking vs. Delegating {#staking-vs-delegating}
 
 Node operators stake their tokens to earn eligibility to propose and approve blocks on the network. They also run and maintain servers connected to the network. If they win a validator slot, they become validators and help enable the Proof-of-Stake aspect of the network, a process different from mining tokens. Validators thus earn rewards for participating and for securing the network.
 
@@ -59,9 +56,9 @@ For security purposes, whenever tokens are un-delegated, the protocol will conti
 Navigate to these pages for step-by-step tutorials on creating an account and delegating and undelegating tokens.
 
 - [Creating an account with the Casper Wallet](https://www.casperwallet.io/)
-- [Funding an account from an exchange](../../users/funding-from-exchanges.md)
-- [Delegating tokens using a block explorer](../../users/csprlive/delegate-ui.md)
-- [Delegating with Ledger devices](../../users/ledger/staking-ledger.md)
-- [Delegating with the Casper client](../../developers/cli/delegate.md)
-- [Undelegating tokens using a block explorer](../../users/csprlive/undelegate-ui.md)
+- [Funding an account from an exchange](../../../users/funding-from-exchanges.md)
+- [Delegating tokens using a block explorer](../../../users/csprlive/delegate-ui.md)
+- [Delegating with Ledger devices](../../../users/ledger/staking-ledger.md)
+- [Delegating with the Casper client](../../../developers/cli/delegate.md)
+- [Undelegating tokens using a block explorer](../../../users/csprlive/undelegate-ui.md)
 

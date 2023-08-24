@@ -1,5 +1,6 @@
 ---
 title: Token Transfers
+slug: /resources/tutorials/advanced/transfer-token-to-contract
 ---
 
 # Safely Transfer Tokens to a Contract

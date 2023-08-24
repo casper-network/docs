@@ -4,7 +4,7 @@ At its core, the Casper platform is software, and best practices for general sof
 
 ## Data Efficiency
 
-When developing on Casper, a policy of efficient data usage will ensure the lowest possible cost for on-chain computation. To this end, minimizing the number of necessary [Deploys](../dapps/sending-deploys.md) will drastically decrease the overall cost.
+When developing on Casper, a policy of efficient data usage will ensure the lowest possible cost for on-chain computation. To this end, minimizing the number of necessary [Deploys](../cli/sending-deploys.md) will drastically decrease the overall cost.
 
 When creating smart contracts, including an explicit initialization entry point allows the contract to self-initialize without a subsequent Deploy of session code. This entry point creates the internal structure of the contract and cannot be called after the initial deploy. Below is an example of a self-initalizing entry point that can be used within the `call` function.
 

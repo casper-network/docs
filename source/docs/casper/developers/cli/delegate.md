@@ -1,3 +1,7 @@
+---
+title: Delegating Tokens
+---
+
 # Delegating with the Casper Client
 
 This document details a workflow where an account holder on a Casper network can delegate tokens to a validator.
@@ -5,7 +9,7 @@ This document details a workflow where an account holder on a Casper network can
 ## Prerequisites
 
 1. You meet all prerequisites listed [here](../prerequisites.md), including having a valid `node-address` and the Casper command-line client
-2. You have previously [installed a smart contract](../dapps/sending-deploys.md) to a Casper network
+2. You have previously [installed a smart contract](../cli/sending-deploys.md) to a Casper network
 3. [Acquiring a Validator's Public Key](#acquiring-a-validators-public-key)
 
 ### Acquiring a Validator's Public Key {#acquiring-a-validators-public-key}

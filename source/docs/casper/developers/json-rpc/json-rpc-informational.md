@@ -120,7 +120,7 @@ The result from `chain_get_block` depends on block availability from a given nod
 
 ## chain_get_block_transfers {#chain-get-block-transfers}
 
-This method returns all native transfers within a given [Block](../../concepts/design/casper-design.md#block-structure-head) from a network.
+This method returns all **successful** native transfers within a given [Block](../../concepts/design/casper-design.md#block-structure-head) from a network.
 
 |Parameter|Type|Description|
 |---------|----|-----------| 
@@ -151,8 +151,8 @@ This method returns all native transfers within a given [Block](../../concepts/d
 |Parameter|Type|Description|
 |---------|----|-----------| 
 |api_version|String|The RPC API version.|
-|[block_hash](types_chain.md#blockhash)|Object|The Block hash, if found.|
-|[transfers](types_chain.md#transfer)|Array|The Block's transfers, if found.|
+|[block_hash](./types_chain.md#blockhash)|Object|The Block hash, if found.|
+|[transfers](./types_chain.md#transfer)|Array|The Block's successful transfers, if found.|
 
 <details>
 
@@ -461,8 +461,8 @@ If the `execution_results` field is empty, it means that the network processed t
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
-|[deploy](types_chain.md#deploy)|Object|The Deploy.|
-|[execution_results](types_chain.md#jsonexecutionresult)|Object|The map of Block hash to execution result.|
+|[deploy](./types_chain.md#deploy)|Object|The Deploy.|
+|[execution_results](./types_chain.md#jsonexecutionresult)|Array|An array of execution results with Block hashes.|
 
 <details>
 

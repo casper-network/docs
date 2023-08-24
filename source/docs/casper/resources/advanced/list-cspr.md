@@ -1,5 +1,6 @@
 ---
 title: Listing CSPR
+slug: /resources/tutorials/advanced/list-cspr
 ---
 
 
@@ -174,7 +175,7 @@ Exchanges seeking to integrate CSPR staking mechanisms will need to understand t
 
 Staking operations consists of two parts:
 
-1) [Creating a deploy object](../../developers/dapps/sending-deploys.md)
+1) [Creating a deploy object](../../developers/cli/sending-deploys.md)
     
 2) [Signing the deploy](../../developers/dapps/signing-a-deploy.md)
 
