@@ -53,13 +53,15 @@ export default function NavbarMobileSidebarLayout({ header, primaryMenu, seconda
                 <div className={`navbar-sidebar__item menu`}>{primaryMenu}</div>
                 <div className={`navbar-sidebar__item menu`}>{secondaryMenu}</div>
             </div>
-            <div className={styles.docSearchContainer}>
-                {!searchBarItem && (
+
+            {/* Disabled Search Bar. Unified with the Website Search Bar */}
+            {/*<div className={styles.docSearchContainer}>
+                !searchBarItem && (
                     <NavbarSearch>
                         <SearchBar />
                     </NavbarSearch>
-                )}
-            </div>
+                )
+            </div>*/}
         </div>
     );
 }
