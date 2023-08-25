@@ -235,7 +235,7 @@ In that case run the command ```npm run swizzle @docusaurus/theme-classic Navbar
 
 For more information about this: https://docusaurus.io/docs/swizzling
 
-Complete the following enviroment variables to enable the navbar.
+Complete the following environment variables to enable the navbar.
 
 ```    
 DIRECTUS_URL=REPLACE_WITH_YOUR_DIRECTUS_URL
@@ -283,7 +283,7 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 
 This is a [known issue on Docusaurus side](https://github.com/facebook/docusaurus/issues/5778) which has been closed.
 
-There is a workaround which consists on setting an environment variable before running the command or in your shell/system environment:
+There is a workaround which consists of setting an environment variable before running the command or in your shell/system environment:
 
 ```bash
 export NODE_OPTIONS=--openssl-legacy-provider
