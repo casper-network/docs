@@ -6,7 +6,7 @@ slug: /resources/tutorials/advanced/list-cspr
 
 # Listing CSPR on an Exchange
 
-This topic describes how to list the Casper token (CSPR) on a cryptocurrency [exchange](https://tokenmarketcaps.com/coins/casper/market). 
+This topic describes how to list the Casper token (CSPR) on a cryptocurrency exchange.
 
 :::caution
 
