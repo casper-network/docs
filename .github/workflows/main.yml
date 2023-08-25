@@ -81,10 +81,6 @@ jobs:
         run: |
           yarn format
 
-      - name: Validate external links
-        run: |
-          yarn check:externals
-
       - name: Clear Docusaurus cache
         run: |
           yarn clear
@@ -103,6 +99,27 @@ jobs:
         with:
           name: gh-pages-depl-payload
           path: ./docs
+
+  validate-external-links:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.selected_node_version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.selected_node_version }}
+          cache: yarn
+
+      - name: Yarn install
+        run: |
+          yarn install
+
+      - name: Validate external links
+        run: |
+          yarn check:externals
 
   system-tests-predeployment:
     needs: build
