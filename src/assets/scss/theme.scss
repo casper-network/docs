@@ -296,48 +296,44 @@ html[data-theme="light"] {
         }
     }
 
-    [class*="SearchWrapper"] {
-        > input {
-            background-color: #fff;
-
-        }
-        span, button {
-           > svg {
-               fill: var(--liftedBlack);
-               path {
-                   fill: var(--liftedBlack);
-               }
-           }
-       }
-        > p {
-            background-color: #f4f4f4;
-        }
-        > [class*="SearchResult"] {
-            a {
-                color: black;
-                &:hover {
-                    color: var(--casperBlue) !important;
-                }
-                small {
-                    color: black !important;
-                }
+    [class*="container_icon_search"],
+    [class*="container_icon_cancel"] {
+        > svg {
+            fill: var(--liftedBlack);
+            path {
+                fill: var(--liftedBlack);
             }
         }
     }
-    [class*="container_search"] {
-        --casperYellow: var(--casperBlue);
-        > input {
-            background: var(--white);
-            color: var(--liftedBlack);
-            border: 1px solid var(--liftedBlack);
+    [class*="container_input"] {
+        background: var(--white);
+        color: var(--liftedBlack);
+        border: 1px solid var(--liftedBlack);
+    }
+    [class*="results_container"] {
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        color: var(--liftedBlack);
+        background-color: var(--white);
+        a,
+        div {
+            border: none;
         }
-        [class*="results_container"] {
-            border: 1px solid rgba(0, 0, 0, 0.25);
-            color: var(--liftedBlack);
-            background-color: var(--white);
-            a,
-            div {
-                border: none;
+    }
+
+    [class*="results_container_hit"]:hover {
+        color: var(--casperBlue) !important;
+    }
+
+    [class*="results_wrapper"] {
+        > p {
+            background: #f4f4f4;
+        }
+        span {
+            p {
+                background: none;
+            }
+            small {
+                color: black !important;
             }
         }
     }

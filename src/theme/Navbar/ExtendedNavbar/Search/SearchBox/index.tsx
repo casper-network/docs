@@ -70,7 +70,7 @@ export default function SearchBox({ placeholder, locale, siteUrl }: any) {
         setShowResults(false);
     }
     return (
-        <div ref={refInput} tabIndex={-1} className={styles.container_search} onFocus={() => setHasFocus(true)}>
+        <div ref={refInput} tabIndex={-1} className={`${styles.container_search}`} onFocus={() => setHasFocus(true)}>
             <input
                 id="inputSearch"
                 tabIndex={0}
