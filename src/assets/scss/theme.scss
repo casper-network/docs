@@ -304,6 +304,13 @@ html[data-theme="light"] {
                 fill: var(--liftedBlack);
             }
         }
+        &:focus
+        > svg {
+            fill: var(--casperYellow);
+            path {
+                fill: var(--casperYellow);
+            }
+        }
     }
     [class*="container_input"] {
         background: var(--white);
@@ -341,7 +348,6 @@ html[data-theme="light"] {
     [class*="navbar_logo_container"],
     [class*="social_icons"],
     [class*="navbar_list"],
-    [class*="container_icon"],
     [class*="logoCasper"] {
         color: var(--liftedBlack);
         --casperWhite: var(--liftedBlack);
