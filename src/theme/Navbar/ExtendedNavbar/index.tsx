@@ -127,8 +127,8 @@ export default function ExtendedNavbar() {
             {navData && (
                 <div className={styles.wrapper}>
                     <header ref={navBarRef} className={styles.navbar_wrapper}>
-                        <div className={`${styles.container} containerSite`}>
-                            <div className={`${styles.navbar}  ${styles.desktop} navBar`}>
+                        <div className={`${styles.container}  containerSite`}>
+                            <div className={`${styles.navbar} ${styles.desktop} navBar`}>
                                 {navData?.logo && (
                                     <div className={styles.navbar_logo_container}>
                                         <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
