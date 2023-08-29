@@ -188,7 +188,7 @@ casper-client get-auction-info \
 
 The `get-auction-info` call will return all the bids currently in the auction contract and the list of active validators for `4` future eras from the present era.
 
-Below is a sample output:
+Below is a sample of the `bids` structure:
 
 ```json
 "bids": [
@@ -217,24 +217,13 @@ Below is a sample output:
 },
 ```
 
-The delegation request has been processed successfully if your public key and associated amount appear in the `bid` data structure. However, this does not mean the associated validator is part of the validator set, so you must check the validator status.
+The delegation request has been processed successfully if your public key and associated amount appear in the `bid` data structure. However, this does not mean the associated validator is part of the validator set, so you must check the validator status recorded in the `era_validators` structure.
 
-### Checking Validator Status {#checking-validator-status}
+#### Checking Validator Status {#checking-validator-status}
 
 The auction maintains a field called `era_validators`, which contains the validator information for 4 future eras from the current era. An entry for a specific era lists the `PublicKeys` of the active validators for that era, along with their stake in the network.
 
-If a validator is part of the set, its public key will be in the `era_validators` field as part of the `Auction` data structure. We can use the Casper command-line client to create an RPC request to obtain auction information and assert that the selected validator is part of the active validator set.
-
-```bash
-casper-client get-auction-info \
---node-address http://<peer-ip-address>:7777
-```
-
-**Request fields**:
-
--   `node-address` - An IP address of a node on the network
-
-**Important Response fields**:
+If a validator is part of the set, its public key will be in the `era_validators` field as part of the `Auction` data structure returned by `casper-client get-auction-info`.
 
 In the response, check the `"auction_state"."era_validators"` structure, which should contain the public key of the selected validator for the era in which the validator will be active.
 
@@ -273,3 +262,8 @@ Below is an example of the `era_validators` structure:
 In the above example, we see the public keys of the active validators in Era `9`.
 
 **Note**: Validators earn delegation rewards only when they are part of the active set. This information is time-sensitive; therefore, a validator selected today may not be part of the set tomorrow. Keep this in mind when creating a delegation request.
+
+If your account is on the official Testnet or Mainnet, you can use the block explorer to look up your account balance and see that the tokens have been delegated:
+
+1.  [Testnet explorer](https://testnet.cspr.live/)
+2.  [Mainnet explorer](https://cspr.live/)

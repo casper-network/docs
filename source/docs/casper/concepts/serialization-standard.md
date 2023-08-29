@@ -598,7 +598,7 @@ A purse used for unbonding. The structure consists of the following:
 
 -   `amount` The unbonding amount, serialized as a [`U512`](#clvalue-numeric) value.
 
--   `new_validator` The validator public key to re-delegate to, serialized as an [`Option`](#clvalue-option) containing the public key.
+-   `new_validator` The validator public key to redelegate to, serialized as an [`Option`](#clvalue-option) containing the public key.
 
 ## Values {#serialization-standard-values}
 

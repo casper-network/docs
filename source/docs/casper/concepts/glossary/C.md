@@ -23,7 +23,7 @@ Correct-by-construction (CBC) protocols are consensus protocols meeting the foll
 
 ## Chainspec {#chainspec}
 
-A collection of configuration settings describing the state of the system at genesis and upgrades to basic system functionality (including system contracts and gas costs) occurring after [genesis](./G.md#genesis). Here is an example [chainspec](https://github.com/casper-network/casper-node/blob/release-1.4.8/resources/production/chainspec.toml), which will change with newer releases.
+A collection of configuration settings describing the state of the system at genesis and upgrades to basic system functionality (including system contracts and gas costs) occurring after [genesis](./G.md#genesis). Here is an example [chainspec](https://github.com/casper-network/casper-node/blob/release-1.5.2/resources/production/chainspec.toml), which will change with newer releases.
 
 ## Consensus {#consensus}
 
