@@ -4,7 +4,7 @@ title: Overview
 
 # Interacting with the Casper JSON-RPC API
 
-If you are on this page, you are an advanced user wishing to interact directly with a Casper node's JSON-RPC API. You may use [Postman](https://www.postman.com/) or write code to interact with the Casper JSON-RPC API, which is fully compatible with the [JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification).
+Casper uses a custom JSON-RPC implementation known as `casper-json-rpc` that is compliant with the [JSON-RPC 2.0 specification](https://www.jsonrpc.org/specification). If you are on this page, you are an advanced user wishing to interact directly with a Casper node's JSON-RPC API. You may use [Postman](https://www.postman.com/) or write code to interact with the Casper JSON-RPC API, which is fully compatible with the JSON-RPC 2.0 Specification.
 
 Casper nodes provide the RPC schema on port `8888`, followed by `rpc-schema`:  
 

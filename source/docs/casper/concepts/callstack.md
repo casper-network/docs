@@ -12,15 +12,15 @@ When the session code within a Deploy interacts with one or more contracts, this
 
 ## The Caller
 
-In every instance of a call stack, the originating caller is the session code within the account's context that began the interaction. Contract code cannot spontaneously act without session code to activate it. As such, the session code represents the *zeroth* entity in each call stack.
+In every instance of a call stack, the originating caller is the session code within the account's context that began the interaction. Contract code cannot spontaneously act without session code to activate it. As such, the session code represents the *zeroth* entity in each call stack. The account that initiated the deploy can be retrieved with the [contract_api::runtime::get_caller](https://docs.rs/casper-contract/3.0.0/casper_contract/contract_api/runtime/fn.get_caller.html) function.
 
-## The Immediate Caller
+## The Call Stack
 
-The [immediate caller](https://docs.rs/casper-types/1.5.0/casper_types/system/mint/trait.RuntimeProvider.html#tymethod.get_immediate_caller) is the caller that interacted directly with the contract in question.
+Developers can access the call stack with the [contract_api::runtime::get_call_stack](https://docs.rs/casper-contract/3.0.0/casper_contract/contract_api/runtime/fn.get_call_stack.html) function.
 
 If session code calls a contract, which in turn calls another contract, then the session code would represent the *zeroth* entity in the stack, the contract called by the initiating session code would be the *first* and the contract called by the first contract would be the *second*.
 
-In this example, the first contract would be the `immediate caller` of the second contract. The session code would remain the `caller`.
+In this example, the first contract would be the `immediate caller` of the second contract, meaning it interacted directly with it. The session code would remain the `caller`.
 
 <img class="align-center" src={useBaseUrl("/image/callstack.png")} width="450" alt="Call Stack" />
 
