@@ -2,7 +2,7 @@
 
 .navbar_list {
     width: 25%;
-    min-width: 350px;
+    min-width: 470px;
 
     font-size: 16px;
     line-height: 24px;
@@ -16,7 +16,7 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        gap: 7%;
+        gap: 5%;
 
         .navbar_list_container_button {
             position: relative;
