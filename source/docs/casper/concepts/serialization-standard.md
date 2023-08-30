@@ -745,6 +745,7 @@ A `Map` serializes as a list of key-value tuples. There must be a well-defined o
 
 `PublicKey` serializes as a single byte tag representing the algorithm followed by 32 bytes of the `PublicKey` itself:
 
+-   If the `PublicKey` is a `System` key, the single tag byte is `0`. With this variant, the single byte of `0` is the entire key.
 -   If the `PublicKey` is an `Ed25519` key, the single tag byte is `1` followed by the individual bytes of the serialized key.
 -   If the `PublicKey` is a `Secp256k1` key, the single tag byte is a `2` followed by the individual bytes of the serialized key.
 
