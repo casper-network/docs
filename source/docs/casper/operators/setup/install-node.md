@@ -141,7 +141,7 @@ PROTOCOL=1_5_2
 
 ## Syncing to Genesis
 
-In the latest protocol version's *Config.toml*, you will find the option `sync_to_genesis`. by default, this value will be set to `true`.
+In the latest protocol version's *Config.toml*, you will find the option `sync_to_genesis`. By default, this value will be set to `true`.
 
 If you are planning to run a validator node, it is better to not sync your node to genesis. This will increase node performance. In this case, the option should be changed to:
 
