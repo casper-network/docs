@@ -119,24 +119,34 @@ For more details, see the [Node Setup](./basic-node-configuration.md#create-fund
 
 ## Getting a Trusted Hash
 
-To get a trusted hash, use the command below. Replace the node address with an address from a node on the network of your choice. In the past, we have used a lower `trusted_hash`. Connecting at the tip, we now use as high of a `trusted_hash` as possible.
+In the past, we have used a lower `trusted_hash`. Connecting at the tip, we now use as high of a `trusted_hash` as possible.
 
-```bash
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
-```
+### Node Address
 
-You can find active peers at https://cspr.live/tools/peers or you can use Casper Labs' public nodes:
+NODE_ADDR can be set to an IP of a trusted node, or to Casper Labs' public nodes
+
+You can find active peers at https://cspr.live/tools/peers or use the following Casper Labs public nodes:
 
 * Testnet - NODE_ADDR=https://rpc.testnet.casperlabs.io
 
 * Mainnet - NODE_ADDR=https://rpc.mainnet.casperlabs.io
 
-## Protocol Version
+### Protocol Version
 
 Protocol version should be set to the largest available protocol version you see in `ls /etc/casper` Currently, it should be:
 
 ```bash
 PROTOCOL=1_5_2
+```
+
+### Load `trusted_hash` in Config.toml of the Protocol Version
+
+The following command uses the previously established NODE_ADDR and PROTOCOL to load the `trusted_hash`:
+
+```bash
+NODE_ADDR=https://rpc.testnet.casperlabs.io
+PROTOCOL=1_5_2
+sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
 ```
 
 ## Syncing to Genesis
