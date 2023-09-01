@@ -119,10 +119,10 @@ For more details, see the [Node Setup](./basic-node-configuration.md#create-fund
 
 ## Getting a Trusted Hash
 
-To get a trusted hash, use the command below. Replace the node address with an address from a node on the network of your choice.
+To get a trusted hash, use the command below. Replace the node address with an address from a node on the network of your choice. In the past, we have used a lower `trusted_hash`. Connecting at the tip, we now use as high of a `trusted_hash` as possible.
 
 ```bash
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.14.161.135:7777 -b 20 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_0_0/config.toml
+sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
 ```
 
 You can find active peers at https://cspr.live/tools/peers or you can use Casper Labs' public nodes:
