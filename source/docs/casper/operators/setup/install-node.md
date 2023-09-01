@@ -133,7 +133,7 @@ You can find active peers at https://cspr.live/tools/peers or use the following 
 
 ### Protocol Version
 
-Protocol version should be set to the largest available protocol version you see in `ls /etc/casper` Currently, it should be:
+Protocol version should be set to the largest available protocol version you see in `ls /etc/casper`.  As of writing this, it was 1_5_2:
 
 ```bash
 PROTOCOL=1_5_2
@@ -144,7 +144,7 @@ PROTOCOL=1_5_2
 The following command uses the previously established NODE_ADDR and PROTOCOL to load the `trusted_hash`:
 
 ```bash
-NODE_ADDR=https://rpc.testnet.casperlabs.io
+NODE_ADDR=https://rpc.mainnet.casperlabs.io
 PROTOCOL=1_5_2
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
 ```
