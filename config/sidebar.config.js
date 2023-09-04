@@ -274,6 +274,24 @@ module.exports = {
             },
             items: ["operators/maintenance/archiving-and-restoring", "operators/maintenance/moving-node"],
         },
+        {
+            type: "category",
+            label: "AWS Nodes",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "operators/aws-nodes/index",
+            },
+            items: [
+                "operators/aws-nodes/deploying",
+                "operators/aws-nodes/connecting",
+                "operators/aws-nodes/modules",
+                "operators/aws-nodes/backup",
+                "operators/aws-nodes/open-vpn",
+                "operators/aws-nodes/troubleshooting",
+            ],
+        },
     ],
     resources: [
         "resources/index",
