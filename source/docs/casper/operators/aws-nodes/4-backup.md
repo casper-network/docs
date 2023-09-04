@@ -1,24 +1,28 @@
-# Restore & Backup Blockchain data
+---
+title: Restore and Backup
+---
+
+# Restoring and Backing up Blockchain Data
 
 ## Resilience (Self-Healing)
 
-The node contains two attached disks. The first one, as root (operating system and binaries), and the second one containing the node data, this will be mounted in the folder where the node data is stored, in `/var-/lib/casper/casper-node/`.
+The AWS Casper node contains two attached disks. The first disk contains the operating system and binaries. The second one contains the node data, mounted in the `/var-/lib/casper/casper-node/` folder.
 
 <p align="center">
 <img src={"/image/operators/ResilienceDiag.png"} alt="Resilience Diagram" width="600"/>
 </p>
 
-## Blockchain Snapshot Creation Process
+## The Snapshot Creation Process
 
-This is the workflow for the Backup Process using external AWS Volumes
+This diagram describes the workflow for the backup process using external AWS Volumes.
 
 <p align="center">
 <img src={"/image/operators/Casper_Backup.png"} alt="Casper_Backup" width="600"/>
 </p>
 
-## Blockchain Data Healing Process
+## The Data Healing Process
 
-This is the Workflow process when restoring from an External AWS Volume
+The following diagram describes the workflow process when restoring data from an external AWS volume.
 
 <p align="center">
 <img src={"/image/operators/Casper_Restore.png"} alt="Casper_Restore" width="600"/>
