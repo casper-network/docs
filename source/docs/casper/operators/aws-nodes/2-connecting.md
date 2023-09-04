@@ -1,22 +1,22 @@
-# Connecting to and Monitoring
+---
+title: Connect and Monitor
+---
 
-## VPN configuration
+# Monitoring the Nodes
 
-> **Note:** This section only applies if the infrastructure needs to be implemented with a VPN.
+## VPN Configuration
 
-In order to be able to access all the computing infrastructure, it is important to establish a VPN that guarantees the confidentiality and integrity of the information in transit. For this purpose, we have defined the creation of an OpenVPN server within the IaC, which will be configured on the following [guide](./Configure-the-Open-VPN-Server)
+If operators desire a VPN, it is essential to establish one that guarantees the confidentiality and integrity of the information in transit. For this purpose, [this guide](./5-open-vpn.md) recommends the creation of an OpenVPN server within the IaC.
 
-## Validate created instances
+## Validating the AWS Instances
 
-To obtain information about the status of the created instances, the following command should be executed:
+Run the following command to obtain information about the status of the AWS instances created. Remember to change the profile name and region.
 
 ```bash
 aws --profile $aws_profile ec2 describe-instances --region $aws_region --filters Name=instance-state-name,Values=running | jq '.Reservations[] | .Instances[] | {Id: .InstanceId, PrivateIpAddress: .PrivateIpAddress, PublicAddress: .PublicIpAddress, State: .State.Name, Name: .Tags[]|select(.Key=="Name")|.Value}'
 ```
 
-> **Note:** Remember to change profile name and region.
-
-The output of this command will show something like this:
+**Sample output:**
 
 ```json
 {
@@ -35,40 +35,51 @@ The output of this command will show something like this:
 }
 ```
 
-## Connecting to the Node instance
+## Connecting to the Node Instance
 
-At this point, it is necessary to consider how the infrastructure was applied, with VPN or without VPN.
-
-Once it has been established that the node is up and running and the VPN connection is configured, proceed to connect to the node via the ssh protocol.
+At this point, it is necessary to consider how the infrastructure was applied, with or without a VPN. Once the node is up and running and the VPN connection is configured, if applicable, proceed to connecting to the node via SSH.
 
 ```bash
 cd terragrunt/environment/{env}/
 ```
 
-* Enter to the directory of the appropriate environment, *testnet* or *mainnet*. In this directory you will find the PEM file to access the node with the following command:
-  * With the VPN server
-    * `ssh -i "{key_name}.pem" ubuntu@{Node-IPv4-Private-IP}`
-  * Without a VPN server
-    * `ssh -i "{key_name}.pem" ubuntu@{Node-IPv4-Public-IP}`
-> **Note:** You may need to change keys permission using chmod 400 "{key_name}.pem".
+Navigate to the environment directory, *testnet* or *mainnet*, where you will find the PEM file to access the node with the following command:
 
-### Check bootstrapping
+- With a VPN server:
 
-In order to see the bootstrap script output use the following command:
+```bash
+ssh -i "{key_name}.pem" ubuntu@{Node-IPv4-Private-IP}
+```
+
+- Without a VPN server:
+
+```bash
+ssh -i "{key_name}.pem" ubuntu@{Node-IPv4-Public-IP}
+```
+
+> **Note:** You may need to change the PEM file permissions using `chmod`:
+
+```bash
+chmod 400 "{key_name}.pem"
+```
+
+### Check the bootstrapping
+
+To see the bootstrap script output, use the following command:
 
 ```bash
 sudo tail -f /var/log/cloud-init-output.log
 ```
 
-### Check node status
+### Check the node status
 
-With the following command can be obtained information about the node
+Obtain information about the node with the following command:
 
 ```bash
 sudo /etc/casper/node_util.py watch
 ```
 
-It should display something like this:
+**Sample Output:**
 
 ```bash
 Last Block: 1019 (Era: 11)
@@ -92,35 +103,38 @@ casper-node-launcher.service - Casper Node Launcher
 Jun 03 16:42:44 ip-10-60-13-180 systemd[1]: Started Casper Node Launcher.
 ```
 
-## Monitoring
+## Monitoring the System
 
-To watch the monitoring system and the node status through metrics such as CPU, Memory, Disk, Era, and Block Height, among others, you can use the following options:
+To monitor the node and retrieve metrics such as CPU, Memory, Disk, Era, and Block Height, among others, operators have a few options.
 
-* Monitor the node status from the command line:
-  * Check the node log
+### Monitor the node using the command line
 
-    ```bash
-    sudo tail -fn100 /var/log/casper/casper-node.log /var/log/casper/casper-node.stderr.log
-    ```
+Check the node log using this command:
 
-  * Check if a known validator sees your node among peers, you should see your IP address on the list
+```bash
+sudo tail -fn100 /var/log/casper/casper-node.log /var/log/casper/casper-node.stderr.log
+```
 
-    ```bash
-    curl -s http://{KNOWN_VALIDATOR_IP}:8888/status | jq .peers
-    ```
+Check the node status:
 
-  * Check the node status
+```bash
+curl -s http://127.0.0.1:8888/status
+```
 
-    ```bash
-    curl -s http://127.0.0.1:8888/status
-    ```
+Check if a known validator sees your node among its peers with the command below. You should see your IP address on the list returned.
 
-* Dashboard monitoring
-  * To see the node status in Grafana, enter to the following URL
+```bash
+curl -s http://{KNOWN_VALIDATOR_IP}:8888/status | jq .peers
+```
 
-    ```bash
-    http://{Node-IPv4-Public-IP}:3000
-    ```
+### Dashboard monitoring
 
-  * To see the node status in the AWS CloudWatch service
-    <img src="files/img/dashboardcw.png" alt="Dashboard Cloudwatch" style="width:600px;"/>
+To see the node status in Grafana, enter the following URL:
+
+```bash
+http://{Node-IPv4-Public-IP}:3000
+```
+
+You can also see the node status in the AWS CloudWatch service:
+
+<img src="files/img/dashboardcw.png" alt="Dashboard Cloudwatch" style="width:600px;"/>
