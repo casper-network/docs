@@ -1,3 +1,7 @@
+---
+title: Open VPN Setup
+---
+
 # Configure the Open VPN Server
 
 ## Installation Steps

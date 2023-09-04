@@ -1,4 +1,8 @@
-# Modules
+---
+title: AWS Modules
+---
+
+# AWS Modules
 
 ## Alerting Modules
 

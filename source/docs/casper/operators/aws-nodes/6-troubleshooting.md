@@ -1,4 +1,8 @@
-# Troubleshooting
+---
+title: Troubleshooting
+---
+
+# Troubleshooting Tips for Operators
 
 This section contains common topics for troubleshooting AWS Casper node instances.
 
