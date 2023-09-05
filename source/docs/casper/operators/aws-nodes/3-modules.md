@@ -4,79 +4,77 @@ title: AWS Modules
 
 # AWS Modules
 
-## Alerting Modules
+This section describes AWS modules helpful for monitoring the node's status and health. AWS provides various services to help operators monitor the node and Casper service status by creating alarms and having a visual representation in a dashboard, thus presenting the node's resources and capacity in real time.
 
-The alerting services provided by AWS let us monitor the node status and also the Casper service status, by creating alarms and having a visual representation in a dashboard, being able to see the node's resources and capacity in real time.
+| AWS Services Used | Description |
+| ---- | ---- |
+| CloudWatch Dashboard | Customized views of metrics and alarms for AWS resources. |
+| CloudWatch Alarms | Sends a message or performs an action when the alarm changes state. |
+| CloudWatch Synthetics | Canaries as scripts to monitor endpoints and APIs. |
+| CloudWatch Agent | Collects metrics, logs, and traces from Amazon EC2 instances. |
+| CloudWatch Logs | Centralized logs from all systems, applications, and AWS services. |
+<!-- TODO this list doesn't seem complete given the rest of the content. -->
 
-| AWS Services Used |
-| ---- |
-| Cloudwatch Dashboard |
-| Logs |
-| Synthetic Canary |
-| Alarms |
+## Monitoring Modules
 
-### Cloudwatch Main Module
+This section describes all the modules related to monitoring the node.
 
-The following is an example of the Dashboard created by the IaC
+### CloudWatch Dashboard
+
+The IaC creates a dashboard to monitor all related resources. The dashboard includes metrics for connectivity status, blockchain information such as block height, block time, and era count, and node metrics such as CPU, memory, and disk usage metrics.
 
 <p align="center">
-<img src={"/image/operators/dashboardcw.png"} alt="Casper Dashboard" width="600"/>
+<img src={"/image/operators/dashboardcw.png"} alt="CloudWatch dashboard for Casper metrics"/>
 </p>
 
-#### Alarms
+### CloudWatch Alarms
 
 The following table shows the alarms created by the module and their respective configuration:
 
 | Alarm | Description |
 | ----- | ----------- |
-| CPU Alarm | CPU Alarm activated when usage is above 70% |
-| RAM Alarm | RAM Alarm activated when usage is above 80% |
-| DISK Alarm | DISK Alarm activated when usage is above 90% |
+| CPU Alarm | CPU Alarm activates when usage is above 70%. |
+| RAM Alarm | RAM Alarm activates when usage is above 80%. |
+| DISK Alarm | DISK Alarm activates when usage is above 90%. |
 
-##### Alarms Menu
-
-<p align="center">
-<img src={"/image/operators/AlarmsCreated.png"} alt="Alarms Created" width="600"/>
-</p>
-
-##### Alarm email Notification
+**Sample alarms:**
 
 <p align="center">
-<img src={"/image/operators/AlarmOutput.png"} alt="Alarm Output Example" width="600"/>
+<img src={"/image/operators/AlarmsCreated.png"} alt="Alarms created"/>
 </p>
 
-### Synthetic Canary
+**Sample email notification:**
 
-The synthetic canary created by the module checks the status of the `casper-node-launcher` service by checking the endpoint  `http://NODE_IP:8888/status`
+<p align="center">
+<img src={"/image/operators/AlarmOutput.png"} alt="Alarm email notification"/>
+</p>
 
-#### Running Example
+#### Subscriber List
+
+The subscriber module creates an SNS Topic with the emails provided inside the root `terragrunt.hcl` file. The alarms use the SNS Topic to send email notifications when an Alarm is activated.
+
+### CloudWatch Synthetics
+
+The synthetic canary created by the CloudWatch Synthetics module checks the status of the `casper-node-launcher` service by checking this endpoint: `http://NODE_IP:8888/status`.
 
 This is an example of the output when the canary  detects whether the service is up or down:
 
 <p align="center">
-<img src={"/image/operators/Canary_CasperService.png"} alt="Canary Casper Service Example" width="600"/>
+<img src={"/image/operators/Canary-CasperService.png"} alt="Canary Casper service example"/>
 </p>
 
-### Log Group
+#### Canary Log Group
 
-This is the log Group module for the **Synthetic Canary Service**. All logs derived from those tests will be stored in the created Log Group.
-
-The following logs are stored:
+A Log Group module for the **synthetic canary service** stores all logs derived from the canary tests as follows:
 
 | Name| Description |
 | --- | --- |
-| casper-node.log | Casper Service logs |
-| casper-node.stderr.log | Casper Service error logs |
+| casper-node.log | Casper Service logs. |
+| casper-node.stderr.log | Casper Service error logs. |
 
-### Subscriber List
+### CloudWatch Agent
 
-The subscriber module creates an SNS Topic with the emails provided (which are inside the root `terragrunt.hcl` file. The SNS Topic is used by the alarms to be able to send email notifications when an Alarm is activated.
-
-### Configuration Cloudwatch Agent
-
-This is the configuration file for the Cloudwatch Agent inside the node.
-
-The Cloudwatch Agent will obtain the following metrics every 30 seconds:
+A CloudWatch Agent obtains the following metrics every 30 seconds:
 
 | Metrics | Description |
 | ------- | ----------- |
@@ -88,31 +86,29 @@ The Cloudwatch Agent will obtain the following metrics every 30 seconds:
 | mem_used | RAM usage in GB |
 | mem_used_percent | RAM usage in percentage |
 
-## Bucket Modules
+<!-- TODO figure out how to introduce non-monitoring modules -->
 
-### S3 Canary
+### S3 Bucket Modules
 
-This module creates an S3 Bucket to store all the logs generated by the *Synthetic Canary Service*. It is called by the `alerting/iam_canary_s3` module.
+The following modules create S3 bucket resources on AWS.
 
-### S3 Config
+#### S3 Canary
 
-This module creates an S3 Bucket where all the additional files for configuration (`zip`,`.json`,`.sh`) will be stored.
+An S3 canary module creates an S3 bucket to store all the logs generated by the [synthetic canary service](#CloudWatch-Synthetics). The `alerting/iam_canary_s3` module calls this module.
 
-## Compute Modules
+#### S3 Config
 
-### ASG Module
+The S3 config module creates an S3 bucket for storing additional configuration files such as `zip`,`.json`, or `.sh`.
 
-#### Description
+### Auto-Scaling Module
 
-The Auto-Scaling Group (ASG), is used for providing an automatic deployment of the node if for some reason the node shuts down.
+An Auto-Scaling Group (ASG) is used for an automatic deployment if the node shuts down. The ASG contains a launch template with all the configurations needed to automatically set up the `casper-launcher` when the EC2 instance starts running. Also, the ASG is available in 3 public subnets for better support.
 
-The ASG provided contains a launch template with all the configurations needed to set up the `casper-launcher` automatically and as soon as the EC2 instance starts running.
+<!-- TODO move this to a new file? -->
 
-It also is available in 3 Public Subnets for better support and availability in the Casper Network.
+### EC2 Instance Requirements
 
-## EC2 Instance
-
-### System Requirements
+The following requirements describe the optimal EC2 Instance for running a Casper node.
 
 | Requirements | Description |
 | --- | --- |
@@ -123,108 +119,96 @@ It also is available in 3 Public Subnets for better support and availability in 
 | AMI | ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129 |
 | AMI_Type| t3.2xlarge |
 
-### Ports Available
+#### Available Ports
 
-The following ports are open to be able to run successfully the Casper service:
+The following ports are open to run the Casper service successfully:
 
 | PORT  | Description                                                                                                 |
 | ----- | ----------------------------------------------------------------------------------------------------------- |
-| 22    | SSH                                                                            |
+| 22    | SSH connectivity                                                                                            |
 | 3000  | Grafana dashboard                                                                                           |
-| 7777  | RPC endpoint for interaction with JSON-RPC API                                                              |
-| 8888  | REST endpoint for status and metrics (having this accessible allows your node to be part of network status) |
-| 9999  | SSE endpoint for event stream                                                                               |
-| 35000 | required to be externally visible                                                                           |
+| 7777  | RPC endpoint for interaction with the node's JSON-RPC API                                                   |
+| 8888  | REST endpoint for status and metrics. Having this accessible allows the node to be part of the network status|
+| 9999  | SSE endpoint for the event stream                                                                           |
+| 35000 | Required to be part of the network                                                                          |
 
-### Config Files
+#### Configuration Files
 
-#### casper-node-install-configure.sh.tftpl
+The `casper-node-install-configure.sh.tftpl` is a template that converts to a bash file when Terragrunt runs. It contains all the installation and configuration commands the `casper-service` and monitoring services (e.g., CloudWatch Agent and Grafana) need. This bash file calls other bash files to finish the configuration for backup and CloudWatch.
 
-A template that converts to a bash file when terragrunt is executed. It contains all the installation and configuration commands needed by the casper-service and monitoring services (AWS Cloudwatch Agent and Grafana (Docker)). It calls the other bash files to finish the configuration for backup and cloudwatch.
+To see more configuration files, go to the config module. You will see a detailed explanation of the other configuration files referenced inside the code of the `casper-node-install-configure.sh.tftpl` file. This file needs to be separated because there is a character limit for script templates in AWS.
 
-#### Other Configuration files
+#### EC2 Instance Creation
 
-Please go to the config module for a detailed explanation of the other configuration files that are referenced inside the code of the `casper-node-install-configure.sh.tftpl` file. The reason it needs to be separated is that there is a character limit for script templates in AWS.
-
-### Setup Process
-
-This is the workflow of the EC2 Instance Creation
+This is the workflow of creating the EC2 instance for a Casper node in AWS:
 
 <p align="center">
 <img src={"/image/operators/ASGWorkflow.png"} alt="EC2 Workflow" width="600"/>
 </p>
 
-### Config Bucket Module
+#### Configuration Bucket Module
 
-This terragrunt creates a S3 Bucket and uploads all the configuration files needed to set up all the services (Casper, monitoring, backup and restore) inside the node.
-
-### Configuration Files
-
-Below is a detailed description of each configuration file.
+Terragrunt creates an S3 bucket and uploads all the configuration files needed to set up all the required services inside the node, including the Casper service and other services used for monitoring, backing up, and restoring the node. Below is a detailed description of each configuration file.
 
 | File | Description |
 | ---- | ----------- |
-| files/genCustomMetrics.sh | Bash file that contains the configuration to get casper-node metric information from the Grafana dashboard and places them in the dashboard.sh file so the metrics can be seen in the Cloudwatch Dashboard.|
-| files/genSnapshot.sh | Bash file that contains the configuration to create a snapshot volume in EBS, with a cronjob that backs up weekly. |
-| files/genVolumenID.sh | Bash file Obtain the ID of the volume to be created and validate if there is a snapshot of a previous volume, if there is, create the volume based on it. Otherwise, create a completely new volume. |
-| files/deleteSm.sh | Bash file that deletes the secret keys of casper from the AWS secret manager. *Note: It is not used currently.* |
-| files/dashboard.json | Template of the dashboard to generate and watch all the metrics needed for ideal monitoring setup.|
+| files/genCustomMetrics.sh | Bash file containing the configuration to get casper-node metrics from the Grafana dashboard and place them in the dashboard.sh file for the CloudWatch Dashboard.|
+| files/genSnapshot.sh | Bash file containing the configuration to create a snapshot volume in EBS, with a cronjob performing weekly backups. |
+| files/genVolumenID.sh | Bash file to create a volume based on the snapshot of a previous volume, given its ID; if the snapshot does not exist, the script will create a completely new volume. |
+| files/dashboard.json | Dashboard template to generate and watch node metrics. |
+| files/deleteSm.sh | NOT IN USE. Deletes the Casper secret keys from the AWS Secrets Manager. |
 
-## Key Pairs Module
+### Key Pairs Module
 
-The Key Pairs module generates a `.pem` file that will be used to create and be able connect to the `Open VPN` instance and the `casper-node`instance.
+The Key Pairs module generates a `.pem` file for creating and connecting to the `OpenVPN` and `casper-node` instances.
 
-## Security Group Rules Module
+### Security Group Rules Module
 
-The Security Group Rules module will detect if the node `Operator` wants the `Open VPN` instance or not, and will create a customized *SSH* `Ingress-Rule` for the `casper-node` instance.
+The Security Group Rules module detects whether the node operator wants the `OpenVPN` instance and creates a customized SSH `Ingress-Rule` for the `casper-node` instance.
 
-| Open VPN Status | Ingress Rule |
+| OpenVPN Status | Ingress Rule |
 | -- | -- |
-| Created | SSH will only be available when connected to the VPN Server |
-| Discarded | SSH will be available to the IPs the Operator listed |
+| Created | SSH will only be available when connected to the VPN Server. |
+| Discarded | SSH will be available to the IPs the operator listed. |
 
-## OPEN VPN SERVER Module
+### OpenVPN Server Module
 
-The OpenVPN Service is used to provide a private and secure connection to the node for the administrators.
+The OpenVPN Service provides the administrators a private and secure connection to the node. This simple VPN is available for five administrators. To configure the VPN server, read the [OpenVPN guide](./5-open-vpn.md).
 
-It is a simple VPN that is only available for 5 maintainers (or administrators).
+#### Ports
 
-To configure the VPN Server please read the [guide](./5-open-vpn.md).
+The following ports are open to run the Casper service successfully:
 
-### Ports
-
-The following ports are open to be able to run successfully the Casper service:
-
-| PORT | Description                      |
+| Port | Description                      |
 | ---- | -------------------------------- |
-| 22   | SSH (For connection to the node) |
-| 80   | Dashboard for configuration      |
+| 22   | For SSH connections to the node  |
+| 80   | For retrieving dashboard metrics |
 
-## Data Modules
+### Data Modules
 
-### Dashboard Template Module
+#### Dashboard Template Module
 
-The Template Module creates and configures the *Cloudwatch Dashboard*. The module is called the `alerting/cloudwatch` Module.
+The template module `alerting/cloudwatch` creates and configures the CloudWatch dashboard.
 
-### Cloudwatch Canary Code Template Module
+#### CloudWatch Canary Code Template Module
 
-The Template_CW_CF uses the `cw_agent_config.json` template file to add and configure the `cw_namespace` and `aws_region` variables provided in the root `terragrunt.hcl` file.
+The CloudWatch canary code template module, `Template_CW_CF`, uses the `cw_agent_config.json` template file to add and configure the `cw_namespace` and `aws_region` variables provided in the root file `terragrunt.hcl`.
 
-### Zip Creation Module
+#### ZIP Creation Module
 
-This template_zip module creates the `ZIP` file necessary for the *Canary Synthetic Service* to be able to monitor the `casper-node-launcher` service in port `8888`.
+The ZIP template module creates the ZIP file necessary for the [synthetic canary service](#CloudWatch-Synthetics) to monitor the `casper-node-launcher` on port `8888`.
 
-## Elastic IP Module
+### Elastic IP Module
 
-The EIP module creates the Elastic IP (Public IP) for the casper node.
+The Elastic IP (EIP) module creates the public IP for the Casper node.
 
-## VPC Module
+### VPC Module
 
-The VPC Module creates the Networking Layer where the casper non-validator node will be operating.
-The module configures the following services:
+The VPC module creates the networking layer where the Casper read-only node will run. This module configures the following services:
 
-| Services |
-| -------- |
-| Public Subnets (3 Availability zones) |
-| Route tables |
-| VPC |
+| Services | Description |
+| -------- | ----------- |
+| Amazon VPC     | A virtual private cloud within the AWS Cloud. |
+| Public subnets | Range of IP addresses in 3 availability zones. |
+| Route tables   | Tables controlling where network traffic is directed. |
+
