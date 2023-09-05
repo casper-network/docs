@@ -137,4 +137,6 @@ http://{Node-IPv4-Public-IP}:3000
 
 You can also see the node status in the AWS CloudWatch service:
 
-<img src="files/img/dashboardcw.png" alt="Dashboard Cloudwatch" style="width:600px;"/>
+<p align="center">
+<img src={"/image/operators/dashboardcw.png"} alt="EC2 Workflow"/>
+</p>
