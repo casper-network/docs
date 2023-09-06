@@ -1,12 +1,10 @@
 ---
-title: Connect and Monitor
+title: Validate and Monitor the Node
 ---
 
-# Monitoring the Nodes
+# Validating and Monitoring the Node
 
-## VPN Configuration
-
-If operators desire a VPN, it is essential to establish one that guarantees the confidentiality and integrity of the information in transit. For this purpose, [this guide](./5-open-vpn.md) recommends the creation of an OpenVPN server within the IaC.
+This section describes how to validate the AWS setup and monitor the Casper node created using this infrastructure.
 
 ## Validating the AWS Instances
 
@@ -34,6 +32,10 @@ aws --profile $aws_profile ec2 describe-instances --region $aws_region --filters
   "Name": "casper-aws-vpn-mainnet"
 }
 ```
+
+## VPN Configuration
+
+If operators desire a VPN, it is essential to establish one that guarantees the confidentiality and integrity of the information in transit. For this purpose, [this guide](./5-open-vpn.md) recommends the creation of an OpenVPN server within the IaC.
 
 ## Connecting to the Node Instance
 
@@ -103,7 +105,7 @@ casper-node-launcher.service - Casper Node Launcher
 Jun 03 16:42:44 ip-10-60-13-180 systemd[1]: Started Casper Node Launcher.
 ```
 
-## Monitoring the System
+## Monitoring the Node
 
 To monitor the node and retrieve metrics such as CPU, Memory, Disk, Era, and Block Height, among others, operators have a few options.
 

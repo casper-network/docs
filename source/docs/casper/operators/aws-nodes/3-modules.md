@@ -1,8 +1,8 @@
 ---
-title: AWS Modules
+title: Implemented Modules
 ---
 
-# AWS Modules
+# Implemented Modules
 
 This section describes AWS modules helpful for running and monitoring the node.
 
@@ -10,13 +10,13 @@ This section describes AWS modules helpful for running and monitoring the node.
 
 This section describes all the modules related to monitoring the node. AWS provides various services to help operators monitor the node and Casper service status by creating alarms and having a visual representation in a dashboard, thus presenting the node's resources and capacity in real time.
 
-| AWS Services Used | Description |
-| ---- | ---- |
-| CloudWatch Dashboard | Customized views of metrics and alarms for AWS resources. |
-| CloudWatch Alarms | Sends a message or performs an action when the alarm changes state. |
-| CloudWatch Synthetics | Canaries as scripts to monitor endpoints and APIs. |
-| CloudWatch Agent | Collects metrics, logs, and traces from Amazon EC2 instances. |
-| CloudWatch Logs | Centralized logs from all systems, applications, and AWS services. |
+| AWS Services Used     | Description                                                         |
+| --------------------  | ------------------------------------------------------------------- |
+| CloudWatch Dashboard  | Customized views of metrics and alarms for AWS resources.           |
+| CloudWatch Alarms     | Sends a message or performs an action when the alarm changes state. |
+| CloudWatch Synthetics | Canaries as scripts to monitor endpoints and APIs.                  |
+| CloudWatch Agent      | Collects metrics, logs, and traces from Amazon EC2 instances.       |
+| CloudWatch Logs       | Centralized logs from all systems, applications, and AWS services.  |
 <!-- TODO the logs are not described below. -->
 
 ### CloudWatch Dashboard
@@ -31,10 +31,10 @@ The IaC creates a dashboard to monitor all related resources. The dashboard incl
 
 The following table shows the alarms created by the module and their respective configuration:
 
-| Alarm | Description |
-| ----- | ----------- |
-| CPU Alarm | CPU Alarm activates when usage is above 70%. |
-| RAM Alarm | RAM Alarm activates when usage is above 80%. |
+| Alarm      | Description                                   |
+| ---------- | --------------------------------------------- |
+| CPU Alarm  | CPU Alarm activates when usage is above 70%.  |
+| RAM Alarm  | RAM Alarm activates when usage is above 80%.  |
 | DISK Alarm | DISK Alarm activates when usage is above 90%. |
 
 **Sample alarms:**
@@ -67,24 +67,24 @@ This is an example of the output when the canary  detects whether the service is
 
 A Log Group module for the **synthetic canary service** stores all logs derived from the canary tests as follows:
 
-| Name| Description |
-| --- | --- |
-| casper-node.log | Casper Service logs. |
-| casper-node.stderr.log | Casper Service error logs. |
+| Name                   | Description               |
+| ---------------------- | ------------------------  |
+| casper-node.log        | Casper Service logs.      |
+| casper-node.stderr.log | Casper Service error logs.|
 
 ### CloudWatch Agent
 
 A CloudWatch Agent obtains the following metrics every 30 seconds:
 
-| Metrics | Description |
-| ------- | ----------- |
-| casper-node logs | casper service logs |
+| Metrics                | Description               |
+| ---------------------- | ------------------------- |
+| casper-node logs       | casper service logs       |
 | casper-node error logs | casper service error logs |
-| disk_total | disk total capacity |
-| disk_used | disk usage in GB |
-| disk_percent | disk usage in percentage |
-| mem_used | RAM usage in GB |
-| mem_used_percent | RAM usage in percentage |
+| disk_total             | disk total capacity       |
+| disk_used              | disk usage in GB          |
+| disk_percent           | disk usage in percentage  |
+| mem_used               | RAM usage in GB           |
+| mem_used_percent       | RAM usage in percentage   |
 
 <!-- TODO figure out how to introduce non-monitoring modules -->
 
@@ -110,14 +110,14 @@ An Auto-Scaling Group (ASG) is used for an automatic deployment if the node shut
 
 The following requirements describe the optimal EC2 Instance for running a Casper node.
 
-| Requirements | Description |
-| --- | --- |
-| O.S. | Ubuntu 20.04 LTS |
-| RAM | 32 GB |
-| Disk Space| 2 TB |
-| CPU Cores | 8 |
-| AMI | ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129 |
-| AMI_Type| t3.2xlarge |
+| Requirements | Description          |
+| ------------ | ---------------------|
+| O.S.         | Ubuntu 20.04 LTS     |
+| RAM          | 32 GB                |
+| Disk Space   | 2 TB                 |
+| CPU Cores    | 8                    |
+| AMI          | ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129 |
+| AMI_Type     | t3.2xlarge           |
 
 ### Available Ports
 
@@ -150,13 +150,13 @@ This is the workflow of creating the EC2 instance for a Casper node in AWS:
 
 Terragrunt creates an S3 bucket and uploads all the configuration files needed to set up all the required services inside the node, including the Casper service and other services used for monitoring, backing up, and restoring the node. Below is a detailed description of each configuration file.
 
-| File | Description |
-| ---- | ----------- |
-| files/genCustomMetrics.sh | Bash file containing the configuration to get casper-node metrics from the Grafana dashboard and place them in the dashboard.sh file for the CloudWatch Dashboard.|
-| files/genSnapshot.sh | Bash file containing the configuration to create a snapshot volume in EBS, with a cronjob performing weekly backups. |
-| files/genVolumenID.sh | Bash file to create a volume based on the snapshot of a previous volume, given its ID; if the snapshot does not exist, the script will create a completely new volume. |
-| files/dashboard.json | Dashboard template to generate and watch node metrics. |
-| files/deleteSm.sh | NOT IN USE. Deletes the Casper secret keys from the AWS Secrets Manager. |
+| File                      | Description |
+| ------------------------- | ----------- |
+| files/genCustomMetrics.sh | Bash file containing the configuration to get casper-node metrics from the Grafana dashboard and place them in the dashboard.sh file for the CloudWatch Dashboard. |
+| files/genSnapshot.sh      | Bash file containing the configuration to create a snapshot volume in EBS, with a cronjob performing weekly backups. |
+| files/genVolumenID.sh     | Bash file to create a volume based on the snapshot of a previous volume, given its ID; if the snapshot does not exist, the script will create a completely new volume. |
+| files/dashboard.json      | Dashboard template to generate and watch node metrics. |
+| files/deleteSm.sh         | NOT IN USE. Deletes the Casper secret keys from the AWS Secrets Manager. |
 
 ## Key Pairs Module
 
@@ -167,9 +167,9 @@ The Key Pairs module generates a `.pem` file for creating and connecting to the 
 The Security Group Rules module detects whether the node operator wants the `OpenVPN` instance and creates a customized SSH `Ingress-Rule` for the `casper-node` instance.
 
 | OpenVPN Status | Ingress Rule |
-| -- | -- |
-| Created | SSH will only be available when connected to the VPN Server. |
-| Discarded | SSH will be available to the IPs the operator listed. |
+| -------------- | ------------ |
+| Created        | SSH will only be available when connected to the VPN Server. |
+| Discarded      | SSH will be available to the IPs the operator listed.        |
 
 ## OpenVPN Server Module
 
@@ -206,8 +206,8 @@ The Elastic IP (EIP) module creates the public IP for the Casper node.
 
 The VPC module creates the networking layer where the Casper read-only node will run. This module configures the following services:
 
-| Services | Description |
-| -------- | ----------- |
+| Services       | Description |
+| -------------- | ----------- |
 | Amazon VPC     | A virtual private cloud within the AWS Cloud. |
 | Public subnets | Range of IP addresses in 3 availability zones. |
 | Route tables   | Tables controlling where network traffic is directed. |
