@@ -25,7 +25,7 @@ This section describes all the modules related to monitoring the node. AWS provi
 The IaC creates a dashboard to monitor all related resources. The dashboard includes metrics for connectivity status, blockchain information such as block height, block time, and era count, and node metrics such as CPU, memory, and disk usage metrics.
 
 <p align="center">
-<img src={"/image/operators/dashboardcw.png"} alt="CloudWatch dashboard for Casper metrics"/>
+<img src={"/image/operators/cloudwatch-dashboard.png"} alt="Cloudwatch Dashboard"/>
 </p>
 
 ### CloudWatch Alarms
@@ -41,13 +41,13 @@ The following table shows the alarms created by the module and their respective 
 **Sample alarms:**
 
 <p align="center">
-<img src={"/image/operators/AlarmsCreated.png"} alt="Alarms created"/>
+<img src={"/image/operators/alarms-list.png"} alt="Alarms created"/>
 </p>
 
 **Sample email notification:**
 
 <p align="center">
-<img src={"/image/operators/AlarmOutput.png"} alt="Alarm email notification"/>
+<img src={"/image/operators/email-notification.png"} alt="Alarm email notification"/>
 </p>
 
 #### Subscriber List
@@ -61,7 +61,7 @@ The synthetic canary created by the CloudWatch Synthetics module checks the stat
 This is an example of the output when the canary  detects whether the service is up or down:
 
 <p align="center">
-<img src={"/image/operators/Canary-CasperService.png"} alt="Canary Casper service example"/>
+<img src={"/image/operators/canary-casper-service.png"} alt="Canary Casper service example"/>
 </p>
 
 #### Canary Log Group
@@ -144,7 +144,7 @@ To see more configuration files, go to the config module. You will see a detaile
 This is the workflow of creating the EC2 instance for a Casper node in AWS:
 
 <p align="center">
-<img src={"/image/operators/ASGWorkflow.png"} alt="EC2 Workflow"/>
+<img src={"/image/operators/instance-creation.png"} alt="EC2 Creation Workflow"/>
 </p>
 
 ## Configuration Bucket Module
