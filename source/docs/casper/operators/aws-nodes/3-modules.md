@@ -17,7 +17,8 @@ This section describes all the modules related to monitoring the node. AWS provi
 | CloudWatch Synthetics | Canaries as scripts to monitor endpoints and APIs.                  |
 | CloudWatch Agent      | Collects metrics, logs, and traces from Amazon EC2 instances.       |
 | CloudWatch Logs       | Centralized logs from all systems, applications, and AWS services.  |
-<!-- TODO the logs are not described below. -->
+
+<!-- TODO the logs are not described in a separate section. Why is it missing? -->
 
 ### CloudWatch Dashboard
 
@@ -86,7 +87,7 @@ A CloudWatch Agent obtains the following metrics every 30 seconds:
 | mem_used               | RAM usage in GB           |
 | mem_used_percent       | RAM usage in percentage   |
 
-<!-- TODO figure out how to introduce non-monitoring modules -->
+The following modules are related to creating and managing AWS resources.
 
 ## S3 Bucket Modules
 
@@ -104,7 +105,7 @@ The S3 config module creates an S3 bucket for storing additional configuration f
 
 An Auto-Scaling Group (ASG) is used for an automatic deployment if the node shuts down. The ASG contains a launch template with all the configurations needed to automatically set up the `casper-launcher` when the EC2 instance starts running. Also, the ASG is available in 3 public subnets for better support.
 
-<!-- TODO move this to a new file? -->
+<!-- TODO move the info regarding the EC2 instance to a new file? -->
 
 ## EC2 Instance Requirements
 
@@ -119,7 +120,7 @@ The following requirements describe the optimal EC2 Instance for running a Caspe
 | AMI          | ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129 |
 | AMI_Type     | t3.2xlarge           |
 
-### Available Ports
+### EC2 Instance Ports
 
 The following ports are open to run the Casper service successfully:
 
@@ -132,7 +133,7 @@ The following ports are open to run the Casper service successfully:
 | 9999  | SSE endpoint for the event stream                                                                           |
 | 35000 | Required to be part of the network                                                                          |
 
-### Configuration Files
+### EC2 Instance Configuration
 
 The `casper-node-install-configure.sh.tftpl` is a template that converts to a bash file when Terragrunt runs. It contains all the installation and configuration commands the `casper-service` and monitoring services (e.g., CloudWatch Agent and Grafana) need. This bash file calls other bash files to finish the configuration for backup and CloudWatch.
 
