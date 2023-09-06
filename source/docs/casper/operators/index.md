@@ -21,3 +21,4 @@ Review the [node's configuration](./setup/basic-node-configuration.md) first. Th
 |[Becoming a Validator](./becoming-a-validator/index.md) | How to join a network and become a validator |
 |[Private Network Setup](./setup-network/index.md) | How to set up a private Casper network |
 |[Maintenance](./maintenance/index.md) | Topics related to node maintenance |
+|[AWS Nodes](./aws-nodes/index.md) | Create read-only Casper nodes with AWS |
