@@ -62,6 +62,8 @@ Follow these steps to configure the VPN Server:
     <img src={"/image/operators/vpn-settings.png"} alt="VPN Settings"/>
     </p>
 
+<br></br>
+
 :::note
 
 To run the IaC with VPN enabled, you must use the Session Manager. By default, the SSH service is not enabled.

@@ -14,12 +14,12 @@ If the node restarts when synchronizing, usually every 30 minutes, and doesn't u
 
 2. Get a `trusted hash` from the network using this command:
 
-```bash
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://SYNCED_NODE_IP:7777/ -b BLOCK_NUMBER | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/CASPER_VERSION/config.toml
-```
+    ```bash
+    sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://SYNCED_NODE_IP:7777/ -b BLOCK_NUMBER | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/CASPER_VERSION/config.toml
+    ```
 
-For example:
+    For example:
 
-```bash
-sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.136.227.9:7777/ -b 997478 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_4_7/config.toml
-```
+    ```bash
+    sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.136.227.9:7777/ -b 997478 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_4_7/config.toml
+    ```

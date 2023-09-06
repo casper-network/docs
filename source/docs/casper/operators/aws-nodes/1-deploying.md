@@ -48,7 +48,7 @@ Using Docker Compose, create the following folder structure for the agnostic Doc
    docker-compose --env-file ../docker/.env up --build -d
    ```
 
-This command installs the tools and prerequisites necessary to execute the project in the container.
+   This command installs the tools and prerequisites necessary to execute the project in the container.
 
 2. Modify the contents of the `.env` file and change the environment variables at your convenience.
 
@@ -139,35 +139,35 @@ To run the infrastructure as code (IaC), follow these steps.
 
 2. Navigate to the directory that matches your environment.
   
-* For Testnet, use:
+   * For Testnet, use:
 
-    ```bash
-    cd terragrunt/environment/testnet/
-    ```
+      ```bash
+      cd terragrunt/environment/testnet/
+      ```
 
-* For Mainnet, use:
+   * For Mainnet, use:
 
-    ```bash
-    cd terragrunt/environment/mainnet/
-    ```
+      ```bash
+      cd terragrunt/environment/mainnet/
+      ```
 
 3. Run the following command to validate the Terragrunt configuration. This command prepares the environment, downloads all providers, modules, and dependencies, and returns the number of resources to be provisioned. Finally, it validates all the configurations specified. Depending on your Internet connection and local environment, this operation may take around 30 minutes.
 
-```bash
-terragrunt run-all plan
-```
+   ```bash
+   terragrunt run-all plan
+   ```
 
-When running this command for the first time, answer `yes` to create the S3 bucket where Terraform files will be stored. Here is an example output:
+   When running this command for the first time, answer `yes` to create the S3 bucket where Terraform files will be stored. Here is an example output:
 
-```bash
-Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) yes
-```
+   ```bash
+   Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) yes
+   ```
 
-The command should display the following message:
+   The command should display the following message:
 
-```bash
-Terraform has been successfully initialized!
-```
+   ```bash
+   Terraform has been successfully initialized!
+   ```
 
 4. In this step, implement the planned infrastructure using the `terragrunt run-all apply` command, with or without a VPN server. This operation may take around 15 minutes, depending on the operator's Internet speed and local compute resources.
 
