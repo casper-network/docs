@@ -20,6 +20,8 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
     const [hasFocus, setHasFocus] = useState<boolean>(false);
     const [showResults, setShowResults] = useState<boolean>(false);
     const [hits, setHits] = useState<any>({});
+    const [loading, setLoading] = useState<boolean>(true);
+
     const docsIndexName = (siteConfig.themeConfig.algolia?.indexName as string) ?? "casperlabs";
     const siteIndexName = (siteConfig.customFields.siteAlgoliaIndexName as string) ?? "casper";
 
@@ -81,6 +83,7 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
             const value = e.target.value;
             setSearchTerm(value);
             if (value) {
+                setLoading(true);
                 triggerSearchIndexes(value);
             } else {
                 clearSearch();
@@ -105,6 +108,7 @@ export default function SearchWrapper({ searchIndexes, locale, siteUrl, placehol
         }
         setSearchTerm("");
         setShowResults(false);
+        setHits({});
     }
 
     return (

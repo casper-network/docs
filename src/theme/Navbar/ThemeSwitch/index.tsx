@@ -17,14 +17,20 @@ function ThemeSwitch() {
         setIsLightTheme(colorMode === "light");
     }, [colorMode]);
 
+    function handleKeyPress(e: any) {
+        if (e.key === "Enter") {
+            setColorMode(colorMode === "light" ? "dark" : "light");
+        }
+    }
+
     return (
         <div className={styles.switchWrapper}>
             {isLightTheme !== undefined ? (
                 <>
-                    <label htmlFor="switch" className={isLightTheme ? styles.light : "dark"}>
+                    <label htmlFor="switch" tabIndex={0} onKeyUp={handleKeyPress} className={isLightTheme ? styles.light : "dark"}>
                         {isLightTheme ? icons.sun : icons.moon}
                     </label>
-                    <input id="switch" type="checkbox" aria-hidden="true" onChange={handleThemeChange}></input>
+                    <input tabIndex={0} id="switch" type="checkbox" aria-hidden="true" onChange={handleThemeChange}></input>
                 </>
             ) : null}
         </div>
