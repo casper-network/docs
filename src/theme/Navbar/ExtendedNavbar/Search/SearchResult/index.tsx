@@ -17,6 +17,8 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
     const { customFields } = siteConfig;
     const [hitsDisplayed, setHitsDisplayed] = useState<any>([]);
     const [hideResults, setHideResults] = useState<boolean>(false);
+    const [loading, setLoading] = useState(true);
+
     const portalSearchTitle = "Portal Results";
 
     useEffect(() => {
@@ -24,9 +26,11 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
             const slicedHits = hits.slice(0, 4);
             if (searchTitle === portalSearchTitle) {
                 setHitsDisplayed(slicedHits);
+                setLoading(false);
             } else {
                 const newGroupHits = groupHits(hits);
                 setHitsDisplayed(newGroupHits);
+                setLoading(false);
             }
         }
     }, [hits]);
@@ -139,8 +143,8 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                 {searchTitle} <span className={`${hideResults && styles.rotateSvg} ${styles.nonStyle}`}>{icons.chevronDown}</span>
             </p>
             <div className={`${styles.results_container} ${hideResults && styles.hiddenResults} `} onClick={() => setHasFocus(false)}>
-                {hits ? (
-                    hits.length > 0 ? (
+                {!loading ? (
+                    hitsDisplayed.length > 0 ? (
                         hitsDisplayed.map((hit: any, i: number) => {
                             if (hit._highlightResult?.title?.matchedWords?.length > 0 || hit._highlightResult?.internal?.content?.matchedWords?.length > 0) {
                                 return (
@@ -191,7 +195,7 @@ export default function SearchResult({ locale, siteUrl, hits, searchTitle, setHa
                     <div className={`${styles.centerSpinner} spinner`}></div>
                 )}
             </div>
-            {hits && hits.length > 4 && hits.length !== hitsDisplayed.length && (
+            {hits && hits.length > 4 && hits.length > hitsDisplayed.length && (
                 <button className={`halfTitleEyebrow ${styles.showMore} ${hideResults && styles.hiddenResults}`} onClick={loadMoreHits}>
                     Show more
                 </button>
