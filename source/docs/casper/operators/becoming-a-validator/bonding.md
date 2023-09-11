@@ -140,7 +140,7 @@ casper-client get-auction-info --node-address http://<HOST:PORT>
 ```
 
 <details>
-<summary><b>Example auction info response</b></summary>
+<summary>Example auction info response</summary>
 
 ```bash
 {

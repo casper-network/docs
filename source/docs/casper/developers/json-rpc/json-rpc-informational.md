@@ -15,7 +15,7 @@ This method returns the JSON representation of a [Block](../../concepts/design/c
 
 <details>
 
-<summary><b>Example chain_get_block request</b></summary>
+<summary>Example chain_get_block request</summary>
 
 ```bash
 
@@ -45,7 +45,7 @@ The result from `chain_get_block` depends on block availability from a given nod
 
 <details>
 
-<summary><b>Example chain_get_block result</b></summary>
+<summary>Example chain_get_block result</summary>
 
 ```bash
 
@@ -128,7 +128,7 @@ This method returns all **successful** native transfers within a given [Block](.
 
 <details>
 
-<summary><b>Example chain_get_block_transfers request</b></summary>
+<summary>Example chain_get_block_transfers request</summary>
 
 ```bash
 
@@ -156,7 +156,7 @@ This method returns all **successful** native transfers within a given [Block](.
 
 <details>
 
-<summary><b>Example chain_get_block_transfers result</b></summary>
+<summary>Example chain_get_block_transfers result</summary>
 
 ```bash
 
@@ -195,7 +195,7 @@ This method returns the era summary at a given [Block](../../concepts/design/cas
 
 <details>
 
-<summary><b>Example chain_get_era_summary request</b></summary>
+<summary>Example chain_get_era_summary request</summary>
 
 ```bash
 
@@ -223,7 +223,7 @@ This method returns the era summary at a given [Block](../../concepts/design/cas
 
 <details>
 
-<summary><b>Example chain_get_era_summary result</b></summary>
+<summary>Example chain_get_era_summary result</summary>
 
 ```bash
 
@@ -326,7 +326,7 @@ This method returns a state root hash at a given [Block](../../concepts/design/c
 
 <details>
 
-<summary><b>Example chain_get_state_root_hash request</b></summary>
+<summary>Example chain_get_state_root_hash request</summary>
 
 ```bash
 
@@ -354,7 +354,7 @@ This method returns a state root hash at a given [Block](../../concepts/design/c
 
 <details>
 
-<summary><b>Example chain_get_state_root_hash result</b></summary>
+<summary>Example chain_get_state_root_hash result</summary>
 
 ```bash
 
@@ -377,7 +377,7 @@ This method returns raw bytes for chainspec files.
 
 <details>
 
-<summary><b>Example info_get_chainspec request</b></summary>
+<summary>Example info_get_chainspec request</summary>
 
 ```bash
 
@@ -400,7 +400,7 @@ This method returns raw bytes for chainspec files.
 
 <details>
 
-<summary><b>Example info_get_chainspec result</b></summary>
+<summary>Example info_get_chainspec result</summary>
 
 Please note that adding a `--vv` flag will return the full chainspec bytes.
 
@@ -434,7 +434,7 @@ This method retrieves a [Deploy](../../concepts/design/casper-design.md#executio
 
 <details>
 
-<summary><b>Example info_get_deploy request</b></summary>
+<summary>Example info_get_deploy request</summary>
 
 ```bash
 
@@ -466,7 +466,7 @@ If the `execution_results` field is empty, it means that the network processed t
 
 <details>
 
-<summary><b>Example info_get_deploy result</b></summary>
+<summary>Example info_get_deploy result</summary>
 
 ```bash
 
@@ -581,7 +581,7 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 
 <details>
 
-<summary><b>Example query_balance request</b></summary>
+<summary>Example query_balance request</summary>
 
 ```bash
 {
@@ -618,7 +618,7 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 
 <details>
 
-<summary><b>Example query_balance result</b></summary>
+<summary>Example query_balance result</summary>
 
 ```bash
 
@@ -649,7 +649,7 @@ This method allows for you to query for a value stored under certain keys in glo
 
 <details>
 
-<summary><b>Example query_global_state request</b></summary>
+<summary>Example query_global_state request</summary>
 
 ```bash
 
@@ -681,7 +681,7 @@ This method allows for you to query for a value stored under certain keys in glo
 
 <details>
 
-<summary><b>Example query_global_state result</b></summary>
+<summary>Example query_global_state result</summary>
 
 ```bash
 
@@ -767,7 +767,7 @@ This method returns a JSON representation of an [Account](../../concepts/design/
 
 <details>
 
-<summary><b>Example state_get_account_info request</b></summary>
+<summary>Example state_get_account_info request</summary>
 
 ```bash
 
@@ -797,7 +797,7 @@ This method returns a JSON representation of an [Account](../../concepts/design/
 
 <details>
 
-<summary><b>Example state_get_account_info result</b></summary>
+<summary>Example state_get_account_info result</summary>
 
 ```bash
 
@@ -843,7 +843,7 @@ For instance, one native layer-1 token of the Casper Mainnet [CSPR](../../concep
 |purse_uref|String|Formatted URef.|
 
 <details>
-<summary><b>Example state_get_balance request</b></summary>
+<summary>Example state_get_balance request</summary>
 
 ```bash
 
@@ -870,7 +870,7 @@ For instance, one native layer-1 token of the Casper Mainnet [CSPR](../../concep
 |[merkle_proof](types_chain.md#merkle-proof)|String|The merkle proof.|
 
 <details>
-<summary><b>Example state_get_balance result</b></summary>
+<summary>Example state_get_balance result</summary>
 
 ```bash
 
@@ -901,7 +901,7 @@ You may query a stored value directly using the dictionary address.
 
 <details>
 
-<summary><b>Example state_get_dictionary_item request</b></summary>
+<summary>Example state_get_dictionary_item request</summary>
 
 ```bash
 
@@ -935,7 +935,7 @@ You may query a stored value directly using the dictionary address.
 
 <details>
 
-<summary><b>Example state_get_dictionary_item result</b></summary>
+<summary>Example state_get_dictionary_item result</summary>
 
 ```bash
 
@@ -975,7 +975,7 @@ This method returns a list of peers connected to the node.
 
 <details>
 
-<summary><b>Example info_get_peers request</b></summary>
+<summary>Example info_get_peers request</summary>
 
 ```bash
 
@@ -999,7 +999,7 @@ This method returns a list of peers connected to the node.
 
 <details>
 
-<summary><b>Example info_get_peers result</b></summary>
+<summary>Example info_get_peers result</summary>
 
 ```bash
 
@@ -1027,7 +1027,7 @@ This method returns the current status of a node.
 
 <details>
 
-<summary><b>Example info_get_status request</b></summary>
+<summary>Example info_get_status request</summary>
 
 ```bash
 
@@ -1063,7 +1063,7 @@ This method returns the current status of a node.
 
 <details>
 
-<summary><b>Example info_get_status result</b></summary>
+<summary>Example info_get_status result</summary>
 
 ```bash
 
