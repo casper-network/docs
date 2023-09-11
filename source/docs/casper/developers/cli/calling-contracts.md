@@ -68,7 +68,7 @@ The payment amount varies based on each deploy and network [chainspec](../../con
 The following sample response contains a `deploy_hash`, needed to verify the changes in global state, as described [here](./installing-contracts.md#querying-global-state).
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary>Sample response</summary>
 
 ```rust
 {

@@ -14,7 +14,7 @@ This is the only means by which users can send their compiled Wasm (as part of a
 
 <details>
 
-<summary><b>Example account_put_deploy request</b></summary>
+<summary>Example account_put_deploy request</summary>
 
 ```bash
 
@@ -91,7 +91,7 @@ The result contains the [deploy_hash](./types_chain.md#deployhash), which is the
 
 <details>
 
-<summary><b>Example account_put_deploy result</b></summary>
+<summary>Example account_put_deploy result</summary>
 
 ```bash
 
@@ -121,7 +121,7 @@ The `speculative_exec` endpoint provides a method to execute a `Deploy` without 
 
 <details>
 
-<summary><b>Example speculative_exec request</b></summary>
+<summary>Example speculative_exec request</summary>
 
 ```bash
 
@@ -215,7 +215,7 @@ The result contains the hash of the targeted block and the results of the execut
 
 <details>
 
-<summary><b>Example speculative_exec result</b></summary>
+<summary>Example speculative_exec result</summary>
 
 ```bash
 

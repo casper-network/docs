@@ -9,7 +9,7 @@ When developing on Casper, a policy of efficient data usage will ensure the lowe
 When creating smart contracts, including an explicit initialization entry point allows the contract to self-initialize without a subsequent Deploy of session code. This entry point creates the internal structure of the contract and cannot be called after the initial deploy. Below is an example of a self-initalizing entry point that can be used within the `call` function.
 
 <details>
-<summary><b>Example Self-initialization Entry Point</b></summary>
+<summary>Example Self-initialization Entry Point</summary>
 
 ```rust
 

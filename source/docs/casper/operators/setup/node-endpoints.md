@@ -74,7 +74,7 @@ curl -s http://<node_address>:8888/status | jq
 ```
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary>Sample response</summary>
 
 ```json
 {
@@ -134,7 +134,7 @@ curl -s http://<node_address>:8888/status | jq -r '.api_version, .last_added_blo
 ```
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary>Sample response</summary>
 
 ```json
 "1.4.15"

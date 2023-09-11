@@ -37,7 +37,7 @@ Casper supports native two-party transfers as well as bulk transfers using custo
 You can accomplish a native transfer by sending a native transfer deploy, without any Wasm. Included below is an example of this type of deploy. The included `payment` field describes how we are paying for the deploy, in this case a native transfer, while the `session` field describes the actual transfer.
 
 <details>
-<summary><b>Native Transfer Deploy</b></summary>
+<summary>Native Transfer Deploy</summary>
 
 ```json
 
