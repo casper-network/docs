@@ -225,6 +225,7 @@ module.exports = {
                 "operators/setup/basic-node-configuration",
                 "operators/setup/node-endpoints",
                 "operators/setup/install-node",
+                "operators/setup/fast-sync",
                 "operators/setup/open-files",
                 "operators/setup/upgrade",
                 "operators/setup/joining",

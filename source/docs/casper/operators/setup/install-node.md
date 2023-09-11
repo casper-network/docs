@@ -119,7 +119,7 @@ For more details, see the [Node Setup](./basic-node-configuration.md#create-fund
 
 ## Getting a Trusted Hash
 
-In the past, we have used a lower `trusted_hash`. Connecting at the tip, we now use as high of a `trusted_hash` as possible.
+In the past, we have used a lower `trusted_hash`. Connecting at the tip, we now use as high of a `trusted_hash` as possible. Find out more about [Fast Sync](./fast-sync.md).
 
 ### Node Address
 
