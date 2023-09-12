@@ -11,16 +11,15 @@ import TabItem from '@theme/TabItem';
 This page covers various considerations for moving to Casper from another blockchain by comparing Casper to Ethereum, Near, Aptos, and Solana in these aspects:
 
 1. [Smart Contract Platform Overview](#contract-overview)
-2. [Variable Storage](#variable-storage)
+2. [Variable Storage and State Management](#variable-storage)
 3. [Contract Functions](#contract-functions)
 4. [Passing Arguments](#passing-arguments)
-5. [State Management](#state-management)
 
 Since other blockchain projects use different technologies, it is essential to consider how those technologies serve your use case.
 
 When choosing a blockchain, it is also essential to compare consensus mechanisms, tokenomics, cross-contract capabilities, contract upgradability, and software development kits (SDKs) as described [here](#additional-considerations).
 
-## Contract Lifecycle {#contract-overview}
+## Smart Contract Platform {#contract-overview}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
@@ -53,7 +52,7 @@ In the Near ecosystem, smart contracts function as classes. The constructor, ref
 
 All public methods defined within the contract serve as its interface, exposing its functionality. 
 
-The Near blockchain provides various capabilities for versioning, including state migrations, state versioning, and contract self-updates.
+Near smart contracts are immutable but the state can change as transactions are executed. Contracts can be also upgradable through the deployment of new versions of the contract. The Near blockchain provides various capabilities for versioning, including state migrations, state versioning, and contract self-updates.
 
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
@@ -61,6 +60,12 @@ The Near blockchain provides various capabilities for versioning, including stat
 The Aptos programming language is known as Move. Its primary concepts revolve around scripts and modules. Scripts enable developers to incorporate additional logic into transactions, while modules allow them to expand blockchain functionality or create custom smart contracts. 
 
 A distinctive feature of Move is the concept of Resources, which are specialized structures representing assets. This design allows resources to be managed similarly to other data types in Aptos, such as vectors or structs.
+
+Smart Contract in the Aptos blockchain is called a Module. It is always connected with an account address. The modules have to be compiled to be able to call functions in the module.
+
+The public methods defined within the Module are treated as the interface of this Module and can be invoked from outside the blockchain.
+
+The Move code can be upgraded and will be changed under an account address, which does not change. The upgrade is only accepted if the code is backwards compatible.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
@@ -76,7 +81,7 @@ It is worth noting that Solana programs can be updated using an authority known 
 </TabItem>
 </Tabs>
 
-## Variable Storage {#variable-storage}
+## Variable Storage and State Management {#variable-storage}
 
 <Tabs>
 <TabItem value="Casper" label="Casper">
@@ -90,6 +95,8 @@ Additionally, local variables are available within the entry points and can be u
 
 The variables within the contract are responsible for storing the state of the contract at a specific moment in time. However, it's important to note that local variables used within the call functions are not stored in the contract's state. Instead, they are employed solely for computational purposes within those specific functions.
 
+State variables must be strongly typed so that the smart contract compiler can enforce type consistency and ensure the storage space aligns with the declared data types. Strong typing promotes code correctness and prevents potential data corruption or memory-related issues related to the contract's state variables.
+
 </TabItem>
 <TabItem value="Near" label="Near">
 
@@ -97,17 +104,23 @@ Variables in the contract can be stored as native types, SDK collections, or int
 
 Additionally, there is a distinction between class attributes and local variables. Class attributes represent the state of the contract, while local variables are specific to the invocation of a function and have no impact on the contract's overall state.
 
+SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Using SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
+
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
 
-Aptos employs primitive types, such as integers, booleans, and addresses, to represent variables. These elementary types can be combined to create structures, but it's important to note that struct definitions are only permitted within Modules. For storing important or relevant data, Aptos encourages using Resources, which are specialized types for managing and storing important data efficiently.
+Aptos employs primitive types, such as integers, booleans, and addresses, to represent variables. These elementary types can be combined to create structures, but it's important to note that struct definitions are only permitted within Modules. 
+
+Aptos advises developers to cluster related data into Resources for efficient data management and organization. Resources represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve the readability and maintainability of the code.
+
+Aptos blockchain introduces a tree-shaped persistent global storage which allows read and write operations. Global storage consists of trees originating from and account address.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
 
 Variables can be utilized locally within the execution context of a specific entry point. They are limited to the scope of that entry point and not accessible outside of it. These variables can be defined as elementary types such as bool, String, int, etc.
 
-In terms of storage, the actual data is stored in the Account. It is organized as a struct comprising related variables, allowing for efficient management and retrieval of the stored information.
+Data persists in structs within the account. The Binary Object Representation Serializer for Hashing (Borsh) facilitates the serialization and deserialization of these structs. The process involves reading the data from the account, deserializing it to obtain the values it contains, updating the values, and then serializing the modified data to save the new values back into the account.
 
 </TabItem>
 </Tabs>
@@ -277,36 +290,6 @@ Like Near, Aptos requires strongly typed function arguments, thus, preventing ty
 <TabItem value="Solana" label="Solana">
 
 Like Near and Aptos, Solana requires strongly typed function arguments, thus, preventing type-related errors and promoting code correctness.
-
-</TabItem>
-</Tabs>
-
-## State Management {#state-management}
-
-<Tabs>
-<TabItem value="Casper" label="Casper">
-
-Data persists in Named Keys and Dictionaries in a contract or an account's context. See more details in [Reading and Writing Data to the Blockchain](../concepts/design/reading-and-writing-to-the-blockchain.md).
- 
-</TabItem>
-<TabItem value="Ethereum" label="Ethereum">
-
-Data persists in state variables within the smart contract. These state variables must be strongly typed so that the smart contract compiler can enforce type consistency and ensure the storage space aligns with the declared data types. Strong typing promotes code correctness and prevents potential data corruption or memory-related issues related to the contract's state variables.
-
-</TabItem>
-<TabItem value="Near" label="Near">
-
-SDK Collections are typical when creating state variables because they provide convenient data structures such as lists, maps, and sets. These data structures can organize and manage complex data within the contract's storage. Using SDK Collections ensures efficient storage and facilitates easier access and data management in the smart contract.
-
-</TabItem>
-<TabItem value="Aptos" label="Aptos">
-
-Aptos advises developers to cluster related data into Resources for efficient data management and organization. Resources represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve the readability and maintainability of the code.
-
-</TabItem>
-<TabItem value="Solana" label="Solana">
-
-Data persists in structs within the account. The Binary Object Representation Serializer for Hashing (Borsh) facilitates the serialization and deserialization of these structs. The process involves reading the data from the account, deserializing it to obtain the values it contains, updating the values, and then serializing the modified data to save the new values back into the account.
 
 </TabItem>
 </Tabs>
