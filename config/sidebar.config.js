@@ -263,7 +263,7 @@ module.exports = {
         "resources/build-on-casper",
         "resources/casper-open-source-software",
         "resources/quick-start",
-        "resources/migrate",
+        "resources/moving-to-casper",
         //"resources/sample-projects", // NEW CONTENT WILL BE HERE
         {
             type: "category",
