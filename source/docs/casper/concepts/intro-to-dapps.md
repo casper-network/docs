@@ -1,8 +1,8 @@
 ---
-title: Introduction to dApps
+title: dApps
 ---
 
-# Introduction to dApps (Distributed Applications) on the Casper network
+# Introduction to dApps
 
 ### What is a dApp?
 
@@ -16,7 +16,7 @@ Any dApp will need access to a decentralized network, in one form or another. In
 
 ### Interacting with a Casper Decentralized Network
 
-For a dApp to integrate with a Casper network, it must be able to send [Deploys](../concepts/glossary/D.md#deploy) via the [JSON-RPC](../developers/json-rpc/index.md). Business logic specific to the dApp can then be executed on chain via the Deploy. [Sending a Deploy](../developers/dapps/sending-deploys.md) to a node will result in that node [gossiping](../concepts/design/p2p.md#communications-gossiping) that Deploy to other nodes, assuming that the Deploy is valid and accepted. The Deploy will then be enqueued for execution.
+For a dApp to integrate with a Casper network, it must be able to send [Deploys](../concepts/glossary/D.md#deploy) via the [JSON-RPC](../developers/json-rpc/index.md). Business logic specific to the dApp can then be executed on chain via the Deploy. [Sending a Deploy](../developers/cli/sending-deploys.md) to a node will result in that node [gossiping](../concepts/design/p2p.md#communications-gossiping) that Deploy to other nodes, assuming that the Deploy is valid and accepted. The Deploy will then be enqueued for execution.
 
 A Deploy contains [session code](../concepts/glossary/S.md#session-code) in the form of [Wasm](../concepts/glossary/W.md#webassembly) to be executed in the context of the sending [account](../concepts/glossary/A.md#account). Therefore, developers may use any programming language that can compile to Wasm when building a dApp for a Casper network. This session code may consist of Wasm to be executed once, or Wasm which will install contract code to be stored in global state. If the dApp requires periodic execution of the same Wasm, it is more efficient from both a gas and execution perspective to install the Wasm as a contract to be called later. As gas costs operate on a per-byte basis, smart contracts will incur less gas costs over time when compared against executing the same session code repeatedly.
 A dApp may send a Deploy simultaneously to each node it is connected to, but can only do so once per node, per Deploy.

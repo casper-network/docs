@@ -14,7 +14,7 @@ This method returns the [bids](../../concepts/economics/consensus.md#bids) and [
 
 <details>
 
-<summary><b>Example state_get_auction_info request</b></summary>
+<summary>Example state_get_auction_info request</summary>
 
 ```bash
 
@@ -42,7 +42,7 @@ This method returns the [bids](../../concepts/economics/consensus.md#bids) and [
 
 <details>
 
-<summary><b>Example state_get_auction_info result</b></summary>
+<summary>Example state_get_auction_info result</summary>
 
 ```bash
 
@@ -102,7 +102,7 @@ Potential change types:
 
 <details>
 
-<summary><b>Example info_get_validator_changes request</b></summary>
+<summary>Example info_get_validator_changes request</summary>
 
 ```bash
 
@@ -128,7 +128,7 @@ If no changes occurred in the current era, `info_get_validator_changes` will ret
 
 <details>
 
-<summary><b>Example info_get_validator_changes result</b></summary>
+<summary>Example info_get_validator_changes result</summary>
 
 ```bash
 
@@ -165,7 +165,7 @@ This method returns an EraInfo from the network. Only the last Block in an `era`
 
 <details>
 
-<summary><b>Example chain_get_era_info_by_switch_block request</b></summary>
+<summary>Example chain_get_era_info_by_switch_block request</summary>
 
 ```bash
 
@@ -193,7 +193,7 @@ This method returns an EraInfo from the network. Only the last Block in an `era`
 
 <details>
 
-<summary><b>Example chain_get_era_info_by_switch_block</b></summary>
+<summary>Example chain_get_era_info_by_switch_block</summary>
 
 ```bash
 

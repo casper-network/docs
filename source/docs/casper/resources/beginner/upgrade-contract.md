@@ -1,5 +1,6 @@
 ---
 title: Contract Upgrades
+slug: /resources/tutorials/beginner/upgrade-contract
 ---
 
 # Upgrading a Contract
@@ -17,7 +18,7 @@ Here is a video walkthrough of this tutorial.
 ## Prerequisites {#prerequisites}
 
 - The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state.
-- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](../../developers/dapps/sending-deploys.md), and [calling contracts](../../developers/cli/calling-contracts.md) on a Casper network.
+- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](../../developers/cli/sending-deploys.md), and [calling contracts](../../developers/cli/calling-contracts.md) on a Casper network.
 - You have installed [A Counter on the Testnet](/counter-testnet/) that you will upgrade as part of this tutorial.
 
 :::note
@@ -112,7 +113,7 @@ make build-contract
 
 ### Step 4. Install the contract
 
-[Install the contract](../../developers/cli/installing-contracts.md) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../../developers/dapps/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
+[Install the contract](../../developers/cli/installing-contracts.md) on the network via a deploy and verify the deploy status. You can also [monitor the event stream](../../developers/cli/sending-deploys.md#monitoring-the-event-stream-for-deploys) to see when your deploy is accepted.
 
 To observe the upgrade workflow, you can install the second contract version on the chain. This version contains the `counter_decrement` entry point.
 
@@ -140,7 +141,7 @@ For the simple example counter above, here are the [corresponding tests](https:/
 You could store the latest version of the contract package under a NamedKey, as shown [here](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v1/src/main.rs#L107). Then, you can query the NamedKey to check the latest version of the contract package.
 
 <details>
-<summary><b>Example test function</b></summary>
+<summary>Example test function</summary>
 
 ```rust
     // Verify the contract version is now 2.
@@ -185,7 +186,7 @@ casper-client query-global-state \
 ```
 
 <details>
-<summary><b>Example output</b></summary>
+<summary>Example output</summary>
 
 ```rust
  {
@@ -247,7 +248,7 @@ casper-client query-global-state \
     --key [ACCOUNT_HASH] -q "version"
 ```
 <details>
-<summary><b>Example output</b></summary>
+<summary>Example output</summary>
 
 ```rust
 {
@@ -277,7 +278,7 @@ casper-client query-global-state \
     --key [ACCOUNT_HASH] -q "counter_package_name"
 ```
 <details>
-<summary><b>Example output</b></summary>
+<summary>Example output</summary>
 
 ```rust
 {

@@ -1,11 +1,12 @@
 ---
 title: Listing CSPR
+slug: /resources/tutorials/advanced/list-cspr
 ---
 
 
 # Listing CSPR on an Exchange
 
-This topic describes how to list the Casper token (CSPR) on a cryptocurrency [exchange](https://tokenmarketcaps.com/coins/casper/market). 
+This topic describes how to list the Casper token (CSPR) on a cryptocurrency exchange.
 
 :::caution
 
@@ -36,7 +37,7 @@ Casper supports native two-party transfers as well as bulk transfers using custo
 You can accomplish a native transfer by sending a native transfer deploy, without any Wasm. Included below is an example of this type of deploy. The included `payment` field describes how we are paying for the deploy, in this case a native transfer, while the `session` field describes the actual transfer.
 
 <details>
-<summary><b>Native Transfer Deploy</b></summary>
+<summary>Native Transfer Deploy</summary>
 
 ```json
 
@@ -137,7 +138,7 @@ The payment amount varies based on the deploy and network [chainspec](../../conc
 
 ### Bulk or batched Wasm transfer
 
-Bulk or batched Wasm transfers allow you to apply some logic before or after the transfer. They also allow for conditional transfers. You may also use them if you are doing a series of transfers between multiple purses. Listed below are five methods for the [Rust contract API](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/system/index.html), which can be used in session code to achieve batched Wasm transfer:
+Bulk or batched Wasm transfers allow you to apply some logic before or after the transfer. They also allow for conditional transfers. You may also use them if you are doing a series of transfers between multiple purses. Listed below are five methods for the [Rust contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/system/index.html), which can be used in session code to achieve batched Wasm transfer:
 
 -   `transfer_to_account`: Transfers amount of motes from the main purse of the account to the purse of a target account. If the target purse does not exist, the transfer process will create one. Can be called from session code only and not a contract as a contract doesn't have a main purse.
 -   `transfer_to_public_key`: Transfers amount of motes from the main purse of the caller’s account to the main purse of the target. If the account referenced by the target does not exist, the transfer will create a new account. Can be called from session code only and not from a contract as a contract doesn't have a main purse.
@@ -174,14 +175,14 @@ Exchanges seeking to integrate CSPR staking mechanisms will need to understand t
 
 Staking operations consists of two parts:
 
-1) [Creating a deploy object](../../developers/dapps/sending-deploys.md)
+1) [Creating a deploy object](../../developers/cli/sending-deploys.md)
     
 2) [Signing the deploy](../../developers/dapps/signing-a-deploy.md)
 
 The staking deploy requires the following information:
 - The delegator's public key
 - The validator's public key
-- The new validator's public key (For re-delegation only)
+- The new validator's public key (For redelegation only)
 - The amount to be delegated
 - The gas cost
 - The auction manager contract's hash

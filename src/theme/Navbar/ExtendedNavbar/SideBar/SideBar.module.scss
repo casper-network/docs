@@ -10,7 +10,7 @@
     max-width: 100dvw;
     background-color: var(--liftedBlack);
     transform: translateX(-996px);
-    @include mixins.transition(0.7s ease-in);
+    @include mixins.transition(transform 0.7s ease-in);
     padding: 0 var(--navSpacing);
     display: flex;
     justify-content: space-between;
@@ -36,8 +36,12 @@
     }
 
     &_social {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         position: relative;
         margin: 45px 0;
+        width: 100%;
     }
 }
 

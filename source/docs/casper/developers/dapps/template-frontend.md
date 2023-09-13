@@ -1,3 +1,7 @@
+---
+title: Front-end in React
+---
+
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 # Front-end Template with React

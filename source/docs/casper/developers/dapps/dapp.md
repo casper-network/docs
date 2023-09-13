@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: What is a dApp?
 ---
 
 # What is a dApp?
@@ -18,7 +18,7 @@ Routine operations in a decentralized network may result in nodes coming on or o
 
 ## Interacting with a Decentralized Network
 
-For a dApp to integrate with a Casper network, it must be able to send [Deploys](../../concepts/glossary/D.md#deploy) via the JSON-RPC. Business logic specific to the dApp can then be executed on chain via the Deploy. [Sending a Deploy](../../developers/dapps/sending-deploys.md) to a node will result in that node [gossiping](../../concepts/design/p2p.md#communications-gossiping) that Deploy to other nodes, assuming that the Deploy is valid and accepted. The Deploy will then be enqueued for execution.
+For a dApp to integrate with a Casper network, it must be able to send [Deploys](../../concepts/glossary/D.md#deploy) via the JSON-RPC. Business logic specific to the dApp can then be executed on chain via the Deploy. [Sending a Deploy](../../developers/cli/sending-deploys.md) to a node will result in that node [gossiping](../../concepts/design/p2p.md#communications-gossiping) that Deploy to other nodes, assuming that the Deploy is valid and accepted. The Deploy will then be enqueued for execution.
 
 A Deploy contains [session code](../../concepts/glossary/S.md#session-code) in the form of [Wasm](../../concepts/glossary/W.md#webassembly) to be executed in the context of the sending account. Therefore, developers may use any programming language that can compile to Wasm when building a dApp for a Casper network. This session code may consist of Wasm to be executed once, or Wasm which will install contract code to be stored in global state. If the dApp requires periodic execution of the same Wasm, it is more efficient from both a gas and execution perspective to install the Wasm as a contract to be called later.
 

@@ -6,6 +6,7 @@ import styles from "./SideBar.module.scss";
 import INavData from "../../../../plugins/docusaurus-plugin-navdata/src/interfaces/navbar/navData";
 import INavItem from "../../../../plugins/docusaurus-plugin-navdata/src/interfaces/navbar/navItem";
 import ISocialMedia from "../../../../plugins/docusaurus-plugin-navdata/src/interfaces/navbar/socialMedia";
+import ThemeSwitch from "../../ThemeSwitch";
 
 interface ISidebar {
     sidebarOpen: boolean;
@@ -63,6 +64,7 @@ function Sidebar({
             </div>
             <section className={styles.sidebar_social}>
                 <SocialMedia socialMedia={socialMedia} />
+                <ThemeSwitch />
             </section>
         </section>
     );

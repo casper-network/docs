@@ -1,12 +1,14 @@
 module.exports = {
     concepts: [
         "concepts/index",
+        "concepts/about",
         "concepts/intro-to-dapps",
         "concepts/accounts-and-keys",
         "concepts/hash-types",
         "concepts/deploy-and-deploy-lifecycle",
         "concepts/global-state",
         "concepts/smart-contracts",
+        "concepts/list-auth-keys",
         "concepts/callstack",
         "concepts/dictionaries",
         "concepts/serialization-standard",
@@ -34,9 +36,17 @@ module.exports = {
                 "concepts/economics/consensus",
                 "concepts/economics/runtime",
                 "concepts/economics/gas-concepts",
-                "concepts/economics/concepts",
-                "concepts/economics/staking",
-                "concepts/economics/delegation",
+                {
+                    type: "category",
+                    label: "Staking",
+                    collapsible: true,
+                    collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "concepts/economics/staking/concepts",
+                    },
+                    items: ["concepts/economics/staking/staking", "concepts/economics/staking/delegation"],
+                },
             ],
         },
         {
@@ -80,7 +90,6 @@ module.exports = {
     ],
     developers: [
         "developers/index",
-        "developers/table-of-contents",
         "developers/prerequisites",
         {
             type: "category",
@@ -154,11 +163,11 @@ module.exports = {
                     ],
                 },
                 "developers/dapps/technology-stack",
-                "developers/dapps/setup-nctl",
-                "developers/dapps/nctl-test",
                 "developers/dapps/template-frontend",
                 "developers/dapps/signing-a-deploy",
-                "developers/dapps/sending-deploys",
+                "developers/dapps/speculative-exec",
+                "developers/dapps/setup-nctl",
+                "developers/dapps/nctl-test",
                 //"developers/dapps/signer-integration",
                 //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
@@ -166,7 +175,7 @@ module.exports = {
         },
         {
             type: "category",
-            label: "Interacting with the Blockchain using CLI",
+            label: "Interacting with the Blockchain",
             collapsible: true,
             collapsed: true,
             link: {
@@ -190,8 +199,11 @@ module.exports = {
                     ],
                 },
                 "developers/cli/delegate",
+                "developers/cli/redelegate",
                 "developers/cli/undelegate",
+                "developers/cli/sending-deploys",
                 "developers/cli/installing-contracts",
+                "developers/cli/querying-global-state",
                 "developers/cli/calling-contracts",
                 "developers/cli/execution-error-codes",
             ],
@@ -213,6 +225,7 @@ module.exports = {
                 "operators/setup/basic-node-configuration",
                 "operators/setup/node-endpoints",
                 "operators/setup/install-node",
+                "operators/setup/fast-sync",
                 "operators/setup/open-files",
                 "operators/setup/upgrade",
                 "operators/setup/joining",
@@ -244,7 +257,12 @@ module.exports = {
                 type: "doc",
                 id: "operators/setup-network/index",
             },
-            items: ["operators/setup-network/chain-spec", "operators/setup-network/create-private", "operators/setup-network/staging-files-for-new-network"],
+            items: [
+                "operators/setup-network/genesis",
+                "operators/setup-network/chain-spec",
+                "operators/setup-network/create-private",
+                "operators/setup-network/staging-files-for-new-network",
+            ],
         },
         {
             type: "category",
@@ -322,7 +340,19 @@ module.exports = {
             },
             items: [
                 "resources/advanced/two-party-multi-sig",
+                {
+                    type: "category",
+                    label: "Multi-Sig Management",
+                    collapsible: true,
+                    collapsed: true,
+                    items: [
+                        "resources/advanced/multi-sig/index",
+                        "resources/advanced/multi-sig/multi-sig-workflow",
+                        "resources/advanced/multi-sig/other-scenarios",
+                    ],
+                },
                 "resources/advanced/return-values-tutorial",
+                "resources/advanced/list-auth-keys-tutorial",
                 "resources/advanced/transfer-token-to-contract",
                 "resources/advanced/storage-workflow",
                 "resources/advanced/cross-contract",

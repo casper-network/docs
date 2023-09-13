@@ -42,7 +42,7 @@ casper-client query-global-state \
 -   `key` - The base key for the query. This must be a properly formatted transfer address.
 
 <details>
-<summary><b>Explore the JSON-RPC request and response generated.</b></summary>
+<summary>Explore the JSON-RPC request and response generated.</summary>
 
 **JSON-RPC Request**:
 
@@ -97,7 +97,7 @@ casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
 <details>
-<summary><b>Sample output of the get-state-root-hash command</b></summary>
+<summary>Sample output of the get-state-root-hash command</summary>
 
 ```json
 {

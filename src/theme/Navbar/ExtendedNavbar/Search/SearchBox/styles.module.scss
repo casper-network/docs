@@ -1,7 +1,7 @@
-.container {
+.container_search {
     position: relative;
     margin: 0;
-    width: 45%;
+    width: 25%;
     min-width: 15%;
 
     .container_icon_search {
@@ -48,7 +48,7 @@
             + .container_icon_search {
                 svg {
                     path {
-                        fill: var(--casperYellow);
+                        fill: var(--casperYellow) !important;
                     }
                 }
             }
@@ -57,7 +57,7 @@
                 &:hover {
                     svg {
                         path {
-                            fill: var(--casperYellow);
+                            fill: var(--casperYellow) !important;
                         }
                     }
                 }
@@ -67,6 +67,9 @@
 }
 
 @media (max-width: 996px) {
+    .container_search {
+        width: 100%;
+    }
     .container {
         width: 100%;
     }

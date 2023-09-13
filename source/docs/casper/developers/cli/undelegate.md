@@ -1,3 +1,7 @@
+---
+title: Undelegating Tokens
+---
+
 # Undelegating Tokens with the Casper Client
 
 This document details a workflow where tokens delegated to a validator on a Casper network can be undelegated.

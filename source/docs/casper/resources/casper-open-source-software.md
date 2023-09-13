@@ -52,7 +52,7 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [DotOracle](https://github.com/dotoracle/bridge-ui) | Realtime decentralized Oracle and Cross-chain liquidity network for EVM, non-EVM Casper, and L2 blockchains. | DotOracle Network | TypeScript | NA | 2022-09-26 | Bridge
 [Dragon’s Lair Style Staking](https://github.com/Rengo-Labs/CasperLabs-Dragonlair) | Lair Style Staking | Rengo Labs | Rust | Apache-2.0 license | 2022-06-24 | Staking
 [Subscription Billing](https://github.com/Rengo-Labs/CasperLabs-EIP1337) | ERC-1337 subscription billing | Rengo Labs | Rust | MIT license | 2022-04-07 | Tokens
-[Casper Fungible Token](https://github.com/casper-ecosystem/erc20) | Implementation of Fungible Tokens for Casper networks | Casper Labs | Rust | Apache-2.0 license | 2022-09-01 | Tokens
+[Casper Fungible Token](https://github.com/casper-ecosystem/cep18) | Implementation of Fungible Tokens for Casper networks | Casper Labs | Rust | Apache-2.0 license | 2022-09-01 | Tokens
 [Advanced Fungible Token](https://github.com/Rengo-Labs/CasperLabs-ERC777) | ERC-777 + 1820 Advanced Fungible Token with Callbacks & Self Identification | Rengo Labs | Rust | Apache-2.0 license | 2022-08-16 | Tokens
 [Helper Bot](https://github.com/a3mc/helperbot) | Helper bot for improving DevDao VAs productivity | A3MC | TypeScript | MIT license | 2022-08-19 | Tools
 [Java SDK](https://github.com/casper-network/casper-java-sdk) | Casper Client Java SDK | SyntiFi | Java | Apache-2.0 license | 2021-04-20 | Client SDK

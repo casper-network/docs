@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+slug: /resources/tutorials/beginner/getting-started-tutorial
 ---
 
 # Getting Started Video

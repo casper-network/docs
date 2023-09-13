@@ -1,5 +1,5 @@
 ---
-tags: ["smart contract developers","rust","put-deploy"]
+title: Calling Contracts
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
@@ -16,7 +16,7 @@ The following examples use two contracts on [Testnet](https://testnet.cspr.live/
 
 ## Prerequisites {#prerequisites}
 
-- You know how to [send and verify deploys](../dapps/sending-deploys.md)
+- You know how to [send and verify deploys](../cli/sending-deploys.md)
 - You know how to [install contracts and query global state](./installing-contracts.md) using the [default Casper client](../prerequisites.md#the-casper-command-line-client)
 - Install the [Counter contract](https://github.com/casper-ecosystem/counter/blob/master/contract-v1/src/main.rs) on Testnet if you have not done so already
 - Review the [system Auction contract](https://testnet.cspr.live/contract-package/e375d42c29c0e4b2baefa63cf2d70af34439eda851e08129d8515515d63bd6a9) on Testnet
@@ -68,7 +68,7 @@ The payment amount varies based on each deploy and network [chainspec](../../con
 The following sample response contains a `deploy_hash`, needed to verify the changes in global state, as described [here](./installing-contracts.md#querying-global-state).
 
 <details>
-<summary><b>Sample response</b></summary>
+<summary>Sample response</summary>
 
 ```rust
 {

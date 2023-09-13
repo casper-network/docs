@@ -164,6 +164,51 @@ The following default values are specified in the file if you want to change the
 - The port used for networking
 - Known_addresses - these are the bootstrap nodes (there is no need to change these)
 
+### Enabling Speculative Execution
+
+The `speculative_exec` endpoint provides a method to execute a Deploy without committing its execution effects to global state. This can be used by developers to roughly estimate the gas costs of sending the Deploy in question. By default, `speculative_exec` is disabled on a node.
+
+`speculative_exec` can be enabled within *config.toml* by changing `enable_server` to `true` under the configuration options for the speculative execution JSON-RPC HTTP server.
+
+Node operators may also change the incoming request port for speculative execution, which defaults to `7778`. Further, you can choose to alter the `qps_limit` and `max_body_bytes`, which limit the amount and size of requests to the speculative execution server.
+
+#### Example Config.toml configuration with speculative execution enabled
+    
+```
+# ========================================================================
+# Configuration options for the speculative execution JSON-RPC HTTP server
+# ========================================================================
+[speculative_exec_server]
+
+# Flag which enables the speculative execution JSON-RPC HTTP server.
+enable_server = true
+
+# Listening address for speculative execution JSON-RPC HTTP server.  If the port
+# is set to 0, a random port will be used.
+#
+# If the specified port cannot be bound to, a random port will be tried instead.
+# If binding fails, the speculative execution JSON-RPC HTTP server will not run,
+# but the node will be otherwise unaffected.
+#
+# The actual bound address will be reported via a log line if logging is enabled.
+address = '0.0.0.0:7778'
+
+# The global max rate of requests (per second) before they are limited.
+# Request will be delayed to the next 1 second bucket once limited.
+qps_limit = 1
+
+# Maximum number of bytes to accept in a single request body.
+max_body_bytes = 2_621_440
+
+# Specifies which origin will be reported as allowed by speculative execution server.
+#
+# If left empty, CORS will be disabled.
+# If set to '*', any origin is allowed.
+# Otherwise, only a specified origin is allowed. The given string must conform to the [origin scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin).
+cors_origin = ''
+
+```
+
 ## Rust Client Installation {#client-installation}
 
 The [Prerequisites](../../developers/prerequisites.md#the-casper-command-line-client) page lists installation instructions for the Casper client, which is useful for generating keys and retrieving information from the network.
@@ -184,10 +229,11 @@ sudo -u casper casper-client keygen --help
 
 More about keys and key generation can also be found in `/etc/casper/validator_keys/README.md` if the `casper-node-launcher` was installed from the Debian package.
 
-To submit a bonding request, you will need to [fund your account](../../developers/prerequisites.md#fund-your-account) as well.
-
 :::note
 
 Save your keys in a secure location, preferably offline.
 
 :::
+
+To submit a bonding request, you will need to [fund your account](../../developers/prerequisites.md#fund-your-account) as well.
+

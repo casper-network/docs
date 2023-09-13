@@ -1,4 +1,4 @@
-# Overview
+# Resources Overview
 
 ## Building on Casper
 
@@ -16,4 +16,4 @@
 | ----------------------------------------------------------- | ---------------------------------------------------------------- |
 | [Quickstart](./quick-start.md) | Install Rust and setup a Casper environment  |
 | [Beginner](./beginner/index.md) | Learn the basics, such as installing and upgrading contracts |
-| [Advanced](./advanced/index.md) | Learn about multi-sig, exchange integration, and storage |
+| [Advanced](./advanced/index.md) | Learn about multi-sig, authorization keys, exchange integration, and storage |

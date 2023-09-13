@@ -1,12 +1,12 @@
 ---
-tags: ["smart contract developers","rust","put-deploy"]
+title: Installing Contracts
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Installing Smart Contracts and Querying Global State
+# Installing Smart Contracts
 
-This document details the process of installing [Casper smart contracts](../writing-onchain-code/simple-contract.md) using the [Casper command-line client](../prerequisites.md#the-casper-command-line-client) and the `put-deploy` command. It further explains how to query the global state after contract installation.
+This document details the process of installing [Casper smart contracts](../writing-onchain-code/simple-contract.md) using the [Casper command-line client](../prerequisites.md#the-casper-command-line-client) and the `put-deploy` command.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ The arguments used above are:
 -   `payment-amount` - The payment for the deploy in motes
 -   `session-path` - The path to the contract Wasm, which should point to wherever you compiled the contract (`.wasm` file) on your computer
 
-Once you call this command, it will return a deploy hash. You can use this hash to [verify](../dapps/sending-deploys.md#sending-the-deploy) successful execution of the deploy.
+Once you call this command, it will return a deploy hash. You can use this hash to [verify](./sending-deploys.md#sending-the-deploy) successful execution of the deploy.
 
 **Example - Install the contract:**
 
@@ -123,7 +123,7 @@ casper-client query-global-state \
 Here is how your account state would look. Notice that the sample response contains several named keys, including "counter", "counter_package_name", and "version". You can use these values to query the contract state further, as shown in the next example.
 
 <details>
-<summary><b>Sample account state</b></summary>
+<summary>Sample account state</summary>
 
 ```bash
 {
@@ -197,7 +197,7 @@ casper-client query-global-state \
 Here is how the sample contract would look and would contain details such as the `contract_package_hash`, the contract `entry_points`, and the `named_keys` for the contract.
 
 <details>
-<summary><b>Sample contract state</b></summary>
+<summary>Sample contract state</summary>
 
 ```bash
 {
@@ -257,7 +257,7 @@ casper-client query-global-state \
 ```
 
 <details>
-<summary><b>Sample stored value</b></summary>
+<summary>Sample stored value</summary>
 
 ```bash
 {
@@ -308,7 +308,7 @@ casper-client query-global-state \
 Here is how the contract package details would look. The response would contain the `contract_hash`, which you would need to [call a contract by hash](./calling-contracts.md#calling-contracts-by-hash) in the next section. You would also see the `access_key` for the `ContractPackage` and the current `contract_version`.
 
 <details>
-<summary><b>Sample contract package state</b></summary>
+<summary>Sample contract package state</summary>
 
 ```bash
 {

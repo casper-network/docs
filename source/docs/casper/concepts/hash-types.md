@@ -1,5 +1,5 @@
 ---
-title: Understanding Hash Types
+title: Hash Types
 ---
 
 # Understanding Hash Types
@@ -34,7 +34,7 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 
 ## Hash and Key Explanations {#hash-and-key-explanations}
 
-`PublicKey` is a 32 byte asymmetric public key, preceded by a one-byte prefix that tells whether the key is `ed25519` or `secp256k1`.
+`PublicKey` is a 32 byte asymmetric public key, preceded by a one-byte prefix that tells whether the key is `ed25519` or `secp256k1`. There is a third type of `PublicKey` that refers to the system and it is a single `00`.
 
 `AccountHash` is a 32 byte hash of the `PublicKey` serving to identify user accounts.
 
