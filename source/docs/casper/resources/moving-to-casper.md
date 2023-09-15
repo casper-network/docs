@@ -267,7 +267,7 @@ let uref: URef = runtime::get_key(Key_Name)
 
 Use the `get_key` function to retrieve the desired session argument by specifying the key's name.
 
-If you are uncertain, how to use the `get_key` function to obtain a specific session argument, check how to [write a basic smart contract on Casper](../developers/writing-onchain-code/simple-contract.md).
+If you are uncertain how to use the `get_key` function to obtain a specific session argument, check how to [write a basic smart contract on Casper](../developers/writing-onchain-code/simple-contract.md).
 
 </TabItem>
 <TabItem value="Ethereum" label="Ethereum">
