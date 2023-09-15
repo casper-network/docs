@@ -284,7 +284,7 @@ Strongly typed function arguments require explicitly defining the input and retu
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
 
-Like Near, Aptos requires strongly typed function arguments, thus, preventing type-related errors and promoting code correctness.
+Like Near, Aptos requires strongly typed function arguments, thus preventing type-related errors and promoting code correctness.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
