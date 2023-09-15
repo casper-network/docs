@@ -52,7 +52,7 @@ In the Near ecosystem, smart contracts function as classes. The constructor, ref
 
 All public methods defined within the contract serve as its interface, exposing its functionality. 
 
-Near smart contracts are immutable but the state can change as transactions are executed. Contracts can be also upgradable through the deployment of new versions of the contract. The Near blockchain provides various capabilities for versioning, including state migrations, state versioning, and contract self-updates.
+Near smart contracts are immutable, but their state can change as transactions are executed. Contracts can also be upgraded by deploying new versions of the contract.  The Near blockchain provides various capabilities for versioning, including state migrations, state versioning, and contract self-updates.
 
 </TabItem>
 <TabItem value="Aptos" label="Aptos">
