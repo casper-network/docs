@@ -1,5 +1,5 @@
 ---
-title: Moving to Casper
+title: Move to Casper
 ---
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
