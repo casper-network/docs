@@ -143,7 +143,7 @@ pub extern "C" fn counter_inc() {
 
 It's important to note that entry points do not have input arguments in their definition, but the arguments can be accessed using the [RuntimeArgs](https://docs.rs/casper-types/latest/casper_types/struct.RuntimeArgs.html) passed to the contract. Entry points are instantiated within the `call` entry point.
 
-If a return value is needed, it should be declared using the following syntax described in the [Interacting with Runtime Return Values](../resources/advanced/return-values-tutorial.md) tutorial.
+If a return value is needed, it should be declared using the syntax described in the [Interacting with Runtime Return Values](../resources/advanced/return-values-tutorial.md) tutorial.
 
 ```rust
 runtime::ret(value);
