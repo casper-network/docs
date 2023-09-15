@@ -257,7 +257,7 @@ casper-client put-deploy \
   --session-arg "delegator:public_key='0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf'"
 ```
 
-To understand the context of this example please refer to: [Delegating with the Casper Client](../developers/cli/delegate.md).
+To understand the context of this example, refer to: [Delegating with the Casper Client](../developers/cli/delegate.md).
 
 In the contract, you can access the session arguments as follows:
 
