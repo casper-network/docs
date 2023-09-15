@@ -113,7 +113,7 @@ Aptos employs primitive types, such as integers, booleans, and addresses, to rep
 
 Aptos advises developers to cluster related data into Resources for efficient data management and organization. Resources represent assets or specific data entities on the blockchain. By grouping data into Resources, you can maintain logical coherence and improve the readability and maintainability of the code.
 
-Aptos blockchain introduces a tree-shaped persistent global storage which allows read and write operations. Global storage consists of trees originating from and account address.
+The Aptos blockchain introduces a tree-shaped persistent global storage that allows read and write operations. Global storage consists of trees originating from an account address.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
