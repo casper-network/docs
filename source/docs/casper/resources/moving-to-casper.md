@@ -289,7 +289,7 @@ Like Near, Aptos requires strongly typed function arguments, thus preventing typ
 </TabItem>
 <TabItem value="Solana" label="Solana">
 
-Like Near and Aptos, Solana requires strongly typed function arguments, thus, preventing type-related errors and promoting code correctness.
+Like Near and Aptos, Solana requires strongly typed function arguments, thus preventing type-related errors and promoting code correctness.
 
 </TabItem>
 </Tabs>
