@@ -61,11 +61,11 @@ The Aptos programming language is known as Move. Its primary concepts revolve ar
 
 A distinctive feature of Move is the concept of Resources, which are specialized structures representing assets. This design allows resources to be managed similarly to other data types in Aptos, such as vectors or structs.
 
-Smart Contract in the Aptos blockchain is called a Module. It is always connected with an account address. The modules have to be compiled to be able to call functions in the module.
+A smart contract in the Aptos blockchain is called a Module. It is always connected with an account address. The modules have to be compiled to call functions in the Module.
 
-The public methods defined within the Module are treated as the interface of this Module and can be invoked from outside the blockchain.
+The Module's public methods are its interface and can be invoked from code outside the blockchain.
 
-The Move code can be upgraded and will be changed under an account address, which does not change. The upgrade is only accepted if the code is backwards compatible.
+Module code can be upgraded and changed under the account address, which does not change. The upgrade is only accepted if the code is backward compatible.
 
 </TabItem>
 <TabItem value="Solana" label="Solana">
