@@ -12,6 +12,10 @@
 
 ## Move to Casper
 
+| Topic                                                       | Description                                                      |
+| ----------------------------------------------------------- | ---------------------------------------------------------------- |
+| [Move to Casper](./moving-to-casper.md) | Learn how to start working with Casper, having previous knowledge of other blockchains |
+
 ## Tutorials
 
 | Topic                                                       | Description                                                      |
