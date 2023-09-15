@@ -279,6 +279,7 @@ module.exports = {
     resources: [
         "resources/index",
         "resources/build-on-casper",
+        "resources/moving-to-casper",
         "resources/casper-open-source-software",
         "resources/quick-start",
         //"resources/sample-projects", // NEW CONTENT WILL BE HERE
