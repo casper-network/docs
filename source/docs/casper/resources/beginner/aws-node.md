@@ -72,3 +72,7 @@ You will need an EC2 key pair to launch your Casper node. If you do not already 
 If you are satisfied with your configuration choices and all options are correctly filled out, you can hit the orange `Launch` button to launch your AWS-hosted Casper node.
 
 ![Step 13](/image/tutorials/aws-node/CasperAWS08.png)
+
+## Further Reading
+
+If you are interested in customizing a Casper AWS node using Infrastructure as code (IaC) and Terragrunt, read the documentation about [Read-Only Casper Nodes in AWS](../../operators/aws-nodes/index.md).
