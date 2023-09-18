@@ -49,21 +49,21 @@ Navigate to the environment directory, *testnet* or *mainnet*, where you will fi
 
 - With a VPN server:
 
-```bash
-ssh -i "{key_name}.pem" ubuntu@{Node-IPv4-Private-IP}
-```
+  ```bash
+  ssh -i "{key_name}.pem" ubuntu@{Node-IPv4-Private-IP}
+  ```
 
 - Without a VPN server:
 
-```bash
-ssh -i "{key_name}.pem" ubuntu@{Node-IPv4-Public-IP}
-```
+  ```bash
+  ssh -i "{key_name}.pem" ubuntu@{Node-IPv4-Public-IP}
+  ```
 
-> **Note:** You may need to change the PEM file permissions using `chmod`:
+  > **Note:** You may need to change the PEM file permissions using `chmod`:
 
-```bash
-chmod 400 "{key_name}.pem"
-```
+  ```bash
+  chmod 400 "{key_name}.pem"
+  ```
 
 ### Check the bootstrapping
 
