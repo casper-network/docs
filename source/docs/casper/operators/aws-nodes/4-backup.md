@@ -6,7 +6,7 @@ title: Restore and Backup
 
 ## Resilience (Self-Healing)
 
-The AWS Casper node contains two attached disks. The first disk contains the operating system and binaries. The second one contains the node data, mounted in the `/var-/lib/casper/casper-node/` folder.
+The AWS Casper node contains two attached disks. The first disk contains the operating system and binaries. The second one contains the node data, mounted in the `/var/lib/casper/casper-node/` folder.
 
 <p align="center">
 <img src={"/image/operators/resilience-flow.png"} alt="Resilience Diagram"/>
