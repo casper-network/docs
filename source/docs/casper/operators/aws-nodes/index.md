@@ -32,7 +32,7 @@ The purpose of this architecture is to maintain the integrity and security of th
 | Topic                                                     | Description                                         |
 | --------------------------------------------------------- | --------------------------------------------------- |
 | [Deploy the Infrastructure](./1-deploying.md)             | How to deploy the infrastructure in AWS.            |
-| [Validate and Monitor the Node](./2-connecting.md)        | Validate the AWS setup and monitor the Casper node. |
+| [Validate and Monitor the Node](./2-validating.md)        | Validate the AWS setup and monitor the Casper node. |
 | [Implemented Modules](./3-modules.md)                     | Details about the modules implemented in this IaC.  |
 | [Restore and Backup](./4-backup.md)                       | Restoring and Backing up Blockchain Data.           |
 | [Setup OpenVPN](./5-open-vpn.md)                          | Configure the Open VPN Server.                      |
