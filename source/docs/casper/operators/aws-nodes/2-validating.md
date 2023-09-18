@@ -35,7 +35,7 @@ aws --profile $aws_profile ec2 describe-instances --region $aws_region --filters
 
 ## VPN Configuration
 
-If operators desire a VPN, it is essential to establish one that guarantees the confidentiality and integrity of the information in transit. For this purpose, [this guide](./5-open-vpn.md) recommends the creation of an OpenVPN server within the IaC.
+If operators desire a VPN, it is essential to establish one that guarantees the confidentiality and integrity of the information in transit. For this purpose, [this guide](./6-open-vpn.md) recommends the creation of an OpenVPN server within the IaC.
 
 ## Connecting to the Node Instance
 

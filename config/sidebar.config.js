@@ -286,6 +286,7 @@ module.exports = {
             items: [
                 "operators/aws-nodes/deploying",
                 "operators/aws-nodes/validating",
+                "operators/aws-nodes/instances",
                 "operators/aws-nodes/modules",
                 "operators/aws-nodes/backup",
                 "operators/aws-nodes/open-vpn",
