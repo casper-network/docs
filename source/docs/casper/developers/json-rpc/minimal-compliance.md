@@ -8,11 +8,11 @@ The methods included in this document represent the most basic, fundamental endp
 
 * [`account_put_deploy`](./json-rpc-transactional.md#account-put-deploy) - This method allows users to send their compiled Wasm (as part of a Deploy) to a node on a Casper network. Deploys represent the only means by which a user can perform computation on the platform, without which their interaction with a Casper network will be entirely passive.
 
-* [`chain_get_state_root_hash`](./json-rpc-informational.md#chain-get-state-root-hash) - The state root hash is one of the several [global state identifiers](./types_chain.md#globalstateidentifier) used to query the network state after deployments, and the only way to do so in the context of `state_get_balance` and `state_get_dictionary_item`. A minimal SDK requires both dependent methods.
+* [`chain_get_state_root_hash`](./json-rpc-informational.md#chain-get-state-root-hash) - The state root hash is one of the several [global state identifiers](./types_chain.md#globalstateidentifier) used to query the network state after sending deploys.
 
 * [`state_get_account_info`](./json-rpc-informational.md#state-get-account-info) - This method returns a JSON representation of an Account from the network. `state_get_account_info` is required to view associated account information, including any associated keys, named keys, action thresholds and the main purse.
 
-* [`state_get_balance`](./json-rpc-informational.md#state-get-balance) - This method returns a purse's balance from a network. This is the only method to return a purse's balance in a human-readable format.
+* [`query_balance`](./json-rpc-informational.md#query-balance) - This method returns a purse's balance from a network. This is the only method to return a purse's balance in a human-readable format. The deprecated method `state_get_balance` should not be used.
 
 * [`state_get_dictionary_item`](./json-rpc-informational.md#state-get-dictionary-item) - This method returns an item from a Dictionary. Dictionaries represent a more efficient means of tracking large amounts of state.
 
