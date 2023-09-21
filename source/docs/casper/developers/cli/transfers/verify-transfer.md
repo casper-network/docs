@@ -105,7 +105,7 @@ casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
   "jsonrpc": "2.0",
   "result": {
     "api_version": "1.4.13",
-    "state_root_hash": "a1f11692c5adc0e8b0a3f83e34d5831593a39ba03c8be73a0ebf7e9d9aadd76b"
+    "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
   }
 }
 ```
@@ -250,18 +250,22 @@ casper-client query-global-state \
 
 </details>
 
-## Get Purse Balance {#get-purse-balance}
+## Query Purse Balance {#get-purse-balance}
 
-All accounts on a Casper network have a purse associated with the Casper system mint, which we call the _main purse_. The balance associated with a given purse is recorded in global state, and the value can be queried using the `URef` associated with the purse.
+All accounts on a Casper network have a purse associated with the Casper system mint, which we call the _main purse_. The balance associated with a given purse is recorded in global state, and the value can be queried using the `query-balance` command and the purse identifier, which can be a public key or account hash, implying the main purse of the given account should be used. Alternatively, the purse's URef can be used. For full details, run the following help command:
+
+```bash
+casper-client query-balance --help
+```
 
 Now that we have the source purse address, we can verify its balance using the `get-balance` command:
 
 ```bash
-casper-client get-balance \
+casper-client query-balance \
 --id 6 \
 --node-address http://<node-ip-address>:7777 \
 --state-root-hash <state-root-hash> \
---purse-uref <source-account-purse-uref>
+--purse-identifier <source-account>
 ```
 
 **Request fields:**
@@ -269,22 +273,37 @@ casper-client get-balance \
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
 -   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
--   `purse-uref` - The URef under which the purse is stored, following the format "uref-<hex_value>".
+-   `purse-identifier` - A public key or account hash, implying the main purse of the given account should be used. Alternatively, the purse's URef.
+
+The `-v` option generates verbose output, printing the RPC request and response generated. Let's explore an example below.
+
+**Query Source Account Example:**
+
+```bash
+casper-client query-balance -v --id 6 \
+--node-address http://<node-ip-address>:7777 \
+--state-root-hash cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3 \
+--purse-identifier account-hash-b0049301811f23aab30260da66927f96bfae7b99a66eb2727da23bf1427a38f5
+```
 
 <details>
-<summary>Explore the JSON-RPC request and response generated.</summary>
+<summary>Explore the sample JSON-RPC request and response generated.</summary>
 
 **JSON-RPC Request**:
 
 ```json
 {
-    "id": 6,
-    "jsonrpc": "2.0",
-    "method": "state_get_balance",
-    "params": {
-        "purse_uref": "uref-6f4026262a505d5e1b0e03b1e3b7ab74a927f8f2868120cf1463813c19acb71e-007",
-        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
+  "jsonrpc": "2.0",
+  "method": "query_balance",
+  "params": {
+    "state_identifier": {
+      "StateRootHash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
+    },
+    "purse_identifier": {
+       "main_purse_under_account_hash": "account-hash-b0049301811f23aab30260da66927f96bfae7b99a66eb2727da23bf1427a38f5"
     }
+  },
+  "id": 6
 }
 ```
 
@@ -292,42 +311,54 @@ casper-client get-balance \
 
 ```json
 {
-    "id": 6,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "balance_value": "5000000000",
-        "merkle_proof": "2502 chars"
-    }
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.2",
+    "balance": "164000000000"
+  },
+  "id": 6
 }
 ```
 
 </details>
 
-Similarly, we have the address of the target purse, so we can get its balance.
+Similarly, we have the public key of the target purse, so we can get its balance.
 
 ```bash    
 casper-client get-balance \
 --id 7 \
 --node-address http://<node-ip-address>:7777 \
 --state-root-hash <state-root-hash> \
---purse-uref <target-account-purse-uref>
+--purse-identifier <target-account>
+```
+
+**Target Account Example:**
+
+```bash
+casper-client query-balance -v --id 7 \
+--node-address http://<node-ip-address>:7777 \
+--state-root-hash cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3 \
+--purse-identifier account-hash-8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668
 ```
 
 <details>
-<summary>Explore the JSON-RPC request and response generated.</summary>
+<summary>Explore the sample JSON-RPC request and response generated.</summary>
 
 **JSON-RPC Request**:
 
 ```json
 {
-    "id": 7,
-    "jsonrpc": "2.0",
-    "method": "state_get_balance",
-    "params": {
-        "purse_uref": "uref-6f4026262a505d5e1b0e03b1e3b7ab74a927f8f2868120cf1463813c19acb71e-007",
-        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
+  "jsonrpc": "2.0",
+  "method": "query_balance",
+  "params": {
+    "state_identifier": {
+      "StateRootHash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
+    },
+    "purse_identifier": {
+        "main_purse_under_account_hash": "account-hash-8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668"
     }
+  },
+  "id": 7
 }
 ```
 
@@ -335,13 +366,12 @@ casper-client get-balance \
 
 ```json
 {
-    "id": 7,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "balance_value": "5000000000",
-        "merkle_proof": "2502 chars"
-    }
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.2",
+    "balance": "5000000000"
+  },
+  "id": 7
 }
 ```
 

@@ -639,7 +639,7 @@ This method allows you to query for the balance of a purse using a `PurseIdentif
 
 This method allows for you to query for a value stored under certain keys in global state. You may query using either a [Block hash](../../concepts/design/casper-design.md#block_hash) or state root hash.
 
-* Note: Querying a purse's balance requires the use of `state_get_balance` or `query_balance`, rather than any iteration of `query_global_state`.
+* Note: Querying a purse's balance requires the use of `query_balance`, rather than any iteration of `query_global_state`.
 
 |Parameter|Type|Description|
 |---------|----|-----------|   
@@ -821,65 +821,6 @@ This method returns a JSON representation of an [Account](../../concepts/design/
       "named_keys": []
     },
     "api_version": "1.4.13",
-    "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3"
-  }
-}
-
-```
-
-</details>
-
-## state_get_balance {#state-get-balance}
-
-This method returns a purse's balance from a network. The request takes in the formatted representation of a purse URef as a parameter.
-
-To query for the balance of an Account, you must provide the formatted representation of the Account's main purse URef, which can be obtained from the  [`state_get_account_info`](#stategetaccountinfo-state-get-account-info) response. The response contains the balance of a purse in motes.
-
-For instance, one native layer-1 token of the Casper Mainnet [CSPR](../../concepts/glossary/C.md#cspr) is comprised of 1,000,000,000 motes. On a different Casper network, the representation of token-to-motes may differ.
-
-|Parameter|Type|Description|
-|---------|----|-----------|
-|[state_root_hash](types_chain.md#digest)|String|The hash of state root.|
-|purse_uref|String|Formatted URef.|
-
-<details>
-<summary>Example state_get_balance request</summary>
-
-```bash
-
-{
-  "id": 1,
-  "jsonrpc": "2.0",
-  "method": "state_get_balance",
-  "params": [
-    "uref-09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db-007",
-    "0808080808080808080808080808080808080808080808080808080808080808"
-  ]
-}
-
-```
-
-</details>
-
-### `state_get_balance_result`
-
-|Parameter|Type|Description|
-|---------|----|-----------|
-|api_version|String|The RPC API version.|
-|[balance_value](types_chain.md#u512)|String|The balance value in motes.|
-|[merkle_proof](types_chain.md#merkle-proof)|String|The merkle proof.|
-
-<details>
-<summary>Example state_get_balance result</summary>
-
-```bash
-
-{
-  "id": 1,
-  "jsonrpc": "2.0",
-  "result": {
-    "api_version": "1.4.13",
-    "balance_value": "123456",
     "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3"
   }
 }
