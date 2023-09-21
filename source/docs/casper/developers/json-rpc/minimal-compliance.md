@@ -12,10 +12,16 @@ The methods included in this document represent the most basic, fundamental endp
 
 * [`state_get_account_info`](./json-rpc-informational.md#state-get-account-info) - This method returns a JSON representation of an Account from the network. `state_get_account_info` is required to view associated account information, including any associated keys, named keys, action thresholds and the main purse.
 
-* [`query_balance`](./json-rpc-informational.md#query-balance) - This method returns a purse's balance from a network. This is the only method to return a purse's balance in a human-readable format. The deprecated method `state_get_balance` should not be used.
+* [`query_balance`](./json-rpc-informational.md#query-balance) - This method returns a purse's balance from a network. This is the only method to return a purse's balance in a human-readable format.
 
 * [`state_get_dictionary_item`](./json-rpc-informational.md#state-get-dictionary-item) - This method returns an item from a Dictionary. Dictionaries represent a more efficient means of tracking large amounts of state.
 
 * [`query_global_state`](./json-rpc-informational.md#query-global-state) - This method allows for querying values stored under certain keys in global state. Aside from purse balances, this is the main means of recovering stored data from a Casper network.
+
+:::note
+
+The deprecated method `state_get_balance` should not be used.
+
+:::
 
 In addition to these methods, a minimally compliant Casper SDK must account for the [types](./types_chain.md) associated with each method. Each method above links to the expanded information available within the larger JSON RPC method pages, which includes the necessary associated types.
