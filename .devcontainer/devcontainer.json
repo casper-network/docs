@@ -24,7 +24,9 @@
 				"ms-vscode.vscode-typescript-tslint-plugin",
 				"streetsidesoftware.code-spell-checker",
 				"EditorConfig.EditorConfig",
-				"esbenp.prettier-vscode"
+				"esbenp.prettier-vscode",
+				"mhutchie.git-graph",
+				"GitHub.vscode-pull-request-github"
 			]
 		}
 	}
