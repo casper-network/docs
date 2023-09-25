@@ -63,4 +63,4 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [Uniswap DemoApp](https://github.com/Rengo-Labs/CasperLabs-Uniswap-DemoApp) | Uniswap UI + Contracts | Rengo Labs | JavaScript | GPL-3.0 license | 2022-09-15 | DeFi
 [Verified Impact NFT](https://github.com/AdelElMessiry/Verified-Impact-NFTs) | An NFT platform dedicated to impact causes with verification of the beneficiaries | AlphaFin | JavaScript-Rust | MIT license | 2022-07-08 | NFT
 [UseWallet](https://usewallet.casperdash.io) | useWallet is a collection of React Hooks containing everything you need to start working with Casper Network | CasperDash | Typescript-React | MIT license | 2023-09-19 | dApp library
-[Faucet](https://faucet.casperdash.io) | A faucet is a casper tool that drips testnet tokens to anyone that requests them for free | CasperDash | Typescript-React | MIT license | 2023-09-19 | Tools
+[Testnet Faucet](https://faucet.casperdash.io) | A faucet is a Casper tool that distributes Testnet tokens to anyone requesting them for free | CasperDash | Typescript-React | MIT license | 2023-09-19 | Tools
