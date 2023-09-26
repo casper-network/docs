@@ -6,7 +6,8 @@ env:
 
 on:
   push:
-    branches: "*"
+    branches:
+      - dev
   pull_request:
     types: [ opened, reopened, synchronize ]
 
