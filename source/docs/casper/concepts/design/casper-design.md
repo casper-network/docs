@@ -259,7 +259,7 @@ The Casper *mint* is a system contract that manages the balance of *motes* withi
 
 The `AccessRights` of the URefs permissions model determines what actions can be performed when using a `URef` associated with a purse.
 
-As all URef`s are unforgeable, the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be validly given to the current context.
+As all `URef`s are unforgeable, the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be validly given to the current context.
 
 The basic global state options map onto more standard monetary operations according to the table below:
 
