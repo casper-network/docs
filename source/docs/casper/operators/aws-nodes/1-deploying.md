@@ -20,41 +20,45 @@ The following programs are prerequisites.
 
 ## Docker Container Structure
 
-Using Docker Compose, create the following folder structure for the agnostic Docker container.
+The code includes a devcontainer that contains all the preinstalled requirements. Using docker compose or VSCode itself, developers construct this container, which encompasses the following file structure:
 
 | Folder   | Folder Tree |
 | -------- | ----------- |
-| .agnostic_devcontainer/ | <br/>.agnostic_devcontainer/<br/>├── docker-compose.yml<br/>└── Dockerfile<br/>|
-| docker/     | <br/>docker/<br/>├── .bashrc<br/> ├── .env<br/> ├── requirements.txt<br/> └── entrypoint.sh<br/> |
-
+| .devcontainer/ | <br/>.devcontainer/<br/>├── .bashrc<br/>├── .env<br/>├── Dockerfile<br/>├── cmd.sh<br/>├── devcontainer.json<br/>├── docker-compose.yml<br/>├── entrypoint.sh<br/>└── requirements.txt<br/>|
 
 ### Container Files
 
 | File | Description |
 | ---- | ----------- |
-| .agnostic_devcontainer/docker-compose.yml | Docker Compose configures the development container's setup variables and mounting points. |
-| .agnostic_devcontainer/Dockerfile         | A text document with instructions for installing the necessary tools. |
-| docker/.bashrc                            | A custom `.bashrc` file that customizes the prompt. |
-| docker/.env                               | Contains version numbers for the tools needed in the setup process. |
-| docker/requirements.txt                   | Contains the `pip` packages and their version for the proposed solution. |
-| docker/entrypoint.sh                      | A script that installs the `pre-commit` tool and configures the timezone inside the development container. |
-
+| `.devcontainer/devcontainer.json`  | Specification file designed for interpreting and executing the devcontainer within VSCode. |
+| `.devcontainer/.env`               | It contains version numbers and flags essential for enabling the requisite tools within the devcontainer. |
+| `.devcontainer/docker-compose.yml` | Docker Compose file that orchestrates the configuration and launch of the setup variables and mounting points for the development container. |
+| `.devcontainer/Dockerfile`         | Dockerfile that details the operating system configuration and outlines the tools to install. |
+| `.devcontainer/requirements.txt`   | Holds the pip packages along with their versions for the proposed solution. |
+| `.devcontainer/.bashrc`            | A custom `.bashrc` file that customizes the prompt and aliases inside the container. |
+| `.devcontainer/entrypoint.sh`      | A script that performs the installation and configuration of tools such as `pre-commit`, `localstack`, among others, and modifies DooD and the timezone within the development container. |
+| `.devcontainer/cmd.sh`             | Script that keeps the devcontainer running and configures the termination of `localstack` when necessary. |
+| `.precommit-commit-config.yaml`    | Configuration file for pre-commit. |
 
 ### Container Setup Instructions
 
-1. In the repository's `.agnostic_devcontainer/` directory, create a container using the following command:
+The first step requires adjusting the contents of the `.devcontainer/.env` file and modifying the environment variables as necessary. Ensure that the `PROJ_NAME` variable matches the name of the repository root folder. To deploy the devcontainer, establish your AWS and SSH credentials within the `~/.aws` and `~/.ssh` directories; both directories **must** exist in your home folder.
+
+This devcontainer is agnostic and doesn't depend on a specific IDE or editor; it can run automatically from a terminal, with no particular editor required. When using VSCode, open the repository folder within it, and VSCode will prompt to reopen the folder initiating the devcontainer. Below, the guide outlines the steps to operate the devcontainer from a command terminal.
+
+1. In the repository's `.devcontainer/` directory, create a container using the following command:
 
    ```bash
-   docker-compose --env-file ../docker/.env up --build -d
+   docker-compose up --build -d
    ```
 
-   This command installs the tools and prerequisites necessary to execute the project in the container.
+2. To access the devcontainer, use the following command:
 
-2. Modify the contents of the `.env` file and change the environment variables at your convenience.
+   ```bash
+   docker exec -ti casper-node-on-cloud-cont bash
+   ```
 
-3. Configure your AWS and SSH credentials inside the `~/.aws` and `~/.ssh` folders.
-
-4. To stop the development environment, use the following command:
+3. To stop the development environment, use the following command:
 
    ```bash
    docker-compose down
@@ -62,13 +66,13 @@ Using Docker Compose, create the following folder structure for the agnostic Doc
 
 ## AWS Credentials
 
-Please follow the instructions in the [Configuration Basics Guide to Configure AWS-CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html). After that, you must create and configure the `casper_{env}` profile, e.g., `casper_testnet`.
+Please follow the instructions in the [Configuration Basics Guide to Configure AWS-CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html). Subsequently, create and configure the `casper_{env}` profile, for instance, `casper_testnet` or `casper_mainnet`.
 
-> *Note:* Before starting, ensure you have configured access to AWS. Administrator permissions would be helpful for this step.
+> **Note:** Prior to beginning, verify that access to AWS is configured. Having administrator permissions on your account will be beneficial for this step.
 
 Below is a list of AWS services that the user and profile must access:
 
-| Service    | Access Requirement |
+| Service    | Access Requirements |
 | ---------- | ------------------ |
 | EC2        | Full access        |
 | Cloudwatch | Full access        |
@@ -84,26 +88,23 @@ Below is a list of AWS services that the user and profile must access:
 
 To run the infrastructure as code (IaC), follow these steps.
 
-1. Configure the `terragrunt/environment/{env}/terragrunt.hcl` file based on the environment, replacing values that change per environment, such as `ips_allows`. Possible environments could be *testnet* or *mainnet*.
+1. Configure the `terragrunt/environment/{env}/terragrunt.hcl` file based on the environment, replacing values that change per environment, such as `ips_allows`. Possible environments could be *testnet* or *mainnet*. This file holds the following local variables, adjustable as per the operator's requirements.
 
-   This file contains the following local variables, which can be modified according to the operator's needs.
-
-   | Variable             | type        | Description                                                  |
-   | -------------------- | ----------- | ------------------------------------------------------------ |
-   | account_id           | String      | AWS account number.                                           |
-   | aws_region           | String      | AWS region where to deploy.                                  |
-   | environment          | String      | Name of the environment, e.g., `testnet` or `mainnet`                |
-   | owner                | String      | Name of the owner, e.g., `casper`              |
-   | project_name         | String      | Contains the owner and a short description.        |
-   | vpc_cidr             | String      | The IPv4 CIDR block for the VPC, e.g., **10.60.0.0/16**       |
-   | cw_namespace         | String      | Contains the owner and environment separated with a dash, e.g.,  `casper-testnet`                          |
+   | Variable             | type        | Description                                                    |
+   | -------------------- | ----------- | ------------------------------------------------------------   |
+   | account_id           | String      | AWS account number.                                            |
+   | aws_region           | String      | AWS region where to deploy.                                    |
+   | environment          | String      | Name of the environment, e.g., `testnet` or `mainnet`.         |
+   | owner                | String      | Name of the owner, e.g., `casper`.                             |
+   | project_name         | String      | Contains the owner and a short description.                    |
+   | vpc_cidr             | String      | The IPv4 CIDR block for the VPC, e.g., **10.60.0.0/16**.       |
+   | cw_namespace         | String      | Contains the owner and environment separated with a dash, e.g.,  `casper-testnet`. |
    | profile_settings_aws | String      | The configured AWS profile containing the owner and environment separated with an underscore, e.g., `casper_testnet`. |
-   | instance_type        | String      | Instance type. |
+   | instance_type        | String      | Instance type.                                                 |
    | nodes_count          | Integer     | Number of nodes to start. For this version, this value must be **1**. |
-   | ips_allows          | List     |  List of IPv4 addresses allowed to connect to the node via SSH. `0.0.0.0/0` represents any source. This variable is valid only when the node is created without VPN using the setting `NOT_VPN=true`. |
-   | sns_notifications    | map(object) | List of notification subscribers, which should be added as required. |
+   | ips_allows           | List        | List of IPv4 addresses permitted to establish a connection to the node via SSH, where `0.0.0.0/0` denotes any source. This variable holds relevance when establishing the node without a VPN, utilizing the `VPN_USE=false` environment variable. |
+   | sns_notifications    | map(object) | List of notification subscribers, to which you should add as required. |
 
-   
    **Sample Configuration:**
 
    ```bash
@@ -138,7 +139,7 @@ To run the infrastructure as code (IaC), follow these steps.
    ```
 
 2. Navigate to the directory that matches your environment.
-  
+
    * For Testnet, use:
 
       ```bash
@@ -151,17 +152,23 @@ To run the infrastructure as code (IaC), follow these steps.
       cd terragrunt/environment/mainnet/
       ```
 
-3. Run the following command to validate the Terragrunt configuration. This command prepares the environment, downloads all providers, modules, and dependencies, and returns the number of resources to be provisioned. Finally, it validates all the configurations specified. Depending on your Internet connection and local environment, this operation may take around 30 minutes.
+3. Use the command below to check the Terragrunt configuration. It prepares the environment, downloads all providers, modules, and dependencies, and indicates the number of resources that will undergo provisioning. It also confirms all specified configurations. Depending on your internet connection and local environment, this operation might take around 30 minutes.
 
    ```bash
    terragrunt run-all plan
    ```
 
-   When running this command for the first time, answer `yes` to create the S3 bucket where Terraform files will be stored. Here is an example output:
+   When executing the command initially, respond with `yes` to generate the S3 bucket for storing Terraform files. Below is an example output:
+
+<details>
+<summary>Sample output</summary>
 
    ```bash
-   Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) yes
+   Remote state S3 bucket casper-testnet-tfg-state does not exist or you don't have permission to access it. Would you like Terragrunt to create it? (y/n) yes
    ```
+
+</details>
+<br></br>
 
    The command should display the following message:
 
@@ -169,7 +176,7 @@ To run the infrastructure as code (IaC), follow these steps.
    Terraform has been successfully initialized!
    ```
 
-4. In this step, implement the planned infrastructure using the `terragrunt run-all apply` command, with or without a VPN server. This operation may take around 15 minutes, depending on the operator's Internet speed and local compute resources.
+4. In this step, deploy the planned infrastructure using the `terragrunt run-all apply` command, with or without a VPN server. Depending on the operator's Internet speed and local compute resources, this operation may take around 15 minutes.
 
 ### Applying the IaC with the VPN server
 
@@ -230,7 +237,7 @@ Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 Run the following Terragrunt command on all sub-folders. Remember to change the ***ips_allows*** variable to use the list of IPs that can access the node.
 
 ```bash
-NOT_VPN=true terragrunt run-all apply --terragrunt-exclude-dir compute/vpn --terragrunt-parallelism 1
+VPN_USE=false terragrunt run-all apply --terragrunt-exclude-dir compute/vpn --terragrunt-parallelism 1
 ```
 
 <details>
