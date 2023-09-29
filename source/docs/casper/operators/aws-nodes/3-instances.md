@@ -17,7 +17,7 @@ The following requirements describe the optimal EC2 Instance for running a Caspe
 
 ## EC2 Instance Ports
 
-The following ports are open to run the Casper service successfully:
+The following ports are open to ensure the Casper service operates as intended:
 
 | PORT  | Description                                                                                                 |
 | ----- | ----------------------------------------------------------------------------------------------------------- |
@@ -30,9 +30,9 @@ The following ports are open to run the Casper service successfully:
 
 ## EC2 Instance Configuration
 
-The `casper-node-install-configure.sh.tftpl` is a template that converts to a bash file when Terragrunt runs. It contains all the installation and configuration commands the `casper-service` and monitoring services (e.g., CloudWatch Agent and Grafana) need. This bash file calls other bash files to finish the configuration for backup and CloudWatch.
+The `casper-node-install-configure.sh.tftpl` serves as a template, transforming into a bash file when Terragrunt runs. It encompasses all essential commands for installing and configuring `casper-service` and monitoring services such as CloudWatch Agent and Grafana. This bash file initiates other bash files to complete the setup for backup and CloudWatch.
 
-To see more configuration files, go to the config module. You will see a detailed explanation of the other configuration files referenced inside the code of the `casper-node-install-configure.sh.tftpl` file. This file needs to be separated because there is a character limit for script templates in AWS.
+For more information on configuration files, please see the config module. It offers insights into other files mentioned within the casper-node-install-configure.sh.tftpl file. A separate file is necessary as AWS imposes a character limit for script templates.
 
 ## EC2 Instance Creation
 
