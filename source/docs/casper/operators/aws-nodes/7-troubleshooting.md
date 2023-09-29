@@ -8,7 +8,7 @@ This section contains common topics for troubleshooting AWS Casper node instance
 
 ## Node Restarts When Synchronizing
 
-If the node restarts when synchronizing, usually every 30 minutes, and doesn't update the block number, you must update the `trusted_hash` variable in the `config.toml` file. Open the `config.toml` of the Casper version your node is running (e.g.: `/etc/casper/1_1_2/config.toml`) and update the trusted hash to one from a node that is already synchronized. For more information on getting a trusted hash, visit [this page](../setup/install-node.md#getting-a-trusted-hash).
+If the node experiences a restart during synchronization-typically occurring every 30 minutes-and fails to update the block number, it becomes necessary to update the `trusted_hash` variable in the `config.toml` file. Access the `config.toml` of the Casper version your node operates on (e.g.: `/etc/casper/1_1_2/config.toml`) and adjust the trusted hash to match one from a node that has already synchronized. For guidance on acquiring a trusted hash, see [this page](../setup/install-node.md#getting-a-trusted-hash).
 
 1. Stop the `casper-node-launcher` service.
 
@@ -21,5 +21,16 @@ If the node restarts when synchronizing, usually every 30 minutes, and doesn't u
     For example:
 
     ```bash
-    sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.136.227.9:7777/ -b 997478 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_4_7/config.toml
+    sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.136.227.9:7777/ -b 997478 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_5_2/config.toml
+    ```
+
+## Devcontainer Troubleshooting
+
+- **Repeated container name:** A container with the same name may exist in another project. You can delete the previous container using the command docker container prune or docker container rm [containername].
+- **New image is not updating:** If you are changing the [`Dockerfile`](Dockerfile)
+image or modifying the [`entrypoint.sh`](entrypoint.sh) please restart VSCode or
+run the following command if you are not using VSCode:
+
+    ```bash
+    docker compose down; docker rmi {containername}:latest
     ```
