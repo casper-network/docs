@@ -84,4 +84,4 @@ A VPN client must capture the OpenVPN tunnel traffic, encrypt it, and pass it to
 * [Amazon Web Services EC2 tiered appliance quick start guide](https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-tiered-appliance-quick-start-guide/)
 * [Launch OpenVPN Access Server BYOL on Amazon AWS](https://openvpn.net/aws-video-tutorials/byol/)
 * [OpenVPN FAQs](https://openvpn.net/aws-frequently-asked-questions/)
-* [OpenVPN Support](http://support.openvpn.net)
+* [OpenVPN Support](https://support.openvpn.com)
