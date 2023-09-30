@@ -27,8 +27,8 @@ If the node experiences a restart during synchronization-typically occurring eve
 ## Devcontainer Troubleshooting
 
 - **Repeated container name:** A container with the same name may exist in another project. You can delete the previous container using the command docker container prune or docker container rm [containername].
-- **New image is not updating:** If you are changing the [`Dockerfile`](Dockerfile)
-image or modifying the [`entrypoint.sh`](entrypoint.sh) please restart VSCode or
+- **New image is not updating:** If you are changing the `Dockerfile`
+image or modifying the `entrypoint.sh` please restart VSCode or
 run the following command if you are not using VSCode:
 
     ```bash
