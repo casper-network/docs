@@ -4,6 +4,8 @@ title: AWS Nodes
 
 # Read-Only Casper Nodes in AWS
 
+The Casper ecosystem includes the `casper-node-on-cloud` repository for creating Casper nodes using Amazon Web Services (AWS). The project uses an Infrastructure as code (IaC) approach with **Terraform**, **Terragrunt**, and **Bash**. <!-- TODO add the link to the repository when it goes public. -->
+
 The procedure to instantiate Casper nodes in AWS builds on the methodologies detailed in [Installing a Node](../setup/install-node.md), excluding the steps for network bonding and acquiring validator status. Bonding converts a node into a validator node, a concept outside the scope of the IaC infrastructure. Thus, Casper nodes configured with this approach operate as read-only nodes.
 
 ## Advantages of using IaC in AWS
