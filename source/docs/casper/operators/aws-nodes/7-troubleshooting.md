@@ -8,7 +8,7 @@ This section contains common topics for troubleshooting AWS Casper node instance
 
 ## Node Restarts When Synchronizing
 
-If the node experiences a restart during synchronization-typically occurring every 30 minutes-and fails to update the block number, it becomes necessary to update the `trusted_hash` variable in the `config.toml` file. Access the `config.toml` of the Casper version your node operates on (e.g.: `/etc/casper/1_1_2/config.toml`) and adjust the trusted hash to match one from a node that has already synchronized. For guidance on acquiring a trusted hash, see [this page](../setup/install-node.md#getting-a-trusted-hash).
+Suppose the node experiences a restart during synchronization, typically occurring every 30 minutes, and fails to update the block number. In that case, updating the `trusted_hash` variable in the `config.toml` file becomes necessary. Access the `config.toml` of the Casper version your node operates on (e.g.: `/etc/casper/1_1_2/config.toml`) and adjust the trusted hash to match one from a node that has already synchronized. For guidance on acquiring a trusted hash, see [this page](../setup/install-node.md#getting-a-trusted-hash).
 
 1. Stop the `casper-node-launcher` service.
 
