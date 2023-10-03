@@ -147,7 +147,7 @@ An Auto-Scaling Group (ASG) facilitates automatic deployment should the node shu
 
 ## Data Modules
 
-Modules to assist in information manipulation.
+The following modules assist in data management.
 
 | AWS Services Used     | Description                                                         |
 | --------------------  | ------------------------------------------------------------------- |
