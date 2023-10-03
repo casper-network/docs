@@ -19,7 +19,7 @@ Running a Casper node using IaC in AWS has the following advantages:
 
 ## Architecture
 
-This architecture aims to uphold the integrity and security of the Casper node. Should an unexpected shutdown occur, the autoscaling group will generate a new node with the identical keys and data.
+This architecture aims to uphold the integrity and security of the Casper node. The autoscaling group will generate a new node with identical keys and data if an unexpected shutdown occurs.
 
 <p align="center">
 <img src={"/image/operators/aws-casper.png"} alt="Casper AWS Node Architecture"/>
