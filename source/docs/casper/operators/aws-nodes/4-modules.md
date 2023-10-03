@@ -136,7 +136,7 @@ Terragrunt creates an S3 bucket and uploads all the configuration files needed t
 | File                      | Description |
 | ------------------------- | ----------- |
 | `files/genCustomMetrics.sh` | Bash file containing the configuration to get casper-node metrics from the Grafana dashboard and place them in the dashboard.sh file for the CloudWatch Dashboard. |
-| `files/genSnapshot.sh`      | Bash file contains configurations to create a snapshot volume in EBS, with a cronjob performing backups every week. |
+| `files/genSnapshot.sh`      | Bash file contains configurations to create a snapshot volume in EBS, with a cronjob performing weekly backups. |
 | `files/genVolumenID.sh`     | Bash file to create a volume based on the snapshot of a previous volume, given its ID; if the snapshot does not exist, the script will create a new volume. |
 | `files/dashboard.json`      | Dashboard template to generate and watch node metrics. |
 | `files/deleteSm.sh`         | NOT IN USE. Deletes the Casper secret keys from the AWS Secrets Manager. |
