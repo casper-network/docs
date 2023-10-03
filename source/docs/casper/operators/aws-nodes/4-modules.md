@@ -198,7 +198,7 @@ The Security Group Rules module detects whether the node operator wants the `Ope
 
 ### OpenVPN Server Module
 
-The OpenVPN Service provides the administrators a private and secure connection to the node. This simple VPN is available for five administrators. To configure the VPN server, read the [OpenVPN guide](./6-open-vpn.md).
+The OpenVPN Service provides administrators with a private and secure connection to the node. This simple VPN is available for five administrators. To configure the VPN server, read the [OpenVPN guide](./6-open-vpn.md).
 
 #### Ports
 
