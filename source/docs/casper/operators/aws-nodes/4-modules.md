@@ -152,7 +152,7 @@ Modules to assist in information manipulation.
 | AWS Services Used     | Description                                                         |
 | --------------------  | ------------------------------------------------------------------- |
 | Key Pairs Module     | Module to create cryptographic keys.                        |
-| Zip Creation Module  | Module to compress information related to synthetic canary. |
+| Zip Creation Module  | Module to compress information related to the synthetic canary. |
 
 ### Key Pairs Module
 
