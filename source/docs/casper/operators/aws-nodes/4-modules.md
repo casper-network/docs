@@ -164,7 +164,7 @@ The ZIP template module creates the ZIP file necessary for the [synthetic canary
 
 ## Network Modules
 
-Modules related to configuring the diverse network elements necessary for the node's proper functioning.
+Network modules configure diverse network elements necessary for the node to function correctly.
 
 | AWS Services Used     | Description                                                         |
 | --------------------  | ------------------------------------------------------------------- |
