@@ -90,5 +90,5 @@ Will you allow both accounts and contracts to use it? If so, will these accounts
 
 | Topic | Description |
 | ----- | ----------- |
-| [Cross Contract Communication](./cross-contract.md) | Variations of cross-contract communication for more complex scenarios |
-| [Interacting with Runtime Return Values](./return-values-tutorial.md) | Contract code returning a value to the immediate caller via `runtime::ret()` |
+| [Cross Contract Communication](../../resources/advanced/cross-contract.md) | Variations of cross-contract communication for more complex scenarios |
+| [Interacting with Runtime Return Values](../../resources/advanced/return-values-tutorial.md) | Contract code returning a value to the immediate caller via `runtime::ret()` |

@@ -29,6 +29,8 @@ This section shows you how to write session code and smart contracts in Rust and
 
 Additionally, the section on [Interacting with the Blockchain](../cli/index.md) covers installing and calling contracts using the Casper command-line client written in Rust.
 
+| Title                                                       | Description                                                      |
+| ----------------------------------------------------------- | ---------------------------------------------------------------- |
 |[Installing Smart Contracts and Querying Global State](../cli/installing-contracts.md)| A guide on installing smart contracts and querying global state        |
 |[Calling Smart Contracts with the Rust Client](../cli/calling-contracts.md)| Steps to call a smart contract with the Rust command-line client|
 |[Reading and Writing to Dictionaries](../../concepts/dictionaries.md)| Information on Dictionaries and how to read and write to them on the Casper Platform.|
