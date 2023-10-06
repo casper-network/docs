@@ -3,7 +3,7 @@
 title: Contract Hash vs. Package Hash
 ---
 
-# Calling Contracts by Contract Hash vs. Package Hash
+# Using Contract Hash vs. Package Hash
 
 This page describes the advantages and disadvantages of using `contract_hash` vs. `contract_package_hash` when calling a contract.
 
@@ -16,12 +16,12 @@ A given contract might:
 - Need specific contract versions within the same package, and thus use both `contract_hash` and `contract_package_hash`
 
 A given contract, i.e., CEP-18, which wants to allow or block or track calls from other contracts, should then decide:
-- will I allow, block, or track contract callers loosely at the package level?
-- will I allow, block, or track contract callers specifically at the contract level?
+- Will the contract allow, block, or track contract callers loosely at the package level?
+- Will the contract allow, block, or track contract callers specifically at the contract level?
 
 Or a more fine-grained variation would be:
-- will I allow or block at the package level but track by both package and contract hash?
-- will I allow other combinations of these basic concepts?
+- Will the contract allow or block at the package level but track by both package and contract hash?
+- Will the contract allow other combinations of these basic concepts?
 
 Such a contract is responsible for documenting its choices and what it requires of its callers. It is essential to keep in mind the difference between the behavior of the host, which in this case is the Casper network execution engine (the host), as exposed by the [Casper External FFI](https://docs.rs/casper-contract/latest/casper_contract/ext_ffi/), versus use cases and interactions between two or more ecosystem entities such as accounts and contracts.
 
