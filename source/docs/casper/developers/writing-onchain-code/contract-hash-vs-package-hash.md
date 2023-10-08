@@ -1,29 +1,33 @@
-
 ---
 title: Contract Hash vs. Package Hash
 ---
 
-# Using Contract Hash vs. Package Hash
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-This page describes the advantages and disadvantages of using `contract_hash` vs. `contract_package_hash` when calling a contract.
+# Using the Contract Hash vs. the Package Hash
 
-When should a contract store or call a contract hash rather than a contract package hash? There are cases to use either `contract_package_hash` or `contract_hash` or both. There's no right or wrong option; like with most things, it depends on what you are trying to do.
+This page describes the circumstances of using the [contract hash](https://docs.rs/casper-types/3.0.0/casper_types/contracts/struct.ContractHash.html) vs. the [contract package hash](https://docs.rs/casper-types/3.0.0/casper_types/contracts/struct.ContractPackageHash.html) when calling a contract or allowing, blocking, or tracking calls from other contracts. As noted in [Upgrading and Maintaining Smart Contracts](./upgrading-contracts.md#the-contract-package), the contract package contains various contract versions. The contract hash is a BLAKE2b hash of a contract, and the contract package hash (package hash for short) is the BLAKE2b hash of a contract package.
 
-A given contract might:
-- Not need either hash for its use case
-- Want to identify specific versions of contracts within the same package and thus use a `contract_hash`
-- Not need specific contract versions and allow or block all versions in the same package, thus using the `contract_package_hash`
-- Need specific contract versions within the same package, and thus use both `contract_hash` and `contract_package_hash`
+<p align="center"><img src={useBaseUrl("/image/package-representation-extended.png")} alt="package-representation" width="400"/></p>
+
+Depending on what a contract needs to accomplish, it may save and manage the contract hash, package hash, or both. Like with most things, this behavior depends on what the contract needs to do. A given contract might:
+
+- Want to identify specific versions of contracts within the same package and thus use a contract hash
+- Not need specific contract versions and allow or block all versions in the same package, thus using the contract package hash
+- Need specific contract versions within the same package, and thus use both contract hash and contract package hash
+- Not need either hash for this use case
 
 A given contract, i.e., CEP-18, which wants to allow or block or track calls from other contracts, should then decide:
+
 - Will the contract allow, block, or track contract callers loosely at the package level?
 - Will the contract allow, block, or track contract callers specifically at the contract level?
 
 Or a more fine-grained variation would be:
-- Will the contract allow or block at the package level but track by both package and contract hash?
+
+- Will the contract allow or block callers at the package level but track by both package and contract hash?
 - Will the contract allow other combinations of these basic concepts?
 
-Such a contract is responsible for documenting its choices and what it requires of its callers. It is essential to keep in mind the difference between the behavior of the host, which in this case is the Casper network execution engine (the host), as exposed by the [Casper External FFI](https://docs.rs/casper-contract/latest/casper_contract/ext_ffi/), versus use cases and interactions between two or more ecosystem entities such as accounts and contracts.
+Each contract is responsible for documenting its choices and what it requires of its callers. It is essential to keep in mind the difference between the behavior of the Casper execution engine (the host), as exposed by the [Casper External FFI](https://docs.rs/casper-contract/latest/casper_contract/ext_ffi/), versus use cases and interactions between two or more ecosystem entities such as accounts and contracts.
 
 The execution engine doesn't know how a contract such as CEP-18 is trying to manage its internal data or its exposed functionality. The contract is responsible for creating and managing a sub-ledger of resource management, access control, etc.
 
@@ -61,34 +65,42 @@ pub enum CallStackElement {
 
 You can find the source code [here](https://github.com/casper-network/casper-node/blob/release-1.5.1/types/src/system/call_stack_element.rs).
 
-After retrieving the required information, the contract must manage its internal logic and data storage, actions that are entirely opaque to the execution engine (the host).
+After retrieving the required information, the contract must manage its internal logic and data storage, actions entirely opaque to the execution engine.
 
-Learn more about [Call Stacks](../../concepts/callstack.md) and how Casper manages the calling of a contract. 
+Learn more about [Call Stacks](../../concepts/callstack.md) and how Casper manages the calling of a contract.
 
 ## Recommendations
 
-Consider the following questions when designing the contract and choosing whether to store and use the contract hash or contract package hash. This section summarizes each case's recommendations, advantages, and disadvantages.
+Consider the following questions when designing the contract and choosing whether to use the contract hash or package hash.
 
-Will you allow only accounts to use the contract? If so, what kind of accounts are you considering?
-- Any accounts?
-- Specific accounts?
-- Exactly one specific account?
+1. Will you allow only accounts to use the contract? If so, what kind of accounts are you considering?
 
-Will you allow only contracts to use it? If so, what kind of contracts?
-- Any version of any contract?
-- Specific contract versions?
-- Specific versions of specific packages?
-- Any versions of specific packages?
+    |Answer|Recommendation|
+    |----|-----------|
+    | Specific accounts | Use the account hashes to identify and track specific accounts |
+    | Exactly one specific account | Use the account hash of a specific account |
+    | Any accounts | No need to track by account hash |
 
-Will you allow both accounts and contracts to use it? If so, will these accounts and contracts be:
--  Any accounts and contracts?
--  Specific accounts and specific contract versions?
--  Specific accounts and specific versions of specific packages?
--  Specific accounts and any versions of specific packages? 
+2. Will you allow only contracts to use it? If so, what kind of contracts?
 
-## Further Reading
+    |Answer|Recommendation|
+    |----|-----------|
+    | Specific contract versions| Use the contract hash of each contract version | 
+    | Specific versions of specific packages| Use the contract hash and the package hash to identify each version | 
+    | Any versions of specific packages| Use the package hash to identify each contract package | 
+    | Any version of any contract| No need to track by contract hash or package hash | 
 
-| Topic | Description |
-| ----- | ----------- |
-| [Cross Contract Communication](../../resources/advanced/cross-contract.md) | Variations of cross-contract communication for more complex scenarios |
-| [Interacting with Runtime Return Values](../../resources/advanced/return-values-tutorial.md) | Contract code returning a value to the immediate caller via `runtime::ret()` |
+3. Will you allow both accounts and contracts to use it? If so, will these accounts and contracts be:
+
+    |Answer|Recommendation|
+    |----|-----------|
+    |  Specific accounts and specific contract versions | Use the account hash for each account and the contract hash for each contract version |
+    |  Specific accounts and specific versions of specific packages | Use the account hash for each account and the contract hash and the package hash to identify each version |
+    |  Specific accounts and any versions of specific packages | Use the account hash of each account and the package hash of each contract package |
+    |  Any accounts and contracts | No need to track by account hash or contract hash |
+
+## What's Next?
+
+- [Best Practices for Casper Smart Contract Authors](./best-practices.md) - An outline of best practices when developing smart contracts on a Casper network
+- [Cross-Contract Communication](../../resources/advanced/cross-contract.md) - Variations of cross-contract communication for more complex scenarios
+- [Interacting with Runtime Return Values](../../resources/advanced/return-values-tutorial.md) - Contract code returning a value to the immediate caller via `runtime::ret()`
