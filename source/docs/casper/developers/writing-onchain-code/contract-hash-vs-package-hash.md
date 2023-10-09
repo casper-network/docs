@@ -6,11 +6,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Using the Contract Hash vs. the Package Hash
 
-This page describes the circumstances of using the [contract hash](https://docs.rs/casper-types/3.0.0/casper_types/contracts/struct.ContractHash.html) vs. the [contract package hash](https://docs.rs/casper-types/3.0.0/casper_types/contracts/struct.ContractPackageHash.html) when calling a contract or allowing, blocking, or tracking calls from other contracts. As noted in [Upgrading and Maintaining Smart Contracts](./upgrading-contracts.md#the-contract-package), the contract package contains various contract versions. The contract hash is a BLAKE2b hash of a contract, and the contract package hash (package hash for short) is the BLAKE2b hash of a contract package.
+This page describes the possibilities of using the [contract hash](https://docs.rs/casper-types/3.0.0/casper_types/contracts/struct.ContractHash.html) vs. the [contract package hash](https://docs.rs/casper-types/3.0.0/casper_types/contracts/struct.ContractPackageHash.html) (package hash for short) when calling a contract or managing calls from other contracts. Contracts can allow, block, or track calls from other contracts. As noted in [Upgrading and Maintaining Smart Contracts](./upgrading-contracts.md#the-contract-package), the contract package contains various contract versions. The contract hash is a BLAKE2b hash of a contract, and the contract package hash is the BLAKE2b hash of a contract package.
 
 <p align="center"><img src={useBaseUrl("/image/package-representation-extended.png")} alt="package-representation" width="400"/></p>
 
-Depending on what a contract needs to accomplish, it may save and manage the contract hash, package hash, or both. Like with most things, this behavior depends on what the contract needs to do. A given contract might:
+Depending on what a contract needs to accomplish, it may save and manage the contract hash, package hash, or both. This behavior depends on what the contract needs to do, so a given contract might:
 
 - Want to identify specific versions of contracts within the same package and thus use a contract hash
 - Not need specific contract versions and allow or block all versions in the same package, thus using the contract package hash
@@ -77,27 +77,27 @@ Consider the following questions when designing the contract and choosing whethe
 
     |Answer|Recommendation|
     |----|-----------|
-    | Specific accounts | Use the account hashes to identify and track specific accounts |
-    | Exactly one specific account | Use the account hash of a specific account |
-    | Any accounts | No need to track by account hash |
+    | Specific accounts | Use the account hash to identify and track each account. |
+    | Exactly one specific account | Use the account hash of a specific account to identify it. |
+    | Any accounts | There is no need to track the accounts by account hash. |
 
 2. Will you allow only contracts to use it? If so, what kind of contracts?
 
     |Answer|Recommendation|
     |----|-----------|
-    | Specific contract versions| Use the contract hash of each contract version | 
-    | Specific versions of specific packages| Use the contract hash and the package hash to identify each version | 
-    | Any versions of specific packages| Use the package hash to identify each contract package | 
-    | Any version of any contract| No need to track by contract hash or package hash | 
+    | Specific contract versions| Use the contract hash to identify each contract version. | 
+    | Specific contract versions of specific packages| Use the contract hash and the package hash to identify each contract version. | 
+    | Any contract versions of specific packages| Use only the package hash to identify each contract package. | 
+    | Any contract version of any contract| There is no need to track by contract or package hash. | 
 
 3. Will you allow both accounts and contracts to use it? If so, will these accounts and contracts be:
 
     |Answer|Recommendation|
     |----|-----------|
-    |  Specific accounts and specific contract versions | Use the account hash for each account and the contract hash for each contract version |
-    |  Specific accounts and specific versions of specific packages | Use the account hash for each account and the contract hash and the package hash to identify each version |
-    |  Specific accounts and any versions of specific packages | Use the account hash of each account and the package hash of each contract package |
-    |  Any accounts and contracts | No need to track by account hash or contract hash |
+    |  Specific accounts and contract versions | Use the account hash to track each account and the contract hash to identify each contract version. |
+    |  Specific accounts and specific versions of specific packages | Use the account hash to identify each account and the contract hash and package hash to identify each contract version. |
+    |  Specific accounts and any versions of specific packages | Use the account hash to identify each account and the package hash to identify each contract package. |
+    |  Any accounts and contracts | There is no need to track by account hash or contract hash. |
 
 ## What's Next?
 
