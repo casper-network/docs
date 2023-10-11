@@ -6,9 +6,9 @@ This workflow assumes:
 
 1.  You meet the [prerequisites](../../prerequisites.md)
 2.  You are using the Casper command-line client
-3.  You have a target *public key* hex the path to the source *secret key*
-4.  You have a valid *node-address*
-5.  You must be able to sign a deploy for the source account
+3.  You have a target *public key*
+4.  You have a valid *node address*
+5.  You must be able to sign a deploy for the source account using the source *secret key*
 
 ## Transfer {#transfer}
 
@@ -44,16 +44,16 @@ casper-client transfer \
 
 -   `chain-name` - Name of the chain, to avoid the deploy from being accidentally or maliciously included in a different chain
 
-    -   The _chain-name_ for testnet is **casper-test**
-    -   The _chain-name_ for mainnet is **casper**
+    -   The _chain-name_ for Testnet is **casper-test**
+    -   The _chain-name_ for Mainnet is **casper**
 
--   `target-account` - Hex-encoded public key of the account from which the main purse will be used as the target
+-   `target-account` - Hex-encoded public key of the account that will receive the funds in its main purse
 
 -   `payment-amount` - The payment for the transfer in motes. The payment amount varies based on each deploy and network [chainspec](../../../concepts/glossary/C.md#chainspec). For Testnet node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), you can specify 10^8 motes
 
 **Important response fields:**
 
--   `"result"."deploy_hash"` - the address of the executed transfer, needed to look up additional information about the transfer
+-   `"result"."deploy_hash"` - The address of the deploy, needed to look up additional information about the transfer
 
 **Note**: Save the returned _deploy_hash_ from the output to query information about the transfer deploy later.
 
@@ -163,7 +163,7 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
 **Important response fields:**
 
 -   `"result"."execution_results"[0]."transfers[0]"` - the address of the executed transfer that the source account initiated. We will use it to look up additional information about the transfer
--   `"result"."execution_results"[0]."block_hash"` - contains the block hash of the block that included our transfer. We will require the _state_root_hash_ of this block to look up information about the accounts and their purse balances
+-   `"result"."execution_results"[0]."block_hash"` - contains the block hash of the block that included the transfer. We will require the _state_root_hash_ of this block to look up information about the accounts and their purse balances
 
 **Note**: Transfer addresses use a `transfer-` string prefix.
 
