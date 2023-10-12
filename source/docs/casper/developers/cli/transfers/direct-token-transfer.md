@@ -2,21 +2,21 @@
 
 This workflow describes how to use the Casper command-line client to transfer tokens between purses on a Casper network.
 
+## Prerequisites
+
 This workflow assumes:
 
-1.  You meet the [prerequisites](../../prerequisites.md)
+1.  You meet the general [development prerequisites](../../prerequisites.md)
 2.  You are using the Casper command-line client
 3.  You have a target *public key*
 4.  You have a valid *node address*
 5.  You must be able to sign a deploy for the source account using the source *secret key*
 
-## Transfer {#transfer}
+## Direct Transfer Example {#transfer}
 
-The `transfer` command allows you to move CSPR from one account's purse to another as denominated in [Motes](../../../concepts/design/casper-design.md#tokens-divisibility). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
+The following `transfer` command allows you to move CSPR from one account's purse to another as denominated in [Motes](../../../concepts/design/casper-design.md#tokens-divisibility). A _Mote_ is a denomination of the cryptocurrency CSPR, where 1 CSPR = 1,000,000,000 Motes.
 
 For transfers of at least 2.5 CSPR (2,500,000,000 Motes) from a single sender to a single recipient on a Casper network, the most efficient option is to use the direct transfer capability.
-
-**Direct transfer example**:
 
 ```bash
 casper-client transfer \
@@ -26,7 +26,7 @@ casper-client transfer \
 --amount [AMOUNT_TO_TRANSFER] \
 --secret-key [KEY_PATH]/secret_key.pem \
 --chain-name [CHAIN_NAME] \
---target-account [PUBLIC_KEY_HEX] \
+--target-account [TARGET_PUBLIC_KEY_HEX] \
 --payment-amount [PAYMENT_AMOUNT_IN_MOTES]
 ```
 
@@ -55,7 +55,25 @@ casper-client transfer \
 
 -   `"result"."deploy_hash"` - The address of the deploy, needed to look up additional information about the transfer
 
-**Note**: Save the returned _deploy_hash_ from the output to query information about the transfer deploy later.
+:::note
+
+Save the returned _deploy_hash_ from the output to query information about the transfer deploy later.
+
+:::
+
+**Example Transfer:**
+
+```bash
+casper-client transfer -v \
+--id 3 \
+--transfer-id 11102023 \
+--node-address https://rpc.testnet.casperlabs.io/  \
+--amount 5000000000 \
+--secret-key ~/KEYS/secret_key.pem \
+--chain-name casper-test \
+--target-account 01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986 \
+--payment-amount 100000000
+```
 
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
@@ -152,18 +170,33 @@ casper-client transfer \
 
 </details>
 
-### Deploy Status {#deploy-status}
+## Verifying the Deploy {#verify-deploy}
 
 A transfer on a Casper network is only executed after it has been included in a finalized block.
 
-Refer to the Section on [querying deploys](../../../resources/beginner/querying-network.md#querying-deploys) within the network to check the execution status of the transfer.
+```bash
+casper-client get-deploy 
+--node-address [NODE_SERVER_ADDRESS] [DEPLOY_HASH]
+```
 
 **Important response fields:**
 
 -   `"result"."execution_results"[0]."transfers[0]"` - the address of the executed transfer that the source account initiated. We will use it to look up additional information about the transfer
 -   `"result"."execution_results"[0]."block_hash"` - contains the block hash of the block that included the transfer. We will require the _state_root_hash_ of this block to look up information about the accounts and their purse balances
 
-**Note**: Transfer addresses use a `transfer-` string prefix.
+:::note
+
+Transfer addresses use a `transfer-` string prefix.
+
+:::
+
+**Example Query:**
+
+```bash
+casper-client get-deploy 
+--node-address https://rpc.testnet.casperlabs.io 
+1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c
+```
 
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
@@ -543,3 +576,9 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
 ```
 
 </details>
+
+Refer to the Section on [querying deploys](../../../resources/beginner/querying-network.md#querying-deploys) for more information.
+
+## Verifying the Transfer
+
+In addition to verifying the deploy, you also need to [verify the transfer details](./verify-transfer.md). The deploy may have been successful, but you also need to ensure the source and target accounts were updated correctly.
