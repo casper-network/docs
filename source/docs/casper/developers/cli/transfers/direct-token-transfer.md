@@ -20,14 +20,14 @@ For transfers of at least 2.5 CSPR (2,500,000,000 Motes) from a single sender to
 
 ```bash
 casper-client transfer \
---id 1 \
---transfer-id 123456789012345 \
---node-address http://<node-ip-address>:7777 \
---amount <amount-to-transfer> \
---secret-key <source-account-secret-key>.pem \
---chain-name casper \
---target-account <hex-encoded-target-account-public-key> \
---payment-amount <payment-in-motes>
+--id <ID> \
+--transfer-id <TRANSFER_ID> \
+--node-address [NODE_SERVER_ADDRESS]  \
+--amount [AMOUNT_TO_TRANSFER] \
+--secret-key [KEY_PATH]/secret_key.pem \
+--chain-name [CHAIN_NAME] \
+--target-account [PUBLIC_KEY_HEX] \
+--payment-amount [PAYMENT_AMOUNT_IN_MOTES]
 ```
 
 **Request fields:**
@@ -64,78 +64,76 @@ casper-client transfer \
 
 ```json
 {
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "account_put_deploy",
-    "params": {
-        "deploy": {
-            "approvals": [
-                {
-                    "signature": "130 chars",
-                    "signer": "010f50b0116f213ef65b99d1bd54483f92bf6131de2f8aceb7e3f825a838292150"
-                }
-            ],
-            "hash": "ec2d477a532e00b08cfa9447b7841a645a27d34ee12ec55318263617e5740713",
-            "header": {
-                "account": "010f50b0116f213ef65b99d1bd54483f92bf6131de2f8aceb7e3f825a838292150",
-                "body_hash": "da35b095640a403324306c59ac6f18a446dfcc28faf753ce58b96b635587dd8e",
-                "chain_name": "casper-net-1",
-                "dependencies": [],
-                "gas_price": 1,
-                "timestamp": "2021-04-20T18:04:40.333Z",
-                "ttl": "1h"
-            },
-            "payment": {
-                "ModuleBytes": {
-                    "args": [
-                        [
-                            "amount",
-                            {
-                                "bytes": "021027",
-                                "cl_type": "U512",
-                                "parsed": "10000"
-                            }
-                        ]
-                    ],
-                    "module_bytes": ""
-                }
-            },
-            "session": {
-                "Transfer": {
-                    "args": [
-                        [
-                            "amount",
-                            {
-                                "bytes": "0400f90295",
-                                "cl_type": "U512",
-                                "parsed": "2500000000"
-                            }
-                        ],
-                        [
-                            "target",
-                            {
-                                "bytes": "8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668",
-                                "cl_type": {
-                                    "ByteArray": 32
-                                },
-                                "parsed": "8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668"
-                            }
-                        ],
-                        [
-                            "id",
-                            {
-                                "bytes": "00",
-                                "cl_type": {
-                                    "Option": "U64"
-                                },
-                                "parsed": null
-                            }
-                        ]
-                    ]
-                }
-            }
+  "jsonrpc": "2.0",
+  "method": "account_put_deploy",
+  "params": {
+    "deploy": {
+      "hash": "1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c",
+      "header": {
+        "account": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
+        "timestamp": "2023-10-12T14:59:40.760Z",
+        "ttl": "30m",
+        "gas_price": 1,
+        "body_hash": "ea7e6a6cbdd4d761827cb627e162896bee3e771beda000550615c9b4fafa3a2d",
+        "dependencies": [],
+        "chain_name": "casper-test"
+      },
+      "payment": {
+        "ModuleBytes": {
+          "module_bytes": "",
+          "args": [
+            [
+              "amount",
+              {
+                "cl_type": "U512",
+                "bytes": "0400e1f505",
+                "parsed": "100000000"
+              }
+            ]
+          ]
         }
+      },
+      "session": {
+        "Transfer": {
+          "args": [
+            [
+              "amount",
+              {
+                "cl_type": "U512",
+                "bytes": "0500f2052a01",
+                "parsed": "5000000000"
+              }
+            ],
+            [
+              "target",
+              {
+                "cl_type": "PublicKey",
+                "bytes": "01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986",
+                "parsed": "01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986"
+              }
+            ],
+            [
+              "id",
+              {
+                "cl_type": {
+                  "Option": "U64"
+                },
+                "bytes": "014767a90000000000",
+                "parsed": 11102023
+              }
+            ]
+          ]
+        }
+      },
+      "approvals": [
+        {
+          "signer": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
+          "signature": "01e53cb742ed13ff4f0584a3da0f22f5942a33e010965adf640c91204ae4bc7436f1e5534d338ffa117d193295214816445439781229d24a372085c316eac5e305"
+        }
+      ]
     }
+  },
+  "id": 3
 }
 ```
 
@@ -143,12 +141,12 @@ casper-client transfer \
 
 ```json
 {
-    "id": 1,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "deploy_hash": "ec2d477a532e00b08cfa9447b7841a645a27d34ee12ec55318263617e5740713"
-    }
+  "jsonrpc": "2.0",
+  "id": 3,
+  "result": {
+    "api_version": "1.5.3",
+    "deploy_hash": "1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c"
+  }
 }
 ```
 
@@ -174,12 +172,13 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
 
 ```json
 {
-    "id": 2,
-    "jsonrpc": "2.0",
-    "method": "info_get_deploy",
-    "params": {
-        "deploy_hash": "ec2d477a532e00b08cfa9447b7841a645a27d34ee12ec55318263617e5740713"
-    }
+  "jsonrpc": "2.0",
+  "method": "info_get_deploy",
+  "params": {
+    "deploy_hash": "1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c",
+    "finalized_approvals": false
+  },
+  "id": -3447643973713335073
 }
 ```
 
@@ -187,40 +186,33 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
 
 ```json
 {
-  "id": 6054990863558097019,
   "jsonrpc": "2.0",
   "result": {
-    "api_version": "1.4.6",
+    "api_version": "1.5.3",
     "deploy": {
-      "approvals": [
-        {
-          "signature": "01c8c1704a2c921988cd546fe85d249f27bc9da198e8c2f79d91e19a40e015e59a099723b5540c20c57a1ebffef2e4d2e333d9e52f1f27fef9d6b9a4ec5080b40a",
-          "signer": "01ea8ff63a2b3bcf42c3e8e057959d864043fb989082ddc54464ef9a2ea7338ba0"
-        }
-      ],
-      "hash": "d5862af0c7d06df6cb265c2dee9a014ce570a8db75eb0689f14d819c632c305d",
+      "hash": "1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c",
       "header": {
-        "account": "01ea8ff63a2b3bcf42c3e8e057959d864043fb989082ddc54464ef9a2ea7338ba0",
-        "body_hash": "9ccc49a951b9b783bbb20746007e221e8326fbbb48f002aaa40d664abf35995d",
-        "chain_name": "casper-test",
-        "dependencies": [],
+        "account": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
+        "timestamp": "2023-10-12T14:59:40.760Z",
+        "ttl": "30m",
         "gas_price": 1,
-        "timestamp": "2022-07-05T22:39:20.190Z",
-        "ttl": "30m"
+        "body_hash": "ea7e6a6cbdd4d761827cb627e162896bee3e771beda000550615c9b4fafa3a2d",
+        "dependencies": [],
+        "chain_name": "casper-test"
       },
       "payment": {
         "ModuleBytes": {
+          "module_bytes": "",
           "args": [
             [
               "amount",
               {
-                "bytes": "0400e1f505",
                 "cl_type": "U512",
+                "bytes": "0400e1f505",
                 "parsed": "100000000"
               }
             ]
-          ],
-          "module_bytes": ""
+          ]
         }
       },
       "session": {
@@ -229,48 +221,61 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
             [
               "amount",
               {
-                "bytes": "0400f90295",
                 "cl_type": "U512",
-                "parsed": "2500000000"
+                "bytes": "0500f2052a01",
+                "parsed": "5000000000"
               }
             ],
             [
               "target",
               {
-                "bytes": "0203343d88a5dd8a67ab8c9d572c50c7f4604960d78f8a41ea48b98d3dcec6316834",
                 "cl_type": "PublicKey",
-                "parsed": "0203343d88a5dd8a67ab8c9d572c50c7f4604960d78f8a41ea48b98d3dcec6316834"
+                "bytes": "01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986",
+                "parsed": "01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986"
               }
             ],
             [
               "id",
               {
-                "bytes": "01e6c6720000000000",
                 "cl_type": {
                   "Option": "U64"
                 },
-                "parsed": 7522022
+                "bytes": "014767a90000000000",
+                "parsed": 11102023
               }
             ]
           ]
         }
-      }
+      },
+      "approvals": [
+        {
+          "signer": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
+          "signature": "01e53cb742ed13ff4f0584a3da0f22f5942a33e010965adf640c91204ae4bc7436f1e5534d338ffa117d193295214816445439781229d24a372085c316eac5e305"
+        }
+      ]
     },
     "execution_results": [
       {
-        "block_hash": "b357fc78f105e43be66f268bb8d7308f357fe37e0e55d92d26f8e255c9292529",
+        "block_hash": "aac51dad028ba8b3d6fec86a39252bbc4285d513fd57a8af4696ab5390ac5c2b",
         "result": {
           "Success": {
-            "cost": "100000000",
             "effect": {
               "operations": [],
               "transforms": [
                 {
-                  "key": "account-hash-aff4921ce6f73072a914f04e7327a946b72ec4562a7d99f107e9411d1592c3f6",
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
                   "transform": "Identity"
                 },
                 {
-                  "key": "account-hash-aff4921ce6f73072a914f04e7327a946b72ec4562a7d99f107e9411d1592c3f6",
+                  "key": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
                   "transform": "Identity"
                 },
                 {
@@ -282,6 +287,14 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
+                  "transform": "Identity"
+                },
+                {
                   "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
                   "transform": "Identity"
                 },
@@ -290,7 +303,11 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-20c3a137051eaa98efa048fd8f888ed4b342bcc1c8166f475e25b6a627d669a4",
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1",
                   "transform": "Identity"
                 },
                 {
@@ -298,12 +315,12 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-20c3a137051eaa98efa048fd8f888ed4b342bcc1c8166f475e25b6a627d669a4",
+                  "key": "balance-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1",
                   "transform": {
                     "WriteCLValue": {
-                      "bytes": "0500a7d0dd2c",
                       "cl_type": "U512",
-                      "parsed": "192700000000"
+                      "bytes": "06621c3e660301",
+                      "parsed": "1114111876194"
                     }
                   }
                 },
@@ -314,11 +331,19 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   }
                 },
                 {
-                  "key": "account-hash-aff4921ce6f73072a914f04e7327a946b72ec4562a7d99f107e9411d1592c3f6",
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
                   "transform": "Identity"
                 },
                 {
-                  "key": "account-hash-aff4921ce6f73072a914f04e7327a946b72ec4562a7d99f107e9411d1592c3f6",
+                  "key": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
                   "transform": "Identity"
                 },
                 {
@@ -330,6 +355,14 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
+                  "transform": "Identity"
+                },
+                {
                   "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
                   "transform": "Identity"
                 },
@@ -338,7 +371,11 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-20c3a137051eaa98efa048fd8f888ed4b342bcc1c8166f475e25b6a627d669a4",
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1",
                   "transform": "Identity"
                 },
                 {
@@ -346,12 +383,12 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-20c3a137051eaa98efa048fd8f888ed4b342bcc1c8166f475e25b6a627d669a4",
+                  "key": "balance-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1",
                   "transform": {
                     "WriteCLValue": {
-                      "bytes": "0500a7d0dd2c",
                       "cl_type": "U512",
-                      "parsed": "192700000000"
+                      "bytes": "06621c3e660301",
+                      "parsed": "1114111876194"
                     }
                   }
                 },
@@ -366,59 +403,67 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
+                  "transform": "Identity"
+                },
+                {
                   "key": "hash-9824d60dc3a5c44a20b9fd260a412437933835b52fc683d8ae36e4ec2114843e",
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-20c3a137051eaa98efa048fd8f888ed4b342bcc1c8166f475e25b6a627d669a4",
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-be85882962304905286b2b4d3602f7f287095536ef4ce3e9a5360930c729ec2c",
+                  "key": "balance-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1",
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-20c3a137051eaa98efa048fd8f888ed4b342bcc1c8166f475e25b6a627d669a4",
+                  "key": "balance-8294864177c2c1ec887a11dae095e487b5256ce6bd2a1f2740d0e4f28bd3251c",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "balance-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1",
                   "transform": {
                     "WriteCLValue": {
-                      "bytes": "0500aecd482c",
                       "cl_type": "U512",
-                      "parsed": "190200000000"
+                      "bytes": "06622a383c0201",
+                      "parsed": "1109111876194"
                     }
                   }
                 },
                 {
-                  "key": "balance-be85882962304905286b2b4d3602f7f287095536ef4ce3e9a5360930c729ec2c",
+                  "key": "balance-8294864177c2c1ec887a11dae095e487b5256ce6bd2a1f2740d0e4f28bd3251c",
                   "transform": {
-                    "AddUInt512": "2500000000"
+                    "AddUInt512": "5000000000"
                   }
                 },
                 {
-                  "key": "transfer-86760957e94a46839bcd03bee35c9db6b8a906e6fbfe87e69e93383df3d41b2a",
+                  "key": "transfer-0de7250864e67aa76626a844dcc931e615284a13a110df3f97cec9e3e97af405",
                   "transform": {
                     "WriteTransfer": {
-                      "amount": "2500000000",
-                      "deploy_hash": "d5862af0c7d06df6cb265c2dee9a014ce570a8db75eb0689f14d819c632c305d",
-                      "from": "account-hash-9aed70924116013bdd5517109bea97678d9cff449640457a8a4ed3e561d864d4",
+                      "deploy_hash": "1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c",
+                      "from": "account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655",
+                      "to": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7",
+                      "source": "uref-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1-007",
+                      "target": "uref-8294864177c2c1ec887a11dae095e487b5256ce6bd2a1f2740d0e4f28bd3251c-004",
+                      "amount": "5000000000",
                       "gas": "0",
-                      "id": 7522022,
-                      "source": "uref-20c3a137051eaa98efa048fd8f888ed4b342bcc1c8166f475e25b6a627d669a4-007",
-                      "target": "uref-be85882962304905286b2b4d3602f7f287095536ef4ce3e9a5360930c729ec2c-004",
-                      "to": "account-hash-aff4921ce6f73072a914f04e7327a946b72ec4562a7d99f107e9411d1592c3f6"
+                      "id": 11102023
                     }
                   }
                 },
                 {
-                  "key": "deploy-d5862af0c7d06df6cb265c2dee9a014ce570a8db75eb0689f14d819c632c305d",
+                  "key": "deploy-1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c",
                   "transform": {
                     "WriteDeployInfo": {
-                      "deploy_hash": "d5862af0c7d06df6cb265c2dee9a014ce570a8db75eb0689f14d819c632c305d",
-                      "from": "account-hash-9aed70924116013bdd5517109bea97678d9cff449640457a8a4ed3e561d864d4",
-                      "gas": "100000000",
-                      "source": "uref-20c3a137051eaa98efa048fd8f888ed4b342bcc1c8166f475e25b6a627d669a4-007",
+                      "deploy_hash": "1f17a0bdeaaf71abd03492c854cdf97f746432751721ce555e95b9cefe641e3c",
                       "transfers": [
-                        "transfer-86760957e94a46839bcd03bee35c9db6b8a906e6fbfe87e69e93383df3d41b2a"
-                      ]
+                        "transfer-0de7250864e67aa76626a844dcc931e615284a13a110df3f97cec9e3e97af405"
+                      ],
+                      "from": "account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655",
+                      "source": "uref-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1-007",
+                      "gas": "100000000"
                     }
                   }
                 },
@@ -427,7 +472,15 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
+                  "transform": "Identity"
+                },
+                {
                   "key": "hash-624dbe2395b9d9503fbee82162f1714ebff6b639f96d2084d26d944c354ec4c5",
+                  "transform": "Identity"
+                },
+                {
+                  "key": "hash-8cf5e4acf51f54eb59291599187838dc3bc234089c46fc6ca8ad17e762ae4401",
                   "transform": "Identity"
                 },
                 {
@@ -447,25 +500,29 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
                   "transform": "Identity"
                 },
                 {
+                  "key": "hash-010c3fe81b7b862e50c77ef9a958a05bfa98444f26f96f23d37a13c96244cfb7",
+                  "transform": "Identity"
+                },
+                {
                   "key": "balance-98d945f5324f865243b7c02c0417ab6eac361c5c56602fd42ced834a1ba201b6",
                   "transform": "Identity"
                 },
                 {
-                  "key": "balance-874289dbe721508e8d2893efd86364ea1ca67a6a2456825259efd6db8efb427c",
+                  "key": "balance-da632bfba17f4a7882581de2a37219be71628600ccd0df83f1d42465bd018537",
                   "transform": "Identity"
                 },
                 {
                   "key": "balance-98d945f5324f865243b7c02c0417ab6eac361c5c56602fd42ced834a1ba201b6",
                   "transform": {
                     "WriteCLValue": {
-                      "bytes": "00",
                       "cl_type": "U512",
+                      "bytes": "00",
                       "parsed": "0"
                     }
                   }
                 },
                 {
-                  "key": "balance-874289dbe721508e8d2893efd86364ea1ca67a6a2456825259efd6db8efb427c",
+                  "key": "balance-da632bfba17f4a7882581de2a37219be71628600ccd0df83f1d42465bd018537",
                   "transform": {
                     "AddUInt512": "100000000"
                   }
@@ -473,13 +530,15 @@ Refer to the Section on [querying deploys](../../../resources/beginner/querying-
               ]
             },
             "transfers": [
-              "transfer-86760957e94a46839bcd03bee35c9db6b8a906e6fbfe87e69e93383df3d41b2a"
-            ]
+              "transfer-0de7250864e67aa76626a844dcc931e615284a13a110df3f97cec9e3e97af405"
+            ],
+            "cost": "100000000"
           }
         }
       }
     ]
-  }
+  },
+  "id": -3447643973713335073
 }
 ```
 
