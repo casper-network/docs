@@ -24,7 +24,7 @@ Suppose the node experiences a restart during synchronization, typically occurri
     sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address http://3.136.227.9:7777/ -b 997478 | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/1_5_2/config.toml
     ```
 
-## Devcontainer Troubleshooting
+## Dev container Troubleshooting
 
 ### Repeated container name:
 
