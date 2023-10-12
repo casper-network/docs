@@ -8,11 +8,7 @@ The purpose of this tutorial is to provide an example of how to integrate key ma
 
 :::warning
 
-The session code provided in this tutorial should not be used in a production environment.
-
-Incorrect account configurations could render accounts defunct and unusable, thus losing access to all the corresponding CSPR tokens.
-
-Test any changes to an account in a test environment like Testnet before performing changes in a live environment like Mainnet.
+Understanding the multi-sig feature and trying it out on Testnet before using it on Mainnet is essential. Incorrect account configurations could render accounts unusable, and you could lose access to all the corresponding CSPR tokens.
 
 :::
 
@@ -46,16 +42,28 @@ The [multi-sig GitHub repository](https://github.com/casper-ecosystem/tutorials-
 git clone https://github.com/casper-ecosystem/tutorials-example-wasm/ && cd multi-sig
 ```
 
+If you take a look at the repository structure and open the `contracts` folder, you will see session code with different functionality:
+
+- `add_account.wasm` - adds an associated account with a specified weight
+- `update_associated_keys.wasm` - updates a key’s weight
+- `update_thresholds.wasm` - updates the account's action thresholds for deployment and account management
+- `remove_account.wasm` - removes an associated account from the primary account
+
 ### Step 2: Build the sample Wasm provided
 
 Prepare your environment, build and test the session code provided with the following commands:
 
 ```bash
 rustup update
-make clean
 make prepare
 make test
 ```
+
+- `rustup update` - checks and updates your Rust installation
+- `make prepare` - sets the Wasm target
+- `make test` - builds and verifies the session code
+
+Note that in the test folder there is a `contract.wasm` that is needed for the tests to pass. If you run `make clean` that file will be deleted.
 
 ### Step 3: Increase the primary key's weight to set thresholds
 
@@ -75,8 +83,25 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 --payment-amount 500000000 \
 --secret-key $PATH/secret_key.pem \
 --session-path target/wasm32-unknown-unknown/release/update_associated_keys.wasm \
---session-arg "associated_key:key='account-hash-<ACCOUNT_HASH_HEX_HERE>'" \
+--session-arg "associated_key:key='account-hash-<ACCOUNT_HASH>'" \
 --session-arg "new_weight:u8='3'"
+```
+
+Verify that the deploy ran successfully.
+
+```bash
+casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+```
+
+Retrieve the latest state root hash and check the primary account details. 
+
+```bash
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+
+casper-client query-global-state \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash <STATE_ROOT_HASH> \
+--key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
 
 The primary key in this account should now have weight 3.
@@ -127,7 +152,24 @@ casper-client put-deploy \
 --session-arg "key_management_threshold:u8='3'"
 ```
 
-The account's action thresholds would look like this:
+Verify that the deploy ran successfully.
+
+```bash
+casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+```
+
+Retrieve the latest state root hash and check the primary account details. 
+
+```bash
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+
+casper-client query-global-state \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash <STATE_ROOT_HASH> \
+--key account-hash-<PRIMARY_ACCOUNT_HASH>
+```
+
+The account's action thresholds should look like this:
 
 ```json
 "action_thresholds": {
@@ -184,6 +226,12 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 --session-arg "weight:u8='1'"
 ```
 
+Verify that the deploy ran successfully.
+
+```bash
+casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+```
+
 ```bash
 casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 --chain-name "casper-test" \
@@ -194,8 +242,24 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 --session-arg "weight:u8='1'"
 ```
 
-Now, the account has one primary key with weight 3, and two associated accounts, each with weight 1.
+Verify that the deploy ran successfully.
 
+```bash
+casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+```
+
+Retrieve the latest state root hash and check the primary account details. 
+
+```bash
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+
+casper-client query-global-state \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash <STATE_ROOT_HASH> \
+--key account-hash-<PRIMARY_ACCOUNT_HASH>
+```
+
+Now, the account should have one primary key with weight 3, and two associated accounts, each with weight 1.
 
 <details>
 <summary>Account details</summary>
@@ -258,7 +322,24 @@ casper-client put-deploy --chain-name casper-test \
 --session-arg "message:string='Hello, World'"
 ```
 
-The `hello_world.wasm` will run and add a named key to the account.
+Verify that the deploy ran successfully.
+
+```bash
+casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+```
+
+Retrieve the latest state root hash and check the primary account details. 
+
+```bash
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+
+casper-client query-global-state \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash <STATE_ROOT_HASH> \
+--key account-hash-<PRIMARY_ACCOUNT_HASH>
+```
+
+The `hello_world.wasm` should have run and added a named key to the account.
 
 ```json
 "named_keys": [
@@ -273,9 +354,9 @@ The `hello_world.wasm` will run and add a named key to the account.
 
 Given the multi-signature scheme set up in this example, two associated keys need to sign to send a deploy from one of the associated keys. This example uses the following commands to sign a deploy with multiple keys and send it to the network:
 
-1. `make-deploy` - creates and signs a deploy, saving the output to a file
-2. `sign-deploy` - adds additional signatures for a multi-signature deploy
-3. `send-deploy` - sends the deploy to the network
+- `make-deploy` - creates and signs a deploy, saving the output to a file
+- `sign-deploy` - adds additional signatures for a multi-signature deploy
+- `send-deploy` - sends the deploy to the network
 
 Similar to step 6, this example uses Wasm (`contract.wasm`), which adds a named key to the account. The deploy originates from the primary account, specified with the `--session-account` argument. The deploy needs two signatures to meet the `deployment` weight equal to 2. Once both associated keys sign the deploy, either can send it to the network.
 
@@ -306,8 +387,24 @@ The deploy can be sent to the network using the `send-deploy` command:
 casper-client send-deploy --node-address https://rpc.testnet.casperlabs.io -i hello_world_two_signatures
 ```
 
-The `hello_world.wasm` will run and add a named key to the account.
+Verify that the deploy ran successfully.
 
+```bash
+casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+```
+
+Retrieve the latest state root hash and check the primary account details. 
+
+```bash
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+
+casper-client query-global-state \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash <STATE_ROOT_HASH> \
+--key account-hash-<PRIMARY_ACCOUNT_HASH>
+```
+
+The `hello_world.wasm` should have run and added a named key to the account.
 
 ## Removing a Compromised Key
 
@@ -331,6 +428,23 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 --session-path target/wasm32-unknown-unknown/release/add_account.wasm \
 --session-arg "new_key:key='account-hash-1fed34baa6807a7868bb18f91b161d99ebf21763810fe4c92e39775d10bbf1f8" \
 --session-arg "weight:u8='1'"
+```
+
+Verify that the deploy ran successfully.
+
+```bash
+casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+```
+
+Retrieve the latest state root hash and check the primary account details. 
+
+```bash
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+
+casper-client query-global-state \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash <STATE_ROOT_HASH> \
+--key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
 
 <details>
@@ -388,6 +502,23 @@ casper-client put-deploy --node-address https://rpc.testnet.casperlabs.io/ \
 --secret-key $PATH/secret_key.pem \
 --session-path target/wasm32-unknown-unknown/release/remove_account.wasm \
 --session-arg "remove_key:key='account-hash-1fed34baa6807a7868bb18f91b161d99ebf21763810fe4c92e39775d10bbf1f8"
+```
+
+Verify that the deploy ran successfully.
+
+```bash
+casper-client get-deploy --node-address https://rpc.testnet.casperlabs.io/ <DEPLOY_HASH>
+```
+
+Retrieve the latest state root hash and check the primary account details. 
+
+```bash
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
+
+casper-client query-global-state \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash <STATE_ROOT_HASH> \
+--key account-hash-<PRIMARY_ACCOUNT_HASH>
 ```
 
 The resulting account should not contain the associated key that was just removed.
