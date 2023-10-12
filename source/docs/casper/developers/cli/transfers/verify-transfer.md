@@ -165,7 +165,7 @@ casper-client query-global-state \
 
 -   `"result"."stored_value"."Account"."main_purse"` - the address of the main purse containing the sender's tokens. In this example, this purse is the source of the tokens transferred
 
-**Source Example Query:**
+**Source Account Query:**
 
 ```bash
 casper-client query-global-state -v \
@@ -228,7 +228,7 @@ casper-client query-global-state -v \
 
 </details>
 
-**Target Example Query:**
+**Target Account Query:**
 
 Repeat the same step to query information about the _Target_ account:
 
