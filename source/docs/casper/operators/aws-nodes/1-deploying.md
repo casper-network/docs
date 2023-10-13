@@ -75,7 +75,7 @@ Below is a list of AWS services that the user and profile must access:
 | Service    | Access Requirements |
 | ---------- | ------------------ |
 | EC2        | Full access        |
-| Cloudwatch | Full access        |
+| CloudWatch | Full access        |
 | VPC        | Full access        |
 | S3         | Full access        |
 | Secret manager | Read-only access |

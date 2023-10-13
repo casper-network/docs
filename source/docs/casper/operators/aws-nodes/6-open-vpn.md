@@ -42,7 +42,7 @@ Follow these steps to configure the VPN Server:
 
 :::note
 
-All default options are secure; you can select the default by pressing enter unless you wish to change any of them. We recommend changing the default setting allowing password alteration for the `openvpn` user. Please use a secure password.
+All default options are secure; you can select the default by pressing enter unless you wish to change any of them. We recommend changing the default setting to allow password alteration for the `openvpn` user. Please use a secure password.
 
 :::
 

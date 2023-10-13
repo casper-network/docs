@@ -8,7 +8,7 @@ This section describes AWS modules helpful for running and monitoring the node.
 
 ## Monitoring Modules
 
-All modules pertinent to overseeing the node. AWS offers a suite of services enabling operators to observe both the node and Casper service status. These services allow the establishment of alarms and provide a visual representation on a dashboard, displaying the node's resources and capacity in real time.
+Monitoring modules are pertinent to overseeing the node. AWS offers a suite of services enabling operators to observe the node and Casper service status. These services allow the establishment of alarms and provide a visual representation on a dashboard, displaying the node's resources and capacity in real-time.
 
 | AWS Services Used     | Description                                                         |
 | --------------------  | ------------------------------------------------------------------- |
@@ -22,10 +22,10 @@ All modules pertinent to overseeing the node. AWS offers a suite of services ena
 
 ### CloudWatch Dashboard
 
-The IaC establishes a dashboard to oversee all pertinent resources. This dashboard displays connectivity status, blockchain metrics like block height, block time, and era count, along with node metrics including CPU, memory, and disk usage.
+The IaC establishes a dashboard to oversee all pertinent resources. This dashboard displays connectivity status, blockchain metrics like block height, block time, and era count, and node metrics including CPU, memory, and disk usage.
 
 <p align="center">
-<img src={"/image/operators/cloudwatch-dashboard.png"} alt="Cloudwatch Dashboard"/>
+<img src={"/image/operators/cloudwatch-dashboard.png"} alt="CloudWatch Dashboard"/>
 </p>
 
 ### CloudWatch Alarms
@@ -70,8 +70,8 @@ A Log Group module for the **synthetic canary service** stores all logs derived 
 
 | Name                   | Description               |
 | ---------------------- | ------------------------  |
-| `casper-node.log`        | Casper node daemon and the blockchain logs |
-| `casper-node.stderr.log` | Casper node daemon and the blockchain error logs|
+| `casper-node.log`        | Casper node daemon and the blockchain logs. |
+| `casper-node.stderr.log` | Casper node daemon and the blockchain error logs. |
 
 ### CloudWatch Agent
 
@@ -79,15 +79,15 @@ A CloudWatch Agent obtains the following metrics every 30 seconds:
 
 | Metrics                | Description               |
 | ---------------------- | ------------------------- |
-| casper-node logs       | casper service logs       |
-| casper-node error logs | casper service error logs |
-| disk_total             | disk total capacity       |
-| disk_used              | disk usage in GB          |
-| disk_percent           | disk usage in percentage  |
-| mem_used               | RAM usage in GB           |
-| mem_used_percent       | RAM usage in percentage   |
+| casper-node logs       | Casper service logs.      |
+| casper-node error logs | Casper service error logs.|
+| disk_total             | Disk total capacity.      |
+| disk_used              | Disk usage in GB.         |
+| disk_percent           | Disk usage percentage.    |
+| mem_used               | RAM usage in GB.          |
+| mem_used_percent       | RAM usage percentage.     |
 
-### Cloudwatch Logs
+### CloudWatch Logs
 
 In CloudWatch, you can locate distinct log groups that hold logs in text format, offering access to pertinent information from different services. Below is a description of the logs available within these log groups:
 
@@ -164,14 +164,14 @@ The ZIP template module creates the ZIP file necessary for the [synthetic canary
 
 ## Network Modules
 
-Network modules configure diverse network elements necessary for the node to function correctly.
+Network modules configure diverse network elements, ensuring optimal node functionality.
 
-| AWS Services Used     | Description                                                         |
-| --------------------  | ------------------------------------------------------------------- |
-| Elastic IP Module       | Module to define the Elastic IP associated with the node. |
-| VPC Module | Module to create the VPC where the node resides. |
+| AWS Services Used     | Description                                                          |
+| --------------------  | -------------------------------------------------------------------  |
+| Elastic IP Module     | Module to define the Elastic IP associated with the node.            |
+| VPC Module            | Module to create the VPC where the node resides.                     |
 | Security Group Rules Module | Module to establish rules allowing network access to the node. |
-| OpenVPN Server Module | Module to create and configure the VPN server. |
+| OpenVPN Server Module | Module to create and configure the VPN server.                       |
 
 ### Elastic IP Module
 
@@ -183,8 +183,8 @@ The VPC module creates the networking layer where the Casper read-only node will
 
 | Services       | Description |
 | -------------- | ----------- |
-| Amazon VPC     | A virtual private cloud within the AWS Cloud. |
-| Public subnets | Range of IP addresses in 3 availability zones. |
+| Amazon VPC     | A virtual private cloud within the AWS Cloud.    |
+| Public subnets | Range of IP addresses in 3 availability zones.   |
 | Route tables   | Tables control the direction of network traffic. |
 
 ### Security Group Rules Module
@@ -193,8 +193,8 @@ The Security Group Rules module detects whether the node operator wants the `Ope
 
 | OpenVPN Status | Ingress Rule |
 | -------------- | ------------ |
-| Created        | SSH is available when connected to the VPN Server. |
-| Discarded      | SSH will be available to the IPs the operator listed.        |
+| Created        | SSH is available when connected to the VPN Server.    |
+| Discarded      | SSH will be available to the IPs the operator listed. |
 
 ### OpenVPN Server Module
 
@@ -206,5 +206,5 @@ The following ports are open to run the Casper service:
 
 | Port | Description                      |
 | ---- | -------------------------------- |
-| 22   | For SSH connections to the node  |
-| 80   | For retrieving dashboard metrics |
+| 22   | For SSH connections to the node. |
+| 80   | For retrieving dashboard metrics.|
