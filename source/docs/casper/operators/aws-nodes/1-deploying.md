@@ -20,7 +20,7 @@ The following programs are prerequisites.
 
 ## Docker Container Structure
 
-The code includes a devcontainer that contains all the preinstalled requirements. Using docker compose or VSCode itself, developers construct this container, which encompasses the following file structure:
+The code includes a development container (or dev container for short) for all the preinstalled requirements. Using Docker Compose or VSCode, developers construct this container, which encompasses the following file structure:
 
 | Folder   | Folder Tree |
 | -------- | ----------- |
@@ -30,21 +30,21 @@ The code includes a devcontainer that contains all the preinstalled requirements
 
 | File | Description |
 | ---- | ----------- |
-| `.devcontainer/devcontainer.json`  | Specification file designed for interpreting and executing the devcontainer within VSCode. |
-| `.devcontainer/.env`               | It contains version numbers and flags essential for enabling the requisite tools within the devcontainer. |
+| `.devcontainer/devcontainer.json`  | Specification file designed for interpreting and executing the dev container within VSCode. |
+| `.devcontainer/.env`               | File containing version numbers and flags essential for enabling the requisite tools within the dev container. |
 | `.devcontainer/docker-compose.yml` | Docker Compose file that orchestrates the configuration and launch of the setup variables and mounting points for the development container. |
 | `.devcontainer/Dockerfile`         | Dockerfile that details the operating system configuration and outlines the tools to install. |
-| `.devcontainer/requirements.txt`   | Holds the pip packages along with their versions for the proposed solution. |
+| `.devcontainer/requirements.txt`   | Holds the `pip` packages along with their versions for the proposed solution. |
 | `.devcontainer/.bashrc`            | A custom `.bashrc` file that customizes the prompt and aliases inside the container. |
-| `.devcontainer/entrypoint.sh`      | A script that performs the installation and configuration of tools such as `pre-commit`, `localstack`, among others, and modifies DooD and the timezone within the development container. |
-| `.devcontainer/cmd.sh`             | Script that keeps the devcontainer running and configures the termination of `localstack` when necessary. |
+| `.devcontainer/entrypoint.sh`      | A script that performs the installation and configuration of tools such as `pre-commit`, `localstack`, among others, and modifies Docker outside of Docker (DooD) and the timezone within the development container. |
+| `.devcontainer/cmd.sh`             | Script that keeps the dev container running and configures the termination of `localstack` when necessary. |
 | `.precommit-commit-config.yaml`    | Configuration file for pre-commit. |
 
 ### Container Setup Instructions
 
-The first step requires adjusting the contents of the `.devcontainer/.env` file and modifying the environment variables as necessary. Ensure that the `PROJ_NAME` variable matches the name of the repository root folder. To deploy the devcontainer, establish your AWS and SSH credentials within the `~/.aws` and `~/.ssh` directories; both directories **must** exist in your home folder.
+The first step requires adjusting the contents of the `.devcontainer/.env` file and modifying the environment variables as necessary. Ensure that the `PROJ_NAME` variable matches the name of the repository root folder. To deploy the dev container, establish your AWS and SSH credentials within the `~/.aws` and `~/.ssh` directories; both directories **must** exist in your home folder.
 
-This devcontainer is agnostic and doesn't depend on a specific IDE or editor; it can run automatically from a terminal, with no particular editor required. When using VSCode, open the repository folder within it, and VSCode will prompt to reopen the folder initiating the devcontainer. Below, the guide outlines the steps to operate the devcontainer from a command terminal.
+This dev container is agnostic and doesn't depend on a specific IDE or editor; it can run automatically from a terminal, with no particular editor required. When using VSCode, open the repository folder within it, and VSCode will prompt you to reopen the folder, initializing the dev container. Below, the guide outlines the steps to operate the dev container from a command terminal.
 
 1. In the repository's `.devcontainer/` directory, create a container using the following command:
 
@@ -52,7 +52,7 @@ This devcontainer is agnostic and doesn't depend on a specific IDE or editor; it
    docker-compose up --build -d
    ```
 
-2. To access the devcontainer, use the following command:
+2. To access the dev container, use the following command:
 
    ```bash
    docker exec -ti casper-node-on-cloud-cont bash
@@ -66,7 +66,7 @@ This devcontainer is agnostic and doesn't depend on a specific IDE or editor; it
 
 ## AWS Credentials
 
-Please follow the instructions in the [Configuration Basics Guide to Configure AWS-CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html). Subsequently, create and configure the `casper_{env}` profile, for instance, `casper_testnet` or `casper_mainnet`.
+Please follow the instructions in the [Configure the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) guide. Subsequently, create and configure the `casper_{env}` profile, for instance, `casper_testnet` or `casper_mainnet`.
 
 > **Note:** Prior to beginning, verify that access to AWS is configured. Having administrator permissions on your account will be beneficial for this step.
 
@@ -88,7 +88,7 @@ Below is a list of AWS services that the user and profile must access:
 
 To run the infrastructure as code (IaC), follow these steps.
 
-1. Configure the `terragrunt/environment/{env}/terragrunt.hcl` file based on the environment, replacing values that change per environment, such as `ips_allows`. Possible environments could be *testnet* or *mainnet*. This file holds the following local variables, adjustable as per the operator's requirements.
+1. Configure the `terragrunt/environment/{env}/terragrunt.hcl` file based on the environment, replacing values that change per environment, such as `ips_allows`. Possible environments could be *testnet* or *mainnet*. This file holds the following local variables, adjustable based on the operator's requirements.
 
    | Variable             | type        | Description                                                    |
    | -------------------- | ----------- | ------------------------------------------------------------   |
@@ -102,8 +102,8 @@ To run the infrastructure as code (IaC), follow these steps.
    | profile_settings_aws | String      | The configured AWS profile containing the owner and environment separated with an underscore, e.g., `casper_testnet`. |
    | instance_type        | String      | Instance type.                                                 |
    | nodes_count          | Integer     | Number of nodes to start. For this version, this value must be **1**. |
-   | ips_allows           | List        | List of IPv4 addresses permitted to establish a connection to the node via SSH, where `0.0.0.0/0` denotes any source. This variable holds relevance when establishing the node without a VPN, utilizing the `VPN_USE=false` environment variable. |
-   | sns_notifications    | map(object) | List of notification subscribers, to which you should add as required. |
+   | ips_allows           | List        | List of IPv4 addresses permitted to connect to the node via SSH, where `0.0.0.0/0` denotes any source. This variable holds relevance when establishing the node without a VPN, utilizing the `VPN_USE=false` environment variable. |
+    | sns_notifications    | map(object) | List of notification subscribers, which you should add as required. |
 
    **Sample Configuration:**
 
@@ -158,7 +158,7 @@ To run the infrastructure as code (IaC), follow these steps.
    terragrunt run-all plan
    ```
 
-   When executing the command initially, respond with `yes` to generate the S3 bucket for storing Terraform files. Below is an example output:
+   When executing the command, respond `yes` to generate the S3 bucket for storing Terraform files. Below is an example output:
 
 <details>
 <summary>Sample output</summary>
