@@ -1,0 +1,10 @@
+.docPage {
+  display: flex;
+  width: 100%;
+  max-width: var(--maxContentWidth);
+}
+
+.docsWrapper {
+  display: flex;
+  flex: 1 0 auto;
+}

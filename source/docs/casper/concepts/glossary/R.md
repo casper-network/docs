@@ -20,4 +20,4 @@ A programming language similar to C++, designed for performance and safety, espe
 
 ## Rustdocs {#rustdocs}
 
-As part of the Rust development environment, the Rustdocs describe the the [Casper contracts library](https://docs.rs/casper-contract/), the [Casper types library](https://docs.rs/casper-types/), and the [Casper test support library](https://docs.rs/casper-engine-test-support/).
+As part of the Rust development environment, the Rustdocs describe the [Casper contracts library](https://docs.rs/casper-contract/), the [Casper types library](https://docs.rs/casper-types/), and the [Casper test support library](https://docs.rs/casper-engine-test-support/).

@@ -20,7 +20,7 @@ Required Parameters:
 
 ## AccountHash {#accounthash}
 
-Hex-encoded Account hash.
+The AccountHash is a 32-byte hash derived from a supported PublicKey. Its role is to standardize keys that can vary in length.
 
 ## ActionThresholds {#actionthresholds}
 
@@ -74,6 +74,12 @@ Required Parameters:
 
 * [`state_root_hash`](#digest) Global state hash.
 
+## AvailableBlockRange {#availableblockrange}
+
+* `low` The inclusive lower bound of the range.
+
+* `high` The inclusive upper bound of the range.
+
 ## Bid {#bid}
 
 An entry in the validator map.
@@ -107,6 +113,36 @@ Identifier for possible ways to retrieve a Block.
 * [`Hash`](#blockhash) Identify and retrieve the Block with its hash.
 
 * `Height` Identify and retrieve the Block with its height.
+
+## BlockSynchronizerStatus {#blocksynchronizerstatus}
+
+The status of the block synchronizer.
+
+* `Historical` The status of syncing a historical block, if any.
+
+    * [`block_hash`](#blockhash-blockhash) The block hash.
+
+    * `block_height` The height of the block, if known.
+
+    * `acquisition_state` The state of acquisition of the data associated with the block.
+
+* `Forward` The status of syncing a forward block, if any.
+
+    * [`block_hash`](#blockhash-blockhash) The block hash.
+
+    * `block_height` The height of the block, if known.
+
+    * `acquisition_state` The state of acquisition of the data associated with the block.
+
+## ChainspecRawBytes {#chainspecrawbytes}
+
+The raw bytes of the chainspec.toml, genesis accounts.toml, and global_state.toml files.
+
+* `chainspec_bytes` Hex-encoded raw bytes of the current chainspec.toml file.
+
+* `maybe_genesis_accounts_bytes` Hex-encoded raw bytes of the current genesis accounts.toml file.
+
+* `maybe_global_state_bytes` Hex-encoded raw bytes of the current global_state.toml file.
 
 ## Contract {#contract} 
 
@@ -257,7 +293,7 @@ Options for dictionary item lookups.
     `dictionary_name` The named key under which the dictionary seed URef is stored.
 
     `dictionary_item_key` The dictionary item key formatted as a string.
-        
+
 * `URef` Lookup a dictionary item via its seed URef.
 
     `seed_uref` The dictionary's seed URef.
@@ -317,6 +353,10 @@ Era ID newtype.
 ## EraInfo {#erainfo}
 
 Auction metadata. Intended to be recorded at each era.
+
+Required Parameters:
+
+* [`seigniorage_allocation`](#seigniorageallocation-seigniorageallocation) Information about a seigniorage allocation.
 
 ## EraSummary {#erasummary}
 
@@ -414,7 +454,7 @@ Required Parameters:
 
 * [`args`](#runtimeargs)
 
-## ExecutionEffect {#executioneffect} 
+## ExecutionEffect {#executioneffect}
 
 The journal of execution transforms from a single Deploy.
 
@@ -449,6 +489,10 @@ The result of executing a single Deploy.
     [`transfers`](#transferaddr)
 
     [`cost`](#u512)
+
+## FinalizedApprovals {#finalizedapprovals}
+
+A boolean value that determines whether to return the deploy with the finalized approvals substituted. If `false` or omitted, returns the deploy with the approvals that were originally received by the node.
 
 ## GlobalStateIdentifier {#globalstateidentifier}
 
@@ -688,7 +732,7 @@ Required Parameters:
 
 ## NewValidator {#newvalidator}
 
-The public key for the new validator in a re-delegation using [UnbondingPurse](#unbondingpurse).
+The public key for the new validator in a redelegation using [UnbondingPurse](#unbondingpurse).
 
 ## Operation {#operation}
 
@@ -744,6 +788,22 @@ The identifier to obtain the purse corresponding to a balance query. Valid ident
 
 * `purse_uref` A specific purse identified by the associated [`URef`](./types_chain.md#uref).
 
+## ReactorState {#reactorstate}
+
+The state of the reactor, which will return one of the following:
+
+* `Initialize` Get all components and reactor state set up on start.
+
+* `CatchUp` Orient to the network and attempt to catch up to tip.
+
+* `Upgrading` Running commit upgrade and creating immediate switch block.
+
+* `KeepUp` Stay caught up with tip.
+
+* `Validate` Node is currently caught up and is an active validator.
+
+* `ShutdownForUpgrade` Node should be shut down for upgrade.
+
 ## Reward {#reward}
 
 Required Parameters:
@@ -758,7 +818,7 @@ Represents a collection of arguments passed to a smart contract.
 
 ## SeigniorageAllocation {#seigniorageallocation}
 
-Information about a seignorage allocation.
+Information about a seigniorage allocation.
 
 * `Validator` Info about a seigniorage allocation for a validator.
 
@@ -912,7 +972,7 @@ Required Parameters:
 
 * [`validator_public_key`](#publickey) The original validator's public key.
 
-* [`new_validator`](#newvalidator) The re-delegated validator's public key.
+* [`new_validator`](#newvalidator) The redelegated validator's public key.
 
 ## URef {#uref}
 

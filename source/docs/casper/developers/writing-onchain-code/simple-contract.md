@@ -12,7 +12,7 @@ Smart contracts exist as stored on-chain logic, allowing disparate users to call
 
 On the Casper platform, developers may write smart contracts in any language that compiles to Wasm binaries. This tutorial focuses specifically on writing a smart contract in the Rust language. The Rust compiler compiles the contract code into Wasm. After that, the Wasm binary can be [sent to a node](../cli/installing-contracts.md) on a Casper network using a Deploy. Nodes within the network then [gossip deploys](../../concepts/design/p2p.md#communications-gossiping), include them within a block, and finalize them. After finalizing, the network executes the deploys within the block.
 
-Further, the Casper platform allows for [upgradable contracts](./upgrading-contracts.md). A [ContractPackage](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackage.html) is created through the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) or [new_locked_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) methods. Through these methods, the Casper execution engine creates the new contract package automatically and assigns a [`ContractPackageHash`](../../concepts/understanding-hash-types.md#hash-and-key-explanations). The new contract is added to this package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package alongside any previously installed contract versions, if applicable.
+Further, the Casper platform allows for [upgradable contracts](./upgrading-contracts.md). A [ContractPackage](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackage.html) is created through the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) or [new_locked_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_locked_contract.html) methods. Through these methods, the Casper execution engine automatically creates the new contract package and assigns a [`ContractPackageHash`](../../concepts/hash-types.md#hash-and-key-explanations). The new contract is added to this package with a [`ContractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) key. The execution engine stores the new contract within the contract package alongside any previously installed contract versions, if applicable.
 
 The `new_contract` and `new_locked_contract` methods are a convenience that automatically creates the package associated with a new contract. Developers choosing not to use these methods must first create a contract package to function as a container for their new contract.
 
@@ -24,33 +24,40 @@ To begin creating a smart contract, you need to set up the project structure, ei
 
 ```bash
 project-directory/
+
 └── contract/
     ├── src/
         └── main.rs
     └── Cargo.toml
+
+└── Makefile
+└── rust-toolchain
+
 └── tests/
     ├── src/
         └── integration-tests.rs
     └── Cargo.toml
 ```
 
-### Creating the Project Manually
+The project structure would be different in a dApp with full-stack architecture. <!-- TODO add a link to dApp section when the content is ready. -->
 
-1. Create a top-level project directory to store the contract code and its corresponding tests.
+### Automatically using `cargo casper` {#automatic-project-setup}
 
-2. Create a folder for the contract code inside the project directory. This folder contains the logic that will be compiled into Wasm and executed on a Casper node. In this example, we named the folder `contract`. You can use a different folder name if you wish.
+The [cargo casper command](./getting-started.md#creating-a-project) can automatically set up the project structure. This is the recommended way of setting up a new Casper project.
 
-   - In the `contract` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the contract's dependencies.
-   - Add a Rust file with the contract code in the `src` folder. In this example, we have the `main.rs` file.
+```bash
+cargo casper my-project
+```
 
-3. Navigating back to the project directory, create a folder for the tests, which help verify the contract's functionality. In this example, we named the folder `tests`.
+The `cargo casper` command will generate an example contract in the contract directory and an example `tests` crate with logic defined in the `integration-tests.rs` file. The `Makefile` includes commands to prepare and build the contract, and the `rust-toolchain` file specifies the target build version of Rust.
 
-   - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
-   - In the `src` folder, add a Rust file with the tests that verify the contract's behavior. In this example, we have the `integration-tests.rs` file.
+### Semi-automatically using plain `cargo` {#semi-automatic-project-setup}
 
-### Creating the Project Automatically
+:::tip
 
-The `cargo casper` command can automatically set up the project structure, as shown [here](./getting-started.md#creating-a-project). Alternatively, follow the steps below to customize the project, yet create the various folders using `cargo`. 
+If you are a beginner, [creating the structure automatically](#creating-the-project-automatically) with `cargo casper` is recommended and the command creates everything you need to start coding.
+
+:::
 
 1. Create a top-level project directory for the contract code and its corresponding tests.
 
@@ -65,7 +72,7 @@ The `cargo casper` command can automatically set up the project structure, as sh
     - `main.rs` - This file would contain the contract code.
     - `Cargo.toml` - This file would contain crate dependencies and other configurations.
 
-    The following sections explain how to update these files using example code. 
+    The following sections explain how to update these files using example code.
 
 3. Inside the project directory, run the command to auto-generate the folder structure for the tests. Use a different name instead of `tests` if you wish.
 
@@ -75,33 +82,114 @@ The `cargo casper` command can automatically set up the project structure, as sh
 
     The command creates a `tests` folder with a `/src/main.rs` file and a `Cargo.toml` file:
 
-    - `main.rs` - This file would store the unit test code required to test the contract. If you wish, you can rename the file to `integration-tests.rs` as shown in the example structure.
+    - `main.rs` - This file would store the unit test code required to test the contract. You can rename the file to `integration-tests.rs` as shown in the example structure.
     - `Cargo.toml` - This is the file with test configurations.
 
-    The [Testing Smart Contracts](./testing-contracts.md) guide explains how to update the tests using example code. 
+    The [Testing Smart Contracts](./testing-contracts.md) guide explains how to update the tests using example code.
 
-## Writing a Basic Smart Contract
+4. Unlike `cargo casper`, `cargo` does not create a `Makefile` and `rust-toolchain` configuration file. Therefore, you must manually add these files to the project's root folder.
 
-This section covers the process of writing a smart contract in Rust, using example code from the [counter contract](https://github.com/casper-ecosystem/counter/). This simple contract allows callers to increment and retrieve an integer. Casper provides a [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html) within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/index.html) crate.
+<details>
+<summary>Example Makefile</summary>
 
-### Dependencies in `Cargo.toml`
+```bash
+prepare:
+        rustup target add wasm32-unknown-unknown
 
-The `Cargo.toml` file includes the dependencies and versions the contract requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
+build-contract:
+        cd contract && cargo build --release --target wasm32-unknown-unknown
+        wasm-strip contract/target/wasm32-unknown-unknown/release/contract.wasm 2>/dev/null | true
 
-```typescript
+test: build-contract
+        mkdir -p tests/wasm
+        cp contract/target/wasm32-unknown-unknown/release/contract.wasm tests/wasm
+        cd tests && cargo test
+
+clippy:
+        cd contract && cargo clippy --all-targets -- -D warnings
+        cd tests && cargo clippy --all-targets -- -D warnings
+
+check-lint: clippy
+        cd contract && cargo fmt -- --check
+        cd tests && cargo fmt -- --check
+
+lint: clippy
+        cd contract && cargo fmt
+        cd tests && cargo fmt
+```
+</details>
+
+<details>
+<summary>Example rust-toolchain file</summary>
+
+```bash
+nightly-2022-08-03
+```
+</details>
+
+### Manually {#manual-project-setup}
+
+:::tip
+
+If you are a beginner, [creating the structure automatically](#creating-the-project-automatically) with `cargo casper` is recommended, and the command creates everything you need to start coding.
+
+:::
+
+1. Create a top-level project directory to store the contract code and corresponding tests.
+
+2. Create a folder for the contract code inside the project directory. This folder contains the logic that will be compiled into Wasm and executed on a Casper node. In this example, we named the folder `contract`. You can use a different folder name if you wish.
+
+   - In the `contract` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the contract's dependencies.
+   - Add a Rust file with the contract code in the `src` folder. In this example, we have the `main.rs` file.
+
+3. Navigating back to the project directory, create a folder for the tests, which help verify the contract's functionality. In this example, we named the folder `tests`.
+
+   - In the `tests` folder, add a source folder called `src` and a `Cargo.toml` file, which specifies the required dependencies to run the tests.
+   - In the `src` folder, add a Rust file with the tests that verify the contract's behavior. In this example, we have the `integration-tests.rs` file.
+4. Manually create Makefile and rust-toolchain as per [Semi-automatic setup (4.)](#semi-automatic-project-setup)
+
+### Dependencies
+
+The `Cargo.toml` file in the `contract` folder includes the dependencies and versions the contract requires. At a minimum, you need to import the latest versions of the [casper-contract](https://docs.rs/casper-contract/latest/casper_contract/) and [casper-types](https://docs.rs/casper-types/latest/casper_types/) crates. The following dependencies and version numbers are only examples and must be adjusted based on your requirements.
+
+If you followed the [automatic setup](#automatic-project-setup), the dependencies should be in the `Cargo.toml` file. For the [semi-automatic setup](#semi-automatic-project-setup) and [manual setup](#manual-project-setup), however, you'll need to manually add the dependencies to the crate's `Cargo.toml` file:
+
+```toml
 [dependencies]
-// A library for developing Casper network smart contracts.
+# A library for developing Casper network smart contracts.
 casper-contract = "1.4.4"
-// Types shared by many Casper crates for use on a Casper network.
+# Types shared by many Casper crates for use on a Casper network.
 casper-types = "1.5.0"
 ```
 
 - `casper-contract = "1.4.4"` - Provides the SDK for the execution engine (EE). The latest version of the crate is published [here](https://crates.io/crates/casper-contract).
 - `casper-types = "1.5.0"` - Includes types shared by many Casper crates for use on a Casper network. This crate is necessary for the EE to understand and interpret the session code. The latest version of the crate is published [here](https://crates.io/crates/casper-types).
 
+## Writing a Basic Smart Contract
+
+At this point, you either have the default example contract defined in `contract/src/main.rs` ([automatic](#automatic-project-setup) setup using cargo-casper), an empty `contract/src/main.rs` file ([manual](#manual-project-setup) project setup), or a Rust "hello world" program defined in the `contract/src/main.rs` ([semi-automatic](#semi-automatic-project-setup) setup). 
+
+This section covers the process of writing a smart contract in Rust, step by step. Therefore, you should clear the contents of the `contract/main.rs` file if there are any.
+
+The example code comes from the [counter contract](https://github.com/casper-ecosystem/counter/). This simple contract allows callers to increment and retrieve an integer. Casper provides a [contract API](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html) within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/index.html) crate.
+
+:::info
+
+Important syntax elements used frequently in Rust:
+
+- [Match](https://doc.rust-lang.org/rust-by-example/flow_control/match.html)<br />
+- [Array](https://doc.rust-lang.org/rust-by-example/primitives/array.html)<br />
+- [Loop](https://doc.rust-lang.org/rust-by-example/flow_control/loop.html)<br />
+- [Vectors](https://doc.rust-lang.org/rust-by-example/std/vec.html)<br />
+- [Functions](https://doc.rust-lang.org/rust-by-example/fn.html)<br />
+
+To be able to comfortably write code in Rust it is crucial to understand these topics before going further into the examples.
+
+:::
+
 ### Updating the `main.rs` File
 
-To begin writing contract code, add the following file attributes to support the Wasm execution environment. If you have an auto-generated `main.rs` file, remove the auto-generated main function.
+To begin writing contract code, add the following file attributes to support the Wasm execution environment. If you still have an auto-generated `main.rs` file, remove the auto-generated main function.
 
 ```rust
 #![no_std]
@@ -111,7 +199,7 @@ To begin writing contract code, add the following file attributes to support the
 - `#![no_main]` - This attribute tells the program not to use the standard main function as its entry point.
 - `#![no_std]` - This attribute tells the program not to import the standard libraries.
 
-#### Defining Required Dependencies
+#### Defining required dependencies
 
 Add the required imports and dependencies. The example code for the counter contract declares the following dependencies.
 
@@ -137,9 +225,9 @@ use casper_types::{
 };
 ```
 
-#### Defining the Global Constants
+#### Defining the global constants
 
-After importing the necessary dependencies, you should define the constants used within the contract, including entry points and values. The following example outlines the necessary constants for the counter contract. 
+After importing the necessary dependencies, you should define the constants used within the contract, including entry points and values. The following example outlines the necessary constants for the counter contract.
 
 ```rust
 // Creating constants for values within the contract package.
@@ -156,15 +244,15 @@ const CONTRACT_KEY: &str = "counter";
 const COUNT_KEY: &str = "count";
 ```
 
-#### Defining the Contract Entry Points
+#### Defining the contract entry points
 
-Entry points provide access to contract code installed in global state. Either [session code](../../concepts/session-code.md) or another smart contract may call these entry points. A contract must have at least one entry point and may have more than one entry point. Entry points are defined by their name, and those names should be clear and self-describing. Each entry point is equivalent to a static main entry point in a traditional program.
+Entry points provide access to contract code installed in global state. Either [session code](./contract-vs-session.md#what-is-session-code) or another smart contract may call these entry points. A contract must have at least one entry point and may have more than one entry point. Entry points are defined by their name, and those names should be clear and self-describing. Each entry point is equivalent to a static main entry point in a traditional program.
 
 Entry points are not functions or methods, and they have no arguments. They are static entry points into the contract's logic. Yet, the contract logic can access parameters by name, passed along with the Deploy. Note that another smart contract may access any of these entry points.
 
 If an entry point has one or more mandatory parameters that will cause the logic to revert if they are not included, declare them within that entry point. Optional and non-critical parameters should be excluded.
 
-When defining entry points, begin with a `#[no_mangle]` line to ensure that the system does not change critical syntax within the method names. Each entry point should contain the contract code that drives the action you wish it to accomplish. Finally, include any storage or return values needed, as applicable.
+When defining entry points, begin with a `#[no_mangle]` line to ensure the system does not change critical syntax within the method names. Each entry point should contain the contract code that drives the action you wish it to accomplish. Finally, include any storage or return values needed, as applicable.
 
 The following entry point is an example from the counter contract. To see all the available entry points, review the contract in [GitHub](https://github.com/casper-ecosystem/counter/blob/master/contract-v1/src/main.rs).
 
@@ -179,9 +267,9 @@ pub extern "C" fn counter_inc() {
 }
 ```
 
-#### Defining the `call` Function
+#### Defining the `call` function
 
-The `call` function starts the code execution and is responsible for installing the contract on-chain. In some cases, it also initializes some constructs, such as a Dictionary for record-keeping or a purse. The following steps describe how to structure the `call` function. Review the [call function](https://github.com/casper-ecosystem/counter/blob/8a622cd92d768893b9ef9fc2b150c674415be87e/contract-v1/src/main.rs#L55) in the counter contract.
+The `call` function starts the code execution and installs the contract on-chain. In some cases, it also initializes some constructs, such as a Dictionary for record-keeping or a purse. The following steps describe how to structure the `call` function. Review the [call function](https://github.com/casper-ecosystem/counter/blob/8a622cd92d768893b9ef9fc2b150c674415be87e/contract-v1/src/main.rs#L55) in the counter contract.
 
 1) Define the runtime arguments.
 
@@ -191,19 +279,23 @@ Look at the [CEP-78 contract](https://github.com/casper-ecosystem/cep-78-enhance
 
 2) Add the entry points into the `call` function.
 
-The `call` function replaces a traditional `main` function and executes automatically when a caller interacts with the contract. Within the `call` function, we define entry points that the caller can access using session code or another contract. When writing code that calls an entry point, there must be a one-to-one mapping of the entry point name. Otherwise, the execution engine will return an error that the entry point does not exist.
+The `call` function replaces a traditional `main` function and executes automatically when a caller interacts with the contract. Within the `call` function, we define entry points the caller can access using session code or another contract. When writing code that calls an entry point, there must be a one-to-one mapping of the entry point name. Otherwise, the execution engine will return an error that the entry point does not exist.
 
 Each entry point should have these arguments:
 
-- `name` - The name of the entry point, which should be the same as the initial definition.
+- `name` - The entry point's name, which should be the same as the initial definition.
 - `arguments` - A list of runtime arguments declared as part of the definition of the entry point.
-- `return type` - The CLType that is returned by the entry point. Use the type *Unit* for empty return types.
+- `return type` - The CLType returned by the entry point. Use the type *Unit* for empty return types.
 - `access level` - Access permissions of the entry point.
 - `entry point type` - This can be `contract` or `session` code.
 
 This step adds the individual entry points to a `counter_entry_points` object using the `add_entry_point` method. This object will later be passed to the `new_contract` method.
 
 ```rust
+#[no_mangle]
+pub extern "C" fn call() {
+    // Initialize the count to 0 locally
+    let count_start = storage::new_uref(0_i32);
     // Create the entry points for this contract
     let mut counter_entry_points = EntryPoints::new();
 
@@ -222,16 +314,18 @@ This step adds the individual entry points to a `counter_entry_points` object us
         EntryPointAccess::Public,
         EntryPointType::Contract,
     ));
+}
 ```
+In the following, we will add more content to this call function.
 
-3) Create the contract's named keys. 
+3) Create the contract's named keys.
 
-[NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) are a collection of String-Key pairs used to easily identify some network data.
+[NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) are a collection of String-Key pairs used to identify some network data quickly.
 
 - The [String](https://doc.rust-lang.org/nightly/alloc/string/struct.String.html) is the name given to identify the data
 - The [Key](https://docs.rs/casper-types/latest/casper_types/enum.Key.html) is the data to be referenced
 
-You can create named keys to store any record or value as needed, such as other accounts, smart contracts, URefs, transfers, deploy information, purse balances, etc. The entire list of possible Key variants can be found [here](https://docs.rs/casper-types/latest/casper_types/enum.Key.html).
+You can create named keys to store any record or value as needed, such as other accounts, smart contracts, URefs, transfers, deploy information, purse balances, etc. The list of possible Key variants can be found [here](https://docs.rs/casper-types/latest/casper_types/enum.Key.html).
 
 For the counter, we store the integer that we increment into a named key.
 
@@ -244,7 +338,7 @@ For the counter, we store the integer that we increment into a named key.
 
 4) Create the contract.
 
-Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) method to create the contract, with its named keys and entry points. This method creates the contract object and saves the access URef and the contract package hash in the caller's context. The execution engine automatically creates a contract package and assigns it a `contractPackageHash`. Then, it adds the contract to the package with a [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html).
+Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) method to create the contract with its named keys and entry points. This method creates the contract object and saves the access URef and the contract package hash in the caller's context. The execution engine automatically creates a contract package and assigns it a `contractPackageHash`. Then, it adds the contract to the package with a [`contractHash`](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html).
 
 ```rust
     // Create a new contract package that can be upgraded.
@@ -256,7 +350,7 @@ Use the [new_contract](https://docs.rs/casper-contract/latest/casper_contract/co
     );
 ```
 
-Usually, these contracts are upgradeable with the ability to add new [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html). To add a new contract version, you will need the access URef to the contract package. This can be accomplished by passing the `Some(CONTRACT_ACCESS_UREF.to_string())` argument to the `new_contract` method. To prevent any upgrades to a contract, use the `new_locked_contract` method described [below](#locked-contracts).
+Usually, these contracts are upgradeable with the ability to add new [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html). You **must have the access URef** to the contract package to add a new contract version. This can be accomplished by passing the `Some(CONTRACT_ACCESS_UREF.to_string())` argument to the `new_contract` method. To prevent any upgrades to a contract, use the `new_locked_contract` method described [below](#locked-contracts).
 
 5) Create additional named keys.
 
@@ -271,9 +365,61 @@ Generally, the `Contract_Hash` and `Contract_Version` are saved as `NamedKeys` i
     runtime::put_key(CONTRACT_KEY, stored_contract_hash.into());
 ```
 
+The complete call function should look like this:
+
+```rust
+#[no_mangle]
+pub extern "C" fn call() {
+    // Initialize the count to 0 locally
+    let count_start = storage::new_uref(0_i32);
+    // Create the entry points for this contract
+    let mut counter_entry_points = EntryPoints::new();
+
+    counter_entry_points.add_entry_point(EntryPoint::new(
+        ENTRY_POINT_COUNTER_GET,
+        Vec::new(),
+        CLType::I32,
+        EntryPointAccess::Public,
+        EntryPointType::Contract,
+    ));
+
+    counter_entry_points.add_entry_point(EntryPoint::new(
+        ENTRY_POINT_COUNTER_INC,
+        Vec::new(),
+        CLType::Unit,
+        EntryPointAccess::Public,
+        EntryPointType::Contract,
+    ));
+
+    // In the named keys of the counter contract, add a key for the count.
+    let mut counter_named_keys = NamedKeys::new();
+    let key_name = String::from(COUNT_KEY);
+    counter_named_keys.insert(key_name, count_start.into());
+
+    // Create a new contract package that can be upgraded.
+    let (stored_contract_hash, contract_version) = storage::new_contract(
+        counter_entry_points,
+        Some(counter_named_keys),
+        Some(CONTRACT_PACKAGE_NAME.to_string()),
+        Some(CONTRACT_ACCESS_UREF.to_string()),
+    );
+
+    /* To create a locked contract instead, use new_locked_contract and throw away the contract version returned
+    let (stored_contract_hash, _) =
+    storage::new_locked_contract(counter_entry_points, Some(counter_named_keys), None, None); */
+
+    // Store the contract version in the context's named keys.
+    let version_uref = storage::new_uref(contract_version);
+    runtime::put_key(CONTRACT_VERSION_KEY, version_uref.into());
+
+    // Create a named key for the contract hash.
+    runtime::put_key(CONTRACT_KEY, stored_contract_hash.into());
+}
+```
+
 ## Locked Contracts {#locked-contracts}
 
-Locked contracts cannot contain other contract [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) in the same contract package; thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and prevent any further upgrades to the contract. Use locked contracts when you need to ensure high security and will not require updates to the contract. 
+Locked contracts cannot contain other contract [versions](https://docs.rs/casper-types/latest/casper_types/contracts/type.ContractVersion.html) in the same contract package; thus, they cannot be upgraded. In this scenario, the Casper execution engine will create a contract package, add a contract to that package and prevent any further upgrades to the contract. Use locked contracts when you need to ensure high security and will not require updates to the contract.
 
 ```rust
 pub fn new_locked_contract(
@@ -288,7 +434,7 @@ pub fn new_locked_contract(
 
 - `entry_points` - The set of entry points defined inside the smart contract.
 - `named_keys` - Any [named-key](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html) pairs for the contract.
-- `hash_name` - Contract hash value. Puts [contractHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) in the current context's named keys under `hash_name`. 
+- `hash_name` - Contract hash value. Puts [contractHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractHash.html) in the current context's named keys under `hash_name`.
 - `uref_name` - Access URef value. Puts access_uref in the current context's named keys under `uref_name`.
 
 **Note**: The current context is the context of the person who initiated the `call` function, usually an account.
@@ -297,26 +443,28 @@ The counter contract in our example would be locked if we created it this way:
 
 ```rust
 let (stored_contract_hash, _) =
-        storage::new_locked_contract(counter_entry_points, Some(counter_named_keys), None, None); 
+        storage::new_locked_contract(counter_entry_points, Some(counter_named_keys), None, None);
 ```
 
 ## Compiling Contract Code {#compiling-contract-code}
 
-To compile the smart contract, run the following command in the directory hosting the `Cargo.toml` file and `src` folder. 
+To compile the smart contract, run the following commands in the `contract` folder in your project's directory, where the `Cargo.toml` file and `src` folder are hosted.
 
 ```bash
+rustup target add wasm32-unknown-unknown
 cargo build --release --target wasm32-unknown-unknown
 ```
 
-For the counter example, you may use the Makefile provided:
+For the counter example, in the project directory where the `Makefile` is, run the following commands:
 
 ```bash
+make prepare
 make build-contract
 ```
 
 ## Executing Contract Code {#executing-contract-code}
 
-Contract execution must be initiated through an outside call, usually via [session code](../../concepts/session-code.md) or another smart contract. Developers should also be familiar with the difference between contract code and session code, explained in the next section.
+Contract execution must be initiated through an outside call, usually via [session code](./contract-vs-session.md#what-is-session-code) or another smart contract. Developers should also be familiar with the difference between contract code and session code, explained in the next section.
 
 ## Video Walkthrough {#video-walkthrough}
 
@@ -330,5 +478,5 @@ The following brief video accompanies this guide.
 ## What's Next? {#whats-next}
 
 - Learn to [test your contract](./testing-contracts.md).
-- Understand [session code](../../concepts/session-code.md) and how it triggers a smart contract.
+- Understand [session code](./contract-vs-session.md#what-is-session-code) and how it triggers a smart contract.
 - Learn to [install a contract and query global state](../cli/installing-contracts.md) with the Casper command-line client.

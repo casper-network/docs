@@ -1,37 +1,157 @@
 # Verifying a Transfer
 
-## Prerequisite
+## Prerequisites
 
 Before verifying a transfer, make sure you have:
+
 1. Initiated a [Direct Transfer](./direct-token-transfer.md) or [Multi-sig Deploy Transfer](./multisig-deploy-transfer.md)
 2. The *deploy_hash* of the transfer you want to verify
-3. The *public key* hex for the source and target accounts
+3. The *public key* of the source and target accounts
 
+## Query the State Root Hash
 
-## The State Root Hash
+The state root hash is an identifier of the current network state. It gives a snapshot of the blockchain state at a moment in time. You can use the state root hash to query the network state after sending a deploy. 
 
-The state root hash is an identifier of the current network state. It gives a snapshot of the blockchain state at a moment in time. You can use the state root hash to query the network state after deployments. 
-
-```
+```bash
 casper-client get-state-root-hash --node-address [NODE_SERVER_ADDRESS]
 ```
 
+**Example Query:**
+
+```bash
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io 
+```
+
+<details>
+<summary>Sample output of the get-state-root-hash command</summary>
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 6458079936180872466,
+  "result": {
+    "api_version": "1.5.3",
+    "state_root_hash": "fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1"
+  }
+}
+```
+</details>
+
 :::note
 
-After any deploys to the network, you must get the new state root hash to see the new changes reflected. Otherwise, you will be looking at events in the past.
+After sending deploys to the network, you must get the new state root hash to see the changes reflected. Otherwise, you will be looking at events in the past.
 
 :::
 
-## Query the Source Account {#query-the-source-account}
+## Query the Transfer Details {#query-transfer-details}
 
-Here, we will query for information about the _Source_ account using the `state-root-hash` of the block containing the transfer and the public key of the _Target_ account.
+A transfer is executed as part of a deploy. In a Casper network, deploys can contain multiple transfers. Execution of the deploy includes writing information about each individual transfer to global state. A unique hash known as the `transfer-address` identifies each transfer. The `transfer-address` consists of a formatted string with a `transfer-` prefix.
+
+<p align="center">
+<img src={"/image/transfers/transfer-hash-example.png"} alt="Image showing a transfer hash"/>
+</p>
+
+First, use the `get-deploy` command and the *deploy_hash* to identify the corresponding transfer:
+
+```bash
+casper-client get-deploy \
+--node-address [NODE_SERVER_ADDRESS]  \
+[DEPLOY_HASH]
+```
+
+**Important response fields:**
+
+-   `"result"."execution_results"."result"."Success"."transfers"` - List of transfers contained in a successful deploy
+
+After obtaining the transfer identifier, query the transfer details.
 
 ```bash
 casper-client query-global-state \
---id 4 \
---node-address http://<node-ip-address>:7777 \
---state-root-hash <state-root-hash> \
---key <hex-encoded-source-account-public-key>
+--id [ID] \
+--node-address [NODE_SERVER_ADDRESS]  \
+--state-root-hash [STATE_ROOT_HASH] \
+--key [TRANSFER_HASH]
+```
+
+**Request fields:**
+
+-   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
+-   `node-address` - An IP address of a node on the network
+-   `state-root-hash` - The hex-encoded hash of the state root
+-   `key` - The base key for the query. This must be a properly formatted transfer address with a `transfer-` prefix, i.e., `transfer-ab3e11fd612ccf9ddf5ddb3e5c0b3d3b5e5c0921fd1b45e8c657a63f01d6adcb`
+
+The `-v` option generates verbose output, printing the RPC request and response generated. Let's explore an example below.
+
+**Example Query:**
+
+```bash
+casper-client query-global-state -v \
+--id 3 \
+--node-address https://rpc.testnet.casperlabs.io/  \
+--state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
+--key transfer-ab3e11fd612ccf9ddf5ddb3e5c0b3d3b5e5c0921fd1b45e8c657a63f01d6adcb
+```
+
+<details>
+<summary>Explore the JSON-RPC request and response generated.</summary>
+
+**JSON-RPC Request**:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "query_global_state",
+  "params": {
+    "state_identifier": {
+      "StateRootHash": "fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1"
+    },
+    "key": "transfer-ab3e11fd612ccf9ddf5ddb3e5c0b3d3b5e5c0921fd1b45e8c657a63f01d6adcb",
+    "path": []
+  },
+  "id": 3
+}
+```
+
+**JSON-RPC Response**:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.3",
+    "block_header": null,
+    "stored_value": {
+      "Transfer": {
+        "deploy_hash": "4eedbb5cf4a571748cf7ae9c2f17777364a01f80f79f3633a0cec32b7e8cf2e3",
+        "from": "account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655",
+        "to": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7",
+        "source": "uref-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1-007",
+        "target": "uref-8294864177c2c1ec887a11dae095e487b5256ce6bd2a1f2740d0e4f28bd3251c-004",
+        "amount": "5000000000",
+        "gas": "0",
+        "id": 11102023
+      }
+    },
+    "merkle_proof": "[42526 hex chars]"
+  },
+  "id": 3
+}
+```
+
+</details>
+
+The query responds with more information about the transfer: its deploy hash, the account which executed the transfer, the source and target purses, and the target account. You can verify that the transfer processed successfully using this additional information.
+
+## Query the Account State {#query-account-state}
+
+Next, query for information about the _Source_ account, using the `state-root-hash` of the block containing the transfer:
+
+```bash
+casper-client query-global-state \
+--id [ID] \
+--node-address [NODE_SERVER_ADDRESS] \
+--state-root-hash [STATE_ROOT_HASH] \
+--key [SOURCE_PUBLIC_KEY]
 ```
 
 **Request fields:**
@@ -39,12 +159,22 @@ casper-client query-global-state \
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
 -   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the network state
--   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash, or deploy-info hash.
+-   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash, or deploy-info hash
 
 **Important response fields:**
 
 -   `"result"."stored_value"."Account"."main_purse"` - the address of the main purse containing the sender's tokens. In this example, this purse is the source of the tokens transferred
 
+**Source Account Query:**
+
+```bash
+casper-client query-global-state -v \
+--id 4 \
+--node-address https://rpc.testnet.casperlabs.io/  \
+--state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
+--key 0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf
+```
+
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
 
@@ -52,14 +182,16 @@ casper-client query-global-state \
 
 ```json
 {
-    "id": 4,
-    "jsonrpc": "2.0",
-    "method": "state_get_item",
-    "params": {
-        "key": "account-hash-b0049301811f23aab30260da66927f96bfae7b99a66eb2727da23bf1427a38f5",
-        "path": [],
-        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
-    }
+  "jsonrpc": "2.0",
+  "method": "query_global_state",
+  "params": {
+    "state_identifier": {
+      "StateRootHash": "fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1"
+    },
+    "key": "account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655",
+    "path": []
+  },
+  "id": 4
 }
 ```
 
@@ -67,52 +199,46 @@ casper-client query-global-state \
 
 ```json
 {
-    "id": 4,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "merkle_proof": "2228 chars",
-        "stored_value": {
-            "Account": {
-                "account_hash": "account-hash-b0049301811f23aab30260da66927f96bfae7b99a66eb2727da23bf1427a38f5",
-                "action_thresholds": {
-                    "deployment": 1,
-                    "key_management": 1
-                },
-                "associated_keys": [
-                    {
-                        "account_hash": "account-hash-b0049301811f23aab30260da66927f96bfae7b99a66eb2727da23bf1427a38f5",
-                        "weight": 1
-                    }
-                ],
-                "main_purse": "uref-9e90f4bbd8f581816e305eb7ea2250ca84c96e43e8735e6aca133e7563c6f527-007",
-                "named_keys": []
-            }
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.3",
+    "block_header": null,
+    "stored_value": {
+      "Account": {
+        "account_hash": "account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655",
+        "named_keys": [...],
+        "main_purse": "uref-11e6fc5354f61a004df98482376c45964b8b1557e8f2f13fb5f3adab5faa8be1-007",
+        "associated_keys": [
+          {
+            "account_hash": "account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655",
+            "weight": 1
+          }
+        ],
+        "action_thresholds": {
+          "deployment": 1,
+          "key_management": 1
         }
-    }
+      }
+    },
+    "merkle_proof": "[31406 hex chars]"
+  },
+  "id": 4
 }
 ```
 
 </details>
 
-## Query the Target Account {#query-the-target-account}
+**Target Account Query:**
 
-We will repeat the previous step to query information about the _Target_ account.
+Repeat the same step to query information about the _Target_ account:
 
 ```bash
-casper-client query-global-state \
+casper-client query-global-state -v \
 --id 5 \
---node-address http://<node-ip-address>:7777 \
---state-root-hash <state-root-hash> \
---key <hex-encoded-target-account-public-key>
+--node-address https://rpc.testnet.casperlabs.io/  \
+--state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
+--key 01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986
 ```
-
-**Request fields:**
-
--   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - An IP address of a node on the network
--   `state-root-hash` - Hex-encoded hash of the state root
--   `key` - The base key for the query. This must be a properly formatted public key, account hash, contract address hash, URef, transfer hash, or deploy-info hash.
 
 <details>
 <summary>Explore the JSON-RPC request and response generated.</summary>
@@ -121,14 +247,16 @@ casper-client query-global-state \
 
 ```json
 {
-    "id": 5,
-    "jsonrpc": "2.0",
-    "method": "state_get_item",
-    "params": {
-        "key": "account-hash-8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668",
-        "path": [],
-        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
-    }
+  "jsonrpc": "2.0",
+  "method": "query_global_state",
+  "params": {
+    "state_identifier": {
+      "StateRootHash": "fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1"
+    },
+    "key": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7",
+    "path": []
+  },
+  "id": 5
 }
 ```
 
@@ -136,46 +264,46 @@ casper-client query-global-state \
 
 ```json
 {
-    "id": 5,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "merkle_proof": "2228 chars",
-        "stored_value": {
-            "Account": {
-                "account_hash": "account-hash-8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668",
-                "action_thresholds": {
-                    "deployment": 1,
-                    "key_management": 1
-                },
-                "associated_keys": [
-                    {
-                        "account_hash": "account-hash-8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668",
-                        "weight": 1
-                    }
-                ],
-                "main_purse": "uref-6f4026262a505d5e1b0e03b1e3b7ab74a927f8f2868120cf1463813c19acb71e-007",
-                "named_keys": []
-            }
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.3",
+    "block_header": null,
+    "stored_value": {
+      "Account": {
+        "account_hash": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7",
+        "named_keys": [...],
+        "main_purse": "uref-8294864177c2c1ec887a11dae095e487b5256ce6bd2a1f2740d0e4f28bd3251c-007",
+        "associated_keys": [...],
+        "action_thresholds": {
+          "deployment": 2,
+          "key_management": 3
         }
-    }
+      }
+    },
+    "merkle_proof": "[32060 hex chars]"
+  },
+  "id": 5
 }
 ```
 
 </details>
 
-## Get Source Purse Balance {#get-source-account-balance}
+## Query the Purse Balance {#get-purse-balance}
 
-All accounts on a Casper network have a purse associated with the Casper system mint, which we call the _main purse_. The balance associated with a given purse is recorded in global state, and the value can be queried using the `URef` associated with the purse.
-
-Now that we have the source purse address, we can verify its balance using the `get-balance` command:
+All accounts on a Casper network have a purse associated with the Casper system mint, which is the _main purse_. The balance associated with a given purse is recorded in global state, and the value can be queried using the `query-balance` command and the purse identifier, which can be a public key or account hash, implying the main purse of the given account should be used. Alternatively, the purse's URef can be used. For full details, run the following help command:
 
 ```bash
-casper-client get-balance \
-      --id 6 \
-      --node-address http://<node-ip-address>:7777 \
-      --state-root-hash <state-root-hash> \
-      --purse-uref <source-account-purse-uref>
+casper-client query-balance --help
+```
+
+Verify the source purse balance using the `query-balance` command:
+
+```bash
+casper-client query-balance \
+--id 6 \
+--node-address [NODE_SERVER_ADDRESS] \
+--state-root-hash [STATE_ROOT_HAHS] \
+--purse-identifier [SOURCE_PUBLIC_KEY_HEX] 
 ```
 
 **Request fields:**
@@ -183,22 +311,35 @@ casper-client get-balance \
 -   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
 -   `node-address` - An IP address of a node on the network
 -   `state-root-hash` - Hex-encoded hash of the state root
--   `purse-uref` - The URef under which the purse is stored. This must be a properly formatted URef "uref-\-"
+-   `purse-identifier` - A public key or account hash, implying the main purse of the given account should be used. Alternatively, the purse's URef
+
+**Query Source Account Example:**
+
+```bash
+casper-client query-balance -v --id 6 \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
+--purse-identifier account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655
+```
 
 <details>
-<summary>Explore the JSON-RPC request and response generated.</summary>
+<summary>Explore the sample JSON-RPC request and response generated.</summary>
 
 **JSON-RPC Request**:
 
 ```json
 {
-    "id": 6,
-    "jsonrpc": "2.0",
-    "method": "state_get_balance",
-    "params": {
-        "purse_uref": "uref-6f4026262a505d5e1b0e03b1e3b7ab74a927f8f2868120cf1463813c19acb71e-007",
-        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
+  "jsonrpc": "2.0",
+  "method": "query_balance",
+  "params": {
+    "state_identifier": {
+      "StateRootHash": "fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1"
+    },
+    "purse_identifier": {
+      "main_purse_under_account_hash": "account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655"
     }
+  },
+  "id": 6
 }
 ```
 
@@ -206,106 +347,54 @@ casper-client get-balance \
 
 ```json
 {
-    "id": 6,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "balance_value": "5000000000",
-        "merkle_proof": "2502 chars"
-    }
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.3",
+    "balance": "1109111876194"
+  },
+  "id": 6
 }
 ```
 
 </details>
 
-## Get Target Purse Balance {#get-target-account-balance}
-
-Similarly, now that we have the address of the target purse, we can get its balance.
+Similarly, query the balance of the target purse.
 
 ```bash    
 casper-client get-balance \
 --id 7 \
---node-address http://<node-ip-address>:7777 \
---state-root-hash <state-root-hash> \
---purse-uref <target-account-purse-uref>
+--node-address [NODE_SERVER_ADDRESS] \
+--state-root-hash [STATE_ROOT_HAHS] \
+--purse-identifier [TARGET_PUBLIC_KEY_HEX] 
 ```
 
-**Request fields:**
-
--   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - An IP address of a node on the network
--   `state-root-hash` - Hex-encoded hash of the state root
--   `purse-uref` - The URef under which the purse is stored. This must be a properly formatted URef "uref-\-"
-
-<details>
-<summary>Explore the JSON-RPC request and response generated.</summary>
-
-**JSON-RPC Request**:
-
-```json
-{
-    "id": 7,
-    "jsonrpc": "2.0",
-    "method": "state_get_balance",
-    "params": {
-        "purse_uref": "uref-6f4026262a505d5e1b0e03b1e3b7ab74a927f8f2868120cf1463813c19acb71e-007",
-        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
-    }
-}
-```
-
-**JSON-RPC Response**:
-
-```json
-{
-    "id": 7,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "balance_value": "5000000000",
-        "merkle_proof": "2502 chars"
-    }
-}
-```
-
-</details>
-
-## Query Transfer Details {#query-transfer-details}
-
-Deploys in a Casper network can contain multiple transfers. When such a deploy is executed, the information about each individual transfer is written to the global state. Each transfer can be uniquely identified by a hash known as the `transfer-address`, a formatted string with a `transfer-` prefix.
-
-We will use the `transfer-` to query more details about the transfer.
+**Target Account Example:**
 
 ```bash
-casper-client query-global-state \
---id 8 \
---node-address http://<node-ip-address>:7777 \
---state-root-hash <state-root-hash> \
---key transfer-
+casper-client query-balance -v --id 7 \
+--node-address https://rpc.testnet.casperlabs.io/ \
+--state-root-hash fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1 \
+--purse-identifier account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7
 ```
 
-**Request fields:**
-
--   `id` - Optional JSON-RPC identifier applied to the request and returned in the response. If not provided, a random integer will be assigned
--   `node-address` - An IP address of a node on the network
--   `state-root-hash` - Hex-encoded hash of the state root
--   `key` - The base key for the query. This must be a properly formatted transfer address; "transfer-"
-
 <details>
-<summary>Explore the JSON-RPC request and response generated.</summary>
+<summary>Explore the sample JSON-RPC request and response generated.</summary>
 
 **JSON-RPC Request**:
 
 ```json
 {
-    "id": 8,
-    "jsonrpc": "2.0",
-    "method": "state_get_item",
-    "params": {
-        "key": "transfer-8d81f4a1411d9481aed9c68cd700c39d870757b0236987bb6b7c2a7d72049c0e",
-        "path": [],
-        "state_root_hash": "cfdbf775b6671de3787cfb1f62f0c5319605a7c1711d6ece4660b37e57e81aa3"
+  "jsonrpc": "2.0",
+  "method": "query_balance",
+  "params": {
+    "state_identifier": {
+      "StateRootHash": "fdb1474d441ec0fcbf2e088f1630dbf98d3bcf7f7a7fe298303797f35b8cb4e1"
+    },
+    "purse_identifier": {
+      "main_purse_under_account_hash": "account-hash-1ed5a1c39bea93c105f2d22c965a84b205b36734a377d05dbb103b6bfaa595a7"
     }
+  },
+  "id": 7
 }
 ```
 
@@ -313,27 +402,13 @@ casper-client query-global-state \
 
 ```json
 {
-    "id": 8,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.0.0",
-        "merkle_proof": "924 chars",
-        "stored_value": {
-            "Transfer": {
-                "amount": "2500000000",
-                "deploy_hash": "ec2d477a532e00b08cfa9447b7841a645a27d34ee12ec55318263617e5740713",
-                "from": "account-hash-b0049301811f23aab30260da66927f96bfae7b99a66eb2727da23bf1427a38f5",
-                "gas": "0",
-                "id": null,
-                "source": "uref-9e90f4bbd8f581816e305eb7ea2250ca84c96e43e8735e6aca133e7563c6f527-007",
-                "target": "uref-6f4026262a505d5e1b0e03b1e3b7ab74a927f8f2868120cf1463813c19acb71e-004",
-                "to": "account-hash-8ae68a6902ff3c029cea32bb67ae76b25d26329219e4c9ceb676745981fd3668"
-            }
-        }
-    }
+  "jsonrpc": "2.0",
+  "result": {
+    "api_version": "1.5.3",
+    "balance": "46200000000"
+  },
+  "id": 7
 }
 ```
 
 </details>
-
-The query responds with more information about the transfer we conducted: its deploy hash, the account which executed the transfer, the source and target purses, and the target account. We can verify that our transfer was processed successfully using this additional information.

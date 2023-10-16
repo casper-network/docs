@@ -1,6 +1,10 @@
+---
+title: Consensus
+---
+
 # Consensus Economics
 
-Highway consensus is a continuous, trust-less process where a fixed set of validators engage in scheduled communication to advance the linear chain of finalized blocks, representing the history of changes to the global state of the blockchain. The fixed set of validators may change at each era boundary. The economics of this layer revolve around validator selection and incentivization of participation according to the schedule.
+[Highway consensus](../design/highway.md) is a continuous, trust-less process where a fixed set of validators engage in scheduled communication to advance the linear chain of finalized blocks, representing the history of changes to the global state of the blockchain. The fixed set of validators may change at each era boundary. The economics of this layer revolve around validator selection and incentivization of participation according to the schedule.
 
 ## Entry {#entry}
 
@@ -19,7 +23,7 @@ Each bid contains a delegation rate and activity status. The delegation rate can
 
 Delegation allows third parties to participate in consensus by adding weight to their preferred validators. Rewards received by validators are distributed in proportion to tokens bid and delegated. The current or prospective validator responsible for the bid receives a portion of the delegator rewards set by the delegation rate.
 
-Currently, delegation is unrestricted. Please visit [Delegation details](./delegation.md) page to check more about delegation cost and related details.
+Currently, delegation is unrestricted. Please visit [Delegation details](./staking/delegation.md) page to check more about delegation cost and related details.
 
 ## Incentives {#incentives}
 

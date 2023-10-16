@@ -1,6 +1,9 @@
-# Reading and Writing to Dictionaries
+---
+title: Dictionaries
+---
+# Understanding Dictionaries {#dictionaries}
 
-In a Casper network, you can now store sets of data under [`Keys`](./understanding-hash-types.md#hash-and-key-explanations). Previously, URefs were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within an `Account` or `Contract` context. In the case of Contracts, sustained and continuous use of URefs would result in the expansion of the associated `NamedKeys` structures.
+In a Casper network, you can now store sets of data under [`Keys`](./hash-types.md#hash-and-key-explanations). Previously, [URefs](./glossary/U.md#uref) were the exclusive means by which users could store data in global state. To maintain persistent access to these URefs, they would have to be stored within an `Account` or `Contract` context. In the case of Contracts, sustained and continuous use of URefs would result in the expansion of the associated [NamedKeys](./glossary/N.md#namedkeys) structures.
 
 Individual value changes to data stored within the NamedKeys would require deserializing the entire NamedKeys data structure, increasing gas costs over time and thus having a negative impact. Additionally, users storing large subsets of mapped data structures would face the same deep copy problem where minor or single updates required the complete deserialization of the map structure, also leading to increased gas costs.
 
@@ -10,13 +13,13 @@ In almost all cases, dictionaries are the better form of data storage. They allo
 
 ## Seed URefs
 
-Items within a dictionary exist as individual records stored underneath their unique [dictionary address](./understanding-hash-types.md#hash-and-key-explanations) in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](./design/casper-design.md#uref-head) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
+Items within a dictionary exist as individual records stored underneath their unique [dictionary address](./hash-types.md#hash-and-key-explanations) in global state. In other words, items associated with a specific dictionary share the same seed [`URef`](./design/casper-design.md#uref-head) but are otherwise independent of each other. Dictionary items are not stored beneath this URef, it is only used to create the dictionary key.
 
 As each dictionary item exists as a stand-alone entity in global state, regularly used dictionary keys may be used directly without referencing their seed URef.
 
-## Understanding Dictionaries
+## Using Dictionaries
 
-Dictionaries are ideal for storing larger volumes of data for which `NamedKeys` would be less suitable.  
+Dictionaries are ideal for storing larger volumes of data for which `NamedKeys` would be less suitable.
 
 Creating a new dictionary is fairly simple and done within the context of a `Deploy` sent to a Casper network. The associated code is included within the [`casper_contract`](https://docs.rs/casper-contract/latest/casper_contract/) crate. Creating a dictionary also stores the associated seed URef within the named keys of the current context.
 
@@ -89,7 +92,7 @@ fn update_ledger_record(dictionary_item_key: String) {
 
 ```
 
-The second section uses [`dictionary_get`](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/storage/fn.dictionary_get.html) to read an entry within the `LEDGER` dictionary. If the entry does not exist on global state, it will create the entry. If it already exists, the entry is updated with the current value using a [`dictionary_put`](https://docs.rs/casper-contract/1.4.4/casper_contract/contract_api/storage/fn.dictionary_put.html) operation. As stated above, regardless of the size of the change within the entry, the entire dictionary entry will need to be overwritten and will incur the associated cost.
+The second section uses [`dictionary_get`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.dictionary_get.html) to read an entry within the `LEDGER` dictionary. If the entry does not exist on global state, it will create the entry. If it already exists, the entry is updated with the current value using a [`dictionary_put`](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.dictionary_put.html) operation. As stated above, regardless of the size of the change within the entry, the entire dictionary entry will need to be overwritten and will incur the associated cost.
 
 ```rust
 

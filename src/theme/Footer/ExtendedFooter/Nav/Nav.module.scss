@@ -1,0 +1,80 @@
+@use "../../../../assets/scss/variables/media-queries";
+@import "../../../../assets/scss/mixins";
+
+.nav {
+    position: relative;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 45px;
+    padding-top: 45px;
+
+    &_category {
+        //Not using "&_title" this time because a specificity problem with a global class (primaryParagraph).
+        .nav_category_title {
+            color: #b5b5b5;
+        }
+        &_links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+
+            a:link {
+                text-decoration: none;
+                color: var(--casperWhite);
+                font-weight: 500;
+                line-height: 24px;
+            }
+
+            a:visited {
+                color: var(--casperWhite);
+            }
+
+            a:hover {
+                @include transition(0.3s all);
+                color: var(--casperRed) !important;
+            }
+
+            a:not(:hover) {
+                transition: none;
+            }
+        }
+    }
+
+    .logoCasper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+}
+
+@media #{media-queries.$break-md} {
+    .nav {
+        justify-content: flex-start;
+        flex-direction: column;
+        padding-top: 30px;
+        gap: 29px;
+    }
+}
+@media #{media-queries.$break-sm} {
+    .nav {
+        justify-content: flex-start;
+        flex-direction: column;
+        padding-top: 30px;
+        gap: 29px;
+        width: 100%;
+        .logoCasper {
+            display: block;
+            margin-top: 14px;
+            &_logo {
+                min-width: 168px;
+            }
+        }
+    }
+}

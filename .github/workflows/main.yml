@@ -1,7 +1,8 @@
 name: Docusaurus CICD
 
 env:
-  prod_pages_fqdn: ${{ secrets.PROD_PAGES_FQDN }}
+  prod_pages_fqdn: ${{ vars.PROD_PAGES_FQDN }}
+  selected_node_version: 16.14
 
 on:
   push:
@@ -27,8 +28,81 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      selected_node_version: 16.14
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ env.selected_node_version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.selected_node_version }}
+          cache: yarn
+
+      - name: Template credentials - production
+        if: github.ref == 'refs/heads/dev'
+        uses: cuchi/jinja2-action@1149b92d9ea6db61d7f71c22e3d5028d8065f140
+        with:
+          template: .github/templates/.env.production.j2
+          output_file: .env.production
+        env:
+          ALGOLIA_APP_ID: ${{ vars.ALGOLIA_APP_ID }}
+          ALGOLIA_INDEX_NAME: ${{ vars.ALGOLIA_INDEX_NAME }}
+          ALGOLIA_API_KEY: ${{ vars.ALGOLIA_API_KEY }}
+          CROWDIN_PERSONAL_ACCESS_TOKEN: ""
+          GOOGLE_TAG_ANONYMIZE_IP: ${{ vars.GOOGLE_TAG_ANONYMIZE_IP }}
+          GOOGLE_TAG_TRACKING_ID: ${{ vars.GOOGLE_TAG_TRACKING_ID }}
+          GOOGLE_TAG_MANAGER_ID: ${{ vars.GOOGLE_TAG_MANAGER_ID }}
+          DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
+          DIRECTUS_GRAPHQL_URL: ${{ secrets.DIRECTUS_GRAPHQL_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          ALGOLIA_SITE_APP_ID: ${{ vars.ALGOLIA_SITE_APP_ID }}
+          ALGOLIA_SITE_API_KEY: ${{ vars.ALGOLIA_SITE_API_KEY }}
+          ALGOLIA_SITE_INDEX_NAME: ${{ vars.ALGOLIA_SITE_INDEX_NAME }}
+          BASE_URL: ${{ vars.BASE_URL }}
+
+      - name: Template credentials - preview
+        if: github.event_name == 'pull_request'
+        uses: cuchi/jinja2-action@1149b92d9ea6db61d7f71c22e3d5028d8065f140
+        with:
+          template: .github/templates/.env.production.j2
+          output_file: .env.production
+        env:
+          DIRECTUS_URL: ${{ secrets.PREVIEW_DIRECTUS_URL }}
+          DIRECTUS_GRAPHQL_URL: ${{ secrets.PREVIEW_DIRECTUS_GRAPHQL_URL }}
+          DIRECTUS_TOKEN: ${{ secrets.PREVIEW_DIRECTUS_TOKEN }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          BASE_URL: ${{ vars.BASE_URL }}
+
+      - name: Yarn install
+        run: |
+          yarn install
+
+      - name: Run code analysis
+        run: |
+          yarn format
+
+      - name: Clear Docusaurus cache
+        run: |
+          yarn clear
+
+      - name: Build app
+        run: |
+          yarn build --out-dir ./docs
+        env:
+          NODE_ENV: production
+
+      - name: Add CNAME file to the build output payload to keep the custom domain settings of GitHub Pages enabled
+        run: |
+          echo "$prod_pages_fqdn" > ./docs/CNAME
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: gh-pages-depl-payload
+          path: ./docs
+
+  validate-external-links:
+    needs: build
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -39,44 +113,13 @@ jobs:
           node-version: ${{ env.selected_node_version }}
           cache: yarn
 
-      - name: Template credentials
-        if: github.ref == 'refs/heads/main'
-        uses: cuchi/jinja2-action@1149b92d9ea6db61d7f71c22e3d5028d8065f140
-        with:
-          template: .github/templates/.env.production.j2
-          output_file: .env.production
-        env:
-          ALGOLIA_INDEX_NAME: ${{ secrets.ALGOLIA_INDEX_NAME }}
-          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-          CROWDIN_PERSONAL_ACCESS_TOKEN: ""
-          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
-          GOOGLE_ANALYTICS_ANONYMIZE_IP: ${{ secrets.GOOGLE_ANALYTICS_ANONYMIZE_IP }}
-          GOOGLE_TAG_TRACKING_ID: ${{ secrets.GOOGLE_TAG_TRACKING_ID }}
-
       - name: Yarn install
         run: |
           yarn install
 
-      - name: Run code analysis
-        run: |
-          yarn format
-
       - name: Validate external links
         run: |
           yarn check:externals
-
-      - name: Build app
-        run: |
-          yarn build --out-dir ./docs
-
-      - name: Add CNAME file to the build output payload to keep the custom domain settings of GitHub Pages enabled
-        run: |
-          echo "$prod_pages_fqdn" > ./docs/CNAME
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: gh-pages-depl-payload
-          path: ./docs
 
   system-tests-predeployment:
     needs: build
@@ -133,8 +176,34 @@ jobs:
         curl --fail http://127.0.0.1:4000/concepts/serialization-standard/
       working-directory: ./docs
 
+  deploy-preview:
+    if: github.event_name == 'pull_request'
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/download-artifact@master
+      with:
+        name: gh-pages-depl-payload
+        path: ./docs
+
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v2.1
+      with:
+        publish-dir: 'docs'
+        production-deploy: false
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: ${{ github.event.pull_request.title }}
+        enable-pull-request-comment: true
+        enable-commit-comment: false
+        enable-github-deployment: false
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.PREVIEW_NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.PREVIEW_NETLIFY_SITE_ID }}
+      timeout-minutes: 1
+
   deploy-prod:
-    if: github.ref == 'refs/heads/dev'
+    if: ${{ github.ref == 'refs/heads/dev' && github.repository == 'casper-network/docs' }}
     needs: [backup, system-tests-predeployment]
     runs-on: ubuntu-latest
 
@@ -188,5 +257,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./docs
-
-

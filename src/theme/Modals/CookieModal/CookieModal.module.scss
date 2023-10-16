@@ -1,0 +1,154 @@
+@use "../../../assets/scss/mixins";
+
+.modal {
+    position: fixed;
+    z-index: 50000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+
+    .notice,
+    .content {
+        background-color: var(--black);
+        color: var(--casperWhite);
+        top: 50%;
+        transform: translateY(-50%);
+        position: relative;
+        margin: auto;
+        width: 45vw;
+        max-width: 632px;
+        min-width: 380px;
+        height: auto;
+        max-height: calc(100vh - 160px);
+        outline: 1px solid var(--casperWhite);
+        transition: all 0.65s ease-in-out;
+        padding: 24px 32px;
+        box-shadow: 0 4px 8px var(--black);
+        overflow-y: auto;
+        @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+
+        h2 {
+            color: var(--casperWhite);
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--casperWhite);
+            font-weight: 300;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        .buttons_container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 24px;
+            gap: 16px;
+
+            button {
+                background-color: var(--casperWhite);
+                border: 2px solid var(--casperWhite);
+                color: var(--black);
+                padding: 8px 16px;
+                cursor: pointer;
+                font-weight: 500;
+                font-size: 1rem;
+                @include mixins.transition(0.3s all);
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+
+            .btn_manage {
+                background-color: var(--black);
+                border: 2px solid var(--casperWhite);
+                color: var(--casperWhite);
+            }
+        }
+    }
+}
+
+.content {
+    &_text {
+        p {
+            margin: 0;
+        }
+    }
+
+    &_items {
+        margin-bottom: 48px;
+        padding-top: 24px;
+
+        .item {
+            position: relative;
+            border-top: 1px solid var(--primaryBtn-disabled);
+            margin-bottom: 24px;
+            font-weight: 300;
+            padding-top: 24px;
+
+            .item_text {
+                padding-right: 24px;
+            }
+
+            .input_container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .cookieInput {
+                display: none;
+            }
+
+            .cookieCheckbox {
+                width: 20px;
+                height: 20px;
+                border: 2px solid var(--casperYellow);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                padding: 3px;
+                transition: 0.3s all;
+            }
+            .cookieCheckbox svg {
+                width: 20px;
+                height: 20px;
+            }
+            .cookieInput:checked + .cookieCheckbox {
+                background: var(--liftedBlack);
+                border: 2px solid var(--casperYellow);
+            }
+            .cookieInput:checked + .cookieCheckbox svg path {
+                stroke-dasharray: 500;
+                stroke-dashoffset: 500;
+                stroke: #fff;
+                stroke-width: 3;
+                animation: check 4s forwards;
+            }
+
+            .cookieInput:checked + .cookieCheckboxDisabled {
+                background: var(--primaryBtn-disabled);
+                border: 2px solid var(--primaryBtn-disabled);
+                cursor: default;
+            }
+
+            @keyframes check {
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}

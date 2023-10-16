@@ -9,6 +9,8 @@ Our smart contract packaging tools enable you to:
 -   Version your contracts and deprecate old versions
 -   Set permissions around who can perform contract upgrades
 
+## The Contract Package
+
 When you upgrade a contract, you add a new contract version in a contract package. The versioning process is additive rather than an in-place replacement of an existing contract. The original version of the contract is still there, and you can enable certain versions for specific clients. You can also disable a contract version if needed.
 
 <p align="center"><img src={useBaseUrl("/image/package-representation.png")} alt="package-representation" width="400"/></p>
@@ -23,7 +25,7 @@ To learn more about versioning contracts, consult the following video, which bui
 <iframe width="400" height="225" src="https://www.youtube.com/embed?v=sUg0nh3K3iQ&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=10" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
-Or, for a different perspective, consult the [Smart Contract Upgrade Tutorial](../../resources/tutorials/beginner/upgrade-contract.md).
+Or, for a different perspective, consult the [Smart Contract Upgrade Tutorial](../../resources/beginner/upgrade-contract.md).
 
 ## Maintaining a Contract
 The contract maintenance process is generally covered through the contract upgrade process.

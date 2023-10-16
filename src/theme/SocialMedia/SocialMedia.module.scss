@@ -1,0 +1,57 @@
+@import "../../assets/scss/mixins";
+
+.social_icons {
+    min-width: 160px;
+
+    .social_icons_container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: var(--socialMediaLogos);
+
+        .icon {
+            width: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            > a {
+                svg {
+                    max-width: 32px;
+                    max-height: 24px;
+                    path {
+                        @include transition(0.3s all);
+                        fill: var(--primaryBtn-hover);
+                    }
+                }
+
+                &:not(:hover) {
+                    svg {
+                        path {
+                            transition: none;
+                        }
+                    }
+                }
+                &:hover {
+                    svg {
+                        path {
+                            fill: var(--casperRed) !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .social_icons {
+        min-width: 50%;
+
+        .social_icons_container {
+            justify-content: flex-start;
+        }
+    }
+}

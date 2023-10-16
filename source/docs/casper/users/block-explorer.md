@@ -1,6 +1,17 @@
-# Block Explorers on Casper Network
+---
+title: Block Explorers
+---
 
-The Casper blockchain is available as the Mainnet and Testnet. The Mainnet is the Casper blockchain that utilizes Casper tokens (CSPR). The Testnet is an alternate Casper blockchain used to test applications without spending CSPR tokens on the Casper Mainnet. You can use block explorers such as [cspr.live](https://cspr.live/) and [Casper.info](https://casper-trench.vercel.app/) to explore the Casper blockchain.
+# Block Explorers
+
+The Casper blockchain is available as the Mainnet and Testnet.
+The Mainnet is the Casper blockchain that utilizes Casper tokens (CSPR).
+The Testnet is an alternate Casper blockchain used to test applications without spending CSPR tokens on the Casper Mainnet.
+
+You can use block explorers to explore the Casper blockchain such as : 
+- [cspr.live](https://cspr.live/)
+- [Casper.info](https://casper-trench.vercel.app/)
+- [Div3.in](https://div3.in)
 
 ## What is a Block Explorer
 
@@ -12,13 +23,13 @@ You can use a block explorer to view the blockchain statistics, list of validato
 
 The following topics link you to detailed instructions on using the [cspr.live](https://cspr.live/) block explorer to access and work with your CSPR tokens.
 
-- Learn how to access your Casper account using the [Signer guide](https://docs.cspr.community/docs/user-guides/SignerGuide.html)
-- Understand the process of [Transferring Tokens using a Block Explorer](./token-transfer.md)
-- Explore the concepts and the process of [Delegating](./delegate-ui.md) and [Undelegating](./undelegate-ui.md) CSPR tokens
+- Learn how to access your Casper account using the [Casper Wallet](https://www.casperwallet.io/)
+- Understand the process of [Transferring Tokens using a Block Explorer](./csprlive/token-transfer.md)
+- Explore the concepts and the process of [Delegating](./csprlive/delegate-ui.md) and [Undelegating](./csprlive/undelegate-ui.md) CSPR tokens
 
 :::note
 
-To perform actions using the [cspr.live](https://cspr.live/) block explorer, you must sign in to your Casper account using the Casper Signer.
+To perform actions using the [cspr.live](https://cspr.live/) block explorer, you must sign in to your Casper account using one of the wallets provided.
 
 :::
 

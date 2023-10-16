@@ -2,7 +2,7 @@
 
 We provide a custom implementation to serialize data structures used by the Casper node to their byte representation. This document details how this custom serialization is implemented, allowing developers to build a library that implements the custom serialization.
 
-(In your own smart contracts you can implement serialization using cltype-any)
+In your smart contracts, you can implement serialization using `cltype-any`.
 
 ## Account {#serialization-standard-account}
 
@@ -44,7 +44,7 @@ The first era to which the associated protocol version applies. It serializes as
 
 A struct containing a signature and the public key of the signer.
 
--   `signature` The approval signature, which serializes as the byte representation of the [`Signature`](#signature). The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
+-   `signature` The approval signature, which serializes as the byte representation of the [`Signature`](#signature). The first byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
 
 -   `signer` The public key of the approvals signer. It serializes to the byte representation of the [`PublicKey`](#clvalue-publickey). If the `PublicKey` is an `Ed25519` key, then the first byte within the serialized buffer is 1 followed by the bytes of the key itself; else, in the case of `Secp256k1`, the first byte is 2.
 
@@ -112,8 +112,8 @@ The header portion of a block, structurally, is defined as follows:
 -   `body_hash`: the hash of the block body. It serializes to the byte representation of the body hash. The serialized buffer of the `body_hash` is 32 bytes long.
 -   `random_bit`: is a boolean needed for initializing a future era. It is serialized as a single byte; true maps to 1, while false maps to 0.
 -   `accumulated_seed`: A seed needed for initializing a future era. It serializes to the byte representation of the parent Hash. The serialized buffer of the `accumulated_hash` is 32 bytes long.
--   `era_end`: contains equivocation and reward information to be included in the terminal finalized block. It is an optional field. Thus if the field is set as `None`, it serializes to _0_. The serialization of the other case is described in the EraEnd .
--   `timestamp`: The timestamp from when the block was proposed. It serializes as a single `u64` value. The serialization of a `u64` value is described in in the CLValues section.
+-   `era_end`: contains equivocation and reward information to be included in the terminal finalized block. It is an optional field. Thus if the field is set as `None`, it serializes to _0_. The serialization of the other case is described in the EraEnd.
+-   `timestamp`: The timestamp from when the block was proposed. It serializes as a single `u64` value. The serialization of a `u64` value is described in the CLValues section.
 -   `era_id`: Era ID in which this block was created. It serializes as a single `u64` value.
 -   `height`: The height of this block, i.e., the number of ancestors. It serializes as a single `u64` value.
 -   `protocol_version`: The version of the Casper network when this block was proposed. It is 3-element tuple containing `u32` values. It serializes as a buffer containing the three `u32` serialized values. Refer to the CLValues section on how `u32` values are serialized.
@@ -283,7 +283,7 @@ Payment and Session are both defined as `ExecutableDeployItems`. More informatio
 Approval contains two fields:
 
 -   `signer`: The public key of the approvals signer. It serializes to the byte representation of the `PublicKey`. If the `PublicKey` is an `Ed25519` key, then the first byte within the serialized buffer is 1 followed by the bytes of the key itself; else, in the case of `Secp256k1`, the first byte is 2.
--   `signature`: The approval signature, which serializes as the byte representation of the `Signature`. The fist byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
+-   `signature`: The approval signature, which serializes as the byte representation of the `Signature`. The first byte within the signature is 1 in the case of an `Ed25519` signature or 2 in the case of `Secp256k1`.
 
 ## DeployInfo {#deployinfo}
 
@@ -301,7 +301,7 @@ Information relating to a given deploy. The structure consists of the following 
 
 ## Digest {#digest}
 
-A `blake2b` hash digest. The digest serializes as as a byte representation of the hash itself.
+A `blake2b` hash digest. The digest serializes as a byte representation of the hash itself.
 
 ## DisabledVersions {#disabledversions}
 
@@ -598,7 +598,7 @@ A purse used for unbonding. The structure consists of the following:
 
 -   `amount` The unbonding amount, serialized as a [`U512`](#clvalue-numeric) value.
 
--   `new_validator` The validator public key to re-delegate to, serialized as an [`Option`](#clvalue-option) containing the public key.
+-   `new_validator` The validator public key to redelegate to, serialized as an [`Option`](#clvalue-option) containing the public key.
 
 ## Values {#serialization-standard-values}
 
@@ -649,7 +649,7 @@ enum CLType {
    List(CLType), // list of values of the given type (e.g. Vec in rust)
    ByteArray(CLType, u32), // same as `List` above, but number of elements
                            // is statically known (e.g. arrays in rust)
-   Result(CLType, CLType), // co-product of the the given types;
+   Result(CLType, CLType), // co-product of the given types;
                            // one variant meaning success, the other failure
    Map(CLType, CLType), // key-value association where keys and values have the given types
    Tuple1(CLType), // single value of the given type
@@ -745,6 +745,7 @@ A `Map` serializes as a list of key-value tuples. There must be a well-defined o
 
 `PublicKey` serializes as a single byte tag representing the algorithm followed by 32 bytes of the `PublicKey` itself:
 
+-   If the `PublicKey` is a `System` key, the single tag byte is `0`. With this variant, the single byte of `0` is the entire key.
 -   If the `PublicKey` is an `Ed25519` key, the single tag byte is `1` followed by the individual bytes of the serialized key.
 -   If the `PublicKey` is a `Secp256k1` key, the single tag byte is a `2` followed by the individual bytes of the serialized key.
 

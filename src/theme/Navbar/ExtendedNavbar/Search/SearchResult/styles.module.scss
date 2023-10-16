@@ -1,0 +1,183 @@
+@use "../../../../../assets/scss/mixins";
+
+.results_portal_title {
+    background-color: var(--liftedBlack);
+    margin-bottom: 0;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+    cursor: pointer;
+
+    svg {
+        pointer-events: none;
+        path {
+            fill: var(--casperWhite);
+        }
+    }
+    > p {
+        margin: 0px;
+    }
+}
+.results_container {
+    background-color: var(--black);
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 27px;
+    padding: 10px 15px;
+    max-height: 266px;
+    overflow-y: scroll;
+    transition: all 500ms;
+
+    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+
+    .results_container_hit {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: #ffffff;
+        text-decoration: none;
+        cursor: pointer;
+
+        span,
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 90%;
+        }
+        a {
+            margin-left: 5px;
+            color: var(--casperWhite);
+            font-size: 14px;
+
+            &:hover {
+                color: var(--casperYellow);
+            }
+        }
+
+        svg {
+            path {
+                fill: #6d6d6d;
+            }
+        }
+        &:hover {
+            @include mixins.transition(0.3s all);
+            color: var(--casperYellow);
+        }
+        .results_container_hit_link {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: flex-start;
+            align-items: center;
+            width: 90%;
+
+            .hitContent {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+                width: 80%;
+                justify-content: flex-start;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 16px;
+                p {
+                    font-weight: 500;
+                    margin-bottom: 0px;
+                }
+
+                > small {
+                    max-width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    color: #c3c3c3;
+                }
+            }
+            .docElement {
+                width: 80%;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                gap: 5px;
+                font-size: 12px;
+                color: #c3c3c3;
+
+                > :first-child {
+                    font-weight: 500;
+                    cursor: default;
+                    color: var(--casperWhite);
+                    font-size: 16px;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    &:hover {
+                        @include mixins.transition(0.3s all);
+                        color: var(--casperYellow);
+                    }
+                }
+            }
+
+            em {
+                color: var(--casperYellow);
+                background-color: transparent;
+                font-style: normal;
+            }
+
+            :global {
+                .algolia-docsearch-suggestion--highlight {
+                    color: var(--casperYellow);
+                }
+            }
+        }
+    }
+}
+
+.showMore {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 45px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    background-color: var(--black);
+    border: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.centerSpinner {
+    margin: auto;
+}
+
+.hiddenResults {
+    transition: all 500ms;
+    max-height: 0px;
+    padding: 0px 15px;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.rotateSvg {
+    transform: rotate(180deg);
+}
+
+.hitWeighTitle {
+    font-weight: 500;
+}
+
+@media (max-width: 996px) {
+    .results_container {
+        z-index: 6;
+    }
+}
