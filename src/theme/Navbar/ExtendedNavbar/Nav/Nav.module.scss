@@ -2,7 +2,7 @@
 
 .navbar_list {
     width: 25%;
-    min-width: 350px;
+    min-width: 470px;
 
     font-size: 16px;
     line-height: 24px;
@@ -16,7 +16,7 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        gap: 7%;
+        gap: 5%;
 
         .navbar_list_container_button {
             position: relative;
@@ -60,11 +60,11 @@
                 .navbar_list_item {
                     @include transition(0.3s all);
                     color: var(--casperRed);
-                }
-                svg {
-                    path {
-                        @include transition(0.3s all);
-                        fill: var(--casperRed);
+                    > svg {
+                        path {
+                            @include transition(0.3s all);
+                            fill: var(--casperRed) !important;
+                        }
                     }
                 }
             }
@@ -88,7 +88,6 @@
                 .navbar_list_item {
                     width: 100%;
                     justify-content: space-between;
-                    background-color: var(--liftedBlack);
                     z-index: 5;
                 }
             }

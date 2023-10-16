@@ -11,7 +11,7 @@ interface INavBarDropdownProps {
 export default function NavBarDropdown({ content, locale, closeNavBarHandler }: INavBarDropdownProps) {
     return (
         <div className={styles.wrapper} onClick={(e) => e.stopPropagation()}>
-            <div className={styles.dropdown}>
+            <div className={styles.dropdown_container}>
                 {content.columns &&
                     content.columns.map((column, i) => {
                         return <NavBarColumn key={`column_${i}`} {...{ locale, ...column }} closeNavBarHandler={closeNavBarHandler} />;

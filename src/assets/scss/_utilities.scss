@@ -13,3 +13,19 @@
     font-family: fonts-variables.$font-sourceCodePro;
     letter-spacing: 0.01em;
 }
+
+.code-block-highlighted-line-red {
+    background-color: #ff000020;
+    display: block;
+    margin: 0 calc(-1 * var(--ifm-pre-padding));
+    padding: 0 var(--ifm-pre-padding);
+    border-left: 3px solid #ff000080;
+}
+
+.code-block-highlighted-line-green {
+    background-color: #00ff0020;
+    display: block;
+    margin: 0 calc(-1 * var(--ifm-pre-padding));
+    padding: 0 var(--ifm-pre-padding);
+    border-left: 3px solid #00ff0080;
+}

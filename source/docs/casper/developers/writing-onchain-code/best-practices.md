@@ -4,12 +4,12 @@ At its core, the Casper platform is software, and best practices for general sof
 
 ## Data Efficiency
 
-When developing on Casper, a policy of efficient data usage will ensure the lowest possible cost for on-chain computation. To this end, minimizing the number of necessary [Deploys](../dapps/sending-deploys.md) will drastically decrease the overall cost.
+When developing on Casper, a policy of efficient data usage will ensure the lowest possible cost for on-chain computation. To this end, minimizing the number of necessary [Deploys](../cli/sending-deploys.md) will drastically decrease the overall cost.
 
 When creating smart contracts, including an explicit initialization entry point allows the contract to self-initialize without a subsequent Deploy of session code. This entry point creates the internal structure of the contract and cannot be called after the initial deploy. Below is an example of a self-initalizing entry point that can be used within the `call` function.
 
 <details>
-<summary><b>Example Self-initialization Entry Point</b></summary>
+<summary>Example Self-initialization Entry Point</summary>
 
 ```rust
 
@@ -34,7 +34,44 @@ Bear in mind, the host node will not enforce this. The smart contract author mus
 
 Computations occurring on-chain come with associated [gas costs](../../concepts/economics/gas-concepts.md). Efficient coding can help to minimize gas costs, through the reduction of overall Wasm sent to global state. Beginning with 1.5.0, even invalid Wasm will incur gas costs when sent to global state. As such, proper testing prior to sending a Deploy is critical.
 
-Further, there is a set cost of 2.5 CSPR to create a new purse. If possible, the [reuse of purses](../../resources/tutorials/advanced/transfer-token-to-contract.md#scenario2) should be considered to reduce this cost. If reusing purses, proper access management must be maintained to prevent lapses in security. Ultimately, any choices made in regards to security and contract safeguards rely on the smart contract author.
+Further, there is a set cost of 2.5 CSPR to create a new purse. If possible, the [reuse of purses](../../resources/advanced/transfer-token-to-contract.md#scenario2) should be considered to reduce this cost. If reusing purses, proper access management must be maintained to prevent lapses in security. Ultimately, any choices made in regards to security and contract safeguards rely on the smart contract author.
+
+### Tips to reduce WASM size
+
+Deploys have a maxim size specified in each network chainspec as `max_deploy_size`. For example, networks running [node version 1.5.1](https://github.com/casper-network/casper-node/blob/6873c86cc3ab3aae1c8187a7528f94da605e2669/resources/production/chainspec.toml#L101), have the following maximum deploy size in bytes:
+
+```
+max_deploy_size = 1_048_576
+```
+
+Here are a few tips to reduce the size of Wasm included in a deploy:
+
+1. Build the smart contract in release mode. You will find an example [here](https://github.com/casper-ecosystem/cep18/blob/2c702e23497d2c9493374466e7af0c002006cbda/Makefile#L10)
+
+    ```
+    cargo build --release --target wasm32-unknown-unknown
+    ```
+
+2. Run `wasm-strip` on the compiled code (see [WABT](https://github.com/WebAssembly/wabt)). You will find an example [here](https://github.com/casper-ecosystem/cep18/blob/2c702e23497d2c9493374466e7af0c002006cbda/Makefile#L12)
+
+    ```
+    wasm-strip target/wasm32-unknown-unknown/release/contract.wasm
+    ```
+
+3. Don't enable the `std` feature when linking to the `casper-contract` or `casper-types` crates using the `#![no_std]` attribute, which tells the program not to import the standard libraries. You will find an example [here](https://github.com/casper-ecosystem/cep18/blob/2c702e23497d2c9493374466e7af0c002006cbda/cep18/src/main.rs#L1) and further details [here](https://docs.rust-embedded.org/book/intro/no-std.html)
+	
+    ```rust
+    #![no_std]
+    ```
+
+4. Build the contract with `codegen-units` set to 1 by adding `codegen-units = 1` to the Cargo.toml under `[profile.release])`. You will find an example [here](https://github.com/casper-ecosystem/cep18/blob/2c702e23497d2c9493374466e7af0c002006cbda/Cargo.toml#L14)
+
+5. Build the contract with link-time optimizations enabled by adding `lto = true` to the Cargo.toml under `[profile.release]`. You will find an example [here](https://github.com/casper-ecosystem/cep18/blob/2c702e23497d2c9493374466e7af0c002006cbda/Cargo.toml#L15)
+
+
+## Inlining
+
+As often as practicable, developers should inline functions by including the body of the function within their code rather than making `call` or `call_indirect` to the function. In the context of coding for Casper blockchain purposes, this reduces the overhead of executed Wasm and prevents unexpected errors due to exceeding resource tolerances.
 
 ## Testing
 

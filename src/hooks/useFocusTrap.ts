@@ -13,7 +13,7 @@ export default function useFocusTrap(
     componentRef: React.RefObject<HTMLElement>,
     selectors: string = "a[href], button:not([disabled])",
     isDropdownOpen?: boolean,
-    content?: INavItem | null,
+    content?: INavItem | string | null,
 ) {
     useEffect(() => {
         if (!isDropdownOpen) return;
@@ -21,7 +21,6 @@ export default function useFocusTrap(
 
         // here we query all focusable elements on your component, customize as your own need
         const componentElementList = currentElement?.querySelectorAll(selectors);
-
         // initialize array for store only the elements with tabIndex = 0
         const focusableElementsWithTabIndex: Array<HTMLElement> = [];
 

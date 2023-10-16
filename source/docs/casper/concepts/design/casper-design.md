@@ -1,4 +1,8 @@
-# Overview of a Casper Network
+---
+title: Network Design
+---
+
+# Casper Network Design
 
 ## Introduction
 
@@ -44,7 +48,7 @@ A Wasm module is not natively able to create any effects outside of reading or w
 
 ![Casper Network Runtime](/image/design/casper-runtime.png)
 
-All these features are accessible via functions in the [Casper External FFI](https://docs.rs/casper-contract/1.4.4/casper_contract/ext_ffi/index.html).
+All these features are accessible via functions in the [Casper External FFI](https://docs.rs/casper-contract/latest/casper_contract/ext_ffi/index.html).
 
 #### Generating `URef`s {#execution-semantics-urefs}
 
@@ -57,8 +61,8 @@ All these features are accessible via functions in the [Casper External FFI](htt
 The Casper blockchain uses an on-chain account-based model, uniquely identified by an `AccountHash` derived from a specific `PublicKey`. The [global state trie store](#global-state-trie) requires all keys to be the same length, so the AccountHash is a 32-byte derivative used to abstract any of the supported public key variants.
 
 The Casper platform supports two types of keys for creating accounts and signing transactions: 
-- [ed25519](../accounts-and-keys.md#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
-- [secp256k1](../accounts-and-keys.md#ethereum-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
+- [Ed25519](../accounts-and-keys.md#eddsa-keys) keys, which use the Edwards-curve Digital Signature Algorithm (EdDSA) and are 66 bytes long
+- [Secp256k1](../accounts-and-keys.md#ecdsa-keys) keys, commonly known as Ethereum keys, which are 68 bytes long
 
 By default, a transactional interaction with the blockchain takes the form of a Deploy cryptographically signed by the key-pair corresponding to the PublicKey used to create the account. All user activity on the Casper blockchain (i.e., "deploys") must originate from an account. Each account has its own context where it can locally store information (e.g., references to useful contracts, metrics, and aggregated data from other parts of the blockchain). Each account also has a "main purse" where it can hold Casper tokens (see [Tokens](#tokens-purses-and-accounts) for more information).
 
@@ -225,7 +229,7 @@ Refer to the [Serialization Standard](../serialization-standard.md) for addition
 
 ## Tokens {#tokens-head}
 
-Casper is a decentralized Proof-of-Stake blockchain platform that uses a consensus algorithm called [Highway](./highway.md). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../economics/staking.md) to bond. In the blockchain space, this unit of value is a _token_.
+Casper is a decentralized Proof-of-Stake blockchain platform that uses a consensus algorithm called [Highway](./highway.md). Having a unit of value is required to make this system work because users must pay for computation, and validators must have [stake](../economics/staking/staking.md) to bond. In the blockchain space, this unit of value is a _token_.
 
 This chapter describes tokens and how one can use them on the Casper platform.
 
@@ -255,7 +259,7 @@ The Casper *mint* is a system contract that manages the balance of *motes* withi
 
 The `AccessRights` of the URefs permissions model determines what actions can be performed when using a `URef` associated with a purse.
 
-As all URef`s are unforgeable, the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be validly given to the current context.
+As all `URef`s are unforgeable, the only way to interact with a purse is for a `URef` with appropriate `AccessRights` to be validly given to the current context.
 
 The basic global state options map onto more standard monetary operations according to the table below:
 

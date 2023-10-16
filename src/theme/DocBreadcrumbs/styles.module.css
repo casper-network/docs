@@ -1,0 +1,15 @@
+/**
+ * Content is based on https://github.com/facebook/docusaurus/blob/v2.4.1/packages/docusaurus-theme-classic/src/theme/DocBreadcrumbs/styles.module.css.
+ * For details see https://github.com/casper-network/docs/issues/1216.
+ /
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.breadcrumbsContainer {
+  --ifm-breadcrumb-size-multiplier: 0.8;
+  margin-bottom: 0.8rem;
+}

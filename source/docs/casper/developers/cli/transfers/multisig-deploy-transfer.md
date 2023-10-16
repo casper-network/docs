@@ -1,8 +1,10 @@
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-# Transferring Tokens using a Multi-sig Deploy
+# Transferring Tokens using a Multi-Sig Deploy
 
-This topic explores using a deploy file to transfer Casper tokens (CSPR) between purses on a Casper network. This method of transferring tokens is recommended when you want to implement multi-signature deploys. The `make-transfer` command allows you to create a transfer Deploy and save the output to a file. You can then have the Deploy signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
+This page presents a method of transferring tokens via a deploy file using multiple signatures. This method is recommended when implementing multi-signature transfers between purses on a Casper network.
+
+The `make-transfer` command allows you to create a transfer and save the output to a file. You can then have the transfer signed by other parties using the `sign-deploy` command and send it to the network for execution using the `send-deploy` command.
 
 ## Prerequisites
 
@@ -12,30 +14,31 @@ You must ensure the following prerequisites are met.
     - A funded [Account](../../prerequisites.md#setting-up-an-account) on Testnet or Mainnet
     - A valid _node address_ from the [Testnet peers](https://testnet.cspr.live/tools/peers) or [Mainnet peers](https://cspr.live/tools/peers)
     - The Casper [command-line client](../../prerequisites.md#the-casper-command-line-client)
-2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow
+2. Set up the source account for multi-signature deploys, as outlined in the [Two-Party Multi-Signature Deploys](../../../resources/advanced/two-party-multi-sig.md) workflow
 3. Get the path of the source account's _secret key_ file
 4. Get the target account's _public key_ in hex format
 
-## Token Transfer Workflow
+## Token Transfer Workflow {#token-transfer-workflow}
 
-The high-level flow to transfer tokens using a deploy file is described in the following steps:
+The high-level flow to transfer tokens using the Casper CLI client and a deploy file is described in the following steps:
 
-1. Use the `make-deploy` command to prepare a transfer and save the output in a file
-2. Use the `send-deploy` command to send the deploy to the network through a valid node
+1. The `make-transfer` command creates and signs a transfer, saving the output to a file
+2. The `sign-deploy` command adds additional signatures for a multi-signature transfer
+3. The `send-deploy` command sends the deploy containing the transfer to the network
 
-<img src={useBaseUrl("/image/deploy-flow.png")} alt="Deployment flow" width="600" style={{backgroundColor:"#e6e6e6", padding:"0.25em"}} />
+<img src={useBaseUrl("/image/deploy-flow.png")} alt="Deployment flow" style={{backgroundColor:"#e6e6e6", padding:"0.25em"}} />
 
-### Preparing the Transfer
+### Creating the transfer {#creating-the-transfer}
 
-This section explains the `make-transfer` command using an example you can try on the Testnet. For this example, we are transferring 2,500,000,000 motes from the source account (with the `secret_key.pem` file) to a target account. To use this example on the Mainnet, the _chain-name_ would be `casper` instead of `casper-test`. Note that we are saving the output of the `make-deploy` command in a `transfer.deploy` file.
+This section explains the `make-transfer` command using an example you can try on the Testnet. For this example, we are transferring 2,500,000,000 motes from the source account (with the `secret_key.pem` file) to a target account. To use this example on the Mainnet, the _chain-name_ would be `casper` instead of `casper-test`. Note that we are saving the output of the `make-transfer` command in a `transfer.deploy` file.
 
 ```bash
 casper-client make-transfer --amount 2500000000 \
 --secret-key [PATH]/secret_key.pem \
 --chain-name casper-test \
 --target-account [PUBLIC_KEY_HEX] \
---transfer-id 3 \
---payment-amount 10000 \
+--transfer-id [ID] \
+--payment-amount 100000000 \
 --output transfer.deploy
 ```
 
@@ -48,22 +51,34 @@ The following table explains the parameters used in the `make-transfer` command.
 | chain-name | The name of the chain, to avoid the deploy from being accidentally or maliciously included in a different chain <ul><li>For Testnet use **casper-test**</li><li>For Mainnet use **casper**</li></ul> |
 | target-account | Hex-encoded public key of the target account from which the main purse will be used |
 | transfer-id | A user-defined identifier permanently associated with the transfer |
-| payment-amount | The amount used to pay for executing the code on the network |
+| payment-amount | The payment for the transfer in motes. The payment amount varies based on the deploy and network [chainspec](../../../concepts/glossary/C.md#chainspec). For Testnet node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml), wasmless transfers cost 10^8 motes |
 
-In the output, you will see a section named **approvals**. This is where a signature from the source account is added to the Deploy.
+In the output, you will see a section named **approvals**. This is where a signature from the source account is added to the deploy.
+
+**Example:**
+
+```bash
+casper-client make-transfer --amount 2500000000 \
+--secret-key ~/KEYS/multi-sig/keys/default_secret_key.pem \
+--chain-name casper-test \
+--target-account 0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf \
+--transfer-id 1 \
+--payment-amount 100000000 \
+--output transfer.deploy
+```
 
 <details>
 <summary>Sample output of the make-transfer command</summary>
 
 ```json
 {
-  "hash": "0e17da4c7b6d12984910aa25e397fc85db53e5cd896776d47494cb4a5f2083f1",
+  "hash": "88c49fa9108485397a330f294914a6c2d614c581fbe0a31de1a954baad6d709b",
   "header": {
-    "account": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
-    "timestamp": "2023-01-05T11:30:05.269Z",
+    "account": "01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986",
+    "timestamp": "2023-10-12T19:14:22.080Z",
     "ttl": "30m",
     "gas_price": 1,
-    "body_hash": "5d7d30965d503dba0459d5e6b3a0c923059f89e6a7179f76aec0fda1263b7819",
+    "body_hash": "1bb7436d4703816b5cbeef245dd83c0520f1c7173cdf609c664a29487cc5de1c",
     "dependencies": [],
     "chain_name": "casper-test"
   },
@@ -75,8 +90,8 @@ In the output, you will see a section named **approvals**. This is where a signa
           "amount",
           {
             "cl_type": "U512",
-            "bytes": "021027",
-            "parsed": "10000"
+            "bytes": "0400e1f505",
+            "parsed": "100000000"
           }
         ]
       ]
@@ -97,8 +112,8 @@ In the output, you will see a section named **approvals**. This is where a signa
           "target",
           {
             "cl_type": "PublicKey",
-            "bytes": "01f48f5b095518be188286d896921d33e97f9729f5945237d5ff6cf7b077aabf1f",
-            "parsed": "01f48f5b095518be188286d896921d33e97f9729f5945237d5ff6cf7b077aabf1f"
+            "bytes": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
+            "parsed": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf"
           }
         ],
         [
@@ -107,8 +122,8 @@ In the output, you will see a section named **approvals**. This is where a signa
             "cl_type": {
               "Option": "U64"
             },
-            "bytes": "013930000000000000",
-            "parsed": 3
+            "bytes": "010100000000000000",
+            "parsed": 1
           }
         ]
       ]
@@ -116,8 +131,8 @@ In the output, you will see a section named **approvals**. This is where a signa
   },
   "approvals": [
     {
-      "signer": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
-      "signature": "016853b69b98434f236ac2eacb053b244f5853f0ec2a1d86b8f8a35601353cebe160f3c57606be9f289da34b7ccd5b7285751d1e6edc9cc76a84c14fb286272702"
+      "signer": "01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986",
+      "signature": "015e0db50b174f3627e0e27cb503f0836b30bd0e0f2c4b989366b0df57500a1cb2b0945408c938bc3c33c40dab59a9c6af6f4e01e474330cd27262bfc87680030e"
     }
   ]
 }
@@ -125,7 +140,7 @@ In the output, you will see a section named **approvals**. This is where a signa
 
 </details>
 
-### Signing the Deploy using the Casper Client
+### Signing the transfer {#signing-the-transfer}
 
 Once the deploy file is created, you can sign the deploy using other designated accounts. For this example, we are signing the deploy with a second secret key and saving the output in a `transfer2.deploy` file.
 
@@ -142,6 +157,15 @@ casper-client sign-deploy \
 | secret-key   | The path of the secret key file used to sign the deploy              |
 | output       | The path of the output file used to save the deploy with multiple signatures |
 
+**Example:**
+
+```bash
+casper-client sign-deploy \
+--input transfer.deploy \
+--secret-key ~/KEYS/multi-sig/keys/user_1_secret_key.pem \
+--output transfer2.deploy
+```
+
 Towards the end of the following output, you can observe that there is an **approvals** section, which has two signatures, one from the account initiating the transfer and the second from the account used to sign the deploy.
 
 <details>
@@ -149,13 +173,13 @@ Towards the end of the following output, you can observe that there is an **appr
 
 ```json
 {
-  "hash": "959ba7154a58bf3a9ec555b38fb2c96dba81523b49f9a086630d0cf44d74cacc",
+  "hash": "88c49fa9108485397a330f294914a6c2d614c581fbe0a31de1a954baad6d709b",
   "header": {
-    "account": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
-    "timestamp": "2023-01-05T11:42:23.311Z",
+    "account": "01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986",
+    "timestamp": "2023-10-12T19:14:22.080Z",
     "ttl": "30m",
     "gas_price": 1,
-    "body_hash": "5d7d30965d503dba0459d5e6b3a0c923059f89e6a7179f76aec0fda1263b7819",
+    "body_hash": "1bb7436d4703816b5cbeef245dd83c0520f1c7173cdf609c664a29487cc5de1c",
     "dependencies": [],
     "chain_name": "casper-test"
   },
@@ -167,8 +191,8 @@ Towards the end of the following output, you can observe that there is an **appr
           "amount",
           {
             "cl_type": "U512",
-            "bytes": "021027",
-            "parsed": "10000"
+            "bytes": "0400e1f505",
+            "parsed": "100000000"
           }
         ]
       ]
@@ -189,8 +213,8 @@ Towards the end of the following output, you can observe that there is an **appr
           "target",
           {
             "cl_type": "PublicKey",
-            "bytes": "01f48f5b095518be188286d896921d33e97f9729f5945237d5ff6cf7b077aabf1f",
-            "parsed": "01f48f5b095518be188286d896921d33e97f9729f5945237d5ff6cf7b077aabf1f"
+            "bytes": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
+            "parsed": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf"
           }
         ],
         [
@@ -199,8 +223,8 @@ Towards the end of the following output, you can observe that there is an **appr
             "cl_type": {
               "Option": "U64"
             },
-            "bytes": "013930000000000000",
-            "parsed": 3
+            "bytes": "010100000000000000",
+            "parsed": 1
           }
         ]
       ]
@@ -209,11 +233,11 @@ Towards the end of the following output, you can observe that there is an **appr
   "approvals": [
     {
       "signer": "01360af61b50cdcb7b92cffe2c99315d413d34ef77fadee0c105cc4f1d4120f986",
-      "signature": "014c2dc520a1d7f2b7cc18fe704899dd158c02448a4c575bc5214bad3384cb4fff6e32ece196768a8d21b5644c96850fea8b980bd2f6c1fe3c717c1c45a6b75508"
+      "signature": "015e0db50b174f3627e0e27cb503f0836b30bd0e0f2c4b989366b0df57500a1cb2b0945408c938bc3c33c40dab59a9c6af6f4e01e474330cd27262bfc87680030e"
     },
     {
-      "signer": "0154d828baafa6858b92919c4d78f26747430dcbecb9aa03e8b44077dc6266cabf",
-      "signature": "0107b684e395879fed81d8387b0b4422301c1e4fcbd76672cf3fb7ab2ea8a2ef1429622a999fbbb56bcb79d871bfaeeb107415d67c78a57e8f67987e7f4368980c"
+      "signer": "01e3d3392c2e0b943abe709b25de5c353e5e1e9d95c7a76e3dd343d8aa1aa08d51",
+      "signature": "017793ad52d27393b1aa8ff5bb9bdbcb48708910d6cdabd9a89b44690ca174edf8924aad340bf901ac343391cb4cba7cf4db07390372f28ecf471fd522e0b63803"
     }
   ]
 }
@@ -221,14 +245,14 @@ Towards the end of the following output, you can observe that there is an **appr
 
 </details>
 
-### Sending the Deploy
+### Sending the deploy {#sending-the-deploy}
 
-The next step is to send the deploy for processing on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node `http://65.21.235.219` from the Testnet; replace this with an active node before using the command. Port `7777` is the RPC endpoint for interacting with the Casper client.
+The next step is to send the deploy for processing on the network. As described in the [Prerequisites](#prerequisites) section, you need to get an active node address from the corresponding network to complete this task. The following example uses the node `https://rpc.testnet.casperlabs.io/` from the Testnet.
 
 ```bash
 casper-client send-deploy \
 --input transfer2.deploy \
---node-address http://65.21.235.219:7777
+--node-address https://rpc.testnet.casperlabs.io/ 
 ```
 
 | Parameter    | Description                                                          |
@@ -243,18 +267,22 @@ Make a note of the *deploy_hash* from the `send-deploy` command output to verify
 
 ```json
 {
-    "id": 261147078494867680,
-    "jsonrpc": "2.0",
-    "result": {
-        "api_version": "1.3.4",
-        "deploy_hash": "87912f9ea859159dcf2f0554751ba0bce8b1df41f4b4339bc6de370d7734bdae"
-    }
+  "jsonrpc": "2.0",
+  "id": -818883417884028030,
+  "result": {
+    "api_version": "1.5.3",
+    "deploy_hash": "88c49fa9108485397a330f294914a6c2d614c581fbe0a31de1a954baad6d709b"
+  }
 }
 ```
 
 </details>
 
-If you encounter an account authorization error, you must set up the source account to allow multi-signature deploys using session code. The [Two-Party Multi-Signature Deploys](../../../resources/tutorials/advanced/two-party-multi-sig.md) workflow is an example of how to accomplish this.
+:::note
+
+If you encounter an account authorization error, you **must set up the source account to allow multi-signature deploys** using session code. The [Two-Party Multi-Signature Deploys](../../../resources/advanced/two-party-multi-sig.md) workflow is an example of how to accomplish this.
+
+:::
 
 <details>
 <summary>Example of an account authorization error</summary>
@@ -269,7 +297,7 @@ If you encounter an account authorization error, you must set up the source acco
 </details>
 
 
-## Verifying the Transfer
+###  Verifying the transfer {#verifying-the-transfer}
 
 To verify the transfer status, see [Verifying a Transfer](./verify-transfer.md).
 

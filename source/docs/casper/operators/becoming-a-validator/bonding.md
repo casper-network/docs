@@ -1,100 +1,133 @@
+---
+title: Bonding
+---
+
 # Bonding as a Validator
 
 It is recommended that a bonding request be sent once the node has completed the synchronization process. In a Casper network, bonding takes place through the auction contract via the `add_bid.wasm` contract. The auction runs for a future era, every era. The `chainspec.toml` specifies the number of slots available, and the auction will take the top N slots and create the validator set for the future era. 
 
-In the Testnet, era durations are approximately two hours. The entire process takes approximately 3 eras. Therefore, the time for bid submission to inclusion in the validator set is a minimum of six hours. Bonding requests (bids) are transactions like any other. Because they are generic transactions, they are more resistant to censorship.
+In the Testnet, era durations are approximately two hours. The entire process takes approximately 3 eras. Therefore, **the time for bid submission to inclusion in the validator set is a minimum of six hours**. Bonding requests (bids) are transactions like any other. Because they are generic transactions, they are more resistant to censorship.
 
-## The Bonding Process {#bonding-process}
+## Method 1: Bonding with the System Auction Contract {#bonding-system-auction}
 
-The most secure way to send a bonding transaction is to compile the contract and send the request to the network. Because the transaction authorizes the token to be locked into the auction contract, it is essential to compile the contract yourself. Here are the steps to take:
-
-1. Clone the [`casper-node` repository](https://github.com/casper-network/casper-node)
-2. Install these prerequisites, which are also listed [here](https://github.com/casper-network/casper-node#pre-requisites-for-building).
-
-- [Rust](../../developers/writing-onchain-code/getting-started.md#installing-rust)
-- [CMake](https://cgold.readthedocs.io/en/latest/first-step/installation.html)
-- `pkg-config` - On Ubuntu, use `sudo apt-get install pkg-config`
-- `openssl` - On Ubuntu, use `sudo apt-get install openssl`
-- `libssl-dev` - On Ubuntu, use `sudo apt-get install libssl-dev`
-
-3. Install the [Rust casper-client](../../developers/prerequisites.md#the-casper-command-line-client) and fund the [keys](../setup/basic-node-configuration.md#create-fund-keys) you will use for bonding 
-4. [Build the contracts](#build-contracts)
-5. [Send a bonding request](#example-bonding-transaction)
-6. [Check the status of the auction](#check-the-status-of-the-bid-in-the-auction) to see if you have won a validator slot
-
-## Building the Contracts {#build-contracts}
-
-Because bonding transactions are generic transactions, it is necessary to build the contract that submits a bid. Build the contracts in release mode:
-
-```bash
-cd casper-node
-make setup-rs
-make build-client-contracts
-```
-
-These commands build all the necessary contracts, including `add_bid.wasm` for placing a bid. 
-
-## Example Bonding Request {#example-bonding-transaction}
-
-The following example deploys a bonding request on the network:
+This method submits a bid using the system auction contract. Call the existing `add_bid` entry point from the system auction contract. Using this method, you do not need to build any contracts, reducing costs and complexity.
 
 ```bash
 sudo -u casper casper-client put-deploy \
+--node-address <HOST:PORT> \
+--secret-key <PATH> \
 --chain-name <CHAIN_NAME> \
+--payment-amount <PAYMENT_AMOUNT_IN_MOTES> \
+--session-hash <SESSION_HASH> \
+--session-entry-point add_bid \
+--session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
+--session-arg="amount:u512='<BID_AMOUNT>'" \
+--session-arg="delegation_rate:u8='<PERCENT_TO_KEEP_FROM_DELEGATORS>'"
+```
+
+1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
+2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
+3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+4. `payment-amount` - The payment for the Deploy in motes. This entry point call needs 2.5 CSPR for node version [1.5.1](https://github.com/casper-network/casper-node/blob/release-1.5.1/resources/production/chainspec.toml)
+5. `session-hash` - Hex-encoded hash of the stored auction contract, which depends on the network you are using. For Casper's Mainnet and Testnet, the hashes are as follows:
+
+- **Testnet**: `hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2`
+- **Mainnet**: `hash-ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea`
+
+6. `session-entry-point` - Name of the entrypoint that will be used when calling the contract
+
+The `add_bid` entry point expects three arguments:
+
+7. `public key`: The hexadecimal public key of the account's purse submitting the bid. This key must match the secret key that signs the bid
+8. `amount`: The bidding amount
+9. `delegation_rate`: Percentage of the rewards that the node operator retains for their services
+
+The command will return a deploy hash, which is needed to verify the deploy's processing results.
+
+:::note
+
+Calling the `add_bid` entry point on the auction contract has a fixed cost of 2.5 CSPR.
+
+:::
+
+**Example:**
+
+This example command uses the Casper Testnet to bid 10,000 CSPR for a validating slot:
+
+```bash
+sudo -u casper casper-client put-deploy \
+--node-address http://65.21.75.254:7777 \
+--chain-name casper-test \
+--secret-key /etc/casper/validator_keys/secret_key.pem \
+--payment-amount 2500000000 \
+--session-hash hash-93d923e336b20a4c4ca14d592b60e5bd3fe330775618290104f9beb326db7ae2 \
+--session-entry-point add_bid \
+--session-arg "public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
+--session-arg "amount:U512='$[10000 * 1000000000]'" \
+--session-arg="delegation_rate:u8='10'"
+```
+
+Next, [check the status of the auction](#check-the-status-of-the-bid-in-the-auction) to see if you have won a validator slot.
+
+## Method 2: Bonding with Compiled Wasm {#bonding-compiled-wasm}
+
+Another way to send a bonding transaction to the network is via a deploy containing the compiled `add_bid.wasm`. For details, refer to [Building the Required Contracts](../setup/joining.md#step-3-build-contracts).
+
+The following deploy is a template for sending a bonding request:
+
+```bash
+sudo -u casper casper-client put-deploy \
 --node-address http://<HOST:PORT> \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
+--chain-name <CHAIN_NAME> \
+--payment-amount <PAYMENT_AMOUNT> \
 --session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/add_bid.wasm \
---payment-amount 3000000000 \
 --session-arg="public_key:public_key='<PUBLIC_KEY_HEX>'" \
 --session-arg="amount:u512='<BID-AMOUNT>'" \
 --session-arg="delegation_rate:u8='<PERCENT_TO_KEEP_FROM_DELEGATORS>'"
 ```
 
-Note the following command options above: 
-- The chain name for Mainnet is `casper` and for Testnet is `casper-test`
-- The default port for node address is 7777
-- The session arguments need to be encased in double-quotes, with the parameter values in single quotes
-- The payment amount is specified in motes, where 1 CSPR is 1,000,000,000 motes
+1. `node-address` - An IP address of a peer on the network. The default port of nodes' JSON-RPC servers on Mainnet and Testnet is 7777
+2. `secret-key` - The file name containing the secret key of the account paying for the Deploy
+3. `chain-name` - The chain-name to the network where you wish to send the Deploy. For Mainnet, use *casper*. For Testnet, use *casper-test*
+4. `payment-amount` - The payment for the Deploy in motes
+5. `session-path` - The path to the compiled Wasm on your computer
 
-### Contract Arguments {#contract-arguments}
+The `add_bid.wasm` expects three arguments:
 
-The add_bid contract accepts 3 arguments:
+7. `public_key`: The hexadecimal public key of the account's purse submitting the bid. This key must match the secret key that signs the bid
+8. `amount`: The bidding amount
+9. `delegation_rate`: Percentage of the rewards that the node operator retains for their services
 
-- `public_key`: The hexadecimal public key of the account to bond. This must be the one paired with the secret key used in the `--secret-key` argument
-- `amount`: This is the amount being bid. If the bid wins, this will be the validator's initial bonded amount
-- `delegation_rate`: The percentage of rewards that the validator retains from delegators that delegate their tokens to the node
+The command will return a deploy hash, which is needed to verify the deploy's processing results.
 
-### Example Request
+:::note
 
-Here is an example request to bond as a validator:
+This method is more expensive than calling the `add_bid` entrypoint in the system auction contract, which has a fixed cost of 2.5 CSPR.
+
+:::
+
+**Example:**
+
+Here is an example request to bond using the `add_bid.wasm`. The payment amount specified is 3 CSPR. You must modify the payment and other values in the deploy based on the network's [chainspec.toml](../../concepts/glossary/C.md#chainspec).
 
 ```bash
 sudo -u casper casper-client put-deploy \
---chain-name casper-test \
 --node-address http://65.21.235.219:7777 \
 --secret-key /etc/casper/validator_keys/secret_key.pem \
---session-path $HOME/casper-node/target/wasm32-unknown-unknown/release/add_bid.wasm \
+--chain-name casper-test \
 --payment-amount 3000000000 \
---session-arg="public_key:public_key='01da0e438afc74181beb2afae798e9e6851bdf897117a306eb32caafe46c1c0bc8'" \
---session-arg="amount:u512='25000000000000'" \
---session-arg="delegation_rate:u8='3'"
+--session-path ~/casper-node/target/wasm32-unknown-unknown/release/add_bid.wasm \
+--session-arg "public_key:public_key='01c297d2931fec7e22b2fb1ae3ca5afdfacc2c82ba501e8ed158eecef82b4dcdee'" \
+--session-arg "amount:U512='$[10000 * 1000000000]'" \
+--session-arg="delegation_rate:u8='10'"
 ```
 
-### Example Response
+Next, check the bid status to see if you have won a validator slot.
 
-```bash
-{
-  "id": -3351398263238778586,
-  "jsonrpc": "2.0",
-  "result": {
-    "api_version": "1.4.8",
-    "deploy_hash": "4754c3135d8f074a6aeab40007012d7b3c7b65d02cebfefd94e04dff16971fb5"
-  }
-}
-```
+## Checking the Bid Status {#check-the-status-of-the-bid-in-the-auction}
 
-## Bid Status {#check-the-status-of-the-bid-in-the-auction} 
-Since this is a deploy like any other, perform `get-deploy` using the `casper-client`, to see the execution status.
+Since the bid was submitted using a deploy like any other, perform `get-deploy` using the `casper-client`, to see the execution status.
 
 ```bash
 casper-client get-deploy --node-address http://<HOST:PORT> <DEPLOY_HASH>
@@ -107,7 +140,7 @@ casper-client get-auction-info --node-address http://<HOST:PORT>
 ```
 
 <details>
-<summary><b>Example auction info response</b></summary>
+<summary>Example auction info response</summary>
 
 ```bash
 {

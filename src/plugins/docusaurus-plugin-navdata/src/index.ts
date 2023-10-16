@@ -9,6 +9,7 @@ import convertData from './convertData';
 import IFooterData from './interfaces/navbar/footerData';
 import INavData from './interfaces/navbar/navData';
 import ISocialMedia from './interfaces/navbar/socialMedia';
+
 // import imageToBase64 from 'image-to-base64';
 
 type PluginOptions = {
@@ -44,7 +45,6 @@ const navDataLoader = (
         undefined,
         JSON.stringify({ query })
       );
-
       const json = await response.json();
 
       const data = convertData(json);

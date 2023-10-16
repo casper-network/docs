@@ -169,7 +169,7 @@ casper-client make-transfer --amount 2500000000 \
 --chain-name casper-test \
 --target-account 019a33f123ae936ccd29d8fa5438f03a86b6e34fe4346219e571d5ac42cbff5be6 \
 --transfer-id 3 \
---payment-amount 10000
+--payment-amount 100000000
 ```
 ~~~
 
@@ -260,3 +260,24 @@ Examples:
 |CSPR|Casper token|
 |dApp|Decentralized application|
 |ERC|Ethereum request for comment|
+
+## Sample Code
+
+In addition to the [code formatting](#general-formatting) recommendations described above, try to avoid hard-coded values in code samples or CLI commands when possible. 
+
+```bash
+casper-client put-deploy \
+    --node-address [NODE_SERVER_ADDRESS] \
+    --chain-name [CHAIN_NAME] \
+    --secret-key [KEY_PATH]/secret_key.pem \
+    --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
+    --session-path [PATH]/[FILE_NAME].wasm
+```
+
+If values are required for illustration purposes, remind readers in the first example that they need to check the chainspec of the Casper network with which they are working.
+
+>**Note**: The payment amount varies based on each deploy and network [chainspec](../../concepts/glossary/C.md#chainspec).
+
+You can find more examples in [this document](./source/docs/casper/developers/cli/calling-contracts.md).
+
+

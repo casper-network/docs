@@ -1,5 +1,5 @@
 ---
-title: Runtime Economics
+title: Runtime
 slug: /runtime
 ---
 

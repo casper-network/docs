@@ -3,6 +3,7 @@
     //Primary
     --casperRed: #ff2d2e;
     --black: #000000;
+    --white: #ffffff;
     --casperWhite: #f4f4f4;
     --liftedBlack: #141414;
     //Secondary
@@ -21,8 +22,24 @@
     //Tiles
     --casperTilesBrownLight: #96697c;
     //Social Media Logos
-    --socialMediaLogos: #c4c4c4
-
+    --socialMediaLogos: #c4c4c4;
+    //Nav Items
+    --halfTitleGray: #aeaeae;
     // Border radius
     //--borderRadius: 3px;
+
+    // Gradients
+    --pink-fade-small: #670e60;
+    --pinkLight-fade-small: #7b5464;
+    --pale-fade-small: #5e1585;
+    --tile-red-fade: #b92121;
+    --blue-fade: #12197d;
+    --lime-fade: #77a004;
+    //light-mode
+    --light-mode-dark-gray: #646464;
+    --light-mode-dark-gray-hover: #000000bf;
+
+    --casperWhite-light-theme: #141414;
+    --liftedBlack-light-theme: #f4f4f4;
 }
+

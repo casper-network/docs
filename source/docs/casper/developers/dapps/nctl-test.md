@@ -1,3 +1,7 @@
+---
+title: Local Network Testing
+---
+
 # Testing Smart Contracts with NCTL
 
 NCTL effectively simulates a live Casper network. The process for sending a `Deploy` to an NCTL-based network is therefore similar to doing so on a live network.
@@ -38,7 +42,7 @@ You will need the following information to use the `put-deploy` command:
 
 * The **secret key** of the account sending the `Deploy`. For this example, we are using node-1 as the sender. The secret key file can be found at *casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem*. In our example put-deploy, this will appear as `--secret-key /casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem`. If your Deploy is more complex and requires multiple accounts, NCTL also establishes multiple users for testing.
 
-* The **payment amount** in motes, which should be sufficient to avoid an 'Out of Gas' error. The payment amount will appear in our example put-deploy as `--payment-amount 2500000000`. **NCTL tests are not an accurate representation of potential gas costs on a live network. Please see our [note about gas prices](../../developers/dapps/sending-deploys.md#a-note-about-gas-price).**
+* The **payment amount** in motes, which should be sufficient to avoid an 'Out of Gas' error. The payment amount will appear in our example put-deploy as `--payment-amount 2500000000`. **NCTL tests are not an accurate representation of potential gas costs on a live network. Please see our [note about gas prices](../../developers/cli/sending-deploys.md#a-note-about-gas-price).**
 
 * The **path** to your `Deploy` that you wish to send to the NCTL network. This will appear in our example put-deploy as `--session-path <PATH>` and will require you to define the path to your specific `Deploy` Wasm.
 
@@ -85,7 +89,7 @@ $(get_path_to_client) get-deploy 8e6309cc37bc58d8fedc1094ee1bd264a636d39fc0e05b5
 
 ## Interacting with the Installed Contract
 
-Once your NCTL network executes your `Deploy`, you can test the functionality of the installed contract. To do so, you will first need to identify any arguments to pass to the contract, starting with the `ContractHash` itself. This hash identifies the contract and allows you to target the included entry points. As we used the pre-established node-1 account to [send the `Deploy`](../../developers/dapps/sending-deploys.md), we can retrieve the `ContractHash` from the node-1 account information. To do so, we will use the following command with a node address and the `PublicKey` of the node in question. 
+Once your NCTL network executes your `Deploy`, you can test the functionality of the installed contract. To do so, you will first need to identify any arguments to pass to the contract, starting with the `ContractHash` itself. This hash identifies the contract and allows you to target the included entry points. As we used the pre-established node-1 account to [send the `Deploy`](../../developers/cli/sending-deploys.md), we can retrieve the `ContractHash` from the node-1 account information. To do so, we will use the following command with a node address and the `PublicKey` of the node in question. 
 
 
 ```
@@ -100,7 +104,7 @@ This command will return information pertaining to the account, including the `N
 
 * The **chain name**, entered in this instance using `--chain-name "casper-net-1"`
 
-* The **payment amount** for this `Deploy` in motes, which may need to be adjusted depending on cost. In this instance, we will use `--payment-amount 500000000`
+* The **payment amount** for this `Deploy` in motes, which may need to be adjusted depending on cost and network [chainspec](../../concepts/glossary/C.md#chainspec). In this instance, we will use `--payment-amount 500000000`
 
 * The **session path**, defining the location of the Wasm bearing file for the `Deploy`. It appears in our example as `--session-path <PATH>` but you must define the path to your specific file.
 

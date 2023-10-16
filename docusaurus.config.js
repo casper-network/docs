@@ -10,6 +10,7 @@ const {
     dataConfig,
     footerConfig,
     gtagConfig,
+    gtmConfig,
     i18nConfig,
     metadatasConfig,
     navbarConfig,
@@ -32,6 +33,7 @@ module.exports = {
         // customFields: dataConfig,
         ...siteNavbarConfig,
     },
+    scripts: [{ src: "/js/loadtags.js", async: true, type: "module" }],
     themeConfig: {
         tableOfContents: {
             minHeadingLevel: 2,
@@ -70,6 +72,7 @@ module.exports = {
                     // onlyIncludeVersions: process.env.PREVIEW_DEPLOY === "true" ? ["current", ...versions.slice(0, 2)] : undefined,
                 },
                 ...(gtagConfig["trackingID"] && { gtag: gtagConfig }),
+                ...(gtmConfig["containerId"] && { googleTagManager: gtmConfig }),
                 // IMPORTANT: disable blog feature
                 blog: false,
                 /* Blog config options */
@@ -101,7 +104,17 @@ module.exports = {
                 directusGraphqlUrl: process.env.DIRECTUS_GRAPHQL_URL,
                 directusToken: process.env.DIRECTUS_TOKEN,
                 query:
-                    "query { header { translations { languages_code { code } login_text search_placeholder logo { id } nav_items { header_nav_item_id { title columns { header_nav_column_id { groups { header_link_column_id { title links { link_id { title type url open_in_new_tab children { related_link_id { title type url open_in_new_tab }}}}}}}}}}}} social_media { name url icon { id }} footer { translations { title description logo { id title } link_column { footer_link_column_id { title links { link_id { title type url open_in_new_tab } } } } bottom_links { link_id { title type url open_in_new_tab } } languages_code { code } } }}",
+                    "query { header { translations { languages_code { code } login_text search_placeholder logo { id } nav_items { header_nav_item_id { title columns { header_nav_column_id { groups { header_link_column_id { title links { link_id { title type url open_in_new_tab children { related_link_id { title type url open_in_new_tab }}}}}}}}}}}} social_media { name url icon { id }} footer { translations { title description manage_cookies_text logo { id title } link_column { footer_link_column_id { title links { link_id { title type url open_in_new_tab } } } } bottom_links { link_id { title type url open_in_new_tab } } languages_code { code } } }}",
+            },
+        ],
+        [
+            "docusaurus-plugin-cookiesbanner",
+            {
+                directusUrl: process.env.DIRECTUS_URL,
+                directusGraphqlUrl: process.env.DIRECTUS_GRAPHQL_URL,
+                directusToken: process.env.DIRECTUS_TOKEN,
+                query:
+                    "query { cookie_banner { translations {  languages_code { code } items { cookie_item_id { required parameter title description } } manage_body manage_title notice_body notice_title manage_button_text accept_all_button_text confirm_button_text } } }",
             },
         ],
     ],

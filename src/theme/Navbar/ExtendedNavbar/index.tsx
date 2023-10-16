@@ -19,6 +19,7 @@ import Nav from "./Nav";
 import Sidebar from "./SideBar";
 import useWindow from "../../../hooks/useWindow";
 import styles from "./ExtendedNavbar.module.scss";
+import ThemeSwitch from "../ThemeSwitch";
 
 export default function ExtendedNavbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -48,8 +49,8 @@ export default function ExtendedNavbar() {
     const data = usePluginData("docusaurus-plugin-navdata") as { socialMedia: Array<ISocialMedia>; navData: Array<INavData>; footerData: Array<IFooterData> };
 
     const navData =
-        data.navData.find((x) => x.languageCode === externalLocale) ||
-        data.navData.find((x) => x.languageCode === siteConfig.customFields.defaultExternalLocales);
+        data?.navData.find((x) => x.languageCode === externalLocale) ||
+        data?.navData.find((x) => x.languageCode === siteConfig.customFields.defaultExternalLocales);
 
     const handleClick = (title: string) => {
         if (title === current) {
@@ -60,7 +61,7 @@ export default function ExtendedNavbar() {
         }
 
         if (navData && navData.navItems) {
-            let currentContent: INavItem | undefined = navData.navItems.find((elem: INavItem) => elem?.title === title);
+            let currentContent: INavItem | undefined = navData?.navItems.find((elem: INavItem) => elem?.title === title);
             currentContent && currentContent.title && currentContent.columns && currentContent.columns.length > 0 && setDropdown(currentContent);
         }
     };
@@ -122,75 +123,76 @@ export default function ExtendedNavbar() {
     };
 
     return (
-        <div className={styles.wrapper}>
-            <header ref={navBarRef} className={styles.navbar_wrapper}>
-                <div className={`${styles.container} containerSite`}>
-                    <div className={`${styles.navbar} ${styles.desktop} navBar`}>
-                        <div className={styles.navBarSectionBeginning}>
-                            {navData.logo && (
-                                <div className={styles.navbar_logo_container}>
-                                    <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
-                                        <div dangerouslySetInnerHTML={{ __html: navData.logo }}></div>
-                                    </Link>
-                                </div>
-                            )}
-                            {navData && navData.navItems && (
-                                <Nav
-                                    dropdownParentRef={dropdownParentRef}
-                                    header={navData}
-                                    handleClick={handleClick}
-                                    dropdownOpen={dropdownOpen}
-                                    current={current}
-                                    locale={externalLocale}
-                                    closeNavBarHandler={closeNavBarHandler}
-                                />
-                            )}
-                        </div>
-                        <div className={styles.navBarSectionEnd}>
-                            {navData && navData.searchPlaceholder && (
-                                <Search
-                                    index={{
-                                        name: `${siteConfig.customFields.siteAlgoliaIndexName}`,
-                                        title: `${siteConfig.customFields.siteAlgoliaIndexName}`,
-                                    }}
-                                    locale={externalLocale}
-                                    placeholder={navData.searchPlaceholder}
-                                    siteUrl={siteConfig.customFields.siteUrl as string}
-                                />
-                            )}
-                            {data && data.socialMedia && <SocialMedia socialMedia={data.socialMedia} />}
-                        </div>
-                    </div>
-                    <div className={`${styles.navbar} ${styles.mobile} navBar`}>
-                        {navData && navData.logo && (
-                            <div className={styles.navbar_logo_container}>
-                                <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
-                                    <div dangerouslySetInnerHTML={{ __html: navData.logo }}></div>
-                                </Link>
+        <>
+            {navData && (
+                <div className={styles.wrapper}>
+                    <header ref={navBarRef} className={styles.navbar_wrapper}>
+                        <div className={`${styles.container}  containerSite`}>
+                            <div className={`${styles.navbar} ${styles.desktop} navBar`}>
+                                {navData?.logo && (
+                                    <div className={styles.navbar_logo_container}>
+                                        <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
+                                            <div dangerouslySetInnerHTML={{ __html: navData.logo }}></div>
+                                        </Link>
+                                    </div>
+                                )}
+                                {navData && navData.navItems && (
+                                    <Nav
+                                        dropdownParentRef={dropdownParentRef}
+                                        header={navData}
+                                        handleClick={handleClick}
+                                        dropdownOpen={dropdownOpen}
+                                        current={current}
+                                        locale={externalLocale}
+                                        closeNavBarHandler={closeNavBarHandler}
+                                    />
+                                )}
+                                {navData && navData.searchPlaceholder && (
+                                    <Search
+                                        index={{
+                                            name: `${siteConfig.customFields.siteAlgoliaIndexName}`,
+                                            title: `${siteConfig.customFields.siteAlgoliaIndexName}`,
+                                        }}
+                                        locale={externalLocale}
+                                        placeholder={navData.searchPlaceholder}
+                                        siteUrl={siteConfig.customFields.siteUrl as string}
+                                    />
+                                )}
+                                {data && data.socialMedia && <SocialMedia socialMedia={data.socialMedia} />}
+                                <ThemeSwitch />
                             </div>
-                        )}
-                        <div className={`${styles.icon} ${isDesktop ? styles.hidden : ""}`} onClick={handleSidebar}>
-                            <div className={`${styles.icon_cancel} ${!sidebarOpen && styles.icon_cancel_none}`}>{icons.cancel}</div>
-                            <div className={`${styles.icon_menu} ${sidebarOpen && styles.icon_menu_none}`}>{icons.menu}</div>
+                            <div className={`${styles.navbar} ${styles.mobile} navBar`}>
+                                {navData && navData.logo && (
+                                    <div className={styles.navbar_logo_container}>
+                                        <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
+                                            <div dangerouslySetInnerHTML={{ __html: navData.logo }}></div>
+                                        </Link>
+                                    </div>
+                                )}
+                                <div className={`${styles.icon} ${isDesktop ? styles.hidden : ""}`} onClick={handleSidebar}>
+                                    <div className={`${styles.icon_cancel} ${!sidebarOpen && styles.icon_cancel_none}`}>{icons.cancel}</div>
+                                    <div className={`${styles.icon_menu} ${sidebarOpen && styles.icon_menu_none}`}>{icons.menu}</div>
+                                </div>
+                            </div>
                         </div>
+                    </header>
+                    <div className={`${styles.mobile}`}>
+                        <Sidebar
+                            sidebarOpen={sidebarOpen}
+                            header={navData}
+                            currentLocale={externalLocale}
+                            dropdownParentRef={dropdownParentMobileRef}
+                            handleClick={handleClick}
+                            dropdownContent={dropdownContent}
+                            dropdownOpen={dropdownOpen}
+                            current={current}
+                            siteConfig={siteConfig}
+                            socialMedia={data?.socialMedia}
+                            closeNavBarHandler={closeNavBarHandler}
+                        />
                     </div>
                 </div>
-            </header>
-            <div className={`${styles.mobile}`}>
-                <Sidebar
-                    sidebarOpen={sidebarOpen}
-                    header={navData}
-                    currentLocale={externalLocale}
-                    dropdownParentRef={dropdownParentMobileRef}
-                    handleClick={handleClick}
-                    dropdownContent={dropdownContent}
-                    dropdownOpen={dropdownOpen}
-                    current={current}
-                    siteConfig={siteConfig}
-                    socialMedia={data.socialMedia}
-                    closeNavBarHandler={closeNavBarHandler}
-                />
-            </div>
-        </div>
+            )}
+        </>
     );
 }

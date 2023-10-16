@@ -152,6 +152,7 @@ const convertFooterData = (source: any): IFooterData => {
     logo: '',
     bottomLinks: [],
     columns: [],
+    manage_cookies_text: source?.manage_cookies_text,
   };
 };
 

@@ -1,5 +1,8 @@
-# Set Up a Private Casper Network
+---
+title: Private Network Setup
+---
 
+# Setting Up a Private Casper Network
 
 Casper private networks operate in a similar way to the Casper public network. The significant difference in private networks is a closed validator set and having administrator account(s) which can control regular accounts. Hence, there are specific configurations when setting up the genesis block and administrator accounts. Besides the main configuration options that the Casper platform provides, each customer may add other configuration options when setting up a private network.
 
@@ -334,6 +337,11 @@ casper-client get-account-info -n $NODE_ADDR
 ### Adding a bid as Alice
 The following command attempts to add an auction bid on the network. It should return `ApiError::AuctionError(AuctionBidsDisabled) [64559]`.
 
+:::tip
+
+All payment amounts in these examples must be adjusted based on the network [chainspec](../../concepts/glossary/C.md#chainspec).
+
+:::
 
 ```sh
 casper-client \

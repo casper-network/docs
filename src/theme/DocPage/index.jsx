@@ -5,8 +5,10 @@ import { docVersionSearchTag, DocsSidebarProvider, DocsVersionProvider, useDocRo
 import DocPageLayout from "@theme/DocPage/Layout";
 import NotFound from "@theme/NotFound";
 import SearchMetadata from "@theme/SearchMetadata";
+
 function DocPageMetadata(props) {
     const { versionMetadata } = props;
+
     return (
         <>
             <SearchMetadata version={versionMetadata.version} tag={docVersionSearchTag(versionMetadata.pluginId, versionMetadata.version)} />
@@ -14,6 +16,7 @@ function DocPageMetadata(props) {
         </>
     );
 }
+
 export default function DocPage(props) {
     const { versionMetadata } = props;
     const currentDocRouteMetadata = useDocRouteMetadata(props);

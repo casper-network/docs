@@ -26,10 +26,18 @@
                         fill: var(--primaryBtn-hover);
                     }
                 }
+
+                &:not(:hover) {
+                    svg {
+                        path {
+                            transition: none;
+                        }
+                    }
+                }
                 &:hover {
                     svg {
                         path {
-                            fill: var(--casperRed);
+                            fill: var(--casperRed) !important;
                         }
                     }
                 }
@@ -38,15 +46,9 @@
     }
 }
 
-@media (max-width: 640px) {
-    .social_icons {
-        margin-bottom: 20px;
-    }
-}
 @media (max-width: 400px) {
     .social_icons {
         min-width: 50%;
-        margin-bottom: 50px;
 
         .social_icons_container {
             justify-content: flex-start;

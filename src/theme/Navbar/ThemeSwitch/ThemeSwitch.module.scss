@@ -1,0 +1,58 @@
+@import "../../../assets/scss/variable.scss";
+
+.switchWrapper {
+    display: flex;
+    align-items: center;
+    label {
+        margin-bottom: 0;
+        background-color: var(--liftedBlack);
+        width: 72px;
+        height: 30px;
+        border-radius: 40px;
+        border: 1px solid var(--casperWhite);
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        svg {
+            pointer-events: none;
+            margin-right: 5px;
+            width: 20px;
+            height: 20px;
+            fill: var(--casperWhite);
+            path {
+                fill: var(--casperWhite);
+            }
+        }
+        &::after {
+            position: absolute;
+            content: "";
+            top: 0;
+            bottom: 0;
+            margin: auto 5px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--casperWhite);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        &.light {
+            justify-content: flex-start;
+            &::after {
+                transform: translateX(210%);
+            }
+            svg {
+                margin-left: 5px;
+            }
+        }
+        &:hover {
+            --casperWhite: var(--casperRed);
+        }
+    }
+    input {
+        display: none;
+    }
+}

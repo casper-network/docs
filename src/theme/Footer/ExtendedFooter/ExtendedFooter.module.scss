@@ -76,7 +76,25 @@
             }
             a:hover {
                 @include transition(0.3s all);
+                color: var(--casperRed) !important;
+            }
+            a:not(:hover) {
+                transition: none;
+            }
+
+            .button_modal_cookie:hover {
+                @include transition(0.3s all);
                 color: var(--casperRed);
+            }
+
+            .button_modal_cookie {
+                background-color: transparent;
+                border: none;
+                color: var(--casperWhite);
+                font-weight: 500;
+                line-height: 24px;
+                margin: 0;
+                padding: 0;
             }
         }
     }
