@@ -4,11 +4,11 @@ title: Validate and Monitor the Node
 
 # Validating and Monitoring the Node
 
-This section describes how to validate the AWS setup and monitor the Casper node created using this infrastructure.
+This section describes how to verify the AWS setup and observe the Casper node created using this infrastructure.
 
 ## Validating the AWS Instances
 
-Run the following command to obtain information about the status of the AWS instances created. Remember to change the profile name and region.
+Run the following command to get information about the status of the AWS instances created. Remember to change the profile name and region.
 
 ```bash
 aws --profile $aws_profile ec2 describe-instances --region $aws_region --filters Name=instance-state-name,Values=running | jq '.Reservations[] | .Instances[] | {Id: .InstanceId, PrivateIpAddress: .PrivateIpAddress, PublicAddress: .PublicIpAddress, State: .State.Name, Name: .Tags[]|select(.Key=="Name")|.Value}'
@@ -35,11 +35,11 @@ aws --profile $aws_profile ec2 describe-instances --region $aws_region --filters
 
 ## VPN Configuration
 
-If operators desire a VPN, it is essential to establish one that guarantees the confidentiality and integrity of the information in transit. For this purpose, [this guide](./6-open-vpn.md) recommends the creation of an OpenVPN server within the IaC.
+If operators find a VPN necessary, it becomes imperative to institute one that assures the confidentiality and integrity of the information while in transit. To fulfill this need, [this guide](./6-open-vpn.md) advocates for the establishment of an OpenVPN server within the IaC infrastructure.
 
 ## Connecting to the Node Instance
 
-At this point, it is necessary to consider how the infrastructure was applied, with or without a VPN. Once the node is up and running and the VPN connection is configured, if applicable, proceed to connecting to the node via SSH.
+At this stage, it's imperative to consider the deployment method of the infrastructure, either with or without a VPN. Once the node operates functionally and, if applicable, after configuring the VPN connection, you can establish a connection to the node via SSH.
 
 ```bash
 cd terragrunt/environment/{env}/
@@ -75,7 +75,7 @@ sudo tail -f /var/log/cloud-init-output.log
 
 ### Check the node status
 
-Obtain information about the node with the following command:
+Get information about the node with the following command:
 
 ```bash
 sudo /etc/casper/node_util.py watch
@@ -107,9 +107,9 @@ Jun 03 16:42:44 ip-10-60-13-180 systemd[1]: Started Casper Node Launcher.
 
 ## Monitoring the Node
 
-To monitor the node and retrieve metrics such as CPU, Memory, Disk, Era, and Block Height, among others, operators have a few options.
+To observe the node and access metrics like CPU, Memory, Disk, Era, and Block Height, operators have a range of options.
 
-### Monitor the node using the command line
+### Monitor the node using the command-line
 
 Check the node log using this command:
 
@@ -140,5 +140,5 @@ http://{Node-IPv4-Public-IP}:3000
 You can also see the node status in the AWS CloudWatch service:
 
 <p align="center">
-<img src={"/image/operators/cloudwatch-dashboard.png"} alt="Cloudwatch Dashboard"/>
+<img src={"/image/operators/cloudwatch-dashboard.png"} alt="CloudWatch Dashboard"/>
 </p>
