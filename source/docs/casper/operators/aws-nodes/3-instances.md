@@ -11,7 +11,9 @@ The following requirements describe the optimal EC2 Instance for running a Caspe
 | O.S.         | Ubuntu 20.04 LTS     |
 | RAM          | 32 GB                |
 | Disk Space   | 2 TB                 |
-| CPU Cores    | 8                    |
+| vCPU Cores   | 8                    |
+| CPU Cores    | 4                    |
+| Threads per Core | 2                |
 | AMI          | ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20211129 |
 | AMI_Type     | t3.2xlarge           |
 
