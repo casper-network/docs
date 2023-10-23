@@ -168,7 +168,26 @@ Suppose developers forget to declare an entry point in the outermost session log
 
 ### Unit tests
 
-Developers can test contracts that follow the factory pattern using the Casper testing framework described under [Unit Testing Smart Contracts](./testing-contracts.md). The testing process is the same, but this page highlights a particular test called [should_install_and_use_factory_pattern](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L116C4-L116C42) found in the [unit test suite](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/execution_engine_testing/tests/src/test/counter_factory.rs) of the counter factory. As the name suggests, the test installs a contract that uses the factory pattern and checks its behavior.
+Developers can test contracts that follow the factory pattern using the Casper testing framework described under [Unit Testing Smart Contracts](./testing-contracts.md). The testing process is the same, but this section highlights a particular test called [should_install_and_use_factory_pattern](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L116C4-L116C42) found in the [unit test suite](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/execution_engine_testing/tests/src/test/counter_factory.rs) of the counter factory. As the name suggests, the test installs a contract that uses the factory pattern and checks its behavior.
+
+On [line 120](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L120), the test starts building a request to call the `contract_factory` entry point with counter name `new-counter-1` and value 1. On [line 134](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L134), the test calls another factory entry point called `contract_factory_default` with counter name `new-counter-2`. The default counter value is 0. 
+
+Once the requests are processed, the test checks the contract hashes of the contracts created:
+
+- The factory contract on [line 146](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L146)
+- The first counter on [line 157](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L157)
+- The second counter on [line 168](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L168)
+
+The test proceeds to get the contract Wasm for each counter produced and test the Wasm exports, which are the `increment` and `decrement` entry points in each counter contract.
+
+The `setup` function on [line 209](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L209) is a helper function for installing the factory contract on the chain and getting the contract factory hash.
+
+The other tests in this file are also interesting:
+
+- [should_not_call_undefined_entrypoints_on_factory](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L25) - This test verifies that entry points marked as a template cannot be called directly from the factory contract
+- [contract_factory_wasm_should_have_expected_exports](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L87C4-L87C54) - This test checks the entry points declared in the contract factory
+
+<!-- TODO these tests have an #ignore tag. We should probably move them to the example repository.-->
 
 ## What's Next? {#whats-next}
 
