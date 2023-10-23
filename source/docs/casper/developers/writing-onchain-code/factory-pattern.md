@@ -4,14 +4,14 @@ title: Factory Contracts
 
 # Writing Contracts using the Factory Pattern
 
-This guide presents the [factory pattern](https://github.com/casper-network/ceps/pull/86/files) for simple counter contracts to showcase the Casper APIs that support this pattern. The example contract used in this guide is a modified counter contract found [here](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/smart_contracts/contracts/test/counter-factory/src/main.rs).
+This guide presents the [factory pattern](https://github.com/casper-network/ceps/pull/86/files) for simple counter contracts to showcase the Casper APIs that support this pattern. The example contract in this guide is a modified counter contract found [here](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/smart_contracts/contracts/test/counter-factory/src/main.rs).
 <!-- TODO before publishing the docs: point to the new link once the casper-node repository is updated. Or, move this counter factory example to https://github.com/casper-ecosystem/tutorials-example-wasm.-->
 
 The factory pattern is a widely recognized software design concept used in various programming contexts. DApp developers often use the factory pattern to create smart contracts from a given factory entry point. The factory pattern ensures that the contracts produced maintain a specified behavior, such as specific entry points and arguments. Thus, factories produce other smart contracts according to a template.
 
 Casper factories are created using the entry point type called `EntryPointType::Install`, which marks an entry point as a factory method responsible for creating and installing contracts on the chain. This installer entry point will derive the Wasm installed on the chain and create a new contract with the same Wasm, just different sets of entry points as required. In other words, these installer entry points marked with `EntryPointType::Install` are the contract factories. When referring to the factory contract on this page, we mean the contract containing the factory entry points.
 
-The `EntryPointAccess::Template` marks an entry point as existing in the bytecode but not callable. Thus, regular entry points can be referenced from within installer entry points marked with `EntryPointType::Install`. In object-oriented terms, entry points marked with `EntryPointAccess::Template` act as virtual abstract methods and cannot be called from session code. The Wasm for template entry points is declared at the factory level in the installer logic.
+The `EntryPointAccess::Template` marks an entry point that exists in the bytecode but is not callable. Thus, regular entry points can be referenced from within installer entry points marked with `EntryPointType::Install`. In object-oriented terms, entry points marked with `EntryPointAccess::Template` act as virtual abstract methods and cannot be called from session code. The Wasm for template entry points is declared at the factory level in the installer logic.
 
 :::note
 
@@ -30,7 +30,7 @@ Or, move this counter factory example to https://github.com/casper-ecosystem/tut
 
 Let's start by exploring the [session code](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/smart_contracts/contracts/test/counter-factory/src/main.rs#L115), where the contract entry points are defined.
 
-Two installer entry points are marked with `EntryPointType::Install`, meaning these entry points will produce new counter contracts once this Wasm is installed in global state. They are also marked with `EntryPointAccess::Public`, so they can be called from the session code.
+Two installer entry points are marked with `EntryPointType::Install`, meaning these entry points will produce new counter contracts once this Wasm is installed in global state. They are also marked with `EntryPointAccess::Public` so that they can be called from the session code.
 
 ```rust
 let entry_point: EntryPoint = EntryPoint::new(
@@ -77,7 +77,7 @@ The factory pattern can produce contracts with different entry points. Suppose t
 
 :::
 
-The [installer function](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/smart_contracts/contracts/test/counter-factory/src/main.rs#L73) creates a new counter contract, by specifying its named keys and entry points. The named keys include the counter's initial value, and the entry points define the counter's `decrement` and `increment` functionality. These entry points are defined just like in any other smart contract, with `EntryPointAccess::Public` and `EntryPointType::Contract`, and they are callable for all the counters created. To learn how to call the `increment` and `decrement` functions, see the [Counter on the Testnet Tutorial](../../resources/beginner/counter-testnet/walkthrough/), which is the non-factory version of the counter contract.
+The [installer function](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/smart_contracts/contracts/test/counter-factory/src/main.rs#L73) creates a new counter contract by specifying its named keys and entry points. The named keys include the counter's initial value, and the entry points define the counter's `decrement` and `increment` functionality. These entry points are defined just like in any other smart contract, with `EntryPointAccess::Public` and `EntryPointType::Contract`, and they are callable for all the counters created. To learn how to call the `increment` and `decrement` functions, see the [Counter on the Testnet Tutorial](../../resources/beginner/counter-testnet/walkthrough/), which is the non-factory version of the counter contract.
 
 <details>
 <summary>Sample installer code for a counter factory</summary>
@@ -162,11 +162,11 @@ let entry_point: EntryPoint = EntryPoint::new(
 
 :::warning
 
-Suppose developers forget to declare an entry point in the outermost session logic (the `call` function) and mark it with `EntryPointAccess::Template`; that Wasm export will be stripped when the factory contract is installed in global state. Creating the entry point in the installer logic is not sufficient.
+Suppose developers forget to declare an entry point in the outermost session logic (the `call` function) and mark it with `EntryPointAccess::Template`; that Wasm export will be removed when the factory contract is installed in global state. Creating the entry point in the installer logic is not sufficient.
 
 :::
 
-### The corresponding unit tests
+### Unit tests
 
 Developers can test contracts that follow the factory pattern using the Casper testing framework described under [Unit Testing Smart Contracts](./testing-contracts.md). The testing process is the same, but this page highlights a particular test called [should_install_and_use_factory_pattern](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/execution_engine_testing/tests/src/test/counter_factory.rs#L116C4-L116C42) found in the [unit test suite](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/execution_engine_testing/tests/src/test/counter_factory.rs) of the counter factory. As the name suggests, the test installs a contract that uses the factory pattern and checks its behavior.
 
