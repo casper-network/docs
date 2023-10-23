@@ -23,7 +23,7 @@ This factory pattern poses a known drawback when using Wasm. All the smart contr
 
 ## The Counter Factory Example
 
-This section dives into a [simple counter that uses factory methods](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/smart_contracts/contracts/test/counter-factory/src/main.rs) to describe how to implement the factory pattern on a Casper network. The [Counter on the Testnet Tutorial](https://docs.casper.network/resources/beginner/counter-testnet/walkthrough/) demonstrates the non-factory version of the counter contract.
+This section dives into a [simple counter that uses factory methods](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/smart_contracts/contracts/test/counter-factory/src/main.rs) to describe how to implement the factory pattern on a Casper network. The [Counter on the Testnet Tutorial](../../resources/beginner/counter-testnet/walkthrough.md) demonstrates the non-factory version of the counter contract.
 
 <!-- TODO before publishing the docs: point to the new link once the casper-node repository is updated. 
 Or, move this counter factory example to https://github.com/casper-ecosystem/tutorials-example-wasm. If using this, add a step to "clone the repository". -->
@@ -77,7 +77,7 @@ The factory pattern can produce contracts with different entry points. Suppose t
 
 :::
 
-The [installer function](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/smart_contracts/contracts/test/counter-factory/src/main.rs#L73) creates a new counter contract by specifying its named keys and entry points. The named keys include the counter's initial value, and the entry points define the counter's `decrement` and `increment` functionality. These entry points are defined just like in any other smart contract, with `EntryPointAccess::Public` and `EntryPointType::Contract`, and they are callable for all the counters created. To learn how to call the `increment` and `decrement` functions, see the [Counter on the Testnet Tutorial](../../resources/beginner/counter-testnet/walkthrough/), which is the non-factory version of the counter contract.
+The [installer function](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/smart_contracts/contracts/test/counter-factory/src/main.rs#L73) creates a new counter contract by specifying its named keys and entry points. The named keys include the counter's initial value, and the entry points define the counter's `decrement` and `increment` functionality. These entry points are defined just like in any other smart contract, with `EntryPointAccess::Public` and `EntryPointType::Contract`, and they are callable for all the counters created. To learn how to call the `increment` and `decrement` functions, see the [Counter on the Testnet Tutorial](../../resources/beginner/counter-testnet/walkthrough.md), which is the non-factory version of the counter contract.
 
 <details>
 <summary>Sample installer code for a counter factory</summary>
@@ -127,7 +127,7 @@ fn installer(name: String, initial_value: U512) {
 
 </details>
 
-It is important to note that the installer logic [saves the newly created contract version and contract hash](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/smart_contracts/contracts/test/counter-factory/src/main.rs#L110-L111) under the factory contract's named keys. The installer logic runs within the factory contract context, not as part of the session code running within the account context. For more details, see the [comparison between session and contract context](../writing-onchain-code/contract-vs-session/#comparing-session-and-contract).
+It is important to note that the installer logic [saves the newly created contract version and contract hash](https://github.com/mpapierski/casper-node/blob/a4d7d5a4f67e7860b2e8c57d74c864860b4e74c8/smart_contracts/contracts/test/counter-factory/src/main.rs#L110-L111) under the factory contract's named keys. The installer logic runs within the factory contract context, not as part of the session code running within the account context. For more details, see the [comparison between session and contract context](../writing-onchain-code/contract-vs-session.md#comparing-session-and-contract).
 
 ```rust
 runtime::put_key(CONTRACT_VERSION, storage::new_uref(contract_version).into());
