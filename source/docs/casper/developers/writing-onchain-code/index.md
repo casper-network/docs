@@ -23,8 +23,7 @@ This section shows you how to write session code and smart contracts in Rust and
 |[Writing Session Code](./writing-session-code.md)      | An introduction to writing session code|
 |[Unit Testing Session Code](./testing-session-code.md)      | Steps to test session code using the unit testing framework|
 |[Using Contract Hash vs. Package Hash](./contract-hash-vs-package-hash.md)| Advantages and disadvantages of using `contract_hash` vs. `contract_package_hash` when calling a contract|
-|[Writing Factory Contracts](./contract-hash-vs-package-hash.md)| Learn to implement the contract factory pattern on a Casper network |
-|[Testing Factory Contracts](./contract-hash-vs-package-hash.md)| Explore the unit tests of a simple smart contract factory |
+|[The Factory Pattern for Smart Contracts](./factory-pattern.md)| Learn to implement the contract factory pattern on a Casper network |
 |[Best Practices for Casper Smart Contract Authors](./best-practices.md)| An outline of best practices when developing smart contracts on a Casper network|
 
 ## Interacting with Contracts on the Blockchain

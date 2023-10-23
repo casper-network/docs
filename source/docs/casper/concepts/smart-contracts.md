@@ -12,9 +12,9 @@ Casper smart contracts can be implemented in any programming language that compi
 
 Session code is the simplest logic one can execute on a Casper network. It is essential because it is often used to trigger contract logic stored on-chain. Entry points in a contract provide access to the contract code installed in global state. Either [session code](../developers/writing-onchain-code/contract-vs-session.md#what-is-session-code) or another smart contract may call these entry points. Understand when you would use session code over contract code [here](../developers/writing-onchain-code/contract-vs-session.md).
 
-## Factory Contracts
+## Factory Pattern
 
-From node version 2.0, Casper networks provide host-side support for factory contracts. When the APIs were updated to support this pattern, the focus was on seamless integration with existing Wasm on the Casper blockchain. The corresponding [Casper Enhancement Proposal](https://github.com/casper-network/ceps/pull/86/files) provides additional details. Also, you can learn to write a simple factory contract by following the [Writing Factory Contracts](../developers/writing-onchain-code/writing-factory-contracts.md) developer guide.
+From node version 2.0, Casper networks provide host-side support for the factory pattern. When the APIs were updated to support this pattern, the focus was on seamless integration with existing Wasm on the Casper blockchain. Contracts already installed in global state will not be affected by these updates. The corresponding [Casper Enhancement Proposal](https://github.com/casper-network/ceps/pull/86/files) provides additional details. Also, you can learn to write a simple contract with factory entry points by following the [The Factory Pattern](../developers/writing-onchain-code/factory-pattern.md) developer guide.
 
 ### Further Reading
 
@@ -24,5 +24,4 @@ From node version 2.0, Casper networks provide host-side support for factory con
 - [Calling Smart Contracts](../developers/writing-onchain-code/calling-contracts.md)
 - [Calling Smart Contracts using the Casper Client](../developers/cli/calling-contracts.md)
 - [Smart Contracts and Session Code](../developers/writing-onchain-code/contract-vs-session.md)
-- [Writing Factory Contracts](../developers/writing-onchain-code/writing-factory-contracts.md)
-- [Testing Factory Contracts](../developers/writing-onchain-code/testing-factory-contracts.md)
+- [The Factory Pattern](../developers/writing-onchain-code/factory-pattern.md)
