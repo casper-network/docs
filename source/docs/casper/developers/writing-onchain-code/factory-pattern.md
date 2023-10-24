@@ -4,7 +4,7 @@ title: Factory Contracts
 
 # Writing Contracts using the Factory Pattern
 
-This guide presents the [factory pattern](https://github.com/casper-network/ceps/pull/86/files) for simple counter contracts to showcase the Casper APIs that support this pattern. The example contract in this guide is a modified counter contract found [here](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/smart_contracts/contracts/test/counter-factory/src/main.rs).
+This guide presents a [factory pattern](https://github.com/casper-network/ceps/pull/86/files) for simple counter contracts to showcase the Casper APIs that support this pattern. The example contract in this guide is a modified counter contract found [here](https://github.com/mpapierski/casper-node/blob/gh-2064-factory-pattern/smart_contracts/contracts/test/counter-factory/src/main.rs).
 <!-- TODO before publishing the docs: point to the new link once the casper-node repository is updated. Or, move this counter factory example to https://github.com/casper-ecosystem/tutorials-example-wasm.-->
 
 The factory pattern is a widely recognized software design concept used in various programming contexts. DApp developers often use the factory pattern to create smart contracts from a given factory entry point. The factory pattern ensures that the contracts produced maintain a specified behavior, such as specific entry points and arguments. Thus, factories produce other smart contracts according to a template.
