@@ -749,7 +749,7 @@ When passing a URef to another entity on chain, you must ensure that the `Access
 
 :::
     
-If a passed URef contains `ADD` permissions, the entity receiving the URef will then be able to deposit CSPR into the associated purse. `WRITE` permissions allow for withdrawing CSPR. As of 1.4.5, passing a main purse URef as a runtime argument will cause the host to automatically remove `WRITE` permissions. Regardless, all due diligence should be performed to avoid passing a URef with `WRITE` permissions unintentionally.
+If a passed URef contains `ADD` permissions, the entity receiving the URef will then be able to deposit CSPR into the associated purse. `WRITE` permissions allow for withdrawing CSPR. As of 1.4.5, passing a main purse URef as a runtime argument will cause the host to automatically remove `WRITE` permissions. In this event, `READ` and `ADD` permissions will remain. Regardless, all due diligence should be performed to avoid passing a URef with `WRITE` permissions unintentionally.
 
 #### PublicKey {#clvalue-publickey}
 
