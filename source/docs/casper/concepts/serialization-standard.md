@@ -743,9 +743,13 @@ A `Map` serializes as a list of key-value tuples. There must be a well-defined o
 
     -   E.g. `uref-974019c976b5f26412ce486158d2431967af35d91387dae8cbcd43c20fce6452-007` shows a `URef` with full `READ_ADD_WRITE` rights.
     
+:::warning
+
 When passing a URef to another entity on chain, you must ensure that the `AccessRights` are set correctly. If the URef represents a [purse](./glossary/P.md#purse-purse), `AccessRights` impact who can deposit and withdraw CSPR.
+
+:::
     
-If a passed URef contains `ADD` permissions, the entity receiving the URef will then be able to deposit CSPR into the associated purse. `WRITE` permissions allow for withdrawing CSPR. As of 1.4.5, passing a main purse URef as a runtime arg will cause the host to automatically remove `WRITE` permissions. Regardless, all due diligence should be performed to avoid passing a URef with `WRITE` permissions unintentionally.
+If a passed URef contains `ADD` permissions, the entity receiving the URef will then be able to deposit CSPR into the associated purse. `WRITE` permissions allow for withdrawing CSPR. As of 1.4.5, passing a main purse URef as a runtime argument will cause the host to automatically remove `WRITE` permissions. Regardless, all due diligence should be performed to avoid passing a URef with `WRITE` permissions unintentionally.
 
 #### PublicKey {#clvalue-publickey}
 
