@@ -14,7 +14,7 @@ Session code is the simplest logic one can execute on a Casper network. It is es
 
 ## Factory Pattern
 
-From node version 2.0, Casper networks provide host-side support for the factory pattern. When the APIs were updated to support this pattern, the focus was on seamless integration with existing Wasm on the Casper blockchain. Contracts already installed in global state will not be affected by these updates. The corresponding [Casper Enhancement Proposal](https://github.com/casper-network/ceps/pull/86/files) provides additional details. Also, you can learn to write a simple contract with factory entry points by following the [The Factory Pattern](../developers/writing-onchain-code/factory-pattern.md) developer guide.
+From node version 2.0, Casper networks provide host-side support for the factory implementations. When the APIs were updated to support this pattern, the focus was on seamless integration with existing Wasm on the Casper blockchain. Contracts already installed in global state will not be affected by these updates. The corresponding [Casper Enhancement Proposal](https://github.com/casper-network/ceps/pull/86/files) provides additional details. Also, you can learn to write a simple contract with factory entry points by following the [The Factory Pattern](../developers/writing-onchain-code/factory-pattern.md) developer guide.
 
 ### Further Reading
 
