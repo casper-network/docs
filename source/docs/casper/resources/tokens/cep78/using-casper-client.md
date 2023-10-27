@@ -24,7 +24,7 @@ Information on the modalities used throughout this installation process can be f
 
 ## Installing the Contract
 
-Installing the enhanced NFT contract to global state requires the use of a [Deploy](/developers/dapps/cli/sending-deploys/). In this case, the session code can be compiled to Wasm by running the `make build-contract` command provided in the Makefile at the top level. The Wasm will be found in the `contract/target/wasm32-unknown-unknown/release` directory as `contract.wasm`.
+Installing the enhanced NFT contract to global state requires the use of a [Deploy](/developers/cli/sending-deploys/). In this case, the session code can be compiled to Wasm by running the `make build-contract` command provided in the Makefile at the top level. The Wasm will be found in the `contract/target/wasm32-unknown-unknown/release` directory as `contract.wasm`.
 
 Below is an example of a `casper-client` command that provides all required session arguments to install a valid instance of the CEP-78 contract on global state.
 
