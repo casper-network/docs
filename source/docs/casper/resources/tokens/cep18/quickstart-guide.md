@@ -17,10 +17,10 @@ For greater detail into the creation and mechanics of the Casper fungible token 
 
 Before using this guide, ensure you meet the following requirements:
 
--   Set up your machine as per the [prerequisites](../developers/prerequisites/)
+-   Set up your machine as per the [prerequisites](/developers/prerequisites/)
 -   Use the [Casper command-line client]
 -   Get a valid [`node-address`](https://cspr.live/tools/peers)
--   Know how to deploy a [smart contract](../developers/dapps/sending-deploys/) to a Casper network
+-   Know how to deploy a [smart contract](/developers/dapps/cli/sending-deploys/) to a Casper network
 -   Hold enough CSPR tokens to pay for transactions
 
 # Setup

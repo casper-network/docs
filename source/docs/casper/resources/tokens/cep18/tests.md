@@ -7,7 +7,7 @@ slug: /resources/tokens/cep18/tests
 
 The testing framework in this tutorial uses the [Casper engine test support](https://crates.io/crates/casper-engine-test-support) crate for testing the contract implementation against the Casper execution environment.
 
-The following section reviews the [GitHub testing folder](https://github.com/casper-ecosystem/cep18/tree/master/tests), which creates a testing framework for the Casper [Fungible Token](https://github.com/casper-ecosystem/cep18) project. You can find more details about testing Casper contracts [here](../developers/writing-onchain-code/testing-contracts/).
+The following section reviews the [GitHub testing folder](https://github.com/casper-ecosystem/cep18/tree/master/tests), which creates a testing framework for the Casper [Fungible Token](https://github.com/casper-ecosystem/cep18) project. You can find more details about testing Casper contracts [here](/developers/writing-onchain-code/testing-contracts/).
 
 The following is an example of a complete test expecting a failed transfer:
 
@@ -69,7 +69,7 @@ The [TestFixture](https://github.com/casper-ecosystem/cep18/blob/master/example/
 
 ### Setting up the Testing Context
 
-The code in the [utility directory](https://github.com/casper-ecosystem/cep18/tree/dev/tests/src/utility) initializes the blockchain's [global state](../concepts/glossary/G/#global-state) with all the data and entrypoints the smart contract needs.
+The code in the [utility directory](https://github.com/casper-ecosystem/cep18/tree/dev/tests/src/utility) initializes the blockchain's [global state](/concepts/glossary/G/#global-state) with all the data and entrypoints the smart contract needs.
 
 Expand the example below to see a subset of the required constants for this project. The testing framework defines constants via the [`constants.rs`](https://github.com/casper-ecosystem/cep18/blob/dev/tests/src/utility/constants.rs) file within the `utility` directory. For the most up-to-date version of the code, visit [GitHub](https://github.com/casper-ecosystem/cep18).
 
