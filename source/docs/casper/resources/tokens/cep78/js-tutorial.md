@@ -1,5 +1,5 @@
 ---
-title: CEP-78 JavaScript Client Tutorial
+title: CEP-78 JavaScript Client
 slug: /resources/tokens/cep78/js-tutorial
 ---
 

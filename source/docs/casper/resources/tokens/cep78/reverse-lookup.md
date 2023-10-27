@@ -1,5 +1,5 @@
 ---
-title: Owner Reverse Lookup Functionality
+title: Ownership Lookup
 slug: /resources/tokens/cep78/reverse-lookup
 ---
 

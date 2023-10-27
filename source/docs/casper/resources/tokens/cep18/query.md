@@ -1,5 +1,5 @@
 ---
-title: Exploring the CEP-18 Contracts
+title: CEP-18 Contract Details
 slug: /resources/tokens/cep18/query
 ---
 
@@ -15,7 +15,7 @@ This document covers the necessary information that you will need to interact wi
 
 We will need the contract package's `contract_hash` to interact with the recently installed instance of CEP-18. You can find the contract package hash within the installing account's `NamedKeys`, under the name given during the installation process.
 
-```bash
+```json
 casper-client query-global-state -n http://<HOST IP>:<PORT> \
 // This is the contract package hash, which can be found within the `NamedKeys` of the account that sent the installing deploy.
 --key hash-82bd86d2675b2dc44c19027fb7717a99db6fda5e0cad8d597f2495a9dbc9df7f \
@@ -70,7 +70,7 @@ In addition, there is a utility contract that invokes the various balance and al
 
 First, you will need to query the `cep18_test_contract` hash found within the installing account's `NamedKeys`:
 
-```bash
+```json
 casper-client query-global-state -n http://<HOST IP>:<PORT> \
 // This is the contract hash for the `cep18_test_contract` as found from the installing account's `NamedKeys`
 --key hash-015b99020edb40e7e1e2b31a8e104bc226242f960a2d10dc1d91ae3eb6fa41b6 \
@@ -80,7 +80,7 @@ casper-client query-global-state -n http://<HOST IP>:<PORT> \
 <details>
 <summary><b>Casper client command without comments</b></summary>
 
-```bash
+```json
 casper-client query-global-state -n http://<HOST IP>:<PORT> \
 --key hash-015b99020edb40e7e1e2b31a8e104bc226242f960a2d10dc1d91ae3eb6fa41b6 \
 --state-root-hash f9f73c3a4da5893b67c4cac94a5695d76cfefff61b050c98a7b19e2b8efd3933

@@ -8,28 +8,6 @@ slug: /resources/tokens/cep78/modalities
 
 The enhanced NFT implementation supports various 'modalities' that dictate the behavior of a specific contract instance. Modalities represent the common expectations around contract usage and behavior.
 
-The following section discusses the currently implemented modalities and illustrates the significance of each.
-
-<b>Modalities</b>
-
-
-- [Ownership](#ownership)
-- [NFTKind](#nftkind)
-- [NFTHolderMode](#nftholdermode)
-- [WhitelistMode](#whitelistmode)
-- [Minting](#minting)
-- [NFTMetadataKind](#nftmetadatakind)
-- [NFTIdentifierMode](#nftidentifiermode)
-- [Metadata Mutability](#metadata-mutability)
-- [BurnMode](#burnmode)
-- [OwnerReverseLookupMode](#ownerreverselookupmode)
-- [NamedKeyConventionMode](#namedkeyconventionmode)
-- [EventsMode](#eventsmode)
-
-<b>Further Information</b>
-
-- [Modality Conflicts](#modality-conflicts)
-
 ## Ownership
 
 This modality specifies the behavior regarding ownership of NFTs and whether the owner of the NFT can change over the contract's lifetime. There are three modes:

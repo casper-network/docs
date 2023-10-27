@@ -1,9 +1,9 @@
 ---
-title: Casper Fungible Token Quick Start Guide
+title: On-chain Installation
 slug: /resources/tokens/cep18/quickstart-guide
 ---
 
-# Casper Fungible Token Quick Start Guide
+# Installing and Interacting with a CEP-18 Contract
 
 This quick start guide introduces you to the Casper client commands and Wasm files necessary to deploy a CEP-18 Casper Fungible Token contract to a [Casper network](https://cspr.live).
 

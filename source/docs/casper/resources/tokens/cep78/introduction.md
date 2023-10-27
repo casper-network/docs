@@ -1,24 +1,10 @@
 ---
-title: CEP-78 Enhanced NFT Standard Introduction
+title: Introduction
 slug: /resources/tokens/cep78/introduction
 ---
 
 
 # CEP-78 Enhanced NFT Standard Introduction
-
-## Table of Contents
-
-1. [Usage](#usage)
-
-   - [Installing the Contract](#building-the-contract)
-
-   - [Utility Session Code](#utility-session-code)
-
-2. [Installing and Interacting with CEP-78 Contracts using the Rust Casper Client](#installing-and-interacting-with-the-contract-using-the-rust-casper-client)
-
-3. [Test Suite and Specification](#test-suite-and-specification)
-
-4. [Error Codes](#error-codes)
 
 ## Usage
 

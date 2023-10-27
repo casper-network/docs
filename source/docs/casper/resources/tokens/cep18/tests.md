@@ -1,5 +1,5 @@
 ---
-title: Testing Framework for CEP-18
+title: Testing Guide
 slug: /resources/tokens/cep18/tests
 ---
 
@@ -34,7 +34,7 @@ To build and run the tests, issue the following command in the project folder, [
 make test
 ```
 
-The project contains a [Makefile](https://github.com/casper-ecosystem/cep18/blob/dev/Makefile), which is a custom build script that compiles the contract before running tests in _release_ mode. Then, the script copies the `contract.wasm` file to the [tests/wasm](https://github.com/casper-ecosystem/cep18/tree/master/tests/wasm) directory. In practice, you only need to run the `make test` command during development.
+The project contains a [Makefile](https://github.com/casper-ecosystem/cep18/blob/dev/Makefile), which is a custom build script that compiles the contract before running tests in _release_ mode. Then, the script copies the `contract.wasm` file to the `tests/wasm` directory. In practice, you only need to run the `make test` command during development.
 
 ## Configuring the Test Package
 
@@ -65,7 +65,7 @@ In Github, you will find an [example](https://github.com/casper-ecosystem/cep18/
 - [Step 2](#deploying-the-contract) - Deploy the compiled contract to the blockchain and query it.
 - [Step 3](#invoking-contract-entrypoints) - Create additional deploys for calling each of the entrypoints in the contract.
 
-The [TestFixture](https://github.com/casper-ecosystem/cep18/blob/master/example/cep18-tests/src/test_fixture/test_fixture.rs) accomplishes these steps by simulating a real-world deploy that stores the contract on the blockchain and then invoking the contract's entrypoints.
+The test fixture accomplishes these steps by simulating a real-world deploy that stores the contract on the blockchain and then invoking the contract's entrypoints.
 
 ### Setting up the Testing Context
 

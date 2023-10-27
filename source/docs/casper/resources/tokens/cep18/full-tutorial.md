@@ -1,5 +1,5 @@
 ---
-title: Casper Fungible Token Tutorial
+title: Fungible Token Workflow
 slug: /resources/tokens/cep18/full-tutorial
 ---
 
@@ -15,42 +15,7 @@ The following functions implement the rules defined by Casper Fungible Tokens: `
 
 The [Writing Rust Contracts on Casper](/developers/writing-onchain-code/simple-contract/) document outlines many aspects of this tutorial and should be read first.
 
-# Table of Contents
-
-1. [Preparation](#preparation)
-
-2. [Contract Implementation](#contract-implementation)
-
-   a. [Installing the Required Crates](#installing-required-crates-installing-crates)
-
-   b. [Initializing the Contract](#initializing-the-contract-initializing-the-contract)
-
-   c. [Contract Methods](#contract-methods-contract-methods)
-
-3. [Installing the Contract](#installing-the-contract)
-
-   a. [Deploy Prerequisites](#deploy-prerequisites-deploy-prerequisites)
-
-   b. [Basic Flow](#basic-flow-basic-flow)
-
-   c. [Cloning the Token Contract](#cloning-the-token-contract-cloning-the-token-contract)
-
-   d. [Getting an IP Address from a Testnet Peer](#getting-an-ip-address-from-a-testnet-peer)
-
-   e. [Viewing the Network Status](#viewing-the-network-status)
-
-   f. [Installing the Contract](#installing-the-contract-deploying-the-contract)
-
-   g. [Querying the Network Status](#querying-the-network-status-querying-the-network-status)
-
-   h. [Verifying the Deploy](#verifying-the-deploy-verifying-the-deploy)
-
-   i. [Querying with Arguments](#querying-with-arguments-querying-with-arguments)
-
-   j. [Sample Deploy on Testnet](#example-deploy-on-testnet-sample-deploy-testnet)
-
-
-# Preparation
+## Preparation
 
 First clone the contract from GitHub:
 
@@ -80,7 +45,7 @@ make build-contract
 make test
 ```
 
-# Contract Implementation
+## Contract Implementation
 
 In [GitHub](https://github.com/casper-ecosystem/cep18), you will find a library and an [example implementation](https://github.com/casper-ecosystem/cep18/blob/master/cep18/src/main.rs) of the Fungible Token for Casper networks. This section explains the example contract in more detail.
 
@@ -91,7 +56,7 @@ There are four steps to follow when you intend to create your own implementation
 3.  Compile the customized code to Wasm.
 4.  Send the customized Wasm as a deploy to a Casper network.
 
-## Installing Required Crates {#installing-crates}
+### Installing Required Crates {#installing-crates}
 
 This tutorial applies to the Rust implementation of the Casper Fungible Token standard, and requires the following Casper crates:
 
@@ -111,7 +76,7 @@ use casper_types::{CLValue, U256};
 
 **Note**: In Rust, the keyword `use` is like an include statement in C/C++.
 
-## Initializing the Contract {#initializing-the-contract}
+### Initializing the Contract {#initializing-the-contract}
 
 Initializing the contract happens through the `call()` function inside the [contract file](https://github.com/casper-ecosystem/cep18/blob/master/cep18/src/main.rs). When you deploy the contract, you need to initialize it with a `call()` function and define `name`, `symbol`, `decimals`, and `total_supply`.
 
@@ -131,7 +96,7 @@ fn call() {
 
 ```
 
-## Contract Methods {#contract-methods}
+### Contract Methods {#contract-methods}
 
 This section briefly explains the contract methods used in the Casper Fungible Token contract.
 
@@ -156,18 +121,18 @@ Contract methods are:
 - [**transfer**](https://github.com/casper-ecosystem/cep18/blob/370952ddbd2b3bc08cd0394babc6fbaf291c52aa/cep18/src/main.rs#L140) - Transfers an amount of tokens from the direct caller to a recipient
 - [**transfer_from**](https://github.com/casper-ecosystem/cep18/blob/370952ddbd2b3bc08cd0394babc6fbaf291c52aa/cep18/src/main.rs#L155) - Transfers an amount of tokens from the owner to a recipient, if the direct caller has been previously approved to spend the specified amount on behalf of the owner
 
-# Installing the Contract
+## Installing the Contract
 
 After customizing your instance of the CEP-18 token contract, it's time to install it in global state. Installing the Fungible Token contract is similar to installing other smart contracts, while only the Wasm files and parameters will differ. Refer to the [Sending Deploys to a Casper network using the Rust Client](/developers/cli/sending-deploys/) section to learn more about install contracts.
 
-## Deploy Prerequisites {#deploy-prerequisites}
+### Deploy Prerequisites {#deploy-prerequisites}
 
 - Set up your machine as per the [prerequisites](/developers/prerequisites/)
 - Ensure you have [set up an account](/concepts/accounts-and-keys/#creating-accounts-and-keys) with a public and secret key pair to initiate the deploy
 - Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow the guide to [fund your account](/developers/prerequisites/#fund-your-account) or to [transfer tokens](/developers/cli/transfers/) as needed
 - Install the [Casper command-line client](/developers/prerequisites/#install-casper-client) to interact with the network
 
-## Basic Flow {#basic-flow}
+### Basic Flow {#basic-flow}
 
 Here are the basic steps to install the Casper Fungible Token contract on a Casper Network.
 
@@ -177,7 +142,7 @@ Here are the basic steps to install the Casper Fungible Token contract on a Casp
 - [Install the contract via a deploy](#installing-the-contract-deploying-the-contract)
 - [View the network state](#querying-the-network-status-querying-the-network-status)
 
-## Cloning the Token Contract {#cloning-the-token-contract}
+### Cloning the Token Contract {#cloning-the-token-contract}
 
 This step includes cloning and preparing the token contract for the deployment.
 
@@ -209,11 +174,11 @@ make test
 
 ```
 
-## Getting an IP Address from a Testnet Peer {#getting-an-ip-address}
+### Getting an IP Address from a Testnet Peer {#getting-an-ip-address}
 
 We will use a Testnet [peer](https://testnet.cspr.live/tools/peers) to send the deploy. Read the guide to [acquiring a node address](/developers/prerequisites/#acquire-node-address-from-network-peers) if needed.
 
-## Viewing the Network Status {#viewing-network-status}
+### Viewing the Network Status {#viewing-network-status}
 
 This query captures any information related to the state of the blockchain at the specific time denoted by the network's state root hash. You need to have the state root hash and the account hash to run the query.
 
@@ -244,7 +209,7 @@ casper-client query-global-state \
 --key [ACCOUNT_HASH]
 ```
 
-## Installing the Contract {#deploying-the-contract}
+### Installing the Contract {#deploying-the-contract}
 
 Now you can install the contract to the network and check how it behaves.
 
@@ -281,11 +246,11 @@ casper-client put-deploy \
 --session-arg "name='Token test', symbol='TEST', decimals:u8=10, total_supply:u256=1000"
 ```
 
-## Querying the Network Status {#querying-the-network-status}
+### Querying the Network Status {#querying-the-network-status}
 
 You will need the newest state root hash to view the network status, as it changed with the deploy. The account hash remains the same since you are using the same account. Follow the [viewing the network state](#viewing-the-network-status) section to execute this step with the new state root hash.
 
-## Verifying the Deploy {#verifying-the-deploy}
+### Verifying the Deploy {#verifying-the-deploy}
 
 Now you can verify the sent deploy using the `get-deploy` command. This will output the details of the sent deploy.
 
@@ -294,7 +259,7 @@ casper-client get-deploy \
 --node-address http://<HOST:PORT> [DEPLOY_HASH]
 ```
 
-## Querying with Arguments {#querying-with-arguments}
+### Querying with Arguments {#querying-with-arguments}
 
 This step will narrow down the context and check the status of a specific entry point. You will use the details inside the [Fungible Token contract](https://github.com/casper-ecosystem/cep18/blob/master/cep18/src/main.rs) to derive arguments.
 
@@ -308,11 +273,11 @@ casper-client query-global-state \
 -q "[CONTRACT_NAME/ARGUMENT]"
 ```
 
-## Example Deploy on Testnet {#sample-deploy-testnet}
+### Example Deploy on Testnet {#sample-deploy-testnet}
 
 The following steps will guide you through the process with sample values and results.
 
-### Cloning the Fungible Token Contract
+#### Cloning the Fungible Token Contract
 
 ```bash
 git clone https://github.com/casper-ecosystem/cep18.git
@@ -322,7 +287,7 @@ git clone https://github.com/casper-ecosystem/cep18.git
 
 Use [peers](https://testnet.cspr.live/tools/peers) to get the node IP address.
 
-### Viewing the Network Status
+#### Viewing the Network Status
 
 Here is the command to query the state of the network:
 
@@ -371,7 +336,7 @@ This result contains the network state before the deploy. You can see the `named
 </details>
 <br></br>
 
-### Sending the Deploy
+#### Sending the Deploy
 
 Send the Deploy containing your contract with this command:
 
@@ -400,7 +365,7 @@ This command execution will output the `deploy_hash` of the applied deploy. We c
 }
 ```
 
-### Viewing the Deploy Details
+#### Viewing the Deploy Details
 
 You can view the details of the sent deploy using the command below:
 
@@ -781,7 +746,7 @@ This contains the header, payment, and session details along with the execution 
 </details>
 <br></br>
 
-### Querying Contract Entry Points
+#### Querying Contract Entry Points
 
 We will query the argument 'name' in this example.
 

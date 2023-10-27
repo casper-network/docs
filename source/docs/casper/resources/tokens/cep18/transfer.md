@@ -1,5 +1,5 @@
 ---
-title: CEP-18 Token Transfers and Allowances
+title: CEP-18 Transfers
 slug: /resources/tokens/cep18/transfer
 ---
 
@@ -11,7 +11,7 @@ This document describes how to transfer CEP-18 tokens on a Casper network using 
 
 The following command will invoke the `transfer` entry point on your instance of CEP-18, directing it to transfer 10 of the associated CEP-18 tokens to another account.
 
-```bash
+```json
 casper-client put-deploy -n http://<node IP>:<PORT> \
 // The chain name of the Casper network on which your CEP-18 instance was installed.
 --chain-name <CHAIN NAME>\
@@ -51,7 +51,7 @@ This command will return a deploy hash that you can query using `casper-client g
 
 The following Casper client command invokes the `check_balance_of` entry point on the `cep18_test_contract`.
 
-```bash
+```json
 casper-client put-deploy -n http://<node IP>:<PORT>\
 --secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "cep18_test_contract" \
@@ -84,7 +84,7 @@ After sending this command, you will need to query the `results` URef within the
 
 You can use the following command to query global state for the `results` URef.
 
-```bash
+```json
 casper-client query-global-state -n http://<NODE IP>:<PORT> \
 // This is the `results` URef location from your `cep18_test_contract` `NamedKeys`
 --key uref-a46ad389b53715d9991a513c8ca48e1502facc4c563c0700a31e830c4cb8a7d4-007 \
@@ -131,7 +131,7 @@ The Casper fungible token contract features an `allowance` entry point that allo
 
 The following command approves a third-party account to spend an `allowance` of 15 CEP-18 tokens from the balance of the account that sent the CEP-18 instance. 
 
-```bash
+```json
 casper-client put-deploy -n http://<node IP>:<PORT>\
 --chain-name <CHAIN NAME> \
 --secret-key ~/casper/demo/user_a/secret_key.pem \
@@ -165,7 +165,7 @@ casper-client put-deploy -n http://<node IP>:<PORT>\
 
 After approving an account to spend an `allowance` of tokens, we can verify the allotted allowance by using the utility contract. The following command will write the `allowance` of the spender's account to the `result` URef of in the utility contract's `NamedKeys`:
 
-```bash
+```json
 casper-client put-deploy -n http://<node IP>:<PORT>\
 --secret-key ~/casper/demo/user_a/secret_key.pem \
 --session-package-name "cep18_test_contract" \
@@ -199,7 +199,7 @@ casper-client put-deploy -n http://<node IP>:<PORT>\
 
 The following command queries global state to return the value stored under the `result` URef:
 
-```bash
+```json
 casper-client query-global-state -n http://<node IP>:<PORT> \
 // This is the previously identified `result` URef from the utility contract's `NamedKeys`
 --key uref-a46ad389b53715d9991a513c8ca48e1502facc4c563c0700a31e830c4cb8a7d4-007 \
@@ -242,7 +242,7 @@ You should get a response similar to the following:
 
 The following command allows an account to transfer CEP-18 tokens held by another account up to their approved `allowance`.
 
-```bash
+```json
 casper-client put-deploy -n http://<NODE IP>:<PORT> \
 --chain-name <CHAIN NAME> \
 // This is the secret key for the account that is spending their `allowance` from another account's balance.

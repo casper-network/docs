@@ -1,5 +1,5 @@
 ---
-title: Installing and Interacting with a CEP-78 Contract using the Rust Casper Client
+title: On-chain Installation
 slug: /resources/tokens/using-casper-client
 ---
 
@@ -9,18 +9,6 @@ slug: /resources/tokens/using-casper-client
 This documentation will guide you through the process of installing and interacting with an instance of the CEP-78 enhanced NFT standard contract through Casper's Rust CLI client. The contract code installs an instance of CEP-78 as per session arguments provided at the time of installation. It requires a minimum Rust version of `1.63.0`.
 
 Information on the modalities used throughout this installation process can be found in the [modalities documentation](modalities.md).
-
-## Table of Contents
-
-1. [Installing the Contract](#installing-the-contract)
-
-2. [Directly Invoking Entrypoints](#directly-invoking-entrypoints)
-
-3. [Minting an NFT](#minting-an-nft)
-
-4. [Transferring NFTs Between Users](#transferring-nfts-between-users)
-
-5. [Burning an NFT](#burning-an-nft)
 
 ## Installing the Contract
 
