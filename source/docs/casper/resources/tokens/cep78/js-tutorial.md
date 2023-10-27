@@ -1,3 +1,8 @@
+---
+title: CEP-78 JavaScript Client Tutorial
+slug: /resources/tokens/cep78/js-tutorial
+---
+
 # CEP-78 JavaScript Client Tutorial
 
 This tutorial outlines the usage of the JavaScript client available for the CEP-78 Enhanced NFT Standard.
