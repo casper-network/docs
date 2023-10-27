@@ -281,6 +281,52 @@ module.exports = {
         "resources/index",
         "resources/build-on-casper",
         "resources/moving-to-casper",
+        {
+            type: "category",
+            label: "Casper Token Standards",
+            collapsible: true,
+            collapsed: true,
+            link: {
+                type: "doc",
+                id: "resources/tokens/index",
+            },
+            items: [
+                {
+                    type: "category",
+                    label: "CEP-18 Fungible Token",
+                    collapsible: true,
+                    collapsed: true,
+                    className: "text_transform_reset",
+                    link: {
+                        type: "doc",
+                        id: "resources/tokens/cep18/full-tutorial",
+                    },
+                    items: ["resources/tokens/cep18/full-tutorial",
+                            "resources/tokens/cep18/quickstart-guide",
+                            "resources/tokens/cep18/query",
+                            "resources/tokens/cep18/transfer",
+                            "resources/tokens/cep18/tests",
+                    ],
+                },
+                {
+                    type: "category",
+                    label: "CEP-78 Enhanced NFT Standard",
+                    collapsible: true,
+                    collapsed: true,
+                    link: {
+                        type: "doc",
+                        id: "resources/tokens/cep78/introduction",
+                    },
+                    items: [
+                        "resources/tokens/cep78/introduction",
+                        "resources/tokens/cep78/modalities",
+                        "resources/tokens/cep78/using-casper-client",
+                        "resources/tokens/cep78/reverse-lookup",
+                        "resources/tokens/cep78/js-tutorial",
+                    ],
+                },
+            ],
+        },
         "resources/casper-open-source-software",
         "resources/quick-start",
         //"resources/sample-projects", // NEW CONTENT WILL BE HERE
