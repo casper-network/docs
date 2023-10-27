@@ -322,6 +322,7 @@ module.exports = {
                         "resources/tokens/cep78/modalities",
                         "resources/tokens/cep78/using-casper-client",
                         "resources/tokens/cep78/reverse-lookup",
+                        "resources/tokens/cep78/js-tutorial",
                     ],
                 },
             ],
