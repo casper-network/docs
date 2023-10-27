@@ -13,7 +13,7 @@ The Casper Fungible Token standard is the Casper Platform's ER-C20 equivalent. I
 
 The following functions implement the rules defined by Casper Fungible Tokens: `totalSupply`, `transfer`, `transferFrom`, `approve`, `balanceOf`, and `allowance`. A portion of this tutorial reviews the [contract](https://github.com/casper-ecosystem/cep18/blob/master/cep18/src/main.rs) and the [casper_fungible_token](https://docs.rs/casper-erc20-crate/latest/casper_erc20_crate/) library.
 
-The [Writing Rust Contracts on Casper](../developers/writing-onchain-code/simple-contract/) document outlines many aspects of this tutorial and should be read first.
+The [Writing Rust Contracts on Casper](/developers/writing-onchain-code/simple-contract/) document outlines many aspects of this tutorial and should be read first.
 
 # Table of Contents
 
@@ -71,7 +71,7 @@ rustup target add wasm32-unknown-unknown
 info: component 'rust-std' for target 'wasm32-unknown-unknown' is up to date
 ```
 
-If you do not see this message, check the [Getting Started Guide](../developers/writing-onchain-code/getting-started/).
+If you do not see this message, check the [Getting Started Guide](/developers/writing-onchain-code/getting-started/).
 
 Next, compile your contract and run the contract unit tests.
 
@@ -158,14 +158,14 @@ Contract methods are:
 
 # Installing the Contract
 
-After customizing your instance of the CEP-18 token contract, it's time to install it in global state. Installing the Fungible Token contract is similar to installing other smart contracts, while only the Wasm files and parameters will differ. Refer to the [Sending Deploys to a Casper network using the Rust Client](../developers/dapps/sending-deploys/) section to learn more about install contracts.
+After customizing your instance of the CEP-18 token contract, it's time to install it in global state. Installing the Fungible Token contract is similar to installing other smart contracts, while only the Wasm files and parameters will differ. Refer to the [Sending Deploys to a Casper network using the Rust Client](/developers/dapps/sending-deploys/) section to learn more about install contracts.
 
 ## Deploy Prerequisites {#deploy-prerequisites}
 
-- Set up your machine as per the [prerequisites](../developers/prerequisites/)
-- Ensure you have [set up an account](../concepts/accounts-and-keys/#creating-accounts-and-keys) with a public and secret key pair to initiate the deploy
-- Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow the guide to [fund your account](../developers/prerequisites/#fund-your-account) or to [transfer tokens](../developers/cli/transfers/) as needed
-- Install the [Casper command-line client](../developers/prerequisites/#install-casper-client) to interact with the network
+- Set up your machine as per the [prerequisites](/developers/prerequisites/)
+- Ensure you have [set up an account](/concepts/accounts-and-keys/#creating-accounts-and-keys) with a public and secret key pair to initiate the deploy
+- Since we are deploying to the Casper Testnet, ensure your [Testnet faucet account](https://testnet.cspr.live/tools/faucet) contains enough CSPR tokens to perform the contract execution. Follow the guide to [fund your account](/developers/prerequisites/#fund-your-account) or to [transfer tokens](/developers/cli/transfers/) as needed
+- Install the [Casper command-line client](/developers/prerequisites/#install-casper-client) to interact with the network
 
 ## Basic Flow {#basic-flow}
 
@@ -211,7 +211,7 @@ make test
 
 ## Getting an IP Address from a Testnet Peer {#getting-an-ip-address}
 
-We will use a Testnet [peer](https://testnet.cspr.live/tools/peers) to send the deploy. Read the guide to [acquiring a node address](../developers/prerequisites/#acquire-node-address-from-network-peers) if needed.
+We will use a Testnet [peer](https://testnet.cspr.live/tools/peers) to send the deploy. Read the guide to [acquiring a node address](/developers/prerequisites/#acquire-node-address-from-network-peers) if needed.
 
 ## Viewing the Network Status {#viewing-network-status}
 
@@ -219,7 +219,7 @@ This query captures any information related to the state of the blockchain at th
 
 **Getting the state root hash**
 
-Get the state root hash, which marks a snapshot of the network state at a moment in time. Use the [Node IP address](../developers/prerequisites/#acquire-node-address-from-network-peers) taken from a Testnet peer.
+Get the state root hash, which marks a snapshot of the network state at a moment in time. Use the [Node IP address](/developers/prerequisites/#acquire-node-address-from-network-peers) taken from a Testnet peer.
 
 ```bash
 casper-client get-state-root-hash --node-address http://<HOST:PORT>
@@ -248,9 +248,9 @@ casper-client query-global-state \
 
 Now you can install the contract to the network and check how it behaves.
 
-If you are sending the deploy on Mainnet, try several put deploys on the Testnet to understand the exact gas amount required for that deploy. Refer to the [note about gas price](../developers/dapps/sending-deploys/#a-note-about-gas-price) to understand more about payment amounts and gas price adjustments.
+If you are sending the deploy on Mainnet, try several put deploys on the Testnet to understand the exact gas amount required for that deploy. Refer to the [note about gas price](/developers/dapps/sending-deploys/#a-note-about-gas-price) to understand more about payment amounts and gas price adjustments.
 
-**The Casper platform currently does not refund any tokens as part of sending a deploy.** For example, if you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the remaining 9 CSPR. Refer to the [Gas and the Casper Blockchain](../concepts/economics/gas-concepts/) documentation for further details.
+**The Casper platform currently does not refund any tokens as part of sending a deploy.** For example, if you spend 10 CSPR for the deployment and it only costs 1 CSPR, you will not receive the remaining 9 CSPR. Refer to the [Gas and the Casper Blockchain](/concepts/economics/gas-concepts/) documentation for further details.
 
 Use the following command template to deploy the contract:
 
