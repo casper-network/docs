@@ -165,6 +165,7 @@ module.exports = {
                 },
                 "developers/dapps/technology-stack",
                 "developers/dapps/template-frontend",
+                "developers/dapps/uref-security",
                 "developers/dapps/signing-a-deploy",
                 "developers/dapps/speculative-exec",
                 "developers/dapps/setup-nctl",
