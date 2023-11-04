@@ -1,26 +1,238 @@
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Monitoring and Consuming Events
 
-The Casper platform uses event streaming to signal state changes in smart contracts and nodes. Using Casper's client-side SDKs, dApps actively listening for emitted events can consume these events and perform actions based on event data.
+The Casper platform uses [event streaming](../../operators/setup/node-events.md) to signal state changes in smart contracts and nodes. Using Casper's [event sidecar](#the-event-sidecar) and client-side SDKs, dApps actively listening for emitted events can consume these events and perform actions based on event data.
 
-Each Casper node streams events through the SSE (Server Sent Event) server via the port specified as the `event_stream_server.address` in the node's *config.toml*. This port is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers).
+## The Event Sidecar
 
-Events are divided into three categories and streamed on their respective endpoints:
+The Casper Event Sidecar is an application running alongside the node process, allowing subscribers to monitor the event stream without querying the node, thus receiving faster responses and reducing the load on the node. Users needing access to the JSON-RPC will still need to query the node directly. 
 
-- **Deploy events** - Associated with [Deploys](../../concepts/design/casper-design.md#execution-semantics-deploys) on a node. Currently, only a `DeployAccepted` event is emitted. The URL to consume deploy-related events on Mainnet and Testnet is `http://<HOST>:9999/events/deploys/`.
-- **Finality Signature events** - Emitted when a block has been finalized and cannot be altered. The URL to consume finality signature events on Mainnet and Testnet is `http://<HOST>:9999/events/sigs/`.
-- **Main events** - All other events fall under this type, including: `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events. The URL to consume these events on Mainnet and Testnet is `http://<HOST>:9999/events/main/`.
+An alternate name for this application is the SSE Sidecar because it uses the node's Event Stream API returning Server-Sent Events (SSEs) in JSON format. The SSE Sidecar uses the node's Event Stream API to achieve the following goals:
 
-:::note
+- Build a middleware service that connects to the [Node Event Stream](../../operators/setup/node-events.md), replicating the SSE interface and its filters (i.e., /main, /deploys, and /sigs with support for the use of the ?start_from= query to allow clients to get previously sent events from the Sidecar's buffer.) 
+- Provide a new [RESTful endpoint](#the-rest-server) that is discoverable on the network.
 
-An `ApiVersion` event is always emitted when a new client connects to a node's SSE server, informing the client of the node's software version.
+<img class="align-center" src={useBaseUrl("/image/dApp/sidecar-diagram.png")} alt="Sidecar components and architecture diagram" width="800"/>
 
-:::
+Visit GitHub for the latest source code and information on system architecture.
+<!-- TODO Link GitHub to the event sidecar repo -->
+<!-- TODO Link "system architecture" to the event sidecar repo#system-components--architecture documentation -->
 
-## Listening to the Event Stream
+## Listening to the Sidecar REST Server
 
-Applications can listen for such events for a specific account during a particular era, containing certain data. Then, they can parse the data and discard what they do not need. To consume the event stream, set up an event listener in your dApp using the following code:
+DApps can retrieve essential information using the SSE Sidecar's REST API, as shown below.
+
+### Latest Block
+
+Retrieve information about the last block added to the linear chain.
+The path URL is `<HOST:PORT>/block`.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/block
+```
+
+<details> 
+<summary><b>Sample output</b></summary>
+
+```bash
+{"block_hash":"95b0d7b7e94eb79a7d2c79f66e2324474fc8f54536b9e6b447413fa6d00c2581","block":{"hash":"95b0d7b7e94eb79a7d2c79f66e2324474fc8f54536b9e6b447413fa6d00c2581","header":{"parent_hash":"48a99605ed4d1b27f9ddf8a1a0819c576bec57dd7a1b105247e48a5165b4194b","state_root_hash":"8d439b84b62e0a30f8e115047ce31c5ddeb30bd46eba3de9715412c2979be26e","body_hash":"b34c6c6ea69669597578a1912548ef823f627fe667ddcdb6bcd000acd27c7a2f","random_bit":true,"accumulated_seed":"058b14c76832b32e8cd00750e767c60f407fb13b3b0c1e63aea2d6526202924d","era_end":null,"timestamp":"2022-11-20T12:44:22.912Z","era_id":7173,"height":1277846,"protocol_version":"1.4.8"},"body":{"proposer":"0169e1552a97843ff2ef4318e8a028a9f4ed0c16b3d96f6a6eee21e6ca0d4022bc","deploy_hashes":[],"transfer_hashes":["d2193e27d6f269a6f4e0ede0cca805baa861d553df8c9f438cc7af56acf40c2b"]},"proofs":[]}}
+```
+
+</details>
+<br></br>
+
+
+### Block by Hash
+
+Retrieve information about a block given its block hash.
+The path URL is `<HOST:PORT>/block/<block-hash>`. Enter a valid block hash. 
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/block/96a989a7f4514909b442faba3acbf643378fb7f57f9c9e32013fdfad64e3c8a5
+```
+
+<details> 
+<summary><b>Sample output</b></summary>
+
+```bash
+{"block_hash":"96a989a7f4514909b442faba3acbf643378fb7f57f9c9e32013fdfad64e3c8a5","block":{"hash":"96a989a7f4514909b442faba3acbf643378fb7f57f9c9e32013fdfad64e3c8a5","header":{"parent_hash":"8f29120995ae6942d1a48cc4ac8dc3be5de5886f1fb53140356c907f1a70d7ef","state_root_hash":"c8964dddfe3660f481f750c5acd776fe7e08c1e168a4184707d07da6bac5397c","body_hash":"31984faf50cfb2b96774e388a16407cbf362b66d22e1d55201cc0709fa3e1803","random_bit":false,"accumulated_seed":"5ce60583fc1a8b3da07900b7223636eadd97ea8eef6abec28cdbe4b3326c1d6c","era_end":null,"timestamp":"2022-11-20T18:36:05.504Z","era_id":7175,"height":1278485,"protocol_version":"1.4.8"},"body":{"proposer":"017de9688caedd0718baed968179ddbe0b0532a8ef0a9a1cb9dfabe9b0f6016fa8","deploy_hashes":[],"transfer_hashes":[]},"proofs":[]}}
+```
+</details>
+<br></br>
+
+### Block by Height
+
+Retrieve information about a block, given a specific block height.
+The path URL is `<HOST:PORT>/block/<block-height>`. Enter a valid number representing the block height.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/block/1278485
+```
+
+<details> 
+<summary><b>Sample output</b></summary>
+
+```bash
+{"block_hash":"96a989a7f4514909b442faba3acbf643378fb7f57f9c9e32013fdfad64e3c8a5","block":{"hash":"96a989a7f4514909b442faba3acbf643378fb7f57f9c9e32013fdfad64e3c8a5","header":{"parent_hash":"8f29120995ae6942d1a48cc4ac8dc3be5de5886f1fb53140356c907f1a70d7ef","state_root_hash":"c8964dddfe3660f481f750c5acd776fe7e08c1e168a4184707d07da6bac5397c","body_hash":"31984faf50cfb2b96774e388a16407cbf362b66d22e1d55201cc0709fa3e1803","random_bit":false,"accumulated_seed":"5ce60583fc1a8b3da07900b7223636eadd97ea8eef6abec28cdbe4b3326c1d6c","era_end":null,"timestamp":"2022-11-20T18:36:05.504Z","era_id":7175,"height":1278485,"protocol_version":"1.4.8"},"body":{"proposer":"017de9688caedd0718baed968179ddbe0b0532a8ef0a9a1cb9dfabe9b0f6016fa8","deploy_hashes":[],"transfer_hashes":[]},"proofs":[]}}
+```
+</details>
+<br></br>
+
+### Deploy by Hash
+
+Retrieve information about a deploy sent to the network, given its deploy hash.
+The path URL is `<HOST:PORT>/deploy/<deploy-hash>`. Enter a valid deploy hash. 
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/deploy/8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7
+```
+
+<details> 
+<summary><b>Sample output</b></summary>
+
+```bash
+{"deploy_hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","deploy_accepted":{"hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","header":{"account":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","timestamp":"2022-11-20T22:33:59.786Z","ttl":"1h","gas_price":1,"body_hash":"c0c3dedaaac4c962a966376c124cf2225df9c8efce4c2af05c4181be661f41aa","dependencies":[],"chain_name":"casper"},"payment":{"ModuleBytes":{"module_bytes":"","args":[["amount",{"cl_type":"U512","bytes":"0410200395","parsed":"2500010000"}]]}},"session":{"StoredContractByHash":{"hash":"ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea","entry_point":"add_bid","args":[["public_key",{"cl_type":"PublicKey","bytes":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","parsed":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a"}],["amount",{"cl_type":"U512","bytes":"05008aa69516","parsed":"97000000000"}],["delegation_rate",{"cl_type":"U8","bytes":"00","parsed":0}]]}},"approvals":[{"signer":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","signature":"01a7ff7affdc13fac7436acf1b6d7c2282fff0f9185ebe1ce97f2e510b20d0375ad07eaca46f8d72f342e7b9e50a39c2eaf75da0c63365abfd526bbaffa4d33f02"}]},"deploy_processed":{"deploy_hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","account":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","timestamp":"2022-11-20T22:33:59.786Z","ttl":"1h","dependencies":[],"block_hash":"2caea6929fe4bd615f5c7451ecddc607a99d7512c85add4fe816bd4ee88fce63","execution_result":{"Success":{"effect":{"operations":[],"transforms":[{"key":"hash-d2469afeb99130f0be7c9ce230a84149e6d756e306ef8cf5b8a49d5182e41676","transform":"Identity"},{"key":"hash-d63c44078a1931b5dc4b80a7a0ec586164fd0470ce9f8b23f6d93b9e86c5944d","transform":"Identity"},{"key":"hash-7cc1b1db4e08bbfe7bacf8e1ad828a5d9bcccbb33e55d322808c3a88da53213a","transform":"Identity"},{"key":"hash-4475016098705466254edd18d267a9dad43e341d4dafadb507d0fe3cf2d4a74b","transform":"Identity"},{"key":"balance-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd","transform":"Identity"},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":"Identity"},{"key":"balance-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd","transform":{"WriteCLValue":{"cl_type":"U512","bytes":"05f0c773b316","parsed":"97499990000"}}},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":{"AddUInt512":"2500010000"}},{"key":"hash-ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea","transform":"Identity"},{"key":"hash-86f2d45f024d7bb7fb5266b2390d7c253b588a0a16ebd946a60cb4314600af74","transform":"Identity"},{"key":"hash-7cc1b1db4e08bbfe7bacf8e1ad828a5d9bcccbb33e55d322808c3a88da53213a","transform":"Identity"},{"key":"hash-4475016098705466254edd18d267a9dad43e341d4dafadb507d0fe3cf2d4a74b","transform":"Identity"},{"key":"uref-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915-000","transform":{"WriteCLValue":{"cl_type":"Unit","bytes":"","parsed":null}}},{"key":"balance-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915","transform":{"WriteCLValue":{"cl_type":"U512","bytes":"00","parsed":"0"}}},{"key":"hash-7cc1b1db4e08bbfe7bacf8e1ad828a5d9bcccbb33e55d322808c3a88da53213a","transform":"Identity"},{"key":"hash-4475016098705466254edd18d267a9dad43e341d4dafadb507d0fe3cf2d4a74b","transform":"Identity"},{"key":"balance-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd","transform":"Identity"},{"key":"balance-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915","transform":"Identity"},{"key":"balance-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd","transform":{"WriteCLValue":{"cl_type":"U512","bytes":"04f03dcd1d","parsed":"499990000"}}},{"key":"balance-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915","transform":{"AddUInt512":"97000000000"}},{"key":"transfer-1e75292a29d210326d8845082b302037300eac92c7d2612790ca3ab1a62e570d","transform":{"WriteTransfer":{"deploy_hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","from":"account-hash-eb1dd0668899cf6b35cf99f5d4a7d3ea05acf352f75d14075982e0aebc099776","to":"account-hash-6174cf2e6f8fed1715c9a3bace9c50bfe572eecb763b0ed3f644532616452008","source":"uref-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd-007","target":"uref-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915-007","amount":"97000000000","gas":"0","id":null}}},{"key":"bid-eb1dd0668899cf6b35cf99f5d4a7d3ea05acf352f75d14075982e0aebc099776","transform":{"WriteBid":{"validator_public_key":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","bonding_purse":"uref-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915-007","staked_amount":"97000000000","delegation_rate":0,"vesting_schedule":null,"delegators":{},"inactive":false}}},{"key":"deploy-8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","transform":{"WriteDeployInfo":{"deploy_hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","transfers":["transfer-1e75292a29d210326d8845082b302037300eac92c7d2612790ca3ab1a62e570d"],"from":"account-hash-eb1dd0668899cf6b35cf99f5d4a7d3ea05acf352f75d14075982e0aebc099776","source":"uref-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd-007","gas":"2500000000"}}},{"key":"hash-d2469afeb99130f0be7c9ce230a84149e6d756e306ef8cf5b8a49d5182e41676","transform":"Identity"},{"key":"hash-d63c44078a1931b5dc4b80a7a0ec586164fd0470ce9f8b23f6d93b9e86c5944d","transform":"Identity"},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":"Identity"},{"key":"hash-d2469afeb99130f0be7c9ce230a84149e6d756e306ef8cf5b8a49d5182e41676","transform":"Identity"},{"key":"hash-7cc1b1db4e08bbfe7bacf8e1ad828a5d9bcccbb33e55d322808c3a88da53213a","transform":"Identity"},{"key":"hash-4475016098705466254edd18d267a9dad43e341d4dafadb507d0fe3cf2d4a74b","transform":"Identity"},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":"Identity"},{"key":"balance-8c2ffb7e82c5a323a4e50f6eea9a080feb89c71bb2db001bde7449e13328c0dc","transform":"Identity"},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":{"WriteCLValue":{"cl_type":"U512","bytes":"00","parsed":"0"}}},{"key":"balance-8c2ffb7e82c5a323a4e50f6eea9a080feb89c71bb2db001bde7449e13328c0dc","transform":{"AddUInt512":"2500010000"}}]},"transfers":["transfer-1e75292a29d210326d8845082b302037300eac92c7d2612790ca3ab1a62e570d"],"cost":"2500000000"}}},"deploy_expired":false}
+```
+</details>
+<br></br>
+
+### Accepted Deploy by Hash
+
+Retrieve information about an accepted deploy, given its deploy hash.
+The path URL is `<HOST:PORT>/deploy/accepted/<deploy-hash>`. Enter a valid deploy hash.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/deploy/accepted/8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7
+```
+
+<details> 
+<summary><b>Sample output</b></summary>
+
+```bash
+{"hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","header":{"account":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","timestamp":"2022-11-20T22:33:59.786Z","ttl":"1h","gas_price":1,"body_hash":"c0c3dedaaac4c962a966376c124cf2225df9c8efce4c2af05c4181be661f41aa","dependencies":[],"chain_name":"casper"},"payment":{"ModuleBytes":{"module_bytes":"","args":[["amount",{"cl_type":"U512","bytes":"0410200395","parsed":"2500010000"}]]}},"session":{"StoredContractByHash":{"hash":"ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea","entry_point":"add_bid","args":[["public_key",{"cl_type":"PublicKey","bytes":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","parsed":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a"}],["amount",{"cl_type":"U512","bytes":"05008aa69516","parsed":"97000000000"}],["delegation_rate",{"cl_type":"U8","bytes":"00","parsed":0}]]}},"approvals":[{"signer":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","signature":"01a7ff7affdc13fac7436acf1b6d7c2282fff0f9185ebe1ce97f2e510b20d0375ad07eaca46f8d72f342e7b9e50a39c2eaf75da0c63365abfd526bbaffa4d33f02"}]}
+```
+</details>
+<br></br>
+
+
+### Expired Deploy by Hash
+
+Retrieve information about a deploy that expired, given its deploy hash.
+The path URL is `<HOST:PORT>/deploy/expired/<deploy-hash>`. Enter a valid deploy hash.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/deploy/expired/e03544d37354c5f9b2c4956826d32f8e44198f94fb6752e87f422fe3071ab58a
+```
+
+### Processed Deploy by Hash
+
+Retrieve information about a deploy that was processed, given its deploy hash.
+The path URL is `<HOST:PORT>/deploy/processed/<deploy-hash>`. Enter a valid deploy hash.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/deploy/processed/8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7
+```
+
+<details> 
+<summary><b>Sample output</b></summary>
+
+```bash
+{"deploy_hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","account":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","timestamp":"2022-11-20T22:33:59.786Z","ttl":"1h","dependencies":[],"block_hash":"2caea6929fe4bd615f5c7451ecddc607a99d7512c85add4fe816bd4ee88fce63","execution_result":{"Success":{"effect":{"operations":[],"transforms":[{"key":"hash-d2469afeb99130f0be7c9ce230a84149e6d756e306ef8cf5b8a49d5182e41676","transform":"Identity"},{"key":"hash-d63c44078a1931b5dc4b80a7a0ec586164fd0470ce9f8b23f6d93b9e86c5944d","transform":"Identity"},{"key":"hash-7cc1b1db4e08bbfe7bacf8e1ad828a5d9bcccbb33e55d322808c3a88da53213a","transform":"Identity"},{"key":"hash-4475016098705466254edd18d267a9dad43e341d4dafadb507d0fe3cf2d4a74b","transform":"Identity"},{"key":"balance-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd","transform":"Identity"},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":"Identity"},{"key":"balance-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd","transform":{"WriteCLValue":{"cl_type":"U512","bytes":"05f0c773b316","parsed":"97499990000"}}},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":{"AddUInt512":"2500010000"}},{"key":"hash-ccb576d6ce6dec84a551e48f0d0b7af89ddba44c7390b690036257a04a3ae9ea","transform":"Identity"},{"key":"hash-86f2d45f024d7bb7fb5266b2390d7c253b588a0a16ebd946a60cb4314600af74","transform":"Identity"},{"key":"hash-7cc1b1db4e08bbfe7bacf8e1ad828a5d9bcccbb33e55d322808c3a88da53213a","transform":"Identity"},{"key":"hash-4475016098705466254edd18d267a9dad43e341d4dafadb507d0fe3cf2d4a74b","transform":"Identity"},{"key":"uref-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915-000","transform":{"WriteCLValue":{"cl_type":"Unit","bytes":"","parsed":null}}},{"key":"balance-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915","transform":{"WriteCLValue":{"cl_type":"U512","bytes":"00","parsed":"0"}}},{"key":"hash-7cc1b1db4e08bbfe7bacf8e1ad828a5d9bcccbb33e55d322808c3a88da53213a","transform":"Identity"},{"key":"hash-4475016098705466254edd18d267a9dad43e341d4dafadb507d0fe3cf2d4a74b","transform":"Identity"},{"key":"balance-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd","transform":"Identity"},{"key":"balance-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915","transform":"Identity"},{"key":"balance-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd","transform":{"WriteCLValue":{"cl_type":"U512","bytes":"04f03dcd1d","parsed":"499990000"}}},{"key":"balance-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915","transform":{"AddUInt512":"97000000000"}},{"key":"transfer-1e75292a29d210326d8845082b302037300eac92c7d2612790ca3ab1a62e570d","transform":{"WriteTransfer":{"deploy_hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","from":"account-hash-eb1dd0668899cf6b35cf99f5d4a7d3ea05acf352f75d14075982e0aebc099776","to":"account-hash-6174cf2e6f8fed1715c9a3bace9c50bfe572eecb763b0ed3f644532616452008","source":"uref-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd-007","target":"uref-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915-007","amount":"97000000000","gas":"0","id":null}}},{"key":"bid-eb1dd0668899cf6b35cf99f5d4a7d3ea05acf352f75d14075982e0aebc099776","transform":{"WriteBid":{"validator_public_key":"01786c83c59eba29e1f4ae4ee601040970665a816ac5bf856108222b72723f782a","bonding_purse":"uref-3d52e976454512999aee042c3c298474a9d3fa98db80879052465c8a4c57c915-007","staked_amount":"97000000000","delegation_rate":0,"vesting_schedule":null,"delegators":{},"inactive":false}}},{"key":"deploy-8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","transform":{"WriteDeployInfo":{"deploy_hash":"8204af872d7d19ef8da947bce67c7a55449bc4e2aa12d2756e9ec7472b4854f7","transfers":["transfer-1e75292a29d210326d8845082b302037300eac92c7d2612790ca3ab1a62e570d"],"from":"account-hash-eb1dd0668899cf6b35cf99f5d4a7d3ea05acf352f75d14075982e0aebc099776","source":"uref-c182f2fafc6eb59306f971a3d3ad06e4ffa09364ca9de2fc48d123e40da243cd-007","gas":"2500000000"}}},{"key":"hash-d2469afeb99130f0be7c9ce230a84149e6d756e306ef8cf5b8a49d5182e41676","transform":"Identity"},{"key":"hash-d63c44078a1931b5dc4b80a7a0ec586164fd0470ce9f8b23f6d93b9e86c5944d","transform":"Identity"},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":"Identity"},{"key":"hash-d2469afeb99130f0be7c9ce230a84149e6d756e306ef8cf5b8a49d5182e41676","transform":"Identity"},{"key":"hash-7cc1b1db4e08bbfe7bacf8e1ad828a5d9bcccbb33e55d322808c3a88da53213a","transform":"Identity"},{"key":"hash-4475016098705466254edd18d267a9dad43e341d4dafadb507d0fe3cf2d4a74b","transform":"Identity"},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":"Identity"},{"key":"balance-8c2ffb7e82c5a323a4e50f6eea9a080feb89c71bb2db001bde7449e13328c0dc","transform":"Identity"},{"key":"balance-fe327f9815a1d016e1143db85e25a86341883949fd75ac1c1e7408a26c5b62ef","transform":{"WriteCLValue":{"cl_type":"U512","bytes":"00","parsed":"0"}}},{"key":"balance-8c2ffb7e82c5a323a4e50f6eea9a080feb89c71bb2db001bde7449e13328c0dc","transform":{"AddUInt512":"2500010000"}}]},"transfers":["transfer-1e75292a29d210326d8845082b302037300eac92c7d2612790ca3ab1a62e570d"],"cost":"2500000000"}}}
+```
+
+</details>
+<br></br>
+
+### Faults by Public Key
+
+Retrieve the faults associated with a validator's public key.
+The path URL is `<HOST:PORT>/faults/<public-key>`. Enter a valid hexadecimal representation of a validator's public key.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/faults/01a601840126a0363a6048bfcbb0492ab5a313a1a19dc4c695650d8f3b51302703
+```
+
+### Faults by Era
+
+Return the faults associated with an era, given a valid era identifier.
+The path URL is: `<HOST:PORT>/faults/<era-ID>`. Enter an era identifier.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/faults/2304
+```
+
+### Finality Signatures by Block
+
+Retrieve the finality signatures in a block, given its block hash. 
+The path URL is: `<HOST:PORT>/signatures/<block-hash>`. Enter a valid block hash.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/signatures/85aa2a939bc3a4afc6d953c965bab333bb5e53185b96bb07b52c295164046da2
+```
+
+### Step by Era
+
+Retrieve the step event emitted at the end of an era, given a valid era identifier.
+The path URL is: `<HOST:PORT>/step/<era-ID>`. Enter a valid era identifier.
+
+Example:
+
+```bash
+curl -s http://127.0.0.1:18888/step/7268
+```
+
+### Missing Filter
+
+If no filter URL was specified after the root address (HOST:PORT), an error message will be returned.
+
+Example:
+
+```bash
+curl http://127.0.0.1:18888
+{"code":400,"message":"Invalid request path provided"}
+```
+
+### Invalid Filter
+
+If an invalid filter was specified, an error message will be returned.
+
+Example:
+
+```bash
+curl http://127.0.0.1:18888/other
+{"code":400,"message":"Invalid request path provided"}
+```
+
+## Listening to the Sidecar Event Stream
+
+The Sidecar's event stream endpoint is a passthrough for all the events emitted by the node to which the Sidecar connects. The [Node's Event Stream](../../operators/setup/node-events.md) page explains the various event types emitted by the node and available through the Sidecar service.
+
+<!-- TODO double check that this explanation is correct and the code works as before, but with port 19999. Since the Sidecar is installed on the same machine as where the node is running, I assume we can access it using the NODE_ADDRESS. -->
+
+Applications can listen for events during a particular era. To consume the event stream using the SSE Sidecar, set up an event listener in your dApp using the following code. The `NODE_ADDRESS` is the address of the node where the SSE Sidecar is installed. The `PORT` is the address where the Sidecar streams events. By default it is `19999`, but you can find more details [here](../../operators/setup/event-sidecar.md#configuring-the-sidecar-service-configuring-the-sidecar).
 
 <Tabs>
 
@@ -29,7 +241,7 @@ Applications can listen for such events for a specific account during a particul
 ```javascript
 const { EventStream, EventName } = require("casper-js-sdk")
 
-const es = new EventStream("http://NODE_ADDRESS:9999/events/" + CHANNEL)
+const es = new EventStream("http://NODE_ADDRESS:PORT/events/" + CHANNEL)
 es.start()
 es.subscribe(EventName.EVENT_NAME, eventHandler)
 
@@ -48,7 +260,7 @@ from pycspr import NodeClient, NodeConnection, NodeEventChannel, NodeEventType
 def eventHandler(event):
     print(event)
 
-client = NodeClient(NodeConnection(host = "NODE_ADDRESS", port_rpc = 7777))
+client = NodeClient(NodeConnection(host = "NODE_ADDRESS", port_rpc = "PORT"))
 client.get_events(eventHandler, NodeEventChannel.CHANNEL, NodeEventType.EVENT_NAME)
 ```
 
@@ -57,7 +269,7 @@ client.get_events(eventHandler, NodeEventChannel.CHANNEL, NodeEventType.EVENT_NA
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl -s http://NODE_ADDRESS:9999/events/CHANNEL
+curl -s http://NODE_ADDRESS:PORT/events/CHANNEL
 ```
 
 </TabItem>
@@ -72,324 +284,6 @@ Replace `CHANNEL` with one of the following event streams:
 - `main` for `ApiVersion`, `BlockAdded`, `DeployExpired`, `DeployProcessed`, `Fault`, or `Step` events.
 - `deploys` for `DeployAccepted` events.
 - `sigs` for `FinalitySignature` events.
-
-## Event Types
-
-### ApiVersion
-
-The `ApiVersion` event is always the first event emitted when a new client connects to a node's SSE server. It specifies the protocol version of a node on the Casper platform. The following example contains the JSON representation of the `ApiVersion` event structure.
-
-```bash
-data:{"ApiVersion":"1.0.0"}
-```
-
-### BlockAdded
-
-A `BlockAdded` event is emitted when a new block is added to the blockchain and stored locally in the node.
-
-<details>
-<summary>Expand to view output</summary>
-
-```json
-{
-  "BlockAdded": {
-    "block_hash": "62ddf902e9b6988b978413e2a9a2c6c95f8e1ddf452afd8e8a68f0ac22bf391a",
-    "block": {
-      "hash": "62ddf105e9b6988b378413e2a9a2c6c95f8e1ddf458afd8e8268f0ac72bfe91a",
-      "header": {
-        "parent_hash": "ed11ac2117edb9c5b26cf0cde318a807fd68e76206855a70429012ef16b557f5",
-        "state_root_hash": "3c1ad31757ae40f934de4825a818274e0c246d304c661daf656e22b65174ad66",
-        "body_hash": "eb2344f37193395bbc83587e498bc12ad5f0019055abcfa4c3b989d382a7969a",
-        "random_bit": true,
-        "accumulated_seed": "b8b671530f2221c8fdf201083f43c51e215e2f6ffcbe2d63238a2779eb177922",
-        "era_end": null,
-        "timestamp": "2023-01-01T09:55:25.312Z",
-        "era_id": 8426,
-        "height": 1566677,
-        "protocol_version": "1.4.13"
-      },
-      "body": {
-        "proposer": "010e5669b0f0545e2b32bc66363b9d3d4390fca56bf52305f1411b7fa12ca311c7",
-        "deploy_hashes": [],
-        "transfer_hashes": []
-      },
-      "proofs": []
-    }
-  }
-}
-```
-
-- [block_hash](../../concepts/serialization-standard.md#block-hash) - The cryptographic hash that identifies a block.
-- [block](../../concepts/serialization-standard.md#serialization-standard-block) - The JSON representation of the block.
-- [proposer](../../concepts/serialization-standard.md#body) - The validator selected to propose the block.
-
-</details>
-
-### DeployAccepted
-
-`DeployAccepted` events are emitted when a node on the network receives a deploy.
-
-<details>
-<summary>Expand to view output</summary>
-
-```json
-{
-  "DeployAccepted": {
-    "hash": "db84ba229ea37716230ac9874f66c0f12b9731d8d42f28060e481ef3d7263ead",
-    "header": {
-      "account": "012481699f9231e36ecf002675cd7186b48e6a735d10ec1b30f587ca716937752c",
-      "timestamp": "2023-01-01T20:22:45.383Z",
-      "ttl": "30m",
-      "gas_price": 1,
-      "body_hash": "8a377b07a01ac23905b2e416ff388508301feffbb9bdf275c59f87be1e9d0de5",
-      "dependencies": [],
-      "chain_name": "casper-test"
-    },
-    "payment": {
-      "ModuleBytes": {
-        "module_bytes": "",
-        "args": [
-          [
-            "amount",
-            {
-              "cl_type": "U512",
-              "bytes": "040008af2f",
-              "parsed": "800000000"
-            }
-          ]
-        ]
-      }
-    },
-    "session": {
-      "StoredContractByHash": {
-        "hash": "1040f40d06f0355a80149befc4b5d1f203231231d66c4903688e178c36066539",
-        "entry_point": "test_entry_point",
-        "args": [
-          [
-            "cost",
-            {
-              "cl_type": "U512",
-              "bytes": "0500c817a804",
-              "parsed": "20000000000"
-            }
-          ]
-        ]
-      }
-    },
-    "approvals": [
-      {
-        "signer": "012481699f9231e36ecf002675cd7186b48e6a735d10ec1b30f587ca716937752c",
-        "signature": "01d81d4dc9504a356c23d3c161b87b39b1708cd282b59d3e44d9b999e787643ab495f168475bed8dc48d1056605e06c8ba74d96c69ae5b506c4312be8871c0c701"
-      }
-    ]
-  }
-}
-```
-
-* [hash](../../concepts/hash-types.md) - The blake2b hash of the Deploy.
-* [account](../../concepts/serialization-standard.md#serialization-standard-account) - The hexadecimal-encoded public key of the account submitting the Deploy.
-* [body_hash](../../concepts/hash-types.md) - The blake2b hash of the Deploy body.
-* [payment](../../concepts/glossary/P.md#payment-code) - Gas payment information.
-* [session](../writing-onchain-code/contract-vs-session.md#what-is-session-code) - The session logic defining the Deploy's functionality.
-* [approvals](../json-rpc/types_chain.md#approval) - The signer's hexadecimal-encoded public key and signature.
-
-</details>
-
-For details on custom serializations, check the [Serialization Standard](../../concepts/serialization-standard.md). Also, the [Types](../json-rpc/types_chain.md) page defines the terms used in the event stream output.
-
-### DeployProcessed
-
-A `DeployProcessed` event is emitted when a given Deploy has been executed.
-
-<details>
-<summary>Expand to view output</summary>
-
-```json
-{
-  "DeployProcessed": {
-    "deploy_hash": "0f33be8f56ff23d7d503a9804675472e043830a6c17e6141dce717b4f0973c7d",
-    "account": "0201cbff12155b6ae1e99d571c01d56e9e1ba0def6719a6f06bc3e4a08f30a887444",
-    "timestamp": "2023-01-01T10:07:00.401Z",
-    "ttl": "30m",
-    "dependencies": [],
-    "block_hash": "509b754648168a73e6ab67e64d4a783cf580d6fc0c7c0ec560c6650f717841e0",
-    "execution_result": {
-      "Success": {
-        "effect": {
-          "operations": [],
-          "transforms": [
-            {
-              "key": "account-hash-a8261377ef9cf8e7411d6858801c71e28c9322e66355586549c75ab24cdd73f2",
-              "transform": "Identity"
-            },
-          ]
-        },
-        "transfers": [
-          "transfer-3389144d15238240f48f5966f2dc299b6b20eb19c13d834409b4d28fc50fa909"
-        ],
-        "cost": "100000000"
-      }
-    }
-  }
-}
-```
-
-* [deploy_hash](../../concepts/serialization-standard.md#deploy-hash) - The cryptographic hash of a Deploy.
-* [account](../../concepts/serialization-standard.md#serialization-standard-account) - The hexadecimal-encoded public key of the account submitting the Deploy.
-* [timestamp](../../concepts/serialization-standard.md#timestamp) - A timestamp type representing a concrete moment in time.
-* [dependencies](../../concepts/serialization-standard.md#deploy-header) - A list of Deploy hashes. 
-* [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a Block.
-* [execution_result](../../concepts/serialization-standard.md#executionresult) - The execution status of the Deploy, which is either `Success` or `Failure`.
-
-</details>
-
-### DeployExpired
-
-A `DeployExpired` event is emitted when the Deploy is no longer valid for processing or being added to a block due to its time to live (TTL) having expired.
-
-<details>
-<summary>Expand to view output</summary>
-
-```json
-{
-  "DeployExpired": {
-    "deploy_hash": "7ecf22fc284526d6db16fbf455f489e0a9cbf782234131c010cf3078fb9be353"
-  }
-}
-```
-
-* [deploy_hash](../../concepts/serialization-standard.md#deploy-hash) - The cryptographic hash of a Deploy.
-
-</details>
-
-### Fault
-
-The `Fault` event is emitted if there is a validator error.
-
-<details>
-<summary>Expand the below section to view the Fault event details:</summary>
-
-```json
-{
-  "Fault": {
-    "era_id": 4591448806312642600,
-    "public_key": "013da85eb06279da42e28530e1116be04bfd2aa25ed8d63401ebff4d9153a609a9",
-    "timestamp": "2023-01-01T01:26:58.364Z"
-  }
-}
-```
-
-* [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
-* [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator that caused the fault.
-* [timestamp](../../concepts/serialization-standard.md#timestamp) - A timestamp representing the moment the validator faulted.
-
-</details>
-
-### FinalitySignature
-
-This event indicates validators have signed the final approvals and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
-
-<details>
-<summary>Expand to view output</summary>
-
-```json
-{
-  "FinalitySignature": {
-    "block_hash": "eceed827e11f7969a7d3fe91d6fa4ce9749dd79d9f3ea26474fe2014db90e98d",
-    "era_id": 8419,
-    "signature": "0117087ef4b9a786e5a0ea8f198050e9de93dd94f87469b8124c346aeae5f36ad9adf80f670ee9c5887263267ed32cf932dce9b370353c596d59f91fbd57a1a205",
-    "public_key": "01c375b425a36de25dc325c9182861679db2f634abcacd9ae2ee27b84ba62ac1f7"
-  }
-}
-```
-
-- [block_hash](../../concepts/serialization-standard.md#block-hash) - A cryptographic hash identifying a Block.
-- [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
-- [signature](../../concepts/serialization-standard.md#signature) - Serialized bytes representing the validator's signature.
-- [public_key](../../concepts/serialization-standard.md#publickey) - The hexadecimal-encoded public key of the validator.
-
-</details>
-
-### Step
-
-The `Step` event is emitted at the end of every era and contains the execution effects produced by running the auction contract's `step` function.
-
-<details>
-<summary>Expand to view output:</summary>
-
-```json 
-{
-  "Step": {
-    "era_id": 1,
-    "execution_effect": {
-      "operations": [],
-      "transforms": [
-        {
-          "key": "uref-53df18bf01396fbd1ef3a8757c7bdffc684c407d90f2cfeebff166db1d923613-000",
-          "transform": "Identity"
-        },
-        {
-          "key": "uref-f268de37fcea55f8fb1abeba8536a1cc041b2aed2691f1cf34aeaaf0ae379aa5-000",
-          "transform": "Identity"
-        },
-        {
-          "key": "bid-278e5af1ca6cddf5d5438999cb072b47f0d65e1484799f692c3c9c40304be30e",
-          "transform": "Identity"
-        },
-        {
-          "key": "bid-278e5af1ca6cddf5d5438999cb072b47f0d65e1484799f692c3c9c40304be30e",
-          "transform": {
-            "WriteBid": {
-              "validator_public_key": "0133eaae2821f090ac3ba0eadc0a897742094c0604df72b465c41d4b773298a7b9",
-              "bonding_purse": "uref-136552c255d4d737bf7e43d2be250f9f38691b9fe5d9e34446bff18d6d1cf984-007",
-              "staked_amount": "1000000000000005",
-              "delegation_rate": 5,
-              "vesting_schedule": {
-                "initial_release_timestamp_millis": 1664475057182,
-                "locked_amounts": null
-              },
-              "delegators": {
-                "012a241eaa9fa3bd6ccb0e0aaaf4658538f3540e04e2f58973614a168f2f2f813d": {
-                  "delegator_public_key": "012a241eaa9fa3bd6ccb0e0aaaf4658538f3540e04e2f58973614a168f2f2f813d",
-                  "staked_amount": "51312014671568117976319379",
-                  "bonding_purse": "uref-c5ad00f9e6b2f2631ca647ad188187e63799a278a0a46ca25f6b4da64d556662-007",
-                  "validator_public_key": "0133eaae2821f090ac3ba0eadc0a897742094c0604df72b465c41d4b773298a7b9",
-                  "vesting_schedule": {
-                    "initial_release_timestamp_millis": 1664475057182,
-                    "locked_amounts": null
-                  }
-                }
-              },
-              "inactive": false
-            }
-          }
-        }
-      ]
-    }
-  }
-}
-```
-
-* [era_id](../../concepts/serialization-standard.md#eraid) - A period of time during which the validator set does not change.
-* [execution_effect](../../concepts/serialization-standard.md#executioneffect) - The journal of execution transforms from a single Deploy.
-* [operations](../../concepts/serialization-standard.md#operation) - Operations performed while executing a Deploy.
-* [transform](../../concepts/serialization-standard.md#transform) - The actual transformation performed while executing a Deploy.
-
-</details>
-
-### Shutdown
-
-The `Shutdown` event is emitted when the node is about to shut down, usually for an upgrade, causing a termination of the event stream.
-
-<details>
-<summary>Expand the below section to view the Shutdown event details:</summary>
-
-```bash
-"Shutdown"
-```
-* Shutdown - The "Shutdown" text notifies the event listener that a shutdown will occur.
-
-</details>
 
 
 ## Reacting to Events
@@ -456,33 +350,26 @@ es.stop()
 
 </Tabs>
 
-## Replaying the Event Stream
+## Replaying the Sidecar Event Stream
 
-This command will replay the event stream from an old event onward. Replace the `NODE_ADDRESS`, `CHANNEL`, and `ID` fields with the values of your scenario.
+This command will replay the event stream from an old event onward using the SSE Sidecar. Replace the `NODE_ADDRESS`, `PORT`, `CHANNEL`, and `ID` fields with the values of your scenario.
 
 <Tabs>
 
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl -sN http://NODE_ADDRESS:9999/events/CHANNEL?start_from=ID
+curl -sN http://NODE_ADDRESS:PORT/events/CHANNEL?start_from=ID
 ```
 
-*Example:*
+**Example:**
 
 ```bash
-curl -sN http://65.21.235.219:9999/events/main?start_from=29267508
+curl -sN http://65.21.235.219:19999/events/main?start_from=29267508
 ```
 
 </TabItem>
 
 </Tabs>
 
-Each URL can have a query string added to the form `?start_from=ID`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onward. If you specify an event ID already purged from the cache, the server will replay all the cached events.
-
-:::note
-
-The server keeps only a limited number of events cached to allow replaying the stream to clients using the `?start_from=` query string. The cache size can be set differently on each node using the `event_stream_buffer_length` value in the *config.toml*. By default, it is only 5000. 
-The intended use case is to allow a client consuming the event stream that loses its connection to reconnect and catch up with events that were emitted while it was disconnected.
-
-:::
+The server will replay all the cached events if you specify an event ID that has already been purged from the cache. [This section](../../operators/setup/node-events.md#replaying-the-event-stream) contains more details about the number of events cached.

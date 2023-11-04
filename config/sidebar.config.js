@@ -231,6 +231,8 @@ module.exports = {
                 "operators/setup/upgrade",
                 "operators/setup/joining",
                 "operators/setup/non-root-user",
+                "operators/setup/node-events",
+                "operators/setup/event-sidecar",
             ],
         },
         {
@@ -301,11 +303,12 @@ module.exports = {
                         type: "doc",
                         id: "resources/tokens/cep18/full-tutorial",
                     },
-                    items: ["resources/tokens/cep18/full-tutorial",
-                            "resources/tokens/cep18/quickstart-guide",
-                            "resources/tokens/cep18/query",
-                            "resources/tokens/cep18/transfer",
-                            "resources/tokens/cep18/tests",
+                    items: [
+                        "resources/tokens/cep18/full-tutorial",
+                        "resources/tokens/cep18/quickstart-guide",
+                        "resources/tokens/cep18/query",
+                        "resources/tokens/cep18/transfer",
+                        "resources/tokens/cep18/tests",
                     ],
                 },
                 {

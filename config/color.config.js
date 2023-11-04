@@ -1,5 +1,5 @@
 module.exports = {
-    defaultMode: "dark",
+    defaultMode: "light",
     respectPrefersColorScheme: false,
     disableSwitch: false,
 };

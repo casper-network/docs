@@ -12,5 +12,5 @@ The following topics are essential for developers building decentralized applica
 | [Signing Deploys](./signing-a-deploy.md) | Details about the signatures required for deploys  |
 | [Setting up a Local Network with NCTL](./setup-nctl.md) | Learn to set up a local test network |
 | [Testing Smart Contracts with NCTL](./nctl-test.md) | Test deploys locally before sending them to a Casper network |
-| [Monitoring and Consuming Events](./monitor-and-consume-events.md) | How dApps can listen for emitted events and perform actions based on event data |
+| [Monitoring and Consuming Events](./monitor-and-consume-events.md) | How dApps can listen for emitted events using the SSE Sidecar and perform actions based on event data |
 

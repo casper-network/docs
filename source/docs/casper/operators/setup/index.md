@@ -12,3 +12,5 @@ The prerequisite for becoming a validator is to set up a node and join a network
 |[Upgrading the Node](./upgrade.md) | Before joining the network, the node needs to be upgraded |
 |[Joining a Running Network](./joining.md) | Steps to join an existing Casper network |
 |[Setting up a Non-Root User](./non-root-user.md) | Logging into the node remotely using a key |
+|[Node Events](./node-events.md) | Information on the events emitted by the node |
+|[The Event Sidecar](./event-sidecar.md) | An application that allows subscribers to monitor the event stream without querying the node |
