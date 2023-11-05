@@ -127,26 +127,150 @@ If the service was installed on a Casper node, this file holds a default configu
 
 Operators will need to update this file according to their needs. GitHub has further details regarding each configuration option.
 
-## Monitoring the Event Stream
+## Monitoring the Sidecar's Event Stream
 
 It is possible to monitor the Sidecar's event stream using *cURL*, depending on how the HOST and PORT are configured.
 
 ```bash
-curl -s http://<HOST:PORT>/events/<TYPE>
+curl -s http://HOST:PORT/events/CHANNEL
 ```
 
 - `HOST` - The IP address where the Sidecar is running
 - `PORT` - The port number where the Sidecar emits events
-- `TYPE` - The type of emitted event
+- `CHANNEL` - The type of emitted event
 
-Given the default configuration, the command would look like this:
+Given the default configuration, here are the commands for each endpoint:
 <!-- TODO link "default configuration" to the default_config.toml#L27-L29 -->
 
+- **Deploy events:** 
+
+    ```bash
+    curl -sN http://127.0.0.1:19999/events/deploys
+    ```
+
+- **Finality Signature events:** 
+
+    ```bash
+    curl -sN http://127.0.0.1:19999/events/sigs
+    ```
+
+- **Main events:** 
+
+    ```bash
+    curl -sN http://127.0.0.1:19999/events/main
+    ```
+
+- **Sidecar-generated events:** 
+
+    ```bash
+    curl -sN http://127.0.0.1:19999/events/sidecar
+    ```
+
+### The API Version of Node Events
+
+An `ApiVersion` event is always emitted when a new client connects to a node's SSE server, informing the client of the node's software version.
+
+When a client connects to the Sidecar, the Sidecar displays the node’s `ApiVersion`, which it receives from the node. Then, it starts streaming the events coming from the node. The `ApiVersion` may differ from the node’s build version.
+
+If the node goes offline, the `ApiVersion` may differ when it restarts (i.e., in the case of an upgrade). In this case, the Sidecar will report the new `ApiVersion` to its client. If the node’s `ApiVersion` has not changed, the Sidecar will not report the version again and will continue to stream messages that use the previous version.
+
+Here is an example of what the API version would look like while listening on the Sidecar’s `DeployAccepted` event stream:
 
 ```bash
 curl -sN http://127.0.0.1:19999/events/deploys
+
+data:{"ApiVersion”:”1.4.8”}
+
+data:{"DeployAccepted":{"hash":"00eea4fb9baa37af401cba8ffb96a1b96d594234908cb5f9de50effcb5b1c5aa","header":{"account":"0202ed20f3a93b5386bc41b6945722b2bd4250c48f5fa0632adf546e2f3ff6f4ddee","timestamp":"2023-02-28T12:21:14.604Z","ttl":"30m","gas_price":1,"body_hash":"f06261b964600caf712a3ea0dc54448c3fcc008638368580eb4de6832dce8698","dependencies":[],"chain_name":"casper"},"payment":{"ModuleBytes":{"module_bytes":"","args":[["amount",{"cl_type":"U512","bytes":"0400e1f505","parsed":"100000000"}]]}},"session":{"Transfer":{"args":[["amount",{"cl_type":"U512","bytes":"05205d59d832","parsed":"218378100000"}],["target",{"cl_type":{"ByteArray":32},"bytes":"6fbe4634d42aa1ae7820eed35bcbd5c687de5c464e5348650b49a21a17c8dcb5","parsed":"6fbe4634d42aa1ae7820eed35bcbd5c687de5c464e5348650b49a21a17c8dcb5"}],["id",{"cl_type":{"Option":"U64"},"bytes":"00","parsed":null}]]}},"approvals":[{"signer":"0202ed20f3a93b5386bc41b6945722b2bd4250c48f5fa0632adf546e2f3ff6f4ddee","signature":"02b519ecb34f954aeb7afede122c6f999b2124022f6b653304b2891c5428b074795ad9232a409aa0d3e601471331ea50143ca4c378306ffcd0f8ff7a60e13f19db"}]}}
+id:21821471
+
+:
+
+:
+
+:
 ```
 
-For more information on various event types, visit the [Node's Event Stream](./node-events.md) page. 
+### The Version of Sidecar Events
+
+When a client connects to the `events/sidecar` endpoint, it will receive a message containing the version of the Sidecar software. Release version `1.1.0` would look like this:
+
+```bash
+curl -sN http://127.0.0.1:19999/events/sidecar
+
+data:{"SidecarVersion":"1.1.0"}
+
+:
+
+:
+
+```
+
+Note that the `SidecarVersion` differs from the `APIVersion` emitted by the node event streams. You will also see the keep-alive messages as colons, ensuring the connection is active.
+
+### The Node Shutdown Event
+
+When the node sends a [Shutdown event](./node-events.md#shutdown-events) and disconnects from the Sidecar, the Sidecar will report it as part of the event stream and on the `/events/deploys` endpoint. The Sidecar will continue to operate and attempt to reconnect to the node according to the `max_attempts` and `delay_between_retries_in_seconds` settings specified in its configuration.
+
+The Sidecar does not expose `Shutdown` events via its REST API. 
+
+Here is an example of how the stream might look like if the node went offline for an upgrade and came back online after a `Shutdown` event with a new `ApiVersion`:
+
+```bash
+curl -sN http://127.0.0.1:19999/events/deploys
+
+data:{"ApiVersion":"1.5.2"}
+
+data:{"BlockAdded":{"block_hash":"b487aae22b406e303d96fc44b092f993df6f3b43ceee7b7f5b1f361f676492d6","block":{"hash":"b487aae22b406e303d96fc44b092f993df6f3b43ceee7b7f5b1f361f676492d6","header":{"parent_hash":"4a28718301a83a43563ec42a184294725b8dd188aad7a9fceb8a2fa1400c680e","state_root_hash":"63274671f2a860e39bb029d289e688526e4828b70c79c678649748e5e376cb07","body_hash":"6da90c09f3fc4559d27b9fff59ab2453be5752260b07aec65e0e3a61734f656a","random_bit":true,"accumulated_seed":"c8b4f30a3e3e082f4f206f972e423ffb23d152ca34241ff94ba76189716b61da","era_end":{"era_report":{"equivocators":[],"rewards":{"01026ca707c348ed8012ac6a1f28db031fadd6eb67203501a353b867a08c8b9a80":1559401400039,"010427c1d1227c9d2aafe8c06c6e6b276da8dcd8fd170ca848b8e3e8e1038a6dc8":25895190891},"inactive_validators":[]},"next_era_validator_weights":{"01026ca707c348ed8012ac6a1f28db031fadd6eb67203501a353b867a08c8b9a80":"50538244651768072","010427c1d1227c9d2aafe8c06c6e6b276da8dcd8fd170ca848b8e3e8e1038a6dc8":"839230678448335"}},"timestamp":"2021-04-08T05:14:14.912Z","era_id":90,"height":1679394427512,"protocol_version":"1.0.0"},"body":{"proposer":"012bac1d0ff9240ff0b7b06d555815640497861619ca12583ddef434885416e69b","deploy_hashes":[],"transfer_hashes":[]}}}}
+id:1
+
+:
+
+data:"Shutdown"
+id:2
+
+:
+
+:
+
+:
+
+data:{"ApiVersion":"1.5.2"}
+
+data:{"BlockAdded":{"block_hash":"1c76e7abf5780b49d3a66beef7b75bbf261834f494dededb8f2e349735659c03","block":{"hash":"1c76e7abf5780b49d3a66beef7b75bbf261834f494dededb8f2e349735659c03","header":{"parent_hash":"4a28718301a83a43563ec42a184294725b8dd188aad7a9fceb8a2fa1400c680e","state_root_hash":"63274671f2a860e39bb029d289e688526e4828b70c79c678649748e5e376cb07","body_hash":"6da90c09f3fc4559d27b9fff59ab2453be5752260b07aec65e0e3a61734f656a","random_bit":true,"accumulated_seed":"c8b4f30a3e3e082f4f206f972e423ffb23d152ca34241ff94ba76189716b61da","era_end":{"era_report":{"equivocators":[],"rewards":[{"validator":"01026ca707c348ed8012ac6a1f28db031fadd6eb67203501a353b867a08c8b9a80","amount":1559401400039},{"validator":"010427c1d1227c9d2aafe8c06c6e6b276da8dcd8fd170ca848b8e3e8e1038a6dc8","amount":25895190891}],"inactive_validators":[]},"next_era_validator_weights":[{"validator":"01026ca707c348ed8012ac6a1f28db031fadd6eb67203501a353b867a08c8b9a80","weight":"50538244651768072"},{"validator":"010427c1d1227c9d2aafe8c06c6e6b276da8dcd8fd170ca848b8e3e8e1038a6dc8","weight":"839230678448335"}]},"timestamp":"2021-04-08T05:14:14.912Z","era_id":90,"height":1679394457791,"protocol_version":"1.0.0"},"body":{"proposer":"012bac1d0ff9240ff0b7b06d555815640497861619ca12583ddef434885416e69b","deploy_hashes":[],"transfer_hashes":[]},"proofs":[]}}}
+id:3
+
+:
+
+:
+
+```
+
+Note that the Sidecar can emit another type of shutdown event on the `events/sidecar` endpoint, as described below.
+
+### The Sidecar Shutdown Event
+
+If the Sidecar attempts to connect to a node that does not come back online within the maximum number of reconnection attempts, the Sidecar will start a controlled shutdown process. It will emit a *Sidecar-specific Shutdown* event on the [events/sidecar](#the-sidecar-shutdown-event) endpoint, designated for events originating solely from the Sidecar service. The other event streams do not get this message because they only emit messages from the node.
+
+The message structure of the Sidecar shutdown event is the same as the [node shutdown event](#the-node-shutdown-event). The sidecar event stream would look like this:
+
+```bash
+curl -sN http://127.0.0.1:19999/events/sidecar
+
+data:{"SidecarVersion":"1.1.0"}
+
+:
+
+:
+
+:
+
+data:"Shutdown"
+id:8
+```
+
+## Additional Links
+
+For more information on various node-emitted event types, visit the [Node's Event Stream](./node-events.md) page. 
 
 DApp developers may also wish to [Monitor and Consume Events](../../developers/dapps/monitor-and-consume-events.md) in their applications.

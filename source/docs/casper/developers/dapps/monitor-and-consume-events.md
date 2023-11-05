@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Monitoring and Consuming Events
 
-The Casper platform uses [event streaming](../../operators/setup/node-events.md) to signal state changes in smart contracts and nodes. Using Casper's [event sidecar](#the-event-sidecar) and client-side SDKs, dApps actively listening for emitted events can consume these events and perform actions based on event data.
+The Casper platform uses [event streaming](../../operators/setup/node-events.md) to signal state changes in smart contracts and nodes. Using Casper's [Event Sidecar](#the-event-sidecar) service and client-side SDKs, dApps actively listening for emitted events can consume these events and perform actions based on event data.
 
 ## The Event Sidecar
 
@@ -15,15 +15,15 @@ An alternate name for this application is the SSE Sidecar because it uses the no
 - Build a middleware service that connects to the [Node Event Stream](../../operators/setup/node-events.md), replicating the SSE interface and its filters (i.e., /main, /deploys, and /sigs with support for the use of the ?start_from= query to allow clients to get previously sent events from the Sidecar's buffer.) 
 - Provide a new [RESTful endpoint](#the-rest-server) that is discoverable on the network.
 
-<img class="align-center" src={useBaseUrl("/image/dApp/sidecar-diagram.png")} alt="Sidecar components and architecture diagram" width="800"/>
+<img class="align-center" src={useBaseUrl("/image/operators/sidecar-diagram.png")} alt="Sidecar components and architecture diagram" width="800"/>
 
 Visit GitHub for the latest source code and information on system architecture.
 <!-- TODO Link GitHub to the event sidecar repo -->
 <!-- TODO Link "system architecture" to the event sidecar repo#system-components--architecture documentation -->
 
-## Listening to the Sidecar REST Server
+## The Sidecar REST Server
 
-DApps can retrieve essential information using the SSE Sidecar's REST API, as shown below.
+The Sidecar provides a RESTful endpoint for useful queries about the state of the network.
 
 ### Latest Block
 
@@ -226,9 +226,20 @@ curl http://127.0.0.1:18888/other
 {"code":400,"message":"Invalid request path provided"}
 ```
 
-## Listening to the Sidecar Event Stream
+## The Sidecar Event Stream
 
-The Sidecar's event stream endpoint is a passthrough for all the events emitted by the node to which the Sidecar connects. The [Node's Event Stream](../../operators/setup/node-events.md) page explains the various event types emitted by the node and available through the Sidecar service.
+The Sidecar's event stream endpoint is a passthrough for all the events emitted by the node(s) to which the Sidecar connects. This stream also includes one endpoint for Sidecar-generated events that can be useful, although the node did not emit them. Events are divided into four categories and emitted on their respective endpoints:
+
+- **Deploy events** - Associated with Deploys on a node and emitted on the `events/deploys` endpoint. Currently, only a `DeployAccepted` event is emitted. The URL to consume these events using Sidecar on a Mainnet or Testnet node is `http://HOST:19999/events/deploys/`.
+- **Finality Signature events** - Emitted on the `events/sigs` endpoint when a block has been finalized and cannot be altered. The URL to consume finality signature events using Sidecar on a Mainnet or Testnet node is `http://HOST:19999/events/sigs/`.
+- **Main events** - All other events are emitted on the `events/main` endpoint, including `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, and `Step` events. The URL to consume these events using Sidecar on a Mainnet or Testnet node is `http://HOST:19999/events/main/`.
+- **Sidecar-generated events** - The Sidecar also emits events on the `events/sidecar` endpoint, designated for events originating solely from the Sidecar service. The URL to consume these events using Sidecar on a Mainnet or Testnet node is `http://HOST:19999/events/sidecar/`.
+
+Learn more about each endpoint, message versioning, and different types of shutdown events on the [Monitoring the Sidecar Service](../../operators/setup/event-sidecar.md#monitoring-the-sidecars-event-stream) page. 
+
+Moreover, the [Node's Event Stream](../../operators/setup/node-events.md) page explains the various event types emitted by the node and available through the Sidecar service.
+
+### Listening to the Sidecar Event Stream
 
 <!-- TODO double check that this explanation is correct and the code works as before, but with port 19999. Since the Sidecar is installed on the same machine as where the node is running, I assume we can access it using the NODE_ADDRESS. -->
 
@@ -286,7 +297,7 @@ Replace `CHANNEL` with one of the following event streams:
 - `sigs` for `FinalitySignature` events.
 
 
-## Reacting to Events
+### Reacting to Events
 
 An application may parse each event needed for its use case and respond accordingly. The dApp may act on some events and not others, or it may act upon them all, depending on its use case. Each event type contains additional data that might help in deciding whether or not to take an action. For example, `DeployAccepted` events contain the account's public key that submitted the deploy, the contract address, and more. This information can help determine how to proceed or whether or not to react.
 
@@ -316,7 +327,7 @@ def eventHandler(event):
 
 </Tabs>
 
-## Unsubscribing from Events
+### Unsubscribing from Events
 
 In many cases, an application may need to unsubscribe after a certain time or may want to unsubscribe from some events but not others. The Casper SDKs provide this ability with the `unsubscribe` function:
 
@@ -334,7 +345,7 @@ es.unsubscribe(EventName.EVENT_NAME)
 
 - `EVENT_NAME` - One of the different [event types](#event-types) emitted by a Casper node.
 
-## Stopping the Event Stream
+### Stopping the Event Stream
 
 A dApp may cease listening to all events using the `stop` function:
 
@@ -350,7 +361,7 @@ es.stop()
 
 </Tabs>
 
-## Replaying the Sidecar Event Stream
+### Replaying the Sidecar Event Stream
 
 This command will replay the event stream from an old event onward using the SSE Sidecar. Replace the `NODE_ADDRESS`, `PORT`, `CHANNEL`, and `ID` fields with the values of your scenario.
 
@@ -359,7 +370,7 @@ This command will replay the event stream from an old event onward using the SSE
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl -sN http://NODE_ADDRESS:PORT/events/CHANNEL?start_from=ID
+curl -s http://NODE_ADDRESS:PORT/events/CHANNEL?start_from=ID
 ```
 
 **Example:**

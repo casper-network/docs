@@ -8,9 +8,9 @@ Each Casper node streams events through the SSE (Server Sent Event) server via t
 
 Events are divided into three categories and streamed on their respective endpoints:
 
-- **Deploy events** - Associated with [Deploys](../../concepts/design/casper-design.md#execution-semantics-deploys) on a node. Currently, only a `DeployAccepted` event is emitted. The URL to consume deploy-related events on Mainnet and Testnet is `http://<HOST>:9999/events/deploys/`.
-- **Finality Signature events** - Emitted when a block has been finalized and cannot be altered. The URL to consume finality signature events on Mainnet and Testnet is `http://<HOST>:9999/events/sigs/`.
-- **Main events** - All other events fall under this type, including: `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events. The URL to consume these events on Mainnet and Testnet is `http://<HOST>:9999/events/main/`.
+- **Deploy events** - Associated with [Deploys](../../concepts/design/casper-design.md#execution-semantics-deploys) on a node. Currently, only a `DeployAccepted` event is emitted. The URL to consume deploy-related events on Mainnet and Testnet is `http://HOST:9999/events/deploys/`.
+- **Finality Signature events** - Emitted when a block has been finalized and cannot be altered. The URL to consume finality signature events on Mainnet and Testnet is `http://HOST:9999/events/sigs/`.
+- **Main events** - All other events fall under this type, including: `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events. The URL to consume these events on Mainnet and Testnet is `http://HOST:9999/events/main/`.
 
 :::note
 
@@ -23,22 +23,22 @@ An `ApiVersion` event is always emitted when a new client connects to a node's S
 cURL is a helpful tool to monitor the event stream on a node.
 
 ```bash
-curl -s http://<HOST:PORT>/events/<TYPE>
+curl -s http://HOST:PORT/events/CHANNEL
 ```
 
 - `HOST` - The IP address of a node on the network.
 - `PORT` - The port specified as the `event_stream_server.address` in the node's *config.toml*.
-- `TYPE` - The type of emitted event described above.
+- `CHANNEL` - The type of emitted event described above.
 
 
 ### DeployAccepted Events
 
 `DeployAccepted` events are emitted when a node on the network receives a [Deploy](../../concepts/serialization-standard.md#serialization-standard-deploy).
 
-The URL emitting `DeployAccepted` events is `http://<HOST>:9999/events/deploys` and can be accessed using the following command. Replace the `HOST` field with the IP address of a node on the network.
+The URL emitting `DeployAccepted` events is `http://HOST:9999/events/deploys` and can be accessed using the following command. Replace the `HOST` field with the IP address of a node on the network.
 
 ```bash
-curl -sN http://<HOST>:9999/events/deploys
+curl -sN http://HOST:9999/events/deploys
 ```
 
 <details>
@@ -114,10 +114,10 @@ For details on custom serializations, check the [Serialization Standard](../../c
 
 This event indicates validators have signed the final approvals and further alterations to the block will not be allowed. Refer to the [consensus reached](../../concepts/deploy-and-deploy-lifecycle.md#consensus-reached) and [block finality](../../concepts/glossary/B.md#block-finality) sections to learn more about finality signatures. 
 
-The URL emitting `FinalitySignature` events is `http://<HOST>:9999/events/sigs`.
+The URL emitting `FinalitySignature` events is `http://HOST:9999/events/sigs`.
 
 ```bash
-curl -sN http://<HOST>:9999/events/sigs
+curl -sN http://HOST:9999/events/sigs
 ```
 
 <details>
@@ -143,10 +143,10 @@ curl -sN http://<HOST>:9999/events/sigs
 
 ### Main Events
 
-All other events apart from `DeployAccepted` and `FinalitySignature` events are emitted on the endpoint `main` with the URL `http://<HOST>:9999/events/main`.
+All other events apart from `DeployAccepted` and `FinalitySignature` events are emitted on the endpoint `main` with the URL `http://HOST:9999/events/main`.
 
 ```bash
-curl -sN http://<HOST>:9999/events/main
+curl -sN http://HOST:9999/events/main
 ```
 
 Below are the different types of events streamed on the `main` endpoint.
@@ -375,10 +375,10 @@ The `Shutdown` event is emitted when the node is about to shut down, usually for
 
 ## Replaying the Event Stream
 
-This command will replay the event stream from an old event onward. Replace the HOST, EVENT_TYPE, and ID fields with the values needed.
+This command will replay the event stream from an old event onward. Replace the `HOST`, `PORT`, `CHANNEL`, and `ID` fields with the values needed.
 
 ```bash
-curl -sN http://<HOST>:9999/events/<EVENT_TYPE>?start_from=<ID>
+curl -sN http://HOST:PORT/events/CHANNEL?start_from=ID
 ```
 
 **Example:**
