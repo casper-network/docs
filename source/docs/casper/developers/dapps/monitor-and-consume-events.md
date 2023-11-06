@@ -12,7 +12,7 @@ The Casper Event Sidecar is an application running alongside the node process, a
 
 An alternate name for this application is the SSE Sidecar because it uses the node's Event Stream API returning Server-Sent Events (SSEs) in JSON format. The SSE Sidecar uses the node's Event Stream API to achieve the following goals:
 
-- Build a middleware service that connects to the [Node Event Stream](../../operators/setup/node-events.md), replicating the SSE interface and its filters (i.e., /main, /deploys, and /sigs with support for the use of the ?start_from= query to allow clients to get previously sent events from the Sidecar's buffer.) 
+- Build a sidecar middleware service that reads the [Event Stream](../../operators/setup/node-events.md) of all connected nodes, acting as a passthrough and replicating the SSE interface of the connected nodes and their filters (i.e., `/main`, `/deploys`, and `/sigs` with support for the use of the `?start_from=` query to allow clients to get previously sent events from the Sidecar's buffer).
 - Provide a new [RESTful endpoint](#the-rest-server) that is discoverable on the network.
 
 <img class="align-center" src={useBaseUrl("/image/operators/sidecar-diagram.png")} alt="Sidecar components and architecture diagram" width="800"/>
