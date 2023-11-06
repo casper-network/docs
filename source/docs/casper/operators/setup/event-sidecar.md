@@ -125,7 +125,11 @@ Detailed node configuration instructions are available in GitHub.
 If the service was installed on a Casper node, this file holds a default configuration: `/etc/casper-event-sidecar/config.toml`. The file is also available in GitHub.
 <!-- TODO link GitHub to resources/default_config.toml from the sidecar repo -->
 
-Operators will need to update this file according to their needs. GitHub has further details regarding each configuration option.
+Operators have the option to configure an administrative REST server that exposes a `metrics` endpoint.
+<!-- TODO link GitHub [admin_server] documentation -->
+<!-- TODO add a usage example -->
+
+Operators need to update the Sidecar configuration file according to their needs. GitHub has further details regarding each configuration option.
 
 ## Monitoring the Sidecar's Event Stream
 
