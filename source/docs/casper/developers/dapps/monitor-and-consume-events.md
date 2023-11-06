@@ -23,12 +23,18 @@ Visit GitHub for the latest source code and information on system architecture.
 
 ## The Sidecar REST Server
 
-The Sidecar provides a RESTful endpoint for useful queries about the state of the network.
+The Sidecar provides a RESTful endpoint for useful queries about the state of the network. Access and test the REST API using the [Swagger Documentation](../../operators/setup/event-sidecar.md#swagger-documentation).
+
+```bash
+http://HOST:PORT/swagger-ui/
+```
+
+Replace the `HOST` with the IP address of the machine running the Sidecar application remotely; otherwise, use `localhost`. The `PORT` is usually `18888`, but it depends on how the Sidecar was configured.
 
 ### Latest Block
 
 Retrieve information about the last block added to the linear chain.
-The path URL is `<HOST:PORT>/block`.
+The path URL is `HOST:PORT/block`.
 
 Example:
 
@@ -50,7 +56,7 @@ curl -s http://127.0.0.1:18888/block
 ### Block by Hash
 
 Retrieve information about a block given its block hash.
-The path URL is `<HOST:PORT>/block/<block-hash>`. Enter a valid block hash. 
+The path URL is `HOST:PORT/block/BLOCK-HASH`. Enter a valid block hash. 
 
 Example:
 
@@ -70,7 +76,7 @@ curl -s http://127.0.0.1:18888/block/96a989a7f4514909b442faba3acbf643378fb7f57f9
 ### Block by Height
 
 Retrieve information about a block, given a specific block height.
-The path URL is `<HOST:PORT>/block/<block-height>`. Enter a valid number representing the block height.
+The path URL is `HOST:PORT/block/BLOCK-HEIGHT`. Enter a valid number representing the block height.
 
 Example:
 
@@ -90,7 +96,7 @@ curl -s http://127.0.0.1:18888/block/1278485
 ### Deploy by Hash
 
 Retrieve information about a deploy sent to the network, given its deploy hash.
-The path URL is `<HOST:PORT>/deploy/<deploy-hash>`. Enter a valid deploy hash. 
+The path URL is `HOST:PORT/deploy/DEPLOY-HASH`. Enter a valid deploy hash. 
 
 Example:
 
@@ -110,7 +116,7 @@ curl -s http://127.0.0.1:18888/deploy/8204af872d7d19ef8da947bce67c7a55449bc4e2aa
 ### Accepted Deploy by Hash
 
 Retrieve information about an accepted deploy, given its deploy hash.
-The path URL is `<HOST:PORT>/deploy/accepted/<deploy-hash>`. Enter a valid deploy hash.
+The path URL is `HOST:PORT/deploy/accepted/DEPLOY-HASH`. Enter a valid deploy hash.
 
 Example:
 
@@ -131,7 +137,7 @@ curl -s http://127.0.0.1:18888/deploy/accepted/8204af872d7d19ef8da947bce67c7a554
 ### Expired Deploy by Hash
 
 Retrieve information about a deploy that expired, given its deploy hash.
-The path URL is `<HOST:PORT>/deploy/expired/<deploy-hash>`. Enter a valid deploy hash.
+The path URL is `HOST:PORT/deploy/expired/DEPLOY-HASH`. Enter a valid deploy hash.
 
 Example:
 
@@ -142,7 +148,7 @@ curl -s http://127.0.0.1:18888/deploy/expired/e03544d37354c5f9b2c4956826d32f8e44
 ### Processed Deploy by Hash
 
 Retrieve information about a deploy that was processed, given its deploy hash.
-The path URL is `<HOST:PORT>/deploy/processed/<deploy-hash>`. Enter a valid deploy hash.
+The path URL is `HOST:PORT/deploy/processed/DEPLOY-HASH`. Enter a valid deploy hash.
 
 Example:
 
@@ -163,7 +169,7 @@ curl -s http://127.0.0.1:18888/deploy/processed/8204af872d7d19ef8da947bce67c7a55
 ### Faults by Public Key
 
 Retrieve the faults associated with a validator's public key.
-The path URL is `<HOST:PORT>/faults/<public-key>`. Enter a valid hexadecimal representation of a validator's public key.
+The path URL is `HOST:PORT/faults/<public-key>`. Enter a valid hexadecimal representation of a validator's public key.
 
 Example:
 
@@ -174,7 +180,7 @@ curl -s http://127.0.0.1:18888/faults/01a601840126a0363a6048bfcbb0492ab5a313a1a1
 ### Faults by Era
 
 Return the faults associated with an era, given a valid era identifier.
-The path URL is: `<HOST:PORT>/faults/<era-ID>`. Enter an era identifier.
+The path URL is: `HOST:PORT/faults/ERA-ID`. Enter an era identifier.
 
 Example:
 
@@ -185,7 +191,7 @@ curl -s http://127.0.0.1:18888/faults/2304
 ### Finality Signatures by Block
 
 Retrieve the finality signatures in a block, given its block hash. 
-The path URL is: `<HOST:PORT>/signatures/<block-hash>`. Enter a valid block hash.
+The path URL is: `HOST:PORT/signatures/BLOCK-HASH`. Enter a valid block hash.
 
 Example:
 
@@ -196,7 +202,7 @@ curl -s http://127.0.0.1:18888/signatures/85aa2a939bc3a4afc6d953c965bab333bb5e53
 ### Step by Era
 
 Retrieve the step event emitted at the end of an era, given a valid era identifier.
-The path URL is: `<HOST:PORT>/step/<era-ID>`. Enter a valid era identifier.
+The path URL is: `HOST:PORT/step/ERA-ID`. Enter a valid era identifier.
 
 Example:
 

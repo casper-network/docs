@@ -269,6 +269,22 @@ data:"Shutdown"
 id:8
 ```
 
+## Swagger Documentation
+
+Once the Sidecar is running, operators and developers can access the Swagger documentation to test the Sidecar's REST API.
+
+```bash
+http://HOST:PORT/swagger-ui/
+```
+
+Replace the `HOST` with the IP address of the machine running the Sidecar application remotely; otherwise, use `localhost`. The `PORT` is usually `18888`, but it depends on how the Sidecar was configured. 
+
+For example, if you are an operator running the Sidecar service on your node, you would access the Swagger documentation like this:
+
+```bash
+http://localhost:18888/swagger-ui/
+```
+
 ## Additional Links
 
 For more information on various node-emitted event types, visit the [Node's Event Stream](./node-events.md) page. 
