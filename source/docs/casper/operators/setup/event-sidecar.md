@@ -289,6 +289,26 @@ For example, if you are an operator running the Sidecar service on your node, yo
 http://localhost:18888/swagger-ui/
 ```
 
+<!-- TODO add sample response -->
+
+## The Admin Server
+
+If available, the Sidecar administrative REST API can be accessed with the following command:
+
+```bash
+http://HOST:PORT/metrics/
+```
+
+Replace the `HOST` with the IP address of the machine running the Sidecar application remotely; otherwise, use `localhost`. The `PORT` is usually `18887`, but it depends on how the Sidecar was configured. 
+
+For example, if you are an operator running the Sidecar service on your node, you would access the admin server like this:
+
+```bash
+curl http://127.0.0.1:18887/metrics/
+```
+
+<!-- TODO add sample response -->
+
 ## Additional Links
 
 For more information on various node-emitted event types, visit the [Node's Event Stream](./node-events.md) page. 
