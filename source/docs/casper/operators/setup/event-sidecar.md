@@ -127,7 +127,6 @@ If the service was installed on a Casper node, this file holds a default configu
 
 Operators have the option to configure an administrative REST server that exposes a `metrics` endpoint.
 <!-- TODO link GitHub [admin_server] documentation -->
-<!-- TODO add a usage example -->
 
 Operators need to update the Sidecar configuration file according to their needs. GitHub has further details regarding each configuration option.
 
@@ -311,7 +310,72 @@ For example, if you are an operator running the Sidecar service on your node, yo
 curl http://127.0.0.1:18887/metrics/
 ```
 
-<!-- TODO add sample response -->
+<details>
+<summary>Sample response</summary>
+
+```bash
+# HELP error_counts Error counts
+# TYPE error_counts counter
+error_counts{category="connection_manager",description="deserialization_error"} 100
+# HELP received_bytes Received bytes
+# TYPE received_bytes histogram
+received_bytes_bucket{filter="events/deploys",le="500"} 163
+received_bytes_bucket{filter="events/deploys",le="1000"} 28026
+received_bytes_bucket{filter="events/deploys",le="2000"} 6329601
+received_bytes_bucket{filter="events/deploys",le="5000"} 6360991
+received_bytes_bucket{filter="events/deploys",le="50000"} 6369859
+received_bytes_bucket{filter="events/deploys",le="500000"} 7213401
+received_bytes_bucket{filter="events/deploys",le="5000000"} 7269838
+received_bytes_bucket{filter="events/deploys",le="50000000"} 7269838
+received_bytes_bucket{filter="events/deploys",le="+Inf"} 7269838
+received_bytes_sum{filter="events/deploys"} 162192703176
+received_bytes_count{filter="events/deploys"} 7269838
+received_bytes_bucket{filter="events/main",le="500"} 254
+received_bytes_bucket{filter="events/main",le="1000"} 130676
+received_bytes_bucket{filter="events/main",le="2000"} 138041
+received_bytes_bucket{filter="events/main",le="5000"} 184966
+received_bytes_bucket{filter="events/main",le="50000"} 280263
+received_bytes_bucket{filter="events/main",le="500000"} 280415
+received_bytes_bucket{filter="events/main",le="5000000"} 280417
+received_bytes_bucket{filter="events/main",le="50000000"} 280993
+received_bytes_bucket{filter="events/main",le="+Inf"} 280993
+received_bytes_sum{filter="events/main"} 11541733697
+received_bytes_count{filter="events/main"} 280993
+received_bytes_bucket{filter="events/sigs",le="500"} 1444783967
+received_bytes_bucket{filter="events/sigs",le="1000"} 1444783967
+received_bytes_bucket{filter="events/sigs",le="2000"} 1444783967
+received_bytes_bucket{filter="events/sigs",le="5000"} 1444783967
+received_bytes_bucket{filter="events/sigs",le="50000"} 1444783967
+received_bytes_bucket{filter="events/sigs",le="500000"} 1444783967
+received_bytes_bucket{filter="events/sigs",le="5000000"} 1444783967
+received_bytes_bucket{filter="events/sigs",le="50000000"} 1444783967
+received_bytes_bucket{filter="events/sigs",le="+Inf"} 1444783967
+received_bytes_sum{filter="events/sigs"} 498382642222
+received_bytes_count{filter="events/sigs"} 1444783967
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 561575
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 1024
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 143
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 359813120
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1685463654
+# HELP process_threads Number of OS threads in the process.
+# TYPE process_threads gauge
+process_threads 16
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 7586406400
+```
+
+</details>
 
 ## Additional Links
 
