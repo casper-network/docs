@@ -7,7 +7,7 @@ Here is a list of commands for developers who already meet the prerequisites and
 ## Prerequisites
 
 1. You have installed [Rust](https://www.rust-lang.org/tools/install). Verify the installation with this command: `rustup --version`. Restart the shell if needed.
-2. You have installed [cmake](https://cmake.org/install/). Verify the installation with this command: `cmake --version`.
+2. You have installed [cmake](https://cmake.org/resources/). Verify the installation with this command: `cmake --version`.
    - On Ubuntu, you can follow [this guide](https://cgold.readthedocs.io/en/latest/first-step/installation.html).
    - On MacOS, use this command: `brew install cmake`. 
 3. You have an integrated development environment (IDE). On Windows, you will need to download the C++ build developer tools, without which you cannot install `cargo-casper`.
