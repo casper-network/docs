@@ -387,7 +387,13 @@ curl -sN http://HOST:PORT/events/CHANNEL?start_from=ID
 curl -sN http://65.21.235.219:9999/events/main?start_from=29267508
 ```
 
-Each URL can have a query string added, such as `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onward. The server will replay all the cached events if you specify an event ID that has already been purged from the cache.
+Note that certain shells like `zsh` may require an escape character before the question mark:
+
+```bash
+curl -sN http://65.21.235.219:9999/events/main\?start_from=29267508
+```
+
+Each URL can have a query string added, such as `?start_from=<ID>`, where ID is an integer representing an old event ID. With this query, you can replay the event stream from that old event onward. The server will replay all the cached events if the ID is 0 or if you specify an event ID already purged from the cache.
 
 :::note
 

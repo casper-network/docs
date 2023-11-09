@@ -296,7 +296,7 @@ http://localhost:18888/swagger-ui/
 
 ## The Admin Server
 
-If available, the Sidecar administrative REST API can be accessed with the following command:
+If enabled, the Sidecar administrative API can be accessed with the following command:
 
 ```bash
 http://HOST:PORT/metrics/
@@ -314,65 +314,53 @@ curl http://127.0.0.1:18887/metrics/
 <summary>Sample response</summary>
 
 ```bash
-# HELP error_counts Error counts
-# TYPE error_counts counter
-error_counts{category="connection_manager",description="deserialization_error"} 100
+# HELP internal_events Count of internal events
+# TYPE internal_events counter
+internal_events{category="main_inbound_sse_data",description="db_save_end"} 10424
+internal_events{category="main_inbound_sse_data",description="db_save_start"} 10424
+internal_events{category="main_inbound_sse_data",description="event_received_end"} 10424
+internal_events{category="main_inbound_sse_data",description="event_received_start"} 10424
+internal_events{category="main_inbound_sse_data",description="outbound_sse_data_send_end"} 2659
+internal_events{category="main_inbound_sse_data",description="outbound_sse_data_send_start"} 2659
+# HELP node_statuses Current status of node to which sidecar is connected. Numbers mean: 0 - preparing; 1 - connecting; 2 - connected; 3 - reconnecting; -1 - defunct -> used up all connection attempts ; -2 - defunct -> node is in an incompatible version
+# TYPE node_statuses gauge
+node_statuses{node="160.23.111.980:9999"} 2
+node_statuses{node="2.20.80.56:9999"} 2
 # HELP received_bytes Received bytes
 # TYPE received_bytes histogram
-received_bytes_bucket{filter="events/deploys",le="500"} 163
-received_bytes_bucket{filter="events/deploys",le="1000"} 28026
-received_bytes_bucket{filter="events/deploys",le="2000"} 6329601
-received_bytes_bucket{filter="events/deploys",le="5000"} 6360991
-received_bytes_bucket{filter="events/deploys",le="50000"} 6369859
-received_bytes_bucket{filter="events/deploys",le="500000"} 7213401
-received_bytes_bucket{filter="events/deploys",le="5000000"} 7269838
-received_bytes_bucket{filter="events/deploys",le="50000000"} 7269838
-received_bytes_bucket{filter="events/deploys",le="+Inf"} 7269838
-received_bytes_sum{filter="events/deploys"} 162192703176
-received_bytes_count{filter="events/deploys"} 7269838
-received_bytes_bucket{filter="events/main",le="500"} 254
-received_bytes_bucket{filter="events/main",le="1000"} 130676
-received_bytes_bucket{filter="events/main",le="2000"} 138041
-received_bytes_bucket{filter="events/main",le="5000"} 184966
-received_bytes_bucket{filter="events/main",le="50000"} 280263
-received_bytes_bucket{filter="events/main",le="500000"} 280415
-received_bytes_bucket{filter="events/main",le="5000000"} 280417
-received_bytes_bucket{filter="events/main",le="50000000"} 280993
-received_bytes_bucket{filter="events/main",le="+Inf"} 280993
-received_bytes_sum{filter="events/main"} 11541733697
-received_bytes_count{filter="events/main"} 280993
-received_bytes_bucket{filter="events/sigs",le="500"} 1444783967
-received_bytes_bucket{filter="events/sigs",le="1000"} 1444783967
-received_bytes_bucket{filter="events/sigs",le="2000"} 1444783967
-received_bytes_bucket{filter="events/sigs",le="5000"} 1444783967
-received_bytes_bucket{filter="events/sigs",le="50000"} 1444783967
-received_bytes_bucket{filter="events/sigs",le="500000"} 1444783967
-received_bytes_bucket{filter="events/sigs",le="5000000"} 1444783967
-received_bytes_bucket{filter="events/sigs",le="50000000"} 1444783967
-received_bytes_bucket{filter="events/sigs",le="+Inf"} 1444783967
-received_bytes_sum{filter="events/sigs"} 498382642222
-received_bytes_count{filter="events/sigs"} 1444783967
-# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
-# TYPE process_cpu_seconds_total counter
-process_cpu_seconds_total 561575
-# HELP process_max_fds Maximum number of open file descriptors.
-# TYPE process_max_fds gauge
-process_max_fds 1024
-# HELP process_open_fds Number of open file descriptors.
-# TYPE process_open_fds gauge
-process_open_fds 143
-# HELP process_resident_memory_bytes Resident memory size in bytes.
-# TYPE process_resident_memory_bytes gauge
-process_resident_memory_bytes 359813120
-# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
-# TYPE process_start_time_seconds gauge
-process_start_time_seconds 1685463654
-# HELP process_threads Number of OS threads in the process.
-# TYPE process_threads gauge
-process_threads 16
-# HELP process_virtual_memory_bytes Virtual memory size in bytes.
-# TYPE process_virtual_memory_bytes gauge
-process_virtual_memory_bytes 7586406400
+received_bytes_bucket{filter="events/deploys",le="500"} 2
+received_bytes_bucket{filter="events/deploys",le="1000"} 2
+received_bytes_bucket{filter="events/deploys",le="2000"} 64
+received_bytes_bucket{filter="events/deploys",le="5000"} 64
+received_bytes_bucket{filter="events/deploys",le="50000"} 64
+received_bytes_bucket{filter="events/deploys",le="500000"} 66
+received_bytes_bucket{filter="events/deploys",le="5000000"} 66
+received_bytes_bucket{filter="events/deploys",le="50000000"} 66
+received_bytes_bucket{filter="events/deploys",le="+Inf"} 66
+received_bytes_sum{filter="events/deploys"} 385714
+received_bytes_count{filter="events/deploys"} 66
+received_bytes_bucket{filter="events/main",le="500"} 4
+received_bytes_bucket{filter="events/main",le="1000"} 104
+received_bytes_bucket{filter="events/main",le="2000"} 106
+received_bytes_bucket{filter="events/main",le="5000"} 106
+received_bytes_bucket{filter="events/main",le="50000"} 154
+received_bytes_bucket{filter="events/main",le="500000"} 168
+received_bytes_bucket{filter="events/main",le="5000000"} 170
+received_bytes_bucket{filter="events/main",le="50000000"} 170
+received_bytes_bucket{filter="events/main",le="+Inf"} 170
+received_bytes_sum{filter="events/main"} 7454612
+received_bytes_count{filter="events/main"} 170
+received_bytes_bucket{filter="events/sigs",le="500"} 10194
+received_bytes_bucket{filter="events/sigs",le="1000"} 10194
+received_bytes_bucket{filter="events/sigs",le="2000"} 10194
+received_bytes_bucket{filter="events/sigs",le="5000"} 10194
+received_bytes_bucket{filter="events/sigs",le="50000"} 10194
+received_bytes_bucket{filter="events/sigs",le="500000"} 10194
+received_bytes_bucket{filter="events/sigs",le="5000000"} 10194
+received_bytes_bucket{filter="events/sigs",le="50000000"} 10194
+received_bytes_bucket{filter="events/sigs",le="+Inf"} 10194
+received_bytes_sum{filter="events/sigs"} 3516488
+received_bytes_count{filter="events/sigs"} 10194
 ```
 
 </details>

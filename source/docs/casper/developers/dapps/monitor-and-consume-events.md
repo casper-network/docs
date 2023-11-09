@@ -31,6 +31,1639 @@ http://HOST:PORT/swagger-ui/
 
 Replace the `HOST` with the IP address of the machine running the Sidecar application remotely; otherwise, use `localhost`. The `PORT` is usually `18888`, but it depends on how the Sidecar was configured.
 
+An OpenAPI schema is available at the following URL: 
+
+```bash
+http://HOST:PORT/api-doc.json/
+```
+
+Replace the `HOST` with the IP address of the machine running the Sidecar application remotely; otherwise, use `localhost`. The `PORT` is usually `18888`, but it depends on how the Sidecar was configured.
+
+<details> 
+<summary><b>Expand to see a sample OpenAPI schema</b></summary>
+
+This is only a sample OpenAPI schema for the Sidecar. Click the URL above to see the latest version.
+
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "casper-event-sidecar",
+    "description": "App for storing and republishing sse events of a casper node",
+    "contact": {
+      "name": "Sidecar team",
+      "url": "https://github.com/CasperLabs/event-sidecar"
+    },
+    "license": { "name": "" },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/block": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return information about the last block added to the linear chain.",
+        "description": "Return information about the last block added to the linear chain.\nInput: the database with data to be filtered.\nReturn: data about the latest block.\nPath URL: block\nExample: curl http://127.0.0.1:18888/block",
+        "operationId": "latest_block",
+        "responses": {
+          "200": {
+            "description": "latest stored block",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BlockAdded" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/block/{block_hash}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return information about a block given its block hash.",
+        "description": "Return information about a block given its block hash.\nInput: the database with data to be filtered.\nReturn: data about the block specified.\nPath URL: block/<block-hash>\nExample: curl http://127.0.0.1:18888/block/c0292d8408e9d83d1aaceadfbeb25dc38cda36bcb91c3d403a0deb594dc3d63f",
+        "operationId": "block_by_hash",
+        "parameters": [
+          {
+            "name": "block_hash",
+            "in": "path",
+            "description": "Base64 encoded block hash of requested block",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "fetch latest stored block",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BlockAdded" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/block/{height}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return information about a block given a specific block height.",
+        "description": "Return information about a block given a specific block height.\nInput: the database with data to be filtered.\nReturn: data about the block requested.\nPath URL: block/<block-height>\nExample: curl http://127.0.0.1:18888/block/630151",
+        "operationId": "block_by_height",
+        "parameters": [
+          {
+            "name": "height",
+            "in": "path",
+            "description": "Height of the requested block",
+            "required": true,
+            "schema": { "type": "integer", "format": "int32", "minimum": 0 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "fetch latest stored block",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BlockAdded" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deploy/accepted/{deploy_hash}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return information about an accepted deploy given its deploy hash.",
+        "description": "Return information about an accepted deploy given its deploy hash.\nInput: the database with data to be filtered.\nReturn: data about the accepted deploy.\nPath URL: deploy/accepted/<deploy-hash>\nExample: curl http://127.0.0.1:18888/deploy/accepted/f01544d37354c5f9b2c4956826d32f8e44198f94fb6752e87f422fe3071ab58a",
+        "operationId": "deploy_accepted_by_hash",
+        "parameters": [
+          {
+            "name": "deploy_hash",
+            "in": "path",
+            "description": "Base64 encoded deploy hash of requested deploy accepted",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "fetch stored deploy",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DeployAccepted" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deploy/expired/{deploy_hash}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return information about a deploy that expired given its deploy hash.",
+        "description": "Return information about a deploy that expired given its deploy hash.\nInput: the database with data to be filtered.\nReturn: data about the expired deploy.\nPath URL: deploy/expired/<deploy-hash>\nExample: curl http://127.0.0.1:18888/deploy/expired/e03544d37354c5f9b2c4956826d32f8e44198f94fb6752e87f422fe3071ab58a",
+        "operationId": "deploy_expired_by_hash",
+        "parameters": [
+          {
+            "name": "deploy_hash",
+            "in": "path",
+            "description": "Base64 encoded deploy hash of requested deploy expired",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "fetch stored deploy",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DeployExpired" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deploy/processed/{deploy_hash}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return information about a deploy that was processed given its deploy hash.",
+        "description": "Return information about a deploy that was processed given its deploy hash.\nInput: the database with data to be filtered.\nReturn: data about the processed deploy.\nPath URL: deploy/processed/<deploy-hash>\nExample: curl http://127.0.0.1:18888/deploy/processed/f08944d37354c5f9b2c4956826d32f8e44198f94fb6752e87f422fe3071ab77a",
+        "operationId": "deploy_processed_by_hash",
+        "parameters": [
+          {
+            "name": "deploy_hash",
+            "in": "path",
+            "description": "Base64 encoded deploy hash of requested deploy processed",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "fetch stored deploy",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DeployProcessed" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deploy/{deploy_hash}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return an aggregate of the different states for the given deploy. This is a synthetic JSON not emitted by the node.",
+        "description": "Return an aggregate of the different states for the given deploy. This is a synthetic JSON not emitted by the node.\nThe output differs depending on the deploy's status, which changes over time as the deploy goes through its lifecycle.\nInput: the database with data to be filtered.\nReturn: data about the deploy specified.\nPath URL: deploy/<deploy-hash>\nExample: curl http://127.0.0.1:18888/deploy/f01544d37354c5f9b2c4956826d32f8e44198f94fb6752e87f422fe3071ab58a",
+        "operationId": "deploy_by_hash",
+        "parameters": [
+          {
+            "name": "deploy_hash",
+            "in": "path",
+            "description": "Base64 encoded deploy hash of requested deploy",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "fetch aggregate data for deploy events",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DeployAggregate" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faults/{era}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return the faults associated with an era given a valid era identifier.",
+        "description": "Return the faults associated with an era given a valid era identifier.\nInput: the database with data to be filtered.\nReturn: fault information for a given era.\nPath URL: faults/<era-ID>\nExample: curl http://127.0.0.1:18888/faults/2304",
+        "operationId": "faults_by_era",
+        "parameters": [
+          {
+            "name": "era",
+            "in": "path",
+            "description": "Era identifier",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "faults associated with an era ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Fault" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faults/{public_key}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return the faults associated with a validator's public key.",
+        "description": "Return the faults associated with a validator's public key.\nInput: the database with data to be filtered.\nReturn: faults caused by the validator specified.\nPath URL: faults/<public-key>\nExample: curl http://127.0.0.1:18888/faults/01a601840126a0363a6048bfcbb0492ab5a313a1a19dc4c695650d8f3b51302703",
+        "operationId": "faults_by_public_key",
+        "parameters": [
+          {
+            "name": "public_key",
+            "in": "path",
+            "description": "Base64 encoded validator's public key",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "faults associated with a validator's public key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Fault" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signatures/{block_hash}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return the finality signatures in a block given its block hash.",
+        "description": "Return the finality signatures in a block given its block hash.\nInput: the database with data to be filtered.\nReturn: the finality signatures for the block specified.\nPath URL: signatures/<block-hash>\nExample: curl http://127.0.0.1:18888/signatures/c0292d8408e9d83d1aaceadfbeb25dc38cda36bcb91c3d403a0deb594dc3d63f",
+        "operationId": "finality_signatures_by_block",
+        "parameters": [
+          {
+            "name": "block_hash",
+            "in": "path",
+            "description": "Base64 encoded block hash of requested block",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "finality signatures in a block",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/FinalitySignature" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/step/{era_id}": {
+      "get": {
+        "tags": ["crate::rest_server::filters"],
+        "summary": "Return the step event emitted at the end of an era, given a valid era identifier.",
+        "description": "Return the step event emitted at the end of an era, given a valid era identifier.\nInput: the database with data to be filtered.\nReturn: the step event for a given era.\nPath URL: step/<era-ID>\nExample: curl http://127.0.0.1:18888/step/2304",
+        "operationId": "step_by_era",
+        "parameters": [
+          {
+            "name": "era_id",
+            "in": "path",
+            "description": "Era id",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "step event emitted at the end of an era",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Step" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountHash": {
+        "type": "string",
+        "description": "Hex-encoded account hash."
+      },
+      "Approval": {
+        "type": "object",
+        "description": "The signature of a deploy and the public key of the signer.",
+        "required": ["signer", "signature"],
+        "properties": {
+          "signature": { "type": "string" },
+          "signer": {
+            "type": "string",
+            "description": "\"Hex-encoded cryptographic public key, including the algorithm tag prefix.\""
+          }
+        }
+      },
+      "Bid": {
+        "type": "object",
+        "description": "An entry in the validator map.",
+        "required": [
+          "bonding_purse",
+          "delegation_rate",
+          "delegators",
+          "inactive",
+          "staked_amount",
+          "validator_public_key"
+        ],
+        "properties": {
+          "bonding_purse": {
+            "allOf": [{ "$ref": "#/components/schemas/URef" }],
+            "description": "The purse that was used for bonding."
+          },
+          "delegation_rate": {
+            "type": "integer",
+            "format": "uint8",
+            "description": "Delegation rate",
+            "minimum": 0
+          },
+          "delegators": {
+            "type": "object",
+            "description": "This validator's delegators, indexed by their public keys",
+            "additionalProperties": { "$ref": "#/components/schemas/Delegator" }
+          },
+          "inactive": {
+            "type": "boolean",
+            "description": "`true` if validator has been \"evicted\""
+          },
+          "staked_amount": {
+            "allOf": [{ "$ref": "#/components/schemas/U512" }],
+            "description": "The amount of tokens staked by a validator (not including delegators)."
+          },
+          "validator_public_key": {
+            "allOf": [{ "$ref": "#/components/schemas/PublicKey" }],
+            "description": "Validator public key"
+          },
+          "vesting_schedule": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/VestingSchedule" },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "nullable": true,
+                "minProperties": 1
+              }
+            ],
+            "description": "Vesting schedule for a genesis validator. `None` if non-genesis validator."
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlockAdded": {
+        "type": "object",
+        "description": "The given block has been added to the linear chain and stored locally.",
+        "required": ["block_hash", "block"],
+        "properties": {
+          "block": { "$ref": "#/components/schemas/JsonBlock" },
+          "block_hash": { "$ref": "#/components/schemas/BlockHash" }
+        }
+      },
+      "BlockHash": { "$ref": "#/components/schemas/Digest" },
+      "CLType": {
+        "anyOf": [
+          {
+            "type": "string",
+            "enum": [
+              "Bool",
+              "I32",
+              "I64",
+              "U8",
+              "U32",
+              "U64",
+              "U128",
+              "U256",
+              "U512",
+              "Unit",
+              "String",
+              "Key",
+              "URef",
+              "PublicKey",
+              "Any"
+            ]
+          },
+          {
+            "type": "object",
+            "description": "`Option` of a `CLType`.",
+            "required": ["Option"],
+            "properties": {
+              "Option": { "$ref": "#/components/schemas/CLType" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Variable-length list of a single `CLType` (comparable to a `Vec`).",
+            "required": ["List"],
+            "properties": { "List": { "$ref": "#/components/schemas/CLType" } },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Fixed-length list of a single `CLType` (comparable to a Rust array).",
+            "required": ["ByteArray"],
+            "properties": {
+              "ByteArray": {
+                "type": "integer",
+                "format": "uint32",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "`Result` with `Ok` and `Err` variants of `CLType`s.",
+            "required": ["Result"],
+            "properties": {
+              "Result": {
+                "type": "object",
+                "required": ["err", "ok"],
+                "properties": {
+                  "err": { "$ref": "#/components/schemas/CLType" },
+                  "ok": { "$ref": "#/components/schemas/CLType" }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Map with keys of a single `CLType` and values of a single `CLType`.",
+            "required": ["Map"],
+            "properties": {
+              "Map": {
+                "type": "object",
+                "required": ["key", "value"],
+                "properties": {
+                  "key": { "$ref": "#/components/schemas/CLType" },
+                  "value": { "$ref": "#/components/schemas/CLType" }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "1-ary tuple of a `CLType`.",
+            "required": ["Tuple1"],
+            "properties": {
+              "Tuple1": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/CLType" },
+                "maxItems": 1,
+                "minItems": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "2-ary tuple of `CLType`s.",
+            "required": ["Tuple2"],
+            "properties": {
+              "Tuple2": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/CLType" },
+                "maxItems": 2,
+                "minItems": 2
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "3-ary tuple of `CLType`s.",
+            "required": ["Tuple3"],
+            "properties": {
+              "Tuple3": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/CLType" },
+                "maxItems": 3,
+                "minItems": 3
+              }
+            },
+            "additionalProperties": false
+          }
+        ],
+        "description": "Casper types, i.e. types which can be stored and manipulated by smart contracts.\n\nProvides a description of the underlying data type of a [`CLValue`](crate::CLValue)."
+      },
+      "CLValue": {
+        "type": "object",
+        "description": "A Casper value, i.e. a value which can be stored and manipulated by smart contracts.\n\nIt holds the underlying data as a type-erased, serialized `Vec<u8>` and also holds the CLType of the underlying data as a separate member.\n\nThe `parsed` field, representing the original value, is a convenience only available when a CLValue is encoded to JSON, and can always be set to null if preferred.",
+        "required": ["bytes", "cl_type"],
+        "properties": {
+          "bytes": { "type": "string" },
+          "cl_type": { "$ref": "#/components/schemas/CLType" },
+          "parsed": {}
+        },
+        "additionalProperties": false
+      },
+      "ContractHash": {
+        "type": "string",
+        "title": "ContractHash",
+        "description": "The hash address of the contract"
+      },
+      "ContractPackageHash": {
+        "type": "string",
+        "title": "ContractPackageHash",
+        "description": "The hash address of the contract package"
+      },
+      "ContractVersion": {
+        "type": "integer",
+        "title": "uint32",
+        "format": "uint32",
+        "minimum": 0
+      },
+      "Delegator": {
+        "type": "object",
+        "description": "Represents a party delegating their stake to a validator (or \"delegatee\")",
+        "required": [
+          "bonding_purse",
+          "delegator_public_key",
+          "staked_amount",
+          "validator_public_key"
+        ],
+        "properties": {
+          "bonding_purse": { "$ref": "#/components/schemas/URef" },
+          "delegator_public_key": { "$ref": "#/components/schemas/PublicKey" },
+          "staked_amount": { "$ref": "#/components/schemas/U512" },
+          "validator_public_key": { "$ref": "#/components/schemas/PublicKey" },
+          "vesting_schedule": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/VestingSchedule" },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "nullable": true,
+                "minProperties": 1
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "Deploy": {
+        "type": "object",
+        "description": "A signed item sent to the network used to request execution of Wasm.",
+        "required": ["hash", "header", "payment", "session", "approvals"],
+        "properties": {
+          "approvals": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Approval" }
+          },
+          "hash": { "$ref": "#/components/schemas/DeployHash" },
+          "header": { "$ref": "#/components/schemas/DeployHeader" },
+          "payment": { "$ref": "#/components/schemas/ExecutableDeployItem" },
+          "session": { "$ref": "#/components/schemas/ExecutableDeployItem" }
+        }
+      },
+      "DeployAccepted": {
+        "type": "object",
+        "description": "The given deploy has been newly-accepted by this node.",
+        "required": ["deploy"],
+        "properties": { "deploy": { "$ref": "#/components/schemas/Deploy" } }
+      },
+      "DeployAggregate": {
+        "type": "object",
+        "required": ["deploy_hash", "deploy_expired"],
+        "properties": {
+          "deploy_accepted": {
+            "allOf": [{ "$ref": "#/components/schemas/DeployAccepted" }],
+            "nullable": true
+          },
+          "deploy_expired": { "type": "boolean" },
+          "deploy_hash": { "type": "string" },
+          "deploy_processed": {
+            "allOf": [{ "$ref": "#/components/schemas/DeployProcessed" }],
+            "nullable": true
+          }
+        }
+      },
+      "DeployExpired": {
+        "type": "object",
+        "description": "The given deploy has expired.",
+        "required": ["deploy_hash"],
+        "properties": {
+          "deploy_hash": { "$ref": "#/components/schemas/DeployHash" }
+        }
+      },
+      "DeployHash": {
+        "type": "string",
+        "description": "Hex-encoded deploy hash."
+      },
+      "DeployHeader": {
+        "type": "object",
+        "description": "The header portion of a [`Deploy`].",
+        "required": [
+          "account",
+          "timestamp",
+          "ttl",
+          "gas_price",
+          "body_hash",
+          "dependencies",
+          "chain_name"
+        ],
+        "properties": {
+          "account": {
+            "type": "string",
+            "description": "\"Hex-encoded cryptographic public key, including the algorithm tag prefix.\""
+          },
+          "body_hash": { "$ref": "#/components/schemas/Digest" },
+          "chain_name": { "type": "string" },
+          "dependencies": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/DeployHash" }
+          },
+          "gas_price": { "type": "integer", "format": "int64", "minimum": 0 },
+          "timestamp": { "type": "string" },
+          "ttl": { "type": "string" }
+        }
+      },
+      "DeployInfo": {
+        "type": "object",
+        "description": "Information relating to the given Deploy.",
+        "required": ["deploy_hash", "from", "gas", "source", "transfers"],
+        "properties": {
+          "deploy_hash": {
+            "allOf": [{ "$ref": "#/components/schemas/DeployHash" }],
+            "description": "The relevant Deploy."
+          },
+          "from": {
+            "allOf": [{ "$ref": "#/components/schemas/AccountHash" }],
+            "description": "Account identifier of the creator of the Deploy."
+          },
+          "gas": {
+            "allOf": [{ "$ref": "#/components/schemas/U512" }],
+            "description": "Gas cost of executing the Deploy."
+          },
+          "source": {
+            "allOf": [{ "$ref": "#/components/schemas/URef" }],
+            "description": "Source purse used for payment of the Deploy."
+          },
+          "transfers": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TransferAddr" },
+            "description": "Transfers performed by the Deploy."
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeployProcessed": {
+        "type": "object",
+        "description": "The given deploy has been executed, committed and forms part of the given block.",
+        "required": [
+          "deploy_hash",
+          "account",
+          "timestamp",
+          "ttl",
+          "dependencies",
+          "block_hash",
+          "execution_result"
+        ],
+        "properties": {
+          "account": { "type": "string" },
+          "block_hash": { "$ref": "#/components/schemas/BlockHash" },
+          "dependencies": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/DeployHash" }
+          },
+          "deploy_hash": { "$ref": "#/components/schemas/DeployHash" },
+          "execution_result": {
+            "$ref": "#/components/schemas/ExecutionResult"
+          },
+          "timestamp": { "type": "string" },
+          "ttl": { "type": "string" }
+        }
+      },
+      "Digest": {
+        "type": "string",
+        "format": "binary",
+        "description": "The output of the hash function."
+      },
+      "EraId": {
+        "type": "integer",
+        "format": "uint64",
+        "description": "Era ID newtype.",
+        "minimum": 0
+      },
+      "EraInfo": {
+        "type": "object",
+        "description": "Auction metadata.  Intended to be recorded at each era.",
+        "required": ["seigniorage_allocations"],
+        "properties": {
+          "seigniorage_allocations": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/SeigniorageAllocation" }
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutableDeployItem": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["ModuleBytes"],
+            "properties": {
+              "ModuleBytes": {
+                "type": "object",
+                "description": "Raw bytes of compiled Wasm code, which must include a `call` entry point, and the arguments\nto call at runtime.",
+                "required": ["module_bytes", "args"],
+                "properties": {
+                  "args": { "$ref": "#/components/schemas/RuntimeArgs" },
+                  "module_bytes": {
+                    "type": "string",
+                    "description": "The compiled Wasm bytes."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["StoredContractByHash"],
+            "properties": {
+              "StoredContractByHash": {
+                "type": "object",
+                "description": "A contract stored in global state, referenced by its \"hash\", along with the entry point and\narguments to call at runtime.",
+                "required": ["hash", "entry_point", "args"],
+                "properties": {
+                  "args": { "$ref": "#/components/schemas/RuntimeArgs" },
+                  "entry_point": {
+                    "type": "string",
+                    "description": "The contract's entry point to be called at runtime."
+                  },
+                  "hash": { "$ref": "#/components/schemas/ContractHash" }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["StoredContractByName"],
+            "properties": {
+              "StoredContractByName": {
+                "type": "object",
+                "description": "A contract stored in global state, referenced by a named key existing in the `Deploy`'s\naccount context, along with the entry point and arguments to call at runtime.",
+                "required": ["name", "entry_point", "args"],
+                "properties": {
+                  "args": { "$ref": "#/components/schemas/RuntimeArgs" },
+                  "entry_point": {
+                    "type": "string",
+                    "description": "The contract's entry point to be called at runtime."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The named of the named key under which the contract is referenced."
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["StoredVersionedContractByHash"],
+            "properties": {
+              "StoredVersionedContractByHash": {
+                "type": "object",
+                "description": "A versioned contract stored in global state, referenced by its \"hash\", along with the entry\npoint and arguments to call at runtime.",
+                "required": ["hash", "entry_point", "args"],
+                "properties": {
+                  "args": { "$ref": "#/components/schemas/RuntimeArgs" },
+                  "entry_point": {
+                    "type": "string",
+                    "description": "The contract's entry point to be called at runtime."
+                  },
+                  "hash": {
+                    "$ref": "#/components/schemas/ContractPackageHash"
+                  },
+                  "version": {
+                    "allOf": [
+                      { "$ref": "#/components/schemas/ContractVersion" }
+                    ],
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["StoredVersionedContractByName"],
+            "properties": {
+              "StoredVersionedContractByName": {
+                "type": "object",
+                "description": "A versioned contract stored in global state, referenced by a named key existing in the\n`Deploy`'s account context, along with the entry point and arguments to call at runtime.",
+                "required": ["name", "entry_point", "args"],
+                "properties": {
+                  "args": { "$ref": "#/components/schemas/RuntimeArgs" },
+                  "entry_point": {
+                    "type": "string",
+                    "description": "The contract's entry point to be called at runtime."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The named of the named key under which the contract package is referenced."
+                  },
+                  "version": {
+                    "allOf": [
+                      { "$ref": "#/components/schemas/ContractVersion" }
+                    ],
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "required": ["Transfer"],
+            "properties": {
+              "Transfer": {
+                "type": "object",
+                "description": "A native transfer which does not contain or reference any Wasm code.",
+                "required": ["args"],
+                "properties": {
+                  "args": { "$ref": "#/components/schemas/RuntimeArgs" }
+                }
+              }
+            }
+          }
+        ],
+        "description": "The payment or session code of a [`Deploy`]."
+      },
+      "ExecutionEffect": {
+        "type": "object",
+        "title": "ExecutionEffect",
+        "description": "The journal of execution transforms from a single deploy.",
+        "required": ["operations", "transforms"],
+        "properties": {
+          "operations": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Operation" },
+            "description": "The resulting operations."
+          },
+          "transforms": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TransformEntry" },
+            "description": "The journal of execution transforms."
+          }
+        },
+        "additionalProperties": false
+      },
+      "ExecutionResult": {
+        "anyOf": [
+          {
+            "type": "object",
+            "description": "The result of a failed execution.",
+            "required": ["Failure"],
+            "properties": {
+              "Failure": {
+                "type": "object",
+                "required": ["cost", "effect", "error_message", "transfers"],
+                "properties": {
+                  "cost": {
+                    "allOf": [{ "$ref": "#/components/schemas/U512" }],
+                    "description": "The cost of executing the deploy."
+                  },
+                  "effect": {
+                    "allOf": [
+                      { "$ref": "#/components/schemas/ExecutionEffect" }
+                    ],
+                    "description": "The effect of executing the deploy."
+                  },
+                  "error_message": {
+                    "type": "string",
+                    "description": "The error message associated with executing the deploy."
+                  },
+                  "transfers": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/TransferAddr" },
+                    "description": "A record of Transfers performed while executing the deploy."
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "The result of a successful execution.",
+            "required": ["Success"],
+            "properties": {
+              "Success": {
+                "type": "object",
+                "required": ["cost", "effect", "transfers"],
+                "properties": {
+                  "cost": {
+                    "allOf": [{ "$ref": "#/components/schemas/U512" }],
+                    "description": "The cost of executing the deploy."
+                  },
+                  "effect": {
+                    "allOf": [
+                      { "$ref": "#/components/schemas/ExecutionEffect" }
+                    ],
+                    "description": "The effect of executing the deploy."
+                  },
+                  "transfers": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/TransferAddr" },
+                    "description": "A record of Transfers performed while executing the deploy."
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        ],
+        "description": "The result of executing a single deploy."
+      },
+      "Fault": {
+        "type": "object",
+        "description": "Generic representation of validator's fault in an era.",
+        "required": ["era_id", "public_key", "timestamp"],
+        "properties": {
+          "era_id": { "type": "integer", "format": "int64", "minimum": 0 },
+          "public_key": {
+            "type": "string",
+            "description": "\"Hex-encoded cryptographic public key, including the algorithm tag prefix.\""
+          },
+          "timestamp": { "type": "string" }
+        }
+      },
+      "FinalitySignature": {
+        "type": "object",
+        "required": ["block_hash", "era_id", "signature", "public_key"],
+        "properties": {
+          "block_hash": { "$ref": "#/components/schemas/BlockHash" },
+          "era_id": { "type": "integer", "format": "int64", "minimum": 0 },
+          "public_key": {
+            "type": "string",
+            "description": "\"Hex-encoded cryptographic public key, including the algorithm tag prefix.\""
+          },
+          "signature": { "type": "string" }
+        }
+      },
+      "JsonBlock": {
+        "type": "object",
+        "description": "A JSON-friendly representation of `Block`.",
+        "required": ["hash", "header", "body", "proofs"],
+        "properties": {
+          "body": { "$ref": "#/components/schemas/JsonBlockBody" },
+          "hash": { "$ref": "#/components/schemas/BlockHash" },
+          "header": { "$ref": "#/components/schemas/JsonBlockHeader" },
+          "proofs": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/JsonProof" },
+            "description": "JSON-friendly list of proofs for this block."
+          }
+        }
+      },
+      "JsonBlockBody": {
+        "type": "object",
+        "description": "A JSON-friendly representation of `Body`",
+        "required": ["proposer", "deploy_hashes", "transfer_hashes"],
+        "properties": {
+          "deploy_hashes": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/DeployHash" }
+          },
+          "proposer": {
+            "type": "string",
+            "description": "\"Hex-encoded cryptographic public key, including the algorithm tag prefix.\""
+          },
+          "transfer_hashes": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/DeployHash" }
+          }
+        }
+      },
+      "JsonBlockHeader": {
+        "type": "object",
+        "description": "JSON representation of a block header.",
+        "required": [
+          "parent_hash",
+          "state_root_hash",
+          "body_hash",
+          "random_bit",
+          "accumulated_seed",
+          "timestamp",
+          "era_id",
+          "height",
+          "protocol_version"
+        ],
+        "properties": {
+          "accumulated_seed": { "$ref": "#/components/schemas/Digest" },
+          "body_hash": { "$ref": "#/components/schemas/Digest" },
+          "era_end": {
+            "allOf": [{ "$ref": "#/components/schemas/JsonEraEnd" }],
+            "nullable": true
+          },
+          "era_id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The block era id.",
+            "minimum": 0
+          },
+          "height": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The block height.",
+            "minimum": 0
+          },
+          "parent_hash": { "$ref": "#/components/schemas/BlockHash" },
+          "protocol_version": {
+            "type": "string",
+            "description": "The protocol version."
+          },
+          "random_bit": { "type": "boolean", "description": "Randomness bit." },
+          "state_root_hash": { "$ref": "#/components/schemas/Digest" },
+          "timestamp": {
+            "type": "string",
+            "description": "The block timestamp."
+          }
+        }
+      },
+      "JsonEraEnd": {
+        "type": "object",
+        "required": ["era_report", "next_era_validator_weights"],
+        "properties": {
+          "era_report": { "$ref": "#/components/schemas/JsonEraReport" },
+          "next_era_validator_weights": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ValidatorWeight" }
+          }
+        }
+      },
+      "JsonEraReport": {
+        "type": "object",
+        "description": "Equivocation and reward information to be included in the terminal block.",
+        "required": ["equivocators", "rewards", "inactive_validators"],
+        "properties": {
+          "equivocators": { "type": "array", "items": { "type": "string" } },
+          "inactive_validators": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "rewards": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Reward" }
+          }
+        }
+      },
+      "JsonProof": {
+        "type": "object",
+        "description": "A JSON-friendly representation of a proof, i.e. a block's finality signature.",
+        "required": ["public_key", "signature"],
+        "properties": {
+          "public_key": {
+            "type": "string",
+            "description": "\"Hex-encoded cryptographic public key, including the algorithm tag prefix.\""
+          },
+          "signature": { "type": "string" }
+        }
+      },
+      "NamedArg": {
+        "type": "array",
+        "description": "Named arguments to a contract."
+      },
+      "NamedKey": {
+        "type": "object",
+        "description": "A named key.",
+        "required": ["key", "name"],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The value of the entry: a casper `Key` type."
+          },
+          "name": { "type": "string", "description": "The name of the entry." }
+        },
+        "additionalProperties": false
+      },
+      "OpKind": {
+        "type": "string",
+        "description": "The type of operation performed while executing a deploy.",
+        "enum": ["Read", "Write", "Add", "NoOp"]
+      },
+      "Operation": {
+        "type": "object",
+        "description": "An operation performed while executing a deploy.",
+        "required": ["key", "kind"],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The formatted string of the `Key`."
+          },
+          "kind": {
+            "allOf": [{ "$ref": "#/components/schemas/OpKind" }],
+            "description": "The type of operation."
+          }
+        },
+        "additionalProperties": false
+      },
+      "PublicKey": {
+        "type": "string",
+        "description": "Hex-encoded cryptographic public key, including the algorithm tag prefix."
+      },
+      "Reward": {
+        "type": "object",
+        "required": ["validator", "amount"],
+        "properties": {
+          "amount": { "type": "string" },
+          "validator": {
+            "type": "string",
+            "description": "\"Hex-encoded cryptographic public key, including the algorithm tag prefix.\""
+          }
+        }
+      },
+      "RuntimeArgs": {
+        "type": "array",
+        "title": "RuntimeArgs",
+        "items": { "$ref": "#/components/schemas/NamedArg" },
+        "description": "Represents a collection of arguments passed to a smart contract."
+      },
+      "SeigniorageAllocation": {
+        "anyOf": [
+          {
+            "type": "object",
+            "description": "Info about a seigniorage allocation for a validator",
+            "required": ["Validator"],
+            "properties": {
+              "Validator": {
+                "type": "object",
+                "required": ["amount", "validator_public_key"],
+                "properties": {
+                  "amount": {
+                    "allOf": [{ "$ref": "#/components/schemas/U512" }],
+                    "description": "Allocated amount"
+                  },
+                  "validator_public_key": {
+                    "allOf": [{ "$ref": "#/components/schemas/PublicKey" }],
+                    "description": "Validator's public key"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Info about a seigniorage allocation for a delegator",
+            "required": ["Delegator"],
+            "properties": {
+              "Delegator": {
+                "type": "object",
+                "required": [
+                  "amount",
+                  "delegator_public_key",
+                  "validator_public_key"
+                ],
+                "properties": {
+                  "amount": {
+                    "allOf": [{ "$ref": "#/components/schemas/U512" }],
+                    "description": "Allocated amount"
+                  },
+                  "delegator_public_key": {
+                    "allOf": [{ "$ref": "#/components/schemas/PublicKey" }],
+                    "description": "Delegator's public key"
+                  },
+                  "validator_public_key": {
+                    "allOf": [{ "$ref": "#/components/schemas/PublicKey" }],
+                    "description": "Validator's public key"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        ],
+        "description": "Information about a seigniorage allocation"
+      },
+      "Step": {
+        "type": "object",
+        "description": "The execution effects produced by a `StepRequest`.",
+        "required": ["era_id", "execution_effect"],
+        "properties": {
+          "era_id": { "type": "integer", "format": "int64", "minimum": 0 },
+          "execution_effect": { "$ref": "#/components/schemas/ExecutionEffect" }
+        }
+      },
+      "Transfer": {
+        "type": "object",
+        "description": "Represents a transfer from one purse to another",
+        "required": [
+          "amount",
+          "deploy_hash",
+          "from",
+          "gas",
+          "source",
+          "target"
+        ],
+        "properties": {
+          "amount": {
+            "allOf": [{ "$ref": "#/components/schemas/U512" }],
+            "description": "Transfer amount"
+          },
+          "deploy_hash": {
+            "allOf": [{ "$ref": "#/components/schemas/DeployHash" }],
+            "description": "Deploy that created the transfer"
+          },
+          "from": {
+            "allOf": [{ "$ref": "#/components/schemas/AccountHash" }],
+            "description": "Account from which transfer was executed"
+          },
+          "gas": {
+            "allOf": [{ "$ref": "#/components/schemas/U512" }],
+            "description": "Gas"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "format": "uint64",
+                "description": "User-defined id",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "format": "uint64",
+                "description": "User-defined id",
+                "additionalProperties": false,
+                "nullable": true,
+                "minimum": 0,
+                "minProperties": 1
+              }
+            ]
+          },
+          "source": {
+            "allOf": [{ "$ref": "#/components/schemas/URef" }],
+            "description": "Source purse"
+          },
+          "target": {
+            "allOf": [{ "$ref": "#/components/schemas/URef" }],
+            "description": "Target purse"
+          },
+          "to": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/AccountHash" },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "nullable": true,
+                "minProperties": 1
+              }
+            ],
+            "description": "Account to which funds are transferred"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransferAddr": {
+        "type": "string",
+        "description": "Hex-encoded transfer address."
+      },
+      "Transform": {
+        "anyOf": [
+          {
+            "type": "string",
+            "enum": [
+              "Identity",
+              "WriteContractWasm",
+              "WriteContract",
+              "WriteContractPackage"
+            ]
+          },
+          {
+            "type": "object",
+            "description": "Writes the given CLValue to global state.",
+            "required": ["WriteCLValue"],
+            "properties": {
+              "WriteCLValue": { "$ref": "#/components/schemas/CLValue" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Writes the given Account to global state.",
+            "required": ["WriteAccount"],
+            "properties": {
+              "WriteAccount": { "$ref": "#/components/schemas/AccountHash" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Writes the given DeployInfo to global state.",
+            "required": ["WriteDeployInfo"],
+            "properties": {
+              "WriteDeployInfo": { "$ref": "#/components/schemas/DeployInfo" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Writes the given EraInfo to global state.",
+            "required": ["WriteEraInfo"],
+            "properties": {
+              "WriteEraInfo": { "$ref": "#/components/schemas/EraInfo" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Writes the given Transfer to global state.",
+            "required": ["WriteTransfer"],
+            "properties": {
+              "WriteTransfer": { "$ref": "#/components/schemas/Transfer" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Writes the given Bid to global state.",
+            "required": ["WriteBid"],
+            "properties": {
+              "WriteBid": { "$ref": "#/components/schemas/Bid" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Writes the given Withdraw to global state.",
+            "required": ["WriteWithdraw"],
+            "properties": {
+              "WriteWithdraw": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/WithdrawPurse" }
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Adds the given `i32`.",
+            "required": ["AddInt32"],
+            "properties": {
+              "AddInt32": { "type": "integer", "format": "int32" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Adds the given `u64`.",
+            "required": ["AddUInt64"],
+            "properties": {
+              "AddUInt64": {
+                "type": "integer",
+                "format": "uint64",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Adds the given `U128`.",
+            "required": ["AddUInt128"],
+            "properties": {
+              "AddUInt128": { "$ref": "#/components/schemas/U128" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Adds the given `U256`.",
+            "required": ["AddUInt256"],
+            "properties": {
+              "AddUInt256": { "$ref": "#/components/schemas/U256" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Adds the given `U512`.",
+            "required": ["AddUInt512"],
+            "properties": {
+              "AddUInt512": { "$ref": "#/components/schemas/U512" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Adds the given collection of named keys.",
+            "required": ["AddKeys"],
+            "properties": {
+              "AddKeys": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/NamedKey" }
+              }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "A failed transformation, containing an error message.",
+            "required": ["Failure"],
+            "properties": { "Failure": { "type": "string" } },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "description": "Writes the given Unbonding to global state.",
+            "required": ["WriteUnbonding"],
+            "properties": {
+              "WriteUnbonding": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/UnbondingPurse" }
+              }
+            },
+            "additionalProperties": false
+          }
+        ],
+        "description": "The actual transformation performed while executing a deploy."
+      },
+      "TransformEntry": {
+        "type": "object",
+        "description": "A transformation performed while executing a deploy.",
+        "required": ["key", "transform"],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "The formatted string of the `Key`."
+          },
+          "transform": {
+            "allOf": [{ "$ref": "#/components/schemas/Transform" }],
+            "description": "The transformation."
+          }
+        },
+        "additionalProperties": false
+      },
+      "U128": {
+        "type": "string",
+        "description": "Decimal representation of a 128-bit integer."
+      },
+      "U256": {
+        "type": "string",
+        "description": "Decimal representation of a 256-bit integer."
+      },
+      "U512": {
+        "type": "string",
+        "description": "Decimal representation of a 512-bit integer."
+      },
+      "URef": {
+        "type": "string",
+        "description": "Hex-encoded, formatted URef."
+      },
+      "UnbondingPurse": {
+        "type": "object",
+        "description": "Unbonding purse.",
+        "required": [
+          "amount",
+          "bonding_purse",
+          "era_of_creation",
+          "unbonder_public_key",
+          "validator_public_key"
+        ],
+        "properties": {
+          "amount": {
+            "allOf": [{ "$ref": "#/components/schemas/U512" }],
+            "description": "Unbonding Amount."
+          },
+          "bonding_purse": {
+            "allOf": [{ "$ref": "#/components/schemas/URef" }],
+            "description": "Bonding Purse"
+          },
+          "era_of_creation": {
+            "allOf": [{ "$ref": "#/components/schemas/EraId" }],
+            "description": "Era in which this unbonding request was created."
+          },
+          "new_validator": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/PublicKey" },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "nullable": true,
+                "minProperties": 1
+              }
+            ],
+            "description": "The validator public key to re-delegate to."
+          },
+          "unbonder_public_key": {
+            "allOf": [{ "$ref": "#/components/schemas/PublicKey" }],
+            "description": "Unbonders public key."
+          },
+          "validator_public_key": {
+            "allOf": [{ "$ref": "#/components/schemas/PublicKey" }],
+            "description": "Validators public key."
+          }
+        },
+        "additionalProperties": false
+      },
+      "ValidatorWeight": {
+        "type": "object",
+        "required": ["validator", "weight"],
+        "properties": {
+          "validator": {
+            "type": "string",
+            "description": "\"Hex-encoded cryptographic public key, including the algorithm tag prefix.\""
+          },
+          "weight": { "type": "string" }
+        }
+      },
+      "VestingSchedule": {
+        "type": "object",
+        "required": ["initial_release_timestamp_millis"],
+        "properties": {
+          "initial_release_timestamp_millis": {
+            "type": "integer",
+            "format": "uint64",
+            "minimum": 0
+          },
+          "locked_amounts": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/U512" },
+                "maxItems": 14,
+                "minItems": 14
+              },
+              {
+                "type": "object",
+                "items": { "$ref": "#/components/schemas/U512" },
+                "maxItems": 14,
+                "minItems": 14,
+                "nullable": true
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "WithdrawPurse": {
+        "type": "object",
+        "description": "A withdraw purse, a legacy structure.",
+        "required": [
+          "amount",
+          "bonding_purse",
+          "era_of_creation",
+          "unbonder_public_key",
+          "validator_public_key"
+        ],
+        "properties": {
+          "amount": {
+            "allOf": [{ "$ref": "#/components/schemas/U512" }],
+            "description": "Unbonding Amount."
+          },
+          "bonding_purse": {
+            "allOf": [{ "$ref": "#/components/schemas/URef" }],
+            "description": "Bonding Purse"
+          },
+          "era_of_creation": {
+            "allOf": [{ "$ref": "#/components/schemas/EraId" }],
+            "description": "Era in which this unbonding request was created."
+          },
+          "unbonder_public_key": {
+            "allOf": [{ "$ref": "#/components/schemas/PublicKey" }],
+            "description": "Unbonders public key."
+          },
+          "validator_public_key": {
+            "allOf": [{ "$ref": "#/components/schemas/PublicKey" }],
+            "description": "Validators public key."
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [{ "name": "event-sidecar", "description": "Event-sidecar rest API" }]
+}
+
+</details>
+
 ### Latest Block
 
 Retrieve information about the last block added to the linear chain.
@@ -385,8 +2018,14 @@ curl -s http://NODE_ADDRESS:PORT/events/CHANNEL?start_from=ID
 curl -sN http://65.21.235.219:19999/events/main?start_from=29267508
 ```
 
+Note that certain shells like `zsh` may require an escape character before the question mark:
+
+```bash
+curl -sN http://65.21.235.219:19999/events/main\?start_from=29267508
+```
+
 </TabItem>
 
 </Tabs>
 
-The server will replay all the cached events if you specify an event ID that has already been purged from the cache. [This section](../../operators/setup/node-events.md#replaying-the-event-stream) contains more details about the number of events cached.
+The server will replay all the cached events if the ID is 0 or if you specify an event ID already purged from the cache. [This section](../../operators/setup/node-events.md#replaying-the-event-stream) contains more details about the number of events cached.
