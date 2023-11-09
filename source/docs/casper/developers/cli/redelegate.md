@@ -48,7 +48,7 @@ The command will return a deploy hash, which is needed to verify the deploy's pr
 
 :::note
 
-Calling the `delegate` entry point on the auction contract has a fixed cost of 2.5 CSPR and there is a minimum delegation amount of 500 CSPR that also applies to redelegations.
+Calling the `redelegate` entry point on the auction contract has a fixed cost of 2.5 CSPR and there is a minimum delegation amount of 500 CSPR that also applies to redelegations.
 
 :::
 
