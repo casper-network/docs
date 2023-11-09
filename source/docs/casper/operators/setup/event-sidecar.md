@@ -2,6 +2,8 @@
 title: SSE Sidecar
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # The Casper Event Sidecar
 
 The Casper Event Sidecar is an application running alongside the node process, allowing subscribers to monitor the event stream without querying the node. The application usually runs on the same machine as the node process, but it can be configured to run remotely if necessary. The load on the node process is thus drastically reduced. Users needing access to the JSON-RPC will still need to query the node directly.
@@ -15,6 +17,9 @@ An alternate name for this application is the SSE Sidecar because it uses the no
    - Default configuration file - link to resources/default_config.toml
 - Maintenance scripts - link to resources/maintainer_scripts
 -->
+
+<img class="align-center" src={useBaseUrl("/image/operators/sidecar-diagram.png")} alt="Sidecar components and architecture diagram" width="800"/>
+
 
 ## Installing the Sidecar Service {#installing-the-sidecar}
 
@@ -292,7 +297,14 @@ For example, if you are an operator running the Sidecar service on your node, yo
 http://localhost:18888/swagger-ui/
 ```
 
-<!-- TODO add sample response -->
+<details> 
+<summary><b>Expand to see screenshots</b></summary>
+
+<img class="align-center" src={useBaseUrl("/image/operators/sidecar-swagger-1.png")} alt="Sidecar components and architecture diagram" width="800"/>
+
+<img class="align-center" src={useBaseUrl("/image/operators/sidecar-swagger-2.png")} alt="Sidecar components and architecture diagram" width="800"/>
+
+</details>
 
 ## The Admin Server
 
