@@ -44,6 +44,7 @@ Replace the `HOST` with the IP address of the machine running the Sidecar applic
 
 This is only a sample OpenAPI schema for the Sidecar. Click the URL above to see the latest version.
 
+```json
 {
   "openapi": "3.0.3",
   "info": {
@@ -1661,6 +1662,7 @@ This is only a sample OpenAPI schema for the Sidecar. Click the URL above to see
   },
   "tags": [{ "name": "event-sidecar", "description": "Event-sidecar rest API" }]
 }
+```
 
 </details>
 

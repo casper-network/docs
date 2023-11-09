@@ -323,7 +323,7 @@ curl http://127.0.0.1:18887/metrics/
 ```
 
 <details>
-<summary>Sample response</summary>
+<summary><b>Sample response</b></summary>
 
 ```bash
 # HELP internal_events Count of internal events
