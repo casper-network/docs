@@ -34,7 +34,7 @@ These settings manage the core protocol behavior.
 |----------------- |-----------------------------------------------|-----------------|
 |era_duration | Era duration. | '120min'|
 |minimum_era_height | Minimum number of blocks per era. An era will take longer than `era_duration` if that is necessary to reach the minimum height. | 20 | 
-|minimum_block_time | Minimum difference between a block's and its child's timestamp. | '32768ms'|
+|minimum_block_time | Minimum difference between a block's and its child's timestamp. | '16384ms'|
 |validator_slots | Number of slots available in the validator auction. | 100|
 |finality_threshold_fraction | A number between 0 and 1 representing the fault tolerance threshold as a fraction used by the internal finalizer.<br />It is the fraction of validators that would need to equivocate to make two honest nodes see two conflicting blocks as finalized.<br />Let's say this value is F. A higher value F makes it safer to rely on finalized blocks. It also makes it more difficult to finalize blocks, however, and requires strictly more than (F + 1)/2 validators to be working correctly. | [1, 3]|
 |start_protocol_version_with_strict<br />_finality_signatures_required |Protocol version from which nodes are required to hold strict finality signatures.| '1.5.0'|
@@ -76,7 +76,7 @@ These settings manage deploys and their lifecycle.
 |block_max_deploy_count | The maximum number of non-transfer deploys permitted in a single block. | 50|
 |block_max_transfer_count | The maximum number of Wasm-less transfer deploys permitted in a single block. | 1250|
 |block_max_approval_count | The maximum number of approvals permitted in a single block. | 2600|
-|block_gas_limit | The upper limit of the total gas of all deploys in a block. | 10_000_000_000_000|
+|block_gas_limit | The upper limit of the total gas of all deploys in a block. | 4_000_000_000_000|
 |payment_args_max_length | The limit of length of serialized payment code arguments. | 1024|
 |session_args_max_length | The limit of length of serialized session code arguments. | 1024|
 |native_transfer_minimum_motes | The minimum amount in motes for a valid native transfer. | 2_500_000_000|
@@ -131,12 +131,12 @@ These settings manage costs for control flow operations.
 |if | Cost for `if` opcode. | 440|
 |else | Cost for `else` opcode. | 440|
 |end | Cost for `end` opcode. | 440|
-|br | Cost for `br` opcode. | 440_000|
-|br_if | Cost for `br_if` opcode. | 440_000|
+|br | Cost for `br` opcode. | 35_000|
+|br_if | Cost for `br_if` opcode. | 35_000|
 |return | Cost for `return` opcode. | 440|
 |select | Cost for `select` opcode. | 440|
-|call | Cost for `call` opcode. | 140_000|
-|call_indirect | Cost for `call_indirect` opcode. | 140_000|
+|call | Cost for `call` opcode. | 68_000|
+|call_indirect | Cost for `call_indirect` opcode. | 68_000|
 |drop | Cost for `drop` opcode. | 440|
 
 ### wasm.opcode_costs.control_flow.br_table
@@ -145,7 +145,7 @@ The following settings manage `br_table` Wasm opcodes.
 
 |Attribute         |Description                                    | Mainnet Setting |
 |----------------- |-----------------------------------------------|-----------------|
-|cost | Fixed cost per `br_table` opcode. | 440_000|
+|cost | Fixed cost per `br_table` opcode. | 35_000|
 |size_multiplier |  Size of target labels in the `br_table` opcode will be multiplied by `size_multiplier`. | 100|
 
 ### wasm.host_function_costs
