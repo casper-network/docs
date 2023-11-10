@@ -1,5 +1,8 @@
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+---
+title: Monitoring Events
+---
 
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Monitoring and Consuming Events
