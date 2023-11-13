@@ -10,7 +10,7 @@ More information on `chainspec`s for private networks can be found [here](/opera
 
 :::note
 
-All costs in this table are in [motes](/concepts/glossary/M/#motes), not CSPR.
+All costs in this table are in [motes](/concepts/glossary/M/#motes), not CSPR, and the corresponding chainspec is [here](https://github.com/casper-network/casper-node/blob/53dd33865c2707c29284ccc0e8485f22ddd6fbe3/resources/production/chainspec.toml#L129).
 
 :::
 
