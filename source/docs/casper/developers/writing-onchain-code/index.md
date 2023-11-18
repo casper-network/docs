@@ -8,7 +8,7 @@ slug: /writing-contracts
 This section shows you how to write session code and smart contracts in Rust and WebAssembly (Wasm) for a Casper network. When referring to session code, these documents outline logic that executes in the context of an account. In contrast, smart contracts consist of logic installed on-chain, for use by multiple parties. There is a large overlap between the processes of writing session code versus contract code, with some semantic differences outlined in their respective documentation. The [Video Series for Writing On-Chain Code](https://www.youtube.com/playlist?list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj) accompanies the topics below.
 
 <p align="center">
-<iframe width="400" height="225" src="https://www.youtube.com/embed?v=q5nW4MUT8q4&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=1" position="middle" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/JoOjhSOnQzk" position="middle" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
 | Title                                       | Description                     |
