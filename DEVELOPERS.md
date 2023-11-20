@@ -6,9 +6,11 @@ If you want to add new content or make structural updates to the documentation, 
 
 This documentation website uses the following infrastructure:
 
-- Docusaurus (2.0.0-beta.4)
+- Docusaurus (2.4.0)
 - React (17.0.1)
-- Node (>12)
+- Node (>=16.14)
+
+To see the current versions, open the [package.json](./package.json) file.
 
 ## Project Architecture
 
