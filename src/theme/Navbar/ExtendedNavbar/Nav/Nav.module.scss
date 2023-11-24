@@ -2,8 +2,6 @@
 @import "../../../../assets/scss/mixins";
 
 .navbar_list {
-    height: 55px;
-    max-height: 55px;
     min-width: 470px;
     font-size: 16px;
     line-height: 24px;
@@ -94,14 +92,9 @@
         justify-content: flex-start;
         align-items: flex-start;
         gap: 20px;
-        width: 100%;
-        overflow-x: unset;
         .navbar_list_container {
-         
             .navbar_list_container_button {
                 width: 100%;
-                overflow: hidden;
-
                 .navbar_list_item {
                     width: 100%;
                     justify-content: space-between;
