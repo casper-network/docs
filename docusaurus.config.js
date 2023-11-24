@@ -104,7 +104,7 @@ module.exports = {
                 directusGraphqlUrl: process.env.DIRECTUS_GRAPHQL_URL,
                 directusToken: process.env.DIRECTUS_TOKEN,
                 query:
-                    "query { header { translations { languages_code { code } login_text search_placeholder logo { id } nav_items { header_nav_item_id { title columns { header_nav_column_id { groups { header_link_column_id { title links { link_id { title type url open_in_new_tab children { related_link_id { title type url open_in_new_tab }}}}}}}}}}}} social_media { name url icon { id }} footer { translations { title description manage_cookies_text logo { id title } link_column { footer_link_column_id { title links { link_id { title type url open_in_new_tab } } } } bottom_links { link_id { title type url open_in_new_tab } } languages_code { code } } }}",
+                    "query { header { translations { languages_code { code } login_text search_placeholder logo { id } navigation_tree nav_items { header_nav_item_id { title columns { header_nav_column_id { groups { header_link_column_id { title links { link_id { title type url open_in_new_tab children { related_link_id { title type url open_in_new_tab }}}}}}}}}}}} social_media { name url icon { id }} footer { translations { title description manage_cookies_text logo { id title } link_column { footer_link_column_id { title links { link_id { title type url open_in_new_tab } } } } bottom_links { link_id { title type url open_in_new_tab } } languages_code { code } footer_tree } }}",
             },
         ],
         [

@@ -48,7 +48,6 @@ const navDataLoader = (
       const json = await response.json();
 
       const data = convertData(json);
-
       const promises = [];
 
       for (const media of data.socialMedia) {
