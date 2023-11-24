@@ -1,7 +1,7 @@
 .wrapper {
     position: absolute;
-    top: calc((var(--ifm-navbar-height) / 2) - 50% + 2px);
-    left: 0;
+    top: calc((var(--ifm-navbar-height) - var(--navBarDocHeight)));
+    left: var(--left);
     display: flex;
     cursor: default;
     width: fit-content;
@@ -27,6 +27,7 @@
         position: relative;
         margin-left: 15px;
         z-index: 0;
+        top: unset;
 
         .dropdown_container {
             flex-direction: column;

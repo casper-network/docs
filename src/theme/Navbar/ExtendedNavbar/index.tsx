@@ -46,11 +46,20 @@ export default function ExtendedNavbar() {
 
     useFocusTrap(navBarRef, "a[href], button:not([disabled]), input", dropdownOpen, dropdownContent);
 
-    const data = usePluginData("docusaurus-plugin-navdata") as { socialMedia: Array<ISocialMedia>; navData: Array<INavData>; footerData: Array<IFooterData> };
+    const data = usePluginData("docusaurus-plugin-navdata") as {
+        socialMedia: Array<ISocialMedia>;
+        navTree: any;
+        navData: Array<INavData>;
+        footerData: Array<IFooterData>;
+    };
 
     const navData =
         data?.navData.find((x) => x.languageCode === externalLocale) ||
         data?.navData.find((x) => x.languageCode === siteConfig.customFields.defaultExternalLocales);
+
+    const navTree =
+        data?.navTree.find((x) => x.languages_code.code.toLowerCase() === externalLocale) ||
+        data?.navTree.find((x) => x.languages_code.code.toLowerCase() === siteConfig.customFields.defaultExternalLocales);
 
     const handleClick = (title: string) => {
         if (title === current) {
@@ -60,9 +69,9 @@ export default function ExtendedNavbar() {
             setCurrent(title);
         }
 
-        if (navData && navData.navItems) {
-            let currentContent: INavItem | undefined = navData?.navItems.find((elem: INavItem) => elem?.title === title);
-            currentContent && currentContent.title && currentContent.columns && currentContent.columns.length > 0 && setDropdown(currentContent);
+        if (navTree && navTree.navigation_tree) {
+            let currentContent: any | undefined = navTree?.navigation_tree.items.find((elem: any) => elem?.title === title);
+            currentContent && setDropdown(currentContent);
         }
     };
 
@@ -136,10 +145,10 @@ export default function ExtendedNavbar() {
                                         </Link>
                                     </div>
                                 )}
-                                {navData && navData.navItems && (
+                                {navTree && navTree.navigation_tree && (
                                     <Nav
                                         dropdownParentRef={dropdownParentRef}
-                                        header={navData}
+                                        header={navTree}
                                         handleClick={handleClick}
                                         dropdownOpen={dropdownOpen}
                                         current={current}
@@ -180,6 +189,7 @@ export default function ExtendedNavbar() {
                         <Sidebar
                             sidebarOpen={sidebarOpen}
                             header={navData}
+                            navTree={navTree}
                             currentLocale={externalLocale}
                             dropdownParentRef={dropdownParentMobileRef}
                             handleClick={handleClick}

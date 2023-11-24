@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Nav.module.scss";
 import NavBarDropdown from "../NavBarDropdown";
 import icons from "../../../../icons";
@@ -8,7 +8,7 @@ import { CSSTransition } from "react-transition-group";
 
 interface INav {
     dropdownParentRef: React.RefObject<HTMLElement>;
-    header: INavData;
+    header: any;
     handleClick: (title: string) => void;
     dropdownOpen: Boolean;
     current: string;
@@ -17,39 +17,49 @@ interface INav {
 }
 
 function Nav({ dropdownParentRef, header, handleClick, dropdownOpen, current, locale, closeNavBarHandler }: INav) {
-    const isCurrent = (item): boolean => {
-        if (item && current === item.title && dropdownOpen) {
+    const [left, setLeft] = useState<{}>();
+    const isCurrent = (item: any): boolean => {
+        if (item && current === item?.title && dropdownOpen) {
             return true;
         }
         return false;
     };
 
+    const getLeft = (position: string) => {
+        const container = document.getElementById(position);
+        return container!.offsetLeft - dropdownParentRef!.current!.scrollLeft;
+    };
+
     return (
-        <nav className={styles.navbar_list} ref={dropdownParentRef}>
-            <div className={styles.navbar_list_container}>
-                {header.navItems.map((item, i: number) => {
+        <>
+            <nav className={styles.navbar_list} ref={dropdownParentRef}>
+                {header?.navigation_tree.items.map((item: any, i: number) => {
                     return (
-                        <div className={styles.navbar_list_container_button} key={`navItem_${i}`}>
-                            <button
-                                key={`navItem_${i}`}
-                                id={`navItem_${i}`}
-                                className={`${styles.navbar_list_item} ${item?.title === current ? styles.isActive : ""}`}
-                                tabIndex={0}
-                                onClick={() => {
-                                    handleClick(item.title || "");
-                                }}
-                            >
-                                <span>{item.title}</span>
-                                {icons.chevronDown}
-                            </button>
+                        <div className={styles.fullWidth} key={`navItem_${i}`}>
+                            <div className={styles.navbar_list_container} id={`container_${i}`}>
+                                <div className={styles.navbar_list_container_button}>
+                                    <button
+                                        id={`navItem_${i}`}
+                                        onClick={() => {
+                                            handleClick(item?.title || "");
+                                            setLeft(getLeft(`container_${i}`));
+                                        }}
+                                        className={`${styles.navbar_list_item} ${item?.title === current ? styles.isActive : ""}`}
+                                        tabIndex={0}
+                                    >
+                                        <span>{item.title}</span>
+                                        {icons.chevronDown}
+                                    </button>
+                                </div>
+                            </div>
                             <CSSTransition in={isCurrent(item!)} timeout={500} classNames="transition" unmountOnExit>
-                                <NavBarDropdown content={item ?? undefined} locale={locale} closeNavBarHandler={closeNavBarHandler} />
+                                <NavBarDropdown left={left} content={item ?? undefined} closeNavBarHandler={closeNavBarHandler} locale={locale} />
                             </CSSTransition>
                         </div>
                     );
                 })}
-            </div>
-        </nav>
+            </nav>
+        </>
     );
 }
 
