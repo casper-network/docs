@@ -46,7 +46,7 @@ export default function NavBarLink({ locale, closeNavBarHandler, link }: INavBar
             <span>{renderLink(link)}</span>
 
             {link && link.id && link.children && (
-                <ul className={`${styles.subLinkList} noWrap`}>
+                <ul className={`${styles.asd} noWrap`}>
                     {link.children.map((subLink: any, i: number) => {
                         return <NavBarLink key={`column_group_link_${i}`} link={subLink} closeNavBarHandler={closeNavBarHandler} locale={locale}></NavBarLink>;
                     })}
