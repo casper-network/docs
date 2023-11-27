@@ -338,9 +338,20 @@ There are two ways to call versioned contracts:
 After calling the entry point, the count value should be decremented. You can verify it by querying the network again using the new state root hash.
 
 
-## Disabling a Contract Version
+## Disabling and Enabling Contract Versions
 
-You can disable the indicated contract version of the indicated contract package by using the [disable_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.disable_contract_version.html) function. Disabled contract versions can no longer be executed.
+You can disable a contract version within a contract package by using the [disable_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.disable_contract_version.html) function.
+
+Disabled contract versions can no longer be executed. As such, if there is only a single contract version within the package, you will no longer be able to use the contract.
+
+<!--TODO This link is only a guess until 1.5.4 releases and the auto-docs populate.-->
+[Enable_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.enable_contract_version.html) allows you to re-enable a previously disabled contract version.
+
+::note
+
+Be aware that calling a contract package will use the most recent contract version. It is not necessary to disable a previous contract version, unless you have a specific need to do so.
+
+:::
 
 ## Creating a Locked Contract Package {#locked-contract-package}
 
