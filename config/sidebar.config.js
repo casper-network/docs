@@ -207,6 +207,7 @@ module.exports = {
                 "developers/cli/installing-contracts",
                 "developers/cli/querying-global-state",
                 "developers/cli/calling-contracts",
+                "developers/cli/opcode-costs",
                 "developers/cli/execution-error-codes",
             ],
         },
