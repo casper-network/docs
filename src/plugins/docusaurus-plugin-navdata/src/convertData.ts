@@ -18,7 +18,6 @@ const convertData = (
   for (const translation of source.data.header.translations) {
     navTreeTranslations.push(translation);
   }
-  console.log(navTreeTranslations);
 
   const footerTreeTranslations = [];
   for (const translation of source.data.footer.translations) {
