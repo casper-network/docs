@@ -49,18 +49,12 @@ export default function ExtendedNavbar() {
     const data = usePluginData("docusaurus-plugin-navdata") as {
         socialMedia: Array<ISocialMedia>;
         navTree: any;
-        navData: Array<INavData>;
         footerData: Array<IFooterData>;
     };
-
-    const navData =
-        data?.navData.find((x) => x.languageCode === externalLocale) ||
-        data?.navData.find((x) => x.languageCode === siteConfig.customFields.defaultExternalLocales);
 
     const navTree =
         data?.navTree.find((x) => x.languages_code.code.toLowerCase() === externalLocale) ||
         data?.navTree.find((x) => x.languages_code.code.toLowerCase() === siteConfig.customFields.defaultExternalLocales);
-
     const handleClick = (title: string) => {
         if (title === current) {
             if (dropdownOpen) closeNavBarHandler();
@@ -133,15 +127,15 @@ export default function ExtendedNavbar() {
 
     return (
         <>
-            {navData && (
+            {navTree && (
                 <div className={styles.wrapper}>
                     <header ref={navBarRef} className={styles.navbar_wrapper}>
                         <div className={`${styles.container}  containerSite`}>
                             <div className={`${styles.navbar} ${styles.desktop} navBar`}>
-                                {navData?.logo && (
+                                {navTree?.logo && (
                                     <div className={styles.navbar_logo_container}>
                                         <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
-                                            <div dangerouslySetInnerHTML={{ __html: navData.logo }}></div>
+                                            <div dangerouslySetInnerHTML={{ __html: navTree.logo }}></div>
                                         </Link>
                                     </div>
                                 )}
@@ -156,14 +150,14 @@ export default function ExtendedNavbar() {
                                         closeNavBarHandler={closeNavBarHandler}
                                     />
                                 )}
-                                {navData && navData.searchPlaceholder && (
+                                {navTree && navTree.search_placeholder && (
                                     <Search
                                         index={{
                                             name: `${siteConfig.customFields.siteAlgoliaIndexName}`,
                                             title: `${siteConfig.customFields.siteAlgoliaIndexName}`,
                                         }}
                                         locale={externalLocale}
-                                        placeholder={navData.searchPlaceholder}
+                                        placeholder={navTree.search_placeholder}
                                         siteUrl={siteConfig.customFields.siteUrl as string}
                                     />
                                 )}
@@ -171,10 +165,10 @@ export default function ExtendedNavbar() {
                                 <ThemeSwitch />
                             </div>
                             <div className={`${styles.navbar} ${styles.mobile} navBar`}>
-                                {navData && navData.logo && (
+                                {navTree && navTree.logo && (
                                     <div className={styles.navbar_logo_container}>
                                         <Link href={getExternalLink("/")} onClick={() => closeNavBarHandler()}>
-                                            <div dangerouslySetInnerHTML={{ __html: navData.logo }}></div>
+                                            <div dangerouslySetInnerHTML={{ __html: navTree.logo }}></div>
                                         </Link>
                                     </div>
                                 )}
@@ -188,7 +182,7 @@ export default function ExtendedNavbar() {
                     <div className={`${styles.mobile}`}>
                         <Sidebar
                             sidebarOpen={sidebarOpen}
-                            header={navData}
+                            header={navTree}
                             navTree={navTree}
                             currentLocale={externalLocale}
                             dropdownParentRef={dropdownParentMobileRef}

@@ -7,7 +7,6 @@ import {
 } from '@miracledevs/paradigm-web-fetch';
 import convertData from './convertData';
 import IFooterData from './interfaces/navbar/footerData';
-import INavData from './interfaces/navbar/navData';
 import ISocialMedia from './interfaces/navbar/socialMedia';
 
 // import imageToBase64 from 'image-to-base64';
@@ -53,8 +52,7 @@ const navDataLoader = (
       for (const media of data.socialMedia) {
         promises.push(loadSocialMediaImages(media, httpClient, directusUrl));
       }
-
-      for (const navData of data.navData) {
+      for (const navData of data.navTree) {
         promises.push(loadLogos(navData, httpClient, directusUrl));
       }
 
@@ -86,19 +84,6 @@ const loadSocialMediaImages = async (
   media.icon = text;
 };
 
-const loadLogos = async (
-  navData: INavData,
-  httpClient: HttpClient,
-  url: string
-) => {
-  const response = await httpClient.get(`${url}assets/${navData.logoId}`);
-  if (response.status != 200) {
-    throw new Error(await response.text());
-  }
-  const text = await response.text();
-  navData.logo = text;
-};
-
 const loadFooterLogos = async (
   footerData: IFooterData,
   httpClient: HttpClient,
@@ -110,6 +95,15 @@ const loadFooterLogos = async (
   }
   const text = await response.text();
   footerData.logo = text;
+};
+
+const loadLogos = async (navData: any, httpClient: HttpClient, url: string) => {
+  const response = await httpClient.get(`${url}assets/${navData.logo.id}`);
+  if (response.status != 200) {
+    throw new Error(await response.text());
+  }
+  const text = await response.text();
+  navData.logo = text;
 };
 
 export default navDataLoader;
