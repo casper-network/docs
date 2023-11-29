@@ -112,7 +112,7 @@ As a brief example, open up _my-project/contract/src/main.rs_ in your editor, mo
 The following video tutorial complements this guide.
 
 <p align="center">
-<iframe width="400" height="225" src="https://www.youtube.com/embed?v=TRmmiFBwPr0&list=PL8oWxbJ-csEqi5FP87EJZViE2aLz6X1Mj&index=2" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/aIhA5fPIHus" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </p>
 
 ## Rust Resources {#rust-resources}

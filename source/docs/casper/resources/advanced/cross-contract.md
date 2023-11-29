@@ -674,7 +674,7 @@ Query the state of Casper network using the account hash:
 If we check the account's named keys, we can see all of the account's deployed contracts:
 
 <details>
-<summary><b>Account's named keys</b></summary>
+<summary>Account's named keys</summary>
 
 ```bash
 {
@@ -843,7 +843,7 @@ casper-client get-deploy \
 After the deploy finishes successfully, you should see a similar outcome to the following:
 
 <details>
-<summary><b>Deploy details</b></summary>
+<summary>Deploy details</summary>
 
 ```bash
 {

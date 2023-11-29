@@ -14,7 +14,7 @@ This is the only means by which users can send their compiled Wasm (as part of a
 
 <details>
 
-<summary><b>Example account_put_deploy request</b></summary>
+<summary>Example account_put_deploy request</summary>
 
 ```bash
 
@@ -26,20 +26,20 @@ This is the only means by which users can send their compiled Wasm (as part of a
     {
       "approvals": [
         {
-          "signature": "014c1a89f92e29dd74fc648f741137d9caf4edba97c5f9799ce0c9aa6b0c9b58db368c64098603dbecef645774c05dff057cb1f91f2cf390bbacce78aa6f084007",
-          "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c"
+          "signer": "01f8b29f39c38600ecb3bbb082951e04ab63a4ad4f7c9048a5057e461a5a8d58a5",
+          "signature": "019d6ef5c62c80ad4e50df343fba6f0fced17dea4c65e7976f66335ffcfcde2a7f02e928c8507cef3c76c3151e0e9cc9c3f7838b9f7a99ac4be5522ca092841100"
         }
       ],
-      "hash": "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa",
+      "hash": "00a8677713222df88b6988926e0b14adeda6c663957f5075003395da4e5c6888",
       "header": {
-        "account": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-        "body_hash": "d53cf72d17278fd47d399013ca389c50d589352f1a12593c0b8e01872a641b50",
-        "chain_name": "casper-example",
+        "account": "01f8b29f39c38600ecb3bbb082951e04ab63a4ad4f7c9048a5057e461a5a8d58a5",
+        "body_hash": "145ae09d6da5bc290051db8cb7132a41a30473d5900eaaf409d92b666325ca00",
+        "chain_name": "casper-net-1",
         "dependencies": [
           "0101010101010101010101010101010101010101010101010101010101010101"
         ],
         "gas_price": 1,
-        "timestamp": "2020-11-17T00:39:24.072Z",
+        "timestamp": "2023-09-26T14:07:10.024Z",
         "ttl": "1h"
       },
       "payment": {
@@ -48,9 +48,8 @@ This is the only means by which users can send their compiled Wasm (as part of a
             [
               "amount",
               {
-                "bytes": "e8030000",
-                "cl_type": "I32",
-                "parsed": 1000
+                "bytes": "0400f90295",
+                "cl_type": "U512"
               }
             ]
           ],
@@ -64,9 +63,15 @@ This is the only means by which users can send their compiled Wasm (as part of a
             [
               "amount",
               {
-                "bytes": "e8030000",
-                "cl_type": "I32",
-                "parsed": 1000
+                "cl_type": "U512",
+                "bytes": "0400f90295"
+              }
+            ],
+            [
+              "target",
+              {
+                "cl_type": "URef",
+                "bytes": "09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db07"
               }
             ]
           ]
@@ -91,7 +96,7 @@ The result contains the [deploy_hash](./types_chain.md#deployhash), which is the
 
 <details>
 
-<summary><b>Example account_put_deploy result</b></summary>
+<summary>Example account_put_deploy result</summary>
 
 ```bash
 
@@ -121,7 +126,7 @@ The `speculative_exec` endpoint provides a method to execute a `Deploy` without 
 
 <details>
 
-<summary><b>Example speculative_exec request</b></summary>
+<summary>Example speculative_exec request</summary>
 
 ```bash
 
@@ -215,7 +220,7 @@ The result contains the hash of the targeted block and the results of the execut
 
 <details>
 
-<summary><b>Example speculative_exec result</b></summary>
+<summary>Example speculative_exec result</summary>
 
 ```bash
 

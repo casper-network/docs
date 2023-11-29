@@ -741,10 +741,21 @@ A `Map` serializes as a list of key-value tuples. There must be a well-defined o
 | `ADD_WRITE`      |  6           |
 | `READ_ADD_WRITE` |  7           |
 
+    -   E.g. `uref-974019c976b5f26412ce486158d2431967af35d91387dae8cbcd43c20fce6452-007` shows a `URef` with full `READ_ADD_WRITE` rights.
+    
+:::warning
+
+When passing a URef to another entity on chain, you must ensure that the `AccessRights` are set correctly. If the URef represents a [purse](./glossary/P.md#purse-purse), `AccessRights` impact who can deposit and withdraw CSPR.
+
+:::
+    
+If a passed URef contains `ADD` permissions, the entity receiving the URef will then be able to deposit CSPR into the associated purse. `WRITE` permissions allow for withdrawing CSPR. As of 1.4.5, passing a main purse URef as a runtime argument will cause the host to automatically remove `WRITE` permissions. In this event, `READ` and `ADD` permissions will remain. Regardless, all due diligence should be performed to avoid passing a URef with `WRITE` permissions unintentionally.
+
 #### PublicKey {#clvalue-publickey}
 
 `PublicKey` serializes as a single byte tag representing the algorithm followed by 32 bytes of the `PublicKey` itself:
 
+-   If the `PublicKey` is a `System` key, the single tag byte is `0`. With this variant, the single byte of `0` is the entire key.
 -   If the `PublicKey` is an `Ed25519` key, the single tag byte is `1` followed by the individual bytes of the serialized key.
 -   If the `PublicKey` is a `Secp256k1` key, the single tag byte is a `2` followed by the individual bytes of the serialized key.
 

@@ -10,6 +10,12 @@
 | [Developer tools](./build-on-casper.md#development-tools) | Available development tools |
 | [Ecosystem Projects](./casper-open-source-software.md) | Explore some open-source code available in the Casper ecosystem |
 
+## Move to Casper
+
+| Topic                                                       | Description                                                      |
+| ----------------------------------------------------------- | ---------------------------------------------------------------- |
+| [Move to Casper](./moving-to-casper.md) | Learn how to start working with Casper, having previous knowledge of other blockchains |
+
 ## Tutorials
 
 | Topic                                                       | Description                                                      |

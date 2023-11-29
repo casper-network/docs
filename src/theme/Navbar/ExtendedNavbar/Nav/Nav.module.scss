@@ -3,8 +3,10 @@
 
 .navbar_list {
     height: 55px;
+    width: 25%;
     max-height: 55px;
     min-width: 490px;
+
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.05em;
@@ -27,6 +29,12 @@
     .navbar_list_container {
         position: relative;
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5%;
+
         .navbar_list_container_button {
             position: relative;
             .navbar_list_item {
