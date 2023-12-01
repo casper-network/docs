@@ -148,6 +148,19 @@ The following settings manage `br_table` Wasm opcodes.
 |cost | Fixed cost per `br_table` opcode. | 440_000|
 |size_multiplier |  Size of target labels in the `br_table` opcode will be multiplied by `size_multiplier`. | 100|
 
+
+## wasm.messages_limits
+
+The following chainspec settings manage the cost of contract-level messages.
+
+
+|Attribute               |Description                                    |     Mainnet Setting  |
+|----------------------- |-----------------------------------------------|----------------------|
+|max_topic_name_size     | Maximum size of the topic name.                               | 256  |
+|max_topics_per_contract | Maximum number of topics that can be added for each contract. | 128  |
+|max_message_size        | Maximum size in bytes of the serialized message payload.      | 1_024|
+
+
 ### wasm.host_function_costs
 
 The following settings specify costs for low-level bindings for host-side ("external") functions. More documentation and host function declarations are located in [smart_contracts/contract/src/ext_ffi.rs](https://github.com/casper-network/casper-node/blob/release-1.5.2/smart_contracts/contract/src/ext_ffi.rs).
@@ -158,10 +171,12 @@ The following settings specify costs for low-level bindings for host-side ("exte
 - blake2b = { cost = 200, arguments = [0, 0, 0, 0] }
 - call_contract = { cost = 4_500, arguments = [0, 0, 0, 0, 0, 420, 0] }
 - call_versioned_contract = { cost = 4_500, arguments = [0, 0, 0, 0, 0, 0, 0, 420, 0] }
+- cost_increase_per_message = 50
 - create_contract_package_at_hash = { cost = 200, arguments = [0, 0] }
 - create_contract_user_group = { cost = 200, arguments = [0, 0, 0, 0, 0, 0, 0, 0] }
 - create_purse = { cost = 2_500_000_000, arguments = [0, 0] }
 - disable_contract_version = { cost = 200, arguments = [0, 0, 0, 0] }
+- emit_message = { cost = 200, arguments = [0, 0, 0, 0] }
 - get_balance = { cost = 3_800, arguments = [0, 0, 0] }
 - get_blocktime = { cost = 330, arguments = [0] }
 - get_caller = { cost = 380, arguments = [0] }
@@ -174,6 +189,7 @@ The following settings specify costs for low-level bindings for host-side ("exte
 - has_key = { cost = 1_500, arguments = [0, 840] }
 - is_valid_uref = { cost = 760, arguments = [0, 0] }
 - load_named_keys = { cost = 42_000, arguments = [0, 0] }
+- manage_message_topic = { cost = 200, arguments = [0, 0, 0, 0] }
 - new_uref = { cost = 17_000, arguments = [0, 0, 590] }
 - random_bytes = { cost = 200, arguments = [0, 0] }
 - print = { cost = 20_000, arguments = [0, 4_600] }
@@ -195,6 +211,7 @@ The following settings specify costs for low-level bindings for host-side ("exte
 - update_associated_key = { cost = 4_200, arguments = [0, 0, 0] }
 - write = { cost = 14_000, arguments = [0, 0, 0, 980] }
 - write_local = { cost = 9_500, arguments = [0, 1_800, 0, 520] }
+
 
 ## system_costs
 
