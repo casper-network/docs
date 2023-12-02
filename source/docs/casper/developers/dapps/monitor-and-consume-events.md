@@ -398,7 +398,7 @@ The `Shutdown` event is emitted when the node is about to shut down, usually for
 
 ## Detecting Contract-Level Events
 
-<!-- TODO add a cross-link to verifying topics and messages, or add the content here. -->
+The SSE endpoint of a node streams messages emitted by a contract in a human-readable format. These messages are visible as part of the `TransactionProcessed` event after the corresponding block is processed and added to the blockchain. For more details, see [Verifying a Topic](../writing-onchain-code/emitting-contract-events.md#verifying-a-topic) and [Verifying a Message](../writing-onchain-code/emitting-contract-events.md#verifying-a-message).
 
 ## Reacting to Events
 

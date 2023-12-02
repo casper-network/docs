@@ -646,6 +646,7 @@ casper-client query-global-state \
 ```
 
 </details>
+<br></br>
 
 <!-- TODO is EE = host in this context? -->
 <!-- TODO is "topic" missing in the message payload? -->
@@ -1066,6 +1067,7 @@ data: {
 ```
 
 </details>
+<br></br>
 
 Emitted messages are not stored in global state. However, global state stores a checksum of each message, allowing users to verify the origin and integrity of the message. The checksums in global state are unique and can be identified by the hash of the entity that emitted the message, the hash of the topic name, and the index of the message.
 
@@ -1152,4 +1154,3 @@ When a new contract version is added to the contract package, the message topics
 
 - Learn to [install a contract and query global state](../cli/installing-contracts.md).
 - Learn to [monitor and consume the event stream](../dapps/monitor-and-consume-events.md).
-- If you are a node operator, learn to [configure message costs](TBD). <!-- add a link -->
