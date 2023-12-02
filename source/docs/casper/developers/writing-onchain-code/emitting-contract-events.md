@@ -649,7 +649,6 @@ casper-client query-global-state \
 <br></br>
 
 <!-- TODO is EE = host in this context? -->
-<!-- TODO is "topic" missing in the message payload? -->
 When the host registers a topic, it creates a control record for that topic under a composite key derived from the caller's entity address and the hash of the topic name:
 
 ```json
@@ -1071,7 +1070,49 @@ data: {
 
 Emitted messages are not stored in global state. However, global state stores a checksum of each message, allowing users to verify the origin and integrity of the message. The checksums in global state are unique and can be identified by the hash of the entity that emitted the message, the hash of the topic name, and the index of the message.
 
-<!-- TODO How do you query global state to get the checksum? I see it in the TransactionProcessed event. Reference the tool Alex wrote if it becomes available. -->
+Here is how you can query global state to get the message checksum, given the block identifier and the composite key that includes the message hash, the topic name hash, and the message index:
+
+```bash
+casper-client query-global-state --node-address http://127.0.0.1:11101 \
+--key "message-803c759a466a84a0ab12147857f49e269369796a66ad37e94ab8343ddddb7823-topic-name-5721a6d9d7a9afe5dfdb35276fb823bed0f825350e4d865a5ec0110c380de4e1-0" \
+--block-identifier d9642c5d90c7fc05a23d83a3abcf56d63cb71316402ecefe0962fdeccad2c99c
+```
+
+<details>
+<summary>Expand to view the sample response</summary>
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 3085511981091403408,
+  "result": {
+    "api_version": "1.0.0",
+    "block_header": {
+      "Version2": {
+        "parent_hash": "e55e5127ec6ed5ac03767f9d8b0d0dbd434df81c03658dcc5d9f17b780de980a",
+        "state_root_hash": "e033c27db66a4542b53477c97c4f9176ffce72ab6edebd6fdb25b2fe0aa70fe8",
+        "body_hash": "ba26e345470f6322f39810e8408fff666026276dee72cbb9fa85ec55657070fb",
+        "random_bit": false,
+        "accumulated_seed": "caf392ee00d60d9729c8e042acbd851ff70be47b0e8a317cc728b3be47a815ce",
+        "era_end": null,
+        "timestamp": "2023-12-02T01:19:12.384Z",
+        "era_id": 84,
+        "height": 890,
+        "protocol_version": "1.0.0"
+      }
+    },
+    "stored_value": {
+      "Message": "message-checksum-56098444c4f0dff8f321cfa3769d400f4b5bfa9e01e6ad6b147d81b87130bfb9"
+    },
+    "merkle_proof": "[1336 hex chars]"
+  }
+}
+```
+
+</details>
+<br></br>
+
+<!-- TODO Reference the tool Alex wrote when it becomes available. -->
 
 You will find two types of stored values under the key that identifies the topic control record:
 
@@ -1102,11 +1143,51 @@ You will find two types of stored values under the key that identifies the topic
 
 Emitted messages are temporary by design. The message count is reset with every new block, and the block time is updated. Old message checksums are pruned from global state to manage storage, but dApps can query old checksums using the state root hash of the block that contains them.
 
-<!-- TODO EXAMPLE Show how to verify messages by querying global state using the composite key -->
+Here is how you can determine the number of messages emitted in a particular block using the composite key identifying the topic:
 
-<!-- TODO EXAMPLE Query global state and show messages emitted in a block 
-Here is how you can determine the number of messages emitted in a particular block:
--->
+```bash
+casper-client query-global-state --node-address http://127.0.0.1:11101 \
+--key "message-topic-803c759a466a84a0ab12147857f49e269369796a66ad37e94ab8343ddddb7823-topic-name-5721a6d9d7a9afe5dfdb35276fb823bed0f825350e4d865a5ec0110c380de4e1" \
+--block-identifier d9642c5d90c7fc05a23d83a3abcf56d63cb71316402ecefe0962fdeccad2c99c
+```
+
+<details>
+<summary>Expand to view the sample response</summary>
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1227453659579324378,
+  "result": {
+    "api_version": "1.0.0",
+    "block_header": {
+      "Version2": {
+        "parent_hash": "e55e5127ec6ed5ac03767f9d8b0d0dbd434df81c03658dcc5d9f17b780de980a",
+        "state_root_hash": "e033c27db66a4542b53477c97c4f9176ffce72ab6edebd6fdb25b2fe0aa70fe8",
+        "body_hash": "ba26e345470f6322f39810e8408fff666026276dee72cbb9fa85ec55657070fb",
+        "random_bit": false,
+        "accumulated_seed": "caf392ee00d60d9729c8e042acbd851ff70be47b0e8a317cc728b3be47a815ce",
+        "era_end": null,
+        "timestamp": "2023-12-02T01:19:12.384Z",
+        "era_id": 84,
+        "height": 890,
+        "protocol_version": "1.0.0"
+      }
+    },
+    "stored_value": {
+      "MessageTopic": {
+        "message_count": 1,
+        "blocktime": 1701479952384
+      }
+    },
+    "merkle_proof": "[1288 hex chars]"
+  }
+}
+```
+</details>
+<br></br>
+
+
 
 :::note
 
