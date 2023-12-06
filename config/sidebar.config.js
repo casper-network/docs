@@ -110,6 +110,7 @@ module.exports = {
                 "developers/writing-onchain-code/contract-vs-session",
                 "developers/writing-onchain-code/writing-session-code",
                 "developers/writing-onchain-code/testing-session-code",
+                "developers/writing-onchain-code/emitting-contract-events",
                 "developers/writing-onchain-code/contract-hash-vs-package-hash",
                 "developers/writing-onchain-code/best-practices",
             ],

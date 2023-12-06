@@ -2,13 +2,15 @@
 title: Contract-Level Events
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Enabling Contracts to Emit Events 
 
 Smart contracts can be programmed to emit messages while executing. Under certain conditions, an off-chain dApp may listen to these events and react as described in [Monitoring and Consuming Events](../dapps/monitor-and-consume-events.md).
 
 Messages produced by smart contracts are visible on a node's SSE event stream in human-readable format, and they contain the following information:
 
-- The address of the entity that produced the message
+- The address of the entity that produced the message, i.e., the contract hash
 - The message topic used to categorize the message
 - The human-readable message string
 - The index identifying the message in a message array
@@ -48,7 +50,21 @@ No SSE event is emitted when a contract creates a new message topic. However, so
 ]
 ```
 
-Here is a sample query to view the contract details:
+You can view the contract using the Casper CLI client and the `query-global-state` command using the block identifier or the state root hash:
+
+```bash
+casper-client query-global-state \
+--node-address <HOST:PORT> \
+--key [HASH_STRING] \
+--block-identifier <BLOCK_HASH> \
+```
+
+The arguments used above are:
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777.
+-   `key` - The identifier for the query. Use the key that identifies the contract, e.g., addressable-entity-contract-HASH.
+-   `block-identifier` - Hex-encoded block hash or height of the block.
+
+Here is a sample query to view the contract:
 
 ```bash
 casper-client query-global-state \
@@ -648,14 +664,16 @@ casper-client query-global-state \
 </details>
 <br></br>
 
-<!-- TODO is EE = host in this context? -->
-When the host registers a topic, it creates a control record for that topic under a composite key derived from the caller's entity address and the hash of the topic name:
+
+Under `message_topics`, you will find the control record for that topic, which has a composite key derived from the caller's entity address and the hash of the topic name:
 
 ```json
-{
-    "key": "message-topic-b51b0f9d94e5744af4dce6b4a9990c5f3e652c1a0a946e680e83f97d8846eff5-topic-name-5721a6d9d7a9afe5dfdb35276fb823bed0f825350e4d865a5ec0110c380de4e1",
-    "kind": "Identity"
-},
+"message_topics": [
+  {
+    "topic_name": "events",
+    "topic_name_hash": "topic-name-5721a6d9d7a9afe5dfdb35276fb823bed0f825350e4d865a5ec0110c380de4e1"
+  }
+]
 ```
 
 ## Emitting a Message
@@ -664,7 +682,7 @@ To emit a message on a previously-created topic, call the `emit_message` runtime
 
 <!-- TODO add a link to the contract when it becomes available -->
 
-This sample code <!--"from a CEP-78 contract"--> sends a new message on the message topic `EVENTS_TOPIC`. 
+This sample code <!--"from a CEP-78 contract"--> sends a new message on the topic `EVENTS_TOPIC`. 
 
 ```rust
 runtime::emit_message(EVENTS_TOPIC, &message.try_into().unwrap()).unwrap_or_revert();
@@ -672,7 +690,7 @@ runtime::emit_message(EVENTS_TOPIC, &message.try_into().unwrap()).unwrap_or_reve
 
 ## Verifying a Message
 
-The SSE endpoint of a node streams the messages emitted in a human-readable format. Messages are visible as part of the `TransactionProcessed` event after the corresponding block is processed and added to the blockchain. The messages sent out on the event stream contain the following:
+To verify a message, check a node's SSE endpoint, which streams messages in a human-readable format. Messages are visible as part of the `TransactionProcessed` event after the corresponding block is processed and added to the blockchain. The messages sent out on the event stream contain the following:
 
 - The identity of the entity that produced the message
 - The payload of the message
@@ -680,7 +698,7 @@ The SSE endpoint of a node streams the messages emitted in a human-readable form
 - The BLAKE2b hash of the topic name
 - The message index in the topic
 
-The following is sample message logged inside a `TransactionProcessed` event:
+The following is a sample message logged inside a `TransactionProcessed` event:
 
 ```json
 "messages": [
@@ -1068,9 +1086,61 @@ data: {
 </details>
 <br></br>
 
+
+### Querying global state
+
 Emitted messages are not stored in global state. However, global state stores a checksum of each message, allowing users to verify the origin and integrity of the message. The checksums in global state are unique and can be identified by the hash of the entity that emitted the message, the hash of the topic name, and the index of the message.
 
-Here is how you can query global state to get the message checksum, given the block identifier and the composite key that includes the message hash, the topic name hash, and the message index:
+You will find two types of stored values under the key that identifies the topic control record:
+
+- The checksum of the message payload, as a 32-byte BLAKE2b hash of the serialized `MessagePayload`
+- The topic control record containing the number of messages sent on the topic and the timestamp of the block in which the messages were emitted
+
+<img class="align-center" src={useBaseUrl("/image/developers/message_keys.png")} width="800" alt="Message key structure" />
+
+<details>
+<summary>Expand to view the sample keys</summary>
+
+```json
+{
+    "key": "message-b51b0f9d94e5744af4dce6b4a9990c5f3e652c1a0a946e680e83f97d8846eff5-topic-name-5721a6d9d7a9afe5dfdb35276fb823bed0f825350e4d865a5ec0110c380de4e1-0",
+    "kind": {
+        "Write": {
+            "Message": "message-checksum-d4854042c69aac1bc64e6f9cb2e41f306fc106f79951429d1dfef56d638be3c0"
+        }
+    }
+},
+{
+    "key": "message-topic-b51b0f9d94e5744af4dce6b4a9990c5f3e652c1a0a946e680e83f97d8846eff5-topic-name-5721a6d9d7a9afe5dfdb35276fb823bed0f825350e4d865a5ec0110c380de4e1",
+    "kind": {
+        "Write": {
+            "MessageTopic": {
+                "message_count": 1,
+                "blocktime": 1701221761024
+            }
+        }
+    }
+},
+```
+
+</details>
+<br></br>
+
+Here is how you can query global state to get the message checksum, given the block identifier and the composite key of the message. The message key includes the message hash, the topic name hash, and the message index.
+
+```bash
+casper-client query-global-state \
+--node-address <HOST:PORT> \
+--key [HASH_STRING] \
+--block-identifier <BLOCK_HASH> \
+```
+
+The arguments used above are:
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
+-   `key` - The identifier for the query. Use the composite key that identifies the message, i.e., message-CONTRACT_HASH-topic-name-TOPIC_HASH-MESSAGE_INDEX.
+-   `block-identifier` - Hex-encoded block hash or height of the block.
+
+Here is a sample query to view the message checksum:
 
 ```bash
 casper-client query-global-state --node-address http://127.0.0.1:11101 \
@@ -1112,38 +1182,24 @@ casper-client query-global-state --node-address http://127.0.0.1:11101 \
 </details>
 <br></br>
 
-<!-- TODO Reference the tool Alex wrote when it becomes available. -->
-
-You will find two types of stored values under the key that identifies the topic control record:
-
-- The checksum of the message payload, as a 32-byte BLAKE2b hash of the serialized `MessagePayload`
-- The topic control record containing the number of messages sent on the topic, and the timestamp of the block in which the messages were emitted
-
-```json
-{
-    "key": "message-b51b0f9d94e5744af4dce6b4a9990c5f3e652c1a0a946e680e83f97d8846eff5-topic-name-5721a6d9d7a9afe5dfdb35276fb823bed0f825350e4d865a5ec0110c380de4e1-0",
-    "kind": {
-        "Write": {
-            "Message": "message-checksum-d4854042c69aac1bc64e6f9cb2e41f306fc106f79951429d1dfef56d638be3c0"
-        }
-    }
-},
-{
-    "key": "message-topic-b51b0f9d94e5744af4dce6b4a9990c5f3e652c1a0a946e680e83f97d8846eff5-topic-name-5721a6d9d7a9afe5dfdb35276fb823bed0f825350e4d865a5ec0110c380de4e1",
-    "kind": {
-        "Write": {
-            "MessageTopic": {
-                "message_count": 1,
-                "blocktime": 1701221761024
-            }
-        }
-    }
-},
-```
 
 Emitted messages are temporary by design. The message count is reset with every new block, and the block time is updated. Old message checksums are pruned from global state to manage storage, but dApps can query old checksums using the state root hash of the block that contains them.
 
-Here is how you can determine the number of messages emitted in a particular block using the composite key identifying the topic:
+Here is how you can determine the number of messages emitted in a particular block:
+
+```bash
+casper-client query-global-state \
+--node-address <HOST:PORT> \
+--key [HASH_STRING] \
+--block-identifier <BLOCK_HASH> \
+```
+
+The arguments used above are:
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777.
+-   `key` - The identifier for the query. Use the composite key that identifies the message topic, e.g., message-topic-CONTRACT_HASH-topic-name-TOPIC_HASH.
+-   `block-identifier` - Hex-encoded block hash or height of the block.
+
+Here is a sample query to view the message topic:
 
 ```bash
 casper-client query-global-state --node-address http://127.0.0.1:11101 \
