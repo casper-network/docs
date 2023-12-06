@@ -1091,7 +1091,7 @@ data: {
 
 Emitted messages are not stored in global state. However, global state stores a checksum of each message, allowing users to verify the origin and integrity of the message. The checksums in global state are unique and can be identified by the hash of the entity that emitted the message, the hash of the topic name, and the index of the message.
 
-You will find two types of stored values under the key that identifies the topic control record:
+You will find two types of stored values in global state:
 
 - The checksum of the message payload, as a 32-byte BLAKE2b hash of the serialized `MessagePayload`
 - The topic control record containing the number of messages sent on the topic and the timestamp of the block in which the messages were emitted
