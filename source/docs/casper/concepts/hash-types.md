@@ -26,10 +26,14 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 |Key::Dictionary | dictionary- | dictionary-0101010101010101010101010101010101010101010101010101010101010101|
 |Key::SystemContractRegistry | system-contract-registry- |system-contract-registry-00000000000000000000000000000000|
 |Key::EraSummary | era-summary- |era-summary-00000000000000000000000000000000|
-
-<!-- TODO Add Unbond and ChainspecRegistry after it is added to the live node branch
 |Key::Unbond | unbond- | unbond-ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70|
-|Key::ChainspecRegistry | chainspec-registry- | chainspec-registry-11111111111111111111111111111111|
+|Key::ChainspecRegistry | chainspec-registry- | chainspec-registry-11111111111111111111111111111111 |
+|Key::ChecksumRegistry | checksum-registry- | checksum-registry-00000000000000000000000000000000 |
+|Key::BidAddr | bid-addr- | `Unified` bid-addr-00ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70, `Validator` bid-addr-01ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70, `Delegator` bid-addr-02ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70 |
+<!--TODO These keys will be updated with the account/contract merge docs.
+|Key::Package | package- | |
+|Key::AddressableEntity | addressable-entity- | |
+|Key::ByteCode | byte-code- | |
 -->
 
 ## Hash and Key Explanations {#hash-and-key-explanations}
@@ -55,8 +59,14 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 - `Key::Dictionary` is the hash derived from a URef and a piece of arbitrary data and leads to a dictionary.
 - `Key::SystemContractRegistry` is a unique `Key` under which a mapping of the names and ContractHashes for system contracts, including `Mint`, `Auction`, `HandlePayment` and `StandardPayment`, is stored.
 - `Key::EraSummary` is a `Key` under which we store current era info.
-
-<!-- TODO Add Unbond and ChainspecRegistry after it is added to the live node branch
 - `Key::Unbond` is a variant of the key type that tracks unbonding purses.
 - `Key::ChainspecRegistry` is a unique `Key` which contains a mapping of file names to the hash of the file itself. These files include *Chainspec.toml* and may also include *Accounts.toml* and *GlobalState.toml*.
+- `Key::ChecksumRegistry` is a unique `key` variant under which we write a registry of checksums for a given block.  There are two checksums in the registry, one for the execution results and the other for the approvals of all deploys in the block.
+- `Key::BidAddr` manages data associated with bids for the `Auction` contract. It may be any one of three variants: `unified`, `validator` or `delegator`.
+
+<!--TODO
+- `Key::Package` 
+- `Key::AddressableEntity` 
+- `Key::ByteCode` 
+- `Key::Message`
 -->

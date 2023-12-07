@@ -906,19 +906,7 @@ Hex-encoded transfer address.
 
 The actual transformation performed while executing a Deploy.
 
-* `WriteCLValue` Write the given [CLValue](#clvalue) to global state.
-
-* `WriteAccount` Writes the given [Account](#accounthash) to global state.
-
-* `WriteDeployInfo` Writes the given [DeployInfo](#deployinfo) to global state.
-
-* `WriteEraInfo` Writes the given [EraInfo](#erainfo) to global state.
-
-* `WriteTransfer` Writes the given [Transfer](#transfer) to global state.
-
-* `WriteBid` Writes the given [Bid](#bid) to global state.
-
-* `WriteWithdraw` Writes the given [Withdraw](#unbondingpurse) to global state.
+* `Write` Writes a new value to global state.
 
 * `AddInt32` Adds the given `i32`.
 
@@ -931,6 +919,8 @@ The actual transformation performed while executing a Deploy.
 * `AddUInt512` Adds the given [`U512`](#u512).
 
 * `AddKeys` Adds the given collection of [named keys](#namedkey).
+
+* `Prune` Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent state accumulated from it.
 
 * `Failure` A failed transformation, containing an error message.
 
@@ -977,6 +967,22 @@ Required Parameters:
 ## URef {#uref}
 
 Hex-encoded, formatted URef.
+
+## ValidatorBid {#validatorbid}
+
+An entry in the validator map.
+
+* [`bonding_purse`](#uref) Bonding purse.
+
+* `delegation_rate` The delegation rate.
+
+* `inactive` `true` if validator has been "evicted".
+
+* [`staked_amount`](#u512) The amount of tokens staked by a validator.
+
+* [`validator_public_key`](#publickey) The validator's public key.
+
+* [`vesting_schedule`](#vestingschedule) 
 
 ## ValidatorChange {#validatorchange}
 

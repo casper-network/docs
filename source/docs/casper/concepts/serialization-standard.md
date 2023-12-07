@@ -442,8 +442,17 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 | `Withdraw`   |  8               |
 | `Dictionary` |  9               |
 | `SystemContractRegistry`| 10    |
-| `Unbond`     |  11              |
-| `ChainspecRegistry` | 12        |
+| `EraSummary` | 11               |
+| `Unbond`     | 12               |
+| `ChainspecRegistry` | 13        |
+| `ChecksumRegistry` | 14         |
+| `BidAddr`    | 15               |
+<!--TODO Add these with the account/contract merge docs.
+| `Package`    | 16               |
+| `AddressableEntity` | 17        |
+| `ByteCode`   | 18               |
+| `Message`    | 19               |
+-->
 
 -   `Account` serializes as a 32 byte long buffer containing the byte representation of the underlying `AccountHash`
 -   `Hash` serializes as a 32 byte long buffer containing the byte representation of the underlying `Hash` itself.
@@ -453,10 +462,23 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 -   `EraInfo` serializes a `u64` primitive type containing the little-endian byte representation of `u64`.
 -   `Balance` serializes as 32 byte long buffer containing the byte representation of the URef address.
 -   `Bid` and `Withdraw` both contain the `AccountHash` as their identifier; therefore, they serialize in the same manner as the `Account` variant.
--   `Dictionary` as the 32 byte long buffer containing the byte representation of the seed URef hashed with the identifying name of the dictionary item.
--   `SystemContractRegistry` as a 32 byte long buffer of zeros.
+-   `Dictionary` serializes as the 32 byte long buffer containing the byte representation of the seed URef hashed with the identifying name of the dictionary item.
+-   `SystemContractRegistry` serializes as a 32 byte long buffer of zeros.
+-   `EraSummary` serializes as a 32 byte long buffer of zeros.
 -   `Unbond` contains the `AccountHash` as its identifier; therefore, it serialize in the same manner as the `Account` variant.
--   `ChainspecRegistry` as a 32 byte long buffer of ones.
+-   `ChainspecRegistry` serializes as a 32 byte long buffer of ones.
+-   `ChecksumRegistry` serializes as a 32 byte long buffer of zeros.
+-   `BidAddr` may be one of three types:
+    -   `Unified` serializes as the tag `0` followed by a 32 byte long buffer containing the byte representation of a legacy bid.
+    -   `Validator` serializes as the tag `1` followed by a 32 byte long buffer containing the byte representation of a validator's hash.
+    -   `Delegator` serializes as the tag `2` followed by a 32 byte long buffer containing the byte representation of the associated validator's hash, appended with a 32 byte long buffer containing the byte representation of the given delegator's hash.
+
+<!--TODO
+-   `Package` 
+-   `AddressableEntity` 
+-   `ByteCode` 
+-   `Message`
+-->
 
 ## Permissions {#serialization-standard-permissions}
 
@@ -559,26 +581,18 @@ Hex-encoded transfer address, which serializes as a byte representation of itsel
 
 The actual transformation performed while executing a deploy. It serializes as a single `u8` value indicating the type of transform performed as per the following table. The remaining bytes represent the information and serialization as listed.
 
-| Transform Type       | Serialization | Description                                                                  |
-|----------------------|---------------|------------------------------------------------------------------------------|
-|Identity              | 0             | A transform having no effect.                                                |
-|Write_CLValue         | 1             | Writes the given [`CLValue`](#clvalue-calvalue) to global state.             |
-|Write_Account         | 2             | Write the given [`Account`](#account-hash) to global state.                  |
-|Write_Contract_WASM   | 3             | Writes a smart [contract as Wasm](#contractwasmhash) to global state.        |
-|Write_Contract        | 4             | Writes a smart [contract](#contracthash) to global state.                    | 
-|Write_Contract_Package| 5             | Writes a smart [contract package](#contractpackagehash) to global state.     |
-|Write_Deploy_Info     | 6             | Writes the given [`DeployInfo`](#deployinfo) to global state.                |
-|Write_Transfer        | 7             | Writes the given [Transfer](#transferaddr) to global state.                  |
-|Write_Era_Info        | 8             | Writes the given [`EraInfo`](#erainfo) to global state.                      |
-|Write_Bid             | 9             | Writes the given [`Bid`](#bid) to global state.                              |
-|Write_Withdraw        | 10            | Writes the given [Withdraw](#unbondingpurse) to global state.                |
-|Add_INT32             | 11            | Adds the given [`i32`](#clvalue-numeric).                                    |
-|Add_UINT64            | 12            | Adds the given [`u64`](#clvalue-numeric).                                    |
-|Add_UINT128           | 13            | Adds the given [`U128`](#clvalue-numeric).                                   |
-|Add_UINT256           | 14            | Adds the given [`U256`](#clvalue-numeric).                                   |
-|Add_UINT512           | 15            | Adds the given [`U512`](#clvalue-numeric).                                   |
-|Add_Keys              | 16            | Adds the given collection of [named keys](#namedkey).                        |
-|Failure               | 17            | A failed transformation, containing an error message.                        |
+| Transform Type | Serialization | Description |
+| -------------- | ------------- | ----------- |
+| Identity       | 0             | A transform having no effect, created as a result of reading from the global state. |
+| Write          | 1             | Writes a new value in the global state. |
+| AddInt32       | 2             | Adds the given [`i32`](#clvalue-numeric). |
+| AddUInt64      | 3             | Adds the given [`u64`](#clvalue-numeric). |
+| AddUInt128     | 4             | Adds the given [`U128`](#clvalue-numeric). |
+| AddUInt256     | 5             | Adds the given [`U256`](#clvalue-numeric). |
+| AddUInt512     | 6             | Adds the given [`U512`](#clvalue-numeric). |
+| AddKeys        | 7             | Adds the given collection of [named keys](#namedkey). |
+| Failure        | 8             | A failed transformation, containing an error message. |
+| Prune          | 9             | Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent state accumulated from it. |
 
 ## TransformEntry {#transformentry}
 
