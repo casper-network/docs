@@ -695,7 +695,7 @@ To verify a message, check a node's SSE endpoint, which streams messages in a hu
 - The identity of the entity that produced the message
 - The payload of the message
 - The name of the topic on which the message was emitted
-- The BLAKE2b hash of the topic name
+- The blake2b hash of the topic name
 - The message index in the topic
 
 The following is a sample message logged inside a `TransactionProcessed` event:
