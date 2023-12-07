@@ -1136,7 +1136,7 @@ casper-client query-global-state \
 ```
 
 The arguments used above are:
--   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777
+-   `node-address` - An IP address of a peer on the network. The default port for JSON-RPC servers on Mainnet and Testnet is 7777.
 -   `key` - The identifier for the query. Use the composite key that identifies the message, i.e., message-CONTRACT_HASH-topic-name-TOPIC_HASH-MESSAGE_INDEX.
 -   `block-identifier` - Hex-encoded block hash or height of the block.
 
