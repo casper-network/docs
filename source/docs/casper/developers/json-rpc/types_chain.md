@@ -920,7 +920,7 @@ The actual transformation performed while executing a Deploy.
 
 * `AddKeys` Adds the given collection of [named keys](#namedkey).
 
-* `Prune` Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent state accumulated from it.
+* `Prune` Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent states.
 
 * `Failure` A failed transformation, containing an error message.
 
@@ -976,7 +976,7 @@ An entry in the validator map.
 
 * `delegation_rate` The delegation rate.
 
-* `inactive` `true` if validator has been "evicted".
+* `inactive` `true` if the validator has been "evicted".
 
 * [`staked_amount`](#u512) The amount of tokens staked by a validator.
 

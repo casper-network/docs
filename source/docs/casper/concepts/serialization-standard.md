@@ -592,7 +592,7 @@ The actual transformation performed while executing a deploy. It serializes as a
 | AddUInt512     | 6             | Adds the given [`U512`](#clvalue-numeric). |
 | AddKeys        | 7             | Adds the given collection of [named keys](#namedkey). |
 | Failure        | 8             | A failed transformation, containing an error message. |
-| Prune          | 9             | Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent state accumulated from it. |
+| Prune          | 9             | Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent states. |
 
 ## TransformEntry {#transformentry}
 
