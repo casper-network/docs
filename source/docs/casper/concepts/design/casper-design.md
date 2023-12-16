@@ -136,6 +136,7 @@ In the case where there is a reference to stored on-chain Wasm (smart contracts)
 
 This key type is used for storing any value except `Account`. Additionally, `URef`s used in Wasm carry permission information to prevent unauthorized usage of the value stored under the key. The runtime tracks this permission information. This means that if malicious Wasm attempts to produce a `URef` with permissions that the Wasm does not have, the Wasm has attempted to "forge" the unforgeable reference, and the runtime will raise a forged `URef` error. Permissions for a `URef` can be given across contract calls, allowing data stored under a `URef` to be shared in a controlled way. The 32-byte identifier representing the key is generated randomly by the runtime (see [Execution Semantics](#execution-semantics-head) for more information). The serialization for `Access Rights` that define the permissions for `URefs` is detailed in the [CLValues](../serialization-standard.md) section.
 
+
 ### Permissions for `URef`s {#uref-permissions}
 
 In the runtime, a `URef` carries its permissions called `AccessRights`. Additionally, the runtime tracks what `AccessRights` would be valid for each `URef` in each context. The system assumes that a sent `URef` is invalid, regardless of declared `AccessRights`, and will check it against the executing context to determine validity on each usage. Only the host logic can add a `URef`, in the following ways:
@@ -266,7 +267,8 @@ The basic global state options map onto more standard monetary operations accord
 | Global State | Action Monetary Action                           |
 | ------------ | ------------------------------------------------ |
 | Add          | Deposit (i.e. transfer to)                       |
-| Write        | Withdraw (i.e. transfer from) Read Balance check |
+| Write        | Withdraw (i.e. transfer from)                    |
+| Read         | Balance check                                    |
 
 ## The mint Contract Interface {#tokens-mint-interface}
 
