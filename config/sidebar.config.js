@@ -91,6 +91,7 @@ module.exports = {
     developers: [
         "developers/index",
         "developers/prerequisites",
+        "developers/essential-crates",
         {
             type: "category",
             label: "Writing On-Chain Code",
@@ -302,11 +303,12 @@ module.exports = {
                         type: "doc",
                         id: "resources/tokens/cep18/full-tutorial",
                     },
-                    items: ["resources/tokens/cep18/full-tutorial",
-                            "resources/tokens/cep18/quickstart-guide",
-                            "resources/tokens/cep18/query",
-                            "resources/tokens/cep18/transfer",
-                            "resources/tokens/cep18/tests",
+                    items: [
+                        "resources/tokens/cep18/full-tutorial",
+                        "resources/tokens/cep18/quickstart-guide",
+                        "resources/tokens/cep18/query",
+                        "resources/tokens/cep18/transfer",
+                        "resources/tokens/cep18/tests",
                     ],
                 },
                 {
