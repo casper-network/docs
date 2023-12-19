@@ -100,7 +100,7 @@ Note: You can also use `brew` on MacOS or `apt` on Linux to install Rust.
 
 ## Installing the Casper Crates {#installing-the-casper-crates}
 
-The best and fastest way to set up a Casper Rust project is to use `cargo casper`. Using this will create a simple contract, a runtime environment, and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or _npm_ and _yarn_ for those familiar with Javascript). It is also possible to use this configuration in your CI/CD pipeline.
+The best and fastest way to set up a Casper Rust project is to use [cargo casper](https://crates.io/crates/cargo-casper), which is the command line tool for creating a Wasm smart contract and tests for use on a Casper network. This tool will create a simple contract, a runtime environment, and a testing framework with a simple test. _Cargo_ is a build system and package manager for Rust (much like _pip_ if you are familiar with Python, or _npm_ and _yarn_ for those familiar with Javascript). It is also possible to use this configuration in your CI/CD pipeline.
 
 ```bash
 cargo install cargo-casper
@@ -117,6 +117,12 @@ Verify the installation:
 ```bash
 cargo-casper --version
 ```
+
+:::note
+
+Familiarize yourself with the essential Casper crates described [here](./essential-crates.md).
+
+:::
 
 ## Installing the Casper Client {#install-casper-client}
 
