@@ -1,13 +1,30 @@
+@use "../../../../assets/scss/mixins";
 @import "../../../../assets/scss/mixins";
 
 .navbar_list {
+    height: 55px;
     width: 25%;
-    min-width: 470px;
+    max-height: 55px;
+    min-width: 490px;
 
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.05em;
     text-transform: capitalize;
+    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5%;
+    text-decoration: none;
+    text-transform: none;
+    @include mixins.custom_scrollbar(var(--black) var(--casperWhite));
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 4px;
+    }
 
     .navbar_list_container {
         position: relative;
@@ -37,6 +54,7 @@
                     font-weight: 500;
                     font-size: 16px;
                     line-height: 24px;
+                    text-wrap: nowrap;
                 }
 
                 > svg {
@@ -72,17 +90,21 @@
     }
 }
 
+.fullWidth {
+    width: 100%;
+}
+
 @media (max-width: 996px) {
     .navbar_list {
         width: 100%;
         min-width: 200px;
+        height: unset;
+        max-height: unset;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
         .navbar_list_container {
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
-            gap: 20px;
-            width: 100%;
-
             .navbar_list_container_button {
                 width: 100%;
                 .navbar_list_item {

@@ -26,9 +26,18 @@ export default function ExtendedFooter() {
     const internalLocale = path.split("/")[0];
 
     const externalLocale = useLocaleMap(internalLocale);
-    const data = usePluginData("docusaurus-plugin-navdata") as { socialMedia: Array<ISocialMedia>; navData: Array<INavData>; footerData: Array<IFooterData> };
+    const data = usePluginData("docusaurus-plugin-navdata") as {
+        socialMedia: Array<ISocialMedia>;
+        navData: Array<INavData>;
+        footerTree: Array<any>;
+        footerData: Array<IFooterData>;
+    };
     const footerData =
         data?.footerData.find((x) => x.languageCode === externalLocale) || data?.footerData.find((x) => x.languageCode === customFields.defaultExternalLocales);
+
+    const footerTree =
+        data?.footerTree.find((x) => x.languages_code.code.toLowerCase() === externalLocale) ||
+        data?.footerTree.find((x) => x.languages_code.code.toLowerCase() === siteConfig.customFields.defaultExternalLocales);
 
     const getExternalLink = (path: string) => {
         const url = siteUrl.endsWith("/") ? siteUrl.slice(0, -1) : siteUrl;
@@ -91,7 +100,7 @@ export default function ExtendedFooter() {
                                     </div>
                                 )}
                             </div>
-                            {footerData.columns && <Nav footer={footerData} getExternalLink={getExternalLink} renderLink={renderLink} />}
+                            {footerTree && <Nav footer={footerData} footerTree={footerTree} getExternalLink={getExternalLink} getLink={getLink} />}
                         </div>
                         {footerData.bottomLinks && (
                             <div className={styles.footer_container_bottomData}>

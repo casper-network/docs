@@ -1,4 +1,4 @@
-@import "../../../../../../../assets/scss/mixins";
+@import "../../../../../../assets/scss/mixins";
 .link {
     display: flex;
     flex-direction: column;
@@ -29,13 +29,13 @@
         color: var(--casperRed);
     }
 
-    .subLinkList {
+    ul {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 5px;
         padding-left: 20px;
-
+    
         > li a {
             font-weight: 400;
         }
