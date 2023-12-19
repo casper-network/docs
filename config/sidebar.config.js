@@ -303,7 +303,6 @@ module.exports = {
                         id: "resources/tokens/cep18/full-tutorial",
                     },
                     items: [
-                        "resources/tokens/cep18/full-tutorial",
                         "resources/tokens/cep18/quickstart-guide",
                         "resources/tokens/cep18/query",
                         "resources/tokens/cep18/transfer",
@@ -320,7 +319,6 @@ module.exports = {
                         id: "resources/tokens/cep78/introduction",
                     },
                     items: [
-                        "resources/tokens/cep78/introduction",
                         "resources/tokens/cep78/modalities",
                         "resources/tokens/cep78/using-casper-client",
                         "resources/tokens/cep78/reverse-lookup",
