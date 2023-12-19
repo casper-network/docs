@@ -40,13 +40,19 @@ rustup toolchain install nightly
 
 ### Available Casper Rust crates
 
-To support smart contract development with Rust, the following crates are published: 
+To support smart contract development with Rust, the following crates are published:
 
-- [Casper Contract](https://crates.io/crates/casper-contract) - a library supporting communication with the blockchain. This is the main library you will need to write smart contracts.
-- [Casper Test Support](https://crates.io/crates/casper-engine-test-support) - a virtual machine against which you can test your smart contracts.
-- [Casper Types](https://crates.io/crates/casper-types) - a library with types we use across the Rust ecosystem.
+- [casper-contract](https://crates.io/crates/casper-contract) - a library supporting communication with the blockchain. This is the main library you will need to write smart contracts.
+- [casper-engine-test-support](https://crates.io/crates/casper-engine-test-support) - a virtual machine against which you can test your smart contracts.
+- [casper-types](https://crates.io/crates/casper-types) - a library with types we use across the Rust ecosystem.
 
-A crate is a compilation unit that can be compiled into a binary or a library.
+A crate is a compilation unit that can be compiled into a binary or a library. 
+
+:::note
+
+For a comprehensive list of crates, visit the [Essential Casper Crates](../essential-crates.md) page.
+
+:::
 
 ### Available API documentation
 
