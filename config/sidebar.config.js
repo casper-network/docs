@@ -305,7 +305,6 @@ module.exports = {
                         id: "resources/tokens/cep18/full-tutorial",
                     },
                     items: [
-                        "resources/tokens/cep18/full-tutorial",
                         "resources/tokens/cep18/quickstart-guide",
                         "resources/tokens/cep18/query",
                         "resources/tokens/cep18/transfer",
@@ -322,7 +321,6 @@ module.exports = {
                         id: "resources/tokens/cep78/introduction",
                     },
                     items: [
-                        "resources/tokens/cep78/introduction",
                         "resources/tokens/cep78/modalities",
                         "resources/tokens/cep78/using-casper-client",
                         "resources/tokens/cep78/reverse-lookup",
@@ -376,7 +374,6 @@ module.exports = {
                 "resources/beginner/upgrade-contract",
                 "resources/beginner/cep18",
                 "resources/beginner/aws-node",
-                // TODO link external tutorials if possible, to show them in sidebar navigation
                 //"resources/beginner/use-javascript-sdk" TODO remove or replace
             ],
         },
