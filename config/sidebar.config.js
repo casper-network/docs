@@ -302,11 +302,12 @@ module.exports = {
                         type: "doc",
                         id: "resources/tokens/cep18/full-tutorial",
                     },
-                    items: ["resources/tokens/cep18/full-tutorial",
-                            "resources/tokens/cep18/quickstart-guide",
-                            "resources/tokens/cep18/query",
-                            "resources/tokens/cep18/transfer",
-                            "resources/tokens/cep18/tests",
+                    items: [
+                        "resources/tokens/cep18/full-tutorial",
+                        "resources/tokens/cep18/quickstart-guide",
+                        "resources/tokens/cep18/query",
+                        "resources/tokens/cep18/transfer",
+                        "resources/tokens/cep18/tests",
                     ],
                 },
                 {
@@ -373,7 +374,6 @@ module.exports = {
                 "resources/beginner/upgrade-contract",
                 "resources/beginner/cep18",
                 "resources/beginner/aws-node",
-                // TODO link external tutorials if possible, to show them in sidebar navigation
                 //"resources/beginner/use-javascript-sdk" TODO remove or replace
             ],
         },
