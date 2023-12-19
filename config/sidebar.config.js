@@ -420,9 +420,9 @@ module.exports = {
             collapsed: true,
             link: {
                 type: "doc",
-                id: "users/csprlive/testnet-faucet",
+                id: "users/csprlive/index",
             },
-            items: ["users/csprlive/delegate-ui", "users/csprlive/undelegate-ui", "users/csprlive/token-transfer"],
+            items: ["users/csprlive/testnet-faucet", "users/csprlive/delegate-ui", "users/csprlive/undelegate-ui", "users/csprlive/token-transfer"],
         },
         {
             type: "category",
@@ -431,9 +431,9 @@ module.exports = {
             collapsed: true,
             link: {
                 type: "doc",
-                id: "users/ledger/ledger-setup",
+                id: "users/ledger/index",
             },
-            items: ["users/ledger/staking-ledger"],
+            items: ["users/ledger/ledger-setup", "users/ledger/staking-ledger"],
         },
     ],
 };
