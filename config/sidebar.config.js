@@ -422,7 +422,7 @@ module.exports = {
             collapsed: true,
             link: {
                 type: "doc",
-                id: "users/csprlive/testnet-faucet",
+                id: "users/csprlive/index",
             },
             items: ["users/csprlive/testnet-faucet", "users/csprlive/delegate-ui", "users/csprlive/undelegate-ui", "users/csprlive/token-transfer"],
         },
@@ -433,7 +433,7 @@ module.exports = {
             collapsed: true,
             link: {
                 type: "doc",
-                id: "users/ledger/ledger-setup",
+                id: "users/ledger/index",
             },
             items: ["users/ledger/ledger-setup", "users/ledger/staking-ledger"],
         },
