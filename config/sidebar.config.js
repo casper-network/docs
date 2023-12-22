@@ -170,7 +170,6 @@ module.exports = {
                 "developers/dapps/speculative-exec",
                 "developers/dapps/setup-nctl",
                 "developers/dapps/nctl-test",
-                //"developers/dapps/signer-integration",
                 "developers/dapps/monitor-and-consume-events",
             ],
         },
@@ -371,7 +370,6 @@ module.exports = {
                 "resources/beginner/upgrade-contract",
                 "resources/beginner/cep18",
                 "resources/beginner/aws-node",
-                //"resources/beginner/use-javascript-sdk" TODO remove or replace
             ],
         },
         {
