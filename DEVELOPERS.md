@@ -1,6 +1,6 @@
 # Casper Documentation Developer Guide
 
-If you want to add new content or make structural updates to the documentation, follow this guide.
+If you want to add new content or make structural updates to the documentation, follow this guide. Also, read the [Writing Style Guide](./writing-style-guide.md).
 
 ## Technology Stack
 
