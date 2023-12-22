@@ -161,7 +161,6 @@ module.exports = {
                         "developers/dapps/sdk/csharp-sdk",
                         "developers/dapps/sdk/go-sdk",
                         "developers/dapps/sdk/python-sdk",
-                        //"developers/dapps/sdk/additional-libraries", // NEW CONTENT WILL BE HERE
                     ],
                 },
                 "developers/dapps/technology-stack",
@@ -171,8 +170,6 @@ module.exports = {
                 "developers/dapps/speculative-exec",
                 "developers/dapps/setup-nctl",
                 "developers/dapps/nctl-test",
-                //"developers/dapps/signer-integration",
-                //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
             ],
         },
@@ -331,7 +328,6 @@ module.exports = {
         },
         "resources/casper-open-source-software",
         "resources/quick-start",
-        //"resources/sample-projects", // NEW CONTENT WILL BE HERE
         {
             type: "category",
             label: "Beginner Tutorials",
@@ -374,7 +370,6 @@ module.exports = {
                 "resources/beginner/upgrade-contract",
                 "resources/beginner/cep18",
                 "resources/beginner/aws-node",
-                //"resources/beginner/use-javascript-sdk" TODO remove or replace
             ],
         },
         {
@@ -407,9 +402,6 @@ module.exports = {
                 //"resources/advanced/list-cspr",
             ],
         },
-        //"resources/contribute-to-docs", // NEW CONTENT WILL BE HERE
-        //"resources/changelog", // NEW CONTENT WILL BE HERE
-        //"resources/support", // NEW CONTENT WILL BE HERE
     ],
     users: [
         "users/index",
