@@ -16,8 +16,6 @@ slug: /resources/tutorials/beginner/
 |[The Casper Fungible Token Standard (CEP-18)](./cep18.md) | Fungible Token Standard (CEP-18) Implementation and Usage |
 |[Launching a Casper Node with AWS Marketplace](./aws-node.md) | Learn how to launch a Casper Node through the AWS Marketplace |
 
-<!--|[Using the JavaScript SDK](./use-javascript-sdk.md)| Use the JavaScript SDK by connecting the [Casper Signer](https://chrome.google.com/webstore/detail/casper-signer/djhndpllfiibmcdbnmaaahkhchcoijce) to a website|-->
-
 ## GitHub Tutorials
 
 | Title                                                       | Description                                                      |
