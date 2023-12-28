@@ -30,11 +30,6 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 |Key::ChainspecRegistry | chainspec-registry- | chainspec-registry-11111111111111111111111111111111 |
 |Key::ChecksumRegistry | checksum-registry- | checksum-registry-00000000000000000000000000000000 |
 |Key::BidAddr | bid-addr- | `Unified` bid-addr-00ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70, `Validator` bid-addr-01ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70, `Delegator` bid-addr-02ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70ef4687f74d465826239bab05c4e1bdd2223dd8c201b96f361f775125e624ef70 |
-<!-- TODO When examples available.
-|Key::Package | package- | |
-|Key::AddressableEntity | addressable-entity- | |
-|Key::ByteCode | byte-code- | |
--->
 
 ## Hash and Key Explanations {#hash-and-key-explanations}
 
@@ -64,6 +59,6 @@ For the sake of user convenience and compatibility, we expect the delivery of ha
 - `Key::ChecksumRegistry` is a unique `key` variant under which we write a registry of checksums for a given block.  There are two checksums in the registry, one for the execution results and the other for the approvals of all deploys in the block.
 - `Key::BidAddr` manages data associated with bids for the `Auction` contract. It may be any one of three variants: `unified`, `validator`, or `delegator`.
 - `Key::Package` is a `Key` under which package information is stored.
-- `Key::AddressableEntity` is a `Key` under which an [addressable entity]() is stored.
+- `Key::AddressableEntity` is a `Key` under which an [`AddressableEntity`](/developers/json-rpc/types_chain.md/#addressableentity) is stored.
 - `Key::ByteCode` is a `Key` under which a byte code record is stored.
 - `Key::Message` is a `Key` under which a message is stored.

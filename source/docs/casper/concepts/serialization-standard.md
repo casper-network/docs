@@ -472,12 +472,6 @@ Given the different variants for the over-arching `Key` data-type, each of the d
     -   `Unified` serializes as the tag `0` followed by a 32 byte long buffer containing the byte representation of a legacy bid.
     -   `Validator` serializes as the tag `1` followed by a 32 byte long buffer containing the byte representation of a validator's hash.
     -   `Delegator` serializes as the tag `2` followed by a 32 byte long buffer containing the byte representation of the associated validator's hash, appended with a 32 byte long buffer containing the byte representation of the given delegator's hash.
-<!-- TODO
--   `Package` 
--   `AddressableEntity` 
--   `ByteCode` 
--   `Message`
--->
 
 ## Permissions {#serialization-standard-permissions}
 
