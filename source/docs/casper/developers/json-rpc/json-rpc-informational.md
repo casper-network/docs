@@ -461,6 +461,8 @@ If the `execution_results` field is empty, it means that the network processed t
 |Parameter|Type|Description|
 |---------|----|-----------|    
 |api_version|String|The RPC API version.|
+|[block_hash](./types_chain.md#blockhash)|Object|The Block hash, if found.|
+|block_height|Integer|The height of the Block.|
 |[deploy](./types_chain.md#deploy)|Object|The Deploy.|
 |[execution_results](./types_chain.md#jsonexecutionresult)|Array|An array of execution results with Block hashes.|
 
@@ -474,95 +476,255 @@ If the `execution_results` field is empty, it means that the network processed t
   "id": 1,
   "jsonrpc": "2.0",
   "result": {
-    "api_version": "1.4.13",
-    "deploy": {
-      "approvals": [
-        {
-          "signature": "014c1a89f92e29dd74fc648f741137d9caf4edba97c5f9799ce0c9aa6b0c9b58db368c64098603dbecef645774c05dff057cb1f91f2cf390bbacce78aa6f084007",
-          "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c"
-        }
-      ],
-      "hash": "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa",
-      "header": {
-        "account": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
-        "body_hash": "d53cf72d17278fd47d399013ca389c50d589352f1a12593c0b8e01872a641b50",
-        "chain_name": "casper-example",
-        "dependencies": [
-          "0101010101010101010101010101010101010101010101010101010101010101"
-        ],
-        "gas_price": 1,
-        "timestamp": "2020-11-17T00:39:24.072Z",
-        "ttl": "1h"
-      },
-      "payment": {
-        "StoredContractByName": {
-          "args": [
-            [
-              "amount",
-              {
-                "bytes": "e8030000",
-                "cl_type": "I32",
-                "parsed": 1000
-              }
-            ]
+    "value": {
+      "api_version": "1.5.3",
+      "deploy": {
+        "hash": "5c9b3b099c1378aa8e4a5f07f59ff1fcdc69a83179427c7e67ae0377d94d93fa",
+        "header": {
+          "account": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+          "timestamp": "2020-11-17T00:39:24.072Z",
+          "ttl": "1h",
+          "gas_price": 1,
+          "body_hash": "d53cf72d17278fd47d399013ca389c50d589352f1a12593c0b8e01872a641b50",
+          "dependencies": [
+            "0101010101010101010101010101010101010101010101010101010101010101"
           ],
-          "entry_point": "example-entry-point",
-          "name": "casper-example"
-        }
-      },
-      "session": {
-        "Transfer": {
-          "args": [
-            [
-              "amount",
-              {
-                "bytes": "e8030000",
-                "cl_type": "I32",
-                "parsed": 1000
-              }
-            ]
-          ]
-        }
-      }
-    },
-    "execution_results": [
-      {
-        "block_hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb",
-        "result": {
-          "Success": {
-            "cost": "123456",
-            "effect": {
-              "operations": [
+          "chain_name": "casper-example"
+        },
+        "payment": {
+          "StoredContractByName": {
+            "name": "casper-example",
+            "entry_point": "example-entry-point",
+            "args": [
+              [
+                "amount",
                 {
-                  "key": "account-hash-2c4a11c062a8a337bfc97e27fd66291caeb2c65865dcb5d3ef3759c4c97efecb",
-                  "kind": "Write"
-                },
-                {
-                  "key": "deploy-af684263911154d26fa05be9963171802801a0b6aff8f199b7391eacb8edc9e1",
-                  "kind": "Read"
-                }
-              ],
-              "transforms": [
-                {
-                  "key": "uref-2c4a11c062a8a337bfc97e27fd66291caeb2c65865dcb5d3ef3759c4c97efecb-007",
-                  "transform": {
-                    "AddUInt64": 8
-                  }
-                },
-                {
-                  "key": "deploy-af684263911154d26fa05be9963171802801a0b6aff8f199b7391eacb8edc9e1",
-                  "transform": "Identity"
+                  "cl_type": "I32",
+                  "bytes": "e8030000",
+                  "parsed": 1000
                 }
               ]
-            },
+            ]
+          }
+        },
+        "session": {
+          "Transfer": {
+            "args": [
+              [
+                "amount",
+                {
+                  "cl_type": "I32",
+                  "bytes": "e8030000",
+                  "parsed": 1000
+                }
+              ]
+            ]
+          }
+        },
+        "approvals": [
+          {
+            "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+            "signature": "014c1a89f92e29dd74fc648f741137d9caf4edba97c5f9799ce0c9aa6b0c9b58db368c64098603dbecef645774c05dff057cb1f91f2cf390bbacce78aa6f084007"
+          }
+        ]
+      },
+      "block_hash": "9ccc716f5f3c7ac238bf7aaad113c2add3586921a7966faffb3a5a253aa1d75e",
+      "block_height": 10,
+      "execution_result": {
+        "Version2": {
+          "Success": {
+            "effects": [
+              {
+                "key": "account-hash-2c4a11c062a8a337bfc97e27fd66291caeb2c65865dcb5d3ef3759c4c97efecb",
+                "kind": {
+                  "AddUInt64": 8
+                }
+              },
+              {
+                "key": "deploy-af684263911154d26fa05be9963171802801a0b6aff8f199b7391eacb8edc9e1",
+                "kind": "Identity"
+              }
+            ],
             "transfers": [
               "transfer-5959595959595959595959595959595959595959595959595959595959595959",
               "transfer-8282828282828282828282828282828282828282828282828282828282828282"
-            ]
+            ],
+            "cost": "123456"
           }
         }
       }
-    ]
+    }
+  }
+}
+
+```
+
+</details>
+
+## info_get_transaction {#info-get-transaction}
+
+This method retrieves a transaction from a network. It requires a `transaction_hash` to query the Deploy.
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|[transaction_hash](types_chain.md#transactionhash)|String|The transaction hash.|
+|[finalized_approvals](types_chain.md#finalizedapprovals)|Boolean|Determines whether to return the transaction with the finalized approvals substituted. (Optional)|
+
+<details>
+
+<summary>Example info_get_transaction request</summary>
+
+```bash
+
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "info_get_transaction",
+  "params": [
+    {
+      "name": "transaction_hash",
+      "value": {
+        "Version1": "6aaf4a54499e3757eb4be6967503dcc431e4623bf8bb57a14c1729a114a1aaa2"
+      }
+    },
+    {
+      "name": "finalized_approvals",
+      "value": true
+    }
+  ],
+}
+
+```
+
+</details>
+
+### `info_get_transaction_result`
+
+The response contains the transaction and the results of executing the associated Deploy.
+
+If the `execution_results` field is empty, it means that the network processed the transaction, but has yet to execute it. If the network executed the transaction, it will return the results of the associated Deploy's execution. The execution results contain the Block hash which contains the Deploy.
+
+|Parameter|Type|Description|
+|---------|----|-----------|    
+|api_version|String|The RPC API version.|
+|[block_hash](./types_chain.md#blockhash)|Object|The Block hash, if found.|
+|block_height|Integer|The height of the Block.|
+|[transaction](./types_chain.md#transaction)|Object|The transaction.|
+|[execution_results](./types_chain.md#jsonexecutionresult)|Array|An array of execution results with Block hashes.|
+
+<details>
+
+<summary>Example info_get_transaction result</summary>
+
+```bash
+
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "value": {
+    "api_version": "1.5.3",
+    "transaction": {
+      "Version1": {
+        "hash": "6aaf4a54499e3757eb4be6967503dcc431e4623bf8bb57a14c1729a114a1aaa2",
+        "header": {
+          "chain_name": "casper-example",
+          "timestamp": "2020-11-17T00:39:24.072Z",
+          "ttl": "1h",
+          "body_hash": "d2433e28993036fbdf7c963cd753893fefe619e7dbb5c0cafa5cb03bcf3ff9db",
+          "pricing_mode": {
+            "GasPriceMultiplier": 1
+          },
+          "payment_amount": null,
+          "initiator_addr": {
+            "PublicKey": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c"
+          }
+        },
+        "body": {
+          "args": [
+            [
+              "source",
+              {
+                "cl_type": "URef",
+                "bytes": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a07",
+                "parsed": "uref-0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a-007"
+              }
+            ],
+            [
+              "target",
+              {
+                "cl_type": "URef",
+                "bytes": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b00",
+                "parsed": "uref-1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b-000"
+              }
+            ],
+            [
+              "amount",
+              {
+                "cl_type": "U512",
+                "bytes": "0500ac23fc06",
+                "parsed": "30000000000"
+              }
+            ],
+            [
+              "to",
+              {
+                "cl_type": {
+                  "Option": {
+                    "ByteArray": 32
+                  }
+                },
+                "bytes": "012828282828282828282828282828282828282828282828282828282828282828",
+                "parsed": "2828282828282828282828282828282828282828282828282828282828282828"
+              }
+            ],
+            [
+              "id",
+              {
+                "cl_type": {
+                  "Option": "U64"
+                },
+                "bytes": "01e703000000000000",
+                "parsed": 999
+              }
+            ]
+          ],
+          "target": "Native",
+          "entry_point": "Transfer",
+          "scheduling": "Standard"
+        },
+        "approvals": [
+          {
+            "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+            "signature": "012152c1eab67f63faa6a482ec4847ecd145c3b2c3e2affe763303ecb4ccf8618a1b2d24de7313fbf8a2ac1b5256471cc6bbf21745af15516331e5fc3d4a2fa201"
+          }
+        ]
+      }
+    },
+    "block_hash": "9ccc716f5f3c7ac238bf7aaad113c2add3586921a7966faffb3a5a253aa1d75e",
+    "block_height": 10,
+    "execution_result": {
+      "Version2": {
+        "Success": {
+          "effects": [
+            {
+              "key": "account-hash-2c4a11c062a8a337bfc97e27fd66291caeb2c65865dcb5d3ef3759c4c97efecb",
+              "kind": {
+                "AddUInt64": 8
+              }
+            },
+            {
+              "key": "deploy-af684263911154d26fa05be9963171802801a0b6aff8f199b7391eacb8edc9e1",
+              "kind": "Identity"
+            }
+          ],
+          "transfers": [
+            "transfer-5959595959595959595959595959595959595959595959595959595959595959",
+            "transfer-8282828282828282828282828282828282828282828282828282828282828282"
+          ],
+          "cost": "123456"
+        }
+      }
+    }
   }
 }
 
@@ -762,7 +924,7 @@ This method returns a JSON representation of an [Account](../../concepts/design/
 
 |Parameter|Type|Description|
 |---------|----|-----------|
-|[public_key](types_chain.md#publickey)|String|The public key of the Account.|
+|[account_identifier](types_chain.md#AccountIdentifier)|String|The public key or account hash of the Account.|
 |[block_identifier](types_chain.md#blockidentifier)|Object|The Block identifier.|
 
 <details>
@@ -777,9 +939,15 @@ This method returns a JSON representation of an [Account](../../concepts/design/
   "method": "state_get_account_info",
   "params": [
     {
-      "Hash": "13c2d7a68ecdd4b74bf4393c88915c836c863fc4bf11d7f2bd930a1bbccacdcb"
+      "name": "account_identifier",
+      "value": "013b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29"
     },
-    "013b6a27bcceb6a42d62a3a8d02a6f0d73653215771de243a63ac048a18b59da29"
+    {
+      "name": "block_identifier",
+      "value": {
+        "Hash": "0707070707070707070707070707070707070707070707070707070707070707"
+      }
+    }
   ]
 }
 
@@ -805,23 +973,30 @@ This method returns a JSON representation of an [Account](../../concepts/design/
   "id": 1,
   "jsonrpc": "2.0",
   "result": {
-    "account": {
-      "account_hash": "account-hash-e94daaff79c2ab8d9c31d9c3058d7d0a0dd31204a5638dc1451fa67b2e3fb88c",
-      "action_thresholds": {
-        "deployment": 1,
-        "key_management": 1
-      },
-      "associated_keys": [
-        {
-          "account_hash": "account-hash-e94daaff79c2ab8d9c31d9c3058d7d0a0dd31204a5638dc1451fa67b2e3fb88c",
-          "weight": 1
+    "value": {
+      "api_version": "1.5.3",
+      "account": {
+        "account_hash": "account-hash-e94daaff79c2ab8d9c31d9c3058d7d0a0dd31204a5638dc1451fa67b2e3fb88c",
+        "named_keys": [
+          {
+            "name": "main_purse",
+            "key": "uref-09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db-007"
+          }
+        ],
+        "main_purse": "uref-09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db-007",
+        "associated_keys": [
+          {
+            "account_hash": "account-hash-e94daaff79c2ab8d9c31d9c3058d7d0a0dd31204a5638dc1451fa67b2e3fb88c",
+            "weight": 1
+          }
+        ],
+        "action_thresholds": {
+          "deployment": 1,
+          "key_management": 1
         }
-      ],
-      "main_purse": "uref-09480c3248ef76b603d386f3f4f8a5f87f597d4eaffd475433f861af187ab5db-007",
-      "named_keys": []
-    },
-    "api_version": "1.4.13",
-    "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3"
+      },
+      "merkle_proof": "01000000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625016ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a72536147614625000000003529cde5c621f857f75f3810611eb4af3f998caaa9d4a3413cf799f99c67db0307010000006ef2e0949ac76e55812421f755abe129b6244fe7168b77f47a7253614761462501010102000000006e06000000000074769d28aac597a36a03a932d4b43e4f10bf0403ee5c41dd035102553f5773631200b9e173e8f05361b681513c14e25e3138639eb03232581db7557c9e8dbbc83ce94500226a9a7fe4f2b7b88d5103a4fc7400f02bf89c860c9ccdd56951a2afe9be0e0267006d820fb5676eb2960e15722f7725f3f8f41030078f8b2e44bf0dc03f71b176d6e800dc5ae9805068c5be6da1a90b2528ee85db0609cc0fb4bd60bbd559f497a98b67f500e1e3e846592f4918234647fca39830b7e1e6ad6f5b7a99b39af823d82ba1873d000003000000010186ff500f287e9b53f823ae1582b1fa429dfede28015125fd233a31ca04d5012002015cc42669a55467a1fdf49750772bfc1aed59b9b085558eb81510e9b015a7c83b0301e3cf4a34b1db6bfa58808b686cb8fe21ebe0c1bcbcee522649d2b135fe510fe3"
+    }
   }
 }
 

@@ -113,6 +113,143 @@ The result contains the [deploy_hash](./types_chain.md#deployhash), which is the
 
 </details>
 
+## account_put_transaction {#account-put-transaction}
+
+This endpoint allows sending a transaction to be executed by the network.
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|[transaction](./types_chain.md#transaction)|Object|A transaction consists of an item containing a Deploy and a [`Transaction`](./types_chain.md#transaction) along with the requester's signature(s).|
+
+<details>
+
+<summary>Example account_put_transaction request</summary>
+
+```bash
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "method": "account_put_transaction",
+  "params": [
+    {
+      "name": "transaction",
+      "value": {
+        "Version1": {
+          "hash": "6aaf4a54499e3757eb4be6967503dcc431e4623bf8bb57a14c1729a114a1aaa2",
+          "header": {
+            "chain_name": "casper-example",
+            "timestamp": "2020-11-17T00:39:24.072Z",
+            "ttl": "1h",
+            "body_hash": "d2433e28993036fbdf7c963cd753893fefe619e7dbb5c0cafa5cb03bcf3ff9db",
+            "pricing_mode": {
+              "GasPriceMultiplier": 1
+            },
+            "payment_amount": null,
+            "initiator_addr": {
+              "PublicKey": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c"
+            }
+          },
+          "body": {
+            "args": [
+              [
+                "source",
+                {
+                  "cl_type": "URef",
+                  "bytes": "0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a07",
+                  "parsed": "uref-0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a0a-007"
+                }
+              ],
+              [
+                "target",
+                {
+                  "cl_type": "URef",
+                  "bytes": "1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b00",
+                  "parsed": "uref-1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b1b-000"
+                }
+              ],
+              [
+                "amount",
+                {
+                  "cl_type": "U512",
+                  "bytes": "0500ac23fc06",
+                  "parsed": "30000000000"
+                }
+              ],
+              [
+                "to",
+                {
+                  "cl_type": {
+                    "Option": {
+                      "ByteArray": 32
+                    }
+                  },
+                  "bytes": "012828282828282828282828282828282828282828282828282828282828282828",
+                  "parsed": "2828282828282828282828282828282828282828282828282828282828282828"
+                }
+              ],
+              [
+                "id",
+                {
+                  "cl_type": {
+                    "Option": "U64"
+                  },
+                  "bytes": "01e703000000000000",
+                  "parsed": 999
+                }
+              ]
+            ],
+            "target": "Native",
+            "entry_point": "Transfer",
+            "scheduling": "Standard"
+          },
+          "approvals": [
+            {
+              "signer": "01d9bf2148748a85c89da5aad8ee0b0fc2d105fd39d41a4c796536354f0ae2900c",
+              "signature": "012152c1eab67f63faa6a482ec4847ecd145c3b2c3e2affe763303ecb4ccf8618a1b2d24de7313fbf8a2ac1b5256471cc6bbf21745af15516331e5fc3d4a2fa201"
+            }
+          ]
+        }
+      }
+    }
+  ],
+}
+
+```
+
+</details>
+
+### `account_put_transaction_result`
+
+The result contains the [transaction_hash](./types_chain.md#transactionhash), which is the primary identifier of a transaction within a Casper network.
+
+|Parameter|Type|Description|
+|---------|----|-----------|
+|api_version|String|The RPC API version.|
+|[transaction_hash](./types_chain.md#transactionhash)|String| A hex-encoded hash of the transaction as sent.|
+
+<details>
+
+<summary>Example account_put_transaction result</summary>
+
+```bash
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+            "name": "account_put_transaction_example_result",
+            "value": {
+              "api_version": "1.5.3",
+              "transaction_hash": {
+                "Version1": "6aaf4a54499e3757eb4be6967503dcc431e4623bf8bb57a14c1729a114a1aaa2"
+              }
+            }
+          }
+}
+
+```
+
+</details>
+
 ## speculative_exec {#speculative_exec}
 
 The `speculative_exec` endpoint provides a method to execute a `Deploy` without committing its execution effects to global state. By default, `speculative_exec` is disabled on a node. Sending a request to a node with the endpoint disabled will result in an error message. If enabled, `speculative_exec` operates on a separate port from the primary JSON-RPC, using 7778.
