@@ -120,7 +120,7 @@ An array of [NamedUserGroups](#namedusergroup).
 
 ## Array_of_PublicKeyAndBid {#array-of-publickeyandbid}
 
-An array of [bids associated with give public keys](#publickeyandbid).
+An array of [bids associated with given public keys](#publickeyandbid).
 
 ## Array_of_PublicKeyAndDelegator {#array-of-publickeyanddelegator}
 
@@ -192,7 +192,7 @@ Auction bid variants.
 
 One of:
 
-* `Unified` A unified record indexed on validator data, with an embedded collection of all delegator bids assigned to that validator. The `Unified`` variant is for legacy retrograde support, new instances will not be created going forward.
+* `Unified` A unified record indexed on validator data, with an embedded collection of all delegator bids assigned to that validator. The `Unified`` variant is for legacy retrograde support; new instances will not be created going forward.
 
 * `Validator` A bid record containing only validator data.
 
@@ -350,7 +350,7 @@ Additional Parameters:
 
 ## BlockTime {#blocktime}
 
-A newtype wrapping a `u64` which represents the block time.
+A newtype wrapping a `u64`, which represents the block time.
 
 ## BlockV1 {#blockv1}
 
@@ -382,7 +382,7 @@ Hex-encoded bytes.
 
 ## ByteCode {#bytecode}
 
-A container for contract's Wasm bytes.
+A container for a contract's Wasm bytes.
 
 Required Parameters:
 
@@ -672,9 +672,9 @@ Context of an entry point execution.
 
 * `Session` Runs as session code in the context of the caller. Deprecated and retained to allow read back of legacy stored session.
 
-* `AddressableEntity` Runs within called entity's context.
+* `AddressableEntity` Runs within the called entity's context.
 
-* `Factory` This entry point is intended to extract a subset of bytecode. Runs within called entity's context.
+* `Factory` This entry point is intended to extract a subset of bytecode. Runs within the called entity's context.
 
 ## EraEndV1 {#eraendv1}
 
@@ -848,7 +848,7 @@ One of:
 
 * [`Version1`](#executionresultv1) Version 1 of execution result type.
 
-* [`Version2`](#executionresultv2) VErsion 2 of execution result type.
+* [`Version2`](#executionresultv2) Version 2 of execution result type.
 
 ## ExecutionResultV1 {#executionresultV1}
 
@@ -856,7 +856,7 @@ The result of executing a single deploy.
 
 One of:
 
-* `Failure` The result of a failed execution`
+* `Failure` The result of a failed execution
 
     Required Parameters:
 
@@ -894,7 +894,7 @@ One of:
 
     [`cost`](#u512)
 
-    `error_message` The error message associated with executing the Deploy.
+    `error_message` The error message associated with executing the deploy.
 
 * `Success` The result of a successful execution.
 
@@ -914,7 +914,7 @@ A boolean value that determines whether to return the deploy with the finalized 
 
 Identifier for possible ways to query global state.
 
-* [`BlockHash`](#blockhash) Query using a Block hash.
+* [`BlockHash`](#blockhash) Query using a block hash.
 
 * `BlockHeight` Query using a block height.
 
@@ -1130,7 +1130,7 @@ The key as a formatted string, under which data can be stored in global state.
 
 ## Merkle_Proof {#merkle-proof}
 
-A merkle proof is a construction created using a merkle trie that allows verification of the associated hashes.
+A Merkle proof is a construction created using a Merkle trie that allows verification of the associated hashes.
 
 ## MessageChecksum {#messagechecksum}
 
@@ -1138,7 +1138,7 @@ Message checksum as a formatted string.
 
 ## MessageTopic {#messagetopic}
 
-A topic for contract level messages.
+A topic for contract-level messages.
 
 Required Parameters:
 
@@ -1518,7 +1518,7 @@ One of:
 
 * `AddBid` The `add_bid` native entry point, used to create or top off a bid purse.
 
-* `WithdrawBid` The `withdraw_bid` native entry point, used to decrease a stake.
+* `WithdrawBid` The `withdraw_bid` native entry point, used to decrease a validator's stake.
 
 * `Delegate` The `delegate` native entry point, used to add a new delegator or increase an existing delegator's stake.
 
@@ -1542,7 +1542,7 @@ The identifier of a `stored` transaction target.
 
 One of:
 
-* `InvocableEntity` The hex-encoded entity address indetifying the invocable entity.
+* `InvocableEntity` The hex-encoded entity address identifying the invocable entity.
 
 * `InvocableEntityAlias` The alias identifying the invocable entity.
 
@@ -1582,7 +1582,7 @@ One of:
 
 * `Standard` No special scheduling applied.
 
-* `FutureEra` Execution should be scheduled fro the specific era.
+* `FutureEra` Execution should be scheduled for the specific era.
 
     Required parameters for `FutureEra`:
 
@@ -1624,7 +1624,7 @@ One of:
 
     * [`runtime`](#transactionruntime)
 
-* `session` The exectuion target is the included module bytes.
+* `session` The execution target is the included module bytes.
 
     Required parameters for a `session` target:
 
@@ -1770,7 +1770,7 @@ One of:
 
 * `Prune` Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent states.
 
-* `Failure` A failed transformation, containing an error message.
+* `Failure` A failed transformation containing an error message.
 
 ## TransformEntry {#transformentry}
 
