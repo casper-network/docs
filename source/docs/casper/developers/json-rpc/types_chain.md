@@ -210,7 +210,7 @@ One of:
 
 ## BlockBodyV1 {#blockbodyv1}
 
-The body portion of a block.
+The body portion of a block prior to Casper 2.0.
 
 Required Parameters:
 
@@ -254,7 +254,7 @@ One of:
 
 ## BlockHeaderV1 {#blockheaderv1}
 
-The header portion of a block.
+The header portion of a block prior to Casper 2.0.
 
 Required Parameters:
 
@@ -354,7 +354,7 @@ A newtype wrapping a `u64`, which represents the block time.
 
 ## BlockV1 {#blockv1}
 
-A block after execution with the resulting global state root hash. This is the core component of the Casper linear blockchain.
+A block after execution with the resulting global state root hash prior to Casper 2.0. This is the core component of the Casper linear blockchain.
 
 Required Parameters:
 
@@ -678,7 +678,7 @@ Context of an entry point execution.
 
 ## EraEndV1 {#eraendv1}
 
-Information related to the end of an era and validator weights for the following era.
+Information related to the end of an era and validator weights for the following era prior to Casper 2.0.
 
 Required Parameters:
 
@@ -852,7 +852,7 @@ One of:
 
 ## ExecutionResultV1 {#executionresultV1}
 
-The result of executing a single deploy.
+The result of executing a single deploy prior to Casper 2.0.
 
 One of:
 
