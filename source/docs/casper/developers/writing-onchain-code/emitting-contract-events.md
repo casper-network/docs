@@ -1183,7 +1183,19 @@ casper-client query-global-state --node-address http://127.0.0.1:11101 \
 <br></br>
 
 
-Emitted messages are temporary by design. The message count is reset with every new block, and the block time is updated. Old message checksums are pruned from global state to manage storage, but dApps can query old checksums using the state root hash of the block that contains them.
+Emitted messages are temporary by design. Sometimes, message checksums are pruned from global state to manage storage. Pruning of old message records for a particular contract only happens if the contract emits messages again in a new block. Otherwise, the last entries from the time the contract was last executed are still retained in global state. Applications can query old checksums using the state root hash of the block that contains them.
+
+<details>
+<summary>Expand to view an example</summary>
+
+- Let's assume we have a contract that executes in a block with block time 1 and emits 100 messages.
+- If we query the global state at the root hash of the block with block time 1, then we will see a control struct for the topic indicating message count 100 and block time 1.
+- Let's assume the contract executes in another block with block time 2 and emits 50 messages.
+- Then, if we query the global state at the root hash of the block at block time 2, we will see message count 50 and block time 2.
+- Let's assume 3 blocks go by, and the contract doesn't execute in those blocks (block time 3, 4, 5).
+- If we query the global state at the root hash of the block at block time 5, we will see message count 50 and block time 2.
+
+</details>
 
 Here is how you can determine the number of messages emitted in a particular block:
 
