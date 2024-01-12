@@ -162,7 +162,6 @@ module.exports = {
                         "developers/dapps/sdk/csharp-sdk",
                         "developers/dapps/sdk/go-sdk",
                         "developers/dapps/sdk/python-sdk",
-                        //"developers/dapps/sdk/additional-libraries", // NEW CONTENT WILL BE HERE
                     ],
                 },
                 "developers/dapps/technology-stack",
@@ -172,8 +171,6 @@ module.exports = {
                 "developers/dapps/speculative-exec",
                 "developers/dapps/setup-nctl",
                 "developers/dapps/nctl-test",
-                //"developers/dapps/signer-integration",
-                //"developers/dapps/callstack-based", // NEW CONTENT WILL BE HERE
                 "developers/dapps/monitor-and-consume-events",
             ],
         },
@@ -306,7 +303,6 @@ module.exports = {
                         id: "resources/tokens/cep18/full-tutorial",
                     },
                     items: [
-                        "resources/tokens/cep18/full-tutorial",
                         "resources/tokens/cep18/quickstart-guide",
                         "resources/tokens/cep18/query",
                         "resources/tokens/cep18/transfer",
@@ -323,7 +319,6 @@ module.exports = {
                         id: "resources/tokens/cep78/introduction",
                     },
                     items: [
-                        "resources/tokens/cep78/introduction",
                         "resources/tokens/cep78/modalities",
                         "resources/tokens/cep78/using-casper-client",
                         "resources/tokens/cep78/reverse-lookup",
@@ -334,7 +329,6 @@ module.exports = {
         },
         "resources/casper-open-source-software",
         "resources/quick-start",
-        //"resources/sample-projects", // NEW CONTENT WILL BE HERE
         {
             type: "category",
             label: "Beginner Tutorials",
@@ -377,8 +371,6 @@ module.exports = {
                 "resources/beginner/upgrade-contract",
                 "resources/beginner/cep18",
                 "resources/beginner/aws-node",
-                // TODO link external tutorials if possible, to show them in sidebar navigation
-                //"resources/beginner/use-javascript-sdk" TODO remove or replace
             ],
         },
         {
@@ -411,9 +403,6 @@ module.exports = {
                 //"resources/advanced/list-cspr",
             ],
         },
-        //"resources/contribute-to-docs", // NEW CONTENT WILL BE HERE
-        //"resources/changelog", // NEW CONTENT WILL BE HERE
-        //"resources/support", // NEW CONTENT WILL BE HERE
     ],
     users: [
         "users/index",
@@ -426,7 +415,7 @@ module.exports = {
             collapsed: true,
             link: {
                 type: "doc",
-                id: "users/csprlive/testnet-faucet",
+                id: "users/csprlive/index",
             },
             items: ["users/csprlive/testnet-faucet", "users/csprlive/delegate-ui", "users/csprlive/undelegate-ui", "users/csprlive/token-transfer"],
         },
@@ -437,7 +426,7 @@ module.exports = {
             collapsed: true,
             link: {
                 type: "doc",
-                id: "users/ledger/ledger-setup",
+                id: "users/ledger/index",
             },
             items: ["users/ledger/ledger-setup", "users/ledger/staking-ledger"],
         },
