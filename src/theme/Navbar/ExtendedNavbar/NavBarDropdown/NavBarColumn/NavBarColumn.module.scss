@@ -1,3 +1,23 @@
-.dropdown_column{
+.dropdown_column {
     text-align: left;
+    .linkGroup {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 15px;
+
+        > span {
+            color: #aeaeae;
+        }
+
+        .linkList {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 10px;
+            padding-left: unset;
+        }
+    }
 }

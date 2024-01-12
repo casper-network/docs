@@ -2,6 +2,8 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 # Monitoring and Consuming Events
 
+<!-- TODO This entire file needs to be updated for 2.0 and for integrating with the Sidecar. For example, the events have been renamed from DeployAccepted to TransactionAccepted. The stream URLs might have also changed. The contract-level events are posted as part of the TransactionAccepted (=DeployAccepted) events.-->
+
 The Casper platform uses event streaming to signal state changes in smart contracts and nodes. Using Casper's client-side SDKs, dApps actively listening for emitted events can consume these events and perform actions based on event data.
 
 Each Casper node streams events through the SSE (Server Sent Event) server via the port specified as the `event_stream_server.address` in the node's *config.toml*. This port is by default `9999` for nodes on [Testnet](https://testnet.cspr.live/tools/peers) and [Mainnet](https://cspr.live/tools/peers).
@@ -12,9 +14,11 @@ Events are divided into three categories and streamed on their respective endpoi
 - **Finality Signature events** - Emitted when a block has been finalized and cannot be altered. The URL to consume finality signature events on Mainnet and Testnet is `http://<HOST>:9999/events/sigs/`.
 - **Main events** - All other events fall under this type, including: `BlockAdded`, `DeployProcessed`, `DeployExpired`, `Fault`, `Step`, and `Shutdown` events. The URL to consume these events on Mainnet and Testnet is `http://<HOST>:9999/events/main/`.
 
+An `ApiVersion` event is always emitted when a new client connects to a node's SSE server, informing the client of the node's software version.
+
 :::note
 
-An `ApiVersion` event is always emitted when a new client connects to a node's SSE server, informing the client of the node's software version.
+Smart contracts can emit contract-level events as explained [here](../writing-onchain-code/emitting-contract-events.md). DApps can consume these events by listening to the event stream, detecting [TransactionProcessed](#deployprocessed) events, and parsing the `messages` array storing String-representations of the emitted events.
 
 :::
 
@@ -391,6 +395,10 @@ The `Shutdown` event is emitted when the node is about to shut down, usually for
 
 </details>
 
+
+## Detecting Contract-Level Events
+
+The SSE endpoint of a node streams messages emitted by a contract in a human-readable format. These messages are visible as part of the `TransactionProcessed` event after the corresponding block is processed and added to the blockchain. For more details, see [Verifying a Topic](../writing-onchain-code/emitting-contract-events.md#verifying-a-topic) and [Verifying a Message](../writing-onchain-code/emitting-contract-events.md#verifying-a-message).
 
 ## Reacting to Events
 

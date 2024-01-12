@@ -107,7 +107,7 @@ module.exports = {
         //     ],
         // },
         {
-            href: "https://github.com/casper-network/docs",
+            href: "https://github.com/casper-network/docs/blob/dev/README.md",
             label: "GitHub",
             position: "right",
         },
