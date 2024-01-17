@@ -86,20 +86,28 @@ To receive tokens, you need to provide the sender with your account's public key
 
 4. Fill in the details for the transfer.
 
+<p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/cspr-live/1-transfer-details.png")} alt="1-transfer-details" width="500" />
+</p>
 
 5. Click on the **Next** button.
 6. On the next page, click **Confirm and transfer**.
 
+<p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/cspr-live/2-transfer-confirm.png")} alt="2-transfer-confirm" width="500" />
+</p>
 
 7.  On the **Sign transaction** page, click on the **Sign with Ledger** button.
 
+<p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/cspr-live/3-transfer-sign.png")} alt="3-transfer-sign" width="500" />
+</p>
 
 8. Your Ledger hardware wallet will present you with transfer details. Verify the transfer details (txn hash, chain ID, source **account**, fee, target, and amount). Meanwhile, the block explorer will show this message:
 
+<p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/cspr-live/3-transfer-submitted.png")} alt="3-transfer-sign" width="500" />
+</p>
 
 **Verify the transaction on your Ledger device**
 
@@ -107,50 +115,74 @@ Press the right button on your Ledger Device to review the transaction details (
 
 1. Verify the **Txn hash** - ensure it matches the value displayed on [cspr.live](https://cspr.live).
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/3-txn-1.jpg")} alt="3-txn-1" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/3-txn-1.jpg")} alt="3-txn-1" width="400" />
+</p>
 
 The Txn hash value continues on a second screen.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/4-txn-2.jpg")} alt="4-txn-2" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/4-txn-2.jpg")} alt="4-txn-2" width="400" />
+</p>
 
 2.  The next page displays transaction **Type** - for CSPR transfers, that will be **Token transfer**.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/5-type.jpg")} alt="5-type" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/5-type.jpg")} alt="5-type" width="400" />
+</p>
 
 3. Verify the **Chain ID**, which identifies the network to which you want to send the transaction.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/7-chain.jpg")} alt="7-chain" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/7-chain.jpg")} alt="7-chain" width="400" />
+</p>
 
 4. Verify the **Account**, the account's public key initiating the transaction.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/8-account-1.jpg")} alt="8-account-1" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/8-account-1.jpg")} alt="8-account-1" width="400" />
+</p>
 
 The Account value continues on a second screen.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/9-account-2.jpg")} alt="9-account-2" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/9-account-2.jpg")} alt="9-account-2" width="400" />
+</p>
 
 5. Verify the **Fee**. For CSPR token transfers, that value should be constant and equal to 100,000,000 motes = 0.1 CSPR.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/10-fee.jpg")} alt="10-fee" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/10-fee.jpg")} alt="10-fee" width="400" />
+</p>
 
 6. Verify the **Target**, the recipient's public key. Compare this value with the one in the block explorer.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/11-target-1.jpg")} alt="11-target-1" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/11-target-1.jpg")} alt="11-target-1" width="400" />
+</p>
 
 The Target value continues on a second screen.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/12-target-2.jpg")} alt="12-target-2" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/12-target-2.jpg")} alt="12-target-2" width="400" />
+</p>
 
 7.  Verify the **Amount** you want to transfer.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/13-amount.jpg")} alt="13-amount" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/13-amount.jpg")} alt="13-amount" width="400" />
+</p>
 
 8. If you want to approve the transaction, click both buttons on the Ledger device while on the **APPROVE** screen.
 
-<img src={useBaseUrl("/image/tutorials/ledger/device/15-approve.jpg")} alt="15-approve" width="600" />
+<p align="center">
+<img src={useBaseUrl("/image/tutorials/ledger/device/15-approve.jpg")} alt="15-approve" width="400" />
+</p>
 
 After approving the transaction with your Ledger hardware wallet, the [cspr.live](https://cspr.live) block explorer will display a "Transfer completed" page.
 
+<p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/cspr-live/4-transfer-completed.png")} alt="4-transfer-completed" width="500" />
+</p>
 
 You can now check your account to see a list of all the completed transfers.
