@@ -80,7 +80,7 @@ To receive tokens, you need to provide the sender with your account's public key
 
 1. Open [cspr.live](https://cspr.live).
 2. Sign in with your Ledger device.
-3.  Click on **Wallet** and then **Transfer CSPR**.
+3. Click on **Wallet** and then **Transfer CSPR**.
 
 <img src={useBaseUrl("/image/tutorials/ledger/flow/transfer-wallet.png")} alt="5-transfer-wallet" width="800" />
 
