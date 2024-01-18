@@ -12,7 +12,8 @@ A Ledger device is a hardware wallet considered one of the most secure ways to s
 ## Prerequisites {#prerequisites}
 
 1. Configure your Ledger and the Ledger Live application as described in the [Getting Started with Ledger Live](https://support.ledger.com/hc/en-us/articles/4404389503889?docs=true) article.
-2. Make sure the Ledger Live application version is at least at `2.73.1`, which is the version that includes Casper accounts.
+2. **<span style={{color:"#ee5945"}}>CRITICAL</span>**: Write down and hide your recovery codes! These are necessary to be able to restore your account if you lose or damage the hardware key.
+3. Make sure the Ledger Live application version is at least at `2.73.1`, which is the version that includes Casper accounts.
 
 :::note
 
