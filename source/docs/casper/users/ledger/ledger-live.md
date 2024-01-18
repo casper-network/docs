@@ -230,7 +230,7 @@ The Target value continues on a second screen.
 <img src={useBaseUrl("/image/tutorials/ledger/device/12-target-2.jpg")} alt="12-target-2" width="400" />
 </p>
 
-12.  Verify the **Amount** you want to transfer.
+12. Verify the **Amount** you want to transfer.
 
 <p align="center">
 <img src={useBaseUrl("/image/tutorials/ledger/device/13-amount.jpg")} alt="13-amount" width="400" />
