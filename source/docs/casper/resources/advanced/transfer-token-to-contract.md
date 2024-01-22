@@ -7,6 +7,8 @@ slug: /resources/tutorials/advanced/transfer-token-to-contract
 
 This tutorial covers two methods to handle tokens via a contract. This is not a native process to a Casper network and will require the use of custom code. The following two scenarios provide a framework for developers and the pros and cons of each example. Developers should choose the option that best suits their individual needs.
 
+For increased security, `transfer-*` methods are unavailable in stored session code, even when the stored session code runs in the account context. The tokens must be handled via contract code, as shown below.
+
 ## Scenario 1 - Creating a Throw-Away Purse {#scenario1}
 
 The first scenario involves the use of a single-use, throw-away purse. The caller creates and funds a purse independent of their main purse, before passing the URef to the callee.
