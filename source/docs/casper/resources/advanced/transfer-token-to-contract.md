@@ -7,7 +7,7 @@ slug: /resources/tutorials/advanced/transfer-token-to-contract
 
 This tutorial covers two methods to handle tokens via a contract. This is not a native process to a Casper network and will require the use of custom code. The following two scenarios provide a framework for developers and the pros and cons of each example. Developers should choose the option that best suits their individual needs.
 
-For increased security, token transfers from a main purse must be handled via contract code, not session code as in [other cases](../../developers/writing-onchain-code/writing-session-code.md#example-3-transfers-using-session-code-transfers-using-session-code). In this case, `transfer-*` methods are unavailable in stored session code, even when the stored session runs in the account context.
+For increased security, token transfers from a main purse must be handled via session code (WASM), as shown [here](../../developers/writing-onchain-code/writing-session-code.md#example-3-transfers-using-session-code-transfers-using-session-code). Therefore, `transfer-*` methods are unavailable in stored WASM for tokens originating from an account's main purse, even when the stored WASM runs in the account context.
 
 ## Scenario 1 - Creating a Throw-Away Purse {#scenario1}
 
