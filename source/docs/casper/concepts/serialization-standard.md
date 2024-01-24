@@ -449,6 +449,7 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 | `ChainspecRegistry` | 13        |
 | `ChecksumRegistry` | 14         |
 | `BidAddr`    | 15               |
+
 | `Package`    | 16               |
 | `AddressableEntity` | 17        |
 | `ByteCode`   | 18               |
