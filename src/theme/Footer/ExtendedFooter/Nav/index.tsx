@@ -6,20 +6,36 @@ import Link from "@docusaurus/Link";
 
 interface INavProps {
     footer: IFooterData;
-    renderLink: (type: string, title: string, url: string, openInNewTab: boolean) => any;
+    footerTree: any;
     getExternalLink: (path: string) => string;
+    getLink: (path: string) => string;
 }
 
-function Nav({ footer, renderLink, getExternalLink }: INavProps) {
+function Nav({ footer, footerTree, getExternalLink, getLink }: INavProps) {
+    const renderLink = ({ title, open_in_new_tab, link_type, url }) => {
+        if (link_type === "internal") {
+            return (
+                <a key={`${title}`} href={getLink(url)}>
+                    {title}
+                </a>
+            );
+        } else {
+            return (
+                <a key={`${title}`} href={url} target={open_in_new_tab ? "_blank" : "_self"}>
+                    {title}
+                </a>
+            );
+        }
+    };
     return (
         <nav className={`${styles.nav}`}>
-            {footer.columns.map((column, i) => {
+            {footerTree.footer_tree.items.map((column, i) => {
                 return (
                     <div key={`footer_column_${i}`} className={styles.nav_category}>
                         <p className={`primaryParagraph ${styles.nav_category_title}`}>{column.title}</p>
                         <div className={styles.nav_category_links}>
-                            {column.links.map((link, i) => {
-                                return renderLink(link.type, link.title, link.url, link.openInNewTab);
+                            {column.children.map((link, i) => {
+                                return renderLink(link);
                             })}
                         </div>
                     </div>

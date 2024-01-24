@@ -29,9 +29,7 @@ This method limits downtime and enables a smooth transition from the old to the 
 
 1. Let both nodes synchronize to the tip of the blockchain. Keep the current validating node running with the original validator keyset.
 
-2. Bond the `backup_node` and wait until rewards are issued.
-
-3. Prepare to swap keys by following these steps:
+2. Prepare to swap keys by following these steps:
 
     - Create the following folder structure on both nodes under the `/etc/casper/validator_keys/` directory.
     - Create subdirectories for the `current_node` and `backup_node`.

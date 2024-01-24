@@ -334,7 +334,7 @@ casper-client query-global-state --help
 
 ### Time-to-live {#ttl}
 
-Time-to-live is the parameter that determines how long a deploy will wait for execution. The acceptable maximum `ttl` is configurable by chain, with the Casper Mainnet maximum set to `1day`. If you are sending a deploy to a different network, you will need to check `chainspec.toml` for that network to determine the acceptable maximum. The minimum is theoretically zero, but this will result in an immediate expiration and an invalid deploy.
+Time-to-live is the parameter that determines how long a deploy will wait for execution. The acceptable maximum `ttl` is configurable by chain, with the Casper Mainnet maximum set to `18hours`. If you are sending a deploy to a different network, you will need to check `chainspec.toml` for that network to determine the acceptable maximum. The minimum is theoretically zero, but this will result in an immediate expiration and an invalid deploy.
 
 In the event of a network outage or other event that prevents execution within the `ttl`, the solution is to resend the deploy in question.
 

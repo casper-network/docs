@@ -11,6 +11,7 @@ import ThemeSwitch from "../../ThemeSwitch";
 interface ISidebar {
     sidebarOpen: boolean;
     header: INavData | undefined;
+    navTree: any;
     currentLocale: string;
     dropdownParentRef: React.RefObject<HTMLElement>;
     handleClick: (title: string) => void;
@@ -33,6 +34,7 @@ function Sidebar({
     socialMedia,
     currentLocale,
     closeNavBarHandler,
+    navTree,
 }: ISidebar) {
     return (
         <section className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarClose : ""}`}>
@@ -48,11 +50,11 @@ function Sidebar({
                         siteUrl={siteConfig.customFields.siteUrl as string}
                     />
                 )}
-                {header && header.navItems && (
+                {navTree && navTree.navigation_tree && (
                     <section className={styles.sidebar_container_nav}>
                         <Nav
                             dropdownParentRef={dropdownParentRef}
-                            header={header}
+                            header={navTree}
                             handleClick={handleClick}
                             dropdownOpen={dropdownOpen}
                             current={current}

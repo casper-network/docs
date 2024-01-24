@@ -26,9 +26,11 @@ A `blake2b` hash of the public key, representing the address of a user's account
 
 ## Action Thresholds {#action-thresholds}
 
-The minimum weight thresholds that have to be met when executing an action of a certain type. It serializes as two consecutive [`u8` values](#clvalue-numeric) as follows.
+The minimum weight thresholds that have to be met when executing an action of a certain type. It serializes as three consecutive [`u8` values](#clvalue-numeric) as follows.
 
 -   `deployment` The minimum weight threshold required to perform deployment actions as a `u8` value.
+
+-   `upgrade_management` The minimum weight threshold required to perform upgrade management actions as a `u8` value.
 
 -   `key_management` The minimum weight threshold required to perform key management actions as a `u8` value.
 
@@ -447,12 +449,11 @@ Given the different variants for the over-arching `Key` data-type, each of the d
 | `ChainspecRegistry` | 13        |
 | `ChecksumRegistry` | 14         |
 | `BidAddr`    | 15               |
-<!--TODO Add these with the account/contract merge docs.
+
 | `Package`    | 16               |
 | `AddressableEntity` | 17        |
 | `ByteCode`   | 18               |
 | `Message`    | 19               |
--->
 
 -   `Account` serializes as a 32 byte long buffer containing the byte representation of the underlying `AccountHash`
 -   `Hash` serializes as a 32 byte long buffer containing the byte representation of the underlying `Hash` itself.
@@ -472,13 +473,6 @@ Given the different variants for the over-arching `Key` data-type, each of the d
     -   `Unified` serializes as the tag `0` followed by a 32 byte long buffer containing the byte representation of a legacy bid.
     -   `Validator` serializes as the tag `1` followed by a 32 byte long buffer containing the byte representation of a validator's hash.
     -   `Delegator` serializes as the tag `2` followed by a 32 byte long buffer containing the byte representation of the associated validator's hash, appended with a 32 byte long buffer containing the byte representation of the given delegator's hash.
-
-<!--TODO
--   `Package` 
--   `AddressableEntity` 
--   `ByteCode` 
--   `Message`
--->
 
 ## Permissions {#serialization-standard-permissions}
 
@@ -754,6 +748,16 @@ A `Map` serializes as a list of key-value tuples. There must be a well-defined o
 | `READ_ADD`       |  5           |
 | `ADD_WRITE`      |  6           |
 | `READ_ADD_WRITE` |  7           |
+
+    -   E.g. `uref-974019c976b5f26412ce486158d2431967af35d91387dae8cbcd43c20fce6452-007` shows a `URef` with full `READ_ADD_WRITE` rights.
+    
+:::warning
+
+When passing a URef to another entity on chain, you must ensure that the `AccessRights` are set correctly. If the URef represents a [purse](./glossary/P.md#purse-purse), `AccessRights` impact who can deposit and withdraw CSPR.
+
+:::
+    
+If a passed URef contains `ADD` permissions, the entity receiving the URef will then be able to deposit CSPR into the associated purse. `WRITE` permissions allow for withdrawing CSPR. As of 1.4.5, passing a main purse URef as a runtime argument will cause the host to automatically remove `WRITE` permissions. In this event, `READ` and `ADD` permissions will remain. Regardless, all due diligence should be performed to avoid passing a URef with `WRITE` permissions unintentionally.
 
 #### PublicKey {#clvalue-publickey}
 

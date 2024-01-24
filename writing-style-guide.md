@@ -1,4 +1,4 @@
-# Contributing Documentation
+# Writing Style Guide
 
 This is the Writing Style Guide used by Casper's documentation team.
 

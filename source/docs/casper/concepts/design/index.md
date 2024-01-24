@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Design Overview
 slug: /design
 ---
 
