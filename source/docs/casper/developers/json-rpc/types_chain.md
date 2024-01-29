@@ -1782,7 +1782,7 @@ One of:
 
 * `Prune` Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent states.
 
-* `Failure` A failed transformation containing an error message.
+* `Failure` A failed transformation, containing an error message.
 
 ## TransformEntry {#transformentry}
 
