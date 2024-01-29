@@ -16,7 +16,7 @@ The account hash is a 32-byte hash of the public key representing the user accou
 
 ## Addressable Entity {#addressable-entity}
 
-An addressable entity is a post-2.0 type that merges the concept of an `Account` and a `Contract`, bringing in features from both. More information can be found [here](./developers/json-rpc/types_chain.md#addressableentity).
+An addressable entity is a post-2.0 type that merges the concept of an `Account` and a `Contract`, bringing in features from both. More information can be found [here](../concepts/addressable-entity.md).
 
 ## AssemblyScript {#assemblyscript}
 
