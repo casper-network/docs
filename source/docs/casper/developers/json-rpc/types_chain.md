@@ -54,23 +54,23 @@ The first era to which the associated protocol version applies.
 
 ## AddressableEntity {#addressableentity}
 
-* [`package_hash`](#packagehash)
-
-* [`byte_code_hash`](#bytecodehash)
-
-* [`named_keys`](#namedkeys)
-
-* [`entry_points`](#array_of_namedentrypoint)
-
-* [`protocol_version`](#protocolversion)
-
-* [`main_purse`](#uref)
+* [`action_thresholds`](#actionthresholds)
 
 * [`associated_keys`](#associatedkeys)
 
-* [`action_thresholds`](#actionthresholds)
+* [`byte_code_hash`](#bytecodehash)
+
+* [`entity_kind`](#entitykind)
+
+* [`entry_points`](#array_of_namedentrypoint)
+
+* [`main_purse`](#uref)
 
 * [`message_topics`](#array_of_messagetopic)
+
+* [`package_hash`](#packagehash)
+
+* [`protocol_version`](#protocolversion)
 
 ## AddressableEntityHash {#addressableentityhash}
 
@@ -621,6 +621,18 @@ Required Parameters:
 ## Effects {#effects}
 
 A log of all [transforms](#tranform) produced during execution.
+
+## EntityKind {#entitykind}
+
+The type of [`Package`](#package).
+
+One of:
+
+* [`System`](#systementitytype)
+
+* [`Account`](#accounthash)
+
+* `SmartContract` Packages associated with Wasm stored on chain.
 
 ## EntityVersionAndHash {#entityversionandhash}
 
