@@ -60,8 +60,9 @@ To check if your node is in sync, compare the current block height at [https://c
 curl -s localhost:8888/status | jq .last_added_block_info
 ```
 
+<!-- TODO re-enable when ready
 If you cannot figure out the issue, ask for help in the *node-tech-support* channel on [Discord](https://discord.com/invite/Q38s3Vh).
-
+-->
 
 ## Activating the Bid
 
