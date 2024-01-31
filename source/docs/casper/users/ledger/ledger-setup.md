@@ -15,11 +15,13 @@ A Ledger device is a hardware wallet considered one of the most secure ways to s
 2. **<span style={{color:"#ee5945"}}>CRITICAL</span>**: Write down and hide your recovery codes! These are necessary to be able to restore your account if you lose or damage the hardware key.
 3. Make sure the Ledger Live application version is at least at `2.73.1`, which is the version that includes Casper accounts.
 
+<!-- TODO re-enable when ready
 :::note
 
 If you need help, contact us on [Twitter](https://twitter.com/Casper_Network), [Discord](https://discord.com/invite/Q38s3Vh), or [Telegram](https://t.me/casperblockchain).
 
 :::
+-->
 
 ## Installing the Casper App on a Ledger Device {#install-the-casper-app-on-the-ledger-device}
 

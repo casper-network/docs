@@ -50,10 +50,10 @@ module.exports = {
             href: "https://support.casperlabs.io/",
             label: "Support",
         },
-        {
-            href: "https://discord.com/invite/Q38s3Vh",
-            label: "Chat",
-        },
+        // TODO re-enable when ready
+        //{
+        //    label: "Chat",
+        //},
 
         // {
         //     to: `${routePrefix}/developer`,
