@@ -11,7 +11,7 @@ The factory pattern is a widely recognized software design concept used in vario
 
 Casper factories are created using the entry point type called `EntryPointType::Install`, which marks an entry point as a factory method responsible for creating and installing contracts on the chain. This installer entry point will derive the Wasm installed on the chain and create a new contract with the same Wasm, just different sets of entry points as required. In other words, these installer entry points marked with `EntryPointType::Install` are the contract factories. When referring to the factory contract on this page, we mean the contract containing the factory entry points.
 
-The `EntryPointAccess::Template` marks an entry point that exists in the bytecode but is not callable. Thus, regular entry points can be referenced from within installer entry points marked with `EntryPointType::Install`. In object-oriented terms, entry points marked with `EntryPointAccess::Template` act as virtual abstract methods and cannot be called from session code. The Wasm for template entry points is declared at the factory level in the installer logic.
+The `EntryPointAccess::Template` marks an entry point that exists in the bytecode but is not callable. Thus, regular entry points can be referenced from within installer entry points marked with `EntryPointType::Install`. In object-oriented terms, entry points marked with `EntryPointAccess::Template` act as virtual abstract methods and cannot be called from session code.
 
 :::note
 
