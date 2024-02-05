@@ -102,9 +102,8 @@ This section briefly explains the contract methods used in the Casper Fungible T
 
 To see the full implementation of the below contract methods, refer to the [contract file](https://github.com/casper-ecosystem/cep18/blob/master/cep18/src/main.rs) in Github. If you have any questions, review the [casper_erc20](https://docs.rs/casper-erc20-crate/latest/casper_erc20_crate/) library and the [EIP-20](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md#) standard.
 
-<!-- TODO re-enable when ready
+
 Also, for further unresolved issues please contact the Casper support team via the [Discord channel](https://discord.com/invite/Q38s3Vh).
--->
 
 Contract methods are:
 

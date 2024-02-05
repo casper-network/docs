@@ -52,7 +52,8 @@ module.exports = {
         },
         // TODO re-enable when ready
         //{
-        //    label: "Chat",
+            href: "https://discord.com/invite/casperblockchain",
+            label: "Chat",
         //},
 
         // {
