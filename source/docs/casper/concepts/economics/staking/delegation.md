@@ -26,9 +26,8 @@ For example, the chainspec file in release 1.3.2 will contain the following info
 
 Delegation fees may change over time, so, it is essential to stay up to date. To do so, select the latest release in [Github](https://github.com/casper-network/casper-node), and navigate to the chainspec.toml file.
 
-<!-- TODO re-enable when ready
-If you are unsure about anything, please join the [Discord channel](https://discord.com/invite/PjAQVXRx4Y) to ask us questions.
--->
+
+If you are unsure about anything, please join the [Discord channel](https://discord.com/invite/casperblockchain) to ask us questions.
 
 ## First-time Delegation
 
