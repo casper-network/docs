@@ -6,13 +6,11 @@ import TabItem from '@theme/TabItem';
 
 This page covers the necessary software for your Casper development environment. To develop comfortably, you should use `Linux Ubuntu 20.04` or `macOS`. Developing on Windows is not advised.
 
-<!-- Re-enable when ready 
 :::caution
 
-Casper does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
+Casper does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/casperblockchain).
 
 :::
--->
 
 ## Preparing your Development Environment
 
