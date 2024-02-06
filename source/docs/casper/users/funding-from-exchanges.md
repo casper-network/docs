@@ -43,5 +43,5 @@ Try these steps with a small amount of CSPR first. After one successful transfer
 
 8. Click "Review".
 
-9. Submit the transfer request. Wait approximately 5 minutes, and then go to the <https://cspr.live/> site to verify your account details. On the account page, you should see that the "Liquid Account Balance" reflects the amount you have transferred.
+9. Submit the transfer request. Wait approximately 5 minutes, and then go to the [cspr.live](https://cspr.live/) site to verify your account details. On the account page, you should see that the "Liquid Account Balance" reflects the amount you have transferred.
 

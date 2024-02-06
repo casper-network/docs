@@ -12,4 +12,4 @@ A hash is the output of a cryptographic function that creates a fixed-length out
 
 ## Highway {#highway}
 
-A consensus protocol that allows clients to use different confidence thresholds to convince themselves that a given block is _finalized_. The full paper is found in GitHub: <https://github.com/casper-network/highway>.
+A consensus protocol that allows clients to use different confidence thresholds to convince themselves that a given block is _finalized_. The full paper is found in GitHub: [github.com/casper-network/highway](https://github.com/casper-network/highway).

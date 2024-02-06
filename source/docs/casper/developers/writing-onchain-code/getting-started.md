@@ -125,6 +125,6 @@ The following video tutorial complements this guide.
 
 These Rust resources are excellent and we highly recommend them:
 
-1.  <https://doc.rust-lang.org/book/foreword.html>
-2.  <https://rustwasm.github.io/docs/book/>
-3.  <https://doc.rust-lang.org/stable/rust-by-example>
+1.  [https://doc.rust-lang.org/book/foreword.html](https://doc.rust-lang.org/book/foreword.html)
+2.  [rustwasm.github.io/docs/book](https://rustwasm.github.io/docs/book/)
+3.  [doc.rust-lang.org/stable/rust-by-example](https://doc.rust-lang.org/stable/rust-by-example)

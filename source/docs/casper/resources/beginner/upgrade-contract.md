@@ -347,10 +347,8 @@ Disabled contract versions can no longer be executed. As such, if there is only 
 <!--TODO This link is only a guess until 1.5.4 releases and the auto-docs populate.-->
 [Enable_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.enable_contract_version.html) allows you to re-enable a previously disabled contract version.
 
-::note
-
+:::note
 Be aware that calling a contract package will use the most recent contract version. It is not necessary to disable a previous contract version, unless you have a specific need to do so.
-
 :::
 
 ## Creating a Locked Contract Package {#locked-contract-package}

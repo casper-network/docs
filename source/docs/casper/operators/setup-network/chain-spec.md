@@ -152,6 +152,7 @@ The following settings manage `br_table` Wasm opcodes.
 
 The following settings specify costs for low-level bindings for host-side ("external") functions. More documentation and host function declarations are located in [smart_contracts/contract/src/ext_ffi.rs](https://github.com/casper-network/casper-node/blob/release-1.5.2/smart_contracts/contract/src/ext_ffi.rs).
 
+```
 - add = { cost = 5_800, arguments = [0, 0, 0, 0] }
 - add_associated_key = { cost = 9_000, arguments = [0, 0, 0] }
 - add_contract_version = { cost = 200, arguments = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
@@ -195,7 +196,7 @@ The following settings specify costs for low-level bindings for host-side ("exte
 - update_associated_key = { cost = 4_200, arguments = [0, 0, 0] }
 - write = { cost = 14_000, arguments = [0, 0, 0, 980] }
 - write_local = { cost = 9_500, arguments = [0, 1_800, 0, 520] }
-
+```
 ## system_costs
 
 The following settings manage protocol operating costs.

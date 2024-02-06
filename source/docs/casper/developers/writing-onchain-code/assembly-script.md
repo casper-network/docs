@@ -26,7 +26,7 @@ The `casper-contract` package can be installed using the following command:
 npm i casper-contract
 ```
 
-The Assemblyscript contract API documentation can be found at <https://www.npmjs.com/package/casper-contract>.
+The Assemblyscript contract API documentation can be found at [npmjs.com/package/casper-contract](https://www.npmjs.com/package/casper-contract).
 
 ### Creating a Project {#creating-a-project}
 
