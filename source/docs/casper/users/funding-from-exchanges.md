@@ -12,7 +12,7 @@ This guide demonstrates a withdrawal from [Coinlist](https://coinlist.co/) to th
 
 ## Prerequisites
 
-Before starting, copy the public key where you wish to transfer funds. The screenshot below shows the account page on <https://cspr.live/> and the field you need to specify in the withdrawal request from Coinlist.
+Before starting, copy the public key where you wish to transfer funds. The screenshot below shows the account page on [cspr.live](https://cspr.live/) and the field you need to specify in the withdrawal request from Coinlist.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/exchanges/1.account-public-key.png")} alt="Account public key from CSPR.live"/>
 
@@ -20,7 +20,7 @@ Before starting, copy the public key where you wish to transfer funds. The scree
 
 Try these steps with a small amount of CSPR first. After one successful transfer, you will be more comfortable transferring larger amounts.
 
-1. Log into your <https://coinlist.co/> account.
+1. Log into your [coinlist.co](https://coinlist.co/) account.
 2. Go to the "Wallet" tab.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/exchanges/2.coinlist-wallet.png")} alt="Coinlist Wallet tab" width="200" />
