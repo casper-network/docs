@@ -62,7 +62,6 @@ curl -s localhost:8888/status | jq .last_added_block_info
 
 If you cannot figure out the issue, ask for help in the *node-tech-support* channel on [Discord](https://discord.com/invite/casperblockchain).
 
-
 ## Activating the Bid
 
 Once your node is in sync and ready to validate again, you must activate your invalid bid. There are two ways to reactivate your bid. The recommended and cheaper method is to call the `activate_bid` entry point from the system auction contract. The second method involves building the `activate_bid.wasm` contract as explained in [Building the Required Contracts](../setup/joining.md#step-3-build-contracts).
