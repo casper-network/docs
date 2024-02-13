@@ -17,8 +17,7 @@ Before getting started, you need to complete two prerequisite steps:
 ### **Important Notes**
 
 1. **<span style={{color:"#ee5945"}}>CRITICAL</span>**: Write down and hide your recovery codes! These are necessary to be able to restore your account if you lose or damage the hardware key.
-2. Currently, Casper accounts do not link to the Ledger Live application, so your account balances will not show on Ledger Live. However, you can still safely use the Casper application on the hardware key to transact with and store tokens.
-3. When logging in to [cspr.live](https://cspr.live/), the UI will offer numerous public keys. Choose any of them. They are all derived from the Master Seed that is secured in the Ledger key ([more info here](https://www.ledger.com/academy/crypto/where-are-my-coins)). Make sure you write down whichever public key(s) you end up using so that you have no confusion when trying to log in.
+2. When logging in to [cspr.live](https://cspr.live/), the UI will offer numerous public keys. Choose any of them. They are all derived from the Master Seed that is secured in the Ledger key ([more info here](https://www.ledger.com/academy/crypto/where-are-my-coins)). Make sure you write down whichever public key(s) you end up using so that you have no confusion when trying to log in.
 
 ## Staking with a Validator {#2-staking}
 

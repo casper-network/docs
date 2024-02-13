@@ -4,18 +4,11 @@ The [Python SDK](https://github.com/casper-network/casper-python-sdk) allows dev
 
 ## Installation
 
-Before installing the library, you need to install dependencies from [requirements.txt](https://github.com/casper-network/casper-python-sdk/blob/main/requirements.txt), which you can perform by running the following command:
+To install the library, run:
 
 ```bash
 
-    pip install -r requirements.txt
-```
-
-Finally, to install the library, run:
-
-```bash
-
-    pip install pycspr
+    pip3 install pycspr
 ```
 
 ## Tests
