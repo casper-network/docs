@@ -12,7 +12,7 @@ A node is usually run by executing the `casper-node-launcher`, which executes th
 
 The `casper-node-launcher` can be installed via a Debian package, which also creates the `casper` user and directory structures and sets up a `systemd` unit and logging.
 
-The `casper-node-launcher` Debian package can be obtained from <https://repo.casperlabs.io>. You only need to run the steps detailed there once.
+The `casper-node-launcher` Debian package can be obtained from [repo.casperlabs.io](https://repo.casperlabs.io). You only need to run the steps detailed there once.
 
 Then, proceed to install the `casper-node-launcher` by running these commands:
 

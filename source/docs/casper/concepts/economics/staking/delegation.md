@@ -40,9 +40,7 @@ As a result, when performing a [delegation using the command line](../../../deve
 
 <p align="center"><img src={useBaseUrl("/image/economic-delegationDetails.png")}  alt="details" width="400" /> </p>
 
-<p align="center">
-
-**Figure 2** : On Testnet or Mainnet, the transaction fee for a delegation is a little bit higher than 2.5 CSPR </p>
+<p align="center">**Figure 2** : On Testnet or Mainnet, the transaction fee for a delegation is a little bit higher than 2.5 CSPR </p>
 
 ---
 
