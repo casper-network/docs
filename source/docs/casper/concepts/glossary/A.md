@@ -14,6 +14,10 @@ An Account is a structure that represents a user on a Casper network. Informatio
 
 The account hash is a 32-byte hash of the public key representing the user account. Information on generating an account hash can be found [here](https://support.casperlabs.io/hc/en-gb/articles/13781616975131-How-do-I-generate-an-account-hash-).
 
+## Addressable Entity {#addressable-entity}
+
+An addressable entity is a post-2.0 type that merges the concept of an `Account` and a `Contract`, bringing in features from both. More information can be found [here](../addressable-entity.md).
+
 ## AssemblyScript {#assemblyscript}
 
 AssemblyScript is a TypeScript-based programming language (JavaScript with static types) that is optimized for WebAssembly and compiled to WebAssembly using _asc_, the reference AssemblyScript compiler. It is developed by the AssemblyScript Project and the AssemblyScript community.

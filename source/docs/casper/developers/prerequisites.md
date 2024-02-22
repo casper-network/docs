@@ -8,7 +8,7 @@ This page covers the necessary software for your Casper development environment.
 
 :::caution
 
-Casper does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/Q38s3Vh).
+Casper does not officially support `macOS`. If you encounter any problems, reach out to the community on [Telegram](https://t.me/casperblockchain) or [Discord](https://discord.com/invite/casperblockchain).
 
 :::
 

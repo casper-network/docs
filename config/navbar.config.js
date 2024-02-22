@@ -51,7 +51,7 @@ module.exports = {
             label: "Support",
         },
         {
-            href: "https://discord.com/invite/Q38s3Vh",
+            href: "https://discord.com/invite/casperblockchain",
             label: "Chat",
         },
 
