@@ -31,10 +31,11 @@ casper-client : Depends: libssl1.1 (>= 1.1.0) but it is not installable
 ```
 
 This message is due to the default `openssl` moving to 3.* with Ubuntu 22.04. You need to install OpenSSL 1.* for prior versions of Ubuntu to use the Casper binaries with the following command:
+https://packages.ubuntu.com/focal/amd64/libssl1.1/download
 
 ```
-curl -f -JLO http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb
-sudo apt install ./libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
+wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.21_amd64.deb
+sudo dpkg -i ./libssl1.1_1.1.1f-1ubuntu2.21_amd64.deb
 ```
 
 ## Required Number of Open Files
@@ -136,7 +137,7 @@ You can find active peers at https://cspr.live/tools/peers or use the following 
 Protocol version should be set to the largest available protocol version you see in `ls /etc/casper`.  As of writing this, it was 1_5_2:
 
 ```bash
-PROTOCOL=1_5_2
+PROTOCOL=1_5_6
 ```
 
 ### Load `trusted_hash` in Config.toml of the Protocol Version
@@ -145,7 +146,7 @@ The following command uses the previously established NODE_ADDR and PROTOCOL to 
 
 ```bash
 NODE_ADDR=https://rpc.mainnet.casperlabs.io
-PROTOCOL=1_5_2
+PROTOCOL=1_5_6
 sudo sed -i "/trusted_hash =/c\trusted_hash = '$(casper-client get-block --node-address $NODE_ADDR | jq -r .result.block.hash | tr -d '\n')'" /etc/casper/$PROTOCOL/config.toml
 ```
 
@@ -180,24 +181,29 @@ The following command will display the node synchronization details:
 When you first run the watch command, you may see the message `RPC: Not Ready`. Once the node is synchronized, the status will change to `RPC: Ready` and a similar output:
 
 ```bash
-Last Block: 630151 (Era: 4153)
-Peer Count: 297
-Uptime: 4days 6h 40m 18s 553ms
-Build: 1.4.5-a7f6a648d-casper-mainnet
-Key: 0147b4cae09d64ab6acd02dd0868722be9a9bcc355c2fdff7c2c244cbfcd30f158
+Every 5.0s: ./node_util.py node_status ; ./node_util.py systemd_status                                                      
+
+Last Block: 2590425 (Era: 12428)
+Peer Count: 323
+Uptime: 14h 9m 22s 655ms
+Build: 1.5.6
+Key: (Here your public key) 
 Next Upgrade: None
 
-RPC: Ready
+Reactor State: Validate
+Available Block Range - Low: 2587481  High: 2590425
 
 ● casper-node-launcher.service - Casper Node Launcher
-   Loaded: loaded (/lib/systemd/system/casper-node-launcher.service; enabled; vendor preset: enabled)
-   Active: active (running) since Wed 2022-03-16 21:08:50 UTC; 4 days ago
-     Docs: https://docs.casper.network
- Main PID: 2934 (casper-node-lau)
-    Tasks: 12 (limit: 4915)
-   CGroup: /system.slice/casper-node-launcher.service
-           ├─ 2934 /usr/bin/casper-node-launcher
-           └─16842 /var/lib/casper/bin/1_4_5/casper-node validator /etc/casper/1_4_5/config.toml
+     Loaded: loaded (/lib/systemd/system/casper-node-launcher.service; enabled; preset: enabled)
+     Active: active (running) since Mon 2024-02-12 10:53:18 CET; 14h ago
+       Docs: https://docs.casperlabs.io
+   Main PID: 201 (casper-node-lau)
+      Tasks: 5 (limit: 76816)
+     Memory: 9.3G
+        CPU: 2h 55min 10.879s
+     CGroup: /system.slice/casper-node-launcher.service
+             ├─201 /usr/bin/casper-node-launcher
+             └─212 /var/lib/casper/bin/1_5_6/casper-node validator /etc/casper/1_5_6/config.toml
 ```
 
 The reactor state will be in CatchUp mode until it acquires the full tip state, at which point it will shift to KeepUp mode. If you left `sync_to_genesis` as `true`, it will begin syncing back history at this time.
