@@ -3,6 +3,7 @@ module.exports = {
         "concepts/index",
         "concepts/about",
         "concepts/intro-to-dapps",
+        "concepts/addressable-entity",
         "concepts/accounts-and-keys",
         "concepts/hash-types",
         "concepts/deploy-and-deploy-lifecycle",
@@ -430,7 +431,7 @@ module.exports = {
                 type: "doc",
                 id: "users/ledger/index",
             },
-            items: ["users/ledger/ledger-setup", "users/ledger/staking-ledger"],
+            items: ["users/ledger/ledger-setup", "users/ledger/ledger-live", "users/ledger/ledger-cspr-live", "users/ledger/staking-ledger"],
         },
     ],
 };
