@@ -405,6 +405,7 @@ module.exports = {
                 //"resources/advanced/list-cspr",
             ],
         },
+        "resources/changelog",
     ],
     users: [
         "users/index",
