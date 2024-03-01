@@ -20,6 +20,6 @@ slug: /resources/tokens/
 | ------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | [CEP-78 Enhanced NFT Standard Introduction](./cep78/introduction.md)           | An introduction to the CEP-78 Enhanced NFT Standard.             |
 | [CEP-78 Modalities](./cep78/introduction.md)                                   | Information on the features available when installing a CEP-78 contract instance.|
-| [Installing and Interacting with a CEP-78 Contract](./cep78/using-casper-client.md)| An introduction to features present in the CEP-78 Enhanced NFT Standard.|
+| [Installing and Interacting with a CEP-78 Contract](./cep78/using-casper-client/full-installation-tutorial.md)| An introduction to features present in the CEP-78 Enhanced NFT Standard.|
 | [Owner Reverse Lookup Functionality](./cep78/reverse-lookup.md)                | Information on the Onwer Reverse Lookup feature of CEP-78 contracts.|
 | [A CEP-78 JavaScript Client Tutorial](./cep78/js-tutorial.md)                  | A tutorial for using the JavaScript CEP-78 client.                  |
