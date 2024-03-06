@@ -89,11 +89,11 @@ g++ --version
 
 **Important Note:**
 
-The following commands need to be executed within the Bash shell. While MacOS and some Linux distributions utilize Zsh by default, they also include Bash. To ensure proper execution of the subsequent commands, switching to Bash is recommended. If the command does not work, please refer to the Bash documentaiton on how to install it on your system.
+The following commands need to be executed within the Bash shell. While MacOS and some Linux distributions use Zsh by default, they also include Bash. To ensure proper execution of the subsequent commands, switching to Bash is recommended. If the command does not work, please refer to the Bash documentation on how to install it on your system.
 
 **Step 5.** Switching to Bash Shell:
 
-Simply type the following command in your terminal and press Enter.
+Type the following command in your terminal:
 
 Instructions for MacOS and Linux:
 
@@ -112,7 +112,7 @@ python3 -m venv env
 source env/bin/activate
 ```
 
-Once you've activated the virtual environment, your terminal prompt will change to indicate you're working within it. It will usually look something like this:
+Once you have activated the virtual environment, your terminal prompt will change to indicate you're working within it. It will usually look something like this:
 
 ```bash
 (env) $  // This line is for visual representation only, not to be copied
