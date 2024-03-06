@@ -87,8 +87,6 @@ gcc --version
 g++ --version
 ```
 
-Here's a revised version that sounds more professional and user-friendly:
-
 **Important Note:**
 
 The following commands need to be executed within the Bash shell. While MacOS and some Linux distributions utilize Zsh by default, they also include Bash. To ensure proper execution of the subsequent commands, switching to Bash is recommended. If the command does not work, please refer to the Bash documentaiton on how to install it on your system.
