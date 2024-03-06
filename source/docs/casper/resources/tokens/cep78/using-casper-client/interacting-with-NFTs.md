@@ -72,7 +72,7 @@ casper-client put-deploy --node-address http://localhost:11101/rpc/ \
 
 ## Minting NFTs
 
-Below is an example of a `casper-client` command that uses the `mint` entrypoint of the contract to mint an NFT for the user associated with `node-1` in an [NCTL environment](../../../../developers/dapps/nctl-test/).
+Below is an example of a `casper-client` command that uses the `mint` entrypoint of the contract to mint an NFT for the user associated with `node-1` in an [NCTL environment](../../../../developers/dapps/nctl-test.md).
 
 - `casper-client put-deploy -n http://localhost:11101/rpc --chain-name "casper-net-1" --payment-amount 5000000000 -k ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem --session-entry-point "mint"`
 

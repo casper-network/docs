@@ -6,15 +6,15 @@ title: Quick Installation
 
 This quick installation guide introduces you to the Casper client commands and Wasm files necessary to deploy a CEP-78 Casper Enhanced NFT contract to the [Casper Testnet](https://testnet.cspr.live/). For greater detail into the creation and mechanics of the Casper NFT contract, see the complete [Casper NFT Tutorial](./full-installation-tutorial.md).
 
-To execute transactions on a Casper network involving NFTs, you will need some CSPR tokens to pay for the transactions. The Testnet provides test tokens using a [faucet](https://docs.casper.network/users/testnet-faucet/).
+To execute transactions on a Casper network involving NFTs, you will need some CSPR tokens to pay for the transactions. The Testnet provides test tokens using a [faucet](../../../../users/csprlive/testnet-faucet.md).
 
 ## Prerequisites
 
 Before using this guide, ensure you meet the following requirements:
 
-- Set up the [development prerequisites](../../../../developers/prerequisites/), including the [Casper client](../../../../developers/prerequisites/#install-casper-client)
-- Get a valid [node address](../../../../developers/prerequisites/#acquire-node-address-from-network-peers) from the network
-- Know how to install a [smart contract](../../../../developers/cli/sending-deploys/) on a Casper network
+- Set up the [development prerequisites](../../../../developers/prerequisites.md), including the [Casper client](../../../../developers/prerequisites.md#install-casper-client)
+- Get a valid [node address](../../../../developers/prerequisites.md#acquire-node-address-from-network-peers) from the network
+- Know how to install a [smart contract](../../../../developers/cli/sending-deploys.md) on a Casper network
 - Hold enough CSPR tokens to pay for transactions
 
 ## Setup
