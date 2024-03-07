@@ -12,21 +12,21 @@ git clone https://github.com/casper-ecosystem/counter
 
 If you explore the source code, you will see that there are two versions of the counter contract and one file with session code that calls the contract's entry-points:
 
-- `contract-v1`
+-   `contract-v1`
 
-    - This is the first version of the counter contract.
-    - Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store a value.
-    - Provides a function to get the current count (_count_get_).
-    - Provides a function to increment the current count (_counter_inc_).
-    
-- `contract-v2`
+    -   This is the first version of the counter contract.
+    -   Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store a value.
+    -   Provides a function to get the current count (_count_get_).
+    -   Provides a function to increment the current count (_counter_inc_).
 
-    - This is a second version of the counter contract, which will not be used in this tutorial. 
-    - This version provides an additional function to decrement the counter and to demonstrate contract upgrades in another tutorial.
+-   `contract-v2`
 
-- `counter-call`
+    -   This is a second version of the counter contract, which will not be used in this tutorial.
+    -   This version provides an additional function to decrement the counter and to demonstrate contract upgrades in another tutorial.
 
- - This is session code that retrieves the _contract-v1_ contract, gets the current count value, increments it, and ensures the count was incremented by 1.
+-   `counter-call`
+
+-   This is session code that retrieves the _contract-v1_ contract, gets the current count value, increments it, and ensures the count was incremented by 1.
 
 ## View the Network State {#view-the-network-state}
 
@@ -53,6 +53,23 @@ casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
 ```
 
 You need to use the IP address of one of the [connected peers](https://testnet.cspr.live/tools/peers) on the Testnet as the node server since the network is running in a decentralized fashion. Make a note of the returned state root hash, but keep in mind that this hash value will need to be updated every time you modify the network state.
+
+**Please be mindful of the node address format when using the `casper-client get-state-root-hash` command.**
+
+While browsing the [connected peers](https://testnet.cspr.live/tools/peers) list, you might encounter entries similar to `44.222.236.237:35000`. These entries only provide the IP address and port used for peer-to-peer communication within the network.
+
+**For the `casper-client get-state-root-hash` command, you need to modify the address slightly:**
+
+1. **Add the `http://` prefix:** This indicates that you're communicating with the node using the HTTP protocol.
+2. **Replace the port:** While the peers list might show a different port (e.g., `35000`), the Casper node uses port `7777` for state queries.
+
+Following these steps, the correct command format for your example address would be:
+
+```bash
+casper-client get-state-root-hash --node-address http://44.222.236.237:7777
+```
+
+Remember to apply this modification to any node address you use with the `get-state-root-hash` command.
 
 Finally, query the actual state:
 
@@ -200,13 +217,12 @@ casper-client put-deploy \
     --chain-name casper-test \
     --secret-key [PATH_TO_YOUR_KEY]/secret_key.pem \
     --payment-amount [PAYMENT_AMOUNT_IN_MOTES] \
-    --session-path ./counter/target/wasm32-unknown-unknown/release/counter-call.wasm
+    --session-path ./counter-call/target/wasm32-unknown-unknown/release/counter-call.wasm
 ```
 
 ## View the Final Network State {#view-the-final-network-state}
 
 To make sure that the session code ran successfully, get the new state root hash and query the network.
-
 
 ```bash
 casper-client get-state-root-hash --node-address http://[NODE_IP]:7777
@@ -220,6 +236,6 @@ casper-client query-global-state --node-address http://[NODE_IP]:7777 \
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
 
-If all went according to plan, your count value should be 2 at this point. 
+If all went according to plan, your count value should be 2 at this point.
 
 Congratulations on building, installing, and using a smart contract on the Testnet!
