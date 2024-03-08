@@ -8,25 +8,25 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 # Cross-Contract Communication
 
 This tutorial assumes that you have worked through the following examples. If you have not already done so, then we recommend that you do so now:
-- [Developer Prerequisites](../../developers/prerequisites.md)
-- [Getting Started with Rust](../../developers/writing-onchain-code/getting-started.md)
-- [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md)
+
+-   [Developer Prerequisites](../../developers/prerequisites.md)
+-   [Getting Started with Rust](../../developers/writing-onchain-code/getting-started.md)
+-   [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md)
 
 ## Tutorial Outline {#outline}
 
 This tutorial covers some variations of cross-contract communication. Most complex scenarios use cross-contract communication, so it is crucial to understand how this works. It is best explained using the uniswap v2 protocol.
 
-Uniswap v2 protocol consists of multiple smart contracts which govern a unified blockchain application and each contract serves a different purpose.
-The contracts are as follows:
-- Factory
-- Pair
-- Pair (ERC20)
-- Library
-- Router01
-- Router02
+Uniswap v2 protocol consists of multiple smart contracts which govern a unified blockchain application and each contract serves a different purpose. The contracts are as follows:
 
-The Factory contract is generally used to create a token pair. It throws an event that a pair has been created and allows the user to read the pair created. The most important to notice is that the generation of a token pair actually creates a contract of type Pair under a new address hash.
-The Pair smart contract is used to perform operations like mint or burn on a created pair of tokens.
+-   Factory
+-   Pair
+-   Pair (ERC20)
+-   Library
+-   Router01
+-   Router02
+
+The Factory contract is generally used to create a token pair. It throws an event that a pair has been created and allows the user to read the pair created. The most important to notice is that the generation of a token pair actually creates a contract of type Pair under a new address hash. The Pair smart contract is used to perform operations like mint or burn on a created pair of tokens.
 
 Having this in mind we will be building two contracts which reference each other in some shape or form. We will look at how the keys are deployed in the contract's context and how we can pass the contract hash into a deployed contract so another contract can be called.
 
@@ -38,23 +38,22 @@ In the appropriate folder, create the project for the contract using the followi
 cargo casper cross-contract
 ```
 
-This will create the following structure under your desired smart contract folder:
+This will create the following directory structure within your smart contract folder.
 
 ```bash
-cross-contract/
-└── contract/
-    ├── .cargo/
-        └── config.toml
-    ├── src/
-        └── main.rs
-    └── Cargo.toml
-└── tests/
-    ├── src/
-        └── integration-tests.rs
-    └── Cargo.toml
-└── .travis.yml
+cross-contract
+├──contract
+│   ├── Cargo.toml
+│   ├── rust-toolchain
+│   ├── src
+│   │   └── main.rs
+│   └── target
+├──tests
+│   ├── Cargo.toml
+│   ├── src
+│   │   └── integration_tests.rs
+│   └── target
 └── Makefile
-└── rust-toolchain
 ```
 
 After creating the project directory structure, use the following commands to go into the project folder and compile the files:
@@ -65,8 +64,7 @@ make prepare
 make build-contract
 ```
 
-This will also create a target folder under the contract folder where the .wasm of the contract can be found.
-Additionally you can check if the tests can be performed using the following command:
+This will produce the `.wasm` file of our contract. It can be found in `contract/target/wasm32-unknown-unknown/release/contract.wasm`. Additionally you can check if the tests can be performed using the following command:
 
 ```bash
 make test
@@ -84,29 +82,29 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 
 :::tip
 
-If this is not the case and you see the following error:
+When you try to run the tests, you might encounter errors if the project's dependencies are outdated. If you see an error message similar to the following:
 
-```bash
+```rust
 warning: `tests` (bin "integration-tests" test) generated 2 warnings
 error: could not compile `tests` due to 3 previous errors; 2 warnings emitted
 make: *** [test] Error 101
 ```
 
-Then it is useful to check if the dependencies in `Cargo.toml` are still up to date.
+This indicates potential issues with outdated dependencies. Use the `cargo update` command to check for and install any available updates for your project's dependencies or do it manually through `Cargo.toml` file.
 
 <img class="align-center" src={useBaseUrl("/image/tutorials/cross-contract/CargoToml.png")} width="600" alt="CargoToml" />
 
-If you see the red cross, it means the version is not up to date and has to be updated.
+If you are using cargo extensions in your editor you will see a warning next to the outdated dependencies.
 
 :::
 
 ## Changing the Standard Contract {#changing-contract}
 
-The standard Casper contract from `cargo-casper` contains some methods that we will reuse. However, we will be getting rid of most auto-generated code. 
+The standard Casper contract from `cargo-casper` contains some methods that we will reuse. However, we will remove most of the automatically generated code.
 
 We will be changing the `main.rs` file. Your code should look exactly as below:
 
-```bash
+```rust
 #![no_std]
 #![no_main]
 
@@ -117,7 +115,7 @@ compile_error!("target arch should be wasm32: compile with '--target wasm32-unkn
 // `no_std` environment.
 extern crate alloc;
 
-// The elementary types 
+// The elementary types
 use alloc::string::String;
 use alloc::vec::Vec;
 use alloc::collections::BTreeMap;
@@ -138,14 +136,14 @@ pub extern "C" fn call() {
 
 }
 ```
+
 This will serve as a base for introducing the elements needed for cross-contract communication.
 
-In a contract, you should first define the `call` entry point. It should be understood as a `constructor` for the contract. Everything included in the `call` entry point will be visible as metadata on a Casper network, in the contract's context. 
-You should already be familiar with the `call` entry point from the [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md) document. If this is not the case, be sure to familiarize yourself with it now.
+In a contract, you should first define the `call` entry point. It should be understood as a `constructor` for the contract. Everything included in the `call` entry point will be visible as metadata on a Casper network, in the contract's context. You should already be familiar with the `call` entry point from the [Writing a Basic Smart Contract in Rust](../../developers/writing-onchain-code/simple-contract.md) document. If this is not the case, be sure to familiarize yourself with it now.
 
-The contract code, with changes to the `call` entry point, should look as shown below: 
+The contract code, with changes to the `call` entry point, should look as shown below:
 
-```bash
+```rust
 #![no_std]
 #![no_main]
 
@@ -156,7 +154,7 @@ compile_error!("target arch should be wasm32: compile with '--target wasm32-unkn
 // `no_std` environment.
 extern crate alloc;
 
-// The elementary types 
+// The elementary types
 use alloc::string::String;
 use alloc::vec::Vec;
 use alloc::collections::BTreeMap;
@@ -187,7 +185,7 @@ pub extern "C" fn call() {
 
     // Insert the new value into the named keys
     named_keys.insert(String::from("message"),value_ref.into()); // use into to wrap the Uref into a casper_types::Key
-    // Create a new vector 
+    // Create a new vector
     let mut params = Vec::new();
     vec.push(Parameter::new("message", CLType::String));
 
@@ -206,7 +204,7 @@ pub extern "C" fn call() {
     // The contract is stored in the global state
     let (stored_contract_hash, _contract_version) = storage::new_contract(
         entry_points,                                       // entry points
-        Some(named_keys),                                   // named keys 
+        Some(named_keys),                                   // named keys
         Some("Hello_world_package_name".to_string()),       // package name
         Some("Hello_world_access_uref".to_string())         // access uref
     );
@@ -219,19 +217,19 @@ pub extern "C" fn call() {
 
 :::tip
 
-`runtime` and `storage` appear frequently in our code. If these terms are unfamiliar to you, you should familiarize yourself with the [Contract API Modules]( https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html).
+`runtime` and `storage` appear frequently in our code. If these terms are unfamiliar to you, you should familiarize yourself with the [Contract API Modules](https://docs.rs/casper-contract/latest/casper_contract/contract_api/index.html).
 
 :::
 
-The metadata for each of the contract's entry points is defined in the `call` entry point. When installing the contract, the system will look for the name of the entry point as specified by the metadata for that entry point. Therefore, each of the entry points defined in the code must share the same name as the `String` value passed when defining the metadata for the entry point.
+The metadata for each of the contract's entry points is defined in the `call` entry point. When installing the contract, the Casper Node will search for the entry point based on the name specified in its metadata. Therefore, each of the entry points defined in the code must share the same name as the `String` value passed when defining the metadata for the entry point.
 
-The #[no_mangle] flag ensures that the compiler does not modify the name of the entry point. The compiler will not enforce the condition that the name of the entry point is the same value present in its metadata definition, therefore the developer must be careful when defining their entry points.
+The `#[no_mangle]` attribute guarantees that the compiler won't alter the entry point's name. It doesn't mandate that the name matches its metadata definition, so developers need to be cautious when specifying entry points.
 
-In our case, we will define the entry point `update_msg` in the contract code just before `call`. 
+In our case, we will define the entry point `update_msg` in the contract code just before `call`.
 
 Your complete contract should match the following:
 
-```bash
+```rust
 #![no_std]
 #![no_main]
 
@@ -242,7 +240,7 @@ compile_error!("target arch should be wasm32: compile with '--target wasm32-unkn
 // `no_std` environment.
 extern crate alloc;
 
-// The elementary types 
+// The elementary types
 use alloc::string::String;
 use alloc::vec::Vec;
 use alloc::collections::BTreeMap;
@@ -275,11 +273,11 @@ pub extern "C" fn call() {
     // The value will be wraped in a URef
     let value_ref = storage::new_uref(value);
     // Creating the new set of named keys
-    // The keys are a Map of Key/Value 
+    // The keys are a Map of Key/Value
     let mut named_keys: BTreeMap<String, Key> = BTreeMap::new();
     // Insert the new value into the named keys
     named_keys.insert(String::from("message"),value_ref.into()); // use into to wrap the value to the key
-    // Create a new vector 
+    // Create a new vector
     let mut vec = Vec::new();
     vec.push(Parameter::new("message", CLType::String));
     // Create an Entry Point Object
@@ -297,7 +295,7 @@ pub extern "C" fn call() {
     // The contract is stored in the global state
     let (stored_contract_hash, _contract_version) = storage::new_contract(
         entry_points,                                       // entry points metadata
-        Some(named_keys),                                   // named keys 
+        Some(named_keys),                                   // named keys
         Some("Hello_world_package_name".to_string()),       // package name
         Some("Hello_world_access_uref".to_string())         // access uref
     );
@@ -320,12 +318,13 @@ There are many tools available to send a deploy to a Casper network. The simples
 Be sure to go through the prerequisites from the [Installing Smart Contracts and Querying Global State](../../developers/cli/installing-contracts.md) documentation.
 
 Make sure that after doing this you have:
+
 1. A valid private key for your account.
 2. Funded your account with 2000 CSPR on the Testnet, which you can use for testing your smart contract.
 
 Create the `keys` folder in the main folder of your project and make sure that the private key which you put into the folder is called `secret_key.pem`.
 
-Compile the contract in the contract directory so you obtain the contracts `.wasm`: 
+Compile the contract in the contract directory so you obtain the contracts `.wasm`:
 
 ```bash
 cd cross-contract
@@ -341,7 +340,7 @@ cd contract && cargo build --release --target wasm32-unknown-unknown
 wasm-strip contract/target/wasm32-unknown-unknown/release/contract.wasm 2>/dev/null | true
 ```
 
-With this step everything is in place to deploy the contract. 
+With this step everything is in place to deploy the contract.
 
 :::tip
 
@@ -387,7 +386,7 @@ casper-client get-deploy \
     --node-address http://136.243.187.84:7777 af42bc6dbc58f677d138eb968d897f965f1ed118a40980bc16efbcc2a0c71832
 ```
 
-This should return a JSON output containing information such as header data, approvers and payments. You can also receive this information by using the `verbose` flag with the `put-deploy` subcommand. Take time to familiarize yourself with the structure of the output. 
+This should return a JSON output containing information such as header data, approvers and payments. You can also receive this information by using the `verbose` flag with the `put-deploy` subcommand. Take time to familiarize yourself with the structure of the output.
 
 We can use the supplied deploy hash, `af42bc6dbc58f677d138eb968d897f965f1ed118a40980bc16efbcc2a0c71832` to find this contract using a block explorer. When viewed through the explorer, the status of the Deploy should be marked as `Success`.
 
@@ -405,11 +404,11 @@ In this tutorial we will be passing the contract hash, as an argument, into the 
 
 Prepare the `call` entry point as described below:
 
-```bash
+```rust
 
 #[no_mangle]
 pub extern "C" fn call() {
-    
+
     // Create the list of required runtime arguments for the given entry point.
     let mut vec = Vec::new();
     vec.push(Parameter::new("new_message", CLType::String));
@@ -433,7 +432,7 @@ pub extern "C" fn call() {
     // The contract is stored in the global state
     let (stored_contract_hash, _contract_version) = storage::new_contract(
        entry_points,                                        // entry points
-       Some(named_keys),                                    // named keys 
+       Some(named_keys),                                    // named keys
        Some("contract2_package_name".to_string()),          // package name
        Some("contract2_access_uref".to_string())            // access uref
     );
@@ -448,7 +447,7 @@ This would be the easiest implementation of the `call` entry point. There is onl
 
 Now that we have defined the metadata for the `call_contract_2` entry point, we must now define the entry point itself. This entry point will take the second contract hash as an argument and call the entry point `update_msg`. It will then pass a message to the second contract as a parameter, which will be stored in that contract’s context.
 
-```bash
+```rust
 #[no_mangle]
 pub extern "C" fn call_contract_2() {
 
@@ -458,13 +457,13 @@ pub extern "C" fn call_contract_2() {
     .map(|hash| ContractHash::new(hash))
     .unwrap();
 
-    // Get the value of the message from the second parameter  
+    // Get the value of the message from the second parameter
     let new_value: String = runtime::get_named_arg("new_message");
 
     // Call the update_msg entry point on the other contract with the parameter values
     let _: () = runtime::call_contract(
-        contract_hash, 
-        "update_msg", 
+        contract_hash,
+        "update_msg",
         runtime_args! {
             "message" => new_value,
         },
@@ -475,7 +474,7 @@ pub extern "C" fn call_contract_2() {
 
 Your complete contract implementation should look as follows:
 
-```bash
+```rust
 
 #![no_std]
 #![no_main]
@@ -487,7 +486,7 @@ compile_error!("target arch should be wasm32: compile with '--target wasm32-unkn
 // `no_std` environment.
 extern crate alloc;
 
-// The elementary types 
+// The elementary types
 use alloc::string::String;
 use alloc::vec::Vec;
 use crate::alloc::string::ToString;
@@ -517,8 +516,8 @@ pub extern "C" fn call_contract_2() {
     let new_value: String = runtime::get_named_arg("new_message");
 
     let _: () = runtime::call_contract(
-        contract_hash, 
-        "update_msg", 
+        contract_hash,
+        "update_msg",
         runtime_args! {
             // key    => value
             "message" => new_value,
@@ -529,7 +528,7 @@ pub extern "C" fn call_contract_2() {
 
 #[no_mangle]
 pub extern "C" fn call() {
-    
+
     // Create a new vector - this will be the signature of the entrypoint
     let mut vec = Vec::new();
     vec.push(Parameter::new("new_message", CLType::String));
@@ -553,7 +552,7 @@ pub extern "C" fn call() {
     // The contract is stored in global state
     let (stored_contract_hash, _contract_version) = storage::new_contract(
        entry_points,                                        // entry points
-       Some(named_keys),                                    // named keys 
+       Some(named_keys),                                    // named keys
        Some("contract2_package_name".to_string()),          // package name
        Some("contract2_access_uref".to_string())            // access uref
     );
@@ -573,8 +572,7 @@ cd contract && cargo build --release --target wasm32-unknown-unknown
 wasm-strip contract/target/wasm32-unknown-unknown/release/contract.wasm 2>/dev/null | true
 ```
 
-Create the `keys` subfolder and copy the keys from the `keys` subfolder in the first contract into this subfolder.
-The call from the terminal will look as follows:
+Create the `keys` subfolder and copy the keys from the `keys` subfolder in the first contract into this subfolder. The call from the terminal will look as follows:
 
 ```bash
 casper-client put-deploy \
@@ -593,6 +591,7 @@ You may have noticed that the contract.wasm is always output to the same filenam
 make prepare
 make build-contract
 ```
+
 :::
 
 After the deploy we can check if it was successful and inspect the runtime arguments of the deployed entry points.
@@ -634,7 +633,7 @@ In the `execution_results` JSON element we should see "Success".
           "Success": {
             "cost": "16580565260",
             "effect": { ...
-                
+
                 }
             }
         }
@@ -733,9 +732,9 @@ If we check the account's named keys, we can see all of the account's deployed c
 </details>
 <br></br>
 
-As we have now managed to deploy two contracts, we can call the entry point of this contract, passing appropriate arguments to the function. 
+As we have now managed to deploy two contracts, we can call the entry point of this contract, passing appropriate arguments to the function.
 
-The Uref of the message variable is stored under the Named Keys in the contract. 
+The Uref of the message variable is stored under the Named Keys in the contract.
 
 ```bash
 casper-client query-global-state \
@@ -796,7 +795,7 @@ This is a simple `hello world` string. After invoking the entry point using the 
 
 :::info
 
-`--session-hash` - is the contract hash, which is returned from the put-deploy. 
+`--session-hash` - is the contract hash, which is returned from the put-deploy.
 
 `--session-arg` "hello world_contract:Key= ..." - the hash of the contract which we want to call from within the contract identified by the session-hash.
 
@@ -1102,5 +1101,6 @@ With this we have succeeded in cross-contract communication between two contract
 ## Summary {#summary}
 
 In this tutorial, we:
-- Developed two Rust contracts on a Casper network, where one smart contract is calling an entry point of the second smart contract
-- Called an entry point on one contract from the other contract, passing a value as an argument to this entry point.
+
+-   Developed two Rust contracts on a Casper network, where one smart contract is calling an entry point of the second smart contract
+-   Called an entry point on one contract from the other contract, passing a value as an argument to this entry point.
