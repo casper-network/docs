@@ -275,6 +275,7 @@ casper-client get-dictionary-item -n http://localhost:11101/rpc/ \
 --dictionary-item-key "0ea7998b2822afe5b62b08a21d54c941ad791279b089f3f7ede0d72b477eca34"
 ```
 
+</details>
 
 ## Approving an Account
 
