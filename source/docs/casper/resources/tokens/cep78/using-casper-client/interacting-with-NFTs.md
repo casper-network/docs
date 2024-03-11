@@ -17,13 +17,17 @@ This document describes interacting with NFTs on a Casper network using the Rust
 
 1. [Directly Invoking Entrypoints](#directly-invoking-entrypoints)
 
-2. [Transferring NFTs](#transferring-nfts)
+2. [Minting NFTs](#minting-nfts)
 
-3. [Approving Another Account](#approving-another-account)
+3. [Transferring NFTs](#transferring-nfts)
 
-4. [Minting NFTs](#minting-nfts)
+4. [Checking Balances](#checking-balances)
 
-5. [Burning NFTs](#burning-nfts)
+5. [Approving an Account](#approving-an-account)
+
+6. [Burning NFTs](#burning-nfts)
+
+7.  [Next Steps](#next-steps)
 
 
 ## Directly Invoking Entrypoints
@@ -236,39 +240,40 @@ casper-client put-deploy -n http://localhost:11101/rpc --chain-name "casper-net-
 </details>
 
 
-## Checking the Balance
+## Checking Balances
 
-The following command invokes the `balance_of_call.wasm` and saves the number of tokens owned under the account's named keys.
+To check an account's balance, get the latest state root hash and query the `balances` dictionary given the NFT contract hash and the owner's account hash without the "account-hash-" prefix, as shown below.
 
-- `casper-client put-deploy -n http://localhost:11101/rpc --chain-name "casper-net-1" --payment-amount 5000000000 -k ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem --session-path ~/casper/enhanced-nft/client/balance_of_session/target/wasm32-unknown-unknown/release/balance_of_call.wasm`
+- `casper-client get-dictionary-item -n http://localhost:11101/rpc`
 
-1. `--session-arg "nft_contract_hash:key='hash-378a43e38bc5129d8aa3bcd04f5c9a97be73f85b5be574182ac1346f04520796'"`
+1. `--state-root-hash f22e8ecfb3d2700d5f902c83da456c32f130b73d0d35037fe89b2d4b4933673f`
 
-   The contract hash of the previously installed CEP-78 NFT contract.
+   The latest state root hash.
 
-2. `--session-arg "token_owner:key='account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655'"`
+2. `--contract-hash hash-378a43e38bc5129d8aa3bcd04f5c9a97be73f85b5be574182ac1346f04520796`
 
-   The account hash of the user whose token balance we are checking.
+   The NFT contract hash.
 
-3. `--session-arg "key_name:string='balance'"`
+3. `--dictionary-name "balances"`
 
-   The name for the entry under the `NamedKeys` under which the balance amount will be stored.
+   The dictionary tracking the number of tokens for each account hash.
+
+4. `--dictionary-item-key "0ea7998b2822afe5b62b08a21d54c941ad791279b089f3f7ede0d72b477eca34"`
+
+   The account hash of the user whose token balance we are checking without the `account-hash-` prefix.
 
 <details>
-<summary><b>Casper client command without comments</b></summary>
+<summary><b>Casper client commands without comments</b></summary>
 
 ```bash
-casper-client put-deploy -n http://localhost:11101/rpc/ \
---chain-name "casper-net-1" \
---payment-amount 5000000000 \
--k ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-1/keys/secret_key.pem \
---session-path ~/casper/enhanced-nft/client/balance_of_session/target/wasm32-unknown-unknown/release/balance_of_call.wasm \
---session-arg "nft_contract_hash:key='hash-378a43e38bc5129d8aa3bcd04f5c9a97be73f85b5be574182ac1346f04520796'" \
---session-arg "token_owner:key='account-hash-e70dbca48c2d31bc2d754e51860ceaa8a1a49dc627b20320b0ecee1b6d9ce655'" \
---session-arg "key_name:string='balance'"
-```
+casper-client get-state-root-hash --node-address https://rpc.testnet.casperlabs.io/
 
-</details>
+casper-client get-dictionary-item -n http://localhost:11101/rpc/ \
+--state-root-hash f22e8ecfb3d2700d5f902c83da456c32f130b73d0d35037fe89b2d4b4933673f \
+--contract-hash hash-378a43e38bc5129d8aa3bcd04f5c9a97be73f85b5be574182ac1346f04520796 \
+--dictionary-name "balances" \
+--dictionary-item-key "0ea7998b2822afe5b62b08a21d54c941ad791279b089f3f7ede0d72b477eca34"
+```
 
 
 ## Approving an Account
