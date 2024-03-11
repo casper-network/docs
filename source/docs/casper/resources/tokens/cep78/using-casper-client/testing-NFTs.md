@@ -14,7 +14,7 @@ The testing framework in this tutorial uses the [Casper engine test support](htt
 
 The [tests](https://github.com/casper-ecosystem/cep-78-enhanced-nft/tree/dev/tests/src) source folder contains over 150 tests covering a variety of scenarios, including contract installation, minting and burning tokens, sending transfers, upgrading the contract, and listening to events.
 
-For more details about the test framework and how each test is set up, visit the [Testing Smart Contracts](../../../../developers/writing-onchain-code/testing-contracts/) documentation page.
+For more details about the test framework and how each test is set up, visit the [Testing Smart Contracts](../../../../developers/writing-onchain-code/testing-contracts.md) documentation page.
 
 ## Running the Tests
 

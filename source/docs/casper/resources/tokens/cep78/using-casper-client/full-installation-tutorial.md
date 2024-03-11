@@ -15,7 +15,7 @@ Information on the modalities used throughout this installation process can be f
     - [Building the Contract and Tests](#building-the-contract-and-tests)
 2. [Reviewing the Contract Implementation](#reviewing-the-contract-implementation)
     - [Required Crates](#required-crates)
-    - [Initialization Flow](#Initialization-flow)
+    - [Initialization Flow](#initialization-flow)
     - [Contract Entrypoints](#contract-entrypoints)
 3. [Installing the Contract](#installing-the-contract)
     - [Querying Global State](#querying-global-state)
@@ -29,12 +29,12 @@ Information on the modalities used throughout this installation process can be f
 
 Before using this guide, ensure you meet the following requirements:
 
-- Set up the [development prerequisites](https://docs.casper.network/developers/prerequisites/), including the [Casper client](https://docs.casper.network/developers/prerequisites/#install-casper-client)
-- Get a valid [node address](https://docs.casper.network/developers/prerequisites/#acquire-node-address-from-network-peers) from the network
-- Know how to install a [smart contract](https://docs.casper.network/developers/cli/sending-deploys/) on a Casper network
+- Set up the [development prerequisites](../../../../developers/prerequisites.md), including the [Casper client](../../../../developers/prerequisites.md#install-casper-client)
+- Get a valid [node address](../../../../developers/prerequisites.md#acquire-node-address-from-network-peers) from the network
+- Know how to install a [smart contract](../../../../developers/cli/sending-deploys.md) on a Casper network
 - Hold enough CSPR tokens to pay for transactions
 
-The [Writing Rust Contracts on Casper](https://docs.casper.network/developers/writing-onchain-code/simple-contract/) document outlines many aspects of this tutorial and should be read as a prerequisite.
+The [Writing Rust Contracts on Casper](../../../../developers/writing-onchain-code/simple-contract.md) document outlines many aspects of this tutorial and should be read as a prerequisite.
 
 ### Building the Contract and Tests
 
@@ -57,7 +57,7 @@ rustup target add wasm32-unknown-unknown
 info: component 'rust-std' for target 'wasm32-unknown-unknown' is up to date
 ```
 
-If you do not see this message, check the [Getting Started Guide](https://docs.casper.network/developers/writing-onchain-code/getting-started/).
+If you do not see this message, check the [Getting Started Guide](../../../../developers/writing-onchain-code/getting-started.md).
 
 The contract code can be compiled to Wasm by running the `make build-contract` command provided in the Makefile at the top level. The Wasm will be found in the `contract/target/wasm32-unknown-unknown/release` directory as `contract.wasm`.
 
@@ -147,11 +147,11 @@ There is also the [**migrate**](https://github.com/casper-ecosystem/cep-78-enhan
 
 ## Installing the Contract
 
-Installing the enhanced NFT contract to global state requires using a [Deploy](../../../../developers/dapps/sending-deploys/). But before proceeding with the installation, verify the network state and the status of the account that will send the installation deploy.
+Installing the enhanced NFT contract to global state requires using a [Deploy](../../../../developers/cli/sending-deploys.md). But before proceeding with the installation, verify the network state and the status of the account that will send the installation deploy.
 
 ### Querying Global State
 
-This step queries information about the network state given the latest state root hash. You will also need the [IP address](../../../../developers/prerequisites/#acquire-node-address-from-network-peers) from a Testnet peer node.
+This step queries information about the network state given the latest state root hash. You will also need the [IP address](../../../../developers/prerequisites.md#acquire-node-address-from-network-peers) from a Testnet peer node.
 
 ```bash
 casper-client get-state-root-hash --node-address http://localhost:11101/rpc/
@@ -218,7 +218,7 @@ casper-client query-global-state --node-address http://localhost:11101/rpc/ \
 
 Below is an example of a `casper-client` command that provides all required session arguments to install a valid instance of the CEP-78 contract on global state. 
 
-Use the Testnet to understand the exact gas amount required for installation. Refer to the [note about gas prices](../../../../developers/cli/sending-deploys/#a-note-about-gas-price) to understand payment amounts and gas price adjustments.
+Use the Testnet to understand the exact gas amount required for installation. Refer to the [note about gas prices](../../../../developers/cli/sending-deploys.md#a-note-about-gas-price) to understand payment amounts and gas price adjustments.
 
 - `casper-client put-deploy -n http://localhost:11101/rpc/ --chain-name "casper-net-1" --payment-amount 500000000000 -k ~/casper/casper-node/utils/nctl/assets/net-1/nodes/node-2/keys/secret_key.pem --session-path contract/target/wasm32-unknown-unknown/release/contract.wasm`
 
