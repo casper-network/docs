@@ -14,7 +14,7 @@ Information on the modalities used throughout this installation process can be f
     - [Prerequisites](#prerequisites)
     - [Building the Contract and Tests](#building-the-contract-and-tests)
 2. [Reviewing the Contract Implementation](#reviewing-the-contract-implementation)
-    - [Required Crates](#required-crates)
+    - [Included Crates and Modules](#included-crates-and-modules)
     - [Initialization Flow](#initialization-flow)
     - [Contract Entrypoints](#contract-entrypoints)
 3. [Installing the Contract](#installing-the-contract)
@@ -78,47 +78,19 @@ There are four steps to follow when you intend to create your implementation of 
 3. Compile the customized code to Wasm.
 4. Send the customized Wasm as a deploy to a Casper network.
 
-### Required Crates
+### Included Crates and Modules
 
-This tutorial applies to the Rust implementation of the Casper NFT standard, which requires the following Casper crates:
+The contract implementation starts by importing the following essential Casper crates:
 
 - [casper_contract](https://docs.rs/casper-contract/latest/casper_contract/index.html) - A Rust library for writing smart contracts on Casper networks
 - [casper_types](https://docs.rs/casper-types/latest/casper_types/) - Types used to allow the creation of Wasm contracts and tests for use on Casper networks
 
-Here is the code snippet that imports those crates:
-
-```rust
-use casper_contract::{
-    contract_api::{
-        runtime::{self, call_contract, revert},
-        storage::{self},
-    },
-    unwrap_or_revert::UnwrapOrRevert,
-};
-use casper_types::{
-    contracts::NamedKeys, runtime_args, CLType, CLValue, ContractHash, ContractPackageHash,
-    EntryPoint, EntryPointAccess, EntryPointType, EntryPoints, Key, KeyTag, Parameter, RuntimeArgs,
-    Tagged,
-};
-```
-
-**Note**: In Rust, the keyword `use` is like an include statement in C/C++.
-
 The contract code defines additional modules in the `contract/src` folder:
-
-```rust
-mod constants;
-mod error;
-mod events;
-mod metadata;
-mod modalities;
-mod utils;
-```
 
 - `constants` - Constant values required to run the contract code
 - `error` - Errors related to the NFT contract
 - `events` - A library for contract-emitted events
-- `metadata` - Module handling the contract's metadata and corresponding dictionary
+- `metadata` - A module handling the contract's metadata and corresponding dictionary
 - `modalities` - Common expectations around contract usage and behavior
 - `utils` - Utility and helper functions to run the contract code
 
@@ -128,22 +100,39 @@ Initializing the contract happens through the `call() -> install_contract() -> i
 
 ### Contract Entrypoints
 
-This section briefly explains the essential entrypoints used in the Casper NFT contract. To see their full implementation, refer to the [main.rs](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/contract/src/main.rs) contract file. For further questions, contact the Casper support team via the [Discord channel](https://discord.com/invite/casperblockchain). The following entrypoints are listed as they are found in the code.
+This section briefly explains the essential entrypoints used in the Casper NFT contract. To see their full implementation, refer to the [main.rs](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/contract/src/main.rs) contract file. For further questions, contact the Casper support team via the [Discord channel](https://discord.com/invite/casperblockchain).
 
 - [**approve**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1002) - Allows a spender to transfer up to an amount of the owners’s tokens
 - [**balance_of**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1616) - Returns the token balance of the owner
 - [**burn**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L874) - Burns tokens, reducing the total supply
 - [**get_approved**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1728) - Returns the hash of the approved account for a specified token identifier
 - [**init**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L81) - Sets the collection name, symbol, and total token supply; initializes the allow minting setting, minting mode, ownership mode, NFT kind, holder mode, whitelist mode and contract whitelist, JSON schema, receipt name, identifier mode, and burn mode. This entrypoint can only be called once when the contract is installed on the network
+- [**is_approved_for_all**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1328) - Returns yes if an account is approved as an operator for a token owner
 - [**metadata**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1675) - Returns the metadata associated with a token identifier
 - [**mint**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L619) - Mints additional tokens if minting is allowed, increasing the total supply
 - [**owner_of**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1636) - Returns the owner for a specified token identifier
+- [**register_owner**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L2159) - Register an owner for a specified token identifier. Works when the *OwnerReverseLookupMode* is set to *Complete*
+- [**revoke**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1138) - Revokes an account that was approved for an identified token transfer. The *OwnershipMode* must be set to *Transferable*
 - [**set_approval_for_all**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1254) - Allows a spender to transfer all of the owner's tokens
 - [**set_token_metadata**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1773) - Sets the metadata associated with a token identifier
 - [**set_variables**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L496) - Allows the user to set any combination of variables simultaneously, defining which variables are mutable or immutable
-- [**transfer**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1359) - Transfers tokens from the token owner to a specified account.  The transfer will succeed if the caller is the token owner or an approved operator. The transfer will fail if the OwnershipMode is set to Minter or Assigned
+- [**transfer**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1359) - Transfers tokens from the token owner to a specified account.  The transfer will succeed if the caller is the token owner or an approved operator. The *OwnershipMode* must be set to *Transferable*
+- [**updated_receipts**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L2111) - Allows an owner of one or more NFTs held by the contract instance to attain up to date receipt information for the NFTs they currently own. Works when the *OwnerReverseLookupMode* is set to *Complete*
 
 There is also the [**migrate**](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/440bff44277ab5fd295f37229fe92278339d3753/contract/src/main.rs#L1975) entrypoint, which was needed only for migrating a 1.0 version of the NFT contract to version 1.1.
+
+:::important
+
+The following entrypoints return data using `runtime::ret`, which is useful mainly if the entrypoint caller is a contract:
+
+- `mint` (with *OwnerReverseLookupMode* set to *Complete*)
+- `transfer` (with *OwnerReverseLookupMode* set to *TransfersOnly*)
+- `balance_of`
+- `is_approved_for_all`
+- `owner_of`
+- `metadata`
+
+:::
 
 ## Installing the Contract
 
