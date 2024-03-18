@@ -503,7 +503,7 @@ The result of a single deploy. It serializes as a `u8` tag indicating either `Fa
 
 The result of a failed execution.
 
--   `effects` The [effect](effects) of executing the deploy.
+-   `effects` The [effect](#effects) of executing the deploy.
 
 -   `transfers` A record of transfers performed while executing the deploy, serialized as a [`List`](#clvalue-list).
 
