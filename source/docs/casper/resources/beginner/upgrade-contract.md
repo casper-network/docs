@@ -17,9 +17,9 @@ Here is a video walkthrough of this tutorial.
 
 ## Prerequisites {#prerequisites}
 
-- The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state.
-- You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](../../developers/cli/sending-deploys.md), and [calling contracts](../../developers/cli/calling-contracts.md) on a Casper network.
-- You have installed [A Counter on the Testnet](/counter-testnet/) that you will upgrade as part of this tutorial.
+-   The [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html) referencing the [ContractPackage](https://docs.rs/casper-types/latest/casper_types/struct.ContractPackage.html) where an unlocked contract is stored in global state.
+-   You should be familiar with [writing smart contracts](/writing-contracts), [on-chain contracts](../../developers/cli/sending-deploys.md), and [calling contracts](../../developers/cli/calling-contracts.md) on a Casper network.
+-   You have installed [A Counter on the Testnet](/counter-testnet/) that you will upgrade as part of this tutorial.
 
 :::note
 
@@ -29,12 +29,13 @@ Installing the first version of the contract (contract-v1.wasm) as shown in the 
 
 If you explore [the code](https://github.com/casper-ecosystem/counter/), you will observe the different versions of the contract:
 
-- `contract-v1` is the counter contract you can see in the [A Counter on the Testnet](/counter-testnet/) tutorial.
-- `contract-v2` is the contract with the new `counter_decrement` entry point.
+-   `contract-v1` is the counter contract you can see in the [A Counter on the Testnet](/counter-testnet/) tutorial.
+-   `contract-v2` is the contract with the new `counter_decrement` entry point.
+-   `contract-v3` is the contract with the new `get_last_updated_at` entry point and `last_updated_at` named key.
 
 ## Contract Versioning Flow {#contract-versioning-flow}
 
-The following is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash. 
+The following is an example workflow for creating a versioned contract package. Your workflow may differ if you have already created the contract package and have a handle on its hash.
 
 1. Create a contract in the most common way, using [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html).
 2. Add a new version of the contract using [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html).
@@ -81,21 +82,21 @@ There are many changes you could make to a Casper contract, like adding new entr
 To add a new contract version in the package, invoke the [add_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.add_contract_version.html) function and pass in the [ContractPackageHash](https://docs.rs/casper-types/latest/casper_types/contracts/struct.ContractPackageHash.html), [EntryPoints](https://docs.rs/casper-types/latest/casper_types/contracts/struct.EntryPoints.html), and [NamedKeys](https://docs.rs/casper-types/latest/casper_types/contracts/type.NamedKeys.html). In the counter example, you will find the `add_contract_version` call [here](https://github.com/casper-ecosystem/counter/blob/57e3912735f93e1d0f667b936675964ecfdc6594/contract-v2/src/main.rs#L164).
 
 ```rust
-    let (contract_hash, contract_version) = 
-    storage::add_contract_version(contract_package_hash, 
-                                  entry_points, 
+    let (contract_hash, contract_version) =
+    storage::add_contract_version(contract_package_hash,
+                                  entry_points,
                                   named_keys);
 ```
 
 Explanation of arguments:
 
-- `contract_package_hash` - This hash directs you to the contract package. See [Hash and Key Explanations](../../concepts/hash-types.md#hash-and-key-explanations).
-- `entry_points` - Entry points of the contract, which can be modified or newly added.
-- `named_keys` - Named key pairs of the contract.
+-   `contract_package_hash` - This hash directs you to the contract package. See [Hash and Key Explanations](../../concepts/hash-types.md#hash-and-key-explanations).
+-   `entry_points` - Entry points of the contract, which can be modified or newly added.
+-   `named_keys` - Named key pairs of the contract.
 
 The new contract version carries on named keys from the previous version. If you specify a new set of named keys, they will be combined with the old named keys in the new contract version. If the old and new contract versions use the same named keys, then the new values would be present in the new version of the contract.
 
-You will need to manage contract versioning, considering clients that may use older versions. Here are a few options: 
+You will need to manage contract versioning, considering clients that may use older versions. Here are a few options:
 
 1. Pin your client contract to the contract hash of a specific version.
 2. Use [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html) with a version number to pin your client contract to that version.
@@ -132,7 +133,7 @@ casper-client put-deploy \
     --session-path [PATH]/contract-v2/target/wasm32-unknown-unknown/release/counter-v2.wasm
 ```
 
-### Step 5. Verify your changes 
+### Step 5. Verify your changes
 
 You can write unit tests to verify the behavior of the new contract version with [call_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_contract.html) or [call_versioned_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/runtime/fn.call_versioned_contract.html). When you add a new contract to the package (which increments the highest enabled version), you will obtain a new contract hash, the primary identifier of the contract. You can use the contract hash with call_contract. Alternatively, you can use call_versioned_contract and specify the contract_package_hash and the newly added version.
 
@@ -238,7 +239,6 @@ casper-client query-global-state \
 
 </details>
 
-
 Check the version and package details with the latest state root hash:
 
 ```bash
@@ -247,6 +247,7 @@ casper-client query-global-state \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "version"
 ```
+
 <details>
 <summary>Example output</summary>
 
@@ -277,6 +278,7 @@ casper-client query-global-state \
     --state-root-hash [STATE_ROOT_HASH] \
     --key [ACCOUNT_HASH] -q "counter_package_name"
 ```
+
 <details>
 <summary>Example output</summary>
 
@@ -315,7 +317,7 @@ casper-client query-global-state \
 
 </details>
 
-Call the new entry point, _counter_decrement_, using the package name and check the results. 
+Call the new entry point, _counter_decrement_, using the package name and check the results.
 
 ```bash
 casper-client put-deploy \
@@ -330,13 +332,13 @@ casper-client put-deploy \
 :::note
 
 There are two ways to call versioned contracts:
+
 1. [Calling Contracts by Package Hash](/developers/writing-onchain-code/calling-contracts/#StoredVersionedContractByHash)
 2. [Calling Contracts by Package Name](/developers/writing-onchain-code/calling-contracts/#StoredVersionedContractByName)
 
 :::
 
 After calling the entry point, the count value should be decremented. You can verify it by querying the network again using the new state root hash.
-
 
 ## Disabling and Enabling Contract Versions
 
@@ -345,6 +347,7 @@ You can disable a contract version within a contract package by using the [disab
 Disabled contract versions can no longer be executed. As such, if there is only a single contract version within the package, you will no longer be able to use the contract.
 
 <!--TODO This link is only a guess until 1.5.4 releases and the auto-docs populate.-->
+
 [Enable_contract_version](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.enable_contract_version.html) allows you to re-enable a previously disabled contract version.
 
 ::note
@@ -359,8 +362,8 @@ You can create a locked contract package with the [new_locked_contract](https://
 
 ```rust
 let (stored_contract_hash, _) = storage::new_locked_contract(
-    contract_entry_points, 
-    Some(contract_named_keys), 
+    contract_entry_points,
+    Some(contract_named_keys),
     Some("contract_package_name".to_string()),
     Some("contract_access_uref".to_string()),
 );
@@ -373,3 +376,26 @@ Apply the contract entry points and named keys when you call the function. You c
 Creating a locked contract package is an irreversible decision. To upgrade a contract, use [new_contract](https://docs.rs/casper-contract/latest/casper_contract/contract_api/storage/fn.new_contract.html) as Step 1 explains.
 
 :::
+
+Of course! Here's the final improved section:
+
+## Adding New Fields During Upgrades
+
+`contract-v3` demonstrates adding new data storage to your contract. It introduces a new field for the last update timestamp.
+
+**Key Steps:**
+
+1. **Define a Named Key:** A key (`LAST_UPDATED_KEY`) references the new field.
+
+2. **Initialize the Field:** A URef is created using `storage::new_uref` to point to the storage location. It's then added to `NamedKeys` along with the key.
+
+**Code Breakdown:**
+
+```rust
+// Create NamedKeys and initialize the new field (last_updated) with default value (0).
+let mut named_keys = NamedKeys::new();
+let last_updated = storage::new_uref(0_u64);
+named_keys.insert(String::from(LAST_UPDATED_KEY), last_updated.into());
+```
+
+For a deeper dive into the implementation details, explore the `contract-v3` code itself. This hands-on exploration will further solidify your understanding of adding new fields during contract upgrades.

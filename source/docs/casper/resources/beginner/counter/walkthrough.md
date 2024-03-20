@@ -10,23 +10,31 @@ First, you will need to clone [the counter contract repository](https://github.c
 git clone https://github.com/casper-ecosystem/counter
 ```
 
-If you explore the source code, you will see that there are two versions of the counter contract and one file with session code that calls the contract's entry-points:
+If you explore the source code, you will see that there are three versions of the counter contract and one file with session code that calls the contract's entry-points:
 
-- `contract-v1`
+-   **`contract-v1`**
 
-    - This is the first version of the counter contract.
-    - Defines two named keys: _counter_ to reference the contract and an associated variable _count_ to store a value.
-    - Provides a function to get the current count (_count_get_).
-    - Provides a function to increment the current count (_counter_inc_).
-    
-- `contract-v2`
+    -   This is the first version of the counter contract.
+    -   It defines two named keys:
+        -   `counter`: References the contract itself.
+        -   `count`: Stores the current counter value.
+    -   It provides functions for:
+        -   `get_count`: Retrieves the current counter value.
+        -   `counter_inc`: Increments the counter value by 1.
 
-    - This is a second version of the counter contract, which will not be used in this tutorial. 
-    - This version provides an additional function to decrement the counter and to demonstrate contract upgrades in another tutorial.
+-   **`contract-v2`** (Not Used in This Tutorial)
 
-- `counter-call`
+    -   An extension of `contract-v1`. It demonstrates decrementing the counter and contract upgrades.
 
-    - This is session code that retrieves the _contract-v1_ contract, gets the current count value, increments it, and ensures the count was incremented by 1.
+-   **`contract-v3` ** (Not Used in This Tutorial)
+
+    -   This version showcases how to add new functionalities during smart contract upgrades. It extends `contract-v1` and `contract-v2` by introducing:
+        -   A new named key: `last_updated_at` - Tracks the timestamp of the last counter update.
+        -   A new entry point: `get_last_updated_at` - Retrieves the `last_updated_at` timestamp.
+    -   It focuses on the process of adding new fields like `last_updated_at` to existing contracts.
+
+-   **`counter-call`**
+    -   Session code that retrieves the specific contract version (e.g., `contract-v1`), interacts with its functions (e.g., `get_count`, `counter_inc`), and verifies the expected behavior.
 
 ## Create a Local Network {#create-a-local-network}
 
@@ -68,7 +76,7 @@ Get the state root hash:
 casper-client get-state-root-hash --node-address http://localhost:11101
 ```
 
-You are using localhost as the node server since the network is running on our local machine. Make a note of the _state-root-hash_ that is returned, but keep in mind that this hash value will need to be updated every time you modify the network state. 
+You are using localhost as the node server since the network is running on our local machine. Make a note of the _state-root-hash_ that is returned, but keep in mind that this hash value will need to be updated every time you modify the network state.
 
 Finally, query the actual state:
 
@@ -223,7 +231,6 @@ casper-client put-deploy \
 
 To make sure that the session code ran successfully, get the new state root hash and query the network.
 
-
 ```bash
 casper-client get-state-root-hash --node-address http://localhost:11101
 ```
@@ -236,6 +243,6 @@ casper-client query-global-state --node-address http://localhost:11101 \
     --key [ACCOUNT_HASH] -q "counter/count"
 ```
 
-If all went according to plan, your count value should be 2 at this point. 
+If all went according to plan, your count value should be 2 at this point.
 
 Congratulations on building, installing, and using a smart contract on your local network!
