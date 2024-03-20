@@ -37,7 +37,7 @@ The [Casper CEP-78 Enhanced NFT Standard](https://github.com/casper-ecosystem/ce
 
 Simple examples for dictionary use within CEP-78 include the [`approve`](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/contract/src/main.rs#L772) dictionary.
 
-More advanced dictionary functionality can be found in the [CEP-78 Page System](https://github.com/casper-ecosystem/cep-78-enhanced-nft#the-cep-78-page-system), which uses a series of dictionaries to keep track of token ownership. These dictionaries form the basis of the reverse lookup mode, which allows users to easily view a list of owned tokens by account or contract.
+More advanced dictionary functionality can be found in the [CEP-78 Page System](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/docs/reverse-lookup.md#the-cep-78-page-system), which uses a series of dictionaries to keep track of token ownership. These dictionaries form the basis of the reverse lookup mode, which allows users to easily view a list of owned tokens by account or contract.
 
 ## Creating Dictionaries in a Contract's Context
 

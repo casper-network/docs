@@ -319,7 +319,22 @@ module.exports = {
                     },
                     items: [
                         "resources/tokens/cep78/modalities",
-                        "resources/tokens/cep78/using-casper-client",
+                        {
+                            type: "category",
+                            label: "On-chain Installation",
+                            collapsible: true,
+                            collapsed: true,
+                            link: {
+                                type: "doc",
+                                id: "resources/tokens/cep78/using-casper-client/quickstart-guide",
+                            },
+                            items: [
+                                "resources/tokens/cep78/using-casper-client/full-installation-tutorial",
+                                "resources/tokens/cep78/using-casper-client/interacting-with-NFTs",
+                                "resources/tokens/cep78/using-casper-client/querying-NFTs",
+                                "resources/tokens/cep78/using-casper-client/testing-NFTs",
+                            ],
+                        },
                         "resources/tokens/cep78/reverse-lookup",
                         "resources/tokens/cep78/js-tutorial",
                     ],

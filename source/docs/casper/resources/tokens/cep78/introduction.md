@@ -16,6 +16,8 @@ The pre-built Wasm for the contract and all other utility session code can be fo
 
 The `call` method will install the contract with the necessary entrypoints and call the `init()` entrypoint, which allows the contract to self-initialize and set up the necessary state variables for operation.
 
+The [Full Installation Tutorial](./using-casper-client/full-installation-tutorial.md) provides a step-by-step workflow.
+
 ### Required Runtime Arguments
 
 The following are the required runtime arguments that must be passed to the installer session code to correctly install the NFT contract. For more information on the modalities that these arguments set, please refer to the [Modalities](./modalities.md) documentation.
@@ -46,7 +48,7 @@ The following are the optional parameters that can be passed in at the time of i
 
 #### Example deploy
 
-The following is an example of installing the NFT contract via a deploy using the Rust CLI Casper client. You can find more examples [here](./using-casper-client.md).
+The following is an example of installing the NFT contract via a deploy using the Rust CLI Casper client. You can find more examples [here](./using-casper-client/full-installation-tutorial.md).
 
 ```bash
 casper-client put-deploy -n http://65.108.0.148:7777/rpc --chain-name "casper-test" --payment-amount 500000000000 -k keys/secret_key.pem --session-path contract/target/wasm32-unknown-unknown/release/contract.wasm \
@@ -89,7 +91,7 @@ Upgrade to v1.1.1 using a [Standard NamedKey Convention](https://github.com/casp
 
 ## Installing and Interacting with the Contract using the Rust Casper Client
 
-You can find instructions on installing an instance of the CEP-78 contract using the Rust CLI Casper client [here](./using-casper-client.md).
+You can find instructions on installing an instance of the CEP-78 contract using the Rust CLI Casper client [here](./using-casper-client/full-installation-tutorial.md).
 
 ## Test Suite and Specification
 
