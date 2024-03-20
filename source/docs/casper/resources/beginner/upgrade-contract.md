@@ -377,8 +377,6 @@ Creating a locked contract package is an irreversible decision. To upgrade a con
 
 :::
 
-Of course! Here's the final improved section:
-
 ## Adding New Fields During Upgrades
 
 `contract-v3` demonstrates adding new data storage to your contract. It introduces a new field for the last update timestamp.
