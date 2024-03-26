@@ -82,12 +82,12 @@ folder within the project folder.
 
 ### Checking Token Ownership
 
-[Learn to check token ownership](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/tutorials/token-ownership-tutorial.md) starting with version [v1.1.1](https://github.com/casper-ecosystem/cep-78-enhanced-nft/releases/tag/v1.1.1). The `OwnerReverseLookupMode` modality must be set to `Complete` as described [here](./reverse-lookup.md).
+[Learn to check token ownership](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/docs/tutorials/token-ownership-tutorial.md) starting with version [v1.1.1](https://github.com/casper-ecosystem/cep-78-enhanced-nft/releases/tag/v1.1.1). The `OwnerReverseLookupMode` modality must be set to `Complete` as described [here](./reverse-lookup.md).
 
 
 ### Upgrading to Version 1.1.1 
 
-Upgrade to v1.1.1 using a [Standard NamedKey Convention](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/tutorials/standard-migration-tutorial.md) or a [Custom NamedKey Convention](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/tutorials/custom-migration-tutorial.md).
+Upgrade to v1.1.1 using a [Standard NamedKey Convention](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/tutorials/standard-migration-tutorial.md) or a [Custom NamedKey Convention](https://github.com/casper-ecosystem/cep-78-enhanced-nft/blob/dev/docs/tutorials/custom-migration-tutorial.md).
 
 ## Installing and Interacting with the Contract using the Rust Casper Client
 
