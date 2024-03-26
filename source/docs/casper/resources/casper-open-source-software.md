@@ -37,7 +37,7 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [Casper Swift SDK](https://github.com/hienbui9999/CasperSDKInSwift) | Casper Client SDK. Casper SDK methods implementation in Swift. | hienbui9999 | Swift | MIT license | 2022-06-08 | Client SDK
 [Casper Two-Party MultiSig Contract](https://github.com/casper-ecosystem/two-party-multi-sig) | This example demonstrates how to configure an account on a Casper network to require two-party multi-signature deploys. | Casper Labs | Rust | NA | 2022-04-26 | Example contracts
 [Casper World](https://github.com/NodesGuru/casper-world) | Casper network status and decentralization map web application | Nodes Guru | TypeScript | MIT license | 2022-01-26 | Blockchain Explorer
-[CasperDash Wallet](https://github.com/CasperDash/casperdash-client) | A non-custodial wallet for the Casper blockchain | CasperDash | JavaScript | MIT license | 2022-09-14 | Wallet
+[CasperDash Wallet](https://github.com/CasperDash/casperdash-extension) | A non-custodial wallet for the Casper blockchain | CasperDash | JavaScript | MIT license | 2022-09-14 | Wallet
 [CasperFYRE API](https://github.com/ledgerleapllc/casperfyre-frontend) | Dispensory API interface for Casper Mainnet | LedgerLeap | JavaScript-PHP | Apache-2.0 license | 2022-09-06 | Tools
 [CasperHolders](https://github.com/casperholders/casperholdersfront) | First 3rd party UI to interact with Casper Blockchain | CasperHolders | JavaScript | Apache-2.0 license | 2022-08-23 | Blockchain Explorer
 [CasperSign](https://github.com/chronologic/caspersign-validator-ui) | The First Casper-Native Dapp. CasperSign Allows Users to Sign Contracts Confidentially & Securely on the Casper Blockchain | ChronoLogic and Digital Strategies | TypeScript | NA | 2022-08-31 | dApp
@@ -49,7 +49,7 @@ Name | Description | Author | Language | License | Last Update Date | Type
 [DAO Contracts](https://github.com/make-software/dao-contracts) | Smart Contracts for the MVPR On-Chain Governance System on Casper | MAKE Software | Rust | Apache-2.0 license | 2022-07-17 | DAO
 [DHF PAY](https://github.com/DHFinance/dhf-pay-front) | The crypto currency payment gateway on the CSPR blockchain | DHFinance | TypeScript | Apache-2.0 license | 2022-08-28 | Payments
 [DLN DAO](https://github.com/dlndao/start/) | DLN DAO | AlphaFin | TypeScript | MIT license | 2022-09-10 | DAO
-[DotOracle](https://github.com/dotoracle/bridge-ui) | Realtime decentralized Oracle and Cross-chain liquidity network for EVM, non-EVM Casper, and L2 blockchains. | DotOracle Network | TypeScript | NA | 2022-09-26 | Bridge
+[DotOracle](https://github.com/paradiso-io/bridge-ui) | Realtime decentralized Oracle and Cross-chain liquidity network for EVM, non-EVM Casper, and L2 blockchains. | DotOracle Network | TypeScript | NA | 2022-09-26 | Bridge
 [Dragon’s Lair Style Staking](https://github.com/Rengo-Labs/CasperLabs-Dragonlair) | Lair Style Staking | Rengo Labs | Rust | Apache-2.0 license | 2022-06-24 | Staking
 [Subscription Billing](https://github.com/Rengo-Labs/CasperLabs-EIP1337) | ERC-1337 subscription billing | Rengo Labs | Rust | MIT license | 2022-04-07 | Tokens
 [Casper Fungible Token](https://github.com/casper-ecosystem/cep18) | Implementation of Fungible Tokens for Casper networks | Casper Labs | Rust | Apache-2.0 license | 2022-09-01 | Tokens
