@@ -1169,7 +1169,7 @@ This method returns the current status of a node.
 |chainspec_name|String|The chainspec name, used to identify the currently connected network.|
 |[last_added_block_info](types_chain.md#minimalblockinfo)|Object|The minimal info of the last Block from the linear chain.|
 |[last_progress](types_chain.md#timestamp)|String|Timestamp of the last recorded progress in the reactor.|
-|[latest_switch_block_hash](#types_chain.md#blockhash)|Object|The hash of the latest switch block.|
+|[latest_switch_block_hash](types_chain.md#blockhash)|Object|The hash of the latest switch block.|
 |[next_upgrade](types_chain.md#nextupgrade)|Object|Information about the next scheduled upgrade.|
 |[our_public_signing_key](types_chain.md#publickey)|String|Our public signing key.|
 |[peers](types_chain.md#peersmap)|Array|The node ID and network address of each connected peer.|
