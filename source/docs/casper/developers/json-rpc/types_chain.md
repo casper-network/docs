@@ -226,17 +226,18 @@ The body portion of a block.
 
 Required Parameters:
 
+* [`auction`](#transactionhash) The hashes of the auction transactions within the block.
+
 * [`install_upgrade`](#transactionhash) The hashes of the installer/upgrader transactions within the block.
+
+* [`mint`](#transactionhash) The hashes of the mint transactions within the block.
 
 * [`proposer`](#publickey)
 
 * [`rewarded_signatures`](#rewardedsignatures)
 
-* [`staking`](#transactionhash) The hashes for non-transfer, native transactions within the block.
-
 * [`standard`](#transactionhash) The hashes of all other transactions within the block.
 
-* [`transfer`](#transactionhash) The hashes of the transfer transactions within the block.
 
 ## BlockHash {#blockhash}
 
@@ -403,6 +404,22 @@ One of:
 * `Empty` Empty byte code.
 
 * `V1CasperWasm` Byte code to be executed with the version 1 Casper execution engine.
+
+## BytesreprError {#bytesreprerror}
+
+Serialization and deserialization errors.
+
+* `EarlyEndOfStream` Early end of stream while deserializing.
+
+* `Formatting` Formatting error while deserializing.
+
+* `LeftOverBytes` Not all input bytes were consumed.
+
+* `OutOfMemory` Out of memory error.
+
+* `NotRepresentable` No serialized representation is available for a value.
+
+* `ExceededRecursionDepth` Exceeded a recursion depth limit.
 
 ## ChainspecRawBytes {#chainspecrawbytes}
 
@@ -622,6 +639,18 @@ Required Parameters:
 
 A log of all [transforms](#tranform) produced during execution.
 
+## EntityIdentifier {#entityidentifier}
+
+Identifier of an addressable entity.
+
+* [`PublicKey`](#publickey)
+
+* [`AccountHash`](#accounthash)
+
+* [`EntityHashForAccount`](#addressableentityhash)
+
+* [`EntityHashForContract`](#addressableentityhash)
+
 ## EntityKind {#entitykind}
 
 The type of [`Package`](#package).
@@ -633,6 +662,16 @@ One of:
 * [`Account`](#accounthash)
 
 * `SmartContract` Packages associated with Wasm stored on chain.
+
+## EntityOrAccount {#entity-or-account}
+
+An addressable entity or a legacy account.
+
+One of:
+
+* [`AddressableEntity`](#addressablentity)
+
+* [`Account`](#account)
 
 ## EntityVersionAndHash {#entityversionandhash}
 
@@ -1214,6 +1253,14 @@ Required Parameters:
 
 A [collection of named keys](#array-of-namedkey).
 
+## NamedKeyValue {#namedkeyvalue}
+
+A `NamedKey` value.
+
+* `name` The name of the `Key` encoded as a `CLValue`.
+
+* `named_key` The actual `Key` encoded as a `CLValue`.
+
 ## NamedUserGroup {#namedusergroup}
 
 A named [`group`](#group).
@@ -1318,6 +1365,10 @@ One of:
 
 * `Unlocked` The package is unlocked and can be versioned.
 
+## Peer {#peers}
+
+Map of peer IDs to network addresses.
+
 ## PeerEntry {#peerentry}
 
 Required Parameters:
@@ -1326,21 +1377,17 @@ Required Parameters:
 
 * `node_id`
 
-## PeersMap {#peersmap}
-
-Map of peer IDs to network addresses.
-
 ## PricingMode {#pricingmode}
 
 The pricing mode of a transaction.
 
 One of:
 
-* `GasPriceMultiplier` Multiplies the gas used by the given amount.
+* `Classic` The original payment model, where the creator of the transaction specifies how much they will pay, at what gas price.
 
-* `Fixed` First-in-first-out handling of transactions.
+* `Fixed` The cost of the transaction is determined by the cost table, per the transaction kind.
 
-* `Reserved` The payment for this transaction was previously reserved.
+* `Reserved` The payment for this transaction was previously reserved (Not currently implemented).
 
 ## ProtocolVersion {#protocolversion}
 
@@ -1481,6 +1528,8 @@ Representation of a value stored in global state.
 * [`MessageTopic`](#messagetopics) A variant that stores a message topic.
 
 * [`Message`](#messagechecksum) A variant that stores a message digest.
+
+* [`NamedKey`](#namedkey) A NamedKey record.
 
 ## SystemEntityType {#systementitytype}
 
@@ -1734,9 +1783,41 @@ Additional Parameters:
 
 Hex-encoded transfer address.
 
-## Transform {#transform}
+## TransformError {#transformerror}
 
-The actual transformation performed while executing a Deploy.
+Error type for applying and combining transforms. A `TypeMismatch` occurs when a transform cannot be applied because the types are not compatible (e.g. trying to add a number to a string).
+
+One of:
+
+* [`serialization`](#bytesreprerror)
+
+* [`typemismatch`](#typemismatch)
+
+* `deprecated` Type no longer supported.
+
+## TransformV1 {#transformv1}
+
+A transformation performed while executing a Deploy.
+
+Required Parameters:
+
+* `key` The formatted string of the `Key`.
+
+* [`transforms`](#transformkindv1) The transformation.
+
+## Transformv2 {#transformv2}
+
+A transformation performed while executing a Deploy.
+
+Required Parameters:
+
+* `key` The formatted string of the `Key`.
+
+* [`kind`](#transformkindv2) The transformation.
+
+## TransformKindV1 {#transformkindv1}
+
+The actual transformation performed while executing a Deploy in version 1.
 
 One of:
 
@@ -1784,15 +1865,39 @@ One of:
 
 * `Failure` A failed transformation, containing an error message.
 
-## TransformEntry {#transformentry}
+## TransformKindV1 {#transformkindv1}
 
-A transformation performed while executing a Deploy.
+The actual transformation performed while executing a Deploy in version 2.
 
-Required Parameters:
+One of:
 
-* `key` The formatted string of the `Key`.
+* `Identity` A transform having no effect.
 
-* [`transforms`](#transform) The transformation.
+* `Write` Writes the new value in global state.
+
+* `AddInt32` Adds the given `i32`.
+
+* `AddUInt64` Adds the given `u64`.
+
+* `AddUInt128` Adds the given [`U128`](#u128).
+
+* `AddUInt256` Adds the given [`U256`](#u256).
+
+* `AddUInt512` Adds the given [`U512`](#u512).
+
+* `AddKeys` Adds the given collection of [named keys](#namedkey).
+
+* `Prune` Removes the pathing to the global state entry of the specified key. The pruned element remains reachable from previously generated global state root hashes, but will not be included in the next generated global state root hash and subsequent states.
+
+* `Failure` A failed transformation, containing an error message.
+
+## TypeMismatch {#typemismatch}
+
+An error struct representing a type mismatch in [`StoredValue`](#storedvalue) operations.
+
+* `expected` The name of the expected type.
+
+* `found` The actual type found.
 
 ## U128 {#u128}
 
@@ -1869,6 +1974,10 @@ Required Parameters:
 ## VestingSchedule {#vestingschedule}
 
 Vesting schedule for a genesis validator.
+
+* `initial_release_timestamp_millies` Timestamp of the initial release.
+
+* [`locked_amounts`](#u512) The amount of locked motes.
 
 ## Weight {#weight}
 
